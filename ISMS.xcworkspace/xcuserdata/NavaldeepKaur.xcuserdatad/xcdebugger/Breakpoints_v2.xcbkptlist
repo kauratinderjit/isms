@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "7B314C42-D72D-4226-8410-FB6468745F33"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5217FBC5-8BBA-4E5D-9B1D-370F0AD5C651"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISMS/Auth/Login/Api/LoginApi.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "LogInApi(url:parameter:completionResponse:completionnilResponse:completionError:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5E1CEE80-B6C4-4CE9-A172-22099C2009FA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISMS/Auth/Login/Api/LoginApi.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "LogInApi(url:parameter:completionResponse:completionnilResponse:completionError:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BEDAD22A-72D3-43CA-97A8-0580D35787C2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISMS/Auth/Login/Api/LoginApi.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "veriFyPhoneNumberApi(url:parameter:completionResponse:completionnilResponse:completionError:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "BEDAD22A-72D3-43CA-97A8-0580D35787C2 - ffcce205ca5cfcbf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ISMS.LoginApi.veriFyPhoneNumberApi(url: Swift.String, parameter: Swift.Dictionary&lt;Swift.String, Any&gt;, completionResponse: (ISMS.VerifyPhoneNumberModel) -&gt; (), completionnilResponse: (Swift.Optional&lt;Swift.String&gt;) -&gt; (), completionError: (Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "ISMS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/DATA%20-%20Data/ISMSTaran/LatestSchoolManagementSystem/ISMS/Auth/Login/Api/LoginApi.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "107"
+                  endingLineNumber = "107"
+                  offsetFromSymbolStart = "1099">
+               </Location>
+               <Location
+                  uuid = "BEDAD22A-72D3-43CA-97A8-0580D35787C2 - 6349b939cf8b3f41"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in ISMS.LoginApi.veriFyPhoneNumberApi(url: Swift.String, parameter: Swift.Dictionary&lt;Swift.String, Any&gt;, completionResponse: (ISMS.VerifyPhoneNumberModel) -&gt; (), completionnilResponse: (Swift.Optional&lt;Swift.String&gt;) -&gt; (), completionError: (Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "ISMS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/DATA%20-%20Data/ISMSTaran/LatestSchoolManagementSystem/ISMS/Auth/Login/Api/LoginApi.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "265">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2FAD69C0-B3BB-4B1B-9BB1-8C230DCC5D32"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISMS/Auth/Login/Api/LoginApi.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "veriFyPhoneNumberApi(url:parameter:completionResponse:completionnilResponse:completionError:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "99358ECB-3F42-4AD1-9003-C819DFCA04FC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISMS/Auth/Login/Api/LoginApi.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "veriFyPhoneNumberApi(url:parameter:completionResponse:completionnilResponse:completionError:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F647FE3C-E297-4C3F-95C7-F895F1F1FBC3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISMS/Auth/Login/Api/LoginApi.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "verifyPhoneNoData(data:completionResponse:completionError:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F50FA6C4-A98B-41E5-8A4F-2E5FA8F98B39"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISMS/Auth/Login/Api/LoginApi.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "veriFyPhoneNumberApi(url:parameter:completionResponse:completionnilResponse:completionError:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

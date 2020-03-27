@@ -1,0 +1,279 @@
+{
+    "Channels": [
+        {
+            "name": "M",
+            "number": 1,
+            "programs": [
+                {
+                    "title": "Period1",
+                    "start": 0,
+                    "end": 3600
+                },
+                {
+                    "title": "Period2",
+                    "start": 3600,
+                    "end": 7200
+                },
+                {
+                    "title": "period3",
+                    "start": 7200,
+                    "end": 10800
+                },
+                {
+                    "title": "period4",
+                    "start": 10800,
+                    "end": 14400
+                },
+                {
+                    "title": "period5",
+                    "start": 14400,
+                    "end": 18000
+                },
+                {
+                    "title": "period6",
+                    "start": 18000,
+                    "end": 21600
+                },
+                {
+                    "title": "period7",
+                    "start": 21600,
+                    "end": 25200
+                },
+                {
+                    "title": "period8",
+                    "start": 25200,
+                    "end": 28800
+                }
+            ]
+        },
+        {
+            "name": "T",
+            "number": 2,
+            "programs": [
+                {
+                    "title": "Period1",
+                    "start": 0,
+                    "end": 3600
+                },
+                {
+                    "title": "Period2",
+                    "start": 3600,
+                    "end": 7200
+                },
+                {
+                    "title": "period3",
+                    "start": 7200,
+                    "end": 10800
+                },
+                {
+                    "title": "period4",
+                    "start": 10800,
+                    "end": 14400
+                },
+                {
+                    "title": "period5",
+                    "start": 14400,
+                    "end": 18000
+                },
+                {
+                    "title": "period6",
+                    "start": 18000,
+                    "end": 21600
+                },
+                {
+                    "title": "period7",
+                    "start": 21600,
+                    "end": 25200
+                },
+                {
+                    "title": "period8",
+                    "start": 25200,
+                    "end": 28800
+                }
+            ]
+        },
+        {
+            "name": "W",
+            "number": 3,
+            "programs": [
+                {
+                    "title": "Period1",
+                    "start": 0,
+                    "end": 3600
+                },
+                {
+                    "title": "Period2",
+                    "start": 3600,
+                    "end": 7200
+                },
+                {
+                    "title": "period3",
+                    "start": 7200,
+                    "end": 10800
+                },
+                {
+                    "title": "period4",
+                    "start": 10800,
+                    "end": 14400
+                },
+                {
+                    "title": "period5",
+                    "start": 14400,
+                    "end": 18000
+                },
+                {
+                    "title": "period6",
+                    "start": 18000,
+                    "end": 21600
+                },
+                {
+                    "title": "period7",
+                    "start": 21600,
+                    "end": 25200
+                },
+                {
+                    "title": "period8",
+                    "start": 25200,
+                    "end": 28800
+                }
+            ]
+        },
+        {
+            "name": "T",
+            "number": 2,
+            "programs": [
+                {
+                    "title": "Period1",
+                    "start": 0,
+                    "end": 3600
+                },
+                {
+                    "title": "Period2",
+                    "start": 3600,
+                    "end": 7200
+                },
+                {
+                    "title": "period3",
+                    "start": 7200,
+                    "end": 10800
+                },
+                {
+                    "title": "period4",
+                    "start": 10800,
+                    "end": 14400
+                },
+                {
+                    "title": "period5",
+                    "start": 14400,
+                    "end": 18000
+                },
+                {
+                    "title": "period6",
+                    "start": 18000,
+                    "end": 21600
+                },
+                {
+                    "title": "period7",
+                    "start": 21600,
+                    "end": 25200
+                },
+                {
+                    "title": "period8",
+                    "start": 25200,
+                    "end": 28800
+                }
+            ]
+        },
+        {
+            "name": "F",
+            "number": 5,
+            "programs": [
+                {
+                    "title": "Period1",
+                    "start": 0,
+                    "end": 3600
+                },
+                {
+                    "title": "Period2",
+                    "start": 3600,
+                    "end": 7200
+                },
+                {
+                    "title": "period3",
+                    "start": 7200,
+                    "end": 10800
+                },
+                {
+                    "title": "period4",
+                    "start": 10800,
+                    "end": 14400
+                },
+                {
+                    "title": "period5",
+                    "start": 14400,
+                    "end": 18000
+                },
+                {
+                    "title": "period6",
+                    "start": 18000,
+                    "end": 21600
+                },
+                {
+                    "title": "period7",
+                    "start": 21600,
+                    "end": 25200
+                },
+                {
+                    "title": "period8",
+                    "start": 25200,
+                    "end": 28800
+                }
+            ]
+        },{
+            "name": "S",
+            "number": 2,
+            "programs": [
+                {
+                    "title": "Period1",
+                    "start": 0,
+                    "end": 3600
+                },
+                {
+                    "title": "Period2",
+                    "start": 3600,
+                    "end": 7200
+                },
+                {
+                    "title": "period3",
+                    "start": 7200,
+                    "end": 10800
+                },
+                {
+                    "title": "period4",
+                    "start": 10800,
+                    "end": 14400
+                },
+                {
+                    "title": "period5",
+                    "start": 14400,
+                    "end": 18000
+                },
+                {
+                    "title": "period6",
+                    "start": 18000,
+                    "end": 21600
+                },
+                {
+                    "title": "period7",
+                    "start": 21600,
+                    "end": 25200
+                },
+                {
+                    "title": "period8",
+                    "start": 25200,
+                    "end": 28800
+                }
+            ]
+        }
+    ]
+}
