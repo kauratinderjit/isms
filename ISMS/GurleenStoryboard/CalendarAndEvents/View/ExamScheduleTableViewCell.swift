@@ -11,6 +11,12 @@ import UIKit
 class ExamScheduleTableViewCell: UITableViewCell {
 
     @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblDate: UILabel!
+    @IBOutlet weak var lblTime: UILabel!
+    @IBOutlet weak var btnEdit: UIButton!
+    @IBOutlet weak var btnDel: UIButton!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

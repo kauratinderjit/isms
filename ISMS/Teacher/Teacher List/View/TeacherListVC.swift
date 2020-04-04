@@ -72,6 +72,7 @@ class TeacherListVC: BaseUIViewController {
                     break
                 case KAccessIntitifiers.kEdit:
                     isEdit = true
+              
                     break
                 case KAccessIntitifiers.kDelete:
                     isDelete = true

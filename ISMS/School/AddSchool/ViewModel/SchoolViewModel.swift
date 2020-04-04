@@ -92,6 +92,7 @@ class AddSchoolViewModel{
         self.addSchoolView?.showLoader()
         AddSchoolApi.sharedInstance.updateSchoolInfo(url: url, parameter: params, uploadItems: IFile, completionResponse: { (response) in
             self.addSchoolView?.hideLoader()
+             self.addSchoolView?.showAlert(alert: "Institute updated successfully")
             print(response)
         }, completionnilResponse: { (nilresponse) in
              self.addSchoolView?.hideLoader()

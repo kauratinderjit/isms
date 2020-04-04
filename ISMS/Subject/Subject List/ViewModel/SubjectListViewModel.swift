@@ -145,6 +145,8 @@ class SubjectListViewModel{
                     }else{
                         self.SubjectListVC?.showAlert(alert: responseModel.message ?? "")
                     }
+                    self.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: 10,sortColumnDir: "",sortColumn: "")
+
                     
                 }else if responseModel.statusCode == KStatusCode.kStatusCode401{
                     self.SubjectListVC?.showAlert(alert: responseModel.message ?? "")
@@ -197,6 +199,7 @@ class SubjectListViewModel{
             if GetSubjectDetail.statusCode == KStatusCode.kStatusCode200{
                 self.SubjectListVC?.hideLoader()
                 self.SubjectListDelegate?.SubjectDetailDidSuccess(Data: GetSubjectDetail)
+                
             }else if GetSubjectDetail.statusCode == KStatusCode.kStatusCode401{
                 self.SubjectListVC?.showAlert(alert: GetSubjectDetail.message ?? "")
                 self.SubjectListDelegate?.unauthorizedUser()
@@ -233,17 +236,18 @@ class SubjectListViewModel{
 extension SubjectListVC : UITableViewDelegate{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? SubjectChapterVC {
-            vc.subject_Id = subjectId
+        if segue.identifier == "SubjectToChapter"{
+        let vc = segue.destination as? SubjectChapterVC
+            vc?.subject_Id = subjectId
         }
     }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedRow = arrSubjectlist[indexPath.row]
-        subjectId = selectedRow.subjectId
-        self.performSegue(withIdentifier: "SubjectToChapter", sender: self)
-        
+//        let selectedRow = arrSubjectlist[indexPath.row]
+//        subjectId = selectedRow.subjectId
+//        self.performSegue(withIdentifier: "SubjectToChapter", sender: self)
+//
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -295,6 +299,7 @@ extension SubjectListVC : SubjectListDelegate{
         initializeCustomOkAlert(self.view, isHideBlurView: true)
         okAlertView.delegate = self
         okAlertView.lblResponseDetailMessage.text = data.message
+         self.ViewModel?.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: pageSize,sortColumnDir: "",sortColumn: "")
     }
     
     

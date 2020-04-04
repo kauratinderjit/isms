@@ -40,10 +40,11 @@ class UpdateSyllabusModel : Mappable{
         var subjectPercentage : String?
         var SubjectName : String?
         var chapter : String?
-        
+        var collapsed: Bool?
+
         var chapterID : Int?
         var chapterName : String?
-        
+         var TopicListViewModels : [TopicListViewModels]?
         
         
         init?(map: Map) {
@@ -55,12 +56,27 @@ class UpdateSyllabusModel : Mappable{
             chapter <- map[KApiParameters.kUpdateSyllabusApiParameter.kChapter]
             SubjectName <- map[KApiParameters.kUpdateSyllabusApiParameter.kSubjectName]
             chapterID <- map[KApiParameters.kUpdateSyllabusApiParameter.kChapterId]
-            
+            TopicListViewModels <- map["TopicListViewModels"]
+
             chapterName <- map[KApiParameters.kUpdateSyllabusApiParameter.kChapterName]
         }
         
     }
     
-
-
+struct TopicListViewModels: Mappable {
+    
+    var TopicId : Int?
+    var TopicName : String?
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+   
+        TopicId <- map["TopicId"]
+        TopicName <- map["TopicName"]
+        
+    }
+    
+}
 

@@ -55,6 +55,8 @@ class UserRoleIdVC: BaseUIViewController {
                     //ApplyTheme
                     let themeColors = ThemeColors.init(values: hodThemeDict)
                     let theme = Theme.init(themeColors: themeColors)
+                    UserDefaultExtensionModel.shared.currentHODRoleName = data?.roleName ?? ""
+
                     ThemeManager.applyTheme(theme: theme)
                 }else if data?.roleName == "Student"{
                     let themeColors = ThemeColors.init(values: studentThemeDict)

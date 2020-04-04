@@ -77,7 +77,7 @@ class AddSchoolViewController: BaseUIViewController {
         setDatePickerView(self.view, type: .date)
         self.viewModel = AddSchoolViewModel.init(delegate : self )
         self.viewModel?.attachView(view: self)
-        self.viewModel?.GetSchoolInformation(institudeId: 8)
+        self.viewModel?.GetSchoolInformation(institudeId: 1)
         self.tableView.tableFooterView = UIView()
         imgViewProfile.layer.cornerRadius = imgViewProfile.frame.width/2
         self.hideKeyboardWhenTappedAround()
@@ -193,19 +193,8 @@ class AddSchoolViewController: BaseUIViewController {
     
     @IBAction func Action_submitInfo(_ sender: Any) {
         
-        if let url = schoolData?.resultData?.logo{
-            imageURL = URL(string: url)
-        }
         
-        if let selectedLatitude = self.schoolData?.resultData?.latitude{
-            selectedLat = selectedLatitude
-        }
-        
-        if let selectedLongitude = self.schoolData?.resultData?.longtitude{
-            selectedLong = selectedLongitude
-        }
-        
-        self.viewModel?.updateSchoolAPI(InstititeId: 8, Name: txtfieldName.text ?? "", Latitude: selectedLat ?? "", Longtitude:selectedLong ?? "", WebsiteLink: txtfieldWebsiteLink.text ?? "", Address: txtfieldAddress.text ?? "", PhoneNo: txtfieldPhoneNumber.text ?? "", Email: txtfieldEmail.text ?? "", BoardId: 2, BoardName:txtAffiliationBoard.text ?? "" , Inquiry: txtfieldInquiry.text ?? "", EstablishDate: txtfield_yearOfEstablishment.text ?? "", TypeId: typeID ?? schoolData?.resultData?.typeId ?? 0, TypeName: txtfileldSchoolCollege.text ?? schoolData?.resultData?.typeName ?? "", IFile: uploadData, LstDeletedAttachment: dictionaries)
+        self.viewModel?.updateSchoolAPI(InstititeId: 1, Name: txtfieldName.text ?? "", Latitude: selectedLat ?? "" , Longtitude:selectedLong ?? "", WebsiteLink: txtfieldWebsiteLink.text ?? "", Address: txtfieldAddress.text ?? "", PhoneNo: txtfieldPhoneNumber.text ?? "", Email: txtfieldEmail.text ?? "", BoardId: 1, BoardName:txtAffiliationBoard.text ?? "" , Inquiry: txtfieldInquiry.text ?? "", EstablishDate: txtfield_yearOfEstablishment.text ?? "", TypeId: typeID ?? schoolData?.resultData?.typeId ?? 0, TypeName: txtfileldSchoolCollege.text ?? schoolData?.resultData?.typeName ?? "", IFile: uploadData, LstDeletedAttachment: dictionaries)
     }
     
     @IBAction func ActionCrossBtn(_ sender: UIButton) {
@@ -335,6 +324,18 @@ extension AddSchoolViewController: AddSchoolDelegate {
                 self.btnRadioSchool.setImage(UIImage(named:"radioSelected"), for: .normal)
                 self.btnRadioCollege.setImage(UIImage(named:"radioUnSelected"), for: .normal)
             }
+            
+            if let url = schoolData?.resultData?.logo{
+                       imageURL = URL(string: url)
+                   }
+                   
+                   if let selectedLatitude = self.schoolData?.resultData?.latitude{
+                       selectedLat = selectedLatitude
+                   }
+                   
+                   if let selectedLongitude = self.schoolData?.resultData?.longtitude{
+                       selectedLong = selectedLongitude
+                   }
         }
     }
 }
@@ -538,6 +539,8 @@ extension AddSchoolViewController: UITableViewDelegate, UITableViewDataSource{
 extension AddSchoolViewController: SelectLocationDelegate{
     func selectedLatitudeLongitude(lat: String, long: String, address: String) {
         txtGeolocation.text = address
+        selectedLat = lat
+        selectedLong = long
         
     }    
 }

@@ -56,11 +56,12 @@ extension UIViewController {
     //Shadow to view
     func addShadow(view:UIView)
     {
-        view.layer.shadowOpacity = 0.1
-        view.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        view.layer.shadowRadius = 8.0
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.clipsToBounds = false
+        view.layer.shadowOffset = CGSize(width: 0, height: 0)
+                   view.layer.shadowColor = UIColor.black.cgColor
+                   view.layer.shadowRadius = 5
+                   view.layer.shadowOpacity = 0.40
+                   view.layer.masksToBounds = false;
+                   view.clipsToBounds = false;
     }
     
     //Boarder for view

@@ -26,6 +26,12 @@ class UpdateSyllabusTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        if let userName = UserDefaultExtensionModel.shared.currentHODRoleName  as?  String{
+                        if userName == KConstants.kHod{
+                            btnCheckBox.isHidden = true
+                        }
+    }
     }
     
   

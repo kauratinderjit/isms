@@ -105,6 +105,7 @@ class CommonFunctions: BaseUIViewController
         UserDefaultExtensionModel.shared.isPresentOnMultiRoleScreen = false
         UserDefaultExtensionModel.shared.appColorName = ""
         UserDefaultExtensionModel.shared.currentUserRoleName = ""
+          UserDefaultExtensionModel.shared.currentHODRoleName = ""
         
         let themeColors = ThemeColors.init(values: defaultThemeDict)
         let theme = Theme.init(themeColors: themeColors)
@@ -116,6 +117,7 @@ class CommonFunctions: BaseUIViewController
         UserDefaults.standard.removeObject(forKey: UserDefaultKeys.userAuthToken.rawValue)
         UserDefaults.standard.removeObject(forKey: UserDefaultKeys.userId.rawValue)
         UserDefaults.standard.removeObject(forKey: UserDefaultKeys.isPresentOnMultiRoleScreen.rawValue)
+        
         UserDefaults.standard.synchronize()
         
         let mainStoryBoard = UIStoryboard(name: KStoryBoards.kMain, bundle: nil)

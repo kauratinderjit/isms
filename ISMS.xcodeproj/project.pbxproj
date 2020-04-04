@@ -262,6 +262,13 @@
 		2E0DCA7F2297E8DC001DC56D /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E0DCA712297E8DC001DC56D /* MBProgressHUD.m */; };
 		2E0DCA802297E8DC001DC56D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0DCA732297E8DC001DC56D /* Reachability.swift */; };
 		2E0DCA812297E8DC001DC56D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E0DCA752297E8DC001DC56D /* LaunchScreen.storyboard */; };
+		2E3B81A724320E6F0029B73B /* Courses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E3B81A624320E6F0029B73B /* Courses.storyboard */; };
+		2E3BF6EC2435D05C00A4FB22 /* CollapsibleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3BF6E72435D05B00A4FB22 /* CollapsibleTableViewCell.swift */; };
+		2E3BF6ED2435D05C00A4FB22 /* CollapsibleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3BF6E82435D05C00A4FB22 /* CollapsibleTableViewController.swift */; };
+		2E3BF6EE2435D05C00A4FB22 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3BF6E92435D05C00A4FB22 /* Extensions.swift */; };
+		2E3BF6EF2435D05C00A4FB22 /* CollapsibleTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3BF6EA2435D05C00A4FB22 /* CollapsibleTableViewHeader.swift */; };
+		2E3BF6F02435D05C00A4FB22 /* ExampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3BF6EB2435D05C00A4FB22 /* ExampleData.swift */; };
+		2E3BF6F624360C4C00A4FB22 /* AddEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3BF6F524360C4C00A4FB22 /* AddEventVC.swift */; };
 		2E50E05A229E47AF009E47B9 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E50E04F229E47AE009E47B9 /* OpenSans-Italic.ttf */; };
 		2E50E05B229E47AF009E47B9 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E50E050229E47AE009E47B9 /* OpenSans-ExtraBold.ttf */; };
 		2E50E05C229E47AF009E47B9 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E50E051229E47AE009E47B9 /* OpenSans-BoldItalic.ttf */; };
@@ -273,6 +280,9 @@
 		2E50E063229E47AF009E47B9 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E50E058229E47AF009E47B9 /* OpenSans-SemiboldItalic.ttf */; };
 		2E50E064229E47AF009E47B9 /* Raleway-SemiBold_2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E50E059229E47AF009E47B9 /* Raleway-SemiBold_2.ttf */; };
 		2E50E069229E850D009E47B9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E50E068229E850D009E47B9 /* SignUpViewController.swift */; };
+		2E5CD430243785310060D601 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5CD42F243785310060D601 /* EventViewModel.swift */; };
+		2E5CD4322437854A0060D601 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5CD4312437854A0060D601 /* EventModel.swift */; };
+		2E5CD434243798B20060D601 /* EventScheduleApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5CD433243798B20060D601 /* EventScheduleApi.swift */; };
 		2E938B26229EA99B003A8B95 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E938B25229EA99A003A8B95 /* OpenSans-Regular.ttf */; };
 		2EC9AFC122A7BAD4007E2362 /* Department.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EC9AFC022A7BAD4007E2362 /* Department.storyboard */; };
 		2EC9AFC522A7CB77007E2362 /* AddDepartmentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC9AFC422A7CB77007E2362 /* AddDepartmentVC.swift */; };
@@ -645,6 +655,13 @@
 		2E0DCA712297E8DC001DC56D /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		2E0DCA732297E8DC001DC56D /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		2E0DCA762297E8DC001DC56D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2E3B81A624320E6F0029B73B /* Courses.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Courses.storyboard; sourceTree = "<group>"; };
+		2E3BF6E72435D05B00A4FB22 /* CollapsibleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapsibleTableViewCell.swift; sourceTree = "<group>"; };
+		2E3BF6E82435D05C00A4FB22 /* CollapsibleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapsibleTableViewController.swift; sourceTree = "<group>"; };
+		2E3BF6E92435D05C00A4FB22 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		2E3BF6EA2435D05C00A4FB22 /* CollapsibleTableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapsibleTableViewHeader.swift; sourceTree = "<group>"; };
+		2E3BF6EB2435D05C00A4FB22 /* ExampleData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleData.swift; sourceTree = "<group>"; };
+		2E3BF6F524360C4C00A4FB22 /* AddEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventVC.swift; sourceTree = "<group>"; };
 		2E50E04F229E47AE009E47B9 /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
 		2E50E050229E47AE009E47B9 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 		2E50E051229E47AE009E47B9 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -656,6 +673,9 @@
 		2E50E058229E47AF009E47B9 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
 		2E50E059229E47AF009E47B9 /* Raleway-SemiBold_2.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-SemiBold_2.ttf"; sourceTree = "<group>"; };
 		2E50E068229E850D009E47B9 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		2E5CD42F243785310060D601 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
+		2E5CD4312437854A0060D601 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
+		2E5CD433243798B20060D601 /* EventScheduleApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventScheduleApi.swift; sourceTree = "<group>"; };
 		2E938B25229EA99A003A8B95 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		2EC9AFC022A7BAD4007E2362 /* Department.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Department.storyboard; sourceTree = "<group>"; };
 		2EC9AFC422A7CB77007E2362 /* AddDepartmentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDepartmentVC.swift; sourceTree = "<group>"; };
@@ -1191,6 +1211,8 @@
 		0C1C28D5238E5BCD00F98FEC /* Syllabus */ = {
 			isa = PBXGroup;
 			children = (
+				2E3BF6DC2435CCDF00A4FB22 /* CollapsableView */,
+				2E3B81A3243209FD0029B73B /* StoryBoard */,
 				0C1C28D6238E5BCD00F98FEC /* Syllabus Coverage */,
 				0C1C28E1238E5BCE00F98FEC /* Syllabus Update */,
 			);
@@ -3074,6 +3096,26 @@
 			path = LaunchScreen;
 			sourceTree = "<group>";
 		};
+		2E3B81A3243209FD0029B73B /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				2E3B81A624320E6F0029B73B /* Courses.storyboard */,
+			);
+			path = StoryBoard;
+			sourceTree = "<group>";
+		};
+		2E3BF6DC2435CCDF00A4FB22 /* CollapsableView */ = {
+			isa = PBXGroup;
+			children = (
+				2E3BF6E72435D05B00A4FB22 /* CollapsibleTableViewCell.swift */,
+				2E3BF6E82435D05C00A4FB22 /* CollapsibleTableViewController.swift */,
+				2E3BF6EA2435D05C00A4FB22 /* CollapsibleTableViewHeader.swift */,
+				2E3BF6EB2435D05C00A4FB22 /* ExampleData.swift */,
+				2E3BF6E92435D05C00A4FB22 /* Extensions.swift */,
+			);
+			path = CollapsableView;
+			sourceTree = "<group>";
+		};
 		2E50E065229E47B2009E47B9 /* Font */ = {
 			isa = PBXGroup;
 			children = (
@@ -3090,6 +3132,41 @@
 				2E50E059229E47AF009E47B9 /* Raleway-SemiBold_2.ttf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		2E5CD435243798B70060D601 /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				2E5CD433243798B20060D601 /* EventScheduleApi.swift */,
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
+		2E5CD436243798C20060D601 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				2E5CD42F243785310060D601 /* EventViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		2E5CD437243798CF0060D601 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2E5CD4312437854A0060D601 /* EventModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2E5CD438243798EA0060D601 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E036A672238FAE4700BDC9D0 /* CalendarEventVC.swift */,
+				E036A671238FAE4700BDC9D0 /* ExamScheduleTableViewCell.swift */,
+				E036A673238FAE4800BDC9D0 /* ExamScheduleVC.swift */,
+				2E3BF6F524360C4C00A4FB22 /* AddEventVC.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		2EC9AFC222A7CA5B007E2362 /* Add Departments */ = {
@@ -3665,9 +3742,10 @@
 			isa = PBXGroup;
 			children = (
 				E036A674238FAE4800BDC9D0 /* CalendarAndEvents.storyboard */,
-				E036A672238FAE4700BDC9D0 /* CalendarEventVC.swift */,
-				E036A671238FAE4700BDC9D0 /* ExamScheduleTableViewCell.swift */,
-				E036A673238FAE4800BDC9D0 /* ExamScheduleVC.swift */,
+				2E5CD438243798EA0060D601 /* View */,
+				2E5CD437243798CF0060D601 /* Model */,
+				2E5CD436243798C20060D601 /* View Model */,
+				2E5CD435243798B70060D601 /* Api */,
 			);
 			path = CalendarAndEvents;
 			sourceTree = "<group>";
@@ -3841,6 +3919,7 @@
 				2DB1589822C5E8E000AC6B8D /* GalleryAlert.xib in Resources */,
 				2D28B92722B7B257007D10F8 /* HOD.storyboard in Resources */,
 				10EEEAB7239E57DC00E8485C /* School.storyboard in Resources */,
+				2E3B81A724320E6F0029B73B /* Courses.storyboard in Resources */,
 				2E50E05E229E47AF009E47B9 /* OpenSans-Light.ttf in Resources */,
 				10EEEAA1239E57DC00E8485C /* NewsFeedAndLetter.storyboard in Resources */,
 				10EEEAC4239E57FD00E8485C /* ExamResult.storyboard in Resources */,
@@ -4098,6 +4177,7 @@
 				E036A690238FAE7800BDC9D0 /* ForumVC.swift in Sources */,
 				0C5A1A92239929630039CB39 /* TeacherSubjectSkillRatingTableViewCell.swift in Sources */,
 				0C7A1A1023953C4D002B5C8B /* RatingToTeacherVC.swift in Sources */,
+				2E3BF6EC2435D05C00A4FB22 /* CollapsibleTableViewCell.swift in Sources */,
 				2D645F0222BBB685009EA9B6 /* TeacherListPresenter.swift in Sources */,
 				BE06B65322A4EE70000CFCAF /* GetAllCountryModel.swift in Sources */,
 				0C1C28FE238E9CD800F98FEC /* StudentRatingTableViewCell.swift in Sources */,
@@ -4110,7 +4190,9 @@
 				BE356648229E694000759ACA /* ForgotPasswordVC.swift in Sources */,
 				0C55C2D223967D040016CC23 /* TeacherRatingApi.swift in Sources */,
 				2D2C449422CE0E09004424D8 /* SelectionTblViewCell.swift in Sources */,
+				2E3BF6F02435D05C00A4FB22 /* ExampleData.swift in Sources */,
 				10EEEAB5239E57DC00E8485C /* GeoLocationVC.swift in Sources */,
+				2E5CD434243798B20060D601 /* EventScheduleApi.swift in Sources */,
 				10EEEAAE239E57DC00E8485C /* SchoolModel.swift in Sources */,
 				2DF5641022C1F72D006F4522 /* UserListVC.swift in Sources */,
 				0C1C28C6238E5BB300F98FEC /* SubjectChapterViewModel.swift in Sources */,
@@ -4135,6 +4217,7 @@
 				2DCF6CC122CF0A6A005E505A /* AdStudentApi.swift in Sources */,
 				0C1C2881238E5A9D00F98FEC /* ClassApi.swift in Sources */,
 				0C1C28C3238E5BB300F98FEC /* ChapterModel.swift in Sources */,
+				2E3BF6EF2435D05C00A4FB22 /* CollapsibleTableViewHeader.swift in Sources */,
 				10EEEAA8239E57DC00E8485C /* ManageUserVC.swift in Sources */,
 				C61A1A912391143C0043A5D2 /* GroupEmailVC.swift in Sources */,
 				0C1C2890238E5A9D00F98FEC /* ClassPeriodsTableViewCell.swift in Sources */,
@@ -4143,7 +4226,9 @@
 				2D645F0D22BBBB67009EA9B6 /* AddTeacherModel.swift in Sources */,
 				C683DB0D22E072ED00011212 /* GetPeriodList.swift in Sources */,
 				0C1C28C9238E5BB300F98FEC /* GetSubjectDetail.swift in Sources */,
+				2E3BF6EE2435D05C00A4FB22 /* Extensions.swift in Sources */,
 				2DF5642F22C252F8006F4522 /* UserAccessModel.swift in Sources */,
+				2E5CD430243785310060D601 /* EventViewModel.swift in Sources */,
 				BE06B65122A4ED26000CFCAF /* SignUpApi.swift in Sources */,
 				C683DB1F22E082BF00011212 /* VerifyEmailPhoneUserDetail.swift in Sources */,
 				C683DB0F22E072ED00011212 /* TimePeriodVC.swift in Sources */,
@@ -4217,6 +4302,7 @@
 				0C1C28F0238E5BCE00F98FEC /* SyllabusCoverageViewModel.swift in Sources */,
 				2DF5641422C1F752006F4522 /* UserListModel.swift in Sources */,
 				0C1C28F5238E5BCE00F98FEC /* UpdateSyllabusViewModel.swift in Sources */,
+				2E3BF6F624360C4C00A4FB22 /* AddEventVC.swift in Sources */,
 				2D2A92BF22B0CF2600F2AAB6 /* AddParentPresenter.swift in Sources */,
 				2DF5641722C1F781006F4522 /* UserAccessApi.swift in Sources */,
 				E09D6747238FF539002FF59A /* AddExamVC.swift in Sources */,
@@ -4253,6 +4339,8 @@
 				2D2A2C2822AA69400078C75C /* AddTeacherViewModel.swift in Sources */,
 				0C1C28CC238E5BB300F98FEC /* SubjectListTableCell.swift in Sources */,
 				0C1C2892238E5A9D00F98FEC /* ClassPeriodsTimeTableViewModel.swift in Sources */,
+				2E3BF6ED2435D05C00A4FB22 /* CollapsibleTableViewController.swift in Sources */,
+				2E5CD4322437854A0060D601 /* EventModel.swift in Sources */,
 				2DF5642A22C252F8006F4522 /* UserAccessRoleVC.swift in Sources */,
 				C61A1A7C2390F7000043A5D2 /* ChannelCollectionViewCell.swift in Sources */,
 				C683DAF522E0725C00011212 /* StudentListViewModel.swift in Sources */,

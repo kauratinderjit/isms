@@ -24,7 +24,8 @@ class ClassAssignSubjectApi{
         }
         
         let headers = [KConstants.kHeaderAuthorization:KConstants.kHeaderBearer+" "+accessTokken,KConstants.kAccept: KConstants.kApplicationJson]
-        
+        print(urlCmplete)
+        print(parameters)
         
         Alamofire.request(urlCmplete, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
             

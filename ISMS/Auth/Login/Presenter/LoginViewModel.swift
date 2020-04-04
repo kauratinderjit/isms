@@ -275,6 +275,7 @@ extension LoginVC : LogInDelegate{
             //Save the user role id in user defaults when user have only one role move to home screen and hit side menu api.
             UserDefaultExtensionModel.shared.currentUserRoleId = data.resultData?.first?.roleId ?? 0
             UserDefaultExtensionModel.shared.userRoleParticularId = data.resultData?.first?.particularId ?? 0
+                UserDefaultExtensionModel.shared.currentHODRoleName = data.resultData?.first?.roleName ?? ""
 
         }else if  data.resultData?.count ?? 0 > 1 {
             //When user have more then one role then it move to multiple user role screen

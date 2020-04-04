@@ -160,18 +160,16 @@ extension SubjectChapterViewModel {
 extension SubjectChapterVC : UITableViewDelegate{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let vc = segue.destination as?   {
-//            vc.sub =
-//        }"SubjectTopicVC"
-     }
+           if segue.identifier == "ChapterToTopic"{
+           let vc = segue.destination as? SubjectTopicVC
+               vc?.ChapterID = ChapterID
+           }
+       }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        //self.performSegue(withIdentifier: "SubjectToChapter", sender: self)
-        let storyboard = UIStoryboard.init(name: KStoryBoards.kSubjectStoryboard, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier:  TopicVC.kSubjectTopicVC) as! SubjectTopicVC
-           if let id = arrChapterList[indexPath.row].ChapterId {
-                  vc.ChapterID = id
-            }
-        self.navigationController?.pushViewController(vc, animated: true)
+        ChapterID = arrChapterList[indexPath.row].ChapterId ?? 0
+                  self.performSegue(withIdentifier: "ChapterToTopic", sender: self)
+
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

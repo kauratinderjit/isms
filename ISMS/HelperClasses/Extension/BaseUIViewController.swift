@@ -108,6 +108,24 @@ class BaseUIViewController: UIViewController{
         self.view_pickerView.isHidden = true
     }
     
+    //for textview
+     func animateTextView(textView: UITextView, up: Bool, movementDistance:CGFloat,scrollView:UIScrollView)
+     {
+         
+         var movement:CGFloat = 0
+         if up
+         {
+             movement = movementDistance
+         }
+         else
+         {
+             movement = 0
+         }
+         scrollView.contentOffset = CGPoint(x: 0, y: movement)
+         
+     }
+     
+    
     //PickerButton Action
     @objc func doneBtnClick(sender: Any){
         

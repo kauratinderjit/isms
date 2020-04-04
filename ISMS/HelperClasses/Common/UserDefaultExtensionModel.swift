@@ -96,6 +96,18 @@ class UserDefaultExtensionModel : NSObject{
         }
     }
     
+    //Mark:- HOD Role
+    var currentHODRoleName : String{
+        get {
+            let HODName = UserDefaults.standard.string(forKey: UserDefaultKeys.HODName.rawValue) ?? ""
+            return HODName
+        }
+        set{
+            UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.HODName.rawValue)
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
     //MARK:- User Role ParticularId
     var userRoleParticularId : Int{
         get {

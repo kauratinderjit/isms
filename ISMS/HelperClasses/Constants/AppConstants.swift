@@ -267,7 +267,8 @@ public struct KStoryBoards
     public static let kPerformance = "Performance"
     public static let kNewsfeedAndLetter = "NewsFeedAndLetter"
     public static let kStudentListToMarkAttendence = "StudentAttendence"
-
+    public static let kCourses = "Courses"
+     public static let kCalender = "CalendarAndEvents"
    
     internal struct KWelcomeIdentifiers{
         public static let kWelcomeVC = "WelcomeVC"
@@ -307,7 +308,7 @@ public struct KStoryBoards
     internal struct KDepartMentListIdentifiers
     {
         public static let kDepartmentListTitle = "Department List"
-        public static let kDepartmentListVC = "DepartmentListVC"
+        public static let kDepartmentListVC =  "DepartmentListVC"
         
     }
     internal struct kAssignSubjectToClass
@@ -315,6 +316,12 @@ public struct KStoryBoards
         public static let kClassAssignSubjectListVC = "ClassAssignSubjectListVC"
         
     }
+    
+    internal struct KSyllabusCoverageIdentifiers
+     {
+         public static let kSyllabusCoverageVC = "SyllabusCoverageVC"
+         
+     }
     
     internal struct KAddClassIdentifiers{
         public static let kAddClassTitle = "Add Class"
@@ -566,6 +573,7 @@ public struct KApiParameters{
         public static let kChapterName = "ChapterName"
         public static let kAddUpdateSyllabus = "api/Institute/AddUpdateSyllabus"
         public static let kChapterListApi = "api/Institute/GetChapterList"
+         public static let kChapterAndTopicApi = "api/Institute/GetChapterListWithTopic"
         // param Subject list
         public static let kStrChapterId =  "StrChapterId"
         public static let kChapterID =      "ChapterId"

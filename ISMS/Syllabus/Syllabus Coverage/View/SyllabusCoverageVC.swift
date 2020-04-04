@@ -8,36 +8,47 @@
 
 import UIKit
 
-class SyllabusCoverageVC : UIViewController  {
+class SyllabusCoverageVC : BaseUIViewController  {
  
+    @IBOutlet weak var lblNoRecordFound: UILabel!
     @IBOutlet var textfieldClass: UITextField!
     @IBOutlet var tableView: UITableView!
     @IBOutlet var txtfieldExtraPicker: UITextField!
-    
-    var array = ["Chemistry", "Physics", "Biology" ,"Maths", "Geography", "Economics"]
-    var arrayprog = [0.8, 0.6]
-    var arrPicker = ["I","II","III","IV","V","VI", "VII", "VIII", "IX", "X"]
+    var classDropdownData : [GetCommonDropdownModel.ResultData]?
     var lastText : String?
     private var pickerView = UIPickerView()
     enum PickerTypes: Int {
         case statePicker = 1
     }
     var viewModel     : SyllabusCoverageViewModel?
-    
+    var selectedClassId:Int?
     var arrayData = [SyllabusCoverageListResultData]()
+    var boolFirstTime = false
+    @IBOutlet weak var viewBehindClass: UIView!
+    
     
     //MARK:- OVERRIDE CLASS FUNCTIONS
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.viewModel = SyllabusCoverageViewModel.init(delegate: self)
-       self.viewModel?.attachView(viewDelegate: self)
-        setPickerView()
         
-        self.viewModel?.getData(teacherId: 0, classID: 10)
-    
+        self.viewModel = SyllabusCoverageViewModel.init(delegate: self)
+        self.viewModel?.attachView(viewDelegate: self)
+        setPickerView()
+        boolFirstTime = true
+         self.classListDropdownApi()
+        //self.viewModel?.getData(teacherId: 0, classID: 10)
+        setBackButton()
      //   tableView.allowsSelection = false
         tableView.reloadData()
+    }
+    
+    
+    func classListDropdownApi(){
+        if checkInternetConnection(){
+            self.viewModel?.getClassListDropdown(selectId: 1, enumType: CountryStateCity.classes.rawValue)
+        }else{
+            self.showAlert(alert: Alerts.kNoInternetConnection)
+        }
     }
     
     //MARK:- SET UP PICKER VIEW
@@ -65,11 +76,11 @@ class SyllabusCoverageVC : UIViewController  {
              
                 arrayData.removeAll()
                 
-                if let index = arrPicker.index(where: { (dict) -> Bool in
-                    return dict == text // Will found index of matched id
+                if let index = classDropdownData?.index(where: { (dict) -> Bool in
+                    return dict.name == text // Will found index of matched id
                 }) {
                     print("Index found :\(index)")
-                   let total = index + 1
+                    let total = classDropdownData?[index].id ?? 0
                      self.viewModel?.getData(teacherId: 0, classID: total)
                 }
                 
@@ -85,7 +96,7 @@ class SyllabusCoverageVC : UIViewController  {
           textfieldClass.text = text1
             }
         else  {
-            textfieldClass.text = arrPicker[0]
+            textfieldClass.text = classDropdownData?[0].name
         }
         txtfieldExtraPicker.resignFirstResponder()
         
@@ -99,13 +110,13 @@ class SyllabusCoverageVC : UIViewController  {
         pickerView.reloadComponent(0)
         
         if   textfieldClass.text!  == ""{
-            textfieldClass.text = arrPicker[0]
+            textfieldClass.text = classDropdownData?[0].name
               self.txtfieldExtraPicker.becomeFirstResponder()
         }
           else {
                let text = textfieldClass.text!
-                if let index = arrPicker.index(where: { (dict) -> Bool in
-                    return dict == text // Will found index of matched id
+                if let index = classDropdownData?.index(where: { (dict) -> Bool in
+                    return dict.name == text // Will found index of matched id
                 }) {
                     print("Index found :\(index)")
                      pickerView.selectRow(index, inComponent: 0, animated: true)
@@ -120,9 +131,7 @@ extension SyllabusCoverageVC : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard.init(name: "Courses", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "UpdateSyllabusVC") as! UpdateSyllabusVC
-        if let id = arrayData[indexPath.row].classSubjectId {
-               vc.classSubjectID = id
-        }
+            vc.subjectData = arrayData[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -153,9 +162,10 @@ extension SyllabusCoverageVC : UITableViewDataSource {
             
         }
       //  cell.progressBar.transform.scaledBy(x: 1, y: 9)
-        cell.progressBar.layer.cornerRadius = 6.0
-        cell.progressBar.transform = CGAffineTransform(scaleX: 1, y: 3.0)
+        //cell.progressBar.layer.cornerRadius = 6.0
+      cell.progressBar.transform = CGAffineTransform(scaleX: 1, y: 3.0)
         cell.progressBar.progressTintColor = UIColor(red: 183/255, green: 23/255, blue: 36/255, alpha: 1)
+
          if let percentage = arrayData[indexPath.row].coveragePercentage {
       cell.lblprogressPercentage.text = "\(percentage)" + "%"
         }
@@ -164,7 +174,7 @@ extension SyllabusCoverageVC : UITableViewDataSource {
              if let percentage = arrayData[indexPath.row].coveragePercentage {
                  cell.lblprogressPercentage.text = "\(percentage)" + "%"
                 if percentage == "100" {
-        cell.progressBar.progressTintColor =  UIColor(red: 14/255, green: 164/255, blue: 67/255, alpha: 1)
+        cell.progressBar.progressTintColor = UIColor(red: 183/255, green: 23/255, blue: 36/255, alpha: 1)
                 }
         
         }
@@ -176,39 +186,76 @@ extension SyllabusCoverageVC : UITableViewDataSource {
 }
 
 //MARK: - Picker Datasource and delegate
-extension SyllabusCoverageVC : UIPickerViewDelegate,UIPickerViewDataSource{
+extension SyllabusCoverageVC {
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    override func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return arrPicker.count
+    override func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return classDropdownData?.count ?? 0
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?{
-             let dic = arrPicker[row]
-            let title = dic
-            return "\(title)"
+    override func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?{
+             let dic = classDropdownData?[row]
+        let title = dic?.name
+        return "\(String(describing: title!))"
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+    override func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
         print("you printed row here : \(row)")
         if txtfieldExtraPicker.isFirstResponder{
-                let dic = arrPicker[row]
-                let title = dic
-            textfieldClass.text = "\(title)"
+                 let dic = classDropdownData?[row]
+                       let title = dic?.name
+            textfieldClass.text = "\(String(describing: title!))"
         }
     }
 }
 
 
 extension SyllabusCoverageVC : SyllabusCoverageDelegate {
+    func classListDidFailed() {
+        
+    }
+    
 
+       
+       func classListDidSuccess(data: GetCommonDropdownModel)
+       {
+           if data.resultData != nil{
+               if data.resultData?.count ?? 0 > 0{
+              
+                classDropdownData = data.resultData
+                   textfieldClass.text = data.resultData?[0].name
+                   selectedClassId = data.resultData?[0].id
+                
+                if boolFirstTime == true {
+                boolFirstTime = false
+                    self.viewModel?.getData(teacherId: 0, classID: selectedClassId ?? 0)}
+
+               }else{
+                    
+                   CommonFunctions.sharedmanagerCommon.println(object: "Count is zero.")
+               }
+           }
+    }
+    
 
 func SyllabusCoverageSucceed(array: [SyllabusCoverageListResultData]) {
    // self.showAlert(Message: "Good")
     arrayData = array
+        if arrayData.count > 0{
+         lblNoRecordFound.isHidden = true
+         tableView.isHidden = false
+         
+        }else{
+             tableView.isHidden = true
+            lblNoRecordFound.isHidden = false
+            CommonFunctions.sharedmanagerCommon.println(object: "Count is zero.")
+        }
+    
+    
+    
     tableView.reloadData()
 }
 
@@ -236,3 +283,4 @@ extension SyllabusCoverageVC : ViewDelegate {
     
     
 }
+

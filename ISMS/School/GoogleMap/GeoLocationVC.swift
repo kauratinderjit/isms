@@ -155,7 +155,9 @@ class GeoLocationVC: BaseUIViewController {
             
         }
     @IBAction func Action_done(_ sender: Any) {
-        self.delegate?.selectedLatitudeLongitude(lat: "\(String(describing: latitude))", long: "\(String(describing: longitude))", address: address ?? "" )
+        self.navigationController?.popViewController(animated: true)
+        if latitude != nil {
+            self.delegate?.selectedLatitudeLongitude(lat: "\(String(describing: latitude!))", long: "\(String(describing: longitude!))", address: address ?? "" ) }
     }
     @IBAction func Action_CurrentLocation(_ sender: Any) {
             onTapGetCurrentloc()

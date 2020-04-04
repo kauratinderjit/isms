@@ -72,9 +72,9 @@ class UpdateSyllabusViewModel {
    
     func GetChapterList(search : String ,Skip : Int,  PageSize : Int , SortColumnDir : String , SortCoumn : String, particularId : Int) {
         
-        let url = KApiParameters.kUpdateSyllabusApiParameter.kChapterListApi
+        let url = KApiParameters.kUpdateSyllabusApiParameter.kChapterAndTopicApi
       
-        let param = [KApiParameters.kUpdateSyllabusApiParameter.kSearch : "" ,KApiParameters.kUpdateSyllabusApiParameter.kPageSize: 0, KApiParameters.kUpdateSyllabusApiParameter.kSkip : 0 ,KApiParameters.kUpdateSyllabusApiParameter.kSortColumnDir : "",KApiParameters.kUpdateSyllabusApiParameter.kSortCoumn :"" ,KApiParameters.kUpdateSyllabusApiParameter.kParticularId : 40 ] as [String : Any]
+        let param = [KApiParameters.kUpdateSyllabusApiParameter.kSearch : "" ,KApiParameters.kUpdateSyllabusApiParameter.kPageSize: 0, KApiParameters.kUpdateSyllabusApiParameter.kSkip : 0 ,KApiParameters.kUpdateSyllabusApiParameter.kSortColumnDir : "",KApiParameters.kUpdateSyllabusApiParameter.kSortCoumn :"" ,KApiParameters.kUpdateSyllabusApiParameter.kParticularId : particularId ] as [String : Any]
        
         UpdateSyllabusApi.sharedManager.UpdateSyllabusData(url:url , parameters: param, completionResponse: { (UpdateSyllabusModel) in
              self.updateSyllabusViewDelegate?.hideLoader()

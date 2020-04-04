@@ -125,5 +125,6 @@ enum UserDefaultKeys : String{
     case appThemeColorName = "appThemeColorName"
     case currentTheme = "currentTheme"
     case userRoleParticularId = "particularId"
+    case HODName = "HOD"
     
 }

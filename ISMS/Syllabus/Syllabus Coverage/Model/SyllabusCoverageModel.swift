@@ -36,7 +36,7 @@ class SyllabusCoverageListModel: Mappable{
 struct SyllabusCoverageListResultData: Mappable {
     
   
-    var classSubjectId : Int?
+    var ClassSubjectId : Int?
     var coveragePercentage : String?
     var subjectName : String?
     
@@ -47,7 +47,7 @@ struct SyllabusCoverageListResultData: Mappable {
     
     mutating func mapping(map: Map) {
         
-        classSubjectId <- map[KApiParameters.kSyllabusCoverageApiParameter.kClassSubjectId]
+        ClassSubjectId <- map[KApiParameters.kSyllabusCoverageApiParameter.kClassSubjectId]
 coveragePercentage <- map[KApiParameters.kSyllabusCoverageApiParameter.kCoveragePercentage]
       subjectName <- map[KApiParameters.kSyllabusCoverageApiParameter.kSubjectName]
     }

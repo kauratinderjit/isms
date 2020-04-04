@@ -9,7 +9,7 @@
 import UIKit
 import FSCalendar
 
-class CalendarEventVC: UIViewController {
+class CalendarEventVC: BaseUIViewController {
 
     @IBOutlet weak var calendar: FSCalendar!
     
@@ -20,9 +20,10 @@ class CalendarEventVC: UIViewController {
            formatter.dateFormat = "dd-MM-yyyy"
            return formatter
        }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//calendar.appearance
+        setBackButton()
     }
     
 
@@ -44,11 +45,13 @@ extension CalendarEventVC : FSCalendarDataSource , FSCalendarDelegate , FSCalend
 //        return cell
 //    }
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
-        return UIColor.red
+        return UIColor.clear
     }
+    
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
-        return UIColor.white
+        return UIColor.black
     }
+    
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
      let key = self.dateFormatter2.string(from: date)
           self.lblSelectedDate.text = key

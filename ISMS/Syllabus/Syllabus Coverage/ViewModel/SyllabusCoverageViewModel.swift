@@ -11,6 +11,8 @@ import UIKit
 protocol SyllabusCoverageDelegate: class {
     func SyllabusCoverageSucceed(array : [SyllabusCoverageListResultData])
     func SyllabusCoverageFailour(msg : String)
+    func classListDidSuccess(data: GetCommonDropdownModel)
+       func classListDidFailed()
 }
 
 
@@ -72,6 +74,30 @@ class SyllabusCoverageViewModel {
         
     }
     
-    
+  //MARK:- Get Class List Dropdown Api
+    func getClassListDropdown(selectId : Int,enumType:Int){
+        
+      syllabusCoverageViewDelegate?.showLoader()
+        
+        ClassApi.sharedManager.getClassDropdownData(selectedId: selectId, enumType: enumType, completionResponse: { (responseClassDropdown) in
+        
+            self.syllabusCoverageViewDelegate?.hideLoader()
+            switch responseClassDropdown.statusCode{
+            case KStatusCode.kStatusCode200:
+                self.syllabusCoverageDelegate?.classListDidSuccess(data: responseClassDropdown)
+            case KStatusCode.kStatusCode401:
+                self.syllabusCoverageViewDelegate?.showAlert(alert: responseClassDropdown.message ?? "")
+              //  self.syllabusCoverageViewDelegate?.unauthorizedUser()
+            default:
+                self.syllabusCoverageViewDelegate?.showAlert(alert: responseClassDropdown.message ?? "")
+            }
+        }, completionnilResponse: { (nilResponse) in
+            self.syllabusCoverageViewDelegate?.hideLoader()
+            self.syllabusCoverageViewDelegate?.showAlert(alert: nilResponse ?? "Server Error")
+        }) { (error) in
+            self.syllabusCoverageViewDelegate?.hideLoader()
+            self.syllabusCoverageViewDelegate?.showAlert(alert: error?.localizedDescription ?? "Error")
+        }
+    }
     
 }

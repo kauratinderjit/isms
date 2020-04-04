@@ -45,7 +45,7 @@ class StudentListToMarkAttendence: BaseUIViewController {
         if checkInternetConnection(){
 //            self.viewModel?.isSearching = false
             self.viewModel?.StudentList(TimeTableId: timeTableId ?? 0,
-                ClassId: classId ?? 0)
+                                        ClassId: 1 )
             
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
