@@ -12,12 +12,12 @@ import SDWebImage
 protocol StudentListMarkAttCellDelegate : class {
     func didPressBtnPresent(_ tag: Int)
     func didPressBtnAbsent(_ tag: Int)
-  
+    
 }
 
 
 class StudentListMarkAttCell: UITableViewCell{
-var cellDelegate: StudentListMarkAttCellDelegate?
+    var cellDelegate: StudentListMarkAttCellDelegate?
     
     @IBOutlet weak var StudentPresent: UIButton!
     @IBOutlet weak var studentAbsent: UIButton!
@@ -26,7 +26,7 @@ var cellDelegate: StudentListMarkAttCellDelegate?
     
     var studentData  = [GetStudentListForAttResultData]()
     
-    func setCellUI(data : [GetStudentListForAttResultData]?,indexPath: IndexPath){
+    func setCellUI(data : [GetStudentListForAttResultData]?,indexPath: IndexPath, isFromHODVal: Bool?){
         studentData = data!
         let rsltData = data![indexPath.row]
         nameStudent.text = ""
@@ -55,7 +55,7 @@ var cellDelegate: StudentListMarkAttCellDelegate?
                 studentAbsent.backgroundColor = .clear
             }
         }
-
+        
         
         if let studentName = rsltData.studentName{
             nameStudent.text = studentName
@@ -72,26 +72,26 @@ var cellDelegate: StudentListMarkAttCellDelegate?
                 }else{
                     if let nameStr = rsltData.studentName{
                         CommonFunctions.sharedmanagerCommon.addLabelOnTheImgeViewWithFirstCharacter(string: nameStr, imgView: self.imgStudent)
-//                        CommonFunctions.sharedmanagerCommon.println(object: "Image is nil in list.")
+                        //                        CommonFunctions.sharedmanagerCommon.println(object: "Image is nil in list.")
                     }
                 }
             }
         }else{
             if let nameStr = rsltData.studentName{
                 CommonFunctions.sharedmanagerCommon.addLabelOnTheImgeViewWithFirstCharacter(string: nameStr, imgView: self.imgStudent)
-//                CommonFunctions.sharedmanagerCommon.println(object: "Image is nil in list.")
+                //                CommonFunctions.sharedmanagerCommon.println(object: "Image is nil in list.")
             }
         }
     }
     
     @IBAction func actionPresent(_ sender: Any) {
-    
+        
         cellDelegate?.didPressBtnPresent((sender as AnyObject).tag)
     }
     
     
     @IBAction func actionAbsent(_ sender: Any) {
-         cellDelegate?.didPressBtnAbsent((sender as AnyObject).tag)
+        cellDelegate?.didPressBtnAbsent((sender as AnyObject).tag)
     }
     
 }

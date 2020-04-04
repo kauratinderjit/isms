@@ -29,6 +29,8 @@ class ClassTimeTableVC: BaseUIViewController {
     var currentDay:String!
     let userRoleParticularId = UserDefaultExtensionModel.shared.userRoleParticularId
     public var isFromTimeTable:Bool!
+    public var isFromViewAttendence:Bool!
+    public var isFromTeacher:Int!
     //MARK:- ViewLifeCycle functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +41,13 @@ class ClassTimeTableVC: BaseUIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if isFromTeacher == 0{
+            self.title = "View Attandance"
+        }else if isFromTeacher == 1{
+            self.title = "Mark Student Attandance"
+        }else if isFromTeacher == 2{
+            self.title = KStoryBoards.KClassPeriodIdIdentifiers.kClassPeriodTimeTableTitle
+        }
         checkCameFromWhichScreen()
     }
     
@@ -95,7 +104,7 @@ class ClassTimeTableVC: BaseUIViewController {
             if classDropDownArray.resultData?.count ?? 0 > 0{
                 let index = CommonFunctions.sharedmanagerCommon.getIndexOfPickerModelObject(data: classDropDownArray, pickerTextfieldString: txtFieldClass.text)
                 
-                    UpdatePickerModel2(count: classDropDownArray.resultData?.count ?? 0, sharedPickerDelegate: self, View: self.view, index: index)
+                UpdatePickerModel2(count: classDropDownArray.resultData?.count ?? 0, sharedPickerDelegate: self, View: self.view, index: index)
                 
             }
         }
@@ -119,7 +128,7 @@ class ClassTimeTableVC: BaseUIViewController {
         print(dateFormatter.string(from: Date()))
         currentDay = dateFormatter.string(from: Date())
         //Set title
-        self.title = KStoryBoards.KClassPeriodIdIdentifiers.kClassPeriodTimeTableTitle
+        //        self.title = KStoryBoards.KClassPeriodIdIdentifiers.kClassPeriodTimeTableTitle
         //Set back button
         setBackButton()
         //Set picker view
@@ -135,8 +144,8 @@ class ClassTimeTableVC: BaseUIViewController {
             // Fallback on earlier versions
         }
         
-//        let epgNib = UINib(nibName: "EPGCollectionViewCell", bundle: Bundle.main)
-//        collectionView.register(epgNib, forCellWithReuseIdentifier: "epgCell")
+        //        let epgNib = UINib(nibName: "EPGCollectionViewCell", bundle: Bundle.main)
+        //        collectionView.register(epgNib, forCellWithReuseIdentifier: "epgCell")
         
         let timeNib = UINib(nibName: "TimeCollectionViewCell", bundle: Bundle.main)
         collectionView.register(timeNib, forCellWithReuseIdentifier: "timeCell")
@@ -196,9 +205,9 @@ extension ClassTimeTableVC: UICollectionViewDataSource {
         if indexPath.section == 0 {
             let timeCell = collectionView.dequeueReusableCell(withReuseIdentifier: "timeCell", for: indexPath) as! TimeCollectionViewCell
             if indexPath.row == 0{
-                    timeCell.backgroundColor = theme?.uiButtonBackgroundColor
-                    timeCell.timeLabel.textColor = UIColor.white
-                    timeCell.timeLabel.text = ""
+                timeCell.backgroundColor = theme?.uiButtonBackgroundColor
+                timeCell.timeLabel.textColor = UIColor.white
+                timeCell.timeLabel.text = ""
             }else{
                 if let time = self.arrGetTimeTableDaysModel?[indexPath.section].periodDetailListModel?[indexPath.row - 1] {
                     timeCell.backgroundColor = theme?.uiButtonBackgroundColor
@@ -226,42 +235,42 @@ extension ClassTimeTableVC: UICollectionViewDataSource {
             return dayCell
         } else {
             let periodCell = collectionView.dequeueReusableCell(withReuseIdentifier: "periodCell", for: indexPath) as! PeriodCollectionViewCell
-                if let day = self.arrGetTimeTableDaysModel?[indexPath.section - 1]{
-                    //There is duplicacy issue
-                    if let period = day.periodDetailListModel?[indexPath.row - 1]{
-                        if currentDay == day.dayName
+            if let day = self.arrGetTimeTableDaysModel?[indexPath.section - 1]{
+                //There is duplicacy issue
+                if let period = day.periodDetailListModel?[indexPath.row - 1]{
+                    if currentDay == day.dayName
+                    {
+                        if period.isTeacher == true
                         {
-                            if period.isTeacher == true
-                            {
-                                periodCell.backgroundColor = UIColor.white
-                            }
-                            else
-                            {
-                                periodCell.backgroundColor = UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
-                            }
+                            periodCell.backgroundColor = UIColor.white
                         }
                         else
                         {
                             periodCell.backgroundColor = UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
                         }
-//                        //When User is Teacher
-//                        if period.isTeacher == true{
-//                            //For Disabling the another cells
-//                            if currentDay == day.dayName{
-//                                //Provide White Color For Current day
-//                                periodCell.backgroundColor = UIColor.white
-//                            }else{
-//                                //Provide gray color which is other day
-//                                periodCell.isUserInteractionEnabled = false
-//                                periodCell.backgroundColor = UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
-//                            }
-//                        }else{//When user is admin
-//                            periodCell.backgroundColor = UIColor.white
-//                        }
-                        periodCell.configureWith(period: period)
-                        periodCell.btnAssignTeacherSubject.tag = indexPath.section - 1
                     }
+                    else
+                    {
+                        periodCell.backgroundColor = UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
+                    }
+                    //                        //When User is Teacher
+                    //                        if period.isTeacher == true{
+                    //                            //For Disabling the another cells
+                    //                            if currentDay == day.dayName{
+                    //                                //Provide White Color For Current day
+                    //                                periodCell.backgroundColor = UIColor.white
+                    //                            }else{
+                    //                                //Provide gray color which is other day
+                    //                                periodCell.isUserInteractionEnabled = false
+                    //                                periodCell.backgroundColor = UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
+                    //                            }
+                    //                        }else{//When user is admin
+                    //                            periodCell.backgroundColor = UIColor.white
+                    //                        }
+                    periodCell.configureWith(period: period, isFromAttendence : self.isFromViewAttendence)
+                    periodCell.btnAssignTeacherSubject.tag = indexPath.section - 1
                 }
+            }
             return periodCell
         }
     }
@@ -274,7 +283,7 @@ extension ClassTimeTableVC: UICollectionViewDelegate {
             // Do nothing.
         }
         else if indexPath.row == 0 { // Days
-//            if let day = self.days?[indexPath.section - 1] {
+            //            if let day = self.days?[indexPath.section - 1] {
         } else { // Periods
             
             if let day = self.arrGetTimeTableDaysModel?[indexPath.section - 1]{
@@ -283,55 +292,93 @@ extension ClassTimeTableVC: UICollectionViewDelegate {
                     if let daysModel = self.arrGetTimeTableDaysModel?[indexPath.section - 1] {
                         if let period = daysModel.periodDetailListModel?[indexPath.row - 1] {
                             print(period)
-                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "AssignSubjectTeacherToPeriodVC") as! AssignSubjectTeacherToPeriodVC
-                    if period.timeTableId ?? 0 == 0{
-                        vc.timeTableId = 0
-                    }else{
-                        vc.timeTableId = period.timeTableId
-                        vc.selectedSubjectName = period.subjectName
-                        vc.selectedTeacherName = period.teacherName
-                        vc.selectedTeacherID = period.teacherId
-                        vc.selectedSubjectID = period.subjectId
-                    }
-                    vc.selectedDays = daysModel.dayId ?? 0
-                    vc.classId = selectedClassId
-                    vc.periodId = period.periodId
-                    vc.selectedPeriodName = period.periodName
-                    isCameFromOtherScreen = "AssignSubjectTeacherToPeriod"
-                    self.navigationController?.pushViewController(vc, animated: true)
+                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "AssignSubjectTeacherToPeriodVC") as! AssignSubjectTeacherToPeriodVC
+                            if period.timeTableId ?? 0 == 0{
+                                vc.timeTableId = 0
+                            }else{
+                                vc.timeTableId = period.timeTableId
+                                vc.selectedSubjectName = period.subjectName
+                                vc.selectedTeacherName = period.teacherName
+                                vc.selectedTeacherID = period.teacherId
+                                vc.selectedSubjectID = period.subjectId
+                            }
+                            vc.selectedDays = daysModel.dayId ?? 0
+                            vc.classId = selectedClassId
+                            vc.periodId = period.periodId
+                            vc.selectedPeriodName = period.periodName
+                            isCameFromOtherScreen = "AssignSubjectTeacherToPeriod"
+                            self.navigationController?.pushViewController(vc, animated: true)
                         }
                     }
                 }
                 else
                 {
-                   if currentDay == day.dayName
-                   {
+                    
                     if day.periodDetailListModel?[indexPath.row - 1].isTeacher == true
                     {
                         print("isTeacherTrue")
-            
-                        if let daysModel = self.arrGetTimeTableDaysModel?[indexPath.section - 1] {
-                            if let period = daysModel.periodDetailListModel?[indexPath.row - 1] {
-                                print(period)
-                             
-                                    let storyboard = UIStoryboard.init(name: "StudentAttendence", bundle: nil)
-                                    let vc = storyboard.instantiateViewController(withIdentifier: "StudentListToMarkAttendence") as! StudentListToMarkAttendence
-                                    vc.timeTableId = period.timeTableId
-                                    vc.classId = selectedClassId
-                                    vc.teacherId = period.teacherId
-                                    vc.classSubjectId = period.subjectId
-                                    self.navigationController?.pushViewController(vc, animated: false)
-                              
+                        if currentDay == day.dayName
+                        {
+                            if let daysModel = self.arrGetTimeTableDaysModel?[indexPath.section - 1] {
+                                if let period = daysModel.periodDetailListModel?[indexPath.row - 1] {
+                                    print(period)
+                                    if period.teacherId != 0{
+                                        let storyboard = UIStoryboard.init(name: "StudentAttendence", bundle: nil)
+                                        let vc = storyboard.instantiateViewController(withIdentifier: "StudentListToMarkAttendence") as! StudentListToMarkAttendence
+                                        vc.timeTableId = period.timeTableId
+                                        vc.classId = selectedClassId
+                                        vc.teacherId = period.teacherId
+                                        vc.classSubjectId = period.subjectId
+                                        vc.isFromHOD = false
+                                        self.navigationController?.pushViewController(vc, animated: false)
+                                    }
                                 }
                             }
+                        }
                     }else{
-                        debugPrint("Teacher is false.")
+                        //                        debugPrint("Teacher is false.")
+                        if isFromViewAttendence == true{
+                            if let daysModel = self.arrGetTimeTableDaysModel?[indexPath.section - 1] {
+                                if let period = daysModel.periodDetailListModel?[indexPath.row - 1] {
+                                    print(period)
+                                    if period.teacherId != 0{
+                                        let storyboard = UIStoryboard.init(name: "StudentAttendence", bundle: nil)
+                                        let vc = storyboard.instantiateViewController(withIdentifier: "StudentListToMarkAttendence") as! StudentListToMarkAttendence
+                                        vc.timeTableId = period.timeTableId
+                                        vc.classId = selectedClassId
+                                        vc.teacherId = period.teacherId
+                                        vc.classSubjectId = period.subjectId
+                                        vc.isFromHOD = true
+                                        self.navigationController?.pushViewController(vc, animated: false)
+                                    }
+                                }
+                            }
+                        }else{
+                            if let daysModel = self.arrGetTimeTableDaysModel?[indexPath.section - 1] {
+                                if let period = daysModel.periodDetailListModel?[indexPath.row - 1] {
+                                    print(period)
+                                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "AssignSubjectTeacherToPeriodVC") as! AssignSubjectTeacherToPeriodVC
+                                    if period.timeTableId ?? 0 == 0{
+                                        vc.timeTableId = 0
+                                    }else{
+                                        vc.timeTableId = period.timeTableId
+                                        vc.selectedSubjectName = period.subjectName
+                                        vc.selectedTeacherName = period.teacherName
+                                        vc.selectedTeacherID = period.teacherId
+                                        vc.selectedSubjectID = period.subjectId
+                                    }
+                                    vc.selectedDays = daysModel.dayId ?? 0
+                                    vc.classId = selectedClassId
+                                    vc.periodId = period.periodId
+                                    vc.selectedPeriodName = period.periodName
+                                    isCameFromOtherScreen = "AssignSubjectTeacherToPeriod"
+                                    self.navigationController?.pushViewController(vc, animated: true)
+                                }
+                            }
+                        }
+                        
                     }
-                   }
-                else{
-                    print("No period assign to teacher")
                 }
-            }
             }else{
                 print("not a current day")
             }

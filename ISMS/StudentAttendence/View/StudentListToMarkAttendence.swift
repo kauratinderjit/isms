@@ -9,10 +9,11 @@
 import UIKit
 
 class StudentListToMarkAttendence: BaseUIViewController {
-
+    
     //Outlets
     @IBOutlet weak var tableViewStudent: UITableView!
     
+    @IBOutlet weak var btnSubmitAttandance: UIButton!
     //Variables
     var arrStudentlist = [GetStudentListForAttResultData]()
     var viewModel : StudentListForAttViewModel?
@@ -20,6 +21,7 @@ class StudentListToMarkAttendence: BaseUIViewController {
     var isStudentAttendanceSuccess = false
     var classId,timeTableId,teacherId,classSubjectId :Int?
     var studentAttendenceArray = [[String:Any]]()
+    var isFromHOD:Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,11 @@ class StudentListToMarkAttendence: BaseUIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        if isFromHOD == true{
+            btnSubmitAttandance.isHidden = true
+        }else{
+            btnSubmitAttandance.isHidden = false
+        }
         arrStudentlist.removeAll()
         StudentListApi()
         
@@ -43,9 +50,9 @@ class StudentListToMarkAttendence: BaseUIViewController {
     
     func StudentListApi(){
         if checkInternetConnection(){
-//            self.viewModel?.isSearching = false
+            //            self.viewModel?.isSearching = false
             self.viewModel?.StudentList(TimeTableId: timeTableId ?? 0,
-                                        ClassId: 1 )
+                                        ClassId: classId ?? 0)
             
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
@@ -95,8 +102,8 @@ extension StudentListToMarkAttendence : UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "studentListAtt", for: indexPath) as! StudentListMarkAttCell
-      
-         cell.setCellUI(data: arrStudentlist, indexPath: indexPath)
+        
+        cell.setCellUI(data: arrStudentlist, indexPath: indexPath, isFromHODVal : self.isFromHOD)
         cell.cellDelegate = self
         return cell
     }
@@ -104,35 +111,43 @@ extension StudentListToMarkAttendence : UITableViewDataSource{
 extension StudentListToMarkAttendence :  StudentListMarkAttCellDelegate{
     func didPressBtnPresent(_ tag: Int) {
         print("tag present: ",tag)
-        let indexPath = IndexPath(row: tag, section: 0)
-        if let newcell = tableViewStudent.cellForRow(at: indexPath) as? StudentListMarkAttCell{
-            var data = arrStudentlist[tag]
-            data.isSelected = 1
-            arrStudentlist[tag] = data
-            studentAttendenceArray.remove(at: tag)
-            let arr = ["EnrollmentId" : data.enrollmentId ?? 0, "Status" : "P"] as [String : Any]
-            studentAttendenceArray.insert(arr, at: tag)
-            newcell.StudentPresent.backgroundColor = UIColor.green
-            newcell.studentAbsent.backgroundColor = .clear
-            print(arrStudentlist[tag])
-             self.tableViewStudent.reloadData()
+        if self.isFromHOD == true{
+            
+        }else{
+            let indexPath = IndexPath(row: tag, section: 0)
+            if let newcell = tableViewStudent.cellForRow(at: indexPath) as? StudentListMarkAttCell{
+                var data = arrStudentlist[tag]
+                data.isSelected = 1
+                arrStudentlist[tag] = data
+                studentAttendenceArray.remove(at: tag)
+                let arr = ["EnrollmentId" : data.enrollmentId ?? 0, "Status" : "P"] as [String : Any]
+                studentAttendenceArray.insert(arr, at: tag)
+                newcell.StudentPresent.backgroundColor = UIColor.green
+                newcell.studentAbsent.backgroundColor = .clear
+                print(arrStudentlist[tag])
+                self.tableViewStudent.reloadData()
+            }
         }
     }
     
     func didPressBtnAbsent(_ tag: Int) {
-           print("tag absent: ",tag)
-        let indexPath = IndexPath(row: tag, section: 0)
-        if let newcell = tableViewStudent.cellForRow(at: indexPath) as? StudentListMarkAttCell{
-            var data = arrStudentlist[tag]
-            data.isSelected = 2
-              arrStudentlist[tag] = data
-               studentAttendenceArray.remove(at: tag)
-            let arr = ["EnrollmentId" : data.enrollmentId ?? 0, "Status" : "A"] as [String : Any]
-            studentAttendenceArray.insert(arr, at: tag)
-            newcell.StudentPresent.backgroundColor = .clear
-            newcell.studentAbsent.backgroundColor = UIColor.red
-            print(arrStudentlist[tag])
-             self.tableViewStudent.reloadData()
+        print("tag absent: ",tag)
+        if self.isFromHOD == true{
+            
+        }else{
+            let indexPath = IndexPath(row: tag, section: 0)
+            if let newcell = tableViewStudent.cellForRow(at: indexPath) as? StudentListMarkAttCell{
+                var data = arrStudentlist[tag]
+                data.isSelected = 2
+                arrStudentlist[tag] = data
+                studentAttendenceArray.remove(at: tag)
+                let arr = ["EnrollmentId" : data.enrollmentId ?? 0, "Status" : "A"] as [String : Any]
+                studentAttendenceArray.insert(arr, at: tag)
+                newcell.StudentPresent.backgroundColor = .clear
+                newcell.studentAbsent.backgroundColor = UIColor.red
+                print(arrStudentlist[tag])
+                self.tableViewStudent.reloadData()
+            }
         }
     }
 }
@@ -160,14 +175,14 @@ extension StudentListToMarkAttendence :  StudentListForAttDelegate{
                 tableViewStudent.dataSource = self
                 
                 //When user select the class for change the data in list selected
-               
-                    arrStudentlist.removeAll()
-                    _ = rsltData.map({ (data) in
-                        let arr = ["EnrollmentId" : 0, "Status" : ""] as [String : Any]
-                        studentAttendenceArray.append(arr)
-                        arrStudentlist.append(data)
-                    })
-                    self.tblViewCenterLabel(tblView: tableViewStudent, lblText: "", hide: true)
+                
+                arrStudentlist.removeAll()
+                _ = rsltData.map({ (data) in
+                    let arr = ["EnrollmentId" : 0, "Status" : ""] as [String : Any]
+                    studentAttendenceArray.append(arr)
+                    arrStudentlist.append(data)
+                })
+                self.tblViewCenterLabel(tblView: tableViewStudent, lblText: "", hide: true)
             }else{
                 CommonFunctions.sharedmanagerCommon.println(object: "Zero")
             }

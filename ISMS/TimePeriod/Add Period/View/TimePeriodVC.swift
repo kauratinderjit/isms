@@ -29,6 +29,7 @@ class TimePeriodVC: BaseUIViewController {
     var viewDatePickerView = UIView()
     var datePickerView  = UIDatePicker()
     var newitems = [PeriodsListData]()
+    var lastDouplicateElement : Bool?
     
     //MARK:- Outlets
     @IBOutlet weak var btnAddPeriod: UIButton!
@@ -48,7 +49,7 @@ class TimePeriodVC: BaseUIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         if checkInternetConnection(){
-            self.ViewModel?.getClassId(id: 0, enumtype: CountryStateCity.classes.rawValue)
+            self.ViewModel?.getClassId(id: 1, enumtype: CountryStateCity.classes.rawValue)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
@@ -203,7 +204,7 @@ class TimePeriodVC: BaseUIViewController {
                     dateFormatter.dateFormat = "h:mm a"
                     if let date = dateFormatter.date(from:stTime) {
                         print(date)
-                        dateFormatter.dateFormat = "HH:mm"
+                        dateFormatter.dateFormat = "HH:mm a"
                         
                         let datestr = dateFormatter.string(from: date)
                         print(datestr)
@@ -234,7 +235,7 @@ class TimePeriodVC: BaseUIViewController {
                 dateFormatter.dateFormat = "h:mm a"
                 if let date = dateFormatter.date(from:stTime) {
                     print(date)
-                    dateFormatter.dateFormat = "HH:mm"
+                    dateFormatter.dateFormat = "HH:MM"
                     let datestr = dateFormatter.string(from: date)
                     print(datestr)
                     let strArray = datestr.components(separatedBy: ":")
@@ -395,8 +396,9 @@ class TimePeriodVC: BaseUIViewController {
     @IBAction func actionStartTime(_ sender: UIButton) {
         view.endEditing(true)
         time = KConstants.kstartTime
-        showDatePickerStartTime(tag: sender.tag)
         datePickerView.tag = sender.tag
+        showDatePickerStartTime(tag: sender.tag)
+        
         // showDatePicker(datePickerDelegate: self)
     }
     
@@ -425,8 +427,19 @@ class TimePeriodVC: BaseUIViewController {
                         
                         if let lastcell = tableView.cellForRow(at:lastindexPath) as? TimePeriodCell {
                             if let data =  PeriodsListData(JSON:  [KConstants.kstartTime: lastcell.txtFieldPeriodStartTime.text ?? "" , KConstants.kendTime: lastcell.txtFieldPeriodEndTime.text ?? "" ,KConstants.kPeriodTitle: lastcell.txtFieldPeriodTitle.text ?? "",KConstants.kPeriodId:0]){
+                                
+                                
                                 if newitems.count != 0 {
-                                    newitems[previousTag] = data
+                                    for i in 0..<newitems.count{
+                                        if newitems[i].periodTitle == lastcell.txtFieldPeriodTitle.text{
+                                            lastDouplicateElement = true
+                                        }
+                                    }
+                                    if lastDouplicateElement == true {
+                                        lastDouplicateElement = false
+                                    }else{
+                                        newitems[previousTag] = data
+                                    }
                                 }
                                 else{
                                     newitems.append(data)
@@ -475,17 +488,35 @@ class TimePeriodVC: BaseUIViewController {
                 }
                 let refreshAlert = UIAlertController(title: "ISMS", message: "Are you sure you want to delete this period?", preferredStyle: UIAlertController.Style.alert)
                 refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
-                    if period_id > 0{
-                        self.ViewModel?.deletePeriod(periodId: period_id)
-                    }
-                    else{
-                        print("addded locally")
-                    }
-                    DispatchQueue.main.async {
-                        self.newitems.remove(at: index)
-                        self.tableView.deleteRows(at: [indexPath], with: .fade)
-                        self.tableView.reloadData()
-                        print(self.newitems.count)
+                    if index == 0{
+                        if period_id > 0{
+                            self.ViewModel?.deletePeriod(periodId: period_id)
+                        }
+                        else{
+                            print("addded locally")
+                        }
+                        DispatchQueue.main.async {
+                            self.newitems.remove(at: index)
+                            cell.txtFieldPeriodStartTime.text = ""
+                            cell.txtFieldPeriodEndTime.text = ""
+                            //                            self.tableView.deleteRows(at: [indexPath], with: .fade)
+                            ////                            self.tableView.reloadData()
+                            print(self.newitems.count)
+                        }
+                    }else{
+                        
+                        if period_id > 0{
+                            self.ViewModel?.deletePeriod(periodId: period_id)
+                        }
+                        else{
+                            print("addded locally")
+                        }
+                        DispatchQueue.main.async {
+                            self.newitems.remove(at: index)
+                            self.tableView.deleteRows(at: [indexPath], with: .fade)
+                            self.tableView.reloadData()
+                            print(self.newitems.count)
+                        }
                     }
                 }))
                 refreshAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
@@ -540,7 +571,7 @@ class TimePeriodVC: BaseUIViewController {
             //                    self.showAlert(alert: KConstants.kemptyClass)
             //                }
             //
-            //            }else {
+            //            }else {c
             //
             //
             //            }
@@ -566,12 +597,13 @@ class TimePeriodVC: BaseUIViewController {
                     if newitems[lastIndex].periodId ?? 0 > 0{
                         //last element is from backend
                     }else{
-                        if  let newElement = PeriodsListData(JSON:  [KConstants.kstartTime: lastcell.txtFieldPeriodStartTime.text! , KConstants.kendTime: lastcell.txtFieldPeriodEndTime.text! ,KConstants.kPeriodTitle: lastcell.txtFieldPeriodTitle.text ?? "",KConstants.kPeriodId: 0] ){
+                        if  let newElement = PeriodsListData(JSON:  [KConstants.kstartTime: lastcell.txtFieldPeriodStartTime.text! , KConstants.kendTime: lastcell.txtFieldPeriodEndTime.text! ,KConstants.kPeriodTitle: lastcell.txtFieldPeriodTitle.text ?? "",KConstants.kPeriodId: 0,"StartTime": "","EndTime":""] ){
                             newitems[lastIndex] = newElement
                             
                         }
                     }
                     self.ViewModel?.addPeriod(periodList: newitems, ClassId: selectedClassID)
+                    getPeriodList()
                 }
                 else{
                     self.showAlert(alert: KConstants.kemptyEndTime)
@@ -591,6 +623,7 @@ class TimePeriodVC: BaseUIViewController {
                     }
                 }
                 self.ViewModel?.addPeriod(periodList: newitems, ClassId: selectedClassID)
+                getPeriodList()
             }
         }
     }
@@ -743,40 +776,66 @@ extension TimePeriodVC : PeriodDelegate{
         
     }
 }
-extension TimePeriodVC: SharedUIPickerDelegate{
-    
+//extension TimePeriodVC: SharedUIPickerDelegate{
+//
+//    func DoneBtnClicked() {
+//        if checkInternetConnection(){
+//            newitems.removeAll()
+//            self.selectedClassID = classData[selectedClassIndex].id ?? 1 - 1
+//            self.selectedClassName = classData[ self.selectedClassID!].name
+//            self.txtFieldClass.text =  self.selectedClassName
+//            self.ViewModel?.getPeriodList(classId: selectedClassID ?? 0, Search: "", Skip: 0,PageSize: 10, SortColumnDir: "",SortColumn: "" )
+//
+//        }else{
+//
+//            self.showAlert(alert: Alerts.kNoInternetConnection)
+//
+//        }
+//
+//    }
+//
+//    func GetTitleForRow(index: Int) -> String {
+//
+//        if classData.count > 0{
+//            // self.txtFieldClass.text = classData[0].name
+//            return classData[index].name ?? ""
+//        }
+//        return ""
+//    }
+//    func SelectedRow(index: Int) {
+//        if classData.count > 0{
+//            self.selectedClassName = classData[index].name
+//            self.selectedClassIndex = index
+//            //   self.txtFieldClass.text = classData[index].name
+//        }
+//
+//    }
+//
+//}
+extension TimePeriodVC:SharedUIPickerDelegate{
     func DoneBtnClicked() {
-        if checkInternetConnection(){
-            newitems.removeAll()
-            self.ViewModel?.getPeriodList(classId: selectedClassID ?? 0, Search: "", Skip: 0,PageSize: 10, SortColumnDir: "",SortColumn: "" )
+        if classData.count ?? 0 > 0{
+            self.txtFieldClass.text = classData[selectedClassIndex].name
             self.selectedClassID = classData[selectedClassIndex].id
-            
-            self.txtFieldClass.text =  self.selectedClassName
-        }else{
-            
-            self.showAlert(alert: Alerts.kNoInternetConnection)
-            
+            self.ViewModel?.getPeriodList(classId: selectedClassID ?? 0, Search: "", Skip: 0,PageSize: 10, SortColumnDir: "",SortColumn: "" )
         }
-        
     }
-    
     func GetTitleForRow(index: Int) -> String {
-        
-        if classData.count > 0{
-            // self.txtFieldClass.text = classData[0].name
+        if classData.count ?? 0 > 0{
             return classData[index].name ?? ""
         }
         return ""
     }
+    
     func SelectedRow(index: Int) {
-        if classData.count > 0{
-            self.selectedClassName = classData[index].name
-            self.selectedClassIndex = index
-            //   self.txtFieldClass.text = classData[index].name
+        if classData.count ?? 0 > 0{
+            selectedClassIndex = index
         }
-        
     }
     
+    func cancelButtonClicked() {
+        
+    }
 }
 extension TimePeriodVC : OKAlertViewDelegate{
     //Ok Button Clicked

@@ -56,9 +56,19 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Assign" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSe-ei-a3q">
+                        <rect key="frame" x="8" y="39" width="104" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="ig3-pW-LIf"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <constraints>
+                <constraint firstItem="nSe-ei-a3q" firstAttribute="top" secondItem="KcM-YN-unA" secondAttribute="bottom" constant="10" id="0F1-Oa-49d"/>
                 <constraint firstItem="U9J-WS-75W" firstAttribute="top" secondItem="99i-3D-S0i" secondAttribute="bottom" constant="10" id="4sT-FK-etc"/>
                 <constraint firstItem="IxP-Zx-9VH" firstAttribute="top" secondItem="KcM-YN-unA" secondAttribute="bottom" constant="10" id="7cn-Cl-cgl"/>
                 <constraint firstItem="KcM-YN-unA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="8Ef-fL-ARQ"/>
@@ -69,12 +79,15 @@
                 <constraint firstItem="99i-3D-S0i" firstAttribute="top" secondItem="KcM-YN-unA" secondAttribute="bottom" constant="10" id="bIJ-1C-EsV"/>
                 <constraint firstItem="U9J-WS-75W" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="c6M-qy-RQj"/>
                 <constraint firstItem="KcM-YN-unA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="h83-Ye-3zZ"/>
+                <constraint firstAttribute="trailing" secondItem="nSe-ei-a3q" secondAttribute="trailing" constant="8" id="lDU-nv-Hwl"/>
                 <constraint firstItem="IxP-Zx-9VH" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="tso-cp-86Y"/>
                 <constraint firstAttribute="trailing" secondItem="U9J-WS-75W" secondAttribute="trailing" constant="8" id="ug0-3S-dRx"/>
+                <constraint firstItem="nSe-ei-a3q" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="ypq-8Y-7c4"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>
                 <outlet property="btnAssignTeacherSubject" destination="IxP-Zx-9VH" id="JIG-Ir-7hb"/>
+                <outlet property="lblNoAssign" destination="nSe-ei-a3q" id="vKL-Vb-bjY"/>
                 <outlet property="subjectlabel" destination="U9J-WS-75W" id="IMj-49-X2g"/>
                 <outlet property="teacherLabel" destination="99i-3D-S0i" id="06t-3e-7ZF"/>
                 <outlet property="titleLabel" destination="KcM-YN-unA" id="wXz-6h-fxZ"/>

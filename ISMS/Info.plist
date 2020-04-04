@@ -47,7 +47,7 @@
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
-	<string>StudentAttendence</string>
+	<string>Main</string>
 	<key>UIMainStoryboardFile~iphone</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
