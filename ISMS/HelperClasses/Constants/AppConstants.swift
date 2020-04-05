@@ -738,8 +738,8 @@ public struct KApiParameters{
 }
 
 public struct SubjectSkillRating {
-    public static let kSubjectSkillRatingVC = "Subject Skill Rating"
-    
+//    public static let kSubjectSkillRatingVC = "Subject Skill Rating"
+      public static let kSubjectSkillRatingVC = "Teacher Rating"
 }
 
 //MARK:- Syllabus coverage

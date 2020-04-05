@@ -272,6 +272,15 @@ extension MenuVC : UITableViewDelegate{
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
             
+        case "ViewTeacherRatings":
+            let storyboard = UIStoryboard.init(name: KStoryBoards.kTeacher, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "TeacherSubjectSkillRatingVC") as? TeacherSubjectSkillRatingVC
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(vc!, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
+            
+//            TeacherSubjectSkillRatingVC
+            
         case "Logout":
             initializeCustomYesNoAlert(self.view, isHideBlurView: true)
             self.yesNoAlertView.delegate = self
