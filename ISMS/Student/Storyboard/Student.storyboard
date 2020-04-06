@@ -1485,7 +1485,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NB7-88-trs">
                                         <rect key="frame" x="118" y="22" width="249" height="30"/>
                                         <connections>
-                                            <action selector="ActionClassPicker:" destination="Ah5-py-Wpn" eventType="touchUpInside" id="Tss-U5-jaE"/>
+                                            <action selector="ActionClassPicker:" destination="Ah5-py-Wpn" eventType="touchUpInside" id="ImZ-XN-XnA"/>
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8r7-cU-V5s">
@@ -2361,6 +2361,38 @@
             </objects>
             <point key="canvasLocation" x="12885.6" y="898.65067466266873"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="xiB-bD-rdD">
+            <objects>
+                <viewController storyboardIdentifier="AssignHomeworkVC" id="AMf-zp-hU3" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SrY-db-024">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming Soon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPC-tR-unw">
+                                <rect key="frame" x="87.5" y="313.5" width="200" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="FO3-c0-PKz"/>
+                                    <constraint firstAttribute="height" constant="40" id="zz3-2J-exQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="lPC-tR-unw" firstAttribute="centerX" secondItem="SrY-db-024" secondAttribute="centerX" id="H2G-sg-gPL"/>
+                            <constraint firstItem="lPC-tR-unw" firstAttribute="centerY" secondItem="SrY-db-024" secondAttribute="centerY" id="smA-NK-Fec"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1ju-GI-69a"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="xFH-Sl-YYZ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TbQ-mD-NRJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="14840.799999999999" y="962.96851574212906"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="AO9-Ta-vXz">
             <objects>
@@ -2378,6 +2410,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uPv-Nd-kjR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="12165.6" y="962.96851574212906"/>
+        </scene>
+        <!--Assign Homework-->
+        <scene sceneID="MFJ-U2-rsS">
+            <objects>
+                <navigationController title="Assign Homework" automaticallyAdjustsScrollViewInsets="NO" id="JAd-C1-Ms2" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bf5-Ct-WnG">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="AMf-zp-hU3" kind="relationship" relationship="rootViewController" id="rE1-X6-g5J"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QMr-HB-yG7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="13901.6" y="962.96851574212906"/>
         </scene>
     </scenes>
     <resources>

@@ -40,7 +40,7 @@ class AddStudentRatingVC: BaseUIViewController {
     var studentName : String?
     var className : String?
     var subjectName : String?
-    
+     let userRoleParticularId = UserDefaultExtensionModel.shared.userRoleParticularId
     @IBOutlet var btnClass: UIButton!
     @IBOutlet var btnStudent: UIButton!
     @IBOutlet var btnSubject: UIButton!
@@ -66,26 +66,26 @@ class AddStudentRatingVC: BaseUIViewController {
             txtfieldSubject.text = name
         }
        
-        self.viewModel?.GetSkillList(id : 0 , enumType : 13 ,type : "Skill")
+        self.viewModel?.GetSkillList(id : userRoleParticularId , enumType : 17 ,type : "Skill")
      
         if let classID = selectedClassId {
         
         }
         
-        self.viewModel?.getSubjectWiseRating(enrollmentsId: 6, classId: 33)
+//        self.viewModel?.getSubjectWiseRating(enrollmentsId: 6, classId: 33)
         tableView.reloadData()
-        if type == "Edit" {
-            
-            btnClass.isEnabled = true
-            btnStudent.isEnabled = true
-            btnSubject.isEnabled = true
-        }
-        else {
-            btnClass.isEnabled = false
-            btnStudent.isEnabled = false
-            btnSubject.isEnabled = false
-             }
-        
+//        if type == "Edit" {
+//
+//            btnClass.isEnabled = true
+//            btnStudent.isEnabled = true
+//            btnSubject.isEnabled = true
+//        }
+//        else {
+//            btnClass.isEnabled = false
+//            btnStudent.isEnabled = false
+//            btnSubject.isEnabled = false
+//             }
+//
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -137,7 +137,7 @@ class AddStudentRatingVC: BaseUIViewController {
         isSelectedRating = false
         if checkInternetConnection(){
             if arrStudentlist.count > 0{
-                UpdatePickerModel(count: arrSubjectlist.count, sharedPickerDelegate: self as! SharedUIPickerDelegate, View:  self.view)
+                 UpdatePickerModel2(count: arrStudentlist.count, sharedPickerDelegate: self, View:  self.view, index: 0)
                 self.selectStudentId = arrStudentlist[0].studentID
                 
                 let text = txtfieldClass.text!
@@ -145,7 +145,7 @@ class AddStudentRatingVC: BaseUIViewController {
                     return dict.studentName ?? "" == text // Will found index of matched id
                 }) {
                     print("Index found :\(index)")
-                    UpdatePickerModel4(count: arrStudentlist.count, sharedPickerDelegate: self as! SharedUIPickerDelegate, View:  self.view,index: index)
+                    UpdatePickerModel2(count: arrStudentlist.count, sharedPickerDelegate: self, View:  self.view,index: index)
                 }
             }
         }else{
@@ -174,14 +174,14 @@ class AddStudentRatingVC: BaseUIViewController {
         isSelectedRating = false
         if checkInternetConnection(){
             if arrSubjectlist.count > 0{
-                UpdatePickerModel(count: arrSubjectlist.count, sharedPickerDelegate: self as! SharedUIPickerDelegate, View:  self.view)
+                UpdatePickerModel2(count: arrSubjectlist.count, sharedPickerDelegate: self, View:  self.view,index: 0)
                 selectedSubjectId = arrSubjectlist[0].subjectId
                                 let text = txtfieldClass.text!
                                 if let index = arrSubjectlist.index(where: { (dict) -> Bool in
                                     return dict.subjectName ?? "" == text // Will found index of matched id
                                 }) {
                                     print("Index found :\(index)")
-                                    UpdatePickerModel4(count: arrSubjectlist.count, sharedPickerDelegate: self as! SharedUIPickerDelegate, View:  self.view,index: index)
+                                    UpdatePickerModel2(count: arrSubjectlist.count, sharedPickerDelegate: self as! SharedUIPickerDelegate, View:  self.view,index: index)
                                 }
             }
         }else{

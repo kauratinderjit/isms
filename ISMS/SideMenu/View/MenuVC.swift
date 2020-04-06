@@ -271,6 +271,7 @@ extension MenuVC : UITableViewDelegate{
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
+             break
             
         case "ViewTeacherRatings":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kTeacher, bundle: nil)
@@ -278,6 +279,7 @@ extension MenuVC : UITableViewDelegate{
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
+             break
             
         case "RateStudentPerformance":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kStudent, bundle: nil)
@@ -285,8 +287,16 @@ extension MenuVC : UITableViewDelegate{
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
+             break
 //            AddStudentRatingVC
             
+        case "AssignHomework":
+            let storyboard = UIStoryboard.init(name: KStoryBoards.kStudent, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "AssignHomeworkVC")
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(vc, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
+             break
         case "Logout":
             initializeCustomYesNoAlert(self.view, isHideBlurView: true)
             self.yesNoAlertView.delegate = self
