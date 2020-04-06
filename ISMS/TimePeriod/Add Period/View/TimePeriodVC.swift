@@ -488,9 +488,10 @@ class TimePeriodVC: BaseUIViewController {
                 }
                 let refreshAlert = UIAlertController(title: "ISMS", message: "Are you sure you want to delete this period?", preferredStyle: UIAlertController.Style.alert)
                 refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
-                    if index == 0{
+                    if self.newitems.count == 1{
                         if period_id > 0{
                             self.ViewModel?.deletePeriod(periodId: period_id)
+//                            self.getPeriodList()
                         }
                         else{
                             print("addded locally")
@@ -500,13 +501,14 @@ class TimePeriodVC: BaseUIViewController {
                             cell.txtFieldPeriodStartTime.text = ""
                             cell.txtFieldPeriodEndTime.text = ""
                             //                            self.tableView.deleteRows(at: [indexPath], with: .fade)
-                            ////                            self.tableView.reloadData()
+                                                        self.tableView.reloadData()
                             print(self.newitems.count)
                         }
                     }else{
                         
                         if period_id > 0{
                             self.ViewModel?.deletePeriod(periodId: period_id)
+//self.getPeriodList()
                         }
                         else{
                             print("addded locally")
@@ -603,7 +605,7 @@ class TimePeriodVC: BaseUIViewController {
                         }
                     }
                     self.ViewModel?.addPeriod(periodList: newitems, ClassId: selectedClassID)
-                    getPeriodList()
+//                    getPeriodList()
                 }
                 else{
                     self.showAlert(alert: KConstants.kemptyEndTime)
@@ -623,7 +625,7 @@ class TimePeriodVC: BaseUIViewController {
                     }
                 }
                 self.ViewModel?.addPeriod(periodList: newitems, ClassId: selectedClassID)
-                getPeriodList()
+                
             }
         }
     }
@@ -708,6 +710,7 @@ extension TimePeriodVC : ViewDelegate{
         initializeCustomOkAlert(self.view, isHideBlurView: true)
         okAlertView.delegate = self
         okAlertView.lblResponseDetailMessage.text = alert
+       getPeriodList()
     }
     
     func showLoader() {
@@ -741,6 +744,9 @@ extension TimePeriodVC : PeriodDelegate{
             }
         }
         //    }
+        
+    }
+    func addPeriodSucced(msg: String){
         
     }
     
