@@ -512,7 +512,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="VGa-Zp-Beb"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
@@ -655,7 +655,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="isd-rg-Ed4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2692.0289855072465" y="-2554.076086956522"/>
+            <point key="canvasLocation" x="2712" y="-2543"/>
         </scene>
     </scenes>
     <resources>
