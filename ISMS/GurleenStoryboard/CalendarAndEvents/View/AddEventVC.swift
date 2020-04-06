@@ -34,13 +34,11 @@ class AddEventVC: BaseUIViewController {
     var editEventModel : EventScheduleListResultData?
 
     //Converts string into date
-    let formatter: DateFormatter =
-        {
+    let formatter: DateFormatter = {
             let formatter = DateFormatter()
             formatter.dateFormat = "dd/MM/yyyy"
             return formatter
     }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,18 +46,20 @@ class AddEventVC: BaseUIViewController {
     }
     
     func setView() {
+        
         self.viewModel = EventScheduleViewModel.init(delegate: self)
-             self.viewModel?.attachView(viewDelegate: self)
+        self.viewModel?.attachView(viewDelegate: self)
         self.title = "Add Event"
-          addShadow(view: calenderDate)
+         addShadow(view: calenderDate)
          addShadow(view: txtViewDescription)
          styleTextField(textField: txtfieldTitle)
          styleLabel(textField: lblTime)
          self.CreateNavigationBackBarButton()
+        
          txtfieldTitle.attributedPlaceholder = NSAttributedString(string:"Enter Title", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
         
         if editMode == true {
-           
+            
             if editEventModel != nil {
                 
                 txtViewDescription.text = editEventModel?.Description
@@ -71,10 +71,9 @@ class AddEventVC: BaseUIViewController {
                 str_date_selected = strDate
                 let dateFinal =  formatter.date(from: strDate)
                 self.calenderDate.deselect(dateFinal!)
-               self.calenderDate.select(dateFinal, scrollToDate: true)
+                self.calenderDate.select(dateFinal, scrollToDate: true)
                 
             }
-            
         }
          
     }
@@ -139,10 +138,10 @@ class AddEventVC: BaseUIViewController {
  
     
     @IBAction func actionbtnDone(_ sender: UIButton) {
+        
         if self.lblTime.text != "" {
                 
-                DispatchQueue.main.async{
-                    
+                DispatchQueue.main.async {
                     self.viewPicker.isHidden = true
                     self.calenderDate.isUserInteractionEnabled = true
                     self.pickerTime.minimumDate = nil
@@ -155,11 +154,10 @@ class AddEventVC: BaseUIViewController {
         
         DispatchQueue.main.async{
              self.calenderDate.isUserInteractionEnabled = false
-               self.view.endEditing(true)
+             self.view.endEditing(true)
               self.viewPicker.isHidden = false
               let dateFormatter = DateFormatter()
               dateFormatter.dateFormat = "h:mm a"
-            
             let dateFormatter1 = DateFormatter()
             dateFormatter1.dateFormat = "HH:mm"
               
