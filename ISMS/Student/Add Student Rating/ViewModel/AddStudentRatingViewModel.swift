@@ -145,6 +145,8 @@ class AddStudentRatingViewModel {
         let url = ApiEndpoints.kSkillList + "?id=" + "\(id)" + "&enumType=" + "\(enumType)"
         AddStudentRatingApi.sharedInstance.GetSkillList(url: url , parameters: paramDict as [String : Any], completionResponse: { (AddStudentRatingListModel) in
             
+            print("your respomnse data : ",AddStudentRatingListModel.resultData)
+            
             if AddStudentRatingListModel.statusCode == KStatusCode.kStatusCode200 {
                 self.addStudentRatingView?.hideLoader()
                 if type == "Skill" {
@@ -318,7 +320,7 @@ extension AddStudentRatingVC : AddStudentRatingDelegate {
     }
     
     func studentListDidSucceed(data: [AddStudentRatingResultData]?) {
-        isFetching = true
+         isFetching = true
         if data != nil{
             if data?.count ?? 0 > 0{
                 for value in data!{
@@ -348,7 +350,7 @@ extension AddStudentRatingVC : AddStudentRatingDelegate {
     }
     
     func GetSkillListDidSucceed(data: [AddStudentRatingResultData]?) {
-        
+        print("our data : ",data)
         if let data1 = data {
         self.arrSkillList = data1
       
@@ -402,11 +404,12 @@ extension AddStudentRatingVC : AddStudentRatingDelegate {
                         if let subjectName = arrSubjectlist[0].subjectName {
                             txtfieldSubject.text = subjectName
                         }
+//                            self.viewModel?.GetSkillList(id : 10, enumType : 14 ,type : "Student")
                     }
                     //  self.tblViewCenterLabel(tblView: tableView, lblText: "", hide: true)
                 }
                 if let classId = selectedClassId {
-                  self.viewModel?.GetSkillList(id : 10, enumType : 14 ,type : "Student")
+                    self.viewModel?.GetSkillList(id : 1, enumType : 14 ,type : "Student")
                 }
                 
             }else{
@@ -442,6 +445,7 @@ extension AddStudentRatingVC : SharedUIPickerDelegate{
             if isClassSelected == true {
                 if let index = selectedClassArrIndex {
                     if let id = arrClassList[index].classId {
+//                       self.viewModel?.GetSkillList(id : 10, enumType : 14 ,type : "Student")
                         self.viewModel?.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: pageSize,sortColumnDir: "",sortColumn: "", particularId: id)
                     }
                 }
@@ -469,12 +473,14 @@ extension AddStudentRatingVC : SharedUIPickerDelegate{
                 
                 
             }
-            
-            
+                
+            }
+            else if isStudentSelected == true{
+                
+            }
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
-    }
     }
     func GetTitleForRow(index: Int) -> String {
         

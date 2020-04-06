@@ -255,6 +255,7 @@ extension StudentRatingVC : StudentRatingDelegate {
                         arrSubjectlist.append(value)
                         if let subjectName = arrSubjectlist[0].subjectName {
                         txtfieldSubject.text = subjectName
+                            
 //                            if let id = arrSubjectlist[0].subjectId {
 //                                if let classid = selectedClassId {
                             
@@ -264,7 +265,8 @@ extension StudentRatingVC : StudentRatingDelegate {
                     }
                   //  self.tblViewCenterLabel(tblView: tableView, lblText: "", hide: true)
                 }
-                 self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID:33, classID: 14 )
+                
+//                 self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID:33, classID: 14 )
                 
             }else{
                 CommonFunctions.sharedmanagerCommon.println(object: "Zero")
