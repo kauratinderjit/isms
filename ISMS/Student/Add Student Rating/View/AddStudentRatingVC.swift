@@ -50,6 +50,7 @@ class AddStudentRatingVC: BaseUIViewController {
 
         self.viewModel = AddStudentRatingViewModel.init(delegate: self)
         self.viewModel?.attachView(viewDelegate: self)
+        SetpickerView(self.view)
         // Do any additional setup after loading the view.
         
         DispatchQueue.main.async {
@@ -101,6 +102,7 @@ class AddStudentRatingVC: BaseUIViewController {
     
     //MARK:- Action Class Picker
     @IBAction func ActionClassPicker(_ sender: UIButton) {
+        print("Student Rating")
         isClassSelected = true
         isSubjectSelected = false
          isStudentSelected = false
@@ -108,7 +110,7 @@ class AddStudentRatingVC: BaseUIViewController {
         
         if checkInternetConnection(){
             if arrClassList.count > 0{
-                UpdatePickerModel(count: arrClassList.count, sharedPickerDelegate: self as! SharedUIPickerDelegate, View:  self.view)
+                UpdatePickerModel2(count: arrClassList.count, sharedPickerDelegate: self, View:  self.view, index: 0)
                 
                 selectedClassId = arrClassList[0].classId
                 let text = txtfieldClass.text!
@@ -116,7 +118,7 @@ class AddStudentRatingVC: BaseUIViewController {
                     return dict.name ?? "" == text // Will found index of matched id
                 }) {
                     print("Index found :\(index)")
-                    UpdatePickerModel4(count: arrClassList.count, sharedPickerDelegate: self as! SharedUIPickerDelegate, View:  self.view, index: index)
+                    UpdatePickerModel2(count: arrClassList.count, sharedPickerDelegate: self, View:  self.view, index: index)
                 }
                 
                 

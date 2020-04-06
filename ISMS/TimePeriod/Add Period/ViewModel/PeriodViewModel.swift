@@ -12,6 +12,7 @@ protocol PeriodDelegate: class {
     func unauthorizedUser()
     func getClassdropdownDidSucceed(data : [ResultData]?)
     func getPeriodListSucced(data: [PeriodsListData])
+     func addPeriodSucced(msg: String)
     
 }
 
@@ -104,6 +105,7 @@ class PeriodViewModel{
             if AddPeriodModel.statusCode == KStatusCode.kStatusCode200{
                 self.TimePeriodVC?.hideLoader()
                 self.TimePeriodVC?.showAlert(alert: AddPeriodModel.message ?? "")
+               self.PeriodDelegate?.addPeriodSucced(msg: AddPeriodModel.message ?? "")
             }else if AddPeriodModel.statusCode == KStatusCode.kStatusCode401{
                 self.TimePeriodVC?.hideLoader()
                 self.TimePeriodVC?.showAlert(alert: AddPeriodModel.message ?? "")
