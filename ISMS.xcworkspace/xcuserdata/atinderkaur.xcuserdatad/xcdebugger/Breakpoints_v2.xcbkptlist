@@ -472,7 +472,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "36955922-FC83-454B-8276-21DA8FBF944B"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ISMS/Class/ClassPeriodsTimeTable/ViewModel/ClassPeriodsTimeTableViewModel.swift"
@@ -480,15 +480,15 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "50"
             endingLineNumber = "50"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "getClassListDropdown(selectId:enumType:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "09493168-929A-43AB-BC51-1D66AC5E8A41"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ISMS/Class/ClassPeriodsTimeTable/ViewModel/ClassPeriodsTimeTableViewModel.swift"
@@ -496,8 +496,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
             endingLineNumber = "43"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "getClassListDropdown(selectId:enumType:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -552,7 +552,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "D0621B35-C527-4B1F-825A-6B3E8FF354B2"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ISMS/Class/ClassPeriodsTimeTable/ViewModel/ClassPeriodsTimeTableViewModel.swift"
@@ -560,8 +560,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "46"
             endingLineNumber = "46"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "getClassListDropdown(selectId:enumType:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2870,8 +2870,8 @@
             filePath = "ISMS/GurleenStoryboard/CalendarAndEvents/View/AddEventVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "380"
-            endingLineNumber = "380"
+            startingLineNumber = "379"
+            endingLineNumber = "379"
             landmarkName = "AddEventVC"
             landmarkType = "21">
          </BreakpointContent>
@@ -2886,8 +2886,8 @@
             filePath = "ISMS/GurleenStoryboard/CalendarAndEvents/View/AddEventVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "384"
-            endingLineNumber = "384"
+            startingLineNumber = "383"
+            endingLineNumber = "383"
             landmarkName = "AddEventVC"
             landmarkType = "21">
          </BreakpointContent>
@@ -2902,10 +2902,10 @@
             filePath = "ISMS/GurleenStoryboard/CalendarAndEvents/View/AddEventVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "369"
-            endingLineNumber = "369"
-            landmarkName = "AddEventVC"
-            landmarkType = "21">
+            startingLineNumber = "368"
+            endingLineNumber = "368"
+            landmarkName = "calendar(_:didSelect:at:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2918,8 +2918,8 @@
             filePath = "ISMS/GurleenStoryboard/CalendarAndEvents/View/AddEventVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "393"
-            endingLineNumber = "393"
+            startingLineNumber = "392"
+            endingLineNumber = "392"
             landmarkName = "AddEventVC"
             landmarkType = "21">
          </BreakpointContent>
@@ -2934,10 +2934,10 @@
             filePath = "ISMS/GurleenStoryboard/CalendarAndEvents/View/AddEventVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "398"
-            endingLineNumber = "398"
-            landmarkName = "calendarCurrentPageDidChange(_:)"
-            landmarkType = "7">
+            startingLineNumber = "397"
+            endingLineNumber = "397"
+            landmarkName = "AddEventVC"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2950,10 +2950,10 @@
             filePath = "ISMS/GurleenStoryboard/CalendarAndEvents/View/AddEventVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "346"
-            endingLineNumber = "346"
-            landmarkName = "AddEventVC"
-            landmarkType = "21">
+            startingLineNumber = "345"
+            endingLineNumber = "345"
+            landmarkName = "textViewDidEndEditing(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2966,8 +2966,8 @@
             filePath = "ISMS/GurleenStoryboard/CalendarAndEvents/View/AddEventVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "247"
-            endingLineNumber = "247"
+            startingLineNumber = "246"
+            endingLineNumber = "246"
             landmarkName = "actionTimePicker(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2982,8 +2982,8 @@
             filePath = "ISMS/GurleenStoryboard/CalendarAndEvents/View/AddEventVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
             landmarkName = "actionTimePicker(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2998,8 +2998,8 @@
             filePath = "ISMS/GurleenStoryboard/CalendarAndEvents/View/AddEventVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "228"
-            endingLineNumber = "228"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
             landmarkName = "actionTimePicker(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3014,8 +3014,8 @@
             filePath = "ISMS/GurleenStoryboard/CalendarAndEvents/View/AddEventVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
             landmarkName = "actionTimePicker(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3048,7 +3048,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "140"
             endingLineNumber = "140"
-            landmarkName = "EventScheduleSucceed(array:)"
+            landmarkName = "SubjectEventSuccess()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3110,8 +3110,8 @@
             filePath = "ISMS/GurleenStoryboard/CalendarAndEvents/View/AddEventVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "276"
-            endingLineNumber = "276"
+            startingLineNumber = "275"
+            endingLineNumber = "275"
             landmarkName = "actionTimePicker(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3126,8 +3126,8 @@
             filePath = "ISMS/GurleenStoryboard/CalendarAndEvents/View/AddEventVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
             landmarkName = "actionTimePicker(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3142,8 +3142,8 @@
             filePath = "ISMS/GurleenStoryboard/CalendarAndEvents/View/AddEventVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "230"
-            endingLineNumber = "230"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
             landmarkName = "actionTimePicker(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3158,10 +3158,10 @@
             filePath = "ISMS/GurleenStoryboard/CalendarAndEvents/View/AddEventVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
-            landmarkName = "AddEventVC"
-            landmarkType = "3">
+            startingLineNumber = "285"
+            endingLineNumber = "285"
+            landmarkName = "actionTimePicker(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3208,7 +3208,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "129"
             endingLineNumber = "129"
-            landmarkName = "SubjectEventSuccess()"
+            landmarkName = "yesBtnAction()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3216,7 +3216,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "94CE5123-6664-4142-A76D-0ACB6B8D38E9"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ISMS/GurleenStoryboard/CalendarAndEvents/View/ExamScheduleVC.swift"
@@ -3224,7 +3224,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "108"
             endingLineNumber = "108"
-            landmarkName = "yesBtnAction()"
+            landmarkName = "addInitials(first:second:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3247,79 +3247,47 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "299CE333-7599-4D2B-B274-40F37F1F2AA4"
-            shouldBeEnabled = "Yes"
+            uuid = "509AA3D4-6CCA-476D-B415-B75CDD4942BC"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ISMS/GurleenStoryboard/CalendarAndEvents/View/AddEventVC.swift"
+            filePath = "ISMS/Class/ClassPeriodsTimeTable/ViewModel/ClassPeriodsTimeTableViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "setView()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "DAB9832D-D804-433B-9CE0-DA780268C64A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ISMS/GurleenStoryboard/CalendarAndEvents/View/AddEventVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "setView()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "702F846C-0DA4-45E7-AE55-3B34746AA4AB"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ISMS/HOD/Add HOD/ViewModel/AddHODViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "addUpdateHOD(hodId:firstName:lastName:address:dateOfBirth:gender:profileImageUrl:idProofName:idProofImgUrl:email:departmentId:departmentName:phoneNumber:qualification:workExperience:additionalSkills:others:userId:)"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "getClassListDropdown(selectId:enumType:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "702F846C-0DA4-45E7-AE55-3B34746AA4AB - dae7c7a55e16eec"
-                  shouldBeEnabled = "Yes"
+                  uuid = "509AA3D4-6CCA-476D-B415-B75CDD4942BC - 5c9f92ab2c7bfc9b"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "ISMS.AddHODViewModel.addUpdateHOD(hodId: Swift.Optional&lt;Swift.Int&gt;, firstName: Swift.Optional&lt;Swift.String&gt;, lastName: Swift.Optional&lt;Swift.String&gt;, address: Swift.Optional&lt;Swift.String&gt;, dateOfBirth: Swift.Optional&lt;Swift.String&gt;, gender: Swift.Optional&lt;Swift.String&gt;, profileImageUrl: Swift.Optional&lt;Foundation.URL&gt;, idProofName: Swift.Optional&lt;Swift.String&gt;, idProofImgUrl: Swift.Optional&lt;Foundation.URL&gt;, email: Swift.Optional&lt;Swift.String&gt;, departmentId: Swift.Optional&lt;Swift.Int&gt;, departmentName: Swift.Optional&lt;Swift.String&gt;, phoneNumber: Swift.Optional&lt;Swift.String&gt;, qualification: Swift.Optional&lt;Swift.String&gt;, workExperience: Swift.Optional&lt;Swift.String&gt;, additionalSkills: Swift.Optional&lt;Swift.String&gt;, others: Swift.Optional&lt;Swift.String&gt;, userId: Swift.Optional&lt;Swift.Int&gt;) -&gt; ()"
+                  symbolName = "ISMS.ClassPeriodsTimetableViewModel.getClassListDropdown(selectId: Swift.Int, enumType: Swift.Int) -&gt; ()"
                   moduleName = "ISMS"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/DATA/ISMS%20git/ISMS/HOD/Add%20HOD/ViewModel/AddHODViewModel.swift"
+                  urlString = "file:///Volumes/DATA/ISMS%20git/ISMS/Class/ClassPeriodsTimeTable/ViewModel/ClassPeriodsTimeTableViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "94"
-                  endingLineNumber = "94"
-                  offsetFromSymbolStart = "7587">
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "349">
                </Location>
                <Location
-                  uuid = "702F846C-0DA4-45E7-AE55-3B34746AA4AB - 641f063387d5fb2e"
-                  shouldBeEnabled = "Yes"
+                  uuid = "509AA3D4-6CCA-476D-B415-B75CDD4942BC - 2a17adf6860f43c"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (ISMS.CommonSuccessResponseModel) -&gt; () in ISMS.AddHODViewModel.addUpdateHOD(hodId: Swift.Optional&lt;Swift.Int&gt;, firstName: Swift.Optional&lt;Swift.String&gt;, lastName: Swift.Optional&lt;Swift.String&gt;, address: Swift.Optional&lt;Swift.String&gt;, dateOfBirth: Swift.Optional&lt;Swift.String&gt;, gender: Swift.Optional&lt;Swift.String&gt;, profileImageUrl: Swift.Optional&lt;Foundation.URL&gt;, idProofName: Swift.Optional&lt;Swift.String&gt;, idProofImgUrl: Swift.Optional&lt;Foundation.URL&gt;, email: Swift.Optional&lt;Swift.String&gt;, departmentId: Swift.Optional&lt;Swift.Int&gt;, departmentName: Swift.Optional&lt;Swift.String&gt;, phoneNumber: Swift.Optional&lt;Swift.String&gt;, qualification: Swift.Optional&lt;Swift.String&gt;, workExperience: Swift.Optional&lt;Swift.String&gt;, additionalSkills: Swift.Optional&lt;Swift.String&gt;, others: Swift.Optional&lt;Swift.String&gt;, userId: Swift.Optional&lt;Swift.Int&gt;) -&gt; ()"
+                  symbolName = "closure #1 (ISMS.GetCommonDropdownModel) -&gt; () in ISMS.ClassPeriodsTimetableViewModel.getClassListDropdown(selectId: Swift.Int, enumType: Swift.Int) -&gt; ()"
                   moduleName = "ISMS"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/DATA/ISMS%20git/ISMS/HOD/Add%20HOD/ViewModel/AddHODViewModel.swift"
+                  urlString = "file:///Volumes/DATA/ISMS%20git/ISMS/Class/ClassPeriodsTimeTable/ViewModel/ClassPeriodsTimeTableViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "94"
-                  endingLineNumber = "94"
-                  offsetFromSymbolStart = "115">
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "119">
                </Location>
             </Locations>
          </BreakpointContent>

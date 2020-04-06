@@ -65,7 +65,18 @@ class AddEventVC: BaseUIViewController {
                 txtViewDescription.text = editEventModel?.Description
                 lbl_MessagePlaceholder.isHidden = true
                 txtfieldTitle.text = editEventModel?.Title
-                lblTime.text = editEventModel?.StrStartTime
+                
+                
+                let localDateFormatter = DateFormatter()
+                localDateFormatter.dateFormat = "h:mm a"
+                
+                let localDateFormatter2 = DateFormatter()
+                localDateFormatter2.dateFormat = "HH:mm"
+                
+                let dateObj = localDateFormatter2.date(from: editEventModel?.StrStartTime ?? "")
+                print("\(localDateFormatter.string(from: dateObj!))")
+                lblTime.text = "\(localDateFormatter.string(from: dateObj!))"
+                 
                 selectedTime = editEventModel?.StrStartTime
                 guard let strDate = editEventModel?.strStartDate else { return  }
                 str_date_selected = strDate
@@ -158,8 +169,8 @@ class AddEventVC: BaseUIViewController {
               self.viewPicker.isHidden = false
               let dateFormatter = DateFormatter()
               dateFormatter.dateFormat = "h:mm a"
-            let dateFormatter1 = DateFormatter()
-            dateFormatter1.dateFormat = "HH:mm"
+              let dateFormatter1 = DateFormatter()
+              dateFormatter1.dateFormat = "HH:mm"
               
               let date_ = dateFormatter.string(from: self.pickerTime.date)
               print(date_)

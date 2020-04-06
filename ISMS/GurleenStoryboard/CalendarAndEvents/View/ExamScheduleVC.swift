@@ -73,7 +73,18 @@ extension ExamScheduleVC : UITableViewDataSource, UITableViewDelegate {
         cell?.btnEdit.tag = indexPath.row
         cell?.lblTitle.text = arrEventlist[indexPath.row].Title
         cell?.lblDate.text =  "Date : \(String(describing: arrEventlist[indexPath.row].strStartDate!))"
-        cell?.lblTime.text =  "Time : \(String(describing: arrEventlist[indexPath.row].StrStartTime!))"
+        
+        let localDateFormatter = DateFormatter()
+        localDateFormatter.dateFormat = "h:mm a"
+                       
+         let localDateFormatter2 = DateFormatter()
+         localDateFormatter2.dateFormat = "HH:mm"
+                       
+         let dateObj = localDateFormatter2.date(from: arrEventlist[indexPath.row].StrStartTime ?? "")
+         print("\(localDateFormatter.string(from: dateObj!))")
+         cell?.lblTime.text = "Time : \(localDateFormatter.string(from: dateObj!))"
+        
+        
         cell?.imgView.addInitials(first: "E", second: "")
         return cell!
         
