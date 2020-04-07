@@ -17,7 +17,7 @@ class AddStudentRatingVC: BaseUIViewController {
     var isUnauthorizedUser = false
     var isFetching:Bool?
     var arrClassList = [GetClassListResultData]()
-    var arrSubjectlist=[GetSubjectResultData]()
+    var arrSubjectlist=[AddStudentRatingResultData]()
     var arrStudentlist = [AddStudentRatingResultData]()
     var selectedClassId : Int?
     var selectedSubjectId : Int?
@@ -90,7 +90,7 @@ class AddStudentRatingVC: BaseUIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         if checkInternetConnection(){
-            self.viewModel?.classList(searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: KIntegerConstants.kInt0)
+//            self.viewModel?.classList(searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: KIntegerConstants.kInt0)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
@@ -102,23 +102,22 @@ class AddStudentRatingVC: BaseUIViewController {
     
     //MARK:- Action Class Picker
     @IBAction func ActionClassPicker(_ sender: UIButton) {
-        print("Student Rating")
         isClassSelected = true
         isSubjectSelected = false
          isStudentSelected = false
         isSelectedRating = false
         
         if checkInternetConnection(){
-            if arrClassList.count > 0{
-                UpdatePickerModel2(count: arrClassList.count, sharedPickerDelegate: self, View:  self.view, index: 0)
+            if arrSkillList.count > 0{
+                UpdatePickerModel2(count: arrSkillList.count, sharedPickerDelegate: self, View:  self.view, index: 0)
                 
-                selectedClassId = arrClassList[0].classId
+                selectedClassId = arrSkillList[0].studentID
                 let text = txtfieldClass.text!
-                if let index = arrClassList.index(where: { (dict) -> Bool in
-                    return dict.name ?? "" == text // Will found index of matched id
+                if let index = arrSkillList.index(where: { (dict) -> Bool in
+                    return dict.studentName ?? "" == text // Will found index of matched id
                 }) {
                     print("Index found :\(index)")
-                    UpdatePickerModel2(count: arrClassList.count, sharedPickerDelegate: self, View:  self.view, index: index)
+                    UpdatePickerModel2(count: arrSkillList.count, sharedPickerDelegate: self, View:  self.view, index: index)
                 }
                 
                 
@@ -175,10 +174,10 @@ class AddStudentRatingVC: BaseUIViewController {
         if checkInternetConnection(){
             if arrSubjectlist.count > 0{
                 UpdatePickerModel2(count: arrSubjectlist.count, sharedPickerDelegate: self, View:  self.view,index: 0)
-                selectedSubjectId = arrSubjectlist[0].subjectId
+                selectedSubjectId = arrSubjectlist[0].studentID
                                 let text = txtfieldClass.text!
                                 if let index = arrSubjectlist.index(where: { (dict) -> Bool in
-                                    return dict.subjectName ?? "" == text // Will found index of matched id
+                                    return dict.studentName ?? "" == text // Will found index of matched id
                                 }) {
                                     print("Index found :\(index)")
                                     UpdatePickerModel2(count: arrSubjectlist.count, sharedPickerDelegate: self as! SharedUIPickerDelegate, View:  self.view,index: index)

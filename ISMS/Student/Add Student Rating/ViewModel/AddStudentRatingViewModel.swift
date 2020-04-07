@@ -15,6 +15,7 @@ protocol AddStudentRatingDelegate : class {
     func SubjectListDidSuccess(data: [GetSubjectResultData]?)
       func SubjectWiseRatingDidSucceed(data : [SubjectWiseRatingResultData])
     func GetSkillListDidSucceed(data : [AddStudentRatingResultData]?)
+    func GetSubjectListDidSucceed(data:[AddStudentRatingResultData]?)
     func studentListDidSucceed(data : [AddStudentRatingResultData]?)
     func AddStudentRatingDidSucceed(data: String)
 }
@@ -190,6 +191,59 @@ class AddStudentRatingViewModel {
         
     }
     
+    func GetClassSubjectsByteacherId(classid: Int,teacherId: Int){
+        self.addStudentRatingView?.showLoader()
+        
+        let paramDict = ["classid":classid,
+                          "teacherId" : teacherId] as [String : Any]
+        let url = ApiEndpoints.kGetClassSubjectsByteacherId + "?classid=" + "\(classid)" + "&teacherId=" + "\(teacherId)"
+        AddStudentRatingApi.sharedInstance.GetSkillList(url: url , parameters: paramDict as [String : Any], completionResponse: { (AddStudentRatingListModel) in
+            
+            print("your respomnse data : ",AddStudentRatingListModel.resultData)
+            
+            if AddStudentRatingListModel.statusCode == KStatusCode.kStatusCode200 {
+                self.addStudentRatingView?.hideLoader()
+                self.addStudentRatingDelegate?.GetSubjectListDidSucceed(data:AddStudentRatingListModel.resultData!)
+//                if type == "Skill" {
+//                    self.addStudentRatingDelegate?.GetSkillListDidSucceed(data:AddStudentRatingListModel.resultData!)
+//                }
+//                else {
+//                    self.addStudentRatingDelegate?.studentListDidSucceed(data: AddStudentRatingListModel.resultData!)
+//
+//                }
+                
+            }else if AddStudentRatingListModel.statusCode == KStatusCode.kStatusCode401 {
+                self.addStudentRatingView?.hideLoader()
+                self.addStudentRatingView?.showAlert(alert: AddStudentRatingListModel.message ?? "")
+                //  self.SubjectListDelegate?.unauthorizedUser()
+            }else{
+                self.addStudentRatingView?.hideLoader()
+                CommonFunctions.sharedmanagerCommon.println(object: "student APi status change")
+            }
+            
+        }, completionnilResponse: { (nilResponseError) in
+            
+            self.addStudentRatingView?.hideLoader()
+            //   self.SubjectListDelegate?.SubjectListDidFailed()
+            
+            if let error = nilResponseError{
+                self.addStudentRatingView?.showAlert(alert: error)
+                
+            }else{
+                CommonFunctions.sharedmanagerCommon.println(object: "student APi Nil response")
+            }
+            
+        }) { (error) in
+            self.addStudentRatingView?.hideLoader()
+            //   self.SubjectListDelegate?.SubjectListDidFailed()
+            //            if let err = error?.localizedDescription{
+            //                self.studentRatingView?.showAlert(alert: err)
+            //            }else{
+            //                CommonFunctions.sharedmanagerCommon.println(object: "student APi error response")
+            //            }
+        }
+    }
+    
     
     //MARK:- SUBJECT LIST
     func getSubjectWiseRating(enrollmentsId : Int?,classId: Int?){
@@ -309,6 +363,26 @@ class AddStudentRatingViewModel {
 
 //MARK:- ADD STUDENT RATING DELEGATE
 extension AddStudentRatingVC : AddStudentRatingDelegate {
+   
+    func SubjectListDidSuccess(data: [GetSubjectResultData]?) {
+        
+    }
+    
+    
+    func GetSubjectListDidSucceed(data:[AddStudentRatingResultData]?){
+        if let data1 = data {
+            self.arrSubjectlist = data1
+            if let studentName = arrSubjectlist[0].studentName{
+                txtfieldClass.text = studentName
+//                self.viewModel?.GetSkillList(id : 1, enumType : 14 ,type : "Student")
+//                self.viewModel?.GetClassSubjectsByteacherId(classid: 1,teacherId: 2 )
+                
+            }
+            
+            
+            tableView.reloadData()
+        }
+    }
     
     func SubjectWiseRatingDidSucceed(data: [SubjectWiseRatingResultData]) {
       //  arrSubjectList = data
@@ -351,12 +425,55 @@ extension AddStudentRatingVC : AddStudentRatingDelegate {
     
     func GetSkillListDidSucceed(data: [AddStudentRatingResultData]?) {
         print("our data : ",data)
-        if let data1 = data {
-        self.arrSkillList = data1
-      
-            tableView.reloadData()
-        }
+        
+        self.isFetching = true
+//        if data != nil{
+//            if data?.count ?? 0 > 0{
+//                for value in data!{
+//                    let containsSameValue = arrClassList.contains(where: {$0.classId == value.classId})
+//                    if containsSameValue == false{
+//                        arrClassList.append(value)
+//                        if let className = arrClassList[0].name{
+//                            txtfieldClass.text = className
+//                        }
+//                    }
+//                    // self.tblViewCenterLabel(tblView: tableView, lblText: "", hide: true)
+//
+//
+//                }
+//                if let id = arrClassList[0].classId {
+//                    selectedClassId = id
+//
+//                    self.viewModel?.GetClassSubjectsByteacherId(classid: selectedClassId ?? 0,teacherId: 2 )
+//                    self.viewModel?.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: pageSize,sortColumnDir: "",sortColumn: "", particularId: id)
+//                }
+//
+//            }else{
+//                CommonFunctions.sharedmanagerCommon.println(object: "Zero")
+//            }
+//        }else{
+//            CommonFunctions.sharedmanagerCommon.println(object: "Nil")
+//        }
+//        DispatchQueue.main.async {
+//            self.tableView.reloadData()
+//        }
+        
+        
+                if let data1 = data {
+                self.arrSkillList = data1
+                    if let className = arrSkillList[0].studentName{
+                            txtfieldClass.text = className
+                           self.viewModel?.GetSkillList(id : 1, enumType : 14 ,type : "Student")
+                         self.viewModel?.GetClassSubjectsByteacherId(classid: 1,teacherId: 2 )
+                        
+                    }
+        
+       
+                    tableView.reloadData()
+                }
     }
+    
+    
     
     func classListDidSuccess(data: [GetClassListResultData]?) {
        self.isFetching = true
@@ -376,7 +493,9 @@ extension AddStudentRatingVC : AddStudentRatingDelegate {
                 }
                 if let id = arrClassList[0].classId {
                     selectedClassId = id
-                    self.viewModel?.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: pageSize,sortColumnDir: "",sortColumn: "", particularId: id)
+                    
+                    self.viewModel?.GetClassSubjectsByteacherId(classid: selectedClassId ?? 0,teacherId: 2 )
+//                    self.viewModel?.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: pageSize,sortColumnDir: "",sortColumn: "", particularId: id)
                 }
                 
             }else{
@@ -391,38 +510,38 @@ extension AddStudentRatingVC : AddStudentRatingDelegate {
         
     }
     
-    func SubjectListDidSuccess(data: [GetSubjectResultData]?) {
-        isFetching = true
-        if data != nil{
-            if data?.count ?? 0 > 0{
-                for value in data!{
-                    
-                    let containsSameValue = arrSubjectlist.contains(where: {$0.subjectId == value.subjectId})
-                    
-                    if containsSameValue == false{
-                        arrSubjectlist.append(value)
-                        if let subjectName = arrSubjectlist[0].subjectName {
-                            txtfieldSubject.text = subjectName
-                        }
-//                            self.viewModel?.GetSkillList(id : 10, enumType : 14 ,type : "Student")
-                    }
-                    //  self.tblViewCenterLabel(tblView: tableView, lblText: "", hide: true)
-                }
-                if let classId = selectedClassId {
-                    self.viewModel?.GetSkillList(id : 1, enumType : 14 ,type : "Student")
-                }
-                
-            }else{
-                CommonFunctions.sharedmanagerCommon.println(object: "Zero")
-            }
-        }else{
-            CommonFunctions.sharedmanagerCommon.println(object: "Nil")
-        }
-        
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
+//    func SubjectListDidSuccess(data: [GetSubjectResultData]?) {
+//        isFetching = true
+//        if data != nil{
+//            if data?.count ?? 0 > 0{
+//                for value in data!{
+//
+//                    let containsSameValue = arrSubjectlist.contains(where: {$0.subjectId == value.subjectId})
+//
+//                    if containsSameValue == false{
+//                        arrSubjectlist.append(value)
+//                        if let subjectName = arrSubjectlist[0].subjectName {
+//                            txtfieldSubject.text = subjectName
+//                        }
+////                            self.viewModel?.GetSkillList(id : 10, enumType : 14 ,type : "Student")
+//                    }
+//                    //  self.tblViewCenterLabel(tblView: tableView, lblText: "", hide: true)
+//                }
+////                if let classId = selectedClassId {
+////                    self.viewModel?.GetSkillList(id : 1, enumType : 14 ,type : "Student")
+////                }
+//
+//            }else{
+//                CommonFunctions.sharedmanagerCommon.println(object: "Zero")
+//            }
+//        }else{
+//            CommonFunctions.sharedmanagerCommon.println(object: "Nil")
+//        }
+//
+//        DispatchQueue.main.async {
+//            self.tableView.reloadData()
+//        }
+//    }
     
     
     func StudentRatingDidSucceed() {
@@ -433,10 +552,9 @@ extension AddStudentRatingVC : AddStudentRatingDelegate {
         
     }
     
-    
-    
-    
 }
+    
+
 //MARK:- PICKER DELEGATE FUNCTIONS
 extension AddStudentRatingVC : SharedUIPickerDelegate{
     func DoneBtnClicked() {
@@ -444,9 +562,11 @@ extension AddStudentRatingVC : SharedUIPickerDelegate{
             //            arrAllAssignedSubjects.removeAll()
             if isClassSelected == true {
                 if let index = selectedClassArrIndex {
-                    if let id = arrClassList[index].classId {
+                    if let id = arrSkillList[index].studentID {
+                           self.viewModel?.GetSkillList(id : 1, enumType : 14 ,type : "Student")
+                         self.viewModel?.GetClassSubjectsByteacherId(classid: 1,teacherId: 2 )
 //                       self.viewModel?.GetSkillList(id : 10, enumType : 14 ,type : "Student")
-                        self.viewModel?.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: pageSize,sortColumnDir: "",sortColumn: "", particularId: id)
+//                        self.viewModel?.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: pageSize,sortColumnDir: "",sortColumn: "", particularId: id)
                     }
                 }
             }
@@ -485,15 +605,15 @@ extension AddStudentRatingVC : SharedUIPickerDelegate{
     func GetTitleForRow(index: Int) -> String {
         
         if isClassSelected == true {
-            if arrClassList.count > 0{
-                txtfieldClass.text = arrClassList[0].name
-                return arrClassList[index].name ?? ""
+            if arrSkillList.count > 0{
+                txtfieldClass.text = arrSkillList[0].studentName
+                return arrSkillList[index].studentName ?? ""
             }
         }
         else if isSubjectSelected == true {
             if arrSubjectlist.count > 0 {
-                txtfieldSubject.text = arrSubjectlist[0].subjectName
-                return arrSubjectlist[index].subjectName ?? ""
+                txtfieldSubject.text = arrSubjectlist[0].studentName
+                return arrSubjectlist[index].studentName ?? ""
             }
         }
         else if isStudentSelected == true {
@@ -517,16 +637,16 @@ extension AddStudentRatingVC : SharedUIPickerDelegate{
     func SelectedRow(index: Int) {
         
         if isClassSelected == true {
-            if arrClassList.count > 0{
-                selectedClassId = arrClassList[index].classId
-                txtfieldClass.text = arrClassList[index].name
+            if arrSkillList.count > 0{
+                selectedClassId = arrSkillList[index].studentID
+                txtfieldClass.text = arrSkillList[index].studentName
                 selectedClassArrIndex = index
             }
         }
         else if isSubjectSelected == true {
             if arrSubjectlist.count > 0 {
-                selectedSubjectId = arrSubjectlist[index].subjectId
-                txtfieldSubject.text = arrSubjectlist[index].subjectName
+                selectedSubjectId = arrSubjectlist[index].studentID
+                txtfieldSubject.text = arrSubjectlist[index].studentName
             }
             
         }

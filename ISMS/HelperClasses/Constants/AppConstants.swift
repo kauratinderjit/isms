@@ -91,6 +91,8 @@ public struct ApiEndpoints
     public static let kGetSubjectSkillRating = "api/Institute/GetStudentRatingViewByEnrollmentClassSubjectId"
     public static let kGetTeacherSkillRating = "api/Institute/GetTeacherRatingViewByTeacherClassSubjectId"
     
+    public static let kGetClassSubjectsByteacherId = "api/Institute/GetClassSubjectsByteacherId"
+    
 
  
 
