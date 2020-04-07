@@ -149,6 +149,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="btnAdd" destination="UOD-8l-aYK" id="fd4-n0-0GO"/>
                         <outlet property="tableView" destination="LYd-0l-HIn" id="0Ux-BU-JQD"/>
                     </connections>
                 </viewController>
@@ -643,6 +644,8 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="750"/>
                     <connections>
+                        <outlet property="btnSelectTime" destination="AdN-qc-mYd" id="8OF-Di-32l"/>
+                        <outlet property="btnSend" destination="Cxf-ZT-0B8" id="q8I-2g-Bej"/>
                         <outlet property="calenderDate" destination="vnf-6m-IPM" id="AYc-x5-qRu"/>
                         <outlet property="lblTime" destination="4W7-F0-0dX" id="tau-c1-98J"/>
                         <outlet property="lbl_MessagePlaceholder" destination="Kzq-se-bzZ" id="dJR-8T-fzt"/>

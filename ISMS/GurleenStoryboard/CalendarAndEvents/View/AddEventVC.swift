@@ -27,11 +27,16 @@ class AddEventVC: BaseUIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     fileprivate var str_date_selected:    String? = ""
     @IBOutlet weak var lbl_MessagePlaceholder: UILabel!
+    @IBOutlet weak var btnSelectTime: UIButton!
+    @IBOutlet weak var btnSend: UIBarButtonItem!
+    
     var viewModel     : EventScheduleViewModel?
     var selectedTime : String?
     var eventId :Int = 0
     var editMode : Bool = false
     var editEventModel : EventScheduleListResultData?
+    public var lstActionAccess : GetMenuFromRoleIdModel.ResultData?
+
 
     //Converts string into date
     let formatter: DateFormatter = {
@@ -84,6 +89,30 @@ class AddEventVC: BaseUIViewController {
                 self.calenderDate.deselect(dateFinal!)
                 self.calenderDate.select(dateFinal, scrollToDate: true)
                 
+                
+                let arrAccess = lstActionAccess?.lstActionAccess
+                
+                _ = arrAccess?.enumerated().map { (index,element) in
+                    
+                    if element.actionName == "Edit" {
+                        
+                        calenderDate.isUserInteractionEnabled = true
+                        txtfieldTitle.isUserInteractionEnabled = true
+                        txtViewDescription.isUserInteractionEnabled = true
+                        btnSelectTime.isUserInteractionEnabled = true
+                        self.navigationItem.rightBarButtonItem = btnSend
+                      
+                    }
+                    else{
+                        calenderDate.isUserInteractionEnabled = false
+                        txtfieldTitle.isUserInteractionEnabled = false
+                        txtViewDescription.isUserInteractionEnabled = false
+                        btnSelectTime.isUserInteractionEnabled = false
+                        self.navigationItem.rightBarButtonItem = nil
+                    }
+                    
+                  
+                }
             }
         }
          

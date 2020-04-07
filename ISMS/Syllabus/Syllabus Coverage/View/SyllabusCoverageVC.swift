@@ -25,7 +25,8 @@ class SyllabusCoverageVC : BaseUIViewController  {
     var arrayData = [SyllabusCoverageListResultData]()
     var boolFirstTime = false
     @IBOutlet weak var viewBehindClass: UIView!
-    
+    public var lstActionAccess : GetMenuFromRoleIdModel.ResultData?
+
     
     //MARK:- OVERRIDE CLASS FUNCTIONS
     override func viewDidLoad() {

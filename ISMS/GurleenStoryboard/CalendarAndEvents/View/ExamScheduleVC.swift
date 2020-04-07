@@ -15,6 +15,8 @@ class ExamScheduleVC: BaseUIViewController {
     var arrEventlist = [EventScheduleListResultData]()
     var selectedSubjectArrIndex : Int?
     var eventId : Int?
+    public var lstActionAccess : GetMenuFromRoleIdModel.ResultData?
+    @IBOutlet weak var btnAdd: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +28,21 @@ class ExamScheduleVC: BaseUIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         self.viewModel?.getData(RoleId: 0, ParticularId: 0)
+        print(lstActionAccess)
+        
+        let arrAccess = lstActionAccess?.lstActionAccess
+        
+        _ = arrAccess?.enumerated().map { (index,element) in
+            
+            if element.actionName == "Edit" {
+                self.navigationItem.rightBarButtonItem = btnAdd
+            }
+            
+            else{
+                self.navigationItem.rightBarButtonItem = nil
+            }
+    }
+        
     }
     
 
@@ -84,6 +101,26 @@ extension ExamScheduleVC : UITableViewDataSource, UITableViewDelegate {
          print("\(localDateFormatter.string(from: dateObj!))")
          cell?.lblTime.text = "Time : \(localDateFormatter.string(from: dateObj!))"
         
+        let arrAccess = lstActionAccess?.lstActionAccess
+        
+        _ = arrAccess?.enumerated().map { (index,element) in
+            
+            if element.actionName == "Edit" {
+                cell?.btnEdit.isHidden = false
+                cell?.btnDel.isHidden  = false
+            }
+            
+            else{
+                cell?.btnEdit.isHidden = true
+                               cell?.btnDel.isHidden  = true
+            }
+            
+       // return "\(index):\(element)"
+            
+            
+        }
+
+        
         
         cell?.imgView.addInitials(first: "E", second: "")
         return cell!
@@ -92,6 +129,22 @@ extension ExamScheduleVC : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 95
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if arrEventlist.count>0{
+            let data = arrEventlist[indexPath.row]
+                           let storyboard = UIStoryboard.init(name: "CalendarAndEvents", bundle: nil)
+                 if let vc = storyboard.instantiateViewController(withIdentifier: "AddEventVC") as? AddEventVC {
+                     vc.editMode = true
+                     vc.editEventModel = data
+                    vc.lstActionAccess = lstActionAccess
+                             self.navigationController?.pushViewController(vc, animated: false)
+                 }
+                           
+                       }
+        
     }
     
 }
