@@ -307,7 +307,7 @@ extension MenuVC : UITableViewDelegate{
             
         case "RateStudentPerformance":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kStudent, bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "AddStudentRatingVC") as? AddStudentRatingVC
+            let vc = storyboard.instantiateViewController(withIdentifier: "StudentRatingVC") as? StudentRatingVC
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)

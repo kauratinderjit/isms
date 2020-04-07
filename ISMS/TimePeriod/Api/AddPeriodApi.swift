@@ -131,6 +131,8 @@ class AddPeriodApi{
     func deletePeriod(url : String,parameters: [String : Any]?,completionResponse:  @escaping (DeletePeriodModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
         print("our parametersL: ",parameters ?? "")
         let urlCmplete = BaseUrl.kBaseURL+url
+        
+        print("complete delete url : ",urlCmplete)
         var accessTokken = ""
         if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String
         {

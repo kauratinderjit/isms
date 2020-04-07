@@ -31,6 +31,7 @@ class AddStudentRatingVC: BaseUIViewController {
     var isSelectedRating = false
     var countSelected : Int?
     var arrSkillList = [AddStudentRatingResultData]()
+      var arrSkillListNew = [AddStudentRatingResultData]()
     var arrClickedArray = [AddStudentRatingResultData]()
     var viewModel : AddStudentRatingViewModel?
     var array = [1,2,3,4,5,6,7,8,9,10]
@@ -40,6 +41,8 @@ class AddStudentRatingVC: BaseUIViewController {
     var studentName : String?
     var className : String?
     var subjectName : String?
+    var selectClassRating = Int()
+    var selectstudentRating = Int()
      let userRoleParticularId = UserDefaultExtensionModel.shared.userRoleParticularId
     @IBOutlet var btnClass: UIButton!
     @IBOutlet var btnStudent: UIButton!
@@ -51,6 +54,7 @@ class AddStudentRatingVC: BaseUIViewController {
         self.viewModel = AddStudentRatingViewModel.init(delegate: self)
         self.viewModel?.attachView(viewDelegate: self)
         SetpickerView(self.view)
+        self.title = "Ratings"
         // Do any additional setup after loading the view.
         
         DispatchQueue.main.async {
@@ -66,13 +70,13 @@ class AddStudentRatingVC: BaseUIViewController {
             txtfieldSubject.text = name
         }
        
-        self.viewModel?.GetSkillList(id : userRoleParticularId , enumType : 17 ,type : "Skill")
-     
+//        self.viewModel?.GetSkillList(id : userRoleParticularId , enumType : 17 ,type : "Skill")
+      self.viewModel?.GetSkillList(id : 0 , enumType : 13 ,type : "skillList")
         if let classID = selectedClassId {
         
         }
         
-//        self.viewModel?.getSubjectWiseRating(enrollmentsId: 6, classId: 33)
+        self.viewModel?.getSubjectWiseRating(enrollmentsId: 6, classId: 33)
         tableView.reloadData()
 //        if type == "Edit" {
 //
@@ -90,7 +94,7 @@ class AddStudentRatingVC: BaseUIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         if checkInternetConnection(){
-//            self.viewModel?.classList(searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: KIntegerConstants.kInt0)
+            self.viewModel?.GetSkillList(id : userRoleParticularId , enumType : 17 ,type : "Skill")
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
@@ -154,15 +158,16 @@ class AddStudentRatingVC: BaseUIViewController {
     
     //MARK:- ACTION SUBMIT
     @IBAction func ActionSubmit(_ sender: Any) {
-        if let id = selectedClassId {
-            if let getStudentID = selectStudentId {
-            self.viewModel?.SubmitTotalRating(teacherID: 10, enrollmentsId : getStudentID,classSubjectId: id,comment: "good",StudentSkillRatings: arrSelect)
+        print("our select array : ",arrSelect)
+          print("our classid : ",RegisterClassDataModel.sharedInstance?.classID)
+          print("our subjectid : ",RegisterClassDataModel.sharedInstance?.subjectID)
+        if RegisterClassDataModel.sharedInstance?.classID  != 0{
+            if RegisterClassDataModel.sharedInstance?.subjectID  != 0 {
+                
+            self.viewModel?.SubmitTotalRating(teacherID: 2, enrollmentsId : RegisterClassDataModel.sharedInstance?.classID,classSubjectId: RegisterClassDataModel.sharedInstance?.subjectID,comment: "good",StudentSkillRatings: arrSelect)
             }
         }
     }
-    
-    
-    
     
     
     //MARK:- ACTION SUBJECT PICKER
@@ -188,7 +193,382 @@ class AddStudentRatingVC: BaseUIViewController {
         }
     }
 }
+
+//MARK:- ADD STUDENT RATING DELEGATE
+extension AddStudentRatingVC : AddStudentRatingDelegate {
     
+    func SubjectListDidSuccess(data: [GetSubjectResultData]?) {
+        
+    }
+    
+    
+    func GetSubjectListDidSucceed(data:[AddStudentRatingResultData]?){
+        
+        print("our subject : ",data)
+        if let data1 = data {
+            self.arrSubjectlist = data1
+            if let studentName = arrSubjectlist[0].studentName{
+                txtfieldSubject.text = studentName
+                  RegisterClassDataModel.sharedInstance?.subjectID = arrSubjectlist[0].studentID
+                //                self.viewModel?.GetSkillList(id : 1, enumType : 14 ,type : "Student")
+                //                self.viewModel?.GetClassSubjectsByteacherId(classid: 1,teacherId: 2 )
+                
+            }
+            
+            
+            tableView.reloadData()
+        }
+    }
+    
+    func SubjectWiseRatingDidSucceed(data: [SubjectWiseRatingResultData]) {
+        //  arrSubjectList = data
+        tableView.reloadData()
+    }
+    
+    func AddStudentRatingDidSucceed(data: String) {
+        self.showAlert(alert: data)
+    }
+    
+    func studentListDidSucceed(data: [AddStudentRatingResultData]?) {
+        isFetching = true
+        if data != nil{
+            if data?.count ?? 0 > 0{
+                for value in data!{
+                    
+                    let containsSameValue = arrStudentlist.contains(where: {$0.studentID == value.studentID})
+                    
+                    if containsSameValue == false{
+                        arrStudentlist.append(value)
+                        if let studentName = arrStudentlist[0].studentName {
+                            txtfieldStudent.text = studentName
+                        }
+                    }
+                    //  self.tblViewCenterLabel(tblView: tableView, lblText: "", hide: true)
+                }
+                self.viewModel?.GetClassSubjectsByteacherId(classid: 1,teacherId: 2 )
+                
+                
+            }else{
+                CommonFunctions.sharedmanagerCommon.println(object: "Zero")
+            }
+        }else{
+            CommonFunctions.sharedmanagerCommon.println(object: "Nil")
+        }
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func GetSkillListaddDidSucceed(data:[AddStudentRatingResultData]?){
+        self.isFetching = true
+        
+        if let data1 = data {
+            if data1.count>0
+            {
+                self.arrSkillListNew = data1
+                if let className = arrSkillListNew[0].studentName{
+                }
+            }
+            
+            
+            tableView.reloadData()
+        }
+    }
+    
+    func GetSkillListDidSucceed(data: [AddStudentRatingResultData]?) {
+        print("our data : ",data)
+        
+        self.isFetching = true
+        
+        if let data1 = data {
+            if data1.count>0
+            {
+                self.arrSkillList = data1
+                if let className = arrSkillList[0].studentName{
+                    txtfieldClass.text = className
+                     RegisterClassDataModel.sharedInstance?.classID = arrSkillList[0].studentID
+                    var classid = arrSkillList[0].studentID!
+                    self.viewModel?.GetSkillList(id : classid, enumType : 14 ,type : "Student")
+                }
+                
+                
+            }
+            
+            
+            tableView.reloadData()
+        }
+    }
+    
+    
+    
+    func classListDidSuccess(data: [GetClassListResultData]?) {
+        self.isFetching = true
+        
+    }
+    
+    
+    func StudentRatingDidSucceed() {
+        
+    }
+    
+    func StudentRatingDidFailour() {
+        
+    }
+    
+}
+
+
+//MARK:- PICKER DELEGATE FUNCTIONS
+extension AddStudentRatingVC : SharedUIPickerDelegate{
+    func DoneBtnClicked() {
+        if checkInternetConnection(){
+            //            arrAllAssignedSubjects.removeAll()
+            if isClassSelected == true {
+                if let index = selectedClassArrIndex {
+                    if let id = arrSkillList[index].studentID {
+                        txtfieldClass.text = arrSkillList[index].studentName
+                        arrStudentlist.removeAll()
+                        self.viewModel?.GetSkillList(id : id, enumType : 14 ,type : "Student")
+                        
+                        self.viewModel?.GetClassSubjectsByteacherId(classid: 1,teacherId: 2 )
+                        //                       self.viewModel?.GetSkillList(id : 10, enumType : 14 ,type : "Student")
+                        //                        self.viewModel?.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: pageSize,sortColumnDir: "",sortColumn: "", particularId: id)
+                    }
+                }
+            }
+            else if isSelectedRating == true {
+                if let count1 = countSelected {
+                    //  let count = selectRatingCount[count1]
+                    if let tag = clickedCount {
+                        arrSkillListNew[tag].isSelected = 1
+                        
+                        arrSkillListNew[tag].ratingValue = count1 + 1
+                        
+                        //   arrClickedArray[count1].ratingValue = array[count1]
+                        
+                        
+                        let studentSkillId = arrSkillListNew[tag].studentID
+                        let rating = count1 + 1
+                        
+                        var dict = [String:Any]()
+                        dict["StudentSkillId"] = studentSkillId
+                        dict["Rating"] = rating
+                        arrSelect.append(dict)
+                    }
+                    tableView.reloadData()
+                    
+                    
+                }
+                
+            }
+            else if isStudentSelected == true{
+                
+            }
+        }else{
+            self.showAlert(alert: Alerts.kNoInternetConnection)
+        }
+    }
+    func GetTitleForRow(index: Int) -> String {
+        
+        if isClassSelected == true {
+            if arrSkillList.count > 0{
+                txtfieldClass.text = arrSkillList[0].studentName
+                return arrSkillList[index].studentName ?? ""
+            }
+        }
+        else if isSubjectSelected == true {
+            if arrSubjectlist.count > 0 {
+                txtfieldSubject.text = arrSubjectlist[0].studentName
+                return arrSubjectlist[index].studentName ?? ""
+            }
+        }
+        else if isStudentSelected == true {
+            if arrStudentlist.count > 0 {
+                txtfieldStudent.text = arrStudentlist[0].studentName
+                return arrStudentlist[index].studentName ?? ""
+            }
+        }
+        else if  isSelectedRating == true {
+            if  array.count > 0 {
+                //  let indexPath = IndexPath(row: index, section: 0)
+                //               let cell =  self.tableView.dequeueReusableCell(withIdentifier: "cell", for:indexPath.row) as! AddStudentRatingTableViewCell
+                //                cell.lblRating.text = array[0]
+                return "\(array[index])"
+            }
+            
+        }
+        return ""
+    }
+    
+    func SelectedRow(index: Int) {
+        
+        if isClassSelected == true {
+            if arrSkillList.count > 0{
+                selectedClassId = arrSkillList[index].studentID
+//                selectClassRating = arrSkillList[index].studentID ?? 0
+                RegisterClassDataModel.sharedInstance?.classID = arrSkillList[index].studentID
+                print(selectClassRating)
+                txtfieldClass.text = arrSkillList[index].studentName
+                selectedClassArrIndex = index
+            }
+        }
+        else if isSubjectSelected == true {
+            if arrSubjectlist.count > 0 {
+                selectedSubjectId = arrSubjectlist[index].studentID
+                RegisterClassDataModel.sharedInstance?.subjectID = arrSubjectlist[index].studentID
+//                selectstudentRating = arrSubjectlist[index].studentID ?? 0
+                txtfieldSubject.text = arrSubjectlist[index].studentName
+            }
+            
+        }
+        else if isStudentSelected == true {
+            if arrStudentlist.count > 0 {
+                selectStudentId = arrStudentlist[index].studentID
+                txtfieldStudent.text = arrStudentlist[index].studentName
+            }
+        }
+        else if isSelectedRating == true {
+            if array.count > 0 {
+                //  selectRatingCount.remove(at: array[index])
+                //                selectRatingCount.insert(array[index], at: array[index])
+                //                print("your array count : \(array[index]) and rating count \(selectRatingCount[array[index]])")
+                
+                
+                countSelected = index
+            }
+            
+        }
+        
+    }
+}
+//MARK:- VIEW DELEGATE
+extension AddStudentRatingVC : ViewDelegate {
+    
+    func showAlert(alert: String){
+        initializeCustomOkAlert(self.view, isHideBlurView: true)
+        okAlertView.delegate = self
+        okAlertView.lblResponseDetailMessage.text = alert
+    }
+    func showLoader() {
+        ShowLoader()
+    }
+    func hideLoader() {
+        HideLoader()
+    }
+    //MARK:- SET UI
+    func setUI(){
+        
+        //        self.setSearchBarInNavigationController(placeholderText: KSearchBarPlaceHolder.kUserSearchBarPlaceHolder, navigationTitle: KStoryBoards.KClassListIdentifiers.kClassListTitle, navigationController: self.navigationController, navigationSearchBarDelegates: self)
+        
+        //Set Back Button
+        self.setBackButton()
+        
+        //Set picker view
+        self.SetpickerView(self.view)
+        
+        // cornerButton(btn: btnSubmit, radius: 8)
+        
+        //Title
+        self.title = KStoryBoards.KClassListIdentifiers.kClassListTitle
+        
+        self.tableView.tableFooterView = UIView()
+        tableView.separatorStyle = .none
+        
+        self.viewModel?.isSearching = false
+        
+        
+    }
+    
+    
+    
+}
+
+
+extension AddStudentRatingVC : UITableViewDataSource , AddStudentRatingTableViewCellDelegate {
+    func didPressButton(_ tag: Int) {
+        print("your pressed button :\(tag)")
+        clickedCount = tag
+        
+        print("your skill count : \(arrSkillListNew.count)")
+        if let id = arrSkillListNew[tag].studentName {
+            isSelectedRating = true
+            isClassSelected = false
+            isSubjectSelected = false
+            isStudentSelected = false
+            countSelected = tag
+            UpdatePickerModel2(count: array.count, sharedPickerDelegate: self, View:  self.view,index: 0)
+        }
+    }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //    return arrSkillList.count
+        return arrSkillListNew.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: AddStudentRating.kAddStudentRatingCell, for: indexPath) as! AddStudentRatingTableViewCell
+        cell.cellDelegate = self
+        cell.btnPicker.tag = indexPath.row
+        //        if type == "Edit" {
+        //             cell.btnPicker.isEnabled = true
+        //        }
+        //        else {
+        //            cell.btnPicker.isEnabled = false
+        //        }
+        
+        if let name = arrSkillListNew[indexPath.row].studentName {
+            // cell.lblStudentName.text = name
+            cell.lblSkill.text = name
+        }
+        if isSelectedRating == true {
+            if arrSkillListNew[indexPath.row].isSelected == 1 {
+                cell.lblRating.text = "\(arrSkillListNew[indexPath.row].ratingValue)"
+                
+                //  "\(arrClickedArray[indexPath.row].ratingValue)"
+                
+                //"\(arrSkillList[indexPath.row].ratingValue)"
+                //  arrSkillList[indexPath.row].isSelected = 0
+                //"\(array[selectRatingCount[indexPath.row]])"
+            }
+        }
+        
+        //     cell.lblRating.text = "\(array[indexPath.row])"
+        //        if let rating = arrSkillList[indexPath.row].studentRating {
+        //            cell.lblPercentage.text = rating + "%"
+        //        }
+        return cell
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
+
+
+extension AddStudentRatingVC : OKAlertViewDelegate{
+    
+    //Ok Button Clicked
+    func okBtnAction() {
+        //        if isUnauthorizedUser == true{
+        //            isUnauthorizedUser = false
+        //            CommonFunctions.sharedmanagerCommon.setRootLogin()
+        //        }else if isStudentAdd == true{
+        //            isStudentAdd = false
+        //            okAlertView.removeFromSuperview()
+        //            self.navigationController?.popViewController(animated: true)
+        //        }
+        okAlertView.removeFromSuperview()
+    }
+}
+
     
     
     

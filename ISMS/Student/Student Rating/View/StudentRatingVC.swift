@@ -61,6 +61,11 @@ class StudentRatingVC: BaseUIViewController {
         
     }
     
+    @IBAction func btnAddRating(_ sender: Any) {
+        
+        let vc = UIStoryboard.init(name: KStoryBoards.kStudent, bundle: Bundle.main).instantiateViewController(withIdentifier: "AddStudentRatingVC") as! AddStudentRatingVC
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     //MARK:- SELECT CLASS PICKER
     @IBAction func ActionSelectClass(_ sender: Any) {
           isClassSelected = true
