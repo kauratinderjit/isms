@@ -30,6 +30,7 @@ class TimePeriodVC: BaseUIViewController {
     var datePickerView  = UIDatePicker()
     var newitems = [PeriodsListData]()
     var lastDouplicateElement : Bool?
+   
     
     //MARK:- Outlets
     @IBOutlet weak var btnAddPeriod: UIButton!
