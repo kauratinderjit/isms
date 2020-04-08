@@ -251,7 +251,7 @@ class AddStudentRatingViewModel {
     func getSubjectWiseRating(enrollmentsId : Int?,classId: Int?){
         self.addStudentRatingView?.showLoader()
         print("your data ")
-        let paramDict = [ "EnrollmentId": enrollmentsId!,
+        let paramDict = ["EnrollmentId": enrollmentsId!,
                           "ClassSubjectId" : classId!
             ] as [String : Any]
         

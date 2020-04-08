@@ -164,7 +164,7 @@ class AddStudentRatingVC: BaseUIViewController {
         if RegisterClassDataModel.sharedInstance?.classID  != 0{
             if RegisterClassDataModel.sharedInstance?.subjectID  != 0 {
                 
-            self.viewModel?.SubmitTotalRating(teacherID: 2, enrollmentsId : RegisterClassDataModel.sharedInstance?.classID,classSubjectId: RegisterClassDataModel.sharedInstance?.subjectID,comment: "good",StudentSkillRatings: arrSelect)
+            self.viewModel?.SubmitTotalRating(teacherID: 2, enrollmentsId : 7 ,classSubjectId: RegisterClassDataModel.sharedInstance?.subjectID,comment: "good",StudentSkillRatings: arrSelect)
             }
         }
     }
