@@ -153,6 +153,16 @@ extension MenuVC : UITableViewDelegate{
             
             break
             
+            case "AssignHomework":
+                let storyboard = UIStoryboard.init(name: "Homework", bundle: nil)
+                           let vc = storyboard.instantiateViewController(withIdentifier: "HomeworkListVC") as? HomeworkListVC
+                           vc?.lstActionAccess = MenuVC.menuArrayFromApi?.resultData?[indexPath.row]
+                           let frontVC = revealViewController().frontViewController as? UINavigationController
+                           frontVC?.pushViewController(vc!, animated: false)
+                           revealViewController().pushFrontViewController(frontVC, animated: true)
+                
+                break
+            
             
             case KStoryBoards.kAssignSubjectToClass.kClassAssignSubjectListVC:
                 

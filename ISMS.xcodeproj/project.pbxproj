@@ -283,6 +283,18 @@
 		2E5CD430243785310060D601 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5CD42F243785310060D601 /* EventViewModel.swift */; };
 		2E5CD4322437854A0060D601 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5CD4312437854A0060D601 /* EventModel.swift */; };
 		2E5CD434243798B20060D601 /* EventScheduleApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5CD433243798B20060D601 /* EventScheduleApi.swift */; };
+		2E8F63C5243C589A0040F9CA /* NotesTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8F63BD243C589A0040F9CA /* NotesTableCell.swift */; };
+		2E8F63C6243C589A0040F9CA /* NotesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8F63BF243C589A0040F9CA /* NotesListVC.swift */; };
+		2E8F63C7243C589A0040F9CA /* Notes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E8F63C1243C589A0040F9CA /* Notes.storyboard */; };
+		2E8F63C8243C589A0040F9CA /* UploadNotesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8F63C4243C589A0040F9CA /* UploadNotesVC.swift */; };
+		2E8F63CC243C5AB90040F9CA /* Homework.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E8F63CB243C5AB90040F9CA /* Homework.storyboard */; };
+		2E8F63CF243C60E00040F9CA /* HomeworkListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8F63CE243C60E00040F9CA /* HomeworkListVC.swift */; };
+		2E8F63D1243C61410040F9CA /* AddHomeWorkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8F63D0243C61410040F9CA /* AddHomeWorkVC.swift */; };
+		2E8F63D3243C94FA0040F9CA /* HomeWorkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8F63D2243C94FA0040F9CA /* HomeWorkCell.swift */; };
+		2E8F63D5243C99BA0040F9CA /* AddNotesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8F63D4243C99BA0040F9CA /* AddNotesCell.swift */; };
+		2E8F63DA243CB22B0040F9CA /* HomeworkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8F63D9243CB22B0040F9CA /* HomeworkViewModel.swift */; };
+		2E8F63DD243CB24B0040F9CA /* HomeworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8F63DC243CB24B0040F9CA /* HomeworkModel.swift */; };
+		2E8F63E0243CB43C0040F9CA /* HomeworkApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8F63DF243CB43C0040F9CA /* HomeworkApi.swift */; };
 		2E938B26229EA99B003A8B95 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E938B25229EA99A003A8B95 /* OpenSans-Regular.ttf */; };
 		2EC9AFC122A7BAD4007E2362 /* Department.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EC9AFC022A7BAD4007E2362 /* Department.storyboard */; };
 		2EC9AFC522A7CB77007E2362 /* AddDepartmentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC9AFC422A7CB77007E2362 /* AddDepartmentVC.swift */; };
@@ -676,6 +688,18 @@
 		2E5CD42F243785310060D601 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
 		2E5CD4312437854A0060D601 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		2E5CD433243798B20060D601 /* EventScheduleApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventScheduleApi.swift; sourceTree = "<group>"; };
+		2E8F63BD243C589A0040F9CA /* NotesTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesTableCell.swift; sourceTree = "<group>"; };
+		2E8F63BF243C589A0040F9CA /* NotesListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesListVC.swift; sourceTree = "<group>"; };
+		2E8F63C1243C589A0040F9CA /* Notes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Notes.storyboard; sourceTree = "<group>"; };
+		2E8F63C4243C589A0040F9CA /* UploadNotesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadNotesVC.swift; sourceTree = "<group>"; };
+		2E8F63CB243C5AB90040F9CA /* Homework.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Homework.storyboard; sourceTree = "<group>"; };
+		2E8F63CE243C60E00040F9CA /* HomeworkListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkListVC.swift; sourceTree = "<group>"; };
+		2E8F63D0243C61410040F9CA /* AddHomeWorkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHomeWorkVC.swift; sourceTree = "<group>"; };
+		2E8F63D2243C94FA0040F9CA /* HomeWorkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWorkCell.swift; sourceTree = "<group>"; };
+		2E8F63D4243C99BA0040F9CA /* AddNotesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNotesCell.swift; sourceTree = "<group>"; };
+		2E8F63D9243CB22B0040F9CA /* HomeworkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkViewModel.swift; sourceTree = "<group>"; };
+		2E8F63DC243CB24B0040F9CA /* HomeworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkModel.swift; sourceTree = "<group>"; };
+		2E8F63DF243CB43C0040F9CA /* HomeworkApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkApi.swift; sourceTree = "<group>"; };
 		2E938B25229EA99A003A8B95 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		2EC9AFC022A7BAD4007E2362 /* Department.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Department.storyboard; sourceTree = "<group>"; };
 		2EC9AFC422A7CB77007E2362 /* AddDepartmentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDepartmentVC.swift; sourceTree = "<group>"; };
@@ -2931,6 +2955,8 @@
 		2E0DCA092297E775001DC56D /* ISMS */ = {
 			isa = PBXGroup;
 			children = (
+				2E8F63C9243C58E80040F9CA /* HomeWork */,
+				2E8F63BA243C589A0040F9CA /* Notes */,
 				10EEEABC239E57FC00E8485C /* ExamResult */,
 				10EEEA67239E57DB00E8485C /* NewsFeedAndLetter */,
 				10EEEA98239E57DC00E8485C /* Payment */,
@@ -3167,6 +3193,136 @@
 				2E3BF6F524360C4C00A4FB22 /* AddEventVC.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		2E8F63BA243C589A0040F9CA /* Notes */ = {
+			isa = PBXGroup;
+			children = (
+				2E8F63BB243C589A0040F9CA /* NotesList */,
+				2E8F63C0243C589A0040F9CA /* Storyboard */,
+				2E8F63C2243C589A0040F9CA /* UploadNotes */,
+			);
+			path = Notes;
+			sourceTree = "<group>";
+		};
+		2E8F63BB243C589A0040F9CA /* NotesList */ = {
+			isa = PBXGroup;
+			children = (
+				2E8F63BC243C589A0040F9CA /* TableViewCell */,
+				2E8F63BE243C589A0040F9CA /* View */,
+			);
+			path = NotesList;
+			sourceTree = "<group>";
+		};
+		2E8F63BC243C589A0040F9CA /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				2E8F63BD243C589A0040F9CA /* NotesTableCell.swift */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		2E8F63BE243C589A0040F9CA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2E8F63BF243C589A0040F9CA /* NotesListVC.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2E8F63C0243C589A0040F9CA /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				2E8F63C1243C589A0040F9CA /* Notes.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		2E8F63C2243C589A0040F9CA /* UploadNotes */ = {
+			isa = PBXGroup;
+			children = (
+				2E8F63C3243C589A0040F9CA /* View */,
+			);
+			path = UploadNotes;
+			sourceTree = "<group>";
+		};
+		2E8F63C3243C589A0040F9CA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2E8F63C4243C589A0040F9CA /* UploadNotesVC.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2E8F63C9243C58E80040F9CA /* HomeWork */ = {
+			isa = PBXGroup;
+			children = (
+				2E8F63DE243CB41B0040F9CA /* Api */,
+				2E8F63DB243CB2340040F9CA /* Model */,
+				2E8F63D8243CB1AE0040F9CA /* ViewModel */,
+				2E8F63CD243C60330040F9CA /* View */,
+				2E8F63CA243C59AF0040F9CA /* StoryBoard */,
+			);
+			path = HomeWork;
+			sourceTree = "<group>";
+		};
+		2E8F63CA243C59AF0040F9CA /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				2E8F63CB243C5AB90040F9CA /* Homework.storyboard */,
+			);
+			path = StoryBoard;
+			sourceTree = "<group>";
+		};
+		2E8F63CD243C60330040F9CA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2E8F63D7243CA3C00040F9CA /* Add Homework */,
+				2E8F63D6243CA3A80040F9CA /* HomeWorkList */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2E8F63D6243CA3A80040F9CA /* HomeWorkList */ = {
+			isa = PBXGroup;
+			children = (
+				2E8F63CE243C60E00040F9CA /* HomeworkListVC.swift */,
+				2E8F63D0243C61410040F9CA /* AddHomeWorkVC.swift */,
+			);
+			path = HomeWorkList;
+			sourceTree = "<group>";
+		};
+		2E8F63D7243CA3C00040F9CA /* Add Homework */ = {
+			isa = PBXGroup;
+			children = (
+				2E8F63D2243C94FA0040F9CA /* HomeWorkCell.swift */,
+				2E8F63D4243C99BA0040F9CA /* AddNotesCell.swift */,
+			);
+			path = "Add Homework";
+			sourceTree = "<group>";
+		};
+		2E8F63D8243CB1AE0040F9CA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2E8F63D9243CB22B0040F9CA /* HomeworkViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2E8F63DB243CB2340040F9CA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2E8F63DC243CB24B0040F9CA /* HomeworkModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2E8F63DE243CB41B0040F9CA /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				2E8F63DF243CB43C0040F9CA /* HomeworkApi.swift */,
+			);
+			path = Api;
 			sourceTree = "<group>";
 		};
 		2EC9AFC222A7CA5B007E2362 /* Add Departments */ = {
@@ -3912,6 +4068,7 @@
 				103091AD239E2390003DA163 /* PeriodCollectionViewCell.xib in Resources */,
 				2E50E05C229E47AF009E47B9 /* OpenSans-BoldItalic.ttf in Resources */,
 				2EC9AFC122A7BAD4007E2362 /* Department.storyboard in Resources */,
+				2E8F63CC243C5AB90040F9CA /* Homework.storyboard in Resources */,
 				10EEEAAC239E57DC00E8485C /* Performance.storyboard in Resources */,
 				2E50E062229E47AF009E47B9 /* OpenSans-LightItalic.ttf in Resources */,
 				2E50E05D229E47AF009E47B9 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
@@ -3946,6 +4103,7 @@
 				2D7F4B0D22C6578E00BBDB50 /* YesNoAlert.xib in Resources */,
 				2E0DCA5F2297E8C3001DC56D /* Main.storyboard in Resources */,
 				103091AF239E2390003DA163 /* TimeCollectionViewCell.xib in Resources */,
+				2E8F63C7243C589A0040F9CA /* Notes.storyboard in Resources */,
 				C61A1A862390F71C0043A5D2 /* StudentAttendence.storyboard in Resources */,
 				2E50E060229E47AF009E47B9 /* OpenSans-Semibold_0.ttf in Resources */,
 				2D28B92422B7B105007D10F8 /* Teacher.storyboard in Resources */,
@@ -4157,6 +4315,7 @@
 				2D364B5122A91F5200E60A49 /* AddOtherFacultyVC.swift in Sources */,
 				2E0DCA7B2297E8DC001DC56D /* CommonFunctions.swift in Sources */,
 				0C9E54142397BA8300CB3D07 /* SubjectWiseRatingApi.swift in Sources */,
+				2E8F63D1243C61410040F9CA /* AddHomeWorkVC.swift in Sources */,
 				10200369237969BA00BA4836 /* HomeApi.swift in Sources */,
 				109C8770239E67EE0046EB05 /* AttendanceReportViewModel.swift in Sources */,
 				2DCBAA0222C0CB5D0054B3A7 /* SchoolViewModel.swift in Sources */,
@@ -4164,6 +4323,7 @@
 				0C1C28EF238E5BCE00F98FEC /* SyllabusCoverageVC.swift in Sources */,
 				10EEEAB2239E57DC00E8485C /* AddSchoolViewController.swift in Sources */,
 				C683DB1E22E082BF00011212 /* GetStudentDetail.swift in Sources */,
+				2E8F63C6243C589A0040F9CA /* NotesListVC.swift in Sources */,
 				0C1C28D4238E5BB300F98FEC /* SubjectTopicViewModel.swift in Sources */,
 				0C1C28ED238E5BCE00F98FEC /* ProgressBarClass.swift in Sources */,
 				2DCBA9FE22C0CB5D0054B3A7 /* AttachFilesTableViewCell.swift in Sources */,
@@ -4207,6 +4367,7 @@
 				2D543DE222C6413200E55BFA /* OkAlert.swift in Sources */,
 				0C1C2882238E5A9D00F98FEC /* ClassListModel.swift in Sources */,
 				2DACBC7F22BA03AC00EFE5C4 /* HODListViewModel.swift in Sources */,
+				2E8F63C5243C589A0040F9CA /* NotesTableCell.swift in Sources */,
 				E036A676238FAE4800BDC9D0 /* CalendarEventVC.swift in Sources */,
 				E036A684238FAE6800BDC9D0 /* Checkbox.swift in Sources */,
 				103091B3239E299F003DA163 /* ClassTimeTableVC.swift in Sources */,
@@ -4219,6 +4380,7 @@
 				0C1C28C3238E5BB300F98FEC /* ChapterModel.swift in Sources */,
 				2E3BF6EF2435D05C00A4FB22 /* CollapsibleTableViewHeader.swift in Sources */,
 				10EEEAA8239E57DC00E8485C /* ManageUserVC.swift in Sources */,
+				2E8F63D3243C94FA0040F9CA /* HomeWorkCell.swift in Sources */,
 				C61A1A912391143C0043A5D2 /* GroupEmailVC.swift in Sources */,
 				0C1C2890238E5A9D00F98FEC /* ClassPeriodsTableViewCell.swift in Sources */,
 				0C668581238FE26E006593D5 /* AddStudentRatingVC.swift in Sources */,
@@ -4240,6 +4402,7 @@
 				2D483D4E22BCD51A00DF4717 /* UIColorExtension.swift in Sources */,
 				2EC9AFC522A7CB77007E2362 /* AddDepartmentVC.swift in Sources */,
 				C61A1A802390F7090043A5D2 /* Channel.swift in Sources */,
+				2E8F63D5243C99BA0040F9CA /* AddNotesCell.swift in Sources */,
 				C65BF52722D3685D002F3304 /* UserRoleViewModel.swift in Sources */,
 				0C1C28EE238E5BCE00F98FEC /* SyllabusCoverageTableViewCell.swift in Sources */,
 				C683DB2622E08EF900011212 /* GetDetailByPhoneEmailGardianModel.swift in Sources */,
@@ -4252,6 +4415,7 @@
 				0C1C28C2238E5BB300F98FEC /* SubjectChapterAPI.swift in Sources */,
 				C61A1A9D23913CEF0043A5D2 /* SendMessageCell.swift in Sources */,
 				2D7F4B0F22C65A4100BBDB50 /* YesNoAlertView.swift in Sources */,
+				2E8F63E0243CB43C0040F9CA /* HomeworkApi.swift in Sources */,
 				10EEEAB6239E57DC00E8485C /* GoogleReversGeocoding.swift in Sources */,
 				C683DAF222E0725C00011212 /* StudentListModel.swift in Sources */,
 				0C1C28F4238E5BCE00F98FEC /* UpdateSyllabusVC.swift in Sources */,
@@ -4312,6 +4476,7 @@
 				C683DB0E22E072ED00011212 /* TimePeriodCell.swift in Sources */,
 				2DACBC9B22BA6BD700EFE5C4 /* MenuTableViewCell.swift in Sources */,
 				2DCBAA0622C0CB5D0054B3A7 /* AddSchoolViewController.swift in Sources */,
+				2E8F63C8243C589A0040F9CA /* UploadNotesVC.swift in Sources */,
 				E036A685238FAE6800BDC9D0 /* CreateQuizVC.swift in Sources */,
 				2D01025222C500E800E33142 /* SignUpResponseModel.swift in Sources */,
 				2DACBC9422BA555100EFE5C4 /* HomePresenter.swift in Sources */,
@@ -4357,6 +4522,7 @@
 				2D2A2C2622AA692B0078C75C /* AddTeacherVC.swift in Sources */,
 				101B566E237EB3B2006907C7 /* ColorManagement.swift in Sources */,
 				E036A675238FAE4800BDC9D0 /* ExamScheduleTableViewCell.swift in Sources */,
+				2E8F63DA243CB22B0040F9CA /* HomeworkViewModel.swift in Sources */,
 				0C1C28CE238E5BB300F98FEC /* SubjectListViewModel.swift in Sources */,
 				0C1C2886238E5A9D00F98FEC /* ClassListViewModel.swift in Sources */,
 				0C5A1A7F239928060039CB39 /* TeacherSubjectWiseRatingViewModel.swift in Sources */,
@@ -4373,6 +4539,7 @@
 				2E0DCA7F2297E8DC001DC56D /* MBProgressHUD.m in Sources */,
 				C683DAF422E0725C00011212 /* StudentListVC.swift in Sources */,
 				E036A694238FAE7800BDC9D0 /* TestLearningVC.swift in Sources */,
+				2E8F63DD243CB24B0040F9CA /* HomeworkModel.swift in Sources */,
 				0C5A1A742398C8E30039CB39 /* SubjectSkillRatingApi.swift in Sources */,
 				0C1C28BF238E5BB300F98FEC /* SubjectApi.swift in Sources */,
 				2DACBC8122BA03C700EFE5C4 /* HODListVC.swift in Sources */,
@@ -4382,6 +4549,7 @@
 				C65BF52122D3684C002F3304 /* UserRoleTableCell.swift in Sources */,
 				E036A688238FAE6800BDC9D0 /* NotesTableViewCell.swift in Sources */,
 				0C1C28D0238E5BB300F98FEC /* TopicDeleteModel.swift in Sources */,
+				2E8F63CF243C60E00040F9CA /* HomeworkListVC.swift in Sources */,
 				2D645F0B22BBB983009EA9B6 /* TeacherDetailModel.swift in Sources */,
 				2D2C449622CE19EF004424D8 /* CustomTableViewPopUp.swift in Sources */,
 				BE356646229E538700759ACA /* WelcomeVC.swift in Sources */,
@@ -4566,6 +4734,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ISMS/ISMS.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 86Z35528QJ;
@@ -4591,6 +4760,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ISMS/ISMS.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = HE7TDTH6H9;
