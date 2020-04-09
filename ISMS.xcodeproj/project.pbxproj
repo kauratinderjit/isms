@@ -296,6 +296,7 @@
 		2E8F63DD243CB24B0040F9CA /* HomeworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8F63DC243CB24B0040F9CA /* HomeworkModel.swift */; };
 		2E8F63E0243CB43C0040F9CA /* HomeworkApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8F63DF243CB43C0040F9CA /* HomeworkApi.swift */; };
 		2E938B26229EA99B003A8B95 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E938B25229EA99A003A8B95 /* OpenSans-Regular.ttf */; };
+		2EB8D21B243DA6470054684F /* RegisterClassDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB8D21A243DA6460054684F /* RegisterClassDataModel.swift */; };
 		2EC9AFC122A7BAD4007E2362 /* Department.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EC9AFC022A7BAD4007E2362 /* Department.storyboard */; };
 		2EC9AFC522A7CB77007E2362 /* AddDepartmentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC9AFC422A7CB77007E2362 /* AddDepartmentVC.swift */; };
 		5CB7F1EE8CC8A74A757048E5 /* Pods_ISMS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C888007208C30DDC7E394E /* Pods_ISMS.framework */; };
@@ -701,6 +702,7 @@
 		2E8F63DC243CB24B0040F9CA /* HomeworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkModel.swift; sourceTree = "<group>"; };
 		2E8F63DF243CB43C0040F9CA /* HomeworkApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkApi.swift; sourceTree = "<group>"; };
 		2E938B25229EA99A003A8B95 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		2EB8D21A243DA6460054684F /* RegisterClassDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterClassDataModel.swift; sourceTree = "<group>"; };
 		2EC9AFC022A7BAD4007E2362 /* Department.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Department.storyboard; sourceTree = "<group>"; };
 		2EC9AFC422A7CB77007E2362 /* AddDepartmentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDepartmentVC.swift; sourceTree = "<group>"; };
 		30C888007208C30DDC7E394E /* Pods_ISMS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISMS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3790,6 +3792,7 @@
 			isa = PBXGroup;
 			children = (
 				C683DAF922E072ED00011212 /* AddPeriodModel.swift */,
+				2EB8D21A243DA6460054684F /* RegisterClassDataModel.swift */,
 				C683DAFA22E072ED00011212 /* DeletePeriodModel.swift */,
 				C683DAFB22E072ED00011212 /* GetDropDownDataModel.swift */,
 				C683DAFC22E072ED00011212 /* GetPeriodList.swift */,
@@ -4504,6 +4507,7 @@
 				2D2A2C2822AA69400078C75C /* AddTeacherViewModel.swift in Sources */,
 				0C1C28CC238E5BB300F98FEC /* SubjectListTableCell.swift in Sources */,
 				0C1C2892238E5A9D00F98FEC /* ClassPeriodsTimeTableViewModel.swift in Sources */,
+				2EB8D21B243DA6470054684F /* RegisterClassDataModel.swift in Sources */,
 				2E3BF6ED2435D05C00A4FB22 /* CollapsibleTableViewController.swift in Sources */,
 				2E5CD4322437854A0060D601 /* EventModel.swift in Sources */,
 				2DF5642A22C252F8006F4522 /* UserAccessRoleVC.swift in Sources */,

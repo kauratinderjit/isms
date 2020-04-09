@@ -11,6 +11,8 @@ import UIKit
 protocol AddHomeWorkDelegate: class {
     func AddHomeworkSucceed(array : [HomeworkResultData])
     func AddHomeworkFailour(msg : String)
+    func classListDidSuccess(data: GetCommonDropdownModel)
+    func getSubjectList (arr :[GetSubjectHWResultData])
 }
 
 
@@ -35,20 +37,19 @@ class HomeworkViewModel {
     
     
     
-    func getData(StringChapterID : String , ClassSubject : Int , classId : Int , userID : Int) {
+    func getData(classId : Int , teacherId : Int) {
         
-       let url = KApiParameters.kUpdateSyllabusApiParameter.kAddUpdateSyllabus
-        let param = [KApiParameters.kUpdateSyllabusApiParameter.kStrChapterId: StringChapterID ,KApiParameters.kUpdateSyllabusApiParameter.kClassSubjectId : ClassSubject,KApiParameters.kUpdateSyllabusApiParameter.kClassId :1 ,KApiParameters.kUpdateSyllabusApiParameter.kUserId : userID ] as [String : Any]
+        let url = "api/Institute/GetClassSubjectsforHomeworkByteacherId"+"?classid=\(classId)&teacherId=\(teacherId)"
         
-        
-        HomeworkApi.sharedManager.UpdateHomeworkData(url:url , parameters: param, completionResponse: { (UpdateSyllabusModel) in
+        HomeworkApi.sharedManager.getHWSubjectList(url:url , parameters: nil, completionResponse: { (responseModel) in
+            
             self.homeworkViewDelegate?.hideLoader()
-            if let msg = UpdateSyllabusModel.message {
-             self.homeworkViewDelegate?.showAlert(alert: msg)
+            if let msg = responseModel.resultData {
+            self.addHomeworkDelegate?.getSubjectList(arr:responseModel.resultData!)
             }
+            
         }, completionnilResponse: { (nilResponseError) in
             self.homeworkViewDelegate?.hideLoader()
-            // self.syllabusCoverageDelegate?.SyllabusCoverageFailour(msg :
             if let error = nilResponseError{
                 self.homeworkViewDelegate?.showAlert(alert: error.description)
                 
@@ -70,38 +71,118 @@ class HomeworkViewModel {
         
     }
    
-    func GetSchoolList(search : String ,Skip : Int,  PageSize : Int , SortColumnDir : String , SortCoumn : String, particularId : Int) {
+    func saveHomework(AssignHomeWorkId : Int ,ClassId : Int,  SubjectId : Int , Topic : String ,ClassSubjectId:Int, Details : String,SubmissionDate: String, lstAssignHomeAttachmentMapping : [URL]) {
         
-        let url = KApiParameters.kUpdateSyllabusApiParameter.kChapterAndTopicApi
+        let url = "api/Institute/AddUpdateAssignHomeWork"
       
-        let param = [KApiParameters.kUpdateSyllabusApiParameter.kSearch : "" ,KApiParameters.kUpdateSyllabusApiParameter.kPageSize: 0, KApiParameters.kUpdateSyllabusApiParameter.kSkip : 0 ,KApiParameters.kUpdateSyllabusApiParameter.kSortColumnDir : "",KApiParameters.kUpdateSyllabusApiParameter.kSortCoumn :"" ,KApiParameters.kUpdateSyllabusApiParameter.kParticularId : particularId ] as [String : Any]
-       
-        HomeworkApi.sharedManager.UpdateHomeworkData(url:url , parameters: param, completionResponse: { (UpdateSyllabusModel) in
-             self.homeworkViewDelegate?.hideLoader()
-                if let result = UpdateSyllabusModel.resultData {
-                    self.addHomeworkDelegate?.AddHomeworkSucceed(array: result)
-                }
-        }, completionnilResponse: { (nilResponseError) in
+        let param = ["AssignHomeWorkId" : AssignHomeWorkId ,
+                     "ClassId": ClassId,
+                     "SubjectId" : SubjectId ,
+                     "Topic" : Topic,
+                     "ClassSubjectId" :ClassSubjectId ,
+                     "Details" : Details,
+                     "SubmissionDate" : SubmissionDate,
+                     "lstAssignHomeAttachmentMapping":lstAssignHomeAttachmentMapping] as [String : Any]
+        
+        
+        HomeworkApi.sharedManager.multipartApi(postDict: param, url: url, completionResponse: { (response) in
+            
             self.homeworkViewDelegate?.hideLoader()
-            // self.syllabusCoverageDelegate?.SyllabusCoverageFailour(msg :
-            if let error = nilResponseError{
-                self.homeworkViewDelegate?.showAlert(alert: error.description)
-                
-            }else{
-                CommonFunctions.sharedmanagerCommon.println(object: SyllabusCoverage.kSyllabusResponseNotGet)
-            }
+                      self.homeworkViewDelegate?.showAlert(alert: "Homework upoaded successfully.")
+            
         }) { (error) in
-            self.homeworkViewDelegate?.hideLoader()
+                        self.homeworkViewDelegate?.hideLoader()
             if let err = error?.localizedDescription{
                 self.homeworkViewDelegate?.showAlert(alert: err)
             }else{
                 CommonFunctions.sharedmanagerCommon.println(object: SyllabusCoverage.kSyllabusResponseError)
             }
+
         }
+    }
+    
+    func getHomeworkData(teacherId : Int) {
         
-  
+        let url = "api/Institute/GetAssignHomeWorklistByTeacherId"+"?teacherId=\(teacherId)"
+        
+      
+      //  let param = ["teacherId" : teacherId] as [String : Any]
+        
+        
+        HomeworkApi.sharedManager.getHoweworkList(url: url, parameters: nil, completionResponse: { (response) in
+                   self.homeworkViewDelegate?.hideLoader()
+                switch response.statusCode{
+                case KStatusCode.kStatusCode200:
+                    self.addHomeworkDelegate?.AddHomeworkSucceed(array: response.resultData! )
+                case KStatusCode.kStatusCode401:
+                    self.homeworkViewDelegate?.showAlert(alert: response.message ?? "")
+                    //self.AddHomeWorkDelegate?.unauthorizedUser()
+                default:
+                    self.homeworkViewDelegate?.showAlert(alert: response.message ?? "")
+                }
+            }, completionnilResponse: { (nilResponse) in
+                self.homeworkViewDelegate?.hideLoader()
+                self.homeworkViewDelegate?.showAlert(alert: nilResponse ?? "Server Error")
+            }) { (error) in
+                self.homeworkViewDelegate?.hideLoader()
+                self.homeworkViewDelegate?.showAlert(alert: error?.localizedDescription ?? "Error")
+            }
     }
     
     
+    //MARK:- Get Class List Dropdown Api
+    func getClassListDropdown(selectId : Int,enumType:Int){
+        
+        homeworkViewDelegate?.showLoader()
+        
+        ClassApi.sharedManager.getClassDropdownData(selectedId: selectId, enumType: enumType, completionResponse: { (responseClassDropdown) in
+        
+            self.homeworkViewDelegate?.hideLoader()
+            switch responseClassDropdown.statusCode{
+            case KStatusCode.kStatusCode200:
+                self.addHomeworkDelegate?.classListDidSuccess(data: responseClassDropdown)
+            case KStatusCode.kStatusCode401:
+                self.homeworkViewDelegate?.showAlert(alert: responseClassDropdown.message ?? "")
+                //self.AddHomeWorkDelegate?.unauthorizedUser()
+            default:
+                self.homeworkViewDelegate?.showAlert(alert: responseClassDropdown.message ?? "")
+            }
+        }, completionnilResponse: { (nilResponse) in
+            self.homeworkViewDelegate?.hideLoader()
+            self.homeworkViewDelegate?.showAlert(alert: nilResponse ?? "Server Error")
+        }) { (error) in
+            self.homeworkViewDelegate?.hideLoader()
+            self.homeworkViewDelegate?.showAlert(alert: error?.localizedDescription ?? "Error")
+        }
+    }
+    
+    
+    func deleteHW(homeworkId: Int?) {
+        
+        let url = "api/Institute/DeleteAssignHomework"+"?assignHomeWorkId=\(String(describing: homeworkId!))"
+                self.homeworkViewDelegate?.showLoader()
+                SubjectApi.sharedInstance.deleteSubjectApi(url: url,completionResponse: {DeleteSubjectModel in
+                     self.homeworkViewDelegate?.hideLoader()
+                    if DeleteSubjectModel.statusCode == KStatusCode.kStatusCode200{
+                        if DeleteSubjectModel.status == true{
+                           self.homeworkViewDelegate?.hideLoader()
+                    self.getHomeworkData(teacherId: UserDefaultExtensionModel.shared.userRoleParticularId)
+                        }else{
+                           self.homeworkViewDelegate?.hideLoader()
+                           self.homeworkViewDelegate?.showAlert(alert: DeleteSubjectModel.message ?? Alerts.kServerErrorAlert)
+                             }
+                    }
+            }, completionnilResponse: { (nilResponse) in
+                    self.homeworkViewDelegate?.hideLoader()
+                    if let res = nilResponse{
+                        self.homeworkViewDelegate?.showAlert(alert: res)
+                    }
+                }) { (error) in
+                    self.homeworkViewDelegate?.hideLoader()
+                    if let err = error{
+                        self.homeworkViewDelegate?.showAlert(alert: err.localizedDescription)
+                    }
+                }
+    }
    
 }
