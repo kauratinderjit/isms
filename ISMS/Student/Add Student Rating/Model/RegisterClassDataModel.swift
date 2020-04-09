@@ -10,7 +10,7 @@ import Foundation
 class RegisterClassDataModel
 {
     static let sharedInstance:RegisterClassDataModel? = RegisterClassDataModel()
-    var classID:Int?
+    var enrolmentID:Int?
     var subjectID:Int?
     
     
@@ -24,7 +24,7 @@ class RegisterClassDataModel
     func Reinitilize()
     {
         
-        RegisterClassDataModel.sharedInstance?.classID = 0
+        RegisterClassDataModel.sharedInstance?.enrolmentID = 0
         RegisterClassDataModel.sharedInstance?.subjectID = 0
      
         

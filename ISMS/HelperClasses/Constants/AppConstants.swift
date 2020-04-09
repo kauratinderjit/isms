@@ -93,6 +93,8 @@ public struct ApiEndpoints
     
     public static let kGetClassSubjectsByteacherId = "api/Institute/GetClassSubjectsByteacherId"
     
+    public static let kGetStudentsByClassId = "api/Institute/GetStudentsByClassId"
+    
 
  
 
