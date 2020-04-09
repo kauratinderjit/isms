@@ -12,6 +12,7 @@ class RegisterClassDataModel
     static let sharedInstance:RegisterClassDataModel? = RegisterClassDataModel()
     var enrolmentID:Int?
     var subjectID:Int?
+     var tagID:Int?
     
     
     private init()
@@ -26,6 +27,7 @@ class RegisterClassDataModel
         
         RegisterClassDataModel.sharedInstance?.enrolmentID = 0
         RegisterClassDataModel.sharedInstance?.subjectID = 0
+           RegisterClassDataModel.sharedInstance?.tagID = 0
      
         
     }

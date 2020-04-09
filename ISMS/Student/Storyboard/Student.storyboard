@@ -1656,7 +1656,7 @@
         <!--Subjectwise Ratings-->
         <scene sceneID="W8S-rf-vR4">
             <objects>
-                <viewController storyboardIdentifier="StudentSubjectWiseRatingVC" id="GcQ-Dm-z0Y" customClass="SubjectWiseRatingVC" customModule="ISMS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SubjectWiseRatingVC" id="GcQ-Dm-z0Y" customClass="SubjectWiseRatingVC" customModule="ISMS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nfz-Tm-BsY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

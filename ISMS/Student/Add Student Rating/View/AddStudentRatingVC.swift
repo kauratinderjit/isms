@@ -355,9 +355,9 @@ extension AddStudentRatingVC : SharedUIPickerDelegate{
                 }
             }
             else if isSelectedRating == true {
-                if let count1 = countSelected {
+                if let count1 = RegisterClassDataModel.sharedInstance?.tagID {
                     //  let count = selectRatingCount[count1]
-                    if let tag = clickedCount {
+                    if let tag = RegisterClassDataModel.sharedInstance?.tagID {
                         arrSkillListNew[tag].isSelected = 1
                         
                         arrSkillListNew[tag].ratingValue = count1 + 1
@@ -504,14 +504,14 @@ extension AddStudentRatingVC : UITableViewDataSource , AddStudentRatingTableView
     func didPressButton(_ tag: Int) {
         print("your pressed button :\(tag)")
         clickedCount = tag
-        
+            RegisterClassDataModel.sharedInstance?.tagID = tag
         print("your skill count : \(arrSkillListNew.count)")
-        if let id = arrSkillListNew[tag].studentName {
+        if let id = arrSkillListNew[tag].studentID {
             isSelectedRating = true
             isClassSelected = false
             isSubjectSelected = false
             isStudentSelected = false
-            countSelected = tag
+            countSelected = RegisterClassDataModel.sharedInstance?.tagID
             UpdatePickerModel2(count: array.count, sharedPickerDelegate: self, View:  self.view,index: 0)
         }
     }
