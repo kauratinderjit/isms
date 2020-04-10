@@ -31,6 +31,7 @@ class ClassTimeTableVC: BaseUIViewController {
     public var isFromTimeTable:Bool!
     public var isFromViewAttendence:Bool!
     public var isFromTeacher:Int!
+    public var teacherViewTimeTble:Bool!
     //MARK:- ViewLifeCycle functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,7 +135,13 @@ class ClassTimeTableVC: BaseUIViewController {
         //Set picker view
         SetpickerView(self.view)
         //Adding edit add period
-        addRightNavButton()
+        
+        if isFromTeacher == 1{
+            
+        }else{
+            addRightNavButton()
+        }
+        
     }
     
     func setupCollectionView(){
@@ -317,6 +324,10 @@ extension ClassTimeTableVC: UICollectionViewDelegate {
                     if day.periodDetailListModel?[indexPath.row - 1].isTeacher == true
                     {
                         print("isTeacherTrue")
+                        
+                        if teacherViewTimeTble == true {
+                            
+                        }else{
                         if currentDay == day.dayName
                         {
                             if let daysModel = self.arrGetTimeTableDaysModel?[indexPath.section - 1] {
@@ -333,6 +344,24 @@ extension ClassTimeTableVC: UICollectionViewDelegate {
                                         self.navigationController?.pushViewController(vc, animated: false)
                                     }
                                 }
+                            }
+                        }else{
+                            if let daysModel = self.arrGetTimeTableDaysModel?[indexPath.section - 1] {
+                                if let period = daysModel.periodDetailListModel?[indexPath.row - 1] {
+                                    print(period)
+                                    if period.teacherId != 0{
+                                        let storyboard = UIStoryboard.init(name: "StudentAttendence", bundle: nil)
+                                        let vc = storyboard.instantiateViewController(withIdentifier: "StudentListToMarkAttendence") as! StudentListToMarkAttendence
+                                        vc.timeTableId = period.timeTableId
+                                        vc.classId = selectedClassId
+                                        vc.teacherId = period.teacherId
+                                        vc.classSubjectId = period.subjectId
+                                        vc.isFromHOD = true
+                                        self.navigationController?.pushViewController(vc, animated: false)
+                                        }
+                                    }
+                                }
+                            
                             }
                         }
                     }else{

@@ -52,6 +52,8 @@ class AssignSubjectTeacherToPeriodViewModel{
             postDict[KApiParameters.AddUpdateTimeTableApi.kStrDay] = days
             postDict[KApiParameters.AddUpdateTimeTableApi.kTimeTableId] = timeTabelId
             
+            print("our class assign param : ",postDict)
+            
            SubjectApi.sharedInstance.addUpdateTimeTableApi(url: ApiEndpoints.kAddUpdateTimeTable, parameters: postDict, completionResponse: {(responseModel) in
                 
                 switch responseModel.statusCode{

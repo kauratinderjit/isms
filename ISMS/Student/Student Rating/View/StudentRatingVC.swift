@@ -9,14 +9,14 @@
 import UIKit
 
 class StudentRatingVC: BaseUIViewController {
-
+    
     @IBOutlet var txtfieldClass: UITextField!
     @IBOutlet var txtfieldSubject: UITextField!
     @IBOutlet var tableView: UITableView!
     var viewModel : StudentRatingViewModel?
     
     var isUnauthorizedUser = false
-     var isFetching:Bool?
+    var isFetching:Bool?
     var arrClassList = [GetClassListResultData]()
     var arrSubjectlist=[GetSubjectResultData]()
     var selectedClassId : Int?
@@ -47,13 +47,13 @@ class StudentRatingVC: BaseUIViewController {
         currentMonth = month!
         textfieldMonth.text = month!
         
-      tableView.reloadData()
+        tableView.reloadData()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         if checkInternetConnection(){
-//            self.viewModel?.classList(searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: KIntegerConstants.kInt0)
-             self.viewModel?.GetSkillList(id : 2 , enumType : 17)
+            self.viewModel?.classList(searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: KIntegerConstants.kInt0)
+            self.viewModel?.GetSkillList(id : 2 , enumType : 17)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
@@ -71,13 +71,13 @@ class StudentRatingVC: BaseUIViewController {
     }
     //MARK:- SELECT CLASS PICKER
     @IBAction func ActionSelectClass(_ sender: Any) {
-          isClassSelected = true
-          isSubjectSelected = false
-          isMonthSelected = false
+        isClassSelected = true
+        isSubjectSelected = false
+        isMonthSelected = false
         
         if checkInternetConnection(){
             if arrSkillList.count > 0{
-               UpdatePickerModel2(count: arrSkillList.count, sharedPickerDelegate: self, View:  self.view, index: 0)
+                UpdatePickerModel2(count: arrSkillList.count, sharedPickerDelegate: self, View:  self.view, index: 0)
                 
                 selectedClassId = arrSkillList[0].studentID
                 let text = txtfieldClass.text!
@@ -91,10 +91,10 @@ class StudentRatingVC: BaseUIViewController {
                 
                 
             }
-       }else{
+        }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
-             }
-  }
+        }
+    }
     //MARK:- SELECT SUBJECT PICKER
     @IBAction func ActionSelectSubject(_ sender: Any) {
         isClassSelected = false
@@ -120,28 +120,28 @@ class StudentRatingVC: BaseUIViewController {
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
-//        if checkInternetConnection(){
-//            if arrSubjectlist.count > 0{
-//                UpdatePickerModel2(count: arrSubjectList1.count, sharedPickerDelegate: self, View:  self.view, index: 0)
-//                selectedSubjectId = arrSubjectlist[0].subjectId
-//
-////                let text = txtfieldClass.text!
-////                if let index = arrClassList.index(where: { (dict) -> Bool in
-////                    return dict.name ?? "" == text // Will found index of matched id
-////                }) {
-////                    print("Index found :\(index)")
-////                    UpdatePickerModel(count: arrClassList.count, sharedPickerDelegate: self as! SharedUIPickerDelegate, View:  self.view, startPickerIndex: index)
-////                }
-//            }
-//            //           self.viewModel?.classList(searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: KIntegerConstants.kInt0)
-//        }else{
-//            self.showAlert(alert: Alerts.kNoInternetConnection)
-//        }
-//
-//
-              }
+        //        if checkInternetConnection(){
+        //            if arrSubjectlist.count > 0{
+        //                UpdatePickerModel2(count: arrSubjectList1.count, sharedPickerDelegate: self, View:  self.view, index: 0)
+        //                selectedSubjectId = arrSubjectlist[0].subjectId
+        //
+        ////                let text = txtfieldClass.text!
+        ////                if let index = arrClassList.index(where: { (dict) -> Bool in
+        ////                    return dict.name ?? "" == text // Will found index of matched id
+        ////                }) {
+        ////                    print("Index found :\(index)")
+        ////                    UpdatePickerModel(count: arrClassList.count, sharedPickerDelegate: self as! SharedUIPickerDelegate, View:  self.view, startPickerIndex: index)
+        ////                }
+        //            }
+        //            //           self.viewModel?.classList(searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: KIntegerConstants.kInt0)
+        //        }else{
+        //            self.showAlert(alert: Alerts.kNoInternetConnection)
+        //        }
+        //
+        //
+    }
     
-
+    
     @IBAction func ActionSelectMonth(_ sender: Any) {
         isClassSelected = false
         isSubjectSelected = false
@@ -149,17 +149,17 @@ class StudentRatingVC: BaseUIViewController {
         if checkInternetConnection(){
             if arrMonthlist.count > 0{
                 UpdatePickerModel(count: arrMonthlist.count, sharedPickerDelegate: self as! SharedUIPickerDelegate, View:  self.view)
-              //  selectedSubjectId = arrSubjectlist[0].subjectId
+                //  selectedSubjectId = arrSubjectlist[0].subjectId
                 
-                                let text = textfieldMonth.text!
+                let text = textfieldMonth.text!
                 if let index = arrMonthlist.index(where: { (dict) -> Bool in
                     
                     
-                                    return dict ?? "" == text // Will found index of matched id
-                                }) {
-                                    print("Index found :\(index)")
+                    return dict ?? "" == text // Will found index of matched id
+                }) {
+                    print("Index found :\(index)")
                     UpdatePickerModel4(count: arrClassList.count, sharedPickerDelegate: self as! SharedUIPickerDelegate, View:  self.view, index: index)
-                                }
+                }
             }
             //           self.viewModel?.classList(searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: KIntegerConstants.kInt0)
         }else{
@@ -184,9 +184,10 @@ extension StudentRatingVC : StudentRatingDelegate {
                 self.arrSkillList = data1
                 if let className = arrSkillList[0].studentName{
                     txtfieldClass.text = className
-//                    RegisterClassDataModel.sharedInstance?.classID = arrSkillList[0].studentID
-                     self.viewModel?.GetSubjectList(classid: 1,teacherId: 2)
-                    var classid = arrSkillList[0].studentID!
+                    var newclassid = arrSkillList[0].studentID!
+                    //                    RegisterClassDataModel.sharedInstance?.classID = arrSkillList[0].studentID
+                    self.viewModel?.GetSubjectList(classid: newclassid,teacherId: 2)
+                    
                 }
                 
                 
@@ -208,8 +209,8 @@ extension StudentRatingVC : StudentRatingDelegate {
                 self.arrSubjectList1 = data1
                 if let subjectName = arrSubjectList1[0].studentName{
                     txtfieldSubject.text = subjectName
-//                    RegisterClassDataModel.sharedInstance?.classID = arrSkillList[0].studentID
-                
+                    //                    RegisterClassDataModel.sharedInstance?.classID = arrSkillList[0].studentID
+                    
                 }
                 
                 
@@ -313,8 +314,8 @@ extension StudentRatingVC : SharedUIPickerDelegate{
             if isClassSelected == true {
                 if let index = selectedClassArrIndex {
                     if let id = arrSkillList[index].studentID {
-                        self.viewModel?.GetSubjectList(classid: 1,teacherId: 2)
-//                        self.viewModel?.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: pageSize,sortColumnDir: "",sortColumn: "", particularId: id)
+                        self.viewModel?.GetSubjectList(classid: id,teacherId: 2)
+                        //                        self.viewModel?.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: pageSize,sortColumnDir: "",sortColumn: "", particularId: id)
                     }
                 }
             }
@@ -339,8 +340,8 @@ extension StudentRatingVC : SharedUIPickerDelegate{
         }
         else if isMonthSelected == true {
             if arrMonthlist.count > 0 {
-//                textfieldMonth.text = arrMonthlist[0]
-//                return arrMonthlist[index] ?? ""
+                //                textfieldMonth.text = arrMonthlist[0]
+                //                return arrMonthlist[index] ?? ""
             }
         }
         return ""
@@ -448,7 +449,7 @@ extension StudentRatingVC : UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         tableView.separatorStyle = .singleLine
+        tableView.separatorStyle = .singleLine
         return arrStudent.count
     }
     
@@ -456,13 +457,13 @@ extension StudentRatingVC : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: StudentRating.kStudentRatingCell, for: indexPath) as! StudentRatingTableViewCell
         
         cell.setCellUI(data: arrStudent, indexPath: indexPath)
-//        if let name = arrStudent[indexPath.row].studentName {
-//            cell.lblStudentName.text = name
-//        }
-//
-//        if let rating = arrStudent[indexPath.row].studentRating {
-//            cell.lblPercentage.text = rating
-//        }
+        //        if let name = arrStudent[indexPath.row].studentName {
+        //            cell.lblStudentName.text = name
+        //        }
+        //
+        //        if let rating = arrStudent[indexPath.row].studentRating {
+        //            cell.lblPercentage.text = rating
+        //        }
         return cell
         
     }

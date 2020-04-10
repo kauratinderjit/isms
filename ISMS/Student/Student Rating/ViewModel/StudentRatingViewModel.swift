@@ -12,18 +12,18 @@ import Foundation
 protocol StudentRatingDelegate : class {
     func StudentRatingDidSucceed()
     func StudentRatingDidFailour()
-     func classListDidSuccess(data : [GetClassListResultData]?)
-     func SubjectListDidSuccess(data: [GetSubjectResultData]?)
+    func classListDidSuccess(data : [GetClassListResultData]?)
+    func SubjectListDidSuccess(data: [GetSubjectResultData]?)
     func StudentRatingListDidSucceed(data : [StudentRatingResultData])
-      func GetSkillListDidSucceed(data:[AddStudentRatingResultData]?)
-     func GetSubjectListDidSucceed(data:[AddStudentRatingResultData]?)
+    func GetSkillListDidSucceed(data:[AddStudentRatingResultData]?)
+    func GetSubjectListDidSucceed(data:[AddStudentRatingResultData]?)
 }
 
 
 class StudentRatingViewModel {
-        var isSearching : Bool?
-  private  weak var studentRatingView : ViewDelegate?
-  private  weak var studentRatingDelegate : StudentRatingDelegate?
+    var isSearching : Bool?
+    private  weak var studentRatingView : ViewDelegate?
+    private  weak var studentRatingDelegate : StudentRatingDelegate?
     
     //Initiallize the presenter class using delegates
     init(delegate: StudentRatingDelegate) {
@@ -41,74 +41,74 @@ class StudentRatingViewModel {
         studentRatingDelegate = nil
     }
     
-//    func GetSubjectList(classid: Int,teacherId: Int){
-//        self.addStudentRatingView?.showLoader()
-//
-//        let paramDict = ["classid":classid,
-//                         "teacherId" : teacherId] as [String : Any]
-//        let url = ApiEndpoints.kGetClassSubjectsByteacherId + "?classid=" + "\(classid)" + "&teacherId=" + "\(teacherId)"
-//        AddStudentRatingApi.sharedInstance.GetAddSkillList(url: url , parameters: paramDict as [String : Any], completionResponse: { (AddStudentRatingListModel) in
-//
-//            print("your respomnse data : ",AddStudentRatingListModel.resultData)
-//
-//            if AddStudentRatingListModel.statusCode == KStatusCode.kStatusCode200 {
-//                self.addStudentRatingView?.hideLoader()
-//                self.addStudentRatingDelegate?.GetSubjectListDidSucceed(data:AddStudentRatingListModel.resultData!)
-//                //                if type == "Skill" {
-//                //                    self.addStudentRatingDelegate?.GetSkillListDidSucceed(data:AddStudentRatingListModel.resultData!)
-//                //                }
-//                //                else {
-//                //                    self.addStudentRatingDelegate?.studentListDidSucceed(data: AddStudentRatingListModel.resultData!)
-//                //
-//                //                }
-//
-//            }else if AddStudentRatingListModel.statusCode == KStatusCode.kStatusCode401 {
-//                self.addStudentRatingView?.hideLoader()
-//                self.addStudentRatingView?.showAlert(alert: AddStudentRatingListModel.message ?? "")
-//                //  self.SubjectListDelegate?.unauthorizedUser()
-//            }else{
-//                self.addStudentRatingView?.hideLoader()
-//                CommonFunctions.sharedmanagerCommon.println(object: "student APi status change")
-//            }
-//
-//        }, completionnilResponse: { (nilResponseError) in
-//
-//            self.addStudentRatingView?.hideLoader()
-//            //   self.SubjectListDelegate?.SubjectListDidFailed()
-//
-//            if let error = nilResponseError{
-//                self.addStudentRatingView?.showAlert(alert: error)
-//
-//            }else{
-//                CommonFunctions.sharedmanagerCommon.println(object: "student APi Nil response")
-//            }
-//
-//        }) { (error) in
-//            self.addStudentRatingView?.hideLoader()
-//            //   self.SubjectListDelegate?.SubjectListDidFailed()
-//            //            if let err = error?.localizedDescription{
-//            //                self.studentRatingView?.showAlert(alert: err)
-//            //            }else{
-//            //                CommonFunctions.sharedmanagerCommon.println(object: "student APi error response")
-//            //            }
-//        }
-//    }
-//
+    //    func GetSubjectList(classid: Int,teacherId: Int){
+    //        self.addStudentRatingView?.showLoader()
+    //
+    //        let paramDict = ["classid":classid,
+    //                         "teacherId" : teacherId] as [String : Any]
+    //        let url = ApiEndpoints.kGetClassSubjectsByteacherId + "?classid=" + "\(classid)" + "&teacherId=" + "\(teacherId)"
+    //        AddStudentRatingApi.sharedInstance.GetAddSkillList(url: url , parameters: paramDict as [String : Any], completionResponse: { (AddStudentRatingListModel) in
+    //
+    //            print("your respomnse data : ",AddStudentRatingListModel.resultData)
+    //
+    //            if AddStudentRatingListModel.statusCode == KStatusCode.kStatusCode200 {
+    //                self.addStudentRatingView?.hideLoader()
+    //                self.addStudentRatingDelegate?.GetSubjectListDidSucceed(data:AddStudentRatingListModel.resultData!)
+    //                //                if type == "Skill" {
+    //                //                    self.addStudentRatingDelegate?.GetSkillListDidSucceed(data:AddStudentRatingListModel.resultData!)
+    //                //                }
+    //                //                else {
+    //                //                    self.addStudentRatingDelegate?.studentListDidSucceed(data: AddStudentRatingListModel.resultData!)
+    //                //
+    //                //                }
+    //
+    //            }else if AddStudentRatingListModel.statusCode == KStatusCode.kStatusCode401 {
+    //                self.addStudentRatingView?.hideLoader()
+    //                self.addStudentRatingView?.showAlert(alert: AddStudentRatingListModel.message ?? "")
+    //                //  self.SubjectListDelegate?.unauthorizedUser()
+    //            }else{
+    //                self.addStudentRatingView?.hideLoader()
+    //                CommonFunctions.sharedmanagerCommon.println(object: "student APi status change")
+    //            }
+    //
+    //        }, completionnilResponse: { (nilResponseError) in
+    //
+    //            self.addStudentRatingView?.hideLoader()
+    //            //   self.SubjectListDelegate?.SubjectListDidFailed()
+    //
+    //            if let error = nilResponseError{
+    //                self.addStudentRatingView?.showAlert(alert: error)
+    //
+    //            }else{
+    //                CommonFunctions.sharedmanagerCommon.println(object: "student APi Nil response")
+    //            }
+    //
+    //        }) { (error) in
+    //            self.addStudentRatingView?.hideLoader()
+    //            //   self.SubjectListDelegate?.SubjectListDidFailed()
+    //            //            if let err = error?.localizedDescription{
+    //            //                self.studentRatingView?.showAlert(alert: err)
+    //            //            }else{
+    //            //                CommonFunctions.sharedmanagerCommon.println(object: "student APi error response")
+    //            //            }
+    //        }
+    //    }
+    //
     
     func GetSubjectList(classid: Int,teacherId: Int){
         self.studentRatingView?.showLoader()
-
+        
         let paramDict = ["classid":classid,"teacherId" : teacherId] as [String : Any]
         let url = ApiEndpoints.kGetClassSubjectsByteacherId + "?classid=" + "\(classid)" + "&teacherId=" + "\(teacherId)"
         AddStudentRatingApi.sharedInstance.GetAddSkillList(url: url , parameters: paramDict as [String : Any], completionResponse: { (AddStudentRatingListModel) in
-
+            
             print("your respomnse data : ",AddStudentRatingListModel.resultData)
-
+            
             if AddStudentRatingListModel.statusCode == KStatusCode.kStatusCode200 {
                 self.studentRatingView?.hideLoader()
-
+                
                 self.studentRatingDelegate?.GetSubjectListDidSucceed(data:AddStudentRatingListModel.resultData!)
-
+                
             }else if AddStudentRatingListModel.statusCode == KStatusCode.kStatusCode401 {
                 self.studentRatingView?.hideLoader()
                 self.studentRatingView?.showAlert(alert: AddStudentRatingListModel.message ?? "")
@@ -117,19 +117,19 @@ class StudentRatingViewModel {
                 self.studentRatingView?.hideLoader()
                 CommonFunctions.sharedmanagerCommon.println(object: "student APi status change")
             }
-
+            
         }, completionnilResponse: { (nilResponseError) in
-
+            
             self.studentRatingView?.hideLoader()
             //   self.SubjectListDelegate?.SubjectListDidFailed()
-
+            
             if let error = nilResponseError{
                 self.studentRatingView?.showAlert(alert: error)
-
+                
             }else{
                 CommonFunctions.sharedmanagerCommon.println(object: "student APi Nil response")
             }
-
+            
         }) { (error) in
             self.studentRatingView?.hideLoader()
             //   self.SubjectListDelegate?.SubjectListDidFailed()
@@ -139,9 +139,9 @@ class StudentRatingViewModel {
             //                CommonFunctions.sharedmanagerCommon.println(object: "student APi error response")
             //            }
         }
-
+        
     }
-
+    
     func GetSkillList(id : Int , enumType : Int) {
         self.studentRatingView?.showLoader()
         
@@ -154,7 +154,7 @@ class StudentRatingViewModel {
             
             if AddStudentRatingListModel.statusCode == KStatusCode.kStatusCode200 {
                 self.studentRatingView?.hideLoader()
-               
+                
                 self.studentRatingDelegate?.GetSkillListDidSucceed(data:AddStudentRatingListModel.resultData!)
                 
             }else if AddStudentRatingListModel.statusCode == KStatusCode.kStatusCode401 {
@@ -190,8 +190,8 @@ class StudentRatingViewModel {
         
     }
     
-
-
+    
+    
     
     
     //MARK:- Class list
@@ -217,12 +217,12 @@ class StudentRatingViewModel {
             
             switch classModel.statusCode{
             case KStatusCode.kStatusCode200:
-          self.studentRatingDelegate?.classListDidSuccess(data: classModel.resultData)
+                self.studentRatingDelegate?.classListDidSuccess(data: classModel.resultData)
             case KStatusCode.kStatusCode401:
                 if let msg = classModel.message{
                     self.studentRatingView?.showAlert(alert: msg)
                 }
-              //  self.classListDelegate?.unauthorizedUser()
+            //  self.classListDelegate?.unauthorizedUser()
             default:
                 if let msg = classModel.message{
                     self.studentRatingView?.showAlert(alert: msg)
@@ -231,7 +231,7 @@ class StudentRatingViewModel {
         }, completionnilResponse: { (nilResponseError) in
             
             self.studentRatingView?.hideLoader()
-          self.studentRatingDelegate?.StudentRatingDidFailour()
+            self.studentRatingDelegate?.StudentRatingDidFailour()
             
             if let error = nilResponseError{
                 self.studentRatingView?.showAlert(alert: error)
@@ -266,7 +266,7 @@ class StudentRatingViewModel {
             }else if SubjectListModel.statusCode == KStatusCode.kStatusCode401{
                 self.studentRatingView?.hideLoader()
                 self.studentRatingView?.showAlert(alert: SubjectListModel.message ?? "")
-              //  self.SubjectListDelegate?.unauthorizedUser()
+                //  self.SubjectListDelegate?.unauthorizedUser()
             }else{
                 self.studentRatingView?.hideLoader()
                 CommonFunctions.sharedmanagerCommon.println(object: "student APi status change")
@@ -275,7 +275,7 @@ class StudentRatingViewModel {
         }, completionnilResponse: { (nilResponseError) in
             
             self.studentRatingView?.hideLoader()
-         //   self.SubjectListDelegate?.SubjectListDidFailed()
+            //   self.SubjectListDelegate?.SubjectListDidFailed()
             
             if let error = nilResponseError{
                 self.studentRatingView?.showAlert(alert: error)
@@ -286,7 +286,7 @@ class StudentRatingViewModel {
             
         }) { (error) in
             self.studentRatingView?.hideLoader()
-         //   self.SubjectListDelegate?.SubjectListDidFailed()
+            //   self.SubjectListDelegate?.SubjectListDidFailed()
             if let err = error?.localizedDescription{
                 self.studentRatingView?.showAlert(alert: err)
             }else{
@@ -300,7 +300,7 @@ class StudentRatingViewModel {
         let date = Date()
         let monthString = date.month
         print("your printed month is :\(monthString)")
-    
+        
         return monthString
     }
     
@@ -342,11 +342,11 @@ class StudentRatingViewModel {
         }) { (error) in
             self.studentRatingView?.hideLoader()
             //   self.SubjectListDelegate?.SubjectListDidFailed()
-//            if let err = error?.localizedDescription{
-//                self.studentRatingView?.showAlert(alert: err)
-//            }else{
-//                CommonFunctions.sharedmanagerCommon.println(object: "student APi error response")
-//            }
+            //            if let err = error?.localizedDescription{
+            //                self.studentRatingView?.showAlert(alert: err)
+            //            }else{
+            //                CommonFunctions.sharedmanagerCommon.println(object: "student APi error response")
+            //            }
         }
         
     }

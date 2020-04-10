@@ -302,10 +302,23 @@ extension MenuVC : UITableViewDelegate{
             //            vc?.isFromTimeTable = false
             vc?.isFromViewAttendence = true
             vc?.isFromTeacher = 1
+            vc?.teacherViewTimeTble = false
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
              break
+            
+        case "ViewTimetable" :
+            let storyboard = UIStoryboard.init(name: KStoryBoards.kClass, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "ClassTimeTableVC") as? ClassTimeTableVC
+            //            vc?.isFromTimeTable = false
+            vc?.isFromViewAttendence = true
+            vc?.isFromTeacher = 1
+            vc?.teacherViewTimeTble = true
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(vc!, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
+            break
             
         case "ViewTeacherRatings":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kTeacher, bundle: nil)
