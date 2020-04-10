@@ -70,6 +70,7 @@ class AddSchoolViewController: BaseUIViewController {
     @IBOutlet weak var SchoolCollegeView: UIView!
     @IBOutlet weak var ContactDetailsView: UIView!
     @IBOutlet weak var txtfieldUploadCerts: UITextField!
+   
     //MARK:- View functions
     override func viewDidLoad() {
         super.viewDidLoad()

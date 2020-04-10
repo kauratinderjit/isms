@@ -49,3 +49,45 @@ struct GetSubjectResultData: Mappable {
     }
     
 }
+
+
+class SubjectListHomeworkModel: Mappable{
+    
+    var message : String?
+    var status : Bool?
+    var statusCode :  Int?
+    var resultData : [GetSubjectHWResultData]?
+    var resourceType : String?
+    
+    
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        message <- map["Message"]
+        status <- map["Status"]
+        statusCode <- map["StatusCode"]
+        resultData <- map["ResultData"]
+        resourceType <- map["ResourceType"]
+    }
+    
+}
+struct GetSubjectHWResultData: Mappable {
+    
+    var ClassSubjectId : Int?
+    var Name : String?
+     var ID : Int?
+    
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        
+        ClassSubjectId <- map["ClassSubjectId"]
+          ID <- map["ID"]
+        Name <- map["Name"]
+    }
+    
+}

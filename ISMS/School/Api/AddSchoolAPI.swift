@@ -232,7 +232,7 @@ func GetSchoolDropDown(url : String, parameter : [String:Any]?, completionRespon
             "Content-type": "form-data","Accept" : "application/json", "Authorization" : "bearer" + " " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3NzgwOTI0MTM2Iiwic2lkIjoibWluZEAxMjMiLCJqdGkiOiJjNDM5ZTQxMi1iMmE2LTQwN2YtYmE3Ni00NmI3Nzc0OWJkZWYiLCJleHAiOjE1NjA5Mzc3NjcsImlzcyI6IlRlc3QuY29tIiwiYXVkIjoiVGVzdC5jb20ifQ.AlU3d0nKmXeT39PSFG-GJZ2xK2VVJJoUqT0k6My9Sws"
         ]
         print(urlComplete)
-        Alamofire.request(urlComplete, method: .get, parameters: parameter, encoding: JSONEncoding.default, headers : headers)
+        Alamofire.request(urlComplete, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers : headers)
             .responseJSON { response in
                 
                 if response.result.isSuccess

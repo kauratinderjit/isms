@@ -271,11 +271,8 @@ extension UpdateSyllabusVC : UpdateSyllabusDelegate {
     func UpdateSyllabusFailour(msg: String) {
         self.showAlert(Message: msg)
     }
-    
-    
-    
-    
 }
+
 extension UpdateSyllabusVC : ViewDelegate {
     
     func showAlert(alert: String) {

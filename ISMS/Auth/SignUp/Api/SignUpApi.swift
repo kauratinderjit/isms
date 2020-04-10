@@ -20,8 +20,13 @@ class SignUpApi {
     //MARK:- Get Common api
     func getCommonDropdownApi(url : String, parameter : [String:Any]?, completionResponse:  @escaping (GetCommonDropdownModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,Error: @escaping (Error?) -> Void)
     {
+        
+        print(parameter)
+        
         let urlComplete = BaseUrl.kBaseURL + url
         let headers    = [KConstants.kContentType : KConstants.kApplicationJson]
+        
+        print(urlComplete)
         
         Alamofire.request(urlComplete, method: .get, parameters: parameter, encoding: JSONEncoding.default, headers : headers)
             .responseJSON { response in
@@ -32,7 +37,7 @@ class SignUpApi {
                     
                     if let responseData  = data as? [String : Any]
                     {
-                        
+                        print(responseData)
                         self.countryDataJSON(data: responseData, completionResponse: { (data) in
                             
                             if data.statusCode == 200{
