@@ -12,6 +12,9 @@ class HomeWorkCell: UITableViewCell {
     
     @IBOutlet weak var btnEdit: UIButton!
     @IBOutlet weak var btnDel: UIButton!
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblClassName: UILabel!
+    @IBOutlet weak var lblSubjectName: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

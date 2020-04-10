@@ -48,7 +48,6 @@ extension CollapsibleTableViewController {
         let item: Item = sections[indexPath.section].items[indexPath.row]
         
         cell.nameLabel.text = item.name
-        cell.detailLabel.text = item.detail
         
         return cell
     }

@@ -224,7 +224,8 @@ class BaseUIViewController: UIViewController{
             self.datePickerView.datePickerMode = .time
         }else{
             self.datePickerView.datePickerMode = .date
-            self.datePickerView.maximumDate = Calendar.current.date(byAdding: .year, value: 0, to: Date())
+            self.datePickerView.minimumDate = NSDate() as Date
+            //self.datePickerView.maximumDate = Calendar.current.date(byAdding: .year, value: 0, to: Date())
         }
         // ToolBar for done and cancel
         let toolBar = UIToolbar.init(frame: CGRect(x: 0, y: 0, width: datePickerView.frame.width, height: 44))

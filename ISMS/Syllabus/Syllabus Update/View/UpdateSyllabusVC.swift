@@ -77,6 +77,10 @@ class UpdateSyllabusVC: UIViewController {
     }
     }
     
+    @objc func updateSyllabus(_ sender: UIButton) {
+        
+    }
+    
     @IBAction func backbtnAction(_ sender: UIBarButtonItem) {
         
         self.navigationController?.popViewController(animated: true)
@@ -211,14 +215,14 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
             CollapsibleTableViewCell(style: .default, reuseIdentifier: "cell")
         
         let item = arrayData[indexPath.section].TopicListViewModels?[indexPath.row]
-        
+        cell.checkBox.tag = indexPath.row
         cell.nameLabel.text = item?.TopicName
-        
+        cell.checkBox.addTarget(self, action: #selector(self.updateSyllabus), for: .touchUpInside)
         return cell
     }
     
      func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        return 60
     }
     
     // Header

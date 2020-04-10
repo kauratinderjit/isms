@@ -262,12 +262,20 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sed-Ck-wVj">
-                                <rect key="frame" x="117" y="597" width="137" height="42"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="70" y="596" width="235" height="42"/>
+                                <color key="backgroundColor" red="0.71764705880000002" green="0.090196078430000007" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="kzK-KV-xIB"/>
                                 </constraints>
-                                <state key="normal" title="Update"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="UPDATE">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="13"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="ActionUpdate:" destination="oCO-N6-VS1" eventType="touchUpInside" id="JyE-Ml-uKA"/>
                                 </connections>
@@ -275,15 +283,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="wqI-be-5bd" firstAttribute="trailing" secondItem="sed-Ck-wVj" secondAttribute="trailing" constant="121" id="0as-eS-Ehv"/>
+                            <constraint firstItem="wqI-be-5bd" firstAttribute="trailing" secondItem="sed-Ck-wVj" secondAttribute="trailing" constant="70" id="0as-eS-Ehv"/>
                             <constraint firstItem="m4Y-rP-Ba1" firstAttribute="bottom" secondItem="wqI-be-5bd" secondAttribute="bottom" constant="-95" id="3Iy-Nc-5XX"/>
                             <constraint firstItem="m4Y-rP-Ba1" firstAttribute="top" secondItem="wqI-be-5bd" secondAttribute="top" constant="49" id="4iS-QW-tJ0"/>
                             <constraint firstItem="gvc-yG-93K" firstAttribute="leading" secondItem="wqI-be-5bd" secondAttribute="leading" id="CLe-Fb-lp7"/>
                             <constraint firstItem="m4Y-rP-Ba1" firstAttribute="leading" secondItem="wqI-be-5bd" secondAttribute="leading" id="Mv8-f9-lZn"/>
-                            <constraint firstItem="sed-Ck-wVj" firstAttribute="top" secondItem="m4Y-rP-Ba1" secondAttribute="bottom" constant="25" id="Zig-ic-lxm"/>
+                            <constraint firstItem="sed-Ck-wVj" firstAttribute="top" secondItem="m4Y-rP-Ba1" secondAttribute="bottom" constant="24" id="Zig-ic-lxm"/>
                             <constraint firstItem="gvc-yG-93K" firstAttribute="top" secondItem="wqI-be-5bd" secondAttribute="top" id="aad-2I-Usv"/>
-                            <constraint firstItem="wqI-be-5bd" firstAttribute="bottom" secondItem="sed-Ck-wVj" secondAttribute="bottom" constant="28" id="bBK-G3-gKN"/>
-                            <constraint firstItem="sed-Ck-wVj" firstAttribute="leading" secondItem="wqI-be-5bd" secondAttribute="leading" constant="117" id="cgU-Md-vQg"/>
+                            <constraint firstItem="wqI-be-5bd" firstAttribute="bottom" secondItem="sed-Ck-wVj" secondAttribute="bottom" constant="29" id="bBK-G3-gKN"/>
+                            <constraint firstItem="sed-Ck-wVj" firstAttribute="leading" secondItem="wqI-be-5bd" secondAttribute="leading" constant="70" id="cgU-Md-vQg"/>
                             <constraint firstItem="m4Y-rP-Ba1" firstAttribute="trailing" secondItem="wqI-be-5bd" secondAttribute="trailing" id="eTx-et-yMs"/>
                             <constraint firstItem="gvc-yG-93K" firstAttribute="trailing" secondItem="wqI-be-5bd" secondAttribute="trailing" id="fIp-u3-gaI"/>
                         </constraints>

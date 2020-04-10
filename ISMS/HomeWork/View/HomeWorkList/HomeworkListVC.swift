@@ -17,6 +17,7 @@ class HomeworkListVC: BaseUIViewController {
     var homeWorkList : [HomeworkResultData]?
     var homworkId: Int? = 0
     
+    @IBOutlet weak var lblNoDataFound: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,8 +41,8 @@ class HomeworkListVC: BaseUIViewController {
     @IBAction func deleteAction(_ sender: UIButton) {
         
         if homeWorkList?.count ?? 0>0 {
-            let data = homeWorkList?[(sender as AnyObject).tag]
-                         //homworkId = data.EventId
+           let data = homeWorkList?[(sender as AnyObject).tag]
+            homworkId = data?.AssignHomeWorkId
                          initializeCustomYesNoAlert(self.view, isHideBlurView: true)
                          yesNoAlertView.delegate = self
                          yesNoAlertView.lblResponseDetailMessage.text = "Do you really want to delete this homework?"
@@ -61,6 +62,10 @@ extension HomeworkListVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! HomeWorkCell
+        cell.btnDel.tag = indexPath.row
+        cell.lblTitle.text = homeWorkList?[indexPath.row].Topic
+        cell.lblSubjectName.text = homeWorkList?[indexPath.row].SubjectName
+        cell.lblClassName.text = homeWorkList?[indexPath.row].ClassName
         return cell
     }
   
@@ -86,6 +91,10 @@ extension HomeworkListVC : ViewDelegate {
 }
 
 extension HomeworkListVC : AddHomeWorkDelegate {
+    func addedSuccessfully() {
+        
+    }
+    
     func getSubjectList(arr: [GetSubjectHWResultData]) {
         
     }
@@ -99,6 +108,13 @@ extension HomeworkListVC : AddHomeWorkDelegate {
     func AddHomeworkSucceed(array: [HomeworkResultData]) {
         
         homeWorkList = array
+        
+        if homeWorkList?.count ?? 0 > 0 {
+            lblNoDataFound.isHidden = true
+        }
+        else {
+            lblNoDataFound.isHidden = false
+        }
         tblViewListing.reloadData()
     }
     

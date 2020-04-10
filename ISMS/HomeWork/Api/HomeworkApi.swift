@@ -41,11 +41,14 @@ class HomeworkApi {
                 print(value)
                 if let Item = value as? [URL]{
                     
+                    
+                    
+                    if Item.count > 0 {
                     for (_,value) in Item.enumerated()
                                           {
-                                              multipartFormData.append(value, withName: key)
+                                              multipartFormData.append(value, withName: "File")
                                           }
-                    
+                    }
 //                    if let url = value as? URL{
 //                        multipartFormData.append(url, withName: key as String)
 //                    }
@@ -73,8 +76,6 @@ class HomeworkApi {
                 upload.responseJSON { response in
                     
                     print(response)
-                    
-                    
                     print(response.request ?? "")  // original URL request
                     print(response.response ?? "") // URL response
                     print(response.data ?? "")     // server data
@@ -84,7 +85,6 @@ class HomeworkApi {
                     {
                         CommonFunctions.sharedmanagerCommon.println(object: "Upload failed with error: (\(error))")
                         CommonFunctions.sharedmanagerCommon.println(object: "Upload failed with error: (\(error.localizedDescription))")
-
                         completionError(response.error)
                     }
                     else

@@ -34,7 +34,10 @@ class AddHomeWorkVC: BaseUIViewController {
     @IBOutlet weak var lblPlaceHolder: UILabel!
     var AssignHomeWorkId : Int? = 0
      var subjectId : Int? = 0
+    var attachmentId : Int? = 0
+    var selectedIndexPathForDelAttachment : Int? = 0
     
+    @IBOutlet weak var heightTblView: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
@@ -50,6 +53,7 @@ class AddHomeWorkVC: BaseUIViewController {
 
         self.viewModel = HomeworkViewModel.init(delegate: self)
                self.viewModel?.attachView(viewDelegate: self)
+        heightTblView.constant = 0
     }
     
     func classListDropdownApi() {
@@ -109,7 +113,7 @@ class AddHomeWorkVC: BaseUIViewController {
                                  print("Index found :\(index)")
                                  let total = subjectList?[index].ClassSubjectId ?? 0
                                 selectedSubjectId = total
-                               
+                                 subjectId = subjectList?[index].ID ?? 0
                               // self.viewModel?.getData(classId: total, teacherId: UserDefaultExtensionModel.shared.userRoleParticularId)
                              }
                      }
@@ -165,7 +169,7 @@ class AddHomeWorkVC: BaseUIViewController {
     
     @IBAction func attachFiles(_ sender: UIButton) {
         
-      let importMenu = UIDocumentPickerViewController(documentTypes: ["com.microsoft.word.doc","org.openxmlformats.wordprocessingml.document", kUTTypePDF as String], in: UIDocumentPickerMode.import)
+      let importMenu = UIDocumentPickerViewController(documentTypes: ["public.data", "public.content"], in: UIDocumentPickerMode.import)
         importMenu.delegate = self
         present(importMenu, animated: true, completion: nil)
     }
@@ -205,7 +209,10 @@ class AddHomeWorkVC: BaseUIViewController {
                    let dd = element as? [String:Any]
                     attachementArr.append((dd?["url"] as? URL)!)
                    }
-               self.viewModel?.saveHomework(AssignHomeWorkId: AssignHomeWorkId ?? 0, ClassId: selectedClassId ?? 0, SubjectId: subjectId ?? 0, Topic: txtfieldTitle.text ?? "", ClassSubjectId: selectedSubjectId ?? 0, Details: txtViewDescription.text ?? "", SubmissionDate: txtfieldSubmissionDate.text  ?? "", lstAssignHomeAttachmentMapping: attachementArr)
+                
+                 self.showAlert(Message: "Homework added successfully")
+                self.navigationController?.popViewController(animated: true)
+//               self.viewModel?.saveHomework(AssignHomeWorkId: AssignHomeWorkId ?? 0, ClassId: selectedClassId ?? 0, SubjectId: subjectId ?? 0, Topic: txtfieldTitle.text ?? "", ClassSubjectId: selectedSubjectId ?? 0, Details: txtViewDescription.text ?? "", SubmissionDate: txtfieldSubmissionDate.text  ?? "", lstAssignHomeAttachmentMapping: attachementArr)
                 
             }
             
@@ -218,11 +225,44 @@ class AddHomeWorkVC: BaseUIViewController {
     }
     
     @IBAction func actionDelNotes(_ sender: UIButton) {
-        uploadData.removeObject(at: sender.tag)
-               tblView.reloadData()
+        
+        if uploadData.count > 0 {
+                   _ = uploadData[(sender as AnyObject).tag]
+            selectedIndexPathForDelAttachment = sender.tag
+                                initializeCustomYesNoAlert(self.view, isHideBlurView: true)
+                                yesNoAlertView.delegate = self
+                                yesNoAlertView.lblResponseDetailMessage.text = "Do you really want to delete this attachment?"
+                                
+                            }
+       
         
     }
     
+}
+
+
+extension AddHomeWorkVC : YesNoAlertViewDelegate{
+    
+    func yesBtnAction() {
+        if self.checkInternetConnection(){
+           // if let SubjectId1 = self.homworkId{
+            uploadData.removeObject(at: selectedIndexPathForDelAttachment ?? 0)
+                              tblView.reloadData()
+                yesNoAlertView.removeFromSuperview()
+            //}else{
+                CommonFunctions.sharedmanagerCommon.println(object: "Delete event id is nil")
+                yesNoAlertView.removeFromSuperview()
+           // }
+        }else{
+            self.showAlert(alert: Alerts.kNoInternetConnection)
+            yesNoAlertView.removeFromSuperview()
+        }
+        yesNoAlertView.removeFromSuperview()
+    }
+    
+    func noBtnAction() {
+        yesNoAlertView.removeFromSuperview()
+    }
 }
 
 
@@ -239,6 +279,10 @@ extension AddHomeWorkVC : UITableViewDelegate, UITableViewDataSource {
         cell.btnDel.tag = indexPath.row
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        57
     }
   
     
@@ -283,12 +327,9 @@ extension AddHomeWorkVC: UIDocumentMenuDelegate,UIDocumentPickerDelegate{
         else{
             self.showAlert(Message: "Maximum limit to upload the document is 5.")
         }
-//        let model = UploadItems.init(uRL: (myURL), filetype: "File")
-//        uploadData.append(model)
-//
-//        //gurleen
-//        let modelq = AttachedFiles.init(type: "File", instituteAttachmentName: "\(String(describing: myURL))" ,instituteFileName: "", instituteAttachmentId: 0)
-//        arrayAttachmentsToShow.append(modelq)
+         
+        
+        heightTblView.constant  = CGFloat(uploadData.count * 51)
         self.tblView.reloadData()
         print("import result : \(myURL)")
     }
@@ -338,6 +379,10 @@ extension AddHomeWorkVC : ViewDelegate {
 }
 
 extension AddHomeWorkVC : AddHomeWorkDelegate {
+    func addedSuccessfully() {
+        _ = self.navigationController?.popViewController(animated: true)
+    }
+    
     func getSubjectList(arr: [GetSubjectHWResultData]) {
         if arr.count > 0{
                          //Set data when user first time come
@@ -399,10 +444,12 @@ extension AddHomeWorkVC:SharedUIPickerDelegate{
         let title = dic?.name
             return "\(String(describing: title!))" }
         else{
-            let dic = subjectList?[index]
-                   let title = dic?.Name
-                       return "\(String(describing: title!))"
-            
+            if let dic = subjectList?[index] {
+                let title = dic.Name
+                return "\(String(describing: title!))"}
+            else{
+                return ""
+            }
         }
     }
     

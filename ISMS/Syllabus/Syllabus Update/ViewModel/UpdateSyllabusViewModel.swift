@@ -98,12 +98,7 @@ class UpdateSyllabusViewModel {
                 CommonFunctions.sharedmanagerCommon.println(object: SyllabusCoverage.kSyllabusResponseError)
             }
         }
-        
-        
-        
-        
-        
-        
+  
         
     }
     

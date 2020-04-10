@@ -110,14 +110,16 @@ class AddSchoolApi {
                        for (key, value) in parameter {
                         print(key + "key1")
                         print(value)
-                        if key == "IFile"{
+                        if key == "IFile" {
                             
                             if let parameterimages = uploadItems{
                                 for (key,value) in parameterimages.enumerated(){
                                     print(key)
-                                    if let url = value.uRL , let filetype = value.filetype{
+                                    if let url = value.uRL, let filetype = value.filetype{
                                         print(url)
                                         print(filetype)
+                                        
+                                        
                                         multipartFormData.append(url, withName: filetype)
                                         
                                         //multipartFormData.append(url, withName:filetype, fileName: "", mimeType: "")
@@ -166,12 +168,7 @@ class AddSchoolApi {
                                             }
                                         }
                                 }
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
+                                 
                                     
                                 }
                             }

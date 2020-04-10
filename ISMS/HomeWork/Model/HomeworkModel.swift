@@ -35,14 +35,10 @@ class HomeworkListModel : Mappable{
     
     struct HomeworkResultData: Mappable {
         
-        var isSelected = 0
-        var subjectPercentage : String?
+        var AssignHomeWorkId : Int?
+        var ClassName : String?
         var SubjectName : String?
-        var chapter : String?
-        var collapsed: Bool?
-
-        var chapterID : Int?
-        var chapterName : String?
+        var Topic : String?
         
         
         init?(map: Map) {
@@ -51,11 +47,10 @@ class HomeworkListModel : Mappable{
         
         mutating func mapping(map: Map) {
        
-            chapter <- map[KApiParameters.kUpdateSyllabusApiParameter.kChapter]
-            SubjectName <- map[KApiParameters.kUpdateSyllabusApiParameter.kSubjectName]
-            chapterID <- map[KApiParameters.kUpdateSyllabusApiParameter.kChapterId]
-
-            chapterName <- map[KApiParameters.kUpdateSyllabusApiParameter.kChapterName]
+            AssignHomeWorkId <- map["AssignHomeWorkId"]
+            ClassName <- map["ClassName"]
+            SubjectName <- map["SubjectName"]
+            Topic <- map["Topic"]
         }
         
     }

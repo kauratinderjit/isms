@@ -13,6 +13,7 @@ protocol AddHomeWorkDelegate: class {
     func AddHomeworkFailour(msg : String)
     func classListDidSuccess(data: GetCommonDropdownModel)
     func getSubjectList (arr :[GetSubjectHWResultData])
+    func addedSuccessfully ()
 }
 
 
@@ -38,6 +39,7 @@ class HomeworkViewModel {
     
     
     func getData(classId : Int , teacherId : Int) {
+         homeworkViewDelegate?.showLoader()
         
         let url = "api/Institute/GetClassSubjectsforHomeworkByteacherId"+"?classid=\(classId)&teacherId=\(teacherId)"
         
@@ -73,22 +75,37 @@ class HomeworkViewModel {
    
     func saveHomework(AssignHomeWorkId : Int ,ClassId : Int,  SubjectId : Int , Topic : String ,ClassSubjectId:Int, Details : String,SubmissionDate: String, lstAssignHomeAttachmentMapping : [URL]) {
         
+         homeworkViewDelegate?.showLoader()
+        
         let url = "api/Institute/AddUpdateAssignHomeWork"
       
-        let param = ["AssignHomeWorkId" : AssignHomeWorkId ,
+        let param = [
+                     "teacherId" : UserDefaultExtensionModel.shared.userRoleParticularId,
+                     "AssignHomeWorkId" : AssignHomeWorkId ,
                      "ClassId": ClassId,
                      "SubjectId" : SubjectId ,
                      "Topic" : Topic,
                      "ClassSubjectId" :ClassSubjectId ,
                      "Details" : Details,
                      "SubmissionDate" : SubmissionDate,
-                     "lstAssignHomeAttachmentMapping":lstAssignHomeAttachmentMapping] as [String : Any]
+                     "File":lstAssignHomeAttachmentMapping] as [String : Any]
         
         
         HomeworkApi.sharedManager.multipartApi(postDict: param, url: url, completionResponse: { (response) in
             
             self.homeworkViewDelegate?.hideLoader()
-                      self.homeworkViewDelegate?.showAlert(alert: "Homework upoaded successfully.")
+            
+            switch response["StatusCode"] as? Int{
+            case 200:
+                self.homeworkViewDelegate?.showAlert(alert: "Homework upoaded successfully.")
+                self.addHomeworkDelegate?.addedSuccessfully()
+            case 401:
+                self.homeworkViewDelegate?.showAlert(alert: response["Message"] as? String ?? "")
+                //self.AddHomeWorkDelegate?.unauthorizedUser()
+            default:
+                self.homeworkViewDelegate?.showAlert(alert: response["Message"] as? String ?? "")
+            }
+
             
         }) { (error) in
                         self.homeworkViewDelegate?.hideLoader()
@@ -102,6 +119,8 @@ class HomeworkViewModel {
     }
     
     func getHomeworkData(teacherId : Int) {
+        
+         homeworkViewDelegate?.showLoader()
         
         let url = "api/Institute/GetAssignHomeWorklistByTeacherId"+"?teacherId=\(teacherId)"
         
