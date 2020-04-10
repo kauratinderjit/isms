@@ -197,18 +197,25 @@ class AddStudentRatingVC: BaseUIViewController {
 
 //MARK:- ADD STUDENT RATING DELEGATE
 extension AddStudentRatingVC : AddStudentRatingDelegate {
+//    get student list success
     func  GetStudentByClassDidSucceed(data:[StudentsByClassId]?){
         if let data1 = data {
             self.arrStudentByClassId = data1
-            if let studentName = arrStudentByClassId[0].studentName{
-                txtfieldStudent.text = studentName
-                  RegisterClassDataModel.sharedInstance?.enrolmentID = arrStudentByClassId[0].enrollmentId
-//                RegisterClassDataModel.sharedInstance?.subjectID = arrSubjectlist[0].studentID
-                //                self.viewModel?.GetSkillList(id : 1, enumType : 14 ,type : "Student")
-                                self.viewModel?.GetClassSubjectsByteacherId(classid: 1,teacherId: 2 )
+          if  arrStudentByClassId.count > 0{
+                if let studentName = arrStudentByClassId[0].studentName{
+                    txtfieldStudent.text = studentName
+                    var idClass = arrStudentByClassId[0].classId
+                    RegisterClassDataModel.sharedInstance?.enrolmentID = arrStudentByClassId[0].enrollmentId
+                    //                RegisterClassDataModel.sharedInstance?.subjectID = arrSubjectlist[0].studentID
+                    //                self.viewModel?.GetSkillList(id : 1, enumType : 14 ,type : "Student")
+                    self.viewModel?.GetClassSubjectsByteacherId(classid: idClass ?? 0,teacherId: userRoleParticularId )
+                    
+                }
                 
+          }else{
+              txtfieldStudent.text = ""
             }
-            
+           
             
             tableView.reloadData()
         }
@@ -218,21 +225,21 @@ extension AddStudentRatingVC : AddStudentRatingDelegate {
         
     }
     
-    
+//    get subject success
     func GetSubjectListDidSucceed(data:[AddStudentRatingResultData]?){
-        
+        self.arrSubjectlist.removeAll()
         print("our subject : ",data)
         if let data1 = data {
             self.arrSubjectlist = data1
-            if let studentName = arrSubjectlist[0].studentName{
-                txtfieldSubject.text = studentName
-                  RegisterClassDataModel.sharedInstance?.subjectID = arrSubjectlist[0].studentID
-                //                self.viewModel?.GetSkillList(id : 1, enumType : 14 ,type : "Student")
-                //                self.viewModel?.GetClassSubjectsByteacherId(classid: 1,teacherId: 2 )
-                
+            if data1.count > 0 {
+                if let studentName = arrSubjectlist[0].studentName{
+                    txtfieldSubject.text = studentName
+                    RegisterClassDataModel.sharedInstance?.subjectID = arrSubjectlist[0].studentID
+                    
+                }
+            }else {
+                 txtfieldSubject.text = ""
             }
-            
-            
             tableView.reloadData()
         }
     }
@@ -247,36 +254,10 @@ extension AddStudentRatingVC : AddStudentRatingDelegate {
     }
     
     func studentListDidSucceed(data: [AddStudentRatingResultData]?) {
-        isFetching = true
-        if data != nil{
-            if data?.count ?? 0 > 0{
-                for value in data!{
-                    
-                    let containsSameValue = arrStudentlist.contains(where: {$0.studentID == value.studentID})
-                    
-                    if containsSameValue == false{
-                        arrStudentlist.append(value)
-                        if let studentName = arrStudentlist[0].studentName {
-                            txtfieldStudent.text = studentName
-                        }
-                    }
-                    //  self.tblViewCenterLabel(tblView: tableView, lblText: "", hide: true)
-                }
-                self.viewModel?.GetClassSubjectsByteacherId(classid: 1,teacherId: 2 )
-                
-                
-            }else{
-                CommonFunctions.sharedmanagerCommon.println(object: "Zero")
-            }
-        }else{
-            CommonFunctions.sharedmanagerCommon.println(object: "Nil")
-        }
-        
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+       
     }
     
+//    get skill list sucess
     func GetSkillListaddDidSucceed(data:[AddStudentRatingResultData]?){
         self.isFetching = true
         
@@ -293,6 +274,7 @@ extension AddStudentRatingVC : AddStudentRatingDelegate {
         }
     }
     
+//    get class sucess
     func GetSkillListDidSucceed(data: [AddStudentRatingResultData]?) {
         print("our data : ",data)
         
@@ -302,14 +284,16 @@ extension AddStudentRatingVC : AddStudentRatingDelegate {
             if data1.count>0
             {
                 self.arrSkillList = data1
-                if let className = arrSkillList[0].studentName{
-                    txtfieldClass.text = className
-//                      RegisterClassDataModel.sharedInstance?.enrolmentID = arrStudentByClassId[index].enrollmentId
-                    var classid = arrSkillList[0].studentID!
-                      self.viewModel?.GetStudentsByClassId(classid : 1)
+                if self.arrSkillList.count > 0 {
+                    if let className = arrSkillList[0].studentName{
+                        txtfieldClass.text = className
+                        //                      RegisterClassDataModel.sharedInstance?.enrolmentID = arrStudentByClassId[index].enrollmentId
+                        var newClassid = arrSkillList[0].studentID!
+                        self.viewModel?.GetStudentsByClassId(classid : newClassid)
+                    }
                 }
-                
-                
+            }else{
+                txtfieldClass.text = ""
             }
             
             
@@ -345,10 +329,11 @@ extension AddStudentRatingVC : SharedUIPickerDelegate{
                 if let index = selectedClassArrIndex {
                     if let id = arrSkillList[index].studentID {
                         txtfieldClass.text = arrSkillList[index].studentName
+                        var addClassId =  arrSkillList[index].studentID
                         arrStudentlist.removeAll()
 //                        self.viewModel?.GetSkillList(id : id, enumType : 14 ,type : "Student")
-                        self.viewModel?.GetStudentsByClassId(classid : 1)
-                        self.viewModel?.GetClassSubjectsByteacherId(classid: 1,teacherId: 2 )
+                        self.viewModel?.GetStudentsByClassId(classid : addClassId ?? 0)
+                        self.viewModel?.GetClassSubjectsByteacherId(classid: addClassId ?? 0,teacherId: 2 )
                         //                       self.viewModel?.GetSkillList(id : 10, enumType : 14 ,type : "Student")
                         //                        self.viewModel?.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: pageSize,sortColumnDir: "",sortColumn: "", particularId: id)
                     }
@@ -358,6 +343,12 @@ extension AddStudentRatingVC : SharedUIPickerDelegate{
                 if let count1 = RegisterClassDataModel.sharedInstance?.tagID {
                     //  let count = selectRatingCount[count1]
                     if let tag = RegisterClassDataModel.sharedInstance?.tagID {
+                        
+                        let indexPath = IndexPath(row: RegisterClassDataModel.sharedInstance?.tagID ?? 0, section: 0)
+                        let cell =  self.tableView.dequeueReusableCell(withIdentifier: "AddStudentRatingCell", for:indexPath) as! AddStudentRatingTableViewCell
+                        cell.lblRating.text = "\(array[selectClassRating])"
+//                        selectClassRating = index
+                        
                         arrSkillListNew[tag].isSelected = 1
                         
                         arrSkillListNew[tag].ratingValue = count1 + 1
@@ -408,9 +399,9 @@ extension AddStudentRatingVC : SharedUIPickerDelegate{
         }
         else if  isSelectedRating == true {
             if  array.count > 0 {
-                //  let indexPath = IndexPath(row: index, section: 0)
-                //               let cell =  self.tableView.dequeueReusableCell(withIdentifier: "cell", for:indexPath.row) as! AddStudentRatingTableViewCell
-                //                cell.lblRating.text = array[0]
+//                  let indexPath = IndexPath(row: index, section: 0)
+//                               let cell =  self.tableView.dequeueReusableCell(withIdentifier: "AddStudentRatingCell", for:indexPath) as! AddStudentRatingTableViewCell
+//                                cell.lblRating.text = array[0]
                 return "\(array[index])"
             }
             
@@ -448,12 +439,11 @@ extension AddStudentRatingVC : SharedUIPickerDelegate{
         }
         else if isSelectedRating == true {
             if array.count > 0 {
-                //  selectRatingCount.remove(at: array[index])
-                //                selectRatingCount.insert(array[index], at: array[index])
-                //                print("your array count : \(array[index]) and rating count \(selectRatingCount[array[index]])")
-                
-                
-                countSelected = index
+                let indexPath = IndexPath(row: RegisterClassDataModel.sharedInstance?.tagID ?? 0, section: 0)
+                let cell =  self.tableView.dequeueReusableCell(withIdentifier: "AddStudentRatingCell", for:indexPath) as! AddStudentRatingTableViewCell
+                cell.lblRating.text = "\(array[index])"
+                selectClassRating = index
+//                countSelected = index
             }
             
         }
@@ -537,17 +527,17 @@ extension AddStudentRatingVC : UITableViewDataSource , AddStudentRatingTableView
             // cell.lblStudentName.text = name
             cell.lblSkill.text = name
         }
-        if isSelectedRating == true {
+//        if isSelectedRating == true {
             if arrSkillListNew[indexPath.row].isSelected == 1 {
                 cell.lblRating.text = "\(arrSkillListNew[indexPath.row].ratingValue)"
-                
+
                 //  "\(arrClickedArray[indexPath.row].ratingValue)"
-                
+
                 //"\(arrSkillList[indexPath.row].ratingValue)"
                 //  arrSkillList[indexPath.row].isSelected = 0
                 //"\(array[selectRatingCount[indexPath.row]])"
             }
-        }
+//        }
         
         //     cell.lblRating.text = "\(array[indexPath.row])"
         //        if let rating = arrSkillList[indexPath.row].studentRating {

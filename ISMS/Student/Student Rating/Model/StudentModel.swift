@@ -39,6 +39,8 @@ struct StudentRatingResultData: Mappable{
     var studentName : String?
     var teacherName : String?
     var teacherID : String?
+    var enrollmentId : Int?
+    var imageUrl : String?
     
     init?(map: Map) {
         
@@ -49,5 +51,8 @@ struct StudentRatingResultData: Mappable{
        
         teacherName <- map["TeacherName"]
         teacherID <- map["TeacherId"]
+        
+        enrollmentId <- map["EnrollmentId"]
+        imageUrl <- map["ImageUrl"]
     }
 }

@@ -297,16 +297,16 @@ extension MenuVC : UITableViewDelegate{
             revealViewController().pushFrontViewController(frontVC, animated: true)
              break
             
-//        case "ViewTeacherRatings":
-//            let storyboard = UIStoryboard.init(name: KStoryBoards.kTeacher, bundle: nil)
-//            let vc = storyboard.instantiateViewController(withIdentifier: "TeacherSubjectSkillRatingVC") as? TeacherSubjectSkillRatingVC
-//            let frontVC = revealViewController().frontViewController as? UINavigationController
-//            frontVC?.pushViewController(vc!, animated: false)
-//            revealViewController().pushFrontViewController(frontVC, animated: true)
-//             break
-            
-            
         case "ViewTeacherRatings":
+            let storyboard = UIStoryboard.init(name: KStoryBoards.kTeacher, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "TeacherSubjectSkillRatingVC") as? TeacherSubjectSkillRatingVC
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(vc!, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
+             break
+            
+            
+        case "ViewRating":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kStudent, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "SubjectWiseRatingVC") as? SubjectWiseRatingVC
             let frontVC = revealViewController().frontViewController as? UINavigationController

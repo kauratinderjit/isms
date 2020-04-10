@@ -52,7 +52,7 @@ class StudentRatingVC: BaseUIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         if checkInternetConnection(){
-            self.viewModel?.classList(searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: KIntegerConstants.kInt0)
+//            self.viewModel?.classList(searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: KIntegerConstants.kInt0)
              self.viewModel?.GetSkillList(id : 2 , enumType : 17)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
@@ -339,8 +339,8 @@ extension StudentRatingVC : SharedUIPickerDelegate{
         }
         else if isMonthSelected == true {
             if arrMonthlist.count > 0 {
-                textfieldMonth.text = arrMonthlist[0]
-                return arrMonthlist[index] ?? ""
+//                textfieldMonth.text = arrMonthlist[0]
+//                return arrMonthlist[index] ?? ""
             }
         }
         return ""
@@ -448,18 +448,21 @@ extension StudentRatingVC : UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+         tableView.separatorStyle = .singleLine
         return arrStudent.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: StudentRating.kStudentRatingCell, for: indexPath) as! StudentRatingTableViewCell
-        if let name = arrStudent[indexPath.row].studentName {
-            cell.lblStudentName.text = name
-        }
         
-        if let rating = arrStudent[indexPath.row].studentRating {
-            cell.lblPercentage.text = rating
-        }
+        cell.setCellUI(data: arrStudent, indexPath: indexPath)
+//        if let name = arrStudent[indexPath.row].studentName {
+//            cell.lblStudentName.text = name
+//        }
+//
+//        if let rating = arrStudent[indexPath.row].studentRating {
+//            cell.lblPercentage.text = rating
+//        }
         return cell
         
     }

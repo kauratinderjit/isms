@@ -77,11 +77,13 @@ class ClassPeriodsTimetableViewModel{
         postDict["ParticularId"] = classId
         //Check If user have particular id
         switch teacherId {
-        case 0:
+        case 3:
             postDict["TeacherId"] = 0
         default:
             postDict["TeacherId"] = UserDefaultExtensionModel.shared.userRoleParticularId
         }
+        
+        print("array post timetable : ",postDict)
         
         ClassApi.sharedManager.getClassTimeTable(url: ApiEndpoints.getTimeTableListApi, params: postDict, completionResponse: { (getTimetabelResponse) in
             

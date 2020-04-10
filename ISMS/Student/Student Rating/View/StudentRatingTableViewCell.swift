@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class StudentRatingTableViewCell: UITableViewCell {
 
@@ -25,6 +26,49 @@ class StudentRatingTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setCellUI(data : [StudentRatingResultData]?,indexPath: IndexPath){
+        
+        if data?.count ?? 0 > 0 {
+            let rsltData = data![indexPath.row]
+            lblStudentName.text = ""
+            
+            imgStudent.createCircleImage()
+            
+            
+            if let studentname = rsltData.studentName{
+                lblStudentName.text = studentname
+            }
+            
+            if let studentRating = rsltData.studentRating{
+                lblPercentage.text = studentRating
+            }
+            
+                    if var imgProfileUrl = rsltData.imageUrl{
+                        imgStudent.sd_imageIndicator = SDWebImageActivityIndicator.gray
+                        imgStudent.sd_setImage(with: URL.init(string: imgProfileUrl)) { (img, error, cacheType, url) in
+            
+                            if error == nil{
+                                print("error is NilLiteralConvertible")
+                                self.imgStudent.contentMode = .scaleAspectFill
+                                self.imgStudent.image = img
+                            }else{
+                                if let nameStr = rsltData.studentName{
+                                    CommonFunctions.sharedmanagerCommon.addLabelOnTheImgeViewWithFirstCharacter(string: nameStr, imgView: self.imgStudent)
+                                    CommonFunctions.sharedmanagerCommon.println(object: "Image is nil in list.")
+                                }
+                            }
+                        }
+                    }else{
+                        if let nameStr = rsltData.studentName{
+                            CommonFunctions.sharedmanagerCommon.addLabelOnTheImgeViewWithFirstCharacter(string: nameStr, imgView: self.imgStudent)
+                            CommonFunctions.sharedmanagerCommon.println(object: "Image is nil in list.")
+                        }
+            }
+        }
+        
+      
     }
 
 }

@@ -36,7 +36,7 @@ class SubjectSkillRatingModel : Mappable {
 
 struct SubjectSkillRatingResultData: Mappable{
     
-    var rating : String?
+    var rating : Int?
     var Name : String?
     var isSelected = 0
     var ratingValue = 0
