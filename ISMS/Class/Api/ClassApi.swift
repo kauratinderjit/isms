@@ -236,6 +236,7 @@ class ClassApi{
     func getClassTimeTable(url: String,params: [String:Any],completionResponse:  @escaping (GetTimeTableModel) -> Void,complitionError: @escaping (String?) -> Void){
         let urlCmplete = BaseUrl.kBaseURL+url
         var accessTokken = ""
+        print("url : ",urlCmplete)
         if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String{
             accessTokken = str
         }

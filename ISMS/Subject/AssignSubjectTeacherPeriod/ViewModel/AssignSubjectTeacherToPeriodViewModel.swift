@@ -83,7 +83,7 @@ class AssignSubjectTeacherToPeriodViewModel{
         self.assignSubjectTeacherToPeriodView?.showLoader()
         
         SubjectApi.sharedInstance.getSubjectTeacherDropdownData(selectedSubjectTeacherId: selectId, enumType: enumType, completionResponse: { (response) in
-            
+            print("our subject list : ",response.resultData)
             self.assignSubjectTeacherToPeriodView?.hideLoader()
             
             switch response.statusCode{

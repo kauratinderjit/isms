@@ -18,6 +18,8 @@ protocol AddStudentRatingDelegate : class {
     func GetSubjectListDidSucceed(data:[AddStudentRatingResultData]?)
     func studentListDidSucceed(data : [AddStudentRatingResultData]?)
     func GetSkillListaddDidSucceed(data:[AddStudentRatingResultData]?)
+    
+   func  GetStudentByClassDidSucceed(data:[StudentsByClassId]?)
     func AddStudentRatingDidSucceed(data: String)
 }
 
@@ -193,6 +195,59 @@ class AddStudentRatingViewModel {
         
     }
     
+    
+    func GetStudentsByClassId(classid : Int){
+        self.addStudentRatingView?.showLoader()
+        
+        let paramDict = ["classid":classid] as [String : Any]
+        let url = ApiEndpoints.kGetStudentsByClassId + "?classid=" + "\(classid)"
+        AddStudentRatingApi.sharedInstance.StudentsByClassIdApi(url: url , parameters: paramDict as [String : Any], completionResponse: { (GetStudentsByClassIdModel) in
+            
+            print("your respomnse data : ",GetStudentsByClassIdModel.resultData)
+            
+            if GetStudentsByClassIdModel.statusCode == KStatusCode.kStatusCode200 {
+                self.addStudentRatingView?.hideLoader()
+                self.addStudentRatingDelegate?.GetStudentByClassDidSucceed(data:GetStudentsByClassIdModel.resultData)
+                //                if type == "Skill" {
+                //                    self.addStudentRatingDelegate?.GetSkillListDidSucceed(data:AddStudentRatingListModel.resultData!)
+                //                }
+                //                else {
+                //                    self.addStudentRatingDelegate?.studentListDidSucceed(data: AddStudentRatingListModel.resultData!)
+                //
+                //                }
+                
+            }else if GetStudentsByClassIdModel.statusCode == KStatusCode.kStatusCode401 {
+                self.addStudentRatingView?.hideLoader()
+                self.addStudentRatingView?.showAlert(alert: GetStudentsByClassIdModel.message ?? "")
+                //  self.SubjectListDelegate?.unauthorizedUser()
+            }else{
+                self.addStudentRatingView?.hideLoader()
+                CommonFunctions.sharedmanagerCommon.println(object: "student APi status change")
+            }
+            
+        }, completionnilResponse: { (nilResponseError) in
+            
+            self.addStudentRatingView?.hideLoader()
+            //   self.SubjectListDelegate?.SubjectListDidFailed()
+            
+            if let error = nilResponseError{
+                self.addStudentRatingView?.showAlert(alert: error)
+                
+            }else{
+                CommonFunctions.sharedmanagerCommon.println(object: "student APi Nil response")
+            }
+            
+        }) { (error) in
+            self.addStudentRatingView?.hideLoader()
+            //   self.SubjectListDelegate?.SubjectListDidFailed()
+            //            if let err = error?.localizedDescription{
+            //                self.studentRatingView?.showAlert(alert: err)
+            //            }else{
+            //                CommonFunctions.sharedmanagerCommon.println(object: "student APi error response")
+            //            }
+        }
+    }
+    
     func GetClassSubjectsByteacherId(classid: Int,teacherId: Int){
         self.addStudentRatingView?.showLoader()
         
@@ -251,7 +306,7 @@ class AddStudentRatingViewModel {
     func getSubjectWiseRating(enrollmentsId : Int?,classId: Int?){
         self.addStudentRatingView?.showLoader()
         print("your data ")
-        let paramDict = [ "EnrollmentId": enrollmentsId!,
+        let paramDict = ["EnrollmentId": enrollmentsId!,
                           "ClassSubjectId" : classId!
             ] as [String : Any]
         
@@ -295,7 +350,7 @@ class AddStudentRatingViewModel {
     
     
     //MARK:- SUBJECT LIST
-    func SubmitTotalRating(teacherID: Int?, enrollmentsId : Int?,classSubjectId: Int?,comment: String?,StudentSkillRatings: [[String : Any]]){
+    func SubmitTotalRating(teacherID: Int?, enrollmentId : Int?,classSubjectId: Int?,comment: String?,StudentSkillRatings: [[String : Any]]){
         self.addStudentRatingView?.showLoader()
         
 //        var postDict = [String:Any]()
@@ -317,7 +372,7 @@ class AddStudentRatingViewModel {
 //        ]
         let paramDict = [ "Id": 0,
                           "TeacherId": 2,
-                          "EnrollmentsId": enrollmentsId!,
+                          "EnrollmentId": enrollmentId!,
                           "ClassSubjectId":classSubjectId!,
                           "Comment": "good",
                           "StudentSkillRatings":StudentSkillRatings] as [String : Any]

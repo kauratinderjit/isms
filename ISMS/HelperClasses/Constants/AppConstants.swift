@@ -93,6 +93,8 @@ public struct ApiEndpoints
     
     public static let kGetClassSubjectsByteacherId = "api/Institute/GetClassSubjectsByteacherId"
     
+    public static let kGetStudentsByClassId = "api/Institute/GetStudentsByClassId"
+    
 
  
 
@@ -741,7 +743,7 @@ public struct KApiParameters{
 
 public struct SubjectSkillRating {
 //    public static let kSubjectSkillRatingVC = "Subject Skill Rating"
-      public static let kSubjectSkillRatingVC = "Teacher Rating"
+      public static let kSubjectSkillRatingVC = "Rating"
 }
 
 //MARK:- Syllabus coverage

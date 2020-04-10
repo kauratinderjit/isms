@@ -1,23 +1,21 @@
 //
-//  SubjectSkillRatingModel.swift
+//  GetStudentsByClassIdModel.swift
 //  ISMS
 //
-//  Created by Kuldeep Singh on 12/5/19.
-//  Copyright © 2019 Atinder Kaur. All rights reserved.
+//  Created by Poonam Sharma on 8/4/20.
+//  Copyright © 2020 Atinder Kaur. All rights reserved.
 //
 
 import Foundation
-
-
-
 import ObjectMapper
 
-class SubjectSkillRatingModel : Mappable {
+class GetStudentsByClassIdModel: Mappable {
+    
     
     var message : String?
     var status : Bool?
     var statusCode :  Int?
-    var resultData : [SubjectSkillRatingResultData]?
+    var resultData : [StudentsByClassId]?
     var resourceType : String?
     
     required init?(map: Map) {
@@ -34,18 +32,21 @@ class SubjectSkillRatingModel : Mappable {
     
 }
 
-struct SubjectSkillRatingResultData: Mappable{
+struct StudentsByClassId: Mappable{
     
-    var rating : Int?
-    var Name : String?
-    var isSelected = 0
-    var ratingValue = 0
+    var classId : Int?
+    var enrollmentId : Int?
+    var studentId : Int?
+    var studentName : String?
     
     init?(map: Map) {
+        
     }
-    
     mutating func mapping(map: Map) {
-        rating <- map["Rating"]
-        Name <- map["Name"]
+        classId <- map["ClassId"]
+        enrollmentId <- map["EnrollmentId"]
+        
+        studentId <- map["StudentId"]
+        studentName <- map["StudentName"]
     }
 }
