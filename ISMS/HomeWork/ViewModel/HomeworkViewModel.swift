@@ -88,7 +88,7 @@ class HomeworkViewModel {
                      "ClassSubjectId" :ClassSubjectId ,
                      "Details" : Details,
                      "SubmissionDate" : SubmissionDate,
-                     "File":lstAssignHomeAttachmentMapping] as [String : Any]
+                     "lstAssignHomeAttachmentMapping":lstAssignHomeAttachmentMapping] as [String : Any]
         
         
         HomeworkApi.sharedManager.multipartApi(postDict: param, url: url, completionResponse: { (response) in

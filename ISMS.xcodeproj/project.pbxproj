@@ -283,6 +283,10 @@
 		2E5CD430243785310060D601 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5CD42F243785310060D601 /* EventViewModel.swift */; };
 		2E5CD4322437854A0060D601 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5CD4312437854A0060D601 /* EventModel.swift */; };
 		2E5CD434243798B20060D601 /* EventScheduleApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5CD433243798B20060D601 /* EventScheduleApi.swift */; };
+		2E5E4F01243F5E19001E8FDF /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E5E4F00243F5E19001E8FDF /* CloudKit.framework */; };
+		2E6B386624409DF3000BA37D /* ClassIDModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6B386424409DF3000BA37D /* ClassIDModel.swift */; };
+		2E6B386724409DF3000BA37D /* RegisterClassDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6B386524409DF3000BA37D /* RegisterClassDataModel.swift */; };
+		2E6B386924409E53000BA37D /* GetStudentsByClassIdModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6B386824409E53000BA37D /* GetStudentsByClassIdModel.swift */; };
 		2E8F63C5243C589A0040F9CA /* NotesTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8F63BD243C589A0040F9CA /* NotesTableCell.swift */; };
 		2E8F63C6243C589A0040F9CA /* NotesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8F63BF243C589A0040F9CA /* NotesListVC.swift */; };
 		2E8F63C7243C589A0040F9CA /* Notes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E8F63C1243C589A0040F9CA /* Notes.storyboard */; };
@@ -296,9 +300,9 @@
 		2E8F63DD243CB24B0040F9CA /* HomeworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8F63DC243CB24B0040F9CA /* HomeworkModel.swift */; };
 		2E8F63E0243CB43C0040F9CA /* HomeworkApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8F63DF243CB43C0040F9CA /* HomeworkApi.swift */; };
 		2E938B26229EA99B003A8B95 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E938B25229EA99A003A8B95 /* OpenSans-Regular.ttf */; };
-		2EB8D21B243DA6470054684F /* RegisterClassDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB8D21A243DA6460054684F /* RegisterClassDataModel.swift */; };
 		2EC9AFC122A7BAD4007E2362 /* Department.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EC9AFC022A7BAD4007E2362 /* Department.storyboard */; };
 		2EC9AFC522A7CB77007E2362 /* AddDepartmentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC9AFC422A7CB77007E2362 /* AddDepartmentVC.swift */; };
+		2EDE39912441C8DC00CEBBC8 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDE39902441C8DC00CEBBC8 /* HomeModel.swift */; };
 		5CB7F1EE8CC8A74A757048E5 /* Pods_ISMS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C888007208C30DDC7E394E /* Pods_ISMS.framework */; };
 		63DA9B7336B3E8F878D62AF1 /* Pods_ISMSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60DEE33230370FAA807BA760 /* Pods_ISMSTests.framework */; };
 		8141B1AABFA2CECDE13474E9 /* Pods_ISMSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8DA8958D4FCB9233DC4FE1E /* Pods_ISMSUITests.framework */; };
@@ -689,6 +693,10 @@
 		2E5CD42F243785310060D601 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
 		2E5CD4312437854A0060D601 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		2E5CD433243798B20060D601 /* EventScheduleApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventScheduleApi.swift; sourceTree = "<group>"; };
+		2E5E4F00243F5E19001E8FDF /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		2E6B386424409DF3000BA37D /* ClassIDModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassIDModel.swift; sourceTree = "<group>"; };
+		2E6B386524409DF3000BA37D /* RegisterClassDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterClassDataModel.swift; sourceTree = "<group>"; };
+		2E6B386824409E53000BA37D /* GetStudentsByClassIdModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStudentsByClassIdModel.swift; sourceTree = "<group>"; };
 		2E8F63BD243C589A0040F9CA /* NotesTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesTableCell.swift; sourceTree = "<group>"; };
 		2E8F63BF243C589A0040F9CA /* NotesListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesListVC.swift; sourceTree = "<group>"; };
 		2E8F63C1243C589A0040F9CA /* Notes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Notes.storyboard; sourceTree = "<group>"; };
@@ -702,9 +710,9 @@
 		2E8F63DC243CB24B0040F9CA /* HomeworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkModel.swift; sourceTree = "<group>"; };
 		2E8F63DF243CB43C0040F9CA /* HomeworkApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkApi.swift; sourceTree = "<group>"; };
 		2E938B25229EA99A003A8B95 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
-		2EB8D21A243DA6460054684F /* RegisterClassDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterClassDataModel.swift; sourceTree = "<group>"; };
 		2EC9AFC022A7BAD4007E2362 /* Department.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Department.storyboard; sourceTree = "<group>"; };
 		2EC9AFC422A7CB77007E2362 /* AddDepartmentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDepartmentVC.swift; sourceTree = "<group>"; };
+		2EDE39902441C8DC00CEBBC8 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeModel.swift; path = "ISMS/Student/Student Rating/Model/HomeModel.swift"; sourceTree = SOURCE_ROOT; };
 		30C888007208C30DDC7E394E /* Pods_ISMS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISMS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4142D80C610A1476F764E10A /* Pods-ISMSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISMSTests.debug.xcconfig"; path = "Target Support Files/Pods-ISMSTests/Pods-ISMSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		60DEE33230370FAA807BA760 /* Pods_ISMSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISMSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -804,6 +812,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5CB7F1EE8CC8A74A757048E5 /* Pods_ISMS.framework in Frameworks */,
+				2E5E4F01243F5E19001E8FDF /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1365,6 +1374,7 @@
 		0C1C28F9238E9C7700F98FEC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2E6B386824409E53000BA37D /* GetStudentsByClassIdModel.swift */,
 				0C1C2901238E9D7800F98FEC /* StudentModel.swift */,
 			);
 			path = Model;
@@ -1574,6 +1584,8 @@
 		0C66857E238FE177006593D5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2E6B386424409DF3000BA37D /* ClassIDModel.swift */,
+				2E6B386524409DF3000BA37D /* RegisterClassDataModel.swift */,
 				0C668585238FE328006593D5 /* AddStudentModel.swift */,
 			);
 			path = Model;
@@ -2617,6 +2629,7 @@
 		2DACBC8D22BA54EE00EFE5C4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2EDE39902441C8DC00CEBBC8 /* HomeModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3348,6 +3361,7 @@
 		928D40D656F5A3A2B94597EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2E5E4F00243F5E19001E8FDF /* CloudKit.framework */,
 				30C888007208C30DDC7E394E /* Pods_ISMS.framework */,
 				60DEE33230370FAA807BA760 /* Pods_ISMSTests.framework */,
 				A8DA8958D4FCB9233DC4FE1E /* Pods_ISMSUITests.framework */,
@@ -3792,7 +3806,6 @@
 			isa = PBXGroup;
 			children = (
 				C683DAF922E072ED00011212 /* AddPeriodModel.swift */,
-				2EB8D21A243DA6460054684F /* RegisterClassDataModel.swift */,
 				C683DAFA22E072ED00011212 /* DeletePeriodModel.swift */,
 				C683DAFB22E072ED00011212 /* GetDropDownDataModel.swift */,
 				C683DAFC22E072ED00011212 /* GetPeriodList.swift */,
@@ -4248,6 +4261,7 @@
 			files = (
 				C65BF52922D36865002F3304 /* UserRoleIdVC.swift in Sources */,
 				C680B5012398E3C700675A17 /* StudentListForAttendenceApi.swift in Sources */,
+				2EDE39912441C8DC00CEBBC8 /* HomeModel.swift in Sources */,
 				0C1C2902238E9D7800F98FEC /* StudentModel.swift in Sources */,
 				2E0DCA7E2297E8DC001DC56D /* UIView.swift in Sources */,
 				2DCBAA0122C0CB5D0054B3A7 /* AddSchoolAPI.swift in Sources */,
@@ -4291,6 +4305,7 @@
 				10EEEA65239E509900E8485C /* AddUpdateTimeTableResponseModel.swift in Sources */,
 				2DE328ED22BB5D0F004687C3 /* CommomResponseModel.swift in Sources */,
 				2DB1589522C5D79400AC6B8D /* GalleryAlertCustomView.swift in Sources */,
+				2E6B386724409DF3000BA37D /* RegisterClassDataModel.swift in Sources */,
 				10EEEAAF239E57DC00E8485C /* MyCustomView.swift in Sources */,
 				0C5A1A762398CA590039CB39 /* SubjectSkillRatingTableViewCell.swift in Sources */,
 				0C1C2889238E5A9D00F98FEC /* AssignSubjectsToClassResponseModel.swift in Sources */,
@@ -4448,6 +4463,7 @@
 				0C5A1A83239928560039CB39 /* TeacherSubjectWiseRatingTableViewCell.swift in Sources */,
 				C61A1A772390F7000043A5D2 /* EPGCollectionViewLayout.swift in Sources */,
 				0C1C288C238E5A9D00F98FEC /* ClassAssignSubjectTableViewCell.swift in Sources */,
+				2E6B386924409E53000BA37D /* GetStudentsByClassIdModel.swift in Sources */,
 				2DCF6CF422CF1E3D005E505A /* TextFieldAlert.swift in Sources */,
 				0C5A1A90239929490039CB39 /* TeacherSubjectSkillRatingVC.swift in Sources */,
 				2E0DCA802297E8DC001DC56D /* Reachability.swift in Sources */,
@@ -4507,7 +4523,6 @@
 				2D2A2C2822AA69400078C75C /* AddTeacherViewModel.swift in Sources */,
 				0C1C28CC238E5BB300F98FEC /* SubjectListTableCell.swift in Sources */,
 				0C1C2892238E5A9D00F98FEC /* ClassPeriodsTimeTableViewModel.swift in Sources */,
-				2EB8D21B243DA6470054684F /* RegisterClassDataModel.swift in Sources */,
 				2E3BF6ED2435D05C00A4FB22 /* CollapsibleTableViewController.swift in Sources */,
 				2E5CD4322437854A0060D601 /* EventModel.swift in Sources */,
 				2DF5642A22C252F8006F4522 /* UserAccessRoleVC.swift in Sources */,
@@ -4536,6 +4551,7 @@
 				2DCBAA0422C0CB5D0054B3A7 /* GeoLocationVC.swift in Sources */,
 				103091B7239E2F9E003DA163 /* EPGCollectionViewCell.swift in Sources */,
 				10EEEAB1239E57DC00E8485C /* AttachFilesTableViewCell.swift in Sources */,
+				2E6B386624409DF3000BA37D /* ClassIDModel.swift in Sources */,
 				103091AE239E2390003DA163 /* TimeCollectionViewCell.swift in Sources */,
 				0C1C2888238E5A9D00F98FEC /* AssignSubjectsToClassModel.swift in Sources */,
 				2D2A92BD22B0CF1300F2AAB6 /* AddParentVC.swift in Sources */,
@@ -4741,16 +4757,16 @@
 				CODE_SIGN_ENTITLEMENTS = ISMS/ISMS.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 86Z35528QJ;
+				DEVELOPMENT_TEAM = HE7TDTH6H9;
 				INFOPLIST_FILE = ISMS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Shadow12.ShadowApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.seasia.isms;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = ShadowDevProv;
+				PROVISIONING_PROFILE_SPECIFIER = Isms_Dev_Prov;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Volumes/DATA/ISMS git/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -4774,9 +4790,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Shadow12.ShadowApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.seasia.isms;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = GoodDelivery_Dev;
+				PROVISIONING_PROFILE_SPECIFIER = Isms_Dev_Prov;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Volumes/DATA/ISMS git/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;

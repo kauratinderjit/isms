@@ -1084,10 +1084,10 @@
             filePath = "ISMS/Home/View/HomeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "didSuccessMenuAccordingRole(data:)"
-            landmarkType = "7">
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2856,7 +2856,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "379"
             endingLineNumber = "379"
-            landmarkName = "textViewDidEndEditing(_:)"
+            landmarkName = "calendar(_:didSelect:at:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2872,8 +2872,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "383"
             endingLineNumber = "383"
-            landmarkName = "AddEventVC"
-            landmarkType = "21">
+            landmarkName = "calendar(_:didSelect:at:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2920,8 +2920,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "397"
             endingLineNumber = "397"
-            landmarkName = "calendar(_:didSelect:at:)"
-            landmarkType = "7">
+            landmarkName = "AddEventVC"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2936,7 +2936,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "345"
             endingLineNumber = "345"
-            landmarkName = "textView(_:shouldChangeTextIn:replacementText:)"
+            landmarkName = "textViewDidBeginEditing(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3000,7 +3000,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "209"
             endingLineNumber = "209"
-            landmarkName = "btnSelectDate(_:)"
+            landmarkName = "actionTimePicker(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3400,7 +3400,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "373"
             endingLineNumber = "373"
-            landmarkName = "hideLoader()"
+            landmarkName = "showLoader()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3448,8 +3448,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "367"
             endingLineNumber = "367"
-            landmarkName = "AddHomeWorkVC"
-            landmarkType = "21">
+            landmarkName = "showAlert(alert:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3464,8 +3464,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "385"
             endingLineNumber = "385"
-            landmarkName = "getSubjectList(arr:)"
-            landmarkType = "7">
+            landmarkName = "AddHomeWorkVC"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3478,8 +3478,8 @@
             filePath = "ISMS/HomeWork/Api/HomeworkApi.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "getHWSubjectList(url:parameters:completionResponse:completionnilResponse:complitionError:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3494,8 +3494,8 @@
             filePath = "ISMS/HomeWork/Api/HomeworkApi.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
             landmarkName = "getHWSubjectList(url:parameters:completionResponse:completionnilResponse:complitionError:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3616,93 +3616,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "8DF13D4F-8397-4D1A-B65E-7CB7EFDBD85F"
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ISMS/HomeWork/Api/HomeworkApi.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "multipartApi(postDict:url:completionResponse:completionError:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E8DC98E5-8156-472D-A01C-A94399FEC5F1"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ISMS/HomeWork/Api/HomeworkApi.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "multipartApi(postDict:url:completionResponse:completionError:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "E8DC98E5-8156-472D-A01C-A94399FEC5F1 - 67735d856bc88c70"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ISMS.HomeworkApi.multipartApi(postDict: Swift.Dictionary&lt;Swift.String, Any&gt;, url: Swift.String, completionResponse: (Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; (), completionError: (Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "ISMS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/DATA/ISMS%20git/ISMS/HomeWork/Api/HomeworkApi.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "73"
-                  endingLineNumber = "73"
-                  offsetFromSymbolStart = "2108">
-               </Location>
-               <Location
-                  uuid = "E8DC98E5-8156-472D-A01C-A94399FEC5F1 - e144463ab90ae686"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.MultipartFormData) -&gt; () in ISMS.HomeworkApi.multipartApi(postDict: Swift.Dictionary&lt;Swift.String, Any&gt;, url: Swift.String, completionResponse: (Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; (), completionError: (Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "ISMS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/DATA/ISMS%20git/ISMS/HomeWork/Api/HomeworkApi.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "73"
-                  endingLineNumber = "73"
-                  offsetFromSymbolStart = "716">
-               </Location>
-               <Location
-                  uuid = "E8DC98E5-8156-472D-A01C-A94399FEC5F1 - a9ea16cd5cac8d37"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.SessionManager.MultipartFormDataEncodingResult) -&gt; () in ISMS.HomeworkApi.multipartApi(postDict: Swift.Dictionary&lt;Swift.String, Any&gt;, url: Swift.String, completionResponse: (Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; (), completionError: (Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "ISMS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/DATA/ISMS%20git/ISMS/HomeWork/Api/HomeworkApi.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "74"
-                  endingLineNumber = "74"
-                  offsetFromSymbolStart = "168">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "614DC643-1694-4C72-BB3D-D3F55CD1A21E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ISMS/HomeWork/Api/HomeworkApi.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "multipartApi(postDict:url:completionResponse:completionError:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3717,8 +3638,8 @@
             filePath = "ISMS/HomeWork/Api/HomeworkApi.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
             landmarkName = "getHoweworkList(url:parameters:completionResponse:completionnilResponse:complitionError:)"
             landmarkType = "7">
             <Locations>
@@ -3950,14 +3871,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "C8D4CD8E-5F13-49D2-80AA-352419C89F4F"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ISMS/HomeWork/Api/HomeworkApi.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "multipartApi(postDict:url:completionResponse:completionError:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3975,6 +3896,149 @@
             startingLineNumber = "584"
             endingLineNumber = "584"
             landmarkName = "storeAndShare(withURLString:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "90C09D2D-5EDF-44E5-9FE4-6891A74F3159"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISMS/School/Api/AddSchoolAPI.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "updateSchoolInfo(url:parameter:uploadItems:completionResponse:completionnilResponse:completionError:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A3D44B58-478A-48A1-B49E-2F8E12540DB2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISMS/HomeWork/Api/HomeworkApi.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "multipartApi(postDict:url:completionResponse:completionError:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A3D44B58-478A-48A1-B49E-2F8E12540DB2 - 67735d856bc88c70"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ISMS.HomeworkApi.multipartApi(postDict: Swift.Dictionary&lt;Swift.String, Any&gt;, url: Swift.String, completionResponse: (Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; (), completionError: (Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "ISMS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/DATA/ISMS%20git/ISMS/HomeWork/Api/HomeworkApi.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "2108">
+               </Location>
+               <Location
+                  uuid = "A3D44B58-478A-48A1-B49E-2F8E12540DB2 - e144463ab90ae686"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.MultipartFormData) -&gt; () in ISMS.HomeworkApi.multipartApi(postDict: Swift.Dictionary&lt;Swift.String, Any&gt;, url: Swift.String, completionResponse: (Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; (), completionError: (Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "ISMS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/DATA/ISMS%20git/ISMS/HomeWork/Api/HomeworkApi.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "716">
+               </Location>
+               <Location
+                  uuid = "A3D44B58-478A-48A1-B49E-2F8E12540DB2 - a9ea16cd5cac8d37"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.SessionManager.MultipartFormDataEncodingResult) -&gt; () in ISMS.HomeworkApi.multipartApi(postDict: Swift.Dictionary&lt;Swift.String, Any&gt;, url: Swift.String, completionResponse: (Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; (), completionError: (Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "ISMS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/DATA/ISMS%20git/ISMS/HomeWork/Api/HomeworkApi.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "168">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "49777719-D0E6-418A-BA0A-CD8E9360DE33"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISMS/HomeWork/Api/HomeworkApi.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "multipartApi(postDict:url:completionResponse:completionError:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "87D1A420-98D4-4A94-9EA6-4A902335A5A4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISMS/HomeWork/Api/HomeworkApi.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "multipartApi(postDict:url:completionResponse:completionError:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "193C2DDD-444A-4EAA-B29B-F567C7554930"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISMS/HomeWork/Api/HomeworkApi.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "multipartApi(postDict:url:completionResponse:completionError:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BEF6340A-3C5B-4F25-AD44-5226F050A929"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISMS/Home/View/HomeVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

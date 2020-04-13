@@ -210,9 +210,9 @@ class AddHomeWorkVC: BaseUIViewController {
                     attachementArr.append((dd?["url"] as? URL)!)
                    }
                 
-                 self.showAlert(Message: "Homework added successfully")
-                self.navigationController?.popViewController(animated: true)
-//               self.viewModel?.saveHomework(AssignHomeWorkId: AssignHomeWorkId ?? 0, ClassId: selectedClassId ?? 0, SubjectId: subjectId ?? 0, Topic: txtfieldTitle.text ?? "", ClassSubjectId: selectedSubjectId ?? 0, Details: txtViewDescription.text ?? "", SubmissionDate: txtfieldSubmissionDate.text  ?? "", lstAssignHomeAttachmentMapping: attachementArr)
+               //  self.showAlert(Message: "Homework added successfully")
+              //  self.navigationController?.popViewController(animated: true)
+             self.viewModel?.saveHomework(AssignHomeWorkId: AssignHomeWorkId ?? 0, ClassId: selectedClassId ?? 0, SubjectId: subjectId ?? 0, Topic: txtfieldTitle.text ?? "", ClassSubjectId: selectedSubjectId ?? 0, Details: txtViewDescription.text ?? "", SubmissionDate: txtfieldSubmissionDate.text  ?? "", lstAssignHomeAttachmentMapping: attachementArr)
                 
             }
             

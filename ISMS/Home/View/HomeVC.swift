@@ -11,6 +11,20 @@ import SWRevealViewController
 
 class HomeVC: BaseUIViewController {
     
+    
+    @IBOutlet weak var viewName: UIView!
+    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var viewDept: UIView!
+    @IBOutlet weak var lblDept: UILabel!
+    
+    @IBOutlet weak var lblCount1: UILabel!
+    @IBOutlet weak var lblCount2: UILabel!
+    @IBOutlet weak var lblCount3: UILabel!
+    @IBOutlet weak var lblName1: UILabel!
+    @IBOutlet weak var lblName2: UILabel!
+    @IBOutlet weak var lblName3: UILabel!
+    
+    
     var roleUserName:String?
     var homeViewModel : HomeViewModel?
     var isUnauthorizedUser = false
@@ -35,29 +49,67 @@ class HomeVC: BaseUIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.homeViewModel = HomeViewModel.init(delegate: self)
-        self.homeViewModel?.attachView(view: self)
-        setLeftMenuButton()
-
-        //If it is came from direct login screen and have only one role then it is executed zero index role id of user
-        if HomeVC.isCameDirectFromLoginScreen == true{
-            HomeVC.isCameDirectFromLoginScreen = false
-            if let userRoleId = UserDefaults.standard.value(forKey: UserDefaultKeys.userRoleId.rawValue) as? Int,let userId = UserDefaults.standard.value(forKey: UserDefaultKeys.userId.rawValue) as? Int{
-                self.homeViewModel?.getMenuFromUserRoleId(userId: userId, roleId: userRoleId)
-            }
-        }else{
-            //For Multi Roles Of User
-            if let userRoleId = UserDefaults.standard.value(forKey: UserDefaultKeys.userRoleId.rawValue) as? Int
-            {
-                self.homeViewModel?.getMenuFromUserRoleId(userId: UserDefaultExtensionModel.shared.currentUserId, roleId: userRoleId)
-            }
-            else{
-                
-            }
-         //   menuVC.getMenuArraySuccess(data: )
-        }
+//        self.homeViewModel = HomeViewModel.init(delegate: self)
+//        self.homeViewModel?.attachView(view: self)
+//        setLeftMenuButton()
+//
+//        //If it is came from direct login screen and have only one role then it is executed zero index role id of user
+//        if HomeVC.isCameDirectFromLoginScreen == true{
+//            HomeVC.isCameDirectFromLoginScreen = false
+//            if let userRoleId = UserDefaults.standard.value(forKey: UserDefaultKeys.userRoleId.rawValue) as? Int,let userId = UserDefaults.standard.value(forKey: UserDefaultKeys.userId.rawValue) as? Int{
+//                self.homeViewModel?.getMenuFromUserRoleId(userId: userId, roleId: userRoleId)
+//            }
+//        }else{
+//            //For Multi Roles Of User
+//            if let userRoleId = UserDefaults.standard.value(forKey: UserDefaultKeys.userRoleId.rawValue) as? Int
+//            {
+//                self.homeViewModel?.getMenuFromUserRoleId(userId: UserDefaultExtensionModel.shared.currentUserId, roleId: userRoleId)
+//            }
+//            else{
+//
+//            }
+//         //   menuVC.getMenuArraySuccess(data: )
+//        }
+//
+//        self.title = KAPPContentRelatedConstants.kAppTitle
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         
-        self.title = KAPPContentRelatedConstants.kAppTitle
+               // Do any additional setup after loading the view.
+               self.homeViewModel = HomeViewModel.init(delegate: self)
+               self.homeViewModel?.attachView(view: self)
+               setLeftMenuButton()
+
+               //If it is came from direct login screen and have only one role then it is executed zero index role id of user
+               if HomeVC.isCameDirectFromLoginScreen == true{
+                   HomeVC.isCameDirectFromLoginScreen = false
+                   if let userRoleId = UserDefaults.standard.value(forKey: UserDefaultKeys.userRoleId.rawValue) as? Int,let userId = UserDefaults.standard.value(forKey: UserDefaultKeys.userId.rawValue) as? Int{
+                       self.homeViewModel?.getMenuFromUserRoleId(userId: userId, roleId: userRoleId)
+                   }
+               }else{
+                   //For Multi Roles Of User
+                   if let userRoleId = UserDefaults.standard.value(forKey: UserDefaultKeys.userRoleId.rawValue) as? Int
+                   {
+                       self.homeViewModel?.getMenuFromUserRoleId(userId: UserDefaultExtensionModel.shared.currentUserId, roleId: userRoleId)
+                   }
+                   else{
+                       
+                   }
+                //   menuVC.getMenuArraySuccess(data: )
+               }
+               
+               self.title = KAPPContentRelatedConstants.kAppTitle
+       // self.homeViewModel?.getRoleId(userID: UserDefaultExtensionModel.shared.currentUserId)
+        
+        if UserDefaultExtensionModel.shared.currentHODRoleName == "HOD" {
+            self.title = "HOD's Dashboard"
+            self.homeViewModel?.getData(userId: UserDefaultExtensionModel.shared.currentUserId) }
+        
+        styleView(textField: viewDept)
+        styleView(textField: viewName)
+
+
     }
     
     @IBAction func btnMenuAction(_ sender: UIBarButtonItem) {
@@ -74,6 +126,18 @@ class HomeVC: BaseUIViewController {
 //}
 
 extension HomeVC : HomeViewModelDelegate{
+    func hodData(data: homeResultData) {
+        
+        lblName.text = data.HodName
+        lblDept.text = (data.DepartmentName ?? "") + " " + "Department"
+        lblCount1.text = "\(String(describing: data.NumberofClasses!))"
+        lblCount2.text  = "\(String(describing: data.NumberofTeacher!))"
+        lblCount3.text = "\(String(describing: data.NumberofStudent!))"
+        lblName1.text = "Classes"
+          lblName2.text =  "Teachers"
+          lblName3.text =  "Student"
+    }
+    
     func userUnauthorize() {
         isUnauthorizedUser = true
     }

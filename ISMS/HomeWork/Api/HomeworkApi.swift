@@ -41,12 +41,22 @@ class HomeworkApi {
                 print(value)
                 if let Item = value as? [URL]{
                     
-                    
-                    
+
+//                        for (i,value1) in arry.enumerated(){
+//                            print(value1)
+//                            print(i)
+//                            if let dict = value1 as? [String: Any] {
+//                                print(dict)
+//                                if let value2 = dict["deleteAttachmentId"] as? Int {
+//                                    print(value2)
+                               //     multipartFormData.append(value, withName: "LstDeletedAttachment[" + "\(i)" + "].deleteAttachmentId")
+                              //  }
+                           // }
+                  
                     if Item.count > 0 {
                     for (_,value) in Item.enumerated()
                                           {
-                                              multipartFormData.append(value, withName: "File")
+                                              multipartFormData.append(value, withName: "IFile" )
                                           }
                     }
 //                    if let url = value as? URL{
