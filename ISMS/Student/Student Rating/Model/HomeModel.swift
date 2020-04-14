@@ -39,7 +39,10 @@ struct homeResultData: Mappable {
     var NumberofClasses : Int?
     var NumberofTeacher : Int?
     var NumberofStudent : Int?
-
+    var lstEvent : [ListData]?
+    var lstStudent : [ListData]?
+     var lstTeacher : [ListData]?
+     var lstclass : [ListData]?
     
     init?(map: Map) {
         
@@ -52,8 +55,30 @@ struct homeResultData: Mappable {
         NumberofClasses <- map["NumberofClasses"]
         NumberofTeacher <- map["NumberofTeacher"]
         NumberofStudent <- map["NumberofStudent"]
+        lstEvent <- map["lstEvent"]
+        lstStudent <- map["lstStudent"]
+        lstTeacher <- map["lstTeacher"]
+        lstclass <- map["lstclass"]
+        
 
     }
     
 }
 
+struct ListData: Mappable {
+    
+    var Name : String?
+    var ID : Int?
+    
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        
+        Name <- map["Name"]
+        ID <- map["ID"]
+ 
+    }
+    
+}

@@ -36,12 +36,61 @@ class AddHomeWorkVC: BaseUIViewController {
      var subjectId : Int? = 0
     var attachmentId : Int? = 0
     var selectedIndexPathForDelAttachment : Int? = 0
-    
+    var editableHomeWorkData : HomeworkResultData?
     @IBOutlet weak var heightTblView: NSLayoutConstraint!
+    @IBOutlet weak var btnAdd: UIButton!
+    
+    let formatter: DateFormatter = {
+              let formatter = DateFormatter()
+              formatter.dateFormat = "dd/MM/yyyy"
+              return formatter
+      }()
+    
+    let dateFormatter = DateFormatter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
         // Do any additional setup after loading the view.
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+
+        if editableHomeWorkData != nil  {
+           
+            self.title = "Update Homework"
+            heightTblView.constant =  CGFloat((editableHomeWorkData?.lstattachmentModels?.count ?? 0) * 51)
+            txtfieldTitle.text = editableHomeWorkData?.Topic
+            txtViewDescription.text = editableHomeWorkData?.Details
+            guard let dateFinal =  dateFormatter.date(from: editableHomeWorkData?.SubmssionDate ?? "") else {
+                print("Condition is not true ")
+                return
+            }
+            let dd = formatter.string(from: dateFinal)
+            txtfieldSubmissionDate.text = dd
+            btnAdd.setTitle("UPDATE", for: .normal)
+            lblPlaceHolder.isHidden = true
+            txtfieldClass.text = editableHomeWorkData?.ClassName
+            txtfieldSubject.text = editableHomeWorkData?.SubjectName
+            AssignHomeWorkId = editableHomeWorkData?.AssignHomeWorkId
+            selectedClassId = editableHomeWorkData?.ClassId
+            subjectId = editableHomeWorkData?.SubjectId
+            selectedSubjectId = editableHomeWorkData?.ClassSubjectId
+            
+            if editableHomeWorkData?.lstattachmentModels?.count ?? 0 > 0 {
+                
+                for (index, element) in (editableHomeWorkData?.lstattachmentModels?.enumerated())! {
+                  print("Item \(index): \(element)")
+                  
+                var modelHW = [String: Any]()
+                                     modelHW["url"] = nil
+                                     modelHW["fileName"] = element.FileName
+                                     modelHW["id"] = element.AssignWorkAttachmentId
+                                     uploadData.add(modelHW)
+                }
+                
+            }
+            
+
+        }
     }
     
     func setUp() {
@@ -52,7 +101,7 @@ class AddHomeWorkVC: BaseUIViewController {
         SetpickerView(self.view)
 
         self.viewModel = HomeworkViewModel.init(delegate: self)
-               self.viewModel?.attachView(viewDelegate: self)
+        self.viewModel?.attachView(viewDelegate: self)
         heightTblView.constant = 0
     }
     
@@ -147,7 +196,6 @@ class AddHomeWorkVC: BaseUIViewController {
         
         if checkInternetConnection(){
             if selectedClassId != 0 {
-            
             strWhichPickerSelected = "subject"
             self.viewModel?.getData(classId: selectedClassId ?? 0, teacherId: UserDefaultExtensionModel.shared.userRoleParticularId)
             }
@@ -168,7 +216,6 @@ class AddHomeWorkVC: BaseUIViewController {
     }
     
     @IBAction func attachFiles(_ sender: UIButton) {
-        
       let importMenu = UIDocumentPickerViewController(documentTypes: ["public.data", "public.content"], in: UIDocumentPickerMode.import)
         importMenu.delegate = self
         present(importMenu, animated: true, completion: nil)
@@ -177,9 +224,7 @@ class AddHomeWorkVC: BaseUIViewController {
     @IBAction func actionAddNotes(_ sender: UIButton) {
          if checkInternetConnection(){
             
-            
             if txtfieldClass.text == "" {
-                
                 self.showAlert(alert: "Please select class")
             }
             
@@ -207,7 +252,11 @@ class AddHomeWorkVC: BaseUIViewController {
                  _ = uploadData.enumerated().map { (index,element) in
                    
                    let dd = element as? [String:Any]
+                    if let url = dd?["url"] as? URL {
+                        if url != nil {
                     attachementArr.append((dd?["url"] as? URL)!)
+                        }
+                    }
                    }
                 
                //  self.showAlert(Message: "Homework added successfully")
@@ -226,8 +275,7 @@ class AddHomeWorkVC: BaseUIViewController {
     
     @IBAction func actionDelNotes(_ sender: UIButton) {
         
-        if uploadData.count > 0 {
-                   _ = uploadData[(sender as AnyObject).tag]
+        if uploadData.count > 0  || editableHomeWorkData != nil {
             selectedIndexPathForDelAttachment = sender.tag
                                 initializeCustomYesNoAlert(self.view, isHideBlurView: true)
                                 yesNoAlertView.delegate = self
@@ -245,14 +293,18 @@ extension AddHomeWorkVC : YesNoAlertViewDelegate{
     
     func yesBtnAction() {
         if self.checkInternetConnection(){
-           // if let SubjectId1 = self.homworkId{
+            
+            let dic = uploadData[selectedIndexPathForDelAttachment ?? 0] as? [String:Any]
+
+           if dic?["id"] as? Int == 0 {
             uploadData.removeObject(at: selectedIndexPathForDelAttachment ?? 0)
                               tblView.reloadData()
-                yesNoAlertView.removeFromSuperview()
-            //}else{
-                CommonFunctions.sharedmanagerCommon.println(object: "Delete event id is nil")
-                yesNoAlertView.removeFromSuperview()
-           // }
+          }else{
+            self.viewModel?.deleteAttachment(assignWorkAttachmentId: dic?["id"] as? Int )
+           
+          }
+            yesNoAlertView.removeFromSuperview()
+
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
             yesNoAlertView.removeFromSuperview()
@@ -269,15 +321,19 @@ extension AddHomeWorkVC : YesNoAlertViewDelegate{
 extension AddHomeWorkVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  
         return uploadData.count
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AddNotesCell
-        let dic = uploadData[indexPath.row] as? [String:Any]
-        cell.lblAttachment.text = dic?["fileName"] as? String
-        cell.btnDel.tag = indexPath.row
         
+        cell.btnDel.tag = indexPath.row
+
+       
+            let dic = uploadData[indexPath.row] as? [String:Any]
+            cell.lblAttachment.text = dic?["fileName"] as? String
         return cell
     }
     
@@ -318,7 +374,7 @@ extension AddHomeWorkVC: UIDocumentMenuDelegate,UIDocumentPickerDelegate{
       
             
         else{
-            var modelHW = [String: Any]()
+                                 var modelHW = [String: Any]()
                                  modelHW["url"] = myURL
                                  modelHW["fileName"] = myURL.lastPathComponent
                                  modelHW["id"] = 0
@@ -379,6 +435,12 @@ extension AddHomeWorkVC : ViewDelegate {
 }
 
 extension AddHomeWorkVC : AddHomeWorkDelegate {
+    func attachmentDeletedSuccessfully() {
+                   uploadData.removeObject(at: selectedIndexPathForDelAttachment ?? 0)
+        tblView.reloadData()
+
+    }
+    
     func addedSuccessfully() {
         _ = self.navigationController?.popViewController(animated: true)
     }

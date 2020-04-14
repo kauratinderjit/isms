@@ -22,7 +22,7 @@ class HomeworkListVC: BaseUIViewController {
         super.viewDidLoad()
         
         self.viewModel = HomeworkViewModel.init(delegate: self)
-               self.viewModel?.attachView(viewDelegate: self)
+        self.viewModel?.attachView(viewDelegate: self)
         setView()
     }
     
@@ -35,6 +35,13 @@ class HomeworkListVC: BaseUIViewController {
     }
     
     @IBAction func editAction(_ sender: UIButton) {
+        if homeWorkList?.count ?? 0 > 0 {
+        let data = homeWorkList?[(sender as AnyObject).tag]
+            let vc = UIStoryboard.init(name:"Homework", bundle: Bundle.main).instantiateViewController(withIdentifier: "AddHomeWorkVC") as! AddHomeWorkVC
+            vc.editableHomeWorkData = data
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }
     }
     
     
@@ -63,6 +70,7 @@ extension HomeworkListVC : UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! HomeWorkCell
         cell.btnDel.tag = indexPath.row
+        cell.btnEdit.tag = indexPath.row
         cell.lblTitle.text = homeWorkList?[indexPath.row].Topic
         cell.lblSubjectName.text = homeWorkList?[indexPath.row].SubjectName
         cell.lblClassName.text = homeWorkList?[indexPath.row].ClassName
@@ -91,6 +99,10 @@ extension HomeworkListVC : ViewDelegate {
 }
 
 extension HomeworkListVC : AddHomeWorkDelegate {
+    func attachmentDeletedSuccessfully() {
+        
+    }
+    
     func addedSuccessfully() {
         
     }

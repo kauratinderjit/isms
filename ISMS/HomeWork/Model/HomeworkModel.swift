@@ -39,8 +39,14 @@ class HomeworkListModel : Mappable{
         var ClassName : String?
         var SubjectName : String?
         var Topic : String?
+        var Details : String?
+        var SubmssionDate : String?
+        var ClassId : Int?
+        var ClassSubjectId : Int?
+        var SubjectId : Int?
+        var lstattachmentModels: [lstattachmentModels]?
         
-        
+
         init?(map: Map) {
             
         }
@@ -51,9 +57,36 @@ class HomeworkListModel : Mappable{
             ClassName <- map["ClassName"]
             SubjectName <- map["SubjectName"]
             Topic <- map["Topic"]
+            Details <- map["Details"]
+            SubmssionDate <- map["SubmssionDate"]
+            ClassId <- map["ClassId"]
+            ClassSubjectId <- map["ClassSubjectId"]
+            SubjectId <- map["SubjectId"]
+            lstattachmentModels <- map["lstattachmentModels"]
+            
         }
         
     }
+
+struct lstattachmentModels: Mappable {
+     
+     var AssignWorkAttachmentId : Int?
+     var AttachmentUrl : String?
+     var FileName : String?
+     var IFile : URL?
+     
+     init?(map: Map) {
+     }
+     
+     mutating func mapping(map: Map) {
+    
+        AssignWorkAttachmentId <- map["AssignWorkAttachmentId"]
+        AttachmentUrl <- map["AttachmentUrl"]
+        FileName <- map["FileName"]
+
+     }
+     
+ }
     
 
 

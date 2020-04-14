@@ -23,7 +23,8 @@ class HomeVC: BaseUIViewController {
     @IBOutlet weak var lblName1: UILabel!
     @IBOutlet weak var lblName2: UILabel!
     @IBOutlet weak var lblName3: UILabel!
-    
+    @IBOutlet weak var viewEvents: UIView!
+    var arrEventlist : [ListData]?
     
     var roleUserName:String?
     var homeViewModel : HomeViewModel?
@@ -45,10 +46,14 @@ class HomeVC: BaseUIViewController {
      var menuHOD = [KMenuRowsTitles.kHomeTitle,KMenuRowsTitles.kManageTeachersTitle,KMenuRowsTitles.kManageStudentTitle,KMenuRowsTitles.kManageSubjectTitle,KMenuRowsTitles.kManageClassSubjectTitle,KMenuRowsTitles.kClassPeriodTimeTableTitle,KMenuRowsTitles.kAssignSubjectTeacherToPeriodTitle,KMenuRowsTitles.kAddPeriod,KMenuRowsTitles.kLogOutTitle]
  
     var menuVC = MenuVC()
+    @IBOutlet weak var tblViewListing: UITableView!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
 //        self.homeViewModel = HomeViewModel.init(delegate: self)
 //        self.homeViewModel?.attachView(view: self)
 //        setLeftMenuButton()
@@ -72,6 +77,7 @@ class HomeVC: BaseUIViewController {
 //        }
 //
 //        self.title = KAPPContentRelatedConstants.kAppTitle
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,9 +112,7 @@ class HomeVC: BaseUIViewController {
             self.title = "HOD's Dashboard"
             self.homeViewModel?.getData(userId: UserDefaultExtensionModel.shared.currentUserId) }
         
-        styleView(textField: viewDept)
-        styleView(textField: viewName)
-
+         
 
     }
     
@@ -134,8 +138,11 @@ extension HomeVC : HomeViewModelDelegate{
         lblCount2.text  = "\(String(describing: data.NumberofTeacher!))"
         lblCount3.text = "\(String(describing: data.NumberofStudent!))"
         lblName1.text = "Classes"
-          lblName2.text =  "Teachers"
-          lblName3.text =  "Student"
+        lblName2.text =  "Teachers"
+        lblName3.text =  "Students"
+        
+        arrEventlist = data.lstEvent
+        tblViewListing.reloadData()
     }
     
     func userUnauthorize() {
@@ -191,4 +198,28 @@ extension HomeVC : OKAlertViewDelegate{
             CommonFunctions.sharedmanagerCommon.setRootLogin()
         }
     }
+}
+extension HomeVC : UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return arrEventlist?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ExamScheduleTableViewCell
+       
+        cell?.lblTitle.text = arrEventlist?[indexPath.row].Name
+        
+        cell?.imgView.addInitials(first: "E", second: "")
+        return cell!
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 95
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    
+}
 }
