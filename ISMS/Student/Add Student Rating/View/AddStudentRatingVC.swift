@@ -546,15 +546,6 @@ extension AddStudentRatingVC : UITableViewDataSource , AddStudentRatingTableView
         return cell
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
 
 

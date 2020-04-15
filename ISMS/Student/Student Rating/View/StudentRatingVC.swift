@@ -10,6 +10,7 @@ import UIKit
 
 class StudentRatingVC: BaseUIViewController {
     
+    @IBOutlet weak var addRatingBtn: UIButton!
     @IBOutlet var txtfieldClass: UITextField!
     @IBOutlet var txtfieldSubject: UITextField!
     @IBOutlet var tableView: UITableView!
@@ -30,6 +31,7 @@ class StudentRatingVC: BaseUIViewController {
     var arrStudent = [StudentRatingResultData]()
     var arrSkillList = [AddStudentRatingResultData]()
     var arrSubjectList1 = [AddStudentRatingResultData]()
+    var isFromHod :Bool!
     var currentMonth = ""
     var arrMonthlist = ["Jan","Feb","March","April","May","June","July","Augest","September","October","Novemeber","Decemeber"]
     
@@ -51,8 +53,13 @@ class StudentRatingVC: BaseUIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        if isFromHod == true{
+            addRatingBtn.isHidden = true
+        }else{
+            addRatingBtn.isHidden = false
+        }
         if checkInternetConnection(){
-            self.viewModel?.classList(searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: KIntegerConstants.kInt0)
+//            self.viewModel?.classList(searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: KIntegerConstants.kInt0)
             self.viewModel?.GetSkillList(id : 2 , enumType : 17)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
@@ -120,25 +127,7 @@ class StudentRatingVC: BaseUIViewController {
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
-        //        if checkInternetConnection(){
-        //            if arrSubjectlist.count > 0{
-        //                UpdatePickerModel2(count: arrSubjectList1.count, sharedPickerDelegate: self, View:  self.view, index: 0)
-        //                selectedSubjectId = arrSubjectlist[0].subjectId
-        //
-        ////                let text = txtfieldClass.text!
-        ////                if let index = arrClassList.index(where: { (dict) -> Bool in
-        ////                    return dict.name ?? "" == text // Will found index of matched id
-        ////                }) {
-        ////                    print("Index found :\(index)")
-        ////                    UpdatePickerModel(count: arrClassList.count, sharedPickerDelegate: self as! SharedUIPickerDelegate, View:  self.view, startPickerIndex: index)
-        ////                }
-        //            }
-        //            //           self.viewModel?.classList(searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: KIntegerConstants.kInt0)
-        //        }else{
-        //            self.showAlert(alert: Alerts.kNoInternetConnection)
-        //        }
-        //
-        //
+      
     }
     
     
@@ -209,6 +198,7 @@ extension StudentRatingVC : StudentRatingDelegate {
                 self.arrSubjectList1 = data1
                 if let subjectName = arrSubjectList1[0].studentName{
                     txtfieldSubject.text = subjectName
+                    self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID: 1, classID: 1 )
                     //                    RegisterClassDataModel.sharedInstance?.classID = arrSkillList[0].studentID
                     
                 }
@@ -318,6 +308,8 @@ extension StudentRatingVC : SharedUIPickerDelegate{
                         //                        self.viewModel?.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: pageSize,sortColumnDir: "",sortColumn: "", particularId: id)
                     }
                 }
+            }else if isSubjectSelected == true{
+                self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID:1, classID: 1 )
             }
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
@@ -417,30 +409,46 @@ extension StudentRatingVC : UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard.init(name: "Student", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "AddStudentRatingVC") as! AddStudentRatingVC
-        if currentMonth == textfieldMonth.text! {
-            //User can edit or not
-            vc.type = "Edit"
-        }
-        else {
-            vc.type = "Show"
-        }
-        if let name = arrStudent[indexPath.row].studentName {
-            vc.studentName = name
-        }
-        if let className = txtfieldClass.text {
-            vc.className = className
-        }
-        if let subjectName = txtfieldSubject.text {
-            vc.subjectName = subjectName
+        
+        if isFromHod == true{
+            let storyboard = UIStoryboard.init(name: "Student", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "SubjectSkillRatingVC") as! SubjectSkillRatingVC
+//            if arrSubjectlist.count > 0{
+                vc.subjectName = txtfieldSubject.text
+//            }
+            
+            //        if let id = arrSubjectList[indexPath.row].ClassSubjectId {
+            //            print("your value printed : \(id)")
+            //            vc.classId = id
+            //        }
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            let storyboard = UIStoryboard.init(name: "Student", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "AddStudentRatingVC") as! AddStudentRatingVC
+            if currentMonth == textfieldMonth.text! {
+                //User can edit or not
+                vc.type = "Edit"
+            }
+            else {
+                vc.type = "Show"
+            }
+            if let name = arrStudent[indexPath.row].studentName {
+                vc.studentName = name
+            }
+            if let className = txtfieldClass.text {
+                vc.className = className
+            }
+            if let subjectName = txtfieldSubject.text {
+                vc.subjectName = subjectName
+            }
+            
+            if let classid = selectedClassId {
+                vc.selectedClassId = classid
+            }
+            
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         
-        if let classid = selectedClassId {
-            vc.selectedClassId = classid
-        }
-        
-        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     

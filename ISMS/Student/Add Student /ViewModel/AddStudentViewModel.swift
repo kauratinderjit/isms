@@ -91,7 +91,7 @@ class AddStudentViewModel{
             self.addStudentView?.showLoader()
             
             AdStudentApi.sharedInstance.addStudent(url: ApiEndpoints.KAddStudentApi, parameters: paramDict, completionResponse: { (responseModel) in
-                print(responseModel)
+                print("update student: ",responseModel)
                 
                 self.addStudentView?.hideLoader()
                 if responseModel.statusCode == KStatusCode.kStatusCode200{

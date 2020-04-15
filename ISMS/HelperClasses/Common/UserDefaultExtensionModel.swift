@@ -120,4 +120,15 @@ class UserDefaultExtensionModel : NSObject{
         }
     }
     
+    var HODDepartmentId : Int{
+        get {
+            let HODDepartmentId = UserDefaults.standard.integer(forKey: UserDefaultKeys.HODDepartmentId.rawValue)
+            return HODDepartmentId
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.HODDepartmentId.rawValue)
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
 }

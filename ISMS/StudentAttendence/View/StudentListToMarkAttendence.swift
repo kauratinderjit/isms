@@ -28,7 +28,7 @@ class StudentListToMarkAttendence: BaseUIViewController {
         
         self.viewModel = StudentListForAttViewModel.init(delegate: self)
         self.viewModel?.attachView(viewDelegate: self)
-        self.title = "Student List"
+        self.title = "Student Attendence"
         tableViewStudent.separatorStyle = .none
         tableViewStudent.tableFooterView = UIView()
         tableViewStudent.delegate = self

@@ -46,6 +46,7 @@ class AddClassVC: BaseUIViewController {
                 self.viewModel?.getClassDetail(classId: classId)
                 self.title = KStoryBoards.KAddClassIdentifiers.kAddClassTitle
             }else{
+                 self.viewModel?.getDepartments(selectedDepartmentId: 0, enumtype: CountryStateCity.department.rawValue)
                 self.title = KStoryBoards.KAddClassIdentifiers.kAddClassTitle
             }
         }else{
@@ -57,7 +58,7 @@ class AddClassVC: BaseUIViewController {
     //MARK:- Action Add Class
     @IBAction func btnAddDepartment(_ sender: UIButton) {
         if classId == 0{
-            self.viewModel?.addUpdateClass(classid: 0, className: txtFieldClass.text, selectedDepartmentId: selectedDepartmentId, departmentName: txtFieldDepartment.text, description: txtViewDescription.text, others: txtfieldOthers.text, imageUrl: selectedImageUrl)
+            self.viewModel?.addUpdateClass(classid: 0, className: txtFieldClass.text, selectedDepartmentId: 31, departmentName: "ECE", description: txtViewDescription.text, others: txtfieldOthers.text, imageUrl: selectedImageUrl)
         }
         if classId != 0{
             if selectedImageUrl != nil{
@@ -66,7 +67,7 @@ class AddClassVC: BaseUIViewController {
                     selectedImageUrl = URL(string: "")
                 }
             }
-            self.viewModel?.addUpdateClass(classid: classId, className: txtFieldClass.text, selectedDepartmentId: selectedDepartmentId, departmentName: txtFieldDepartment.text, description: txtViewDescription.text, others: txtfieldOthers.text, imageUrl: selectedImageUrl)
+            self.viewModel?.addUpdateClass(classid: classId, className: txtFieldClass.text, selectedDepartmentId: 31, departmentName: "ECE", description: txtViewDescription.text, others: txtfieldOthers.text, imageUrl: selectedImageUrl)
         }
     }
     
@@ -80,11 +81,11 @@ class AddClassVC: BaseUIViewController {
     //MARK:- Button action open UIPicker
     @IBAction func btnActionClassDepartmentPicker(_ sender: UIButton) {
        view.endEditing(true)
-        if checkInternetConnection(){
-            self.viewModel?.getDepartments(selectedDepartmentId: 0, enumtype: CountryStateCity.department.rawValue)
-        }else{
-            self.showAlert(alert: Alerts.kNoInternetConnection)
-        }
+//        if checkInternetConnection(){
+//            self.viewModel?.getDepartments(selectedDepartmentId: 0, enumtype: CountryStateCity.department.rawValue)
+//        }else{
+//            self.showAlert(alert: Alerts.kNoInternetConnection)
+//        }
     }
 }
 
@@ -247,3 +248,81 @@ extension AddClassVC : OKAlertViewDelegate{
     }
 }
 
+//MARK:- Add Class Delegate
+extension AddClassVC : AddClassDelegate{
+    
+    //MARK:- Unathorized User
+    func unauthorizedUser() {
+        isUnauthorizedUser = true
+    }
+    
+    //MARK:- Class Detail Success
+    func getClassDetailDidSucceed(data: ClassDetailModel) {
+        self.setDataInTextFields(data: data)
+    }
+    
+    //MARK:- Add Class Succeed
+    func addClassDataDidSucceed(data : CommonSuccessResponseModel) {
+        isClassAddUpdateSuccess = true
+    }
+    
+    //MARK:- Get Department Dropdown success
+    func getDepartmentdropdownDidSucceed(data: GetCommonDropdownModel) {
+        departmentData = data
+        if let count = data.resultData?.count{
+            if count > 0 {
+                
+                for i in 0..<count{
+                    if data.resultData?[i].id == UserDefaultExtensionModel.shared.HODDepartmentId {
+                        self.txtFieldDepartment.text = data.resultData?[i].name
+                    }
+                }
+                //                UpdatePickerModel(count: departmentData?.resultData?.count ?? 0, sharedPickerDelegate: self, View: self.view)
+            }else{
+                print("City Count is zero.")
+            }
+        }
+    }
+}
+
+//MARK:- Picker View Delegates
+extension AddClassVC:SharedUIPickerDelegate{
+    func DoneBtnClicked() {
+        
+        if let count = departmentData.resultData?.count{
+            if count > 0{
+                if selectedDepartmentIndex == 0{
+                    self.txtFieldDepartment.text = self.departmentData?.resultData?[0].name
+                    self.selectedDepartmentId = self.departmentData?.resultData?[0].id ?? 0
+                }else{
+                    self.txtFieldDepartment.text = self.departmentData?.resultData?[selectedDepartmentIndex].name
+                    self.selectedDepartmentId = self.departmentData?.resultData?[selectedDepartmentIndex].id ?? 0
+                }
+            }
+        }
+    }
+    
+    func GetTitleForRow(index: Int) -> String {
+        if let count = departmentData.resultData?.count{
+            if count > 0{
+                //                txtFieldDepartment.text = departmentData?.resultData?[0].name
+                return departmentData?.resultData?[index].name ?? ""
+            }
+        }
+        return ""
+    }
+    
+    func SelectedRow(index: Int) {
+        //Using Exist Method of collection prevent from indexoutof range error
+        if let count = departmentData.resultData?.count{
+            if count > 0{
+                if (self.departmentData.resultData?[exist: index]?.name) != nil{
+                    //                    self.txtFieldDepartment.text = self.departmentData?.resultData?[index].name
+                    //                    self.selectedDepartmentId = self.departmentData?.resultData?[index].id ?? 0
+                    self.selectedDepartmentIndex = index
+                    print("Selected Country:- \(String(describing: self.departmentData?.resultData?[index].name))")
+                }
+            }
+        }
+    }
+}

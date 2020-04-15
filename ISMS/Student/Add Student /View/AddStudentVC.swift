@@ -481,14 +481,14 @@ class AddStudentVC: BaseUIViewController {
     
     
     @IBAction func btnDepartmentDropDown(_ sender: Any) {
-        departmentDropDown = true
-        if departmentData.count > 0{
-            self.txtFieldDepartment.text = self.departmentData[0].name
-            self.selectedDepartmentID = self.departmentData[0].id ?? 0
-            self.selectedDepartmentIndex = 0
-            print("Selected Department:- \(String(describing: self.departmentData[0].name))")
-            UpdatePickerModel(count: departmentData.count , sharedPickerDelegate: self, View:  self.view)
-        }
+//        departmentDropDown = true
+//        if departmentData.count > 0{
+//            self.txtFieldDepartment.text = self.departmentData[0].name
+//            self.selectedDepartmentID = self.departmentData[0].id ?? 0
+//            self.selectedDepartmentIndex = 0
+//            print("Selected Department:- \(String(describing: self.departmentData[0].name))")
+//            UpdatePickerModel(count: departmentData.count , sharedPickerDelegate: self, View:  self.view)
+//        }
     }
     
     
@@ -975,9 +975,12 @@ extension AddStudentVC : AddStudentDelegate{
                     let containsSameValue = departmentData.contains(where: {$0.id == value.id})
                     if containsSameValue == false{
                         departmentData.append(value)
+                        if value.id ==  31{
+                            self.txtFieldDepartment.text = value.name
+                        }
                     }
                 }
-                 self.ViewModel?.getClassId(id: selectedDepartmentID, enumtype: 6)
+                 self.ViewModel?.getClassId(id: UserDefaultExtensionModel.shared.HODDepartmentId, enumtype: 6)
                 
             }else{
                 CommonFunctions.sharedmanagerCommon.println(object: "Zero")

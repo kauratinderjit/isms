@@ -96,7 +96,11 @@ public struct ApiEndpoints
     public static let kGetStudentsByClassId = "api/Institute/GetStudentsByClassId"
     
 
- 
+// AddTeacherRating api
+     public static let kTeacherRatingAdd = "api/Institute/TeachersAssignedToStudent"
+     public static let kGetSubjectListByteacherId = "api/Institute/GetSubjectListByteacherId"
+     public static let kAddTeacherFeedBack = "api/Institute/AddTeacherFeedBack"
+     public static let kGetTeacherRatingByHOD = "api/Institute/GetTeacherRatingByHOD"
 
     
     //Chapter Api
