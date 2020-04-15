@@ -14,6 +14,7 @@ protocol AddHomeWorkDelegate: class {
     func classListDidSuccess(data: GetCommonDropdownModel)
     func getSubjectList (arr :[GetSubjectHWResultData])
     func addedSuccessfully ()
+    func attachmentDeletedSuccessfully ()
 }
 
 
@@ -87,8 +88,8 @@ class HomeworkViewModel {
                      "Topic" : Topic,
                      "ClassSubjectId" :ClassSubjectId ,
                      "Details" : Details,
-                     "SubmissionDate" : SubmissionDate,
-                     "File":lstAssignHomeAttachmentMapping] as [String : Any]
+                     "strSubmissionDate" : SubmissionDate,
+                     "lstAssignHomeAttachmentMapping":lstAssignHomeAttachmentMapping] as [String : Any]
         
         
         HomeworkApi.sharedManager.multipartApi(postDict: param, url: url, completionResponse: { (response) in
@@ -186,6 +187,34 @@ class HomeworkViewModel {
                         if DeleteSubjectModel.status == true{
                            self.homeworkViewDelegate?.hideLoader()
                     self.getHomeworkData(teacherId: UserDefaultExtensionModel.shared.userRoleParticularId)
+                        }else{
+                           self.homeworkViewDelegate?.hideLoader()
+                           self.homeworkViewDelegate?.showAlert(alert: DeleteSubjectModel.message ?? Alerts.kServerErrorAlert)
+                             }
+                    }
+            }, completionnilResponse: { (nilResponse) in
+                    self.homeworkViewDelegate?.hideLoader()
+                    if let res = nilResponse{
+                        self.homeworkViewDelegate?.showAlert(alert: res)
+                    }
+                }) { (error) in
+                    self.homeworkViewDelegate?.hideLoader()
+                    if let err = error{
+                        self.homeworkViewDelegate?.showAlert(alert: err.localizedDescription)
+                    }
+                }
+    }
+    
+    func deleteAttachment(assignWorkAttachmentId: Int?) {
+        
+        let url = "api/Institute/DeleteAssignAttachment"+"?assignWorkAttachmentId=\(String(describing: assignWorkAttachmentId!))"
+                self.homeworkViewDelegate?.showLoader()
+                SubjectApi.sharedInstance.deleteSubjectApi(url: url,completionResponse: {DeleteSubjectModel in
+                     self.homeworkViewDelegate?.hideLoader()
+                    if DeleteSubjectModel.statusCode == KStatusCode.kStatusCode200{
+                        if DeleteSubjectModel.status == true{
+                           self.homeworkViewDelegate?.hideLoader()
+                            self.addHomeworkDelegate?.attachmentDeletedSuccessfully()
                         }else{
                            self.homeworkViewDelegate?.hideLoader()
                            self.homeworkViewDelegate?.showAlert(alert: DeleteSubjectModel.message ?? Alerts.kServerErrorAlert)

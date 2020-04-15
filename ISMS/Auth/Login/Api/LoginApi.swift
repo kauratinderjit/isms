@@ -290,14 +290,62 @@ class LoginApi
         }
     }
     
+
+       func getdata(url : String,parameters: [String : Any]?,completionResponse:  @escaping (homeModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
+            
+            let urlCmplete = BaseUrl.kBaseURL+url
+            print(urlCmplete)
+            
+            var accessTokken = ""
+            if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String
+            {
+                accessTokken = str
+            }
+            
+            let headers = [KConstants.kHeaderAuthorization:KConstants.kHeaderBearer+" "+accessTokken,KConstants.kAccept: KConstants.kApplicationJson]
+            
+            
+            Alamofire.request(urlCmplete, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+                print(response)
+                if response.result.isSuccess
+                {
+                    guard let data = response.value else{return}
+                    
+                    if let responseData  = data as? [String : Any]
+                    {
+                        print("responseData: ",responseData)
+                        self.getHomeModel(data: responseData, completionResponse: { (responseModel) in
+                            completionResponse(responseModel)
+                        }, completionError: { (mapperError) in
+                            completionnilResponse(mapperError)
+                        })
+                        
+                    }else{
+                        CommonFunctions.sharedmanagerCommon.println(object: "Get User Access Error:- \(data) ")
+                    }
+                    
+                }
+                else
+                {
+                    complitionError(response.error)
+    //                return
+                }
+            }
+            
+        }
+    
+    
+    private func getHomeModel(data: [String : Any],completionResponse:  @escaping (homeModel) -> Void,completionError: @escaping (String?) -> Void)  {
+        
+        let UserMenuRoleIdData = homeModel(JSON: data)
+        
+        if UserMenuRoleIdData != nil{
+            completionResponse(UserMenuRoleIdData!)
+        }else{
+            completionError(Alerts.kMapperModelError)
+        }
+    }
+    
+    
     
 }
-
-
-/*else if statusCode == KStatusCode.kStatusCode404{
-    self.verifyPhoneNoData(data: responseData, completionResponse: { (responseModel) in
-        completionResponse(responseModel)
-    }, completionError: { (error) in
-        CommonFunctions.sharedmanagerCommon.println(object: error!)
-    })
-}*/

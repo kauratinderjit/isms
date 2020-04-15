@@ -324,6 +324,7 @@ extension MenuVC : UITableViewDelegate{
             vc?.isFromViewAttendence = true
             vc?.isFromTeacher = 1
             vc?.teacherViewTimeTble = false
+
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)

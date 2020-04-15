@@ -43,14 +43,23 @@ class ClassTimeTableVC: BaseUIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if isFromTeacher == 0{
-            self.title = "View Attandance"
+            self.title = "View Attendance"
         }else if isFromTeacher == 1{
-            self.title = "Mark Student Attandance"
+            self.title = "Mark Student Attendance"
         }else if isFromTeacher == 2{
             self.title = KStoryBoards.KClassPeriodIdIdentifiers.kClassPeriodTimeTableTitle
         }
+<<<<<<< HEAD
         if teacherViewTimeTble == true {
               self.title = "View TimeTable"
+=======
+        else{
+            
+            if teacherViewTimeTble == true {
+                self.title = "view Timetable"
+
+            }
+>>>>>>> 5d030824bfa195dd0bd7596e5b61ba7c5d286c8a
         }
         checkCameFromWhichScreen()
     }

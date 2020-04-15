@@ -11,6 +11,21 @@ import SWRevealViewController
 
 class HomeVC: BaseUIViewController {
     
+    
+    @IBOutlet weak var viewName: UIView!
+    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var viewDept: UIView!
+    @IBOutlet weak var lblDept: UILabel!
+    
+    @IBOutlet weak var lblCount1: UILabel!
+    @IBOutlet weak var lblCount2: UILabel!
+    @IBOutlet weak var lblCount3: UILabel!
+    @IBOutlet weak var lblName1: UILabel!
+    @IBOutlet weak var lblName2: UILabel!
+    @IBOutlet weak var lblName3: UILabel!
+    @IBOutlet weak var viewEvents: UIView!
+    var arrEventlist : [ListData]?
+    
     var roleUserName:String?
     var homeViewModel : HomeViewModel?
     var isUnauthorizedUser = false
@@ -31,33 +46,88 @@ class HomeVC: BaseUIViewController {
      var menuHOD = [KMenuRowsTitles.kHomeTitle,KMenuRowsTitles.kManageTeachersTitle,KMenuRowsTitles.kManageStudentTitle,KMenuRowsTitles.kManageSubjectTitle,KMenuRowsTitles.kManageClassSubjectTitle,KMenuRowsTitles.kClassPeriodTimeTableTitle,KMenuRowsTitles.kAssignSubjectTeacherToPeriodTitle,KMenuRowsTitles.kAddPeriod,KMenuRowsTitles.kLogOutTitle]
  
     var menuVC = MenuVC()
+    @IBOutlet weak var tblViewListing: UITableView!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.homeViewModel = HomeViewModel.init(delegate: self)
-        self.homeViewModel?.attachView(view: self)
-        setLeftMenuButton()
-
-        //If it is came from direct login screen and have only one role then it is executed zero index role id of user
-        if HomeVC.isCameDirectFromLoginScreen == true{
-            HomeVC.isCameDirectFromLoginScreen = false
-            if let userRoleId = UserDefaults.standard.value(forKey: UserDefaultKeys.userRoleId.rawValue) as? Int,let userId = UserDefaults.standard.value(forKey: UserDefaultKeys.userId.rawValue) as? Int{
-                self.homeViewModel?.getMenuFromUserRoleId(userId: userId, roleId: userRoleId)
-            }
-        }else{
-            //For Multi Roles Of User
-            if let userRoleId = UserDefaults.standard.value(forKey: UserDefaultKeys.userRoleId.rawValue) as? Int
-            {
-                self.homeViewModel?.getMenuFromUserRoleId(userId: UserDefaultExtensionModel.shared.currentUserId, roleId: userRoleId)
-            }
-            else{
-                
-            }
-         //   menuVC.getMenuArraySuccess(data: )
-        }
         
-        self.title = KAPPContentRelatedConstants.kAppTitle
+//        self.homeViewModel = HomeViewModel.init(delegate: self)
+//        self.homeViewModel?.attachView(view: self)
+//        setLeftMenuButton()
+//
+//        //If it is came from direct login screen and have only one role then it is executed zero index role id of user
+//        if HomeVC.isCameDirectFromLoginScreen == true{
+//            HomeVC.isCameDirectFromLoginScreen = false
+//            if let userRoleId = UserDefaults.standard.value(forKey: UserDefaultKeys.userRoleId.rawValue) as? Int,let userId = UserDefaults.standard.value(forKey: UserDefaultKeys.userId.rawValue) as? Int{
+//                self.homeViewModel?.getMenuFromUserRoleId(userId: userId, roleId: userRoleId)
+//            }
+//        }else{
+//            //For Multi Roles Of User
+//            if let userRoleId = UserDefaults.standard.value(forKey: UserDefaultKeys.userRoleId.rawValue) as? Int
+//            {
+//                self.homeViewModel?.getMenuFromUserRoleId(userId: UserDefaultExtensionModel.shared.currentUserId, roleId: userRoleId)
+//            }
+//            else{
+//
+//            }
+//         //   menuVC.getMenuArraySuccess(data: )
+//        }
+//
+//        self.title = KAPPContentRelatedConstants.kAppTitle
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+               // Do any additional setup after loading the view.
+               self.homeViewModel = HomeViewModel.init(delegate: self)
+               self.homeViewModel?.attachView(view: self)
+               setLeftMenuButton()
+
+               //If it is came from direct login screen and have only one role then it is executed zero index role id of user
+               if HomeVC.isCameDirectFromLoginScreen == true{
+                   HomeVC.isCameDirectFromLoginScreen = false
+                   if let userRoleId = UserDefaults.standard.value(forKey: UserDefaultKeys.userRoleId.rawValue) as? Int,let userId = UserDefaults.standard.value(forKey: UserDefaultKeys.userId.rawValue) as? Int{
+                       self.homeViewModel?.getMenuFromUserRoleId(userId: userId, roleId: userRoleId)
+                   }
+               }else{
+                   //For Multi Roles Of User
+                   if let userRoleId = UserDefaults.standard.value(forKey: UserDefaultKeys.userRoleId.rawValue) as? Int
+                   {
+                       self.homeViewModel?.getMenuFromUserRoleId(userId: UserDefaultExtensionModel.shared.currentUserId, roleId: userRoleId)
+                   }
+                   else{
+                       
+                   }
+                //   menuVC.getMenuArraySuccess(data: )
+               }
+               
+               self.title = KAPPContentRelatedConstants.kAppTitle
+       // self.homeViewModel?.getRoleId(userID: UserDefaultExtensionModel.shared.currentUserId)
+        
+        if UserDefaultExtensionModel.shared.currentHODRoleName == "HOD" {
+            self.title = "HOD's Dashboard"
+            self.homeViewModel?.getData(userId: UserDefaultExtensionModel.shared.currentUserId) }
+        else if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Teacher") {
+              self.title = "Teacher's Dashboard"
+            tblViewListing.isHidden = true
+        }
+        else if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Admin") {
+                   self.title = "Admin's Dashboard"
+            tblViewListing.isHidden = true
+
+             }
+        else if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Student") {
+                     self.title = "Student's Dashboard"
+            tblViewListing.isHidden = true
+
+               }
+        
+         
+
     }
     
     @IBAction func btnMenuAction(_ sender: UIBarButtonItem) {
@@ -74,6 +144,21 @@ class HomeVC: BaseUIViewController {
 //}
 
 extension HomeVC : HomeViewModelDelegate{
+    func hodData(data: homeResultData) {
+        
+        lblName.text = data.HodName
+        lblDept.text = (data.DepartmentName ?? "") + " " + "Department"
+        lblCount1.text = "\(String(describing: data.NumberofClasses!))"
+        lblCount2.text  = "\(String(describing: data.NumberofTeacher!))"
+        lblCount3.text = "\(String(describing: data.NumberofStudent!))"
+        lblName1.text = "Classes"
+        lblName2.text =  "Teachers"
+        lblName3.text =  "Students"
+        
+        arrEventlist = data.lstEvent
+        tblViewListing.reloadData()
+    }
+    
     func userUnauthorize() {
         isUnauthorizedUser = true
     }
@@ -127,4 +212,28 @@ extension HomeVC : OKAlertViewDelegate{
             CommonFunctions.sharedmanagerCommon.setRootLogin()
         }
     }
+}
+extension HomeVC : UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return arrEventlist?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ExamScheduleTableViewCell
+       
+        cell?.lblTitle.text = arrEventlist?[indexPath.row].Name
+        
+        cell?.imgView.addInitials(first: "E", second: "")
+        return cell!
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 95
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    
+}
 }

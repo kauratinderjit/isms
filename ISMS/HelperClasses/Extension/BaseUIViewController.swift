@@ -181,7 +181,27 @@ class BaseUIViewController: UIViewController{
         //setPreviouslySelectedIndexInUIPicker
     }
     
+     func styleTextField(textField: UITextField){
+        textField.borderStyle = .none
+        textField.layer.masksToBounds = false
+        textField.layer.cornerRadius = 5.0;
+        textField.layer.backgroundColor = UIColor.white.cgColor
+        textField.layer.borderColor = UIColor.clear.cgColor
+        textField.layer.shadowColor = UIColor.black.cgColor
+        textField.layer.shadowOffset = CGSize(width: 0, height: 0)
+        textField.layer.shadowOpacity = 0.4
+        textField.layer.shadowRadius = 5.0
+    }
     
+    func styleView(textField: UIView){
+      //  textField.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        textField.layer.shadowRadius = 5
+        textField.layer.shadowOffset = CGSize(width: 0, height: 0)
+        textField.layer.shadowOpacity = 1
+        textField.layer.shouldRasterize = true
+      
+
+    }
     
     func UpdatePickerModel2(count:Int,sharedPickerDelegate:SharedUIPickerDelegate, View: UIView, index : Int){
         view.endEditing(true)

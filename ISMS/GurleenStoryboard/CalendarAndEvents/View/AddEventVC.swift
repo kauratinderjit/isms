@@ -121,18 +121,7 @@ class AddEventVC: BaseUIViewController {
     override func viewDidDisappear(_ animated: Bool) {
          editMode = false
     }
-    
-    private func styleTextField(textField: UITextField){
-        textField.borderStyle = .none
-        textField.layer.masksToBounds = false
-        textField.layer.cornerRadius = 5.0;
-        textField.layer.backgroundColor = UIColor.white.cgColor
-        textField.layer.borderColor = UIColor.clear.cgColor
-        textField.layer.shadowColor = UIColor.black.cgColor
-        textField.layer.shadowOffset = CGSize(width: 0, height: 0)
-        textField.layer.shadowOpacity = 0.4
-        textField.layer.shadowRadius = 5.0
-    }
+
     
     private func styleLabel(textField: UILabel){
         textField.layer.masksToBounds = false

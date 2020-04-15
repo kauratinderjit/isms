@@ -200,7 +200,7 @@
                                                     <constraint firstAttribute="height" constant="42" id="qaN-eL-rzf"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
-                                                <state key="normal" title="ADD NOTE">
+                                                <state key="normal" title="SUBMIT">
                                                     <color key="titleColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -485,6 +485,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Add Notes" id="WxA-i9-H1L"/>
                     <connections>
+                        <outlet property="btnAdd" destination="cOi-XM-EEq" id="BrV-5n-qoN"/>
                         <outlet property="btnAddNote" destination="cOi-XM-EEq" id="Y8G-07-hwS"/>
                         <outlet property="heightTblView" destination="d4r-5l-mOA" id="P5w-Xa-swc"/>
                         <outlet property="lblPlaceHolder" destination="2Ac-c4-KvR" id="FAi-ht-W6Z"/>
