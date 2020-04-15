@@ -111,6 +111,20 @@ class HomeVC: BaseUIViewController {
         if UserDefaultExtensionModel.shared.currentHODRoleName == "HOD" {
             self.title = "HOD's Dashboard"
             self.homeViewModel?.getData(userId: UserDefaultExtensionModel.shared.currentUserId) }
+        else if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Teacher") {
+              self.title = "Teacher's Dashboard"
+            tblViewListing.isHidden = true
+        }
+        else if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Admin") {
+                   self.title = "Admin's Dashboard"
+            tblViewListing.isHidden = true
+
+             }
+        else if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Student") {
+                     self.title = "Student's Dashboard"
+            tblViewListing.isHidden = true
+
+               }
         
          
 

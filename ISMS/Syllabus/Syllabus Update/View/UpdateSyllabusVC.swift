@@ -89,31 +89,33 @@ class UpdateSyllabusVC: UIViewController {
   
     @IBAction func ActionUpdate(_ sender: Any) {
         
-        var StrChapter = ""
-        var isFirst = 0
-        print("selected chapter count is : \(SelectedChapter.count)")
-        for key in SelectedChapter {
-            
-            var k = ""
-
-            if isFirst == 0 {
-                isFirst = 1
-
-
-                  StrChapter.append(key)
-            }
-            else {
-                k = "," + key
-               StrChapter.append(key)
-            }
-            
-          
-        }
-        print("you will check here : \(StrChapter)")
-        if let classSubject = subjectData?.ClassSubjectId {
-        print("your class subject : \(classSubject)")
-        self.viewModel?.getData(StringChapterID : StrChapter, ClassSubject :classSubject, classId : 1 , userID : 295)
-       }
+        self.showAlert(alert: "Coming Soon")
+        
+//        var StrChapter = ""
+//        var isFirst = 0
+//        print("selected chapter count is : \(SelectedChapter.count)")
+//        for key in SelectedChapter {
+//
+//            var k = ""
+//
+//            if isFirst == 0 {
+//                isFirst = 1
+//
+//
+//                  StrChapter.append(key)
+//            }
+//            else {
+//                k = "," + key
+//               StrChapter.append(key)
+//            }
+//
+//
+//        }
+//        print("you will check here : \(StrChapter)")
+//        if let classSubject = subjectData?.ClassSubjectId {
+//        print("your class subject : \(classSubject)")
+//        self.viewModel?.getData(StringChapterID : StrChapter, ClassSubject :classSubject, classId : 1 , userID : 295)
+//       }
     }
 
 }
