@@ -28,7 +28,7 @@ class AddClassVC: BaseUIViewController {
     var viewModel : AddClassViewModel?
     var selectedImageUrl : URL?
     var classId : Int = 0
-
+  let departmentId = UserDefaultExtensionModel.shared.HODDepartmentId
     var departmentData : GetCommonDropdownModel!
     var selectedDepartmentId : Int?
     var selectedDepartmentIndex = 0
@@ -58,7 +58,7 @@ class AddClassVC: BaseUIViewController {
     //MARK:- Action Add Class
     @IBAction func btnAddDepartment(_ sender: UIButton) {
         if classId == 0{
-            self.viewModel?.addUpdateClass(classid: 0, className: txtFieldClass.text, selectedDepartmentId: 31, departmentName: "ECE", description: txtViewDescription.text, others: txtfieldOthers.text, imageUrl: selectedImageUrl)
+            self.viewModel?.addUpdateClass(classid: 0, className: txtFieldClass.text, selectedDepartmentId: departmentId, departmentName: txtFieldDepartment.text, description: txtViewDescription.text, others: txtfieldOthers.text, imageUrl: selectedImageUrl)
         }
         if classId != 0{
             if selectedImageUrl != nil{
@@ -67,7 +67,7 @@ class AddClassVC: BaseUIViewController {
                     selectedImageUrl = URL(string: "")
                 }
             }
-            self.viewModel?.addUpdateClass(classid: classId, className: txtFieldClass.text, selectedDepartmentId: 31, departmentName: "ECE", description: txtViewDescription.text, others: txtfieldOthers.text, imageUrl: selectedImageUrl)
+            self.viewModel?.addUpdateClass(classid: classId, className: txtFieldClass.text, selectedDepartmentId: departmentId, departmentName: txtFieldDepartment.text, description: txtViewDescription.text, others: txtfieldOthers.text, imageUrl: selectedImageUrl)
         }
     }
     

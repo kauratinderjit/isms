@@ -27,7 +27,7 @@ class StudentListVC: BaseUIViewController {
     var selectedSubjectArrIndex : Int?
     var isClassSelected : Bool?
     
-    
+     let departmentId = UserDefaultExtensionModel.shared.HODDepartmentId
     
     @IBOutlet weak var btnAddStudent: UIButton!
     @IBOutlet weak var dropDownTextField: UITextField!
@@ -45,7 +45,7 @@ class StudentListVC: BaseUIViewController {
         if checkInternetConnection(){
             arrStudentlist.removeAll()
             
-              self.ViewModel?.getClassId(id:UserDefaultExtensionModel.shared.HODDepartmentId, enumtype: 6)
+              self.ViewModel?.getClassId(id:departmentId, enumtype: 6)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }

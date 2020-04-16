@@ -78,18 +78,18 @@ extension ViewTeacherRatingVC : UITableViewDelegate{
         
     }
     
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return UITableView.automaticDimension
-//    }
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70;
-    }
+//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 70;
+//    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         return UITableView.automaticDimension;//Choose your custom row height
@@ -169,7 +169,7 @@ extension ViewTeacherRatingVC : ViewTeacherRatingDelegate{
                 self.arrGetTeacherRating = data1
                 if let teacherId = arrGetTeacherRating[0].teacherId{
 //                    self.txtFieldTeacher.text = arrTeacher[0].teacherName
-                    self.ViewModel?.GetTeacherRating(teacherId: teacherId)
+//                    self.ViewModel?.GetTeacherRating(teacherId: teacherId)
                     
                 }
             }

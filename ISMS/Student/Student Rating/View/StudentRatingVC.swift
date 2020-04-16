@@ -34,7 +34,7 @@ class StudentRatingVC: BaseUIViewController {
     var isFromHod :Bool!
     var currentMonth = ""
     var arrMonthlist = ["Jan","Feb","March","April","May","June","July","Augest","September","October","Novemeber","Decemeber"]
-    
+     let userRoleParticularId = UserDefaultExtensionModel.shared.userRoleParticularId
     @IBOutlet var textfieldMonth: UITextField!
     //MARK:- CLASS OVERRIDE FUNCTIONS
     override func viewDidLoad() {
@@ -60,7 +60,7 @@ class StudentRatingVC: BaseUIViewController {
         }
         if checkInternetConnection(){
 //            self.viewModel?.classList(searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: KIntegerConstants.kInt0)
-            self.viewModel?.GetSkillList(id : 2 , enumType : 17)
+            self.viewModel?.GetSkillList(id : userRoleParticularId , enumType : 17)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
@@ -174,8 +174,9 @@ extension StudentRatingVC : StudentRatingDelegate {
                 if let className = arrSkillList[0].studentName{
                     txtfieldClass.text = className
                     var newclassid = arrSkillList[0].studentID!
+                     RegisterClassDataModel.sharedInstance?.subjectID = newclassid
                     //                    RegisterClassDataModel.sharedInstance?.classID = arrSkillList[0].studentID
-                    self.viewModel?.GetSubjectList(classid: newclassid,teacherId: 2)
+                    self.viewModel?.GetSubjectList(classid: newclassid,teacherId: userRoleParticularId)
                     
                 }
                 
@@ -198,7 +199,7 @@ extension StudentRatingVC : StudentRatingDelegate {
                 self.arrSubjectList1 = data1
                 if let subjectName = arrSubjectList1[0].studentName{
                     txtfieldSubject.text = subjectName
-                    self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID: 1, classID: 1 )
+                    self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID: arrSubjectList1[0].studentID ?? 0, classID: RegisterClassDataModel.sharedInstance?.subjectID ?? 0 )
                     //                    RegisterClassDataModel.sharedInstance?.classID = arrSkillList[0].studentID
                     
                 }
@@ -304,12 +305,17 @@ extension StudentRatingVC : SharedUIPickerDelegate{
             if isClassSelected == true {
                 if let index = selectedClassArrIndex {
                     if let id = arrSkillList[index].studentID {
-                        self.viewModel?.GetSubjectList(classid: id,teacherId: 2)
+                         RegisterClassDataModel.sharedInstance?.subjectID = id
+                        self.viewModel?.GetSubjectList(classid: id,teacherId: userRoleParticularId)
                         //                        self.viewModel?.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: pageSize,sortColumnDir: "",sortColumn: "", particularId: id)
                     }
                 }
             }else if isSubjectSelected == true{
-                self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID:1, classID: 1 )
+                if let index = selectedClassArrIndex {
+                    self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID:arrSubjectList1[index].studentID ?? 0, classID:  RegisterClassDataModel.sharedInstance?.subjectID ?? 0 )
+                }
+                
+             
             }
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)

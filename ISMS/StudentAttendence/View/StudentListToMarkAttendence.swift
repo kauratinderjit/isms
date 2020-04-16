@@ -43,6 +43,7 @@ class StudentListToMarkAttendence: BaseUIViewController {
         }else{
             btnSubmitAttandance.isHidden = false
         }
+//          btnSubmitAttandance.isHidden = false
         arrStudentlist.removeAll()
         StudentListApi()
         
