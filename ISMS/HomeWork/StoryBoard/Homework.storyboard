@@ -575,6 +575,7 @@
                                             <outlet property="lblClassName" destination="Knl-rG-l6f" id="2Fs-bp-mIm"/>
                                             <outlet property="lblSubjectName" destination="oZM-pf-3HK" id="u8d-Oy-tjN"/>
                                             <outlet property="lblTitle" destination="XjV-W3-gc6" id="M4o-xA-HT4"/>
+                                            <segue destination="d0o-Z8-1Vh" kind="show" id="vXd-P8-0E7"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -616,11 +617,11 @@
             <objects>
                 <viewController storyboardIdentifier="StudentDetailHomeworkVC" title="Add Homework" useStoryboardIdentifierAsRestorationIdentifier="YES" id="d0o-Z8-1Vh" customClass="StudentDetailHomeworkVC" customModule="ISMS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f16-V7-gKO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U7t-3k-j39">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OZP-XW-grE">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="936"/>
@@ -658,6 +659,7 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="actionbtnSubmit:" destination="d0o-Z8-1Vh" eventType="touchUpInside" id="3Xj-Ym-etB"/>
+                                                    <segue destination="Aff-b4-Qe3" kind="show" id="19B-jl-fU4"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SlH-il-kcI">
@@ -824,10 +826,6 @@
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
-                                                <connections>
-                                                    <outlet property="dataSource" destination="d0o-Z8-1Vh" id="dwu-e0-Lpf"/>
-                                                    <outlet property="delegate" destination="d0o-Z8-1Vh" id="APJ-xu-qEQ"/>
-                                                </connections>
                                             </tableView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rc8-AI-YKb">
                                                 <rect key="frame" x="24" y="272" width="341" height="20"/>
@@ -892,6 +890,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Add Notes" id="QDP-HI-tYj"/>
                     <connections>
+                        <outlet property="heightTblView" destination="JnY-Hs-Gbv" id="9vO-CY-BI6"/>
                         <outlet property="tblViewListing" destination="c22-KZ-hB5" id="4Li-5o-MiQ"/>
                         <outlet property="txtViewDescription" destination="lI9-ls-MCX" id="4Qt-Gn-K8u"/>
                         <outlet property="txtfieldClass" destination="AGn-PD-qEA" id="VSU-7j-pan"/>
@@ -909,11 +908,11 @@
             <objects>
                 <viewController storyboardIdentifier="StudentUploadHomeWorkVC" title="Add Homework" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Aff-b4-Qe3" customClass="StudentUploadHomeWorkVC" customModule="ISMS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KJq-F5-gJN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jNT-mO-kJ5">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cem-Eo-urc">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="617"/>
@@ -1067,6 +1066,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Add Notes" id="4CB-Lt-rWM"/>
                     <connections>
+                        <outlet property="heightTableView" destination="oo0-nw-Tvw" id="UGX-bd-tkj"/>
                         <outlet property="lblPlaceHolderComment" destination="D52-9H-qwf" id="BhF-TU-adG"/>
                         <outlet property="scrollView" destination="jNT-mO-kJ5" id="Eir-hK-Odu"/>
                         <outlet property="tblViewListing" destination="Sv6-tu-pwD" id="M5G-N0-JZH"/>

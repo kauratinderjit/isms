@@ -15,9 +15,12 @@ class StudentUploadHomeWorkVC: BaseUIViewController {
     @IBOutlet weak var lblPlaceHolderComment: UILabel!
     @IBOutlet weak var tblViewListing: UITableView!
     
+    @IBOutlet weak var heightTableView: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.title = "Upload Tasks"
+        heightTableView.constant = 0
     }
     
 

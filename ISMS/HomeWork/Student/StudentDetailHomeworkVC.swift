@@ -17,12 +17,12 @@ class StudentDetailHomeworkVC: BaseUIViewController {
     @IBOutlet weak var txtViewDescription: UITextView!
     @IBOutlet weak var txtfieldSubmissionDate: UITextField!
     @IBOutlet weak var tblViewListing: UITableView!
-    
+    @IBOutlet weak var heightTblView: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        self.title = "Homework Details"
+        heightTblView.constant = 0
     }
 
     
