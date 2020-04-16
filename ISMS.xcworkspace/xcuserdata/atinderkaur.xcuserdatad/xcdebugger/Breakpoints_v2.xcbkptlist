@@ -2105,8 +2105,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "223"
             endingLineNumber = "223"
-            landmarkName = "SyllabusCoverageVC"
-            landmarkType = "21">
+            landmarkName = "classListDidFailed()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2121,8 +2121,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "216"
             endingLineNumber = "216"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "pickerView(_:didSelectRow:inComponent:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3767,7 +3767,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "110"
             endingLineNumber = "110"
-            landmarkName = "AddHomeworkSucceed(array:)"
+            landmarkName = "getSubjectList(arr:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3942,8 +3942,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "132"
             endingLineNumber = "132"
-            landmarkName = "yesBtnAction()"
-            landmarkType = "7">
+            landmarkName = "HomeworkListVC"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
