@@ -208,7 +208,10 @@ extension SyllabusCoverageVC {
         if txtfieldExtraPicker.isFirstResponder{
                  let dic = classDropdownData?[row]
                        let title = dic?.name
+            
+            if title != nil {
             textfieldClass.text = "\(String(describing: title!))"
+            }
         }
     }
 }
