@@ -28,7 +28,7 @@ class StudentListToMarkAttendence: BaseUIViewController {
         
         self.viewModel = StudentListForAttViewModel.init(delegate: self)
         self.viewModel?.attachView(viewDelegate: self)
-        self.title = "Student List"
+        self.title = "Student Attendence"
         tableViewStudent.separatorStyle = .none
         tableViewStudent.tableFooterView = UIView()
         tableViewStudent.delegate = self
@@ -43,6 +43,7 @@ class StudentListToMarkAttendence: BaseUIViewController {
         }else{
             btnSubmitAttandance.isHidden = false
         }
+//          btnSubmitAttandance.isHidden = false
         arrStudentlist.removeAll()
         StudentListApi()
         

@@ -34,7 +34,7 @@ class StudentRatingListModel : Mappable {
 }
 
 struct StudentRatingResultData: Mappable{
-  
+    
     var studentRating : String?
     var studentName : String?
     var teacherName : String?
@@ -48,7 +48,7 @@ struct StudentRatingResultData: Mappable{
     mutating func mapping(map: Map) {
         studentRating <- map["Rating"]
         studentName <- map["StudentName"]
-       
+        
         teacherName <- map["TeacherName"]
         teacherID <- map["TeacherId"]
         

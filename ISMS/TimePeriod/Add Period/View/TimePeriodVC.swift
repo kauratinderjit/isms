@@ -50,7 +50,7 @@ class TimePeriodVC: BaseUIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         if checkInternetConnection(){
-            self.ViewModel?.getClassId(id: 1, enumtype: CountryStateCity.classes.rawValue)
+            self.ViewModel?.getClassId(id: 31 , enumtype: 6)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }

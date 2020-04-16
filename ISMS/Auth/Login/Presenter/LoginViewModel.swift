@@ -276,6 +276,7 @@ extension LoginVC : LogInDelegate{
             UserDefaultExtensionModel.shared.currentUserRoleId = data.resultData?.first?.roleId ?? 0
             UserDefaultExtensionModel.shared.userRoleParticularId = data.resultData?.first?.particularId ?? 0
                 UserDefaultExtensionModel.shared.currentHODRoleName = data.resultData?.first?.roleName ?? ""
+            UserDefaultExtensionModel.shared.HODDepartmentId = data.resultData?.first?.departmentId ?? 0
 
         }else if  data.resultData?.count ?? 0 > 1 {
             //When user have more then one role then it move to multiple user role screen

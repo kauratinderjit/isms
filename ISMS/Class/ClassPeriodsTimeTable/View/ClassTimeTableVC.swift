@@ -49,12 +49,9 @@ class ClassTimeTableVC: BaseUIViewController {
         }else if isFromTeacher == 2{
             self.title = KStoryBoards.KClassPeriodIdIdentifiers.kClassPeriodTimeTableTitle
         }
-        else{
-            
-            if teacherViewTimeTble == true {
-                self.title = "view Timetable"
+        if teacherViewTimeTble == true {
+              self.title = "View TimeTable"
 
-            }
         }
         checkCameFromWhichScreen()
     }
@@ -120,7 +117,7 @@ class ClassTimeTableVC: BaseUIViewController {
     //MARK:- Class List Dropdown
     func classListDropdownApi(){
         if checkInternetConnection(){
-            self.viewModel?.getClassListDropdown(selectId: 1, enumType: CountryStateCity.classes.rawValue)
+            self.viewModel?.getClassListDropdown(selectId: 31, enumType: CountryStateCity.classes.rawValue)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }

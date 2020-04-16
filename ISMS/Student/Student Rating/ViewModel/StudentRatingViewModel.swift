@@ -310,7 +310,7 @@ class StudentRatingViewModel {
     func studentList(search : String?,skip : Int?,pageSize: Int?,sortColumnDir: String?,sortColumn: String?, classSubjectID : Int , classID : Int){
         self.studentRatingView?.showLoader()
         
-        let paramDict = [ "ClassId":1,
+        let paramDict = [ "ClassId":20,
                           "ClassSubjectId": 1] as [String : Any]
         
         StudentRatingApi.sharedInstance.GetStudentList(url: ApiEndpoints.kStudentRating, parameters: paramDict as [String : Any], completionResponse: { (StudentRatingListModel) in

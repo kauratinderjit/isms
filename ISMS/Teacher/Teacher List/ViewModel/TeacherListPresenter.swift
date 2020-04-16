@@ -58,6 +58,7 @@ class TeacherListViewModel{
         
         TeacherApi.sharedManager.getTeacherList(url: ApiEndpoints.kGetTeacherList, parameters: postDict, completionResponse: { (teacherModel) in
             self.teacherListView?.hideLoader()
+           
             switch teacherModel.statusCode{
             case KStatusCode.kStatusCode200:
 //                self.teacherListView?.hideLoader()

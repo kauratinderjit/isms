@@ -46,7 +46,7 @@ class SyllabusCoverageVC : BaseUIViewController  {
     
     func classListDropdownApi(){
         if checkInternetConnection(){
-            self.viewModel?.getClassListDropdown(selectId: 1, enumType: CountryStateCity.classes.rawValue)
+            self.viewModel?.getClassListDropdown(selectId: 31, enumType: CountryStateCity.classes.rawValue)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }

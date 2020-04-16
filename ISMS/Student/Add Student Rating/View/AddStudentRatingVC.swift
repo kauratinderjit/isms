@@ -159,13 +159,9 @@ class AddStudentRatingVC: BaseUIViewController {
     
     //MARK:- ACTION SUBMIT
     @IBAction func ActionSubmit(_ sender: Any) {
-        print("our select array : ",arrSelect)
-          print("our classid : ", RegisterClassDataModel.sharedInstance?.enrolmentID)
-          print("our subjectid : ",RegisterClassDataModel.sharedInstance?.subjectID)
         if  RegisterClassDataModel.sharedInstance?.enrolmentID  != 0{
             if RegisterClassDataModel.sharedInstance?.subjectID  != 0 {
-                
-                self.viewModel?.SubmitTotalRating(teacherID: 2, enrollmentId :  RegisterClassDataModel.sharedInstance?.enrolmentID ,classSubjectId: RegisterClassDataModel.sharedInstance?.subjectID,comment: "good",StudentSkillRatings: arrSelect)
+                self.viewModel?.SubmitTotalRating(teacherID: userRoleParticularId, enrollmentId :  RegisterClassDataModel.sharedInstance?.enrolmentID ,classSubjectId: RegisterClassDataModel.sharedInstance?.subjectID,comment: "good",StudentSkillRatings: arrSelect)
             }
         }
     }
@@ -235,7 +231,6 @@ extension AddStudentRatingVC : AddStudentRatingDelegate {
                 if let studentName = arrSubjectlist[0].studentName{
                     txtfieldSubject.text = studentName
                     RegisterClassDataModel.sharedInstance?.subjectID = arrSubjectlist[0].studentID
-                    
                 }
             }else {
                  txtfieldSubject.text = ""
@@ -546,15 +541,6 @@ extension AddStudentRatingVC : UITableViewDataSource , AddStudentRatingTableView
         return cell
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
 
 

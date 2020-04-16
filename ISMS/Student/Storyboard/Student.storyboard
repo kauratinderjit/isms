@@ -1044,7 +1044,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hSz-fT-Jkq">
                                         <rect key="frame" x="167" y="22" width="200" height="30"/>
                                         <connections>
-                                            <action selector="btnOpenDropDown:" destination="WEq-tj-7XP" eventType="touchUpInside" id="jwY-LF-lw0"/>
+                                            <action selector="btnOpenDropDown:" destination="WEq-tj-7XP" eventType="touchUpInside" id="VAj-DT-sJV"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1341,6 +1341,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Student Ratings" id="lrC-BB-h6R"/>
                     <connections>
+                        <outlet property="addRatingBtn" destination="awU-89-0X1" id="B5o-mR-xLn"/>
                         <outlet property="tableView" destination="9DU-bZ-hNc" id="Dgx-BK-lyA"/>
                         <outlet property="textfieldMonth" destination="4qO-h4-L4M" id="HgR-Hi-aTB"/>
                         <outlet property="txtfieldClass" destination="dbX-3h-0o3" id="P1G-hh-eBm"/>
