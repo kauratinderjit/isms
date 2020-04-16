@@ -16,6 +16,8 @@ class StudentListForAttendenceApi {
     func getStudentList(url : String,parameters: [String : Any]?,completionResponse:  @escaping (StudentListForAttendenceModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
         
         let urlCmplete = BaseUrl.kBaseURL+url
+        
+        print("url: ",urlCmplete)
         var accessTokken = ""
         if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String
         {
@@ -69,6 +71,7 @@ class StudentListForAttendenceApi {
     func AddStudentAttendence(url : String,parameters: [String : Any]?,completionResponse:  @escaping (AddStudentModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
         
         let urlCmplete = BaseUrl.kBaseURL+url
+         print("url: ",urlCmplete)
         var accessTokken = ""
         if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String
         {

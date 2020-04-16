@@ -16,6 +16,7 @@ class SyllabusCoverageVC : BaseUIViewController  {
     @IBOutlet var txtfieldExtraPicker: UITextField!
     var classDropdownData : [GetCommonDropdownModel.ResultData]?
     var lastText : String?
+    var isFromStudent : Bool?
     private var pickerView = UIPickerView()
     enum PickerTypes: Int {
         case statePicker = 1
@@ -34,6 +35,8 @@ class SyllabusCoverageVC : BaseUIViewController  {
         
         self.viewModel = SyllabusCoverageViewModel.init(delegate: self)
         self.viewModel?.attachView(viewDelegate: self)
+        
+      
         setPickerView()
         boolFirstTime = true
          self.classListDropdownApi()
@@ -133,6 +136,7 @@ extension SyllabusCoverageVC : UITableViewDelegate {
         let storyboard = UIStoryboard.init(name: "Courses", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "UpdateSyllabusVC") as! UpdateSyllabusVC
             vc.subjectData = arrayData[indexPath.row]
+        vc.isFromStudent = isFromStudent
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

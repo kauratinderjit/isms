@@ -23,10 +23,11 @@ class UpdateSyllabusVC: UIViewController {
     var array = ["Chapter 1", "Chapter 2" , "Chapter 3", "Chapter 4" , "Chapter 5" , "Chapter 6", "Chapter 7" , "Chapter 8"]
     var arrayData = [UpdateSyllabusResultData]()
     var SelectedChapter = [String]()
+    var isFromStudent : Bool?
   //  var sections = sectionsData
 
     var subjectData : SyllabusCoverageListResultData?
-    
+    var isCheck = false
     
     @IBOutlet weak var btnUpdate: UIButton!
     @IBOutlet var progressBar: UIProgressView!
@@ -36,12 +37,19 @@ class UpdateSyllabusVC: UIViewController {
     
     var viewModel : UpdateSyllabusViewModel?
     
-    
+    var indexRow : Int?
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.viewModel = UpdateSyllabusViewModel.init(delegate: self)
         self.viewModel?.attachView(viewDelegate: self)
+        if isFromStudent == true{
+            btnUpdate.isHidden = true
+        }else{
+            btnUpdate.isHidden = false
+        }
+        
+        
         lblSubjectName.text = subjectData?.subjectName
         // Auto resizing the height of the cell
         tableView.estimatedRowHeight = 44.0
@@ -78,7 +86,7 @@ class UpdateSyllabusVC: UIViewController {
     }
     
     @objc func updateSyllabus(_ sender: UIButton) {
-        
+       
     }
     
     @IBAction func backbtnAction(_ sender: UIBarButtonItem) {
@@ -91,31 +99,31 @@ class UpdateSyllabusVC: UIViewController {
         
         self.showAlert(alert: "Coming Soon")
         
-//        var StrChapter = ""
-//        var isFirst = 0
-//        print("selected chapter count is : \(SelectedChapter.count)")
-//        for key in SelectedChapter {
-//
-//            var k = ""
-//
-//            if isFirst == 0 {
-//                isFirst = 1
-//
-//
-//                  StrChapter.append(key)
-//            }
-//            else {
-//                k = "," + key
-//               StrChapter.append(key)
-//            }
-//
-//
-//        }
-//        print("you will check here : \(StrChapter)")
-//        if let classSubject = subjectData?.ClassSubjectId {
-//        print("your class subject : \(classSubject)")
-//        self.viewModel?.getData(StringChapterID : StrChapter, ClassSubject :classSubject, classId : 1 , userID : 295)
-//       }
+        var StrChapter = ""
+        var isFirst = 0
+        print("selected chapter count is : \(SelectedChapter.count)")
+        for key in SelectedChapter {
+
+            var k = ""
+
+            if isFirst == 0 {
+                isFirst = 1
+
+
+                  StrChapter.append(key)
+            }
+            else {
+                k = "," + key
+               StrChapter.append(key)
+            }
+
+
+        }
+        print("you will check here : \(StrChapter)")
+        if let classSubject = subjectData?.ClassSubjectId {
+        print("your class subject : \(classSubject)")
+        self.viewModel?.getData(StringChapterID : StrChapter, ClassSubject :classSubject, classId : 1 , userID : 295)
+       }
     }
 
 }
@@ -215,10 +223,23 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CollapsibleTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell") as? CollapsibleTableViewCell ??
             CollapsibleTableViewCell(style: .default, reuseIdentifier: "cell")
-        
+        print("our cell tag : ",indexPath.row)
         let item = arrayData[indexPath.section].TopicListViewModels?[indexPath.row]
         cell.checkBox.tag = indexPath.row
         cell.nameLabel.text = item?.TopicName
+        if isCheck == true{
+             if cell.checkBox.tag == indexRow {
+//                isCheck = false
+                cell.checkBox.setImage(UIImage(named: "check"), for: .normal)
+            }
+        }else{
+             if cell.checkBox.tag == indexRow {
+//                 isCheck = true
+                cell.checkBox.setImage(UIImage(named: "uncheck"), for: .normal)
+            }
+           
+        }
+        
         cell.checkBox.addTarget(self, action: #selector(self.updateSyllabus), for: .touchUpInside)
         return cell
     }
@@ -247,6 +268,17 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
     
      func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 1.0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        indexRow = indexPath.row
+        if isCheck == false {
+            isCheck = true
+            tableView.reloadData()
+        }else{
+            isCheck = false
+            tableView.reloadData()
+        }
     }
 
 }

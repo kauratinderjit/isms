@@ -17,6 +17,7 @@ class StudentViewAttendanceVC: BaseUIViewController {
     
     var isSelectStartDate = false
     var isSeclectEndDate = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setDatePickerView(self.view, type: .date)

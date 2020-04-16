@@ -39,9 +39,10 @@ class UpdateSyllabusViewModel {
         
        let url = KApiParameters.kUpdateSyllabusApiParameter.kAddUpdateSyllabus
         let param = [KApiParameters.kUpdateSyllabusApiParameter.kStrChapterId: StringChapterID ,KApiParameters.kUpdateSyllabusApiParameter.kClassSubjectId : ClassSubject,KApiParameters.kUpdateSyllabusApiParameter.kClassId :1 ,KApiParameters.kUpdateSyllabusApiParameter.kUserId : userID ] as [String : Any]
-        
+        print("our params: ",param)
         
         UpdateSyllabusApi.sharedManager.UpdateSyllabusData(url:url , parameters: param, completionResponse: { (UpdateSyllabusModel) in
+              print("our resposne: ",UpdateSyllabusModel)
             self.updateSyllabusViewDelegate?.hideLoader()
             if let msg = UpdateSyllabusModel.message {
              self.updateSyllabusViewDelegate?.showAlert(alert: msg)

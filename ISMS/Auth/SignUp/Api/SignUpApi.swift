@@ -310,7 +310,7 @@ class SignUpApi {
     {
         let urlComplete = BaseUrl.kBaseURL + url
         let headers    = [KConstants.kContentType : KConstants.kApplicationJson]
-        
+        print("complt url: ",urlComplete)
         Alamofire.request(urlComplete, method: .get, parameters: parameter, encoding: JSONEncoding.default, headers : headers)
             .responseJSON { response in
                 
