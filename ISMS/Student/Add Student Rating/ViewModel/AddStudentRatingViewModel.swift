@@ -52,8 +52,6 @@ class AddStudentRatingViewModel {
         postDict[KApiParameters.KCommonParametersForList.kSkip] = skip
         postDict[KApiParameters.KCommonParametersForList.kSortColumnDir] = ""
         
-        
-        
         ClassApi.sharedManager.getClassList(url: ApiEndpoints.kGetClassList, parameters: postDict, completionResponse: { (classModel) in
             
             self.addStudentRatingView?.hideLoader()

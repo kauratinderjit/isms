@@ -147,7 +147,7 @@ class AddStudentRatingApi {
         
         let urlCmplete = BaseUrl.kBaseURL+url
         //"http://stgsd.appsndevs.com/EducationProApi/api/Institute/GetAllStudentRatingByClassSubjecId"
-        
+        print("url: ",urlCmplete)
         print("your complete address of api :\(urlCmplete)")
         print("param of this : \(parameters)")
         var accessTokken =   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ODk2OTUwODkxIiwiZW1haWwiOiJmb2dneUBnbWFpbC5jbyIsImF6cCI6IjI5NSIsInNpZCI6Im1pbmRAMTIzIiwianRpIjoiM2VlYzFiODMtMzY1Mi00YzBjLTg1NTUtMzhmYTUyZTg2MzRlIiwiZXhwIjoxNTc1NTIxNTYyLCJpc3MiOiJUZXN0LmNvbSIsImF1ZCI6IlRlc3QuY29tIn0.gbcuYC8l7TTGvbb5XFfSGY9qWBO5-5ST9jwxXkWgzPI"

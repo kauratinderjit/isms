@@ -248,7 +248,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0za-Zi-ehW">
-                                                    <rect key="frame" x="6" y="6" width="363" height="93.5"/>
+                                                    <rect key="frame" x="6" y="6" width="308" height="93.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zcU-fq-Vsq">
@@ -259,13 +259,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2o-wj-Wgo">
-                                                    <rect key="frame" x="104" y="42.5" width="167" height="20.5"/>
+                                                    <rect key="frame" x="104" y="42.5" width="112" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tcP-jD-55b">
-                                                    <rect key="frame" x="279" y="35.5" width="35" height="35"/>
+                                                    <rect key="frame" x="224" y="35.5" width="35" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="CCI-j9-5Ce"/>
                                                         <constraint firstAttribute="width" constant="35" id="Gn1-5Q-0AQ"/>
@@ -276,7 +276,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ldv-9z-aFh">
-                                                    <rect key="frame" x="322" y="35.5" width="35" height="35"/>
+                                                    <rect key="frame" x="267" y="35.5" width="35" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="Eqq-mP-i35"/>
                                                         <constraint firstAttribute="width" constant="35" id="wIY-j8-sjf"/>
@@ -544,7 +544,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aNd-g9-VyJ">
-                                                            <rect key="frame" x="2" y="2" width="371" height="115.5"/>
+                                                            <rect key="frame" x="2" y="2" width="316" height="115.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2f-sx-Yah">
                                                                     <rect key="frame" x="0.0" y="-2" width="32" height="119.5"/>
@@ -557,7 +557,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="20F-Pv-DvC">
-                                                                    <rect key="frame" x="40" y="8" width="323" height="100"/>
+                                                                    <rect key="frame" x="40" y="8" width="268" height="100"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ueV-Dx-L3a">
                                                                         <size key="itemSize" width="112" height="87"/>
@@ -604,7 +604,7 @@
                                                                                                                 <fragment content="+">
                                                                                                                     <attributes>
                                                                                                                         <font key="NSFont" size="40" name="ArialMT"/>
-                                                                                                                        <font key="NSOriginalFont" size="15" name=".AppleSystemUIFontEmphasized"/>
+                                                                                                                        <font key="NSOriginalFont" metaFont="systemBold" size="15"/>
                                                                                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                                                                     </attributes>
                                                                                                                 </fragment>
@@ -845,6 +845,7 @@
                         <outlet property="btnSelectClassDropDown" destination="tb4-g1-IdX" id="BIa-CG-o4I"/>
                         <outlet property="collectionView" destination="quw-sP-jfp" id="Jjt-ma-TiM"/>
                         <outlet property="txtFieldClass" destination="1dJ-iN-mwK" id="gM0-j6-dY4"/>
+                        <outlet property="viewDropDown" destination="MHg-XV-RQk" id="ZPd-sQ-0Ma"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IzL-xv-qTg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1272,6 +1273,75 @@
                 </view>
             </objects>
             <point key="canvasLocation" x="3411" y="1291"/>
+        </scene>
+        <!--Time Table StudentVC-->
+        <scene sceneID="D9o-P2-AGY">
+            <objects>
+                <viewController storyboardIdentifier="TimeTableStudentVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="M6w-7j-9py" customClass="TimeTableStudentVC" customModule="ISMS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qgJ-ru-hHg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCx-2z-EKQ">
+                                <rect key="frame" x="45" y="265.5" width="230" height="37"/>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
+                                <state key="normal" title="Please add periods in class.">
+                                    <color key="titleColor" red="0.64313725489999995" green="0.050980392159999999" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnActionMoveAddPeriod:" destination="M6w-7j-9py" eventType="touchUpInside" id="IR6-dx-lL8"/>
+                                </connections>
+                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TYx-pb-kRV">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewLayout key="collectionViewLayout" id="QUZ-cP-vWi" customClass="EPGCollectionViewLayout" customModule="ISMS" customModuleProvider="target"/>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="M6w-7j-9py" id="1b8-ek-bzo"/>
+                                    <outlet property="delegate" destination="M6w-7j-9py" id="gs7-Nf-uKn"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="TYx-pb-kRV" firstAttribute="centerY" secondItem="DCx-2z-EKQ" secondAttribute="centerY" id="163-CB-4Jb"/>
+                            <constraint firstItem="DCx-2z-EKQ" firstAttribute="centerX" secondItem="qgJ-ru-hHg" secondAttribute="centerX" id="1u7-p6-LTP"/>
+                            <constraint firstItem="TYx-pb-kRV" firstAttribute="leading" secondItem="Pg1-aR-MvH" secondAttribute="leading" id="Qte-cT-EOY"/>
+                            <constraint firstItem="Pg1-aR-MvH" firstAttribute="bottom" secondItem="TYx-pb-kRV" secondAttribute="bottom" id="Urh-Zk-gVQ"/>
+                            <constraint firstItem="Pg1-aR-MvH" firstAttribute="trailing" secondItem="TYx-pb-kRV" secondAttribute="trailing" id="g37-fs-hQI"/>
+                            <constraint firstItem="DCx-2z-EKQ" firstAttribute="centerY" secondItem="qgJ-ru-hHg" secondAttribute="centerY" id="pYR-A2-1DW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Pg1-aR-MvH"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ndv-Li-lki"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="btnMoveOnAddPeriod" destination="DCx-2z-EKQ" id="LIb-2S-WaX"/>
+                        <outlet property="collectionView" destination="TYx-pb-kRV" id="uvq-Qu-XwM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R7e-fJ-tqO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3543.75" y="504.92957746478874"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bwj-ue-Frc">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Rdo-JU-kkH" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EDQ-o5-pXs">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="M6w-7j-9py" kind="relationship" relationship="rootViewController" id="498-HA-FHm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DlE-RU-13v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2546.25" y="504.92957746478874"/>
         </scene>
     </scenes>
     <resources>
