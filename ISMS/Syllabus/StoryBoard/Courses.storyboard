@@ -17,11 +17,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Class" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="auQ-FS-2Wo">
-                                <rect key="frame" x="31" y="64" width="94" height="21"/>
+                                <rect key="frame" x="20" y="64" width="86.5" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="29t-33-Xod"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -184,7 +184,7 @@
                             <constraint firstItem="0EA-to-iUM" firstAttribute="top" secondItem="aKO-pv-aXK" secondAttribute="bottom" constant="8" id="qNR-qg-RCK"/>
                             <constraint firstItem="0EA-to-iUM" firstAttribute="leading" secondItem="i5v-Dp-XFL" secondAttribute="leading" id="qU2-uP-ysc"/>
                             <constraint firstItem="aKO-pv-aXK" firstAttribute="leading" secondItem="i5v-Dp-XFL" secondAttribute="leading" constant="20" id="u7L-eC-UOb"/>
-                            <constraint firstItem="auQ-FS-2Wo" firstAttribute="leading" secondItem="i5v-Dp-XFL" secondAttribute="leading" constant="31" id="wX8-aC-qIE"/>
+                            <constraint firstItem="auQ-FS-2Wo" firstAttribute="leading" secondItem="i5v-Dp-XFL" secondAttribute="leading" constant="20" id="wX8-aC-qIE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="i5v-Dp-XFL"/>
                     </view>
