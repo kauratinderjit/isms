@@ -75,7 +75,7 @@ extension SubjectChapterViewModel {
     
     func addChapter( ChapterId: Int,ChapterName: String,ClassSubjectId: Int) {
         self.ChapterView?.showLoader()
-        let paramDict = [KApiParameters.AddSubjectApi.chapterId:ChapterId,KApiParameters.AddSubjectApi.chapterName:ChapterName, KApiParameters.AddSubjectApi.kclassSubjectId :ClassSubjectId ,"IsCover": true,
+        let paramDict = [KApiParameters.AddSubjectApi.chapterId:ChapterId,KApiParameters.AddSubjectApi.chapterName:ChapterName, KApiParameters.AddSubjectApi.kclassSubjectId :ClassSubjectId ,"IsCover": false,
                          "CoveredBy": 0] as [String : Any]
        
         SubjectApi.sharedInstance.AddSubject(url: ApiEndpoints.KAddChapterApi, parameters: paramDict, completionResponse: { (responseModel) in

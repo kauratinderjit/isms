@@ -260,6 +260,7 @@ extension MenuVC : UITableViewDelegate{
             let vc = storyboard.instantiateViewController(withIdentifier: "ClassTimeTableVC") as? ClassTimeTableVC
             //            vc?.isFromTimeTable = false
             vc?.isFromViewAttendence = true
+             vc?.isFromStudentViewAttendance = false
             vc?.isFromTeacher = 0
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
@@ -283,6 +284,7 @@ extension MenuVC : UITableViewDelegate{
             let storyboard = UIStoryboard.init(name: KStoryBoards.kClass, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "ClassTimeTableVC") as? ClassTimeTableVC
             vc?.isFromTimeTable = false
+             vc?.isFromStudentViewAttendance = false
             vc?.isFromViewAttendence = false
             vc?.isFromTeacher = 2
             vc?.teacherViewTimeTble = false
@@ -361,6 +363,7 @@ extension MenuVC : UITableViewDelegate{
             let vc = storyboard.instantiateViewController(withIdentifier: "ClassTimeTableVC") as? ClassTimeTableVC
             //            vc?.isFromTimeTable = false
             vc?.isFromViewAttendence = true
+             vc?.isFromStudentViewAttendance = false
             vc?.isFromTeacher = 1
             vc?.teacherViewTimeTble = false
 
@@ -372,6 +375,7 @@ extension MenuVC : UITableViewDelegate{
         case "ViewTimetable" :
             let storyboard = UIStoryboard.init(name: KStoryBoards.kClass, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "ClassTimeTableVC") as? ClassTimeTableVC
+             vc?.isFromStudentViewAttendance = false
             //            vc?.isFromTimeTable = false
             vc?.isFromViewAttendence = true
             vc?.isFromTeacher = 1
@@ -398,14 +402,22 @@ extension MenuVC : UITableViewDelegate{
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
         case "ViewTimeTableAndAttendance":
+//            let storyboard = UIStoryboard.init(name: KStoryBoards.kClass, bundle: nil)
+//            let vc = storyboard.instantiateViewController(withIdentifier: "ClassTimeTableVC") as? ClassTimeTableVC
+//                        vc?.isFromTimeTable = false
+//            vc?.isFromViewAttendence = true
+//            vc?.isFromStudentViewAttendance = true
+//            vc?.isFromTeacher = 0
+//            let frontVC = revealViewController().frontViewController as? UINavigationController
+//            frontVC?.pushViewController(vc!, animated: false)
+//            revealViewController().pushFrontViewController(frontVC, animated: true)
             
-            let storyboard = UIStoryboard.init(name: "StudentAttendence", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "StudentViewAttendanceVC") as? StudentViewAttendanceVC
+            let storyboard = UIStoryboard.init(name: KStoryBoards.kClass, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "TimeTableStudentVC") as? TimeTableStudentVC
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
-//            StudentViewAttendanceVC
             
         case "RateTeachers" :
             let storyboard = UIStoryboard.init(name: KStoryBoards.kTeacher, bundle: nil)

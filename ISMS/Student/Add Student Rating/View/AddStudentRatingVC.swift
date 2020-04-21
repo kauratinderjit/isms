@@ -55,7 +55,7 @@ class AddStudentRatingVC: BaseUIViewController {
         self.viewModel = AddStudentRatingViewModel.init(delegate: self)
         self.viewModel?.attachView(viewDelegate: self)
         SetpickerView(self.view)
-        self.title = "Ratings"
+        self.title = "SkillWise Ratings"
         // Do any additional setup after loading the view.
         
         DispatchQueue.main.async {
@@ -341,12 +341,14 @@ extension AddStudentRatingVC : SharedUIPickerDelegate{
                         
                         let indexPath = IndexPath(row: RegisterClassDataModel.sharedInstance?.tagID ?? 0, section: 0)
                         let cell =  self.tableView.dequeueReusableCell(withIdentifier: "AddStudentRatingCell", for:indexPath) as! AddStudentRatingTableViewCell
+//                        var data = arrSkillListNew[tag]
+//                        data.isSelected = 1
                         cell.lblRating.text = "\(array[selectClassRating])"
 //                        selectClassRating = index
                         
                         arrSkillListNew[tag].isSelected = 1
                         
-                        arrSkillListNew[tag].ratingValue = count1 + 1
+                        arrSkillListNew[tag].ratingValue = array[selectClassRating]
                         
                         //   arrClickedArray[count1].ratingValue = array[count1]
                         
@@ -473,7 +475,7 @@ extension AddStudentRatingVC : ViewDelegate {
         // cornerButton(btn: btnSubmit, radius: 8)
         
         //Title
-        self.title = KStoryBoards.KClassListIdentifiers.kClassListTitle
+//        self.title = KStoryBoards.KClassListIdentifiers.kClassListTitle
         
         self.tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
@@ -522,7 +524,7 @@ extension AddStudentRatingVC : UITableViewDataSource , AddStudentRatingTableView
             // cell.lblStudentName.text = name
             cell.lblSkill.text = name
         }
-//        if isSelectedRating == true {
+        if isSelectedRating == true {
             if arrSkillListNew[indexPath.row].isSelected == 1 {
                 cell.lblRating.text = "\(arrSkillListNew[indexPath.row].ratingValue)"
 
@@ -532,7 +534,7 @@ extension AddStudentRatingVC : UITableViewDataSource , AddStudentRatingTableView
                 //  arrSkillList[indexPath.row].isSelected = 0
                 //"\(array[selectRatingCount[indexPath.row]])"
             }
-//        }
+        }
         
         //     cell.lblRating.text = "\(array[indexPath.row])"
         //        if let rating = arrSkillList[indexPath.row].studentRating {

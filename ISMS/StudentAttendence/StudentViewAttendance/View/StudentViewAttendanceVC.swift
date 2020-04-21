@@ -17,14 +17,33 @@ class StudentViewAttendanceVC: BaseUIViewController {
     
     var isSelectStartDate = false
     var isSeclectEndDate = false
-    
+      var classId,timeTableId,teacherId,classSubjectId :Int?
+     var arrAttendanceList = [GetStudentAttendanceResultData]()
+     var viewModel : StudentGetAttendanceViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.separatorStyle = .none
+        tableView.tableFooterView = UIView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        self.viewModel = StudentGetAttendanceViewModel.init(delegate: self)
+        self.viewModel?.attachView(viewDelegate: self)
         setDatePickerView(self.view, type: .date)
         // Do any additional setup after loading the view.
     }
     
 
+    @IBAction func btnGetAttendance(_ sender: Any) {
+        if lblStartDate.text == ""{
+             self.showAlert(alert:"Please Enter Start Date")
+           
+        }else if lblEndDate.text == ""{
+            self.showAlert(alert:"Please Enter End Date")
+        }else{
+              self.viewModel?.GetAttendance(StartDate: lblStartDate.text ?? "",EndDate: lblEndDate.text ?? "",StudentId: 14,PeriodId: 115,SubjectId: 1,EnrollmentId: 7,ClassId: 1,SessionId: 0)
+        }
+     
+    }
     @IBAction func btnPickerEndDate(_ sender: Any) {
         isSelectStartDate = false
         isSeclectEndDate = true
@@ -54,38 +73,37 @@ extension StudentViewAttendanceVC : UITableViewDelegate{
         cell.layoutMargins = UIEdgeInsets.zero
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70;
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        return UITableView.automaticDimension;//Choose your custom row height
+        return 60//Choose your custom row height
     }
-    
-    //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    //    {
-    //        return 100;//Choose your custom row height
-    //    }
     
 }
 extension StudentViewAttendanceVC : UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if arrGetTeacherRating.count > 0{
-//            tableView.separatorStyle = .singleLine
-//            return (arrGetTeacherRating.count)
-//        }else{
-//            tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
-//            return 0
-//        }
-        return 2
+        if self.arrAttendanceList.count > 0{
+            tableView.separatorStyle = .singleLine
+            tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: true)
+            return (self.arrAttendanceList.count)
+        }else{
+            tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ViewStudentAttendanceCell
         //
-        cell.lblPresntAbsent.text = "Present"
-        cell.lblDate.text = "2020-4-14"
+        
+        if self.arrAttendanceList[indexPath.row].attendanceStatus == "P"{
+            cell.lblPresntAbsent.textColor = UIColor.green
+              cell.lblPresntAbsent.text = "Present"
+        }else{
+            cell.lblPresntAbsent.textColor = UIColor.red
+            cell.lblPresntAbsent.text = "Absent"
+        }
+        let finalDate = self.dateFromISOString(string: self.arrAttendanceList[indexPath.row].attendanceDate ?? "\(Date())")
+        cell.lblDate.text = finalDate
 //        cell.setCellUI(data: arrGetTeacherRating, indexPath: indexPath)
         return cell
     }
@@ -94,15 +112,64 @@ extension StudentViewAttendanceVC:SharedUIDatePickerDelegate{
     
     func doneButtonClicked(datePicker: UIDatePicker) {
         //yearofestablishment
-        let dateFormatter       = DateFormatter()
-        dateFormatter.dateStyle = DateFormatter.Style.short
-        dateFormatter.dateFormat =  "dd/MM/yyyy"
-        let strDate = dateFormatter.string(from: datePicker.date)
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.timeZone = TimeZone.autoupdatingCurrent
+        formatter.locale = Locale.current
+        let convertedDate = formatter.string(from: datePicker.date)
+        let strDate = formatter.date(from: convertedDate)
+        
+        
+//        let dateFormatter       = DateFormatter()
+////        dateFormatter.dateStyle = DateFormatter.Style.short
+//        dateFormatter.dateFormat =  "YYYY-MM-DD"
+//        let strDate = dateFormatter.string(from: datePicker.date)
         if isSelectStartDate == true{
-             lblStartDate.text = strDate
+             lblStartDate.text = convertedDate
         }else{
-            lblEndDate.text = strDate
+            lblEndDate.text = convertedDate
         }
        
+    }
+}
+
+extension StudentViewAttendanceVC : StudentGetAttendanceDelegate{
+
+    func attendanceListDidSuccess(data: [GetStudentAttendanceResultData]?){
+        if let data1 = data {
+            if data1.count>0
+            {
+                self.arrAttendanceList = data1
+                tableView.reloadData()
+            }
+        }
+    }
+}
+extension StudentViewAttendanceVC : ViewDelegate{
+    
+    func showAlert(alert: String){
+        initializeCustomOkAlert(self.view, isHideBlurView: true)
+        okAlertView.delegate = self
+        okAlertView.lblResponseDetailMessage.text = alert
+    }
+    func showLoader() {
+        ShowLoader()
+    }
+    func hideLoader() {
+        HideLoader()
+    }
+}
+//MARK:- OK Alert Delegate
+extension StudentViewAttendanceVC : OKAlertViewDelegate{
+    func okBtnAction() {
+        okAlertView.removeFromSuperview()
+//        if isUnauthorizedUser == true{
+//            isUnauthorizedUser = false
+//            CommonFunctions.sharedmanagerCommon.setRootLogin()
+//        }else if isStudentAttendanceSuccess == true{
+//            isStudentAttendanceSuccess = false
+//            self.navigationController?.popViewController(animated: true)
+//        }
     }
 }

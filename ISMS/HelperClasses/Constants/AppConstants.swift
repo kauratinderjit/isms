@@ -19,6 +19,9 @@ public struct ApiEndpoints
     public static let kStudentListForAttendence = "api/Institute/GetStudentForAttendence"
     public static let kAddStudentListForAttendence = "api/Institute/AddUpdateStudentAttendence"
     
+//    Poonam
+     public static let kGetAttendanceReportByEnrollmentId = "api/Institute/GetAttendanceReportByEnrollmentId"
+    
     //MARK:- AttendanceReport Api
     public static let kGetAttendenceReportByClassId = "api/Institute/GetAttendenceReportByClassId"
     //MARK:- User Api

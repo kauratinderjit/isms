@@ -67,6 +67,7 @@ struct TopicListViewModels: Mappable {
     
     var TopicId : Int?
     var TopicName : String?
+     var isCover : Int?
     init?(map: Map) {
         
     }
@@ -75,7 +76,7 @@ struct TopicListViewModels: Mappable {
    
         TopicId <- map["TopicId"]
         TopicName <- map["TopicName"]
-        
+           isCover <- map["IsCover"]
     }
     
 }

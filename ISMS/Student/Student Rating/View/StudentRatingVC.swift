@@ -31,10 +31,10 @@ class StudentRatingVC: BaseUIViewController {
     var arrStudent = [StudentRatingResultData]()
     var arrSkillList = [AddStudentRatingResultData]()
     var arrSubjectList1 = [AddStudentRatingResultData]()
+    let userRoleParticularId = UserDefaultExtensionModel.shared.userRoleParticularId
     var isFromHod :Bool!
     var currentMonth = ""
     var arrMonthlist = ["Jan","Feb","March","April","May","June","July","Augest","September","October","Novemeber","Decemeber"]
-     let userRoleParticularId = UserDefaultExtensionModel.shared.userRoleParticularId
     @IBOutlet var textfieldMonth: UITextField!
     //MARK:- CLASS OVERRIDE FUNCTIONS
     override func viewDidLoad() {
@@ -314,8 +314,6 @@ extension StudentRatingVC : SharedUIPickerDelegate{
                 if let index = selectedClassArrIndex {
                     self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID:arrSubjectList1[index].studentID ?? 0, classID:  RegisterClassDataModel.sharedInstance?.subjectID ?? 0 )
                 }
-                
-             
             }
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
