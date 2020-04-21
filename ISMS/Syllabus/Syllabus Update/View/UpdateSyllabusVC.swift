@@ -221,7 +221,7 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
                 }
             }
             
-//             print("our selected arraty delete: ",coveredTopicData)
+             print("our selected arraty delete: ",coveredTopicData)
             tableView.reloadData()
         }
     }
