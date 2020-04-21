@@ -101,6 +101,7 @@ extension HODListVC : ViewDelegate{
         //Table View Settings
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
+        tableView.separatorColor = KAPPContentRelatedConstants.kLightBlueColour
         
 //        guard let theme = ThemeManager.shared.currentTheme else {return}
 //        btnAddHod.backgroundColor = theme.uiButtonBackgroundColor

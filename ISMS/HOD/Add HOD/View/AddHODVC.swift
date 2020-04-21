@@ -201,21 +201,21 @@ extension AddHODVC : ViewDelegate{
         UnHideNavigationBar(navigationController: self.navigationController)
         
         //Set Fonts in TextFields
-        txtFieldFirstName.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kFirstName)
-        txtFieldLastName.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kLastName)
-        txtFieldAddress.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kAddress)
-        txtFieldDOB.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kDOB)
-        txtFieldIdProof.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kIdProof)
-        txtFieldEmail.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kEmail)
-        txtFieldAssignDepartment.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kAssignDepartment)
-        txtFieldWorkExperience.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kWorkExperience)
-        txtFieldAdditionalSkills.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kAdditionalSkills)
-        txtFieldQualification.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kQualification)
-        txtFieldPhoneNumber.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kPhoneNumber)
-        txtFieldOthers.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kOthers)
+        txtFieldFirstName.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kFirstName)
+        txtFieldLastName.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kLastName)
+        txtFieldAddress.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kAddress)
+        txtFieldDOB.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kDOB)
+        txtFieldIdProof.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kIdProof)
+        txtFieldEmail.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kEmail)
+        txtFieldAssignDepartment.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kAssignDepartment)
+        txtFieldWorkExperience.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kWorkExperience)
+        txtFieldAdditionalSkills.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kAdditionalSkills)
+        txtFieldQualification.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kQualification)
+        txtFieldPhoneNumber.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kPhoneNumber)
+        txtFieldOthers.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kOthers)
         
         //Set Shadow of textfields
-        createMultipleViewsCornerShadow(views: [txtFieldFirstName,txtFieldLastName,txtFieldAddress,txtFieldDOB,txtFieldEmail,txtFieldPhoneNumber,txtFieldIdProof,txtFieldAssignDepartment,txtFieldQualification,txtFieldWorkExperience,txtFieldAdditionalSkills,txtFieldOthers,viewGender], radius: 8)
+      //  createMultipleViewsCornerShadow(views: [txtFieldFirstName,txtFieldLastName,txtFieldAddress,txtFieldDOB,txtFieldEmail,txtFieldPhoneNumber,txtFieldIdProof,txtFieldAssignDepartment,txtFieldQualification,txtFieldWorkExperience,txtFieldAdditionalSkills,txtFieldOthers,viewGender], radius: 8)
 
         //Set padding
         txtFieldFirstName.txtfieldPadding(leftpadding: 20, rightPadding: 0)
@@ -235,7 +235,7 @@ extension AddHODVC : ViewDelegate{
         imgViewIdProof.createCircleImage()
         imgViewProfileHOD.createCircleImage()
         
-        cornerButton(btn: btnSubmit, radius: 8)
+        //cornerButton(btn: btnSubmit, radius: 8)
         
         //Set Color According to theme
         guard let theme = ThemeManager.shared.currentTheme else {return}

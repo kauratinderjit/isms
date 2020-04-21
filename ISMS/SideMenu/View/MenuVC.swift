@@ -17,6 +17,9 @@ protocol MenuVCDelegate: class
 
 class MenuVC: BaseUIViewController {
 
+    @IBOutlet weak var imgViewProfile: UIImageView!
+    @IBOutlet weak var btnEditProfile: UIButton!
+    @IBOutlet weak var lblUserName: UILabel!
     @IBOutlet weak var tableView: UITableView!
     static var menuArray = ["Logout"]
     static var menuArrayFromApi : GetMenuFromRoleIdModel?
@@ -26,7 +29,8 @@ class MenuVC: BaseUIViewController {
 
         // Do any additional setup after loading the view.
         tableView.tableFooterView = UIView()
-        
+        tableView.separatorStyle = .none
+        setView()
         let userRoleCount = UserDefaults.standard.value(forKey: UserDefaultKeys.userRolesCount.rawValue) as? Int
 
 //        if userRoleCount == 0{
@@ -66,21 +70,54 @@ class MenuVC: BaseUIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let theme = ThemeManager.shared.currentTheme{
-            tableView.backgroundColor = theme.mainColor
-            self.navigationController?.navigationBar.tintColor = theme.navigationTintColor
-            self.navigationController?.navigationBar.barTintColor = theme.navigationBarTintColor
-        }else{
-            tableView.backgroundColor = UIColor.colorFromHexString("A90222")
-            self.navigationController?.navigationBar.barTintColor = UIColor.colorFromHexString("A90222")
-            self.navigationController?.navigationBar.tintColor = UIColor.colorFromHexString("FFFFFF")
-        }
+//        if let theme = ThemeManager.shared.currentTheme{
+//            tableView.backgroundColor = theme.mainColor
+//            self.navigationController?.navigationBar.tintColor = theme.navigationTintColor
+//            self.navigationController?.navigationBar.barTintColor = theme.navigationBarTintColor
+//        }else{
+//            tableView.backgroundColor = UIColor.colorFromHexString("A90222")
+//            self.navigationController?.navigationBar.barTintColor = UIColor.colorFromHexString("A90222")
+//            self.navigationController?.navigationBar.tintColor = UIColor.colorFromHexString("FFFFFF")
+//        }
         
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
-  
+    //MARK:- Other View
+    func setView(){
+        imgViewProfile.layer.cornerRadius = imgViewProfile.frame.height/2
+        imgViewProfile.clipsToBounds = true
+        imgViewProfile.layer.borderWidth = 1
+        imgViewProfile.layer.borderColor = UIColor.white.cgColor
+        
+        if UserDefaultExtensionModel.shared.userName != nil && UserDefaultExtensionModel.shared.userName != ""{
+        lblUserName.text = UserDefaultExtensionModel.shared.userName
+        }
+        else{
+          lblUserName.text = "N/A"
+        }
+        
+        if UserDefaultExtensionModel.shared.userProfile != nil && UserDefaultExtensionModel.shared.userProfile != ""{
+            imgViewProfile.sd_setImage(with: URL.init(string: UserDefaultExtensionModel.shared.userProfile ?? "")) { (img, error, cacheType, url) in
+                            if error == nil{
+                               self.imgViewProfile.contentMode = .scaleAspectFit
+                                self.imgViewProfile.image = img
+                           }
+                            else{
+                                self.imgViewProfile.image = UIImage.init(named: "profile")
+                           }
+            }
+        }
+        else{
+           self.imgViewProfile.image = UIImage.init(named: "profile")
+        }
+    }
+    
+    //MARK:- Actions
+    @IBAction func btnEditProfileAction(_ sender: Any) {
+    }
+    
 }
 
 //MARK:- Table View Delegate
@@ -441,7 +478,7 @@ extension MenuVC : UITableViewDataSource{
         cell.lblRowTitle.text =  MenuVC.menuArrayFromApi?.resultData?[indexPath.row].pageName
         cell.lblRowTitle.numberOfLines = 0
         if let theme = ThemeManager.shared.currentTheme{
-            cell.viewBG.backgroundColor = theme.mainColor
+            cell.viewBG.backgroundColor = theme.mainColor//KAPPContentRelatedConstants.kThemeColour//theme.mainColor
         }
         return cell
     }

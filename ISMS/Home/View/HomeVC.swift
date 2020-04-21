@@ -87,6 +87,7 @@ class HomeVC: BaseUIViewController {
                self.homeViewModel?.attachView(view: self)
                setLeftMenuButton()
 
+
                //If it is came from direct login screen and have only one role then it is executed zero index role id of user
                if HomeVC.isCameDirectFromLoginScreen == true{
                    HomeVC.isCameDirectFromLoginScreen = false
@@ -106,7 +107,7 @@ class HomeVC: BaseUIViewController {
                }
                
                self.title = KAPPContentRelatedConstants.kAppTitle
-       // self.homeViewModel?.getRoleId(userID: UserDefaultExtensionModel.shared.currentUserId)
+        self.homeViewModel?.getRoleId(userID: UserDefaultExtensionModel.shared.currentUserId)
         
         if UserDefaultExtensionModel.shared.currentHODRoleName == "HOD" {
             self.title = "HOD's Dashboard"
@@ -164,8 +165,10 @@ extension HomeVC : HomeViewModelDelegate{
     }
     
     func didSuccessUserRole(data: UserRoleIdModel) {
-        UserDefaults.standard.set(data.resultData?.count ?? 0, forKey: UserDefaultKeys.userRolesCount.rawValue)
-        UserDefaults.standard.synchronize()
+       // UserDefaults.standard.set(data.resultData?.count ?? 0, forKey: UserDefaultKeys.userRolesCount.rawValue)
+//        UserDefaults.standard.synchronize()
+        UserDefaultExtensionModel.shared.userName = data.resultData?[0].UserName ?? ""
+        UserDefaultExtensionModel.shared.userProfile = data.resultData?[0].ImageUrl ?? ""
         
         if data.resultData?.count ?? 0 == 0{
                 debugPrint("Count is zero")

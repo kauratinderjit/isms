@@ -54,31 +54,37 @@ class AddDepartmentVC: BaseUIViewController {
         //Hit Add/Detail Department Api
         departmentAddOrGetdetailApi()
         //Set placeholders
-        txtfieldTitle.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kTitle)
-        txtfieldOthers.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kOthers)
-        txtViewDescription.SetTextFont(textSize:KTextSize.KSixteen)
+        txtfieldTitle.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kTitle)
+        txtfieldOthers.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kOthers)
+        txtViewDescription.SetTextFont(textSize:KTextSize.KFourteen)
         txtViewDescription.placeholder = KPlaceholder.kDescription
         txtViewDescription.placeholderColor = UIColor.darkGray
         //Set corner and shadow of the textfields
-        addViewCornerShadow(radius: 8, view: txtfieldTitle)
-        addViewCornerShadow(radius: 8, view: txtfieldOthers)
-        addViewCornerShadow(radius: 8, view: txtViewDescription)
-        btnSubmit.SetButtonFont(textSize: KTextSize.KSeventeen)
+        //MARK:-Naval
+        
+       // addViewCornerShadow(radius: 8, view: txtfieldTitle)
+       // addViewCornerShadow(radius: 8, view: txtfieldOthers)
+        //addViewCornerShadow(radius: 8, view: txtViewDescription)
+        
+        //btnSubmit.SetButtonFont(textSize: KTextSize.KSeventeen)
         //Set textfield padding
         txtfieldTitle.txtfieldPadding(leftpadding: 20, rightPadding: 0)
         txtfieldOthers.txtfieldPadding(leftpadding: 20, rightPadding: 0)
+        txtViewDescription.textContainerInset = UIEdgeInsets(top: 20, left: 16, bottom: 20, right: 20)
+
         //Set navigation back button
         setBackButton()
         //Set the circle image
         cornerImage(image: imgViewDepartment)
-        cornerButton(btn: btnSubmit, radius: 8)
+        //cornerButton(btn: btnSubmit, radius: 4)
         //Unhide Navigation comtroller
         UnHideNavigationBar(navigationController: self.navigationController)
         viewEndEditing(view: self.view)
         
-        guard let theme = ThemeManager.shared.currentTheme else {return}
-        btnSubmit.backgroundColor = theme.uiButtonBackgroundColor
-        btnSubmit.titleLabel?.textColor = theme.uiButtonTextColor
+     //   guard let theme = ThemeManager.shared.currentTheme else {return}
+        addbtnShadow(radius: 4, btn: btnSubmit, shadowColor: KAPPContentRelatedConstants.kThemeColour)
+        btnSubmit.backgroundColor = KAPPContentRelatedConstants.kThemeColour
+        btnSubmit.titleLabel?.textColor = UIColor.white
 //        btnAddimage.tintColor = theme.uiButtonTintColor
         
     }

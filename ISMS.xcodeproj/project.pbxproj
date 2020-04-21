@@ -323,6 +323,14 @@
 		5CB7F1EE8CC8A74A757048E5 /* Pods_ISMS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C888007208C30DDC7E394E /* Pods_ISMS.framework */; };
 		63DA9B7336B3E8F878D62AF1 /* Pods_ISMSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60DEE33230370FAA807BA760 /* Pods_ISMSTests.framework */; };
 		8141B1AABFA2CECDE13474E9 /* Pods_ISMSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8DA8958D4FCB9233DC4FE1E /* Pods_ISMSUITests.framework */; };
+		9B1CDD242449B15B003E7650 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CDD1A2449B155003E7650 /* CustomButton.swift */; };
+		9B1CDD252449B15B003E7650 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CDD1B2449B155003E7650 /* CustomTextField.swift */; };
+		9B1CDD282449B15B003E7650 /* SSBadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CDD1E2449B158003E7650 /* SSBadgeButton.swift */; };
+		9B1CDD2D2449B15B003E7650 /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CDD232449B15B003E7650 /* CustomUIButton.swift */; };
+		9B44D83A244EB40900B6DEC5 /* GetStudentAttendanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B44D839244EB40900B6DEC5 /* GetStudentAttendanceModel.swift */; };
+		9B44D83D244EB42800B6DEC5 /* StudentGetAttendanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B44D83C244EB42800B6DEC5 /* StudentGetAttendanceViewModel.swift */; };
+		9B44D83F244EB4C700B6DEC5 /* TimeTableStudentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B44D83E244EB4C700B6DEC5 /* TimeTableStudentVC.swift */; };
+		9B44D841244EB4F900B6DEC5 /* TimeTableStudentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B44D840244EB4F800B6DEC5 /* TimeTableStudentViewModel.swift */; };
 		BE06B65122A4ED26000CFCAF /* SignUpApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE06B65022A4ED26000CFCAF /* SignUpApi.swift */; };
 		BE06B65322A4EE70000CFCAF /* GetAllCountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE06B65222A4EE70000CFCAF /* GetAllCountryModel.swift */; };
 		BE06B65522A4F4D1000CFCAF /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE06B65422A4F4D1000CFCAF /* SignUpViewModel.swift */; };
@@ -752,6 +760,14 @@
 		60DEE33230370FAA807BA760 /* Pods_ISMSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISMSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A2B5045127C6AFC8ED49002 /* Pods-ISMSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISMSTests.release.xcconfig"; path = "Target Support Files/Pods-ISMSTests/Pods-ISMSTests.release.xcconfig"; sourceTree = "<group>"; };
 		87766E9D3C767F134280AD94 /* Pods-ISMSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISMSUITests.debug.xcconfig"; path = "Target Support Files/Pods-ISMSUITests/Pods-ISMSUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9B1CDD1A2449B155003E7650 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		9B1CDD1B2449B155003E7650 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		9B1CDD1E2449B158003E7650 /* SSBadgeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSBadgeButton.swift; sourceTree = "<group>"; };
+		9B1CDD232449B15B003E7650 /* CustomUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
+		9B44D839244EB40900B6DEC5 /* GetStudentAttendanceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStudentAttendanceModel.swift; sourceTree = "<group>"; };
+		9B44D83C244EB42800B6DEC5 /* StudentGetAttendanceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentGetAttendanceViewModel.swift; sourceTree = "<group>"; };
+		9B44D83E244EB4C700B6DEC5 /* TimeTableStudentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableStudentVC.swift; sourceTree = "<group>"; };
+		9B44D840244EB4F800B6DEC5 /* TimeTableStudentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableStudentViewModel.swift; sourceTree = "<group>"; };
 		A8DA8958D4FCB9233DC4FE1E /* Pods_ISMSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISMSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1EB2A5499D2FE4C456F9A36 /* Pods-ISMS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISMS.release.xcconfig"; path = "Target Support Files/Pods-ISMS/Pods-ISMS.release.xcconfig"; sourceTree = "<group>"; };
 		BE06B65022A4ED26000CFCAF /* SignUpApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpApi.swift; sourceTree = "<group>"; };
@@ -1062,6 +1078,7 @@
 		0C1C2875238E5A9D00F98FEC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9B44D83E244EB4C700B6DEC5 /* TimeTableStudentVC.swift */,
 				103091B2239E299E003DA163 /* ClassTimeTableVC.swift */,
 				0C1C2876238E5A9D00F98FEC /* ClassPeriodsCollectionViewCell.swift */,
 				0C1C2877238E5A9D00F98FEC /* ClassPeriodsTableViewCell.swift */,
@@ -1073,6 +1090,7 @@
 		0C1C2879238E5A9D00F98FEC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				9B44D840244EB4F800B6DEC5 /* TimeTableStudentViewModel.swift */,
 				0C1C287A238E5A9D00F98FEC /* ClassPeriodsTimeTableViewModel.swift */,
 			);
 			path = ViewModel;
@@ -3006,6 +3024,7 @@
 		2E0DCA092297E775001DC56D /* ISMS */ = {
 			isa = PBXGroup;
 			children = (
+				9B1CDD162449B125003E7650 /* AppBase */,
 				2E8F63C9243C58E80040F9CA /* HomeWork */,
 				2E8F63BA243C589A0040F9CA /* Notes */,
 				10EEEABC239E57FC00E8485C /* ExamResult */,
@@ -3427,6 +3446,8 @@
 		2EC88B652448504000AF60B7 /* StudentViewAttendance */ = {
 			isa = PBXGroup;
 			children = (
+				9B44D83B244EB41F00B6DEC5 /* ViewModel */,
+				9B44D838244EB40300B6DEC5 /* Model */,
 				2EC88B662448504000AF60B7 /* View */,
 			);
 			path = StudentViewAttendance;
@@ -3513,6 +3534,41 @@
 				A8DA8958D4FCB9233DC4FE1E /* Pods_ISMSUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9B1CDD162449B125003E7650 /* AppBase */ = {
+			isa = PBXGroup;
+			children = (
+				9B1CDD192449B14A003E7650 /* CustomClasses */,
+			);
+			path = AppBase;
+			sourceTree = "<group>";
+		};
+		9B1CDD192449B14A003E7650 /* CustomClasses */ = {
+			isa = PBXGroup;
+			children = (
+				9B1CDD1A2449B155003E7650 /* CustomButton.swift */,
+				9B1CDD1B2449B155003E7650 /* CustomTextField.swift */,
+				9B1CDD232449B15B003E7650 /* CustomUIButton.swift */,
+				9B1CDD1E2449B158003E7650 /* SSBadgeButton.swift */,
+			);
+			path = CustomClasses;
+			sourceTree = "<group>";
+		};
+		9B44D838244EB40300B6DEC5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9B44D839244EB40900B6DEC5 /* GetStudentAttendanceModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9B44D83B244EB41F00B6DEC5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9B44D83C244EB42800B6DEC5 /* StudentGetAttendanceViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		BEB79BA022A686C3004275B7 /* Login */ = {
@@ -4434,6 +4490,7 @@
 				C683DB0A22E072ED00011212 /* AddPeriodModel.swift in Sources */,
 				2D645F0022BBB674009EA9B6 /* TeacherListVC.swift in Sources */,
 				0C55C2DA23967DA50016CC23 /* TeacherRatingViewModel.swift in Sources */,
+				9B44D841244EB4F900B6DEC5 /* TimeTableStudentViewModel.swift in Sources */,
 				2D2A92BB22B0CEFD00F2AAB6 /* AddParentModel.swift in Sources */,
 				2DACBC8F22BA550900EFE5C4 /* HomeVC.swift in Sources */,
 				103091AC239E2390003DA163 /* PeriodCollectionViewCell.swift in Sources */,
@@ -4499,6 +4556,7 @@
 				0C1C28ED238E5BCE00F98FEC /* ProgressBarClass.swift in Sources */,
 				2DCBA9FE22C0CB5D0054B3A7 /* AttachFilesTableViewCell.swift in Sources */,
 				102003662379435F00BA4836 /* MultiRoleTableViewDataSource.swift in Sources */,
+				9B1CDD282449B15B003E7650 /* SSBadgeButton.swift in Sources */,
 				0C1C28CD238E5BB300F98FEC /* SubjectListVC.swift in Sources */,
 				103091B5239E29AF003DA163 /* GetTimeTableModel.swift in Sources */,
 				C61A1A95239125B70043A5D2 /* InfoDirectoryVC.swift in Sources */,
@@ -4510,6 +4568,7 @@
 				0C7A1A1023953C4D002B5C8B /* RatingToTeacherVC.swift in Sources */,
 				2E3BF6EC2435D05C00A4FB22 /* CollapsibleTableViewCell.swift in Sources */,
 				2D645F0222BBB685009EA9B6 /* TeacherListPresenter.swift in Sources */,
+				9B1CDD252449B15B003E7650 /* CustomTextField.swift in Sources */,
 				BE06B65322A4EE70000CFCAF /* GetAllCountryModel.swift in Sources */,
 				0C1C28FE238E9CD800F98FEC /* StudentRatingTableViewCell.swift in Sources */,
 				BE35664A229E833500759ACA /* ConfirmPasswordVC.swift in Sources */,
@@ -4550,10 +4609,12 @@
 				0C1C2881238E5A9D00F98FEC /* ClassApi.swift in Sources */,
 				0C1C28C3238E5BB300F98FEC /* ChapterModel.swift in Sources */,
 				2E3BF6EF2435D05C00A4FB22 /* CollapsibleTableViewHeader.swift in Sources */,
+				9B44D83D244EB42800B6DEC5 /* StudentGetAttendanceViewModel.swift in Sources */,
 				10EEEAA8239E57DC00E8485C /* ManageUserVC.swift in Sources */,
 				2E8F63D3243C94FA0040F9CA /* HomeWorkCell.swift in Sources */,
 				C61A1A912391143C0043A5D2 /* GroupEmailVC.swift in Sources */,
 				0C1C2890238E5A9D00F98FEC /* ClassPeriodsTableViewCell.swift in Sources */,
+				9B1CDD242449B15B003E7650 /* CustomButton.swift in Sources */,
 				0C668581238FE26E006593D5 /* AddStudentRatingVC.swift in Sources */,
 				10EEEA66239E509900E8485C /* PopUpTableViewCell.swift in Sources */,
 				2D645F0D22BBBB67009EA9B6 /* AddTeacherModel.swift in Sources */,
@@ -4652,6 +4713,7 @@
 				C65BF51F22D36843002F3304 /* UserRoleIdApi.swift in Sources */,
 				C683DAF322E0725C00011212 /* StudentListTableCell.swift in Sources */,
 				0C1C2885238E5A9D00F98FEC /* ClassListVC.swift in Sources */,
+				9B44D83A244EB40900B6DEC5 /* GetStudentAttendanceModel.swift in Sources */,
 				2EC88B612448501D00AF60B7 /* ViewTeacherRatingModel.swift in Sources */,
 				C683DB0E22E072ED00011212 /* TimePeriodCell.swift in Sources */,
 				2DACBC9B22BA6BD700EFE5C4 /* MenuTableViewCell.swift in Sources */,
@@ -4667,6 +4729,7 @@
 				0C9E54122397BA6D00CB3D07 /* SubjectWiseRatingModel.swift in Sources */,
 				C683DB2122E082BF00011212 /* AddStudentViewModel.swift in Sources */,
 				C6C611B6239675730013E82D /* StudentListMarkAttCell.swift in Sources */,
+				9B44D83F244EB4C700B6DEC5 /* TimeTableStudentVC.swift in Sources */,
 				0C1C2883238E5A9D00F98FEC /* DeleteClassModel.swift in Sources */,
 				C61A1A792390F7000043A5D2 /* ProgramCollectionViewCell.swift in Sources */,
 				C61A1A972391265F0043A5D2 /* InfoDirectoryCell.swift in Sources */,
@@ -4717,6 +4780,7 @@
 				103091AE239E2390003DA163 /* TimeCollectionViewCell.swift in Sources */,
 				0C1C2888238E5A9D00F98FEC /* AssignSubjectsToClassModel.swift in Sources */,
 				2D2A92BD22B0CF1300F2AAB6 /* AddParentVC.swift in Sources */,
+				9B1CDD2D2449B15B003E7650 /* CustomUIButton.swift in Sources */,
 				2E0DCA7D2297E8DC001DC56D /* UITextField.swift in Sources */,
 				2E0DCA7F2297E8DC001DC56D /* MBProgressHUD.m in Sources */,
 				C683DAF422E0725C00011212 /* StudentListVC.swift in Sources */,
@@ -4928,10 +4992,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.seasia.isms;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.seasia.-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = Isms_Dev_Prov;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Volumes/DATA/ISMS git/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
+				PROVISIONING_PROFILE_SPECIFIER = AllSeasiaProjectsDev_5Sept2019;
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/navaldeepkaur/Documents/ISMS/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -4954,10 +5018,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.seasia.isms;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.seasia.-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = Isms_Dev_Prov;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Volumes/DATA/ISMS git/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
+				PROVISIONING_PROFILE_SPECIFIER = AllSeasiaProjectsDev_5Sept2019;
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/navaldeepkaur/Documents/ISMS/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

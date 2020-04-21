@@ -38,9 +38,20 @@ extension UIViewController {
         view.layer.shadowOpacity = Float(opacity);
     }
     
+    //Create Shadow and radius of the view
+    func addbtnShadow(radius: Int,btn:UIButton,shadowColor:UIColor){
+          let opacity = 0.2
+          btn.layer.masksToBounds = false;
+          btn.layer.shadowOffset = CGSize(width: 2, height: 2)
+          btn.layer.shadowColor = shadowColor.cgColor
+          btn.layer.cornerRadius = CGFloat(radius)
+          btn.layer.shadowRadius = 8;
+          btn.layer.shadowOpacity = Float(opacity);
+      }
+    
     //Add Multiple View to Array for Corner Radius And Shadow
     func createMultipleViewsCornerShadow(views: [UIView],radius: Int){
-        let opacity = 0.2
+        let opacity = 0.6
         _ = views.map({ (view) in
             view.layer.masksToBounds = false;
             view.layer.shadowOffset = CGSize(width: 2, height: 2)
@@ -122,12 +133,13 @@ extension UIViewController {
     }
   
     //MARK:- Create Back Button in navigation Bar
+    //NAVAL
     func setBackButton(){
         let backButton = UIButton()
         backButton.setImage(UIImage(named: kImages.KBackIcon), for: .normal)
         backButton.addTarget(self, action: #selector(backBtnAction), for: .touchUpInside)
         backButton.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
-        backButton.tintColor = .white
+        backButton.tintColor = .gray
         backButton.backgroundColor = .clear
         let barItemBackButton = UIBarButtonItem(customView: backButton)
         
@@ -267,7 +279,7 @@ extension UIViewController {
         button.addTarget(self, action: #selector(openSideBar), for: .touchUpInside)
         //set frame
         button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        button.tintColor = .white
+        button.tintColor = .gray
         button.backgroundColor = .clear
         let barButton = UIBarButtonItem(customView: button)
         //assign button to navigationbar

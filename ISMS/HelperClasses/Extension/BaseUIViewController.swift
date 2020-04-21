@@ -456,7 +456,8 @@ class BaseUIViewController: UIViewController{
     //MARK:- Create right search button in navigation contorller
     func createRightNavSearchBarButton(){
         let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "search"), style: .done, target: self, action: #selector(self.unHideSearchBar(_:)))
-        rightBarButtonItem.tintColor = .white
+        //NAVAL
+        rightBarButtonItem.tintColor = .gray
         //        rightBarButtonItem.setBackgroundImage(UIImage(named: "search"), for: .normal, barMetrics: .default)
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
     }
