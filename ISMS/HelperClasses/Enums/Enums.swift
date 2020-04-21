@@ -127,5 +127,7 @@ enum UserDefaultKeys : String{
     case userRoleParticularId = "particularId"
     case HODDepartmentId = "DepartmentId"
     case HODName = "HOD"
+    case userName = "userName"
+    case userProfile = "userProfile"
     
 }

@@ -106,6 +106,7 @@ extension ClassListVC : ViewDelegate{
         self.title = KStoryBoards.KClassListIdentifiers.kClassListTitle
         self.tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
+        tableView.separatorColor = KAPPContentRelatedConstants.kLightBlueColour
     }
 }
 

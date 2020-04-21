@@ -17,7 +17,7 @@ class MenuTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        imgViewRow.createCircleImage()
+       // imgViewRow.createCircleImage()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -35,7 +35,19 @@ class MenuTableViewCell: UITableViewCell {
             if let theme = ThemeManager.shared.currentTheme{
                 viewBG.backgroundColor = theme.mainColor
             }
-            CommonFunctions.sharedmanagerCommon.addLabelOnTheImgeViewWithFirstCharacter(string: title ?? "", imgView: self.imgViewRow)
+            imgViewRow.sd_setImage(with: URL.init(string: data.ImageUrl ?? "")) { (img, error, cacheType, url) in
+                 if error == nil{
+                    self.imgViewRow.contentMode = .scaleAspectFit
+                     self.imgViewRow.image = img
+                }
+                 else{
+                 CommonFunctions.sharedmanagerCommon.addLabelOnTheImgeViewWithFirstCharacter(string: title ?? "", imgView: self.imgViewRow)
+                }
+            }
+            
+                       
+            
+           
             
         }else{
             debugPrint("There is no data.")

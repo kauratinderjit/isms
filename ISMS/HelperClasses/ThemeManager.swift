@@ -33,24 +33,26 @@ extension UIColor {
 }
 
 
-let hodThemeDict : [String:String] = ["mainColor":"00008b","textFieldBackgroundColor":"FFFFFF","uiButtonBackgroundColor":"#00008b","uiBarButtonBackgroundColor":"#00008b","uiButtonTintColor":"FFFFFF","uiButtonTextColor":"FFFFFF","textFieldTextColor":"A9A9A9","labelTextColor":"000000","labelBackgroundColor":"#00008b","navigationTintColor":"#FFFFFF","navigationBarTintColor":"#00008b","statusBarColor":"#00008b"]
+let hodThemeDict : [String:String] = ["mainColor":"4BBEF8","textFieldBackgroundColor":"FFFFFF","uiButtonBackgroundColor":"4BBEF8","uiBarButtonBackgroundColor":"4ABCF5","uiButtonTintColor":"FFFFFF","uiButtonTextColor":"FFFFFF","textFieldTextColor":"A9A9A9","labelTextColor":"000000","labelBackgroundColor":"4BBEF8","navigationTintColor":"#00008b","navigationBarTintColor":"FFFFFF","statusBarColor": "FFFFFF"] //["mainColor":"00008b","textFieldBackgroundColor":"FFFFFF","uiButtonBackgroundColor":"#00008b","uiBarButtonBackgroundColor":"#00008b","uiButtonTintColor":"FFFFFF","uiButtonTextColor":"FFFFFF","textFieldTextColor":"A9A9A9","labelTextColor":"000000","labelBackgroundColor":"#00008b","navigationTintColor":"#FFFFFF","navigationBarTintColor":"#00008b","statusBarColor":"#00008b"]
 let studentThemeDict : [String:String] = ["mainColor":"17442A","textFieldBackgroundColor":"FFFFFF","uiButtonBackgroundColor":"17442A","uiBarButtonBackgroundColor":"17442A","uiButtonTintColor":"FFFFFF","uiButtonTextColor":"FFFFFF","textFieldTextColor":"A9A9A9","labelTextColor":"000000","labelBackgroundColor":"17442A","navigationTintColor":"FFFFFF","navigationBarTintColor":"17442A","statusBarColor": "17442A"]
-let defaultThemeDict : [String:String] = ["mainColor":"A90222","textFieldBackgroundColor":"FFFFFF","uiButtonBackgroundColor":"A90222","uiBarButtonBackgroundColor":"A90222","uiButtonTintColor":"FFFFFF","uiButtonTextColor":"FFFFFF","textFieldTextColor":"A9A9A9","labelTextColor":"000000","labelBackgroundColor":"A90222","navigationTintColor":"FFFFFF","navigationBarTintColor":"A90222","statusBarColor": "A90222"]
+//let defaultThemeDict : [String:String] = ["mainColor":"A90222","textFieldBackgroundColor":"FFFFFF","uiButtonBackgroundColor":"A90222","uiBarButtonBackgroundColor":"A90222","uiButtonTintColor":"FFFFFF","uiButtonTextColor":"FFFFFF","textFieldTextColor":"A9A9A9","labelTextColor":"000000","labelBackgroundColor":"A90222","navigationTintColor":"FFFFFF","navigationBarTintColor":"A90222","statusBarColor": "A90222"]
+
+let defaultThemeDict : [String:String] = ["mainColor":"4BBEF8","textFieldBackgroundColor":"FFFFFF","uiButtonBackgroundColor":"4BBEF8","uiBarButtonBackgroundColor":"4ABCF5","uiButtonTintColor":"FFFFFF","uiButtonTextColor":"FFFFFF","textFieldTextColor":"A9A9A9","labelTextColor":"000000","labelBackgroundColor":"4BBEF8","navigationTintColor":"#00008b","navigationBarTintColor":"FFFFFF","statusBarColor": "FFFFFF"]
 
 struct ThemeColors: Codable {
 
-    var mainColor: String = "A90222"//Current Theme Main Color(White)
+    var mainColor: String = "4BBEF8"//"A90222"//Current Theme Main Color(White)
     var textFieldBackgroundColor : String = "FFFFFF"//(White)
-    var uiButtonBackgroundColor : String = "A90222"//Default Color ISMS(Red)
-    var uiBarButtonBackgroundColor : String = "A90222"//DefaultColor(Red)
+    var uiButtonBackgroundColor : String = "4BBEF8"//"A90222"//Default Color ISMS(Red)
+    var uiBarButtonBackgroundColor : String = "4BBEF8"//"A90222"//DefaultColor(Red)
     var uiButtonTintColor :String = "FFFFFF"
     var uiButtonTextColor : String = "FFFFFF"
     var textFieldTextColor : String = "FFFFFF"
     var labelTextColor : String = "FFFFFF"
-    var labelBackgroundColor : String = "A90222"
-    var navigationTintColor : String = "FFFFFF"
-    var navigationBarTintColor : String = "A90222"
-    var statusBarColor : String = "A90222"
+    var labelBackgroundColor : String = "4BBEF8"//"A90222"
+    var navigationTintColor : String = "#00008b"//"FFFFFF"
+    var navigationBarTintColor : String = "FFFFFF"//"A90222"
+    var statusBarColor : String = "4BBEF8"//"A90222"
     var titleColor = "FFFFFF"
 
     
@@ -58,7 +60,7 @@ struct ThemeColors: Codable {
     var header1Color: String = "D20000"
     var subheader1Color: String = "D20000"
     var header2Color: String = "000000" //topnav bar right colour
-    var navigationTitleColor = "FFFFFF"
+    var navigationTitleColor = "#000000"//"FFFFFF"
     var tabBarBackgroundColor = "000000"
     var tabBarTextColor = "BFBBBB"
     var tabBarHighlightTextColor = "FFFFFF"
@@ -98,7 +100,7 @@ struct ThemeColors: Codable {
     init() { }
     
     init(values: [String: String]) {
-        mainColor = values["mainColor"] ?? "A90222"
+        mainColor = values["mainColor"] ?? "4BBEF8"
         textFieldBackgroundColor = values["textFieldBackgroundColor"] ?? "FFFFFF"
         uiButtonBackgroundColor = values["uiButtonBackgroundColor"] ?? "FFFFFF"
         uiBarButtonBackgroundColor = values["uiBarButtonBackgroundColor"] ?? "FFFFFF"
@@ -181,18 +183,18 @@ struct ThemeColors: Codable {
 
 class Theme {
     
-    var mainColor: UIColor = UIColor.colorFromHexString("A90222")
+    var mainColor: UIColor = UIColor.colorFromHexString("4BBEF8")//UIColor.colorFromHexString("A90222")
     var textFieldBackgroundColor : UIColor = .white
-    var uiButtonBackgroundColor : UIColor = UIColor.colorFromHexString("A90222")
+    var uiButtonBackgroundColor : UIColor = UIColor.colorFromHexString("4BBEF8")//UIColor.colorFromHexString("A90222")
     var uiBarButtonBackgroundColor : UIColor = .clear
     var uiButtonTintColor :UIColor = .white
     var uiButtonTextColor : UIColor = .white
     var textFieldTextColor : UIColor = .gray
     var labelTextColor : UIColor = .black
-    var navigationTintColor : UIColor = UIColor.colorFromHexString("FFFFFF")
-    var navigationBarTintColor : UIColor = UIColor.colorFromHexString("A90222")
-    var labelBackgroundColor : UIColor = UIColor.colorFromHexString("A90222")
-    var statusBarColr : UIColor = UIColor.colorFromHexString("A90222")
+    var navigationTintColor : UIColor = UIColor.colorFromHexString("B1B7BB")//UIColor.colorFromHexString("FFFFFF")
+    var navigationBarTintColor : UIColor = UIColor.colorFromHexString("4BBEF8")//UIColor.colorFromHexString("A90222")
+    var labelBackgroundColor : UIColor = UIColor.colorFromHexString("4BBEF8")//UIColor.colorFromHexString("A90222")
+    var statusBarColr : UIColor = UIColor.colorFromHexString("4BBEF8")//UIColor.colorFromHexString("A90222")
     
     var circleMenuColor: UIColor = .black
     var header1Color: UIColor = .black

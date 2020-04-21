@@ -113,23 +113,24 @@ extension AddClassVC : ViewDelegate{
         
         setBackButton()
         
-        txtfieldOthers.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kOthers)
-        txtViewDescription.SetTextFont(textSize:KTextSize.KSixteen)
-        txtFieldClass.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kClass)
-        txtFieldDepartment.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kDepartment)
-        txtfieldOthers.addViewCornerShadow(radius: 8, view: txtfieldOthers)
-        txtfieldOthers.addViewCornerShadow(radius: 8, view: txtViewDescription)
-        txtfieldOthers.addViewCornerShadow(radius: 8, view: txtFieldClass)
-        txtfieldOthers.addViewCornerShadow(radius: 8, view: txtFieldDepartment)
-        btnSubmit.SetButtonFont(textSize: KTextSize.KSeventeen)
+        txtfieldOthers.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kOthers)
+        txtViewDescription.SetTextFont(textSize:KTextSize.KFourteen)
+        txtFieldClass.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kClass)
+        txtFieldDepartment.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kDepartment)
+//        txtfieldOthers.addViewCornerShadow(radius: 8, view: txtfieldOthers)
+//        txtfieldOthers.addViewCornerShadow(radius: 8, view: txtViewDescription)
+//        txtfieldOthers.addViewCornerShadow(radius: 8, view: txtFieldClass)
+//        txtfieldOthers.addViewCornerShadow(radius: 8, view: txtFieldDepartment)
+        //btnSubmit.SetButtonFont(textSize: KTextSize.KSeventeen)
         txtViewDescription.placeholder = KPlaceholder.kDescription
         txtViewDescription.placeholderColor = UIColor.darkGray
         txtfieldOthers.txtfieldPadding(leftpadding: 20, rightPadding: 0)
         txtFieldClass.txtfieldPadding(leftpadding: 20, rightPadding: 0)
         txtFieldDepartment.txtfieldPadding(leftpadding: 20, rightPadding: 0)
-
+        txtViewDescription.textContainerInset = UIEdgeInsets(top: 20, left: 16, bottom: 20, right: 20)
+        
         imgViewClass.createCircleImage()
-        cornerButton(btn: btnSubmit, radius: 8)
+        cornerButton(btn: btnSubmit, radius: 4)
         
         btnSubmit.backgroundColor = theme.uiButtonBackgroundColor
         btnSubmit.titleLabel?.textColor = theme.uiButtonTextColor

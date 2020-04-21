@@ -786,7 +786,8 @@ public struct KTableViewCellIdentifier{
 
 //MARK:- App Content Related
 public struct KAPPContentRelatedConstants{
-    public static let kThemeColour : UIColor = UIColor.init(red: 183.0/255.0, green: 23.0/255.0, blue: 36.0/255.0, alpha: 1.0)
+    public static let kThemeColour : UIColor = UIColor.init(red: 75.0/255.0, green: 190.0/255.0, blue: 248.0/255.0, alpha: 1.0) //UIColor.init(red: 183.0/255.0, green: 23.0/255.0, blue: 36.0/255.0, alpha: 1.0)
+    public static let kLightBlueColour : UIColor = UIColor.init(red: 227.0/255.0, green: 240.0/255.0, blue: 254.0/255.0, alpha: 1.0)
     public static let kThemeColorName : String = "DarkRed"
     public static let kAppTitle = "ISMS"
     public static let kAppGlobalFontName : String = "OpenSans-Semibold"
@@ -924,7 +925,7 @@ public struct KPlaceholder
     public static let kCity = "City/Town/Village"
     public static let kAddress = "Address"
     public static let kEmail = "Enter Email"
-    public static let kDescription = "Write Description"
+    public static let kDescription = "Write Description..."
     public static let kDOB = "DOB"
     public static let kOthers = "Others"
     public static let kIdProof = "ID Proof Name"
