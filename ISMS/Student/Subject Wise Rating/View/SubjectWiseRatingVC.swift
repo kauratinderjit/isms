@@ -27,10 +27,6 @@ class SubjectWiseRatingVC: BaseUIViewController {
         tableView.reloadData()
         // Do any additional setup after loading the view.
         self.viewModel?.getSubjectWiseRating(enrollmentsId: 7, classId: 1)
-
-        
-
-
     }
   
     
