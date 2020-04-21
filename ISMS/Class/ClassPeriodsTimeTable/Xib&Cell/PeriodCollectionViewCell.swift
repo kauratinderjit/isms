@@ -20,6 +20,7 @@ class PeriodCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var subjectlabel: UILabel!
     @IBOutlet weak var btnAssignTeacherSubject: UIButton!
     var delegate : PeriodCollectionViewDelegate?
+    let theme = ThemeManager.shared.currentTheme
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,7 +40,7 @@ class PeriodCollectionViewCell: UICollectionViewCell {
     func setup() {
         self.backgroundColor = UIColor.white
         self.layer.borderWidth = 0.5
-        self.layer.borderColor = UIColor.lightGray.cgColor
+        self.layer.borderColor = theme?.boarderColor.cgColor//UIColor.lightGray.cgColor
     }
     
     func configureWith(period: GetTimeTableModel.PeriodDetailModel, isFromAttendence: Bool) {

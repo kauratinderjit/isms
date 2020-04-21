@@ -11,7 +11,8 @@ import UIKit
 class TimeCollectionViewCell: UICollectionViewCell {
 
   @IBOutlet weak var timeLabel: UILabel!
-
+  let theme = ThemeManager.shared.currentTheme
+    
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
@@ -29,6 +30,6 @@ class TimeCollectionViewCell: UICollectionViewCell {
 
   func setup() {
     self.layer.borderWidth = 0.5
-    self.layer.borderColor = UIColor.gray.cgColor
+    self.layer.borderColor = theme?.boarderColor.cgColor//UIColor.gray.cgColor
   }
 }

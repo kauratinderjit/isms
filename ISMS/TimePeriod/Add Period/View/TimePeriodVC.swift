@@ -66,6 +66,7 @@ class TimePeriodVC: BaseUIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         self.setBackButton()
+        txtFieldClass.txtfieldPadding(leftpadding: 20, rightPadding: 0)
         
         //#TARAN
         if let theme = ThemeManager.shared.currentTheme{

@@ -12,6 +12,7 @@ class DayCollectionViewCell: UICollectionViewCell {
 
 
     @IBOutlet weak var lbl_Day: UILabel!
+    let theme = ThemeManager.shared.currentTheme
     
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -31,7 +32,7 @@ class DayCollectionViewCell: UICollectionViewCell {
   func setup() {
     self.backgroundColor = UIColor.white
     self.layer.borderWidth = 0.5
-    self.layer.borderColor = UIColor.white.cgColor
+    self.layer.borderColor = theme?.boarderColor.cgColor//UIColor.white.cgColor
   }
 
   func configureWith(day: GetTimeTableModel.DaysModel) {
