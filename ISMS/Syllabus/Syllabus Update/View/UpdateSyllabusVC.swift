@@ -26,6 +26,7 @@ class UpdateSyllabusVC: BaseUIViewController {
     var ClassId : Int?
     var SelectedChapter = [String]()
     var isFromStudent : Bool?
+    var firstRun = 1
     var coveredTopicData = [[String : Any]]()
   //  var sections = sectionsData
 
@@ -135,12 +136,15 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
         cell.checkBox.tag = indexPath.row
         cell.nameLabel.text = item?.TopicName
         var isCover = item?.isCover
-        if isCover == 0{
+        if firstRun == 1{
+            if isCover == 0{
                 cell.checkBox.setImage(UIImage(named: "uncheck"), for: .normal)
-        }else{
-             cell.checkBox.setImage(UIImage(named: "check"), for: .normal)
-           
+            }else{
+                cell.checkBox.setImage(UIImage(named: "check"), for: .normal)
+                
+            }
         }
+      
         if isCheck == true{
              if cell.checkBox.tag == indexRow && indexPath.section == section{
                 cell.checkBox.setImage(UIImage(named: "check"), for: .normal)
@@ -185,6 +189,7 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         indexRow = indexPath.row
         section = indexPath.section
+        firstRun = 2
         if isCheck == false {
             isCheck = true
             if coveredTopicData.count == 0{
@@ -205,11 +210,17 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
             tableView.reloadData()
         }else{
             isCheck = false
-//            for i in 0..<coveredTopicData.count{
-//                if arrayData[indexPath.section].TopicListViewModels?[indexPath.row].TopicId == (coveredTopicData[i] as NSDictionary).value(forKey: "topicId") as? Int{
-//                    coveredTopicData.remove(at: i)
-//                }
-//            }
+            if coveredTopicData.count > 0{
+                for i in 0..<coveredTopicData.count{
+                    if i<coveredTopicData.count{
+                        if arrayData[indexPath.section].chapterID == (coveredTopicData[i] as NSDictionary).value(forKey: "chapterId") as? Int{
+                            coveredTopicData.remove(at: i)
+                    }
+                  
+                    }
+                }
+            }
+            
 //             print("our selected arraty delete: ",coveredTopicData)
             tableView.reloadData()
         }

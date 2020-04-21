@@ -14,7 +14,6 @@ class StudentUploadHomeWorkVC: BaseUIViewController {
     @IBOutlet weak var txtViewComment: UITextView!
     @IBOutlet weak var lblPlaceHolderComment: UILabel!
     @IBOutlet weak var tblViewListing: UITableView!
-    
     @IBOutlet weak var heightTableView: NSLayoutConstraint!
     
     override func viewDidLoad() {
