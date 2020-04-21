@@ -126,7 +126,7 @@ class ClassTimeTableVC: BaseUIViewController {
     //MARK:- Class List Dropdown
     func classListDropdownApi(){
         if checkInternetConnection(){
-            self.viewModel?.getClassListDropdown(selectId: 2, enumType: 17)
+            self.viewModel?.getClassListDropdown(selectId: 31, enumType: 6)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
@@ -141,6 +141,7 @@ class ClassTimeTableVC: BaseUIViewController {
         dateFormatter.setLocalizedDateFormatFromTemplate("EEEE")
         print(dateFormatter.string(from: Date()))
         currentDay = dateFormatter.string(from: Date())
+        txtFieldClass.txtfieldPadding(leftpadding: 20, rightPadding: 0)
         //Set title
         //        self.title = KStoryBoards.KClassPeriodIdIdentifiers.kClassPeriodTimeTableTitle
         //Set back button
@@ -242,13 +243,13 @@ extension ClassTimeTableVC: UICollectionViewDataSource {
                 
                 if currentDay == day.dayName
                 {
-                    dayCell.backgroundColor = UIColor(red: 134/255, green: 11/255, blue: 27/255, alpha: 1)
+                    dayCell.backgroundColor = theme?.uiButtonBackgroundColor//UIColor(red: 134/255, green: 11/255, blue: 27/255, alpha: 1)
                     dayCell.lbl_Day.textColor = UIColor.white
                 }
                 else
                 {
-                    dayCell.backgroundColor = theme?.uiButtonBackgroundColor
-                    dayCell.lbl_Day.textColor = UIColor.white
+                    dayCell.backgroundColor = UIColor.white//theme?.uiButtonBackgroundColor
+                    dayCell.lbl_Day.textColor = UIColor.gray
                 }
                 dayCell.configureWith(day: day)
             }
@@ -271,7 +272,8 @@ extension ClassTimeTableVC: UICollectionViewDataSource {
                     }
                     else
                     {
-                        periodCell.backgroundColor = UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
+                         periodCell.backgroundColor = UIColor.white
+//                        periodCell.backgroundColor = UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
                     }
                     //                        //When User is Teacher
                     //                        if period.isTeacher == true{
@@ -479,7 +481,7 @@ extension ClassTimeTableVC : ClassPeriodsTimeTableDelegate{
                 classDropdownData = data
                 selectedClassId = classDropdownData.resultData?[0].id
                 txtFieldClass.text = classDropdownData.resultData?[0].name
-                self.viewModel?.getTimeTableAccordingClass(classId: selectedClassId, teacherId: userRoleParticularId)
+                self.viewModel?.getTimeTableAccordingClass(classId: 21, teacherId: userRoleParticularId)
             }else{
                 self.showAlert(alert: "There is no classes")
                 CommonFunctions.sharedmanagerCommon.println(object: "Count is zero.")

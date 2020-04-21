@@ -195,7 +195,7 @@ class Theme {
     var navigationBarTintColor : UIColor = UIColor.colorFromHexString("4BBEF8")//UIColor.colorFromHexString("A90222")
     var labelBackgroundColor : UIColor = UIColor.colorFromHexString("4BBEF8")//UIColor.colorFromHexString("A90222")
     var statusBarColr : UIColor = UIColor.colorFromHexString("4BBEF8")//UIColor.colorFromHexString("A90222")
-    
+    var boarderColor :UIColor = UIColor.colorFromHexString("E3F0FE")
     var circleMenuColor: UIColor = .black
     var header1Color: UIColor = .black
     var subheader1Color: UIColor = .black
@@ -360,7 +360,7 @@ class ThemeManager {
         }
             UINavigationBar.appearance().barTintColor = theme.navigationBarTintColor
             UINavigationBar.appearance().tintColor = theme.navigationTintColor
-            UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+            UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
             UINavigationBar.appearance().isTranslucent = false
             UINavigationBar.appearance().barStyle = .blackTranslucent
             ThemeManager.shared.currentTheme = theme

@@ -158,10 +158,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lDH-7P-nAn">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="646"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="645"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6L5-1r-jTf">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="118"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="117"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Class" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tqj-JJ-VAd">
                                                         <rect key="frame" x="16" y="19" width="84.5" height="18"/>
@@ -173,7 +173,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="--SELECT CLASS--------" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LOT-xM-Tmb">
-                                                        <rect key="frame" x="16" y="47" width="343" height="52"/>
+                                                        <rect key="frame" x="16" y="51" width="343" height="52"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="52" id="3p1-xg-hna"/>
                                                         </constraints>
@@ -192,14 +192,14 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="cqb-ov-w9n">
-                                                        <rect key="frame" x="333" y="69.5" width="12" height="7.5"/>
+                                                        <rect key="frame" x="333" y="73.5" width="12" height="7.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="12" id="Ntu-wC-XIK"/>
                                                             <constraint firstAttribute="height" constant="7.5" id="lbx-Ut-jW2"/>
                                                         </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UfZ-Tx-wJh">
-                                                        <rect key="frame" x="16" y="58" width="343" height="30"/>
+                                                        <rect key="frame" x="16" y="62" width="343" height="30"/>
                                                         <connections>
                                                             <action selector="ActionDropDownBtn:" destination="M3v-rl-Dm3" eventType="touchUpInside" id="Am8-tG-1Id"/>
                                                         </connections>
@@ -209,12 +209,12 @@
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="LOT-xM-Tmb" secondAttribute="trailing" constant="16" id="7mZ-so-T28"/>
                                                     <constraint firstItem="tqj-JJ-VAd" firstAttribute="top" secondItem="6L5-1r-jTf" secondAttribute="top" constant="19" id="7yd-v1-CdK"/>
-                                                    <constraint firstAttribute="bottom" secondItem="LOT-xM-Tmb" secondAttribute="bottom" constant="19" id="Iyl-cN-TUf"/>
+                                                    <constraint firstAttribute="bottom" secondItem="LOT-xM-Tmb" secondAttribute="bottom" constant="14" id="Iyl-cN-TUf"/>
                                                     <constraint firstItem="UfZ-Tx-wJh" firstAttribute="centerY" secondItem="LOT-xM-Tmb" secondAttribute="centerY" id="Jkf-jf-Zgi"/>
                                                     <constraint firstAttribute="trailing" secondItem="UfZ-Tx-wJh" secondAttribute="trailing" constant="16" id="Qy2-qH-txP"/>
                                                     <constraint firstItem="tqj-JJ-VAd" firstAttribute="leading" secondItem="6L5-1r-jTf" secondAttribute="leading" constant="16" id="ReK-sC-wwT"/>
                                                     <constraint firstItem="UfZ-Tx-wJh" firstAttribute="centerX" secondItem="LOT-xM-Tmb" secondAttribute="centerX" id="bGh-ak-jf1"/>
-                                                    <constraint firstItem="LOT-xM-Tmb" firstAttribute="top" secondItem="tqj-JJ-VAd" secondAttribute="bottom" constant="10" id="fBk-xd-XB3"/>
+                                                    <constraint firstItem="LOT-xM-Tmb" firstAttribute="top" secondItem="tqj-JJ-VAd" secondAttribute="bottom" constant="14" id="fBk-xd-XB3"/>
                                                     <constraint firstItem="cqb-ov-w9n" firstAttribute="trailing" secondItem="LOT-xM-Tmb" secondAttribute="trailing" constant="-14" id="hFa-BZ-7sR"/>
                                                     <constraint firstItem="cqb-ov-w9n" firstAttribute="centerY" secondItem="LOT-xM-Tmb" secondAttribute="centerY" id="jHG-qz-jbn"/>
                                                     <constraint firstItem="LOT-xM-Tmb" firstAttribute="leading" secondItem="6L5-1r-jTf" secondAttribute="leading" constant="16" id="tNC-5C-4aC"/>
@@ -222,7 +222,7 @@
                                                 </constraints>
                                             </view>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yw5-3z-lka">
-                                                <rect key="frame" x="0.0" y="128" width="375" height="400"/>
+                                                <rect key="frame" x="0.0" y="127" width="375" height="400"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="400" id="Q0i-ag-HHi"/>
@@ -365,8 +365,8 @@
                                                 </prototypes>
                                             </tableView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EHb-yd-71e">
-                                                <rect key="frame" x="16" y="558" width="343" height="58"/>
-                                                <color key="backgroundColor" red="0.64313725489999995" green="0.050980392159999999" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <rect key="frame" x="16" y="557" width="343" height="58"/>
+                                                <color key="backgroundColor" red="0.89019607840000003" green="0.94117647059999998" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="58" id="R6c-lm-rg8"/>
                                                 </constraints>
