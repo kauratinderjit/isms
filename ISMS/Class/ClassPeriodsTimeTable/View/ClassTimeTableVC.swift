@@ -126,7 +126,7 @@ class ClassTimeTableVC: BaseUIViewController {
     //MARK:- Class List Dropdown
     func classListDropdownApi(){
         if checkInternetConnection(){
-            self.viewModel?.getClassListDropdown(selectId: 2, enumType: 17)
+            self.viewModel?.getClassListDropdown(selectId: 31, enumType: 6)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
@@ -481,7 +481,7 @@ extension ClassTimeTableVC : ClassPeriodsTimeTableDelegate{
                 classDropdownData = data
                 selectedClassId = classDropdownData.resultData?[0].id
                 txtFieldClass.text = classDropdownData.resultData?[0].name
-                self.viewModel?.getTimeTableAccordingClass(classId: selectedClassId, teacherId: userRoleParticularId)
+                self.viewModel?.getTimeTableAccordingClass(classId: 21, teacherId: userRoleParticularId)
             }else{
                 self.showAlert(alert: "There is no classes")
                 CommonFunctions.sharedmanagerCommon.println(object: "Count is zero.")
