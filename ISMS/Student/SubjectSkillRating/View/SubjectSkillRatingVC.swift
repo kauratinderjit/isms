@@ -24,16 +24,14 @@ class SubjectSkillRatingVC: BaseUIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//
         self.viewModel = SubjectSkillRatingViewModel.init(delegate: self)
         self.viewModel?.attachView(viewDelegate: self)
         // Do any additional setup after loading the view.
         self.setUI()
           self.textfieldSubject.text = subjectName
        self.viewModel?.GetSkillList(id: 33, enumType: 10, type: "Skill")
-           self.viewModel?.getSubjectWiseRating(enrollmentsId: 7, classSubjectId: 1)
+           self.viewModel?.getSubjectWiseRating(enrollmentsId: 14, classSubjectId: 6)
         if let classSubectID = classId {
-          
         self.viewModel?.getSubjectWiseRating(enrollmentsId: 7, classSubjectId: 1)
         }
     }
