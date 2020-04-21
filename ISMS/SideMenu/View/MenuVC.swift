@@ -213,7 +213,7 @@ extension MenuVC : UITableViewDelegate{
                 break
              case "View&UpdateHomework":
                 let storyboard = UIStoryboard.init(name: "Homework", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "StudentHomeWorkListVC") as? StudentHomeWorkListVC
+                let vc = storyboard.instantiateViewController(withIdentifier: "SubjectListHW") as? SubjectListHW
                // vc?.lstActionAccess = MenuVC.menuArrayFromApi?.resultData?[indexPath.row]
                 let frontVC = revealViewController().frontViewController as? UINavigationController
                 frontVC?.pushViewController(vc!, animated: false)

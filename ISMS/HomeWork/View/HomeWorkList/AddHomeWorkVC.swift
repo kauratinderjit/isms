@@ -435,6 +435,10 @@ extension AddHomeWorkVC : ViewDelegate {
 }
 
 extension AddHomeWorkVC : AddHomeWorkDelegate {
+    func subjectList(data: [HomeworkResultHWData]) {
+        
+    }
+    
     func attachmentDeletedSuccessfully() {
                    uploadData.removeObject(at: selectedIndexPathForDelAttachment ?? 0)
         tblView.reloadData()

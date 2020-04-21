@@ -726,7 +726,7 @@ extension AddStudentVC: SharedUIPickerDelegate{
         }else if(departmentDropDown == true){
             departmentDropDown = false
             if checkInternetConnection(){
-               self.ViewModel?.getClassId(id: selectedDepartmentID, enumtype: 6)
+               self.ViewModel?.getClassId(id: 31, enumtype: 6)
             }else{
                 
                 self.showAlert(alert: Alerts.kNoInternetConnection)

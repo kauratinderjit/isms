@@ -15,6 +15,7 @@ protocol AddHomeWorkDelegate: class {
     func getSubjectList (arr :[GetSubjectHWResultData])
     func addedSuccessfully ()
     func attachmentDeletedSuccessfully ()
+    func subjectList(data: [HomeworkResultHWData])
 }
 
 
@@ -233,4 +234,118 @@ class HomeworkViewModel {
                 }
     }
    
+    
+    func getHomeworkDataForStudent(studentId : Int, assignHomeWorkId: Int) {
+        
+         homeworkViewDelegate?.showLoader()
+        
+        let url = "api/Institute/GetAssignHomeWorklistById"+"?assignHomeWorkId=\(assignHomeWorkId)&studentId=\(studentId)"
+        
+        HomeworkApi.sharedManager.getHoweworkList(url: url, parameters: nil, completionResponse: { (response) in
+                 self.homeworkViewDelegate?.hideLoader()
+                switch response.statusCode{
+                case KStatusCode.kStatusCode200:
+                    self.addHomeworkDelegate?.AddHomeworkSucceed(array: response.resultData! )
+                case KStatusCode.kStatusCode401:
+                    self.homeworkViewDelegate?.showAlert(alert: response.message ?? "")
+                    //self.AddHomeWorkDelegate?.unauthorizedUser()
+                default:
+                    self.homeworkViewDelegate?.showAlert(alert: response.message ?? "")
+                }
+            }, completionnilResponse: { (nilResponse) in
+                self.homeworkViewDelegate?.hideLoader()
+                self.homeworkViewDelegate?.showAlert(alert: nilResponse ?? "Server Error")
+            }) { (error) in
+                self.homeworkViewDelegate?.hideLoader()
+                self.homeworkViewDelegate?.showAlert(alert: error?.localizedDescription ?? "Error")
+            }
+    }
+    
+    
+    func subjectList(studentId : Int?){
+          self.homeworkViewDelegate?.showLoader()
+      
+        SubjectApi.sharedInstance.getSubjectListHW(url: "api/Institute/GetAssignHomeWorklistBySujectWise"+"?studentId=\(String(describing: studentId!))", parameters: nil , completionResponse: { (SubjectListModel) in
+              
+              if SubjectListModel.statusCode == KStatusCode.kStatusCode200{
+                  self.homeworkViewDelegate?.hideLoader()
+                
+                if SubjectListModel.resultData != nil {
+                self.addHomeworkDelegate?.subjectList(data:SubjectListModel.resultData!)
+                }
+              }else if SubjectListModel.statusCode == KStatusCode.kStatusCode401{
+                  self.homeworkViewDelegate?.hideLoader()
+                  self.homeworkViewDelegate?.showAlert(alert: SubjectListModel.message ?? "")
+                //self.homeworkViewDelegate?.unauthorizedUser()
+              }else{
+                self.homeworkViewDelegate?.hideLoader()
+                  CommonFunctions.sharedmanagerCommon.println(object: "student APi status change")
+              }
+              
+          }, completionnilResponse: { (nilResponseError) in
+              
+              self.homeworkViewDelegate?.hideLoader()
+              
+              if let error = nilResponseError{
+                  self.homeworkViewDelegate?.showAlert(alert: error)
+                  
+              }else{
+                  CommonFunctions.sharedmanagerCommon.println(object: "student APi Nil response")
+              }
+              
+          }) { (error) in
+              self.homeworkViewDelegate?.hideLoader()
+              if let err = error?.localizedDescription{
+                  self.homeworkViewDelegate?.showAlert(alert: err)
+              }else{
+                  CommonFunctions.sharedmanagerCommon.println(object: "student APi error response")
+              }
+          }
+          
+      }
+    
+    func getDataOfHW(assignmentId : Int?){
+          self.homeworkViewDelegate?.showLoader()
+        
+        let param = ["objGetStudentHomeDetail" : assignmentId! ] as [String : Any]
+               
+      
+        HomeworkApi.sharedManager.getHoweworkDetailData(url: "api/Institute/GetStudentHomeWorkDetail", parameters: param , completionResponse: { (SubjectListModel) in
+              
+              if SubjectListModel.statusCode == KStatusCode.kStatusCode200{
+                  self.homeworkViewDelegate?.hideLoader()
+                
+              //  if SubjectListModel.resultData != nil {
+             //   self.addHomeworkDelegate?.subjectList(data:SubjectListModel.resultData!)
+               // }
+              }else if SubjectListModel.statusCode == KStatusCode.kStatusCode401{
+                  self.homeworkViewDelegate?.hideLoader()
+                  self.homeworkViewDelegate?.showAlert(alert: SubjectListModel.message ?? "")
+                //self.homeworkViewDelegate?.unauthorizedUser()
+              }else{
+                self.homeworkViewDelegate?.hideLoader()
+                  CommonFunctions.sharedmanagerCommon.println(object: "student APi status change")
+              }
+              
+          }, completionnilResponse: { (nilResponseError) in
+              
+              self.homeworkViewDelegate?.hideLoader()
+              
+              if let error = nilResponseError{
+                  self.homeworkViewDelegate?.showAlert(alert: error)
+                  
+              }else{
+                  CommonFunctions.sharedmanagerCommon.println(object: "student APi Nil response")
+              }
+              
+          }) { (error) in
+              self.homeworkViewDelegate?.hideLoader()
+              if let err = error?.localizedDescription{
+                  self.homeworkViewDelegate?.showAlert(alert: err)
+              }else{
+                  CommonFunctions.sharedmanagerCommon.println(object: "student APi error response")
+              }
+          }
+          
+      }
 }

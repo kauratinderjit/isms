@@ -12,7 +12,6 @@ class HomeworkListVC: BaseUIViewController {
     
     @IBOutlet weak var tblViewListing: UITableView!
     public var lstActionAccess : GetMenuFromRoleIdModel.ResultData?
-    private var pickerView = UIPickerView()
     var viewModel : HomeworkViewModel?
     var homeWorkList : [HomeworkResultData]?
     var homworkId: Int? = 0
@@ -99,6 +98,10 @@ extension HomeworkListVC : ViewDelegate {
 }
 
 extension HomeworkListVC : AddHomeWorkDelegate {
+    func subjectList(data: [HomeworkResultHWData]) {
+        
+    }
+    
     func attachmentDeletedSuccessfully() {
         
     }
