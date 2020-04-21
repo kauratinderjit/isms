@@ -360,7 +360,7 @@ class ThemeManager {
         }
             UINavigationBar.appearance().barTintColor = theme.navigationBarTintColor
             UINavigationBar.appearance().tintColor = theme.navigationTintColor
-            UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+            UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
             UINavigationBar.appearance().isTranslucent = false
             UINavigationBar.appearance().barStyle = .blackTranslucent
             ThemeManager.shared.currentTheme = theme
