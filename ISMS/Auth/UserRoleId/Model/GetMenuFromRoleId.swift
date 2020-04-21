@@ -37,6 +37,7 @@ class GetMenuFromRoleIdModel: Mappable{
         var lstActionAccess :[LstActionAccess]?
         var pageUrl:String?
         var displayOrder:Int?
+        var ImageUrl:String?
         
         init?(map: Map) {
         }
@@ -47,6 +48,7 @@ class GetMenuFromRoleIdModel: Mappable{
             lstActionAccess <- map["LstActionAccess"]
             pageUrl <- map["PageUrl"]
             displayOrder <- map["DisplayOrder"]
+            ImageUrl <- map["ImageUrl"]
         }
         
     }

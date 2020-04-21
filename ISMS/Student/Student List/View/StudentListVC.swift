@@ -106,6 +106,8 @@ class StudentListVC: BaseUIViewController {
         tableView.tableFooterView = UIView()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorColor = KAPPContentRelatedConstants.kLightBlueColour
+        
         SetpickerView(self.view)
         
         self.setSearchBarInNavigationController(placeholderText: KSearchBarPlaceHolder.kUserSearchBarStudentPlaceHolder, navigationTitle: KStoryBoards.KAddStudentIdentifiers.kStudentListTitle, navigationController: self.navigationController, navigationSearchBarDelegates: self)

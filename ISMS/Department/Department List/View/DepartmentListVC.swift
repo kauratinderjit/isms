@@ -106,6 +106,7 @@ extension DepartmentListVC : ViewDelegate{
         //Table View Settings
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
+        tableView.separatorColor = KAPPContentRelatedConstants.kLightBlueColour
     }
     
     func showAlert(alert: String){

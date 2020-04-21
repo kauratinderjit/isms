@@ -27,6 +27,9 @@ class ViewTeacherRatingVC: BaseUIViewController {
             self.ViewModel?.TeacherList(HodId: 3,enumType: 18)
             
         }
+        
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 600
         // Do any additional setup after loading the view.
     }
     
@@ -78,9 +81,9 @@ extension ViewTeacherRatingVC : UITableViewDelegate{
         
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
+//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return UITableView.automaticDimension
+//    }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.separatorInset = UIEdgeInsets.zero
@@ -91,14 +94,14 @@ extension ViewTeacherRatingVC : UITableViewDelegate{
 //        return 70;
 //    }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        return UITableView.automaticDimension;//Choose your custom row height
-    }
-    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-//    {
-//        return 100;//Choose your custom row height
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
+//        return UITableView.automaticDimension;//Choose your custom row height
 //    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return 150;//Choose your custom row height
+    }
     
 }
 extension ViewTeacherRatingVC : UITableViewDataSource{

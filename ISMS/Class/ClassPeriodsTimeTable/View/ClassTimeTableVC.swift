@@ -16,6 +16,7 @@ class ClassTimeTableVC: BaseUIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var btnMoveOnAddPeriod: UIButton!
     
+    @IBOutlet weak var viewDropDown: UIView!
     //MARK:- Variables
     var viewModel : ClassPeriodsTimetableViewModel?
     var isUnauthorizedUser = false
@@ -32,6 +33,7 @@ class ClassTimeTableVC: BaseUIViewController {
     public var isFromViewAttendence:Bool!
     public var isFromTeacher:Int!
     public var teacherViewTimeTble:Bool!
+    public var isFromStudentViewAttendance : Bool!
     //MARK:- ViewLifeCycle functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,15 +45,22 @@ class ClassTimeTableVC: BaseUIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if isFromTeacher == 0{
-            self.title = "View Attendance"
+            self.title = "Attendance"
         }else if isFromTeacher == 1{
             self.title = "Mark Student Attendance"
         }else if isFromTeacher == 2{
             self.title = KStoryBoards.KClassPeriodIdIdentifiers.kClassPeriodTimeTableTitle
         }
         if teacherViewTimeTble == true {
-              self.title = "View TimeTable"
-
+              self.title = "TimeTable"
+        }
+        
+        if isFromStudentViewAttendance == true{
+            viewDropDown.isHidden = true
+            btnMoveOnAddPeriod.isHidden = false
+        }else{
+            viewDropDown.isHidden = false
+              btnMoveOnAddPeriod.isHidden = true
         }
         checkCameFromWhichScreen()
     }
@@ -117,7 +126,7 @@ class ClassTimeTableVC: BaseUIViewController {
     //MARK:- Class List Dropdown
     func classListDropdownApi(){
         if checkInternetConnection(){
-            self.viewModel?.getClassListDropdown(selectId: 1, enumType: CountryStateCity.classes.rawValue)
+            self.viewModel?.getClassListDropdown(selectId: 2, enumType: 17)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
@@ -325,6 +334,23 @@ extension ClassTimeTableVC: UICollectionViewDelegate {
                 else
                 {
                     
+                    if isFromStudentViewAttendance == true{
+                        if let daysModel = self.arrGetTimeTableDaysModel?[indexPath.section - 1] {
+                            if let period = daysModel.periodDetailListModel?[indexPath.row - 1] {
+                                print(period)
+                                if period.teacherId != 0{
+                                    let storyboard = UIStoryboard.init(name: "StudentAttendence", bundle: nil)
+                                    let vc = storyboard.instantiateViewController(withIdentifier: "StudentViewAttendanceVC") as! StudentViewAttendanceVC
+                                    vc.timeTableId = period.timeTableId
+                                    vc.classId = selectedClassId
+                                    vc.teacherId = period.teacherId
+                                    vc.classSubjectId = period.subjectId
+                                    self.navigationController?.pushViewController(vc, animated: false)
+                                }
+                            }
+                        }
+                        
+                    }else{
                     if day.periodDetailListModel?[indexPath.row - 1].isTeacher == true
                     {
                         print("isTeacherTrue")
@@ -370,6 +396,9 @@ extension ClassTimeTableVC: UICollectionViewDelegate {
                         }
                     }else{
                         //                        debugPrint("Teacher is false.")
+                        if teacherViewTimeTble == true {
+                            
+                        }else{
                         if isFromViewAttendence == true{
                             if let daysModel = self.arrGetTimeTableDaysModel?[indexPath.section - 1] {
                                 if let period = daysModel.periodDetailListModel?[indexPath.row - 1] {
@@ -409,7 +438,8 @@ extension ClassTimeTableVC: UICollectionViewDelegate {
                                 }
                             }
                         }
-                        
+                        }
+                    }
                     }
                 }
             }else{

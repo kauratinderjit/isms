@@ -416,6 +416,9 @@ class SubjectApi{
     
     //MARK:- Get Teacher/Subject List DropDown
     func getSubjectTeacherDropdownData(selectedSubjectTeacherId : Int,enumType: Int,completionResponse:  @escaping (GetCommonDropdownModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
+        let url = ApiEndpoints.kGetCommonDropdownApi+"?id=\(selectedSubjectTeacherId)&enumType=\(enumType)"
+        
+        print("url : ",url)
         SignUpApi.sharedInstance.getCommonDropdownApi(url: ApiEndpoints.kGetCommonDropdownApi+"?id=\(selectedSubjectTeacherId)&enumType=\(enumType)", parameter: nil, completionResponse: { (responseModel) in
             completionResponse(responseModel)
         }, completionnilResponse: { (nilResponse) in
@@ -429,6 +432,7 @@ class SubjectApi{
        func addUpdateTimeTableApi(url : String,parameters: [String : Any]?,completionResponse:  @escaping (AddUpdateTimeTableResponseModel) -> Void,complitionError: @escaping (String?) -> Void){
            
            let completeUrl = BaseUrl.kBaseURL+url
+        print("complturl : ",completeUrl)
            var accessTokken = ""
            if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String{
                accessTokken = str

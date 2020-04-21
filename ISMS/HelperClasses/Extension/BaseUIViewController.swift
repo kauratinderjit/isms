@@ -73,6 +73,21 @@ class BaseUIViewController: UIViewController{
         
     }
     
+    func dateFromISOString(string: String) -> String?
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        
+        let dt = dateFormatter.date(from: string)
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.dateFormat =  "yyyy-MM-dd"
+        print("\(dateFormatter.string(from: dt!))")
+        return dateFormatter.string(from: dt!)
+        
+    }
+    
     //For Set the status bar content white
     override open var preferredStatusBarStyle: UIStatusBarStyle {
         
@@ -206,6 +221,7 @@ class BaseUIViewController: UIViewController{
     func UpdatePickerModel2(count:Int,sharedPickerDelegate:SharedUIPickerDelegate, View: UIView, index : Int){
         view.endEditing(true)
         createBlurEffectView()
+//        self.pickerView = UIPickerView()
         if viewDatePickerView != nil {
             self.viewDatePickerView.isHidden = true
         }
@@ -440,7 +456,8 @@ class BaseUIViewController: UIViewController{
     //MARK:- Create right search button in navigation contorller
     func createRightNavSearchBarButton(){
         let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "search"), style: .done, target: self, action: #selector(self.unHideSearchBar(_:)))
-        rightBarButtonItem.tintColor = .white
+        //NAVAL
+        rightBarButtonItem.tintColor = .gray
         //        rightBarButtonItem.setBackgroundImage(UIImage(named: "search"), for: .normal, barMetrics: .default)
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
     }

@@ -97,7 +97,8 @@ extension UINavigationController
     //Set NavFont
     func SetNavigationFont(textSize:Int)
     {
-        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: KFontNames.KOpenSans, size: CGFloat(textSize))!]
+        //NAVAL
+        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: KFontNames.KOpenSans, size: CGFloat(textSize))!, NSAttributedString.Key.foregroundColor: UIColor.black]
     }
 }
 extension UITextView
@@ -118,10 +119,14 @@ extension UITextView
        self.attributedText = regularAttributedString
         
     }
-    
-    
 }
 
+class UITextViewPadding : UITextView {
+     required init?(coder aDecoder: NSCoder) {
+       super.init(coder: aDecoder)
+       textContainerInset = UIEdgeInsets(top: 14, left: 20, bottom: 14, right: 14)
+     }
+   }
 //UIImage Extension
 extension UIImage{
         public func changeImageColour(withTintColor color: UIColor) -> UIImage{

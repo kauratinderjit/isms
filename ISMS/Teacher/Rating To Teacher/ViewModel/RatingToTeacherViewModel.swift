@@ -190,6 +190,8 @@ class RatingToTeacherViewModel {
         let paramDict = [ AddStudentRating.kId:id,
                           AddStudentRating.kEnumType: enumType] as [String : Any]
         let url = ApiEndpoints.kSkillList + "?id=" + "\(id)" + "&enumType=" + "\(enumType)"
+        
+        print("url: ",url)
         AddStudentRatingApi.sharedInstance.GetSkillList(url: url , parameters: paramDict as [String : Any], completionResponse: { (AddStudentRatingListModel) in
             
             if AddStudentRatingListModel.statusCode == KStatusCode.kStatusCode200 {

@@ -30,8 +30,8 @@ class CollapsibleTableViewCell: UITableViewCell {
         
         // configure detailLabel
         contentView.addSubview(checkBox)
-        checkBox.frame = CGRect(x: 350 , y: 5, width: 50, height: 50)
-              checkBox.setImage(UIImage(named: kImages.kCheck), for: .normal)
+        checkBox.frame = CGRect(x: 320 , y: 5, width: 50, height: 50)
+              checkBox.setImage(UIImage(named: kImages.kUncheck), for: .normal)
     }
     
     required init?(coder aDecoder: NSCoder) {

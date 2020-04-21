@@ -96,6 +96,28 @@ class UserDefaultExtensionModel : NSObject{
         }
     }
     
+    var userName : String{
+           get {
+               let userName = UserDefaults.standard.string(forKey: UserDefaultKeys.userName.rawValue) ?? ""
+               return userName
+           }
+           set{
+               UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.userName.rawValue)
+               UserDefaults.standard.synchronize()
+           }
+       }
+    
+    var userProfile : String{
+        get {
+            let userProfile = UserDefaults.standard.string(forKey: UserDefaultKeys.userProfile.rawValue) ?? ""
+            return userProfile
+        }
+        set{
+            UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.userProfile.rawValue)
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
     //Mark:- HOD Role
     var currentHODRoleName : String{
         get {

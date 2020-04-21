@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UpdateSyllabusVC: UIViewController {
+class UpdateSyllabusVC: BaseUIViewController {
 
     
     struct ExpandableNames {
@@ -22,11 +22,16 @@ class UpdateSyllabusVC: UIViewController {
    }
     var array = ["Chapter 1", "Chapter 2" , "Chapter 3", "Chapter 4" , "Chapter 5" , "Chapter 6", "Chapter 7" , "Chapter 8"]
     var arrayData = [UpdateSyllabusResultData]()
+    var ClassSubjectId : Int?
+    var ClassId : Int?
     var SelectedChapter = [String]()
+    var isFromStudent : Bool?
+    var firstRun = 1
+    var coveredTopicData = [[String : Any]]()
   //  var sections = sectionsData
 
     var subjectData : SyllabusCoverageListResultData?
-    
+    var isCheck = false
     
     @IBOutlet weak var btnUpdate: UIButton!
     @IBOutlet var progressBar: UIProgressView!
@@ -36,12 +41,20 @@ class UpdateSyllabusVC: UIViewController {
     
     var viewModel : UpdateSyllabusViewModel?
     
-    
+    var indexRow : Int?
+    var section :Int?
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.viewModel = UpdateSyllabusViewModel.init(delegate: self)
         self.viewModel?.attachView(viewDelegate: self)
+        if isFromStudent == true{
+            btnUpdate.isHidden = true
+        }else{
+            btnUpdate.isHidden = false
+        }
+        
+        
         lblSubjectName.text = subjectData?.subjectName
         // Auto resizing the height of the cell
         tableView.estimatedRowHeight = 44.0
@@ -78,7 +91,7 @@ class UpdateSyllabusVC: UIViewController {
     }
     
     @objc func updateSyllabus(_ sender: UIButton) {
-        
+       
     }
     
     @IBAction func backbtnAction(_ sender: UIBarButtonItem) {
@@ -88,114 +101,17 @@ class UpdateSyllabusVC: UIViewController {
     
   
     @IBAction func ActionUpdate(_ sender: Any) {
-        
-        self.showAlert(alert: "Coming Soon")
-        
-//        var StrChapter = ""
-//        var isFirst = 0
-//        print("selected chapter count is : \(SelectedChapter.count)")
-//        for key in SelectedChapter {
-//
-//            var k = ""
-//
-//            if isFirst == 0 {
-//                isFirst = 1
-//
-//
-//                  StrChapter.append(key)
-//            }
-//            else {
-//                k = "," + key
-//               StrChapter.append(key)
-//            }
-//
-//
-//        }
-//        print("you will check here : \(StrChapter)")
-//        if let classSubject = subjectData?.ClassSubjectId {
-//        print("your class subject : \(classSubject)")
-//        self.viewModel?.getData(StringChapterID : StrChapter, ClassSubject :classSubject, classId : 1 , userID : 295)
-//       }
+        print(UserDefaultExtensionModel.shared.currentUserId)
+          print(ClassSubjectId)
+           print(ClassId)
+           print(coveredTopicData)
+        self.viewModel?.getData(ClassSubjectId : ClassSubjectId ?? 0, ClassId :ClassId ?? 0, UserId : UserDefaultExtensionModel.shared.currentUserId , lstchaptertopiclists : coveredTopicData)
     }
 
 }
 
 
 
-//extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource , UpdateSyllabusTableViewCellDelegate {
-//
-//
-//    func didPressButton(_ tag: Int) {
-//
-//        if arrayData[tag].isSelected == 0{
-//            arrayData[tag].isSelected = 1
-//            //add value
-//            if let chapterID = arrayData[tag].chapterID {
-//                let id = "\(chapterID)"
-//            SelectedChapter.append(id)
-//            }
-//        }else{
-//            print("tag count : \(tag)")
-//            print("array data count : \(SelectedChapter.count)")
-//            //  SelectedChapter.remove(at: count)
-//            arrayData[tag].isSelected = 0
-//           //remove value
-//        }
-//
-////        _ = arrayData.enumerated().map({ (index,value) in
-////            if index != tag{
-////                arrayData[index].isSelected = 0
-////            }
-////        })
-//
-//        tableView.reloadData()
-//    }
-//
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return arrayData.count
-//    }
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! UpdateSyllabusTableViewCell
-//        cell.cellDelegate = self
-//        cell.btnCheckBox.tag = indexPath.row
-//        if let chapterName = arrayData[indexPath.row].chapterName {
-//        cell.lblTopic.text = chapterName
-//        }
-//        if  arrayData[indexPath.row].isSelected == 0{
-//            let check = UIImage.init(named: "uncheck")
-//            cell.btnCheckBox.setImage(check, for: .normal)
-//
-//        }
-//        else {
-//            let check = UIImage.init(named: "check")
-//            cell.btnCheckBox.setImage(check, for: .normal)
-//        }
-////        let check = UIImage.init(named: "uncheck")
-////        cell.btnCheckBox.setImage(check, for: .normal)
-//
-//        return cell
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        return 1.0
-//    }
-//
-//     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        let footerView = UIView()
-//        var separatorView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 1))
-//        separatorView.backgroundColor = UIColor.separatorColor
-//        footerView.addSubview(separatorView)
-//
-//        return separatorView
-//    }
-//
-//
-//
-//
-//
-//
-//}
 
 
 //
@@ -215,10 +131,31 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CollapsibleTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell") as? CollapsibleTableViewCell ??
             CollapsibleTableViewCell(style: .default, reuseIdentifier: "cell")
-        
+        print("our cell tag : ",indexPath.row)
         let item = arrayData[indexPath.section].TopicListViewModels?[indexPath.row]
         cell.checkBox.tag = indexPath.row
         cell.nameLabel.text = item?.TopicName
+        var isCover = item?.isCover
+        if firstRun == 1{
+            if isCover == 0{
+                cell.checkBox.setImage(UIImage(named: "uncheck"), for: .normal)
+            }else{
+                cell.checkBox.setImage(UIImage(named: "check"), for: .normal)
+                
+            }
+        }
+      
+        if isCheck == true{
+             if cell.checkBox.tag == indexRow && indexPath.section == section{
+                cell.checkBox.setImage(UIImage(named: "check"), for: .normal)
+            }
+        }else{
+             if cell.checkBox.tag == indexRow && indexPath.section == section{
+                cell.checkBox.setImage(UIImage(named: "uncheck"), for: .normal)
+            }
+           
+        }
+        
         cell.checkBox.addTarget(self, action: #selector(self.updateSyllabus), for: .touchUpInside)
         return cell
     }
@@ -248,6 +185,46 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
      func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 1.0
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        indexRow = indexPath.row
+        section = indexPath.section
+        firstRun = 2
+        if isCheck == false {
+            isCheck = true
+            if coveredTopicData.count == 0{
+                var data = [String:Any]()
+                    
+                data = ["chapterId":arrayData[indexPath.section].chapterID ?? 0 , "topicId": arrayData[indexPath.section].TopicListViewModels?[indexPath.row].TopicId ?? 0]
+                print("data: ",data)
+                coveredTopicData.append(data)
+            }else{
+                var data = [String:Any]()
+                
+                data = ["chapterId":arrayData[indexPath.section].chapterID ?? 0 , "topicId": arrayData[indexPath.section].TopicListViewModels?[indexPath.row].TopicId ?? 0]
+                print("data: ",data)
+                coveredTopicData.append(data)
+                
+            }
+            print("our selected arraty: ",coveredTopicData)
+            tableView.reloadData()
+        }else{
+            isCheck = false
+            if coveredTopicData.count > 0{
+                for i in 0..<coveredTopicData.count{
+                    if i<coveredTopicData.count{
+                        if arrayData[indexPath.section].chapterID == (coveredTopicData[i] as NSDictionary).value(forKey: "chapterId") as? Int{
+                            coveredTopicData.remove(at: i)
+                    }
+                  
+                    }
+                }
+            }
+            
+//             print("our selected arraty delete: ",coveredTopicData)
+            tableView.reloadData()
+        }
+    }
 
 }
 
@@ -271,6 +248,23 @@ extension UpdateSyllabusVC: CollapsibleTableViewHeaderDelegate {
 extension UpdateSyllabusVC : UpdateSyllabusDelegate {
     func UpdateSyllabusSucceed(array: [UpdateSyllabusResultData] ) {
         arrayData = array
+      if array.count > 0{
+        for i in 0..<arrayData.count{
+            if let total = arrayData[i].TopicListViewModels{
+                for j in 0..<total.count{
+                    if let item = arrayData[i].TopicListViewModels?[j]{
+                        if item.isCover == 1{
+                            var data = [String:Any]()
+                            data = ["chapterId":arrayData[i].chapterID ?? 0 , "topicId": arrayData[i].TopicListViewModels?[j].TopicId ?? 0]
+                            print("data: ",data)
+                            coveredTopicData.append(data)
+                        }
+                    }
+                }
+            }
+            
+            }
+        }
         tableView.reloadData()
     }
     

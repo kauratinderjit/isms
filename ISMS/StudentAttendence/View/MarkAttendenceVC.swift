@@ -47,11 +47,11 @@ class MarkAttendenceVC: UIViewController {
             loadData()
             
             collectionView.backgroundColor = UIColor.lightGray
-            let layout = EPGCollectionViewLayout()
-            layout.channels = self.channels
-            collectionView.setCollectionViewLayout(layout, animated: false)
-            collectionView.dataSource = self
-            collectionView.delegate = self
+//            let layout = EPGCollectionViewLayout()
+//            layout.channels = self.channels
+//            collectionView.setCollectionViewLayout(layout, animated: false)
+//            collectionView.dataSource = self
+//            collectionView.delegate = self
         }
         
         override func viewDidAppear(_ animated: Bool) {

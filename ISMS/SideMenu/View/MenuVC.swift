@@ -17,6 +17,9 @@ protocol MenuVCDelegate: class
 
 class MenuVC: BaseUIViewController {
 
+    @IBOutlet weak var imgViewProfile: UIImageView!
+    @IBOutlet weak var btnEditProfile: UIButton!
+    @IBOutlet weak var lblUserName: UILabel!
     @IBOutlet weak var tableView: UITableView!
     static var menuArray = ["Logout"]
     static var menuArrayFromApi : GetMenuFromRoleIdModel?
@@ -26,7 +29,8 @@ class MenuVC: BaseUIViewController {
 
         // Do any additional setup after loading the view.
         tableView.tableFooterView = UIView()
-        
+        tableView.separatorStyle = .none
+        setView()
         let userRoleCount = UserDefaults.standard.value(forKey: UserDefaultKeys.userRolesCount.rawValue) as? Int
 
 //        if userRoleCount == 0{
@@ -66,21 +70,54 @@ class MenuVC: BaseUIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let theme = ThemeManager.shared.currentTheme{
-            tableView.backgroundColor = theme.mainColor
-            self.navigationController?.navigationBar.tintColor = theme.navigationTintColor
-            self.navigationController?.navigationBar.barTintColor = theme.navigationBarTintColor
-        }else{
-            tableView.backgroundColor = UIColor.colorFromHexString("A90222")
-            self.navigationController?.navigationBar.barTintColor = UIColor.colorFromHexString("A90222")
-            self.navigationController?.navigationBar.tintColor = UIColor.colorFromHexString("FFFFFF")
-        }
+//        if let theme = ThemeManager.shared.currentTheme{
+//            tableView.backgroundColor = theme.mainColor
+//            self.navigationController?.navigationBar.tintColor = theme.navigationTintColor
+//            self.navigationController?.navigationBar.barTintColor = theme.navigationBarTintColor
+//        }else{
+//            tableView.backgroundColor = UIColor.colorFromHexString("A90222")
+//            self.navigationController?.navigationBar.barTintColor = UIColor.colorFromHexString("A90222")
+//            self.navigationController?.navigationBar.tintColor = UIColor.colorFromHexString("FFFFFF")
+//        }
         
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
-  
+    //MARK:- Other View
+    func setView(){
+        imgViewProfile.layer.cornerRadius = imgViewProfile.frame.height/2
+        imgViewProfile.clipsToBounds = true
+        imgViewProfile.layer.borderWidth = 1
+        imgViewProfile.layer.borderColor = UIColor.white.cgColor
+        
+        if UserDefaultExtensionModel.shared.userName != nil && UserDefaultExtensionModel.shared.userName != ""{
+        lblUserName.text = UserDefaultExtensionModel.shared.userName
+        }
+        else{
+          lblUserName.text = "N/A"
+        }
+        
+        if UserDefaultExtensionModel.shared.userProfile != nil && UserDefaultExtensionModel.shared.userProfile != ""{
+            imgViewProfile.sd_setImage(with: URL.init(string: UserDefaultExtensionModel.shared.userProfile ?? "")) { (img, error, cacheType, url) in
+                            if error == nil{
+                               self.imgViewProfile.contentMode = .scaleAspectFit
+                                self.imgViewProfile.image = img
+                           }
+                            else{
+                                self.imgViewProfile.image = UIImage.init(named: "profile")
+                           }
+            }
+        }
+        else{
+           self.imgViewProfile.image = UIImage.init(named: "profile")
+        }
+    }
+    
+    //MARK:- Actions
+    @IBAction func btnEditProfileAction(_ sender: Any) {
+    }
+    
 }
 
 //MARK:- Table View Delegate
@@ -145,6 +182,7 @@ extension MenuVC : UITableViewDelegate{
         case "ViewSyllabusCoverage" :
             let storyboard = UIStoryboard.init(name: KStoryBoards.kCourses, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: KStoryBoards.KSyllabusCoverageIdentifiers.kSyllabusCoverageVC) as? SyllabusCoverageVC
+            vc?.isFromStudent = true
             //vc?.lstActionAccess = MenuVC.menuArrayFromApi?.resultData?[indexPath.row].lstActionAccess
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
@@ -156,6 +194,7 @@ extension MenuVC : UITableViewDelegate{
             let storyboard = UIStoryboard.init(name: KStoryBoards.kCourses, bundle: nil)
                        let vc = storyboard.instantiateViewController(withIdentifier: KStoryBoards.KSyllabusCoverageIdentifiers.kSyllabusCoverageVC) as? SyllabusCoverageVC
                       vc?.lstActionAccess = MenuVC.menuArrayFromApi?.resultData?[indexPath.row]
+            vc?.isFromStudent = false
                        let frontVC = revealViewController().frontViewController as? UINavigationController
                        frontVC?.pushViewController(vc!, animated: false)
                        revealViewController().pushFrontViewController(frontVC, animated: true)
@@ -221,6 +260,7 @@ extension MenuVC : UITableViewDelegate{
             let vc = storyboard.instantiateViewController(withIdentifier: "ClassTimeTableVC") as? ClassTimeTableVC
             //            vc?.isFromTimeTable = false
             vc?.isFromViewAttendence = true
+             vc?.isFromStudentViewAttendance = false
             vc?.isFromTeacher = 0
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
@@ -244,6 +284,7 @@ extension MenuVC : UITableViewDelegate{
             let storyboard = UIStoryboard.init(name: KStoryBoards.kClass, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "ClassTimeTableVC") as? ClassTimeTableVC
             vc?.isFromTimeTable = false
+             vc?.isFromStudentViewAttendance = false
             vc?.isFromViewAttendence = false
             vc?.isFromTeacher = 2
             vc?.teacherViewTimeTble = false
@@ -322,6 +363,7 @@ extension MenuVC : UITableViewDelegate{
             let vc = storyboard.instantiateViewController(withIdentifier: "ClassTimeTableVC") as? ClassTimeTableVC
             //            vc?.isFromTimeTable = false
             vc?.isFromViewAttendence = true
+             vc?.isFromStudentViewAttendance = false
             vc?.isFromTeacher = 1
             vc?.teacherViewTimeTble = false
 
@@ -333,6 +375,7 @@ extension MenuVC : UITableViewDelegate{
         case "ViewTimetable" :
             let storyboard = UIStoryboard.init(name: KStoryBoards.kClass, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "ClassTimeTableVC") as? ClassTimeTableVC
+             vc?.isFromStudentViewAttendance = false
             //            vc?.isFromTimeTable = false
             vc?.isFromViewAttendence = true
             vc?.isFromTeacher = 1
@@ -359,14 +402,22 @@ extension MenuVC : UITableViewDelegate{
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
         case "ViewTimeTableAndAttendance":
+//            let storyboard = UIStoryboard.init(name: KStoryBoards.kClass, bundle: nil)
+//            let vc = storyboard.instantiateViewController(withIdentifier: "ClassTimeTableVC") as? ClassTimeTableVC
+//                        vc?.isFromTimeTable = false
+//            vc?.isFromViewAttendence = true
+//            vc?.isFromStudentViewAttendance = true
+//            vc?.isFromTeacher = 0
+//            let frontVC = revealViewController().frontViewController as? UINavigationController
+//            frontVC?.pushViewController(vc!, animated: false)
+//            revealViewController().pushFrontViewController(frontVC, animated: true)
             
-            let storyboard = UIStoryboard.init(name: "StudentAttendence", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "StudentViewAttendanceVC") as? StudentViewAttendanceVC
+            let storyboard = UIStoryboard.init(name: KStoryBoards.kClass, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "TimeTableStudentVC") as? TimeTableStudentVC
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
-//            StudentViewAttendanceVC
             
         case "RateTeachers" :
             let storyboard = UIStoryboard.init(name: KStoryBoards.kTeacher, bundle: nil)
@@ -427,7 +478,7 @@ extension MenuVC : UITableViewDataSource{
         cell.lblRowTitle.text =  MenuVC.menuArrayFromApi?.resultData?[indexPath.row].pageName
         cell.lblRowTitle.numberOfLines = 0
         if let theme = ThemeManager.shared.currentTheme{
-            cell.viewBG.backgroundColor = theme.mainColor
+            cell.viewBG.backgroundColor = theme.mainColor//KAPPContentRelatedConstants.kThemeColour//theme.mainColor
         }
         return cell
     }

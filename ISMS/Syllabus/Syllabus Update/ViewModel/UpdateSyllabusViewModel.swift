@@ -35,13 +35,14 @@ class UpdateSyllabusViewModel {
     
     
     
-    func getData(StringChapterID : String , ClassSubject : Int , classId : Int , userID : Int) {
+    func getData(ClassSubjectId : Int, ClassId :Int, UserId : Int, lstchaptertopiclists : [[String: Any]]) {
         
        let url = KApiParameters.kUpdateSyllabusApiParameter.kAddUpdateSyllabus
-        let param = [KApiParameters.kUpdateSyllabusApiParameter.kStrChapterId: StringChapterID ,KApiParameters.kUpdateSyllabusApiParameter.kClassSubjectId : ClassSubject,KApiParameters.kUpdateSyllabusApiParameter.kClassId :1 ,KApiParameters.kUpdateSyllabusApiParameter.kUserId : userID ] as [String : Any]
-        
+        let param = ["ClassSubjectId": ClassSubjectId ,"ClassId" : ClassId,"UserId" :UserId ,"lstchaptertopiclists" : lstchaptertopiclists ] as [String : Any]
+        print("our params: ",param)
         
         UpdateSyllabusApi.sharedManager.UpdateSyllabusData(url:url , parameters: param, completionResponse: { (UpdateSyllabusModel) in
+              print("our resposne: ",UpdateSyllabusModel)
             self.updateSyllabusViewDelegate?.hideLoader()
             if let msg = UpdateSyllabusModel.message {
              self.updateSyllabusViewDelegate?.showAlert(alert: msg)

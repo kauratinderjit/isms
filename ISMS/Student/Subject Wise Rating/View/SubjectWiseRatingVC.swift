@@ -39,7 +39,7 @@ extension SubjectWiseRatingVC : UITableViewDataSource  {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 95
+        return 100
     }
     
     

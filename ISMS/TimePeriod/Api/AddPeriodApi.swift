@@ -27,6 +27,7 @@ class AddPeriodApi{
     func AddPeriodList(url : String,parameters: [String : Any]?,completionResponse:  @escaping (AddPeriodModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
         print("our parametersL: ",parameters ?? "")
         let urlCmplete = BaseUrl.kBaseURL+url
+        print("our url: ",urlCmplete )
         var accessTokken = ""
         if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String
         {
@@ -79,6 +80,7 @@ class AddPeriodApi{
     func GetPeriodList(url : String,parameters: [String : Any]?,completionResponse:  @escaping (GetPeriodListModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
         print("our parametersL: ",parameters ?? "")
         let urlCmplete = BaseUrl.kBaseURL+url
+         print("our url: ",urlCmplete )
         var accessTokken = ""
         if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String
         {
