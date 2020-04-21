@@ -125,7 +125,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JlC-fb-Fca">
-                                <rect key="frame" x="321" y="769" width="53" height="53"/>
+                                <rect key="frame" x="342" y="790" width="32" height="32"/>
                                 <state key="normal" image="addIcon"/>
                                 <connections>
                                     <segue destination="v2J-cu-bgZ" kind="show" id="lLd-7h-6XP"/>
@@ -760,17 +760,11 @@
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="d0o-Z8-1Vh" id="vqN-Y8-PqP"/>
+                                                    <outlet property="delegate" destination="d0o-Z8-1Vh" id="fze-mV-dVY"/>
+                                                </connections>
                                             </tableView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rc8-AI-YKb">
-                                                <rect key="frame" x="24" y="125" width="341" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="341" id="Dee-hc-d64"/>
-                                                    <constraint firstAttribute="height" constant="20" id="HkU-2L-u3q"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <color key="textColor" red="0.67399242049999997" green="0.63546283830000005" blue="0.65534651499999996" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -788,8 +782,6 @@
                                             <constraint firstAttribute="trailing" secondItem="Svg-xd-vMc" secondAttribute="trailing" constant="76" id="ZmI-kC-p1M"/>
                                             <constraint firstItem="lI9-ls-MCX" firstAttribute="top" secondItem="fA1-I4-G7M" secondAttribute="bottom" constant="25" id="a2Y-YI-qg8"/>
                                             <constraint firstItem="agc-WM-Jzl" firstAttribute="top" secondItem="lI9-ls-MCX" secondAttribute="bottom" constant="25" id="d2o-9C-w7b"/>
-                                            <constraint firstAttribute="trailing" secondItem="rc8-AI-YKb" secondAttribute="trailing" constant="49" id="hKz-fg-57S"/>
-                                            <constraint firstItem="rc8-AI-YKb" firstAttribute="top" secondItem="fA1-I4-G7M" secondAttribute="bottom" constant="35" id="hy5-FL-vgU"/>
                                             <constraint firstItem="Svg-xd-vMc" firstAttribute="leading" secondItem="OZP-XW-grE" secondAttribute="leading" constant="76" id="jtu-Fn-KZ7"/>
                                             <constraint firstItem="fA1-I4-G7M" firstAttribute="leading" secondItem="OZP-XW-grE" secondAttribute="leading" constant="18" id="obG-4A-i7d"/>
                                             <constraint firstItem="c22-KZ-hB5" firstAttribute="top" secondItem="Y2b-NV-01x" secondAttribute="bottom" constant="17" id="qov-58-jnQ"/>
@@ -1087,11 +1079,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="addIcon" width="53" height="53"/>
+        <image name="addIcon" width="32" height="32"/>
         <image name="calendar" width="15.5" height="16"/>
-        <image name="delete" width="32" height="32.5"/>
+        <image name="delete" width="20" height="20"/>
         <image name="dropDown" width="12" height="7.5"/>
-        <image name="edit" width="32.5" height="32.5"/>
+        <image name="edit" width="19" height="19"/>
         <image name="icloud.and.arrow.down" catalog="system" width="64" height="56"/>
     </resources>
 </document>

@@ -285,6 +285,7 @@
 		2E5CD434243798B20060D601 /* EventScheduleApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5CD433243798B20060D601 /* EventScheduleApi.swift */; };
 		2E5E4F01243F5E19001E8FDF /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E5E4F00243F5E19001E8FDF /* CloudKit.framework */; };
 		2E63606B244E88B20003DD05 /* SubjectListHomeWorkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E63606A244E88B20003DD05 /* SubjectListHomeWorkModel.swift */; };
+		2E63606D244EC01B0003DD05 /* StundentHWListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E63606C244EC01B0003DD05 /* StundentHWListModel.swift */; };
 		2E6B386624409DF3000BA37D /* ClassIDModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6B386424409DF3000BA37D /* ClassIDModel.swift */; };
 		2E6B386724409DF3000BA37D /* RegisterClassDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6B386524409DF3000BA37D /* RegisterClassDataModel.swift */; };
 		2E6B386924409E53000BA37D /* GetStudentsByClassIdModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6B386824409E53000BA37D /* GetStudentsByClassIdModel.swift */; };
@@ -723,6 +724,7 @@
 		2E5CD433243798B20060D601 /* EventScheduleApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventScheduleApi.swift; sourceTree = "<group>"; };
 		2E5E4F00243F5E19001E8FDF /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		2E63606A244E88B20003DD05 /* SubjectListHomeWorkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectListHomeWorkModel.swift; sourceTree = "<group>"; };
+		2E63606C244EC01B0003DD05 /* StundentHWListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StundentHWListModel.swift; sourceTree = "<group>"; };
 		2E6B386424409DF3000BA37D /* ClassIDModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassIDModel.swift; sourceTree = "<group>"; };
 		2E6B386524409DF3000BA37D /* RegisterClassDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterClassDataModel.swift; sourceTree = "<group>"; };
 		2E6B386824409E53000BA37D /* GetStudentsByClassIdModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStudentsByClassIdModel.swift; sourceTree = "<group>"; };
@@ -3400,6 +3402,7 @@
 			children = (
 				2E63606A244E88B20003DD05 /* SubjectListHomeWorkModel.swift */,
 				2E8F63DC243CB24B0040F9CA /* HomeworkModel.swift */,
+				2E63606C244EC01B0003DD05 /* StundentHWListModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4600,6 +4603,7 @@
 				0C55C2D223967D040016CC23 /* TeacherRatingApi.swift in Sources */,
 				2D2C449422CE0E09004424D8 /* SelectionTblViewCell.swift in Sources */,
 				2E3BF6F02435D05C00A4FB22 /* ExampleData.swift in Sources */,
+				2E63606D244EC01B0003DD05 /* StundentHWListModel.swift in Sources */,
 				10EEEAB5239E57DC00E8485C /* GeoLocationVC.swift in Sources */,
 				2E5CD434243798B20060D601 /* EventScheduleApi.swift in Sources */,
 				10EEEAAE239E57DC00E8485C /* SchoolModel.swift in Sources */,
@@ -5012,10 +5016,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.seasia.-";
+				PRODUCT_BUNDLE_IDENTIFIER = com.seasia.isms;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = AllSeasiaProjectsDev_5Sept2019;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/navaldeepkaur/Documents/ISMS/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
+				PROVISIONING_PROFILE_SPECIFIER = Isms_Dev_Prov;
+				SWIFT_OBJC_BRIDGING_HEADER = "/Volumes/DATA/ISMS git/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -5038,10 +5042,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.seasia.-";
+				PRODUCT_BUNDLE_IDENTIFIER = com.seasia.isms;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = AllSeasiaProjectsDev_5Sept2019;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/navaldeepkaur/Documents/ISMS/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
+				PROVISIONING_PROFILE_SPECIFIER = Isms_Dev_Prov;
+				SWIFT_OBJC_BRIDGING_HEADER = "/Volumes/DATA/ISMS git/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
