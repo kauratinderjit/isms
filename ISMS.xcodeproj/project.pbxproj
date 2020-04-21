@@ -284,9 +284,12 @@
 		2E5CD4322437854A0060D601 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5CD4312437854A0060D601 /* EventModel.swift */; };
 		2E5CD434243798B20060D601 /* EventScheduleApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5CD433243798B20060D601 /* EventScheduleApi.swift */; };
 		2E5E4F01243F5E19001E8FDF /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E5E4F00243F5E19001E8FDF /* CloudKit.framework */; };
+		2E63606B244E88B20003DD05 /* SubjectListHomeWorkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E63606A244E88B20003DD05 /* SubjectListHomeWorkModel.swift */; };
 		2E6B386624409DF3000BA37D /* ClassIDModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6B386424409DF3000BA37D /* ClassIDModel.swift */; };
 		2E6B386724409DF3000BA37D /* RegisterClassDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6B386524409DF3000BA37D /* RegisterClassDataModel.swift */; };
 		2E6B386924409E53000BA37D /* GetStudentsByClassIdModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6B386824409E53000BA37D /* GetStudentsByClassIdModel.swift */; };
+		2E7BE6A0244DAF720010BAAC /* SubjectListHW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7BE69F244DAF720010BAAC /* SubjectListHW.swift */; };
+		2E7BE6A2244DB8920010BAAC /* SubjectListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7BE6A1244DB8920010BAAC /* SubjectListCell.swift */; };
 		2E8F63C5243C589A0040F9CA /* NotesTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8F63BD243C589A0040F9CA /* NotesTableCell.swift */; };
 		2E8F63C6243C589A0040F9CA /* NotesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8F63BF243C589A0040F9CA /* NotesListVC.swift */; };
 		2E8F63C7243C589A0040F9CA /* Notes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E8F63C1243C589A0040F9CA /* Notes.storyboard */; };
@@ -711,9 +714,12 @@
 		2E5CD4312437854A0060D601 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		2E5CD433243798B20060D601 /* EventScheduleApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventScheduleApi.swift; sourceTree = "<group>"; };
 		2E5E4F00243F5E19001E8FDF /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		2E63606A244E88B20003DD05 /* SubjectListHomeWorkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectListHomeWorkModel.swift; sourceTree = "<group>"; };
 		2E6B386424409DF3000BA37D /* ClassIDModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassIDModel.swift; sourceTree = "<group>"; };
 		2E6B386524409DF3000BA37D /* RegisterClassDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterClassDataModel.swift; sourceTree = "<group>"; };
 		2E6B386824409E53000BA37D /* GetStudentsByClassIdModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStudentsByClassIdModel.swift; sourceTree = "<group>"; };
+		2E7BE69F244DAF720010BAAC /* SubjectListHW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectListHW.swift; sourceTree = "<group>"; };
+		2E7BE6A1244DB8920010BAAC /* SubjectListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectListCell.swift; sourceTree = "<group>"; };
 		2E8F63BD243C589A0040F9CA /* NotesTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesTableCell.swift; sourceTree = "<group>"; };
 		2E8F63BF243C589A0040F9CA /* NotesListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesListVC.swift; sourceTree = "<group>"; };
 		2E8F63C1243C589A0040F9CA /* Notes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Notes.storyboard; sourceTree = "<group>"; };
@@ -3246,6 +3252,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		2E7BE69E244DAF3B0010BAAC /* SubjectList */ = {
+			isa = PBXGroup;
+			children = (
+				2E7BE69F244DAF720010BAAC /* SubjectListHW.swift */,
+				2E7BE6A1244DB8920010BAAC /* SubjectListCell.swift */,
+			);
+			path = SubjectList;
+			sourceTree = "<group>";
+		};
 		2E8F63BA243C589A0040F9CA /* Notes */ = {
 			isa = PBXGroup;
 			children = (
@@ -3364,6 +3379,7 @@
 		2E8F63DB243CB2340040F9CA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2E63606A244E88B20003DD05 /* SubjectListHomeWorkModel.swift */,
 				2E8F63DC243CB24B0040F9CA /* HomeworkModel.swift */,
 			);
 			path = Model;
@@ -3380,6 +3396,7 @@
 		2EC88B4E2448209500AF60B7 /* Student */ = {
 			isa = PBXGroup;
 			children = (
+				2E7BE69E244DAF3B0010BAAC /* SubjectList */,
 				2EC88B4F2448337000AF60B7 /* StudentHomeWorkListVC.swift */,
 				2EC88B512448340800AF60B7 /* StudentDetailHomeworkVC.swift */,
 				2EC88B5324483E6A00AF60B7 /* StudentUploadHomeWorkVC.swift */,
@@ -4470,6 +4487,7 @@
 				0C1C28CA238E5BB300F98FEC /* SubjectDeleteModel.swift in Sources */,
 				10EEEABA239E57DC00E8485C /* PaymentHistoryCell.swift in Sources */,
 				0C668583238FE2D4006593D5 /* AddStudentRatingTableViewCell.swift in Sources */,
+				2E7BE6A0244DAF720010BAAC /* SubjectListHW.swift in Sources */,
 				0C1C28CF238E5BB300F98FEC /* SubjectTopicApi.swift in Sources */,
 				2D645F0722BBB6F7009EA9B6 /* TeacherApi.swift in Sources */,
 				2D645F0922BBB88B009EA9B6 /* DeleteTeacherModel.swift in Sources */,
@@ -4509,6 +4527,7 @@
 				0C5A1A92239929630039CB39 /* TeacherSubjectSkillRatingTableViewCell.swift in Sources */,
 				0C7A1A1023953C4D002B5C8B /* RatingToTeacherVC.swift in Sources */,
 				2E3BF6EC2435D05C00A4FB22 /* CollapsibleTableViewCell.swift in Sources */,
+				2E7BE6A2244DB8920010BAAC /* SubjectListCell.swift in Sources */,
 				2D645F0222BBB685009EA9B6 /* TeacherListPresenter.swift in Sources */,
 				BE06B65322A4EE70000CFCAF /* GetAllCountryModel.swift in Sources */,
 				0C1C28FE238E9CD800F98FEC /* StudentRatingTableViewCell.swift in Sources */,
@@ -4632,6 +4651,7 @@
 				0C55C2D623967D700016CC23 /* TeacherRatingVC.swift in Sources */,
 				2E0DCA7A2297E8DC001DC56D /* ViewControllerExtension.swift in Sources */,
 				2E50E069229E850D009E47B9 /* SignUpViewController.swift in Sources */,
+				2E63606B244E88B20003DD05 /* SubjectListHomeWorkModel.swift in Sources */,
 				10EEEAB0239E57DC00E8485C /* AttachFilesCollectionViewCell.swift in Sources */,
 				2D2A92B122B0BC5F00F2AAB6 /* AddHODVC.swift in Sources */,
 				2EC88B5424483E6A00AF60B7 /* StudentUploadHomeWorkVC.swift in Sources */,
