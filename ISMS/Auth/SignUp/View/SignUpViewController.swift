@@ -209,24 +209,26 @@ class SignUpViewController: BaseUIViewController {
             self.txtLastName.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kLastName)
             self.txtFirstName.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kFirstName)
             //Set text sizes
-            self.lblGender.SetLabelFont(textSize: KTextSize.KFourteen)
+           // self.lblGender.SetLabelFont(textSize: KTextSize.KFourteen)
             self.lblFemale.SetLabelFont(textSize: KTextSize.KFourteen)
             self.lblMale.SetLabelFont(textSize: KTextSize.KFourteen)
             self.btnSave.SetButtonFont(textSize: KTextSize.KSeventeen)
+            self.txtFirstName.txtfieldPadding(leftpadding: 10, rightPadding: 0)
+             self.txtLastName.txtfieldPadding(leftpadding: 10, rightPadding: 0)
             //Set Corner of button and image
-            self.cornerButton(btn: self.btnSave,radius: KTextSize.KEight)
+          //  self.cornerButton(btn: self.btnSave,radius: KTextSize.KEight)
             self.cornerButton(btn: self.btnAddImage,radius: KTextSize.KEight)
             self.cornerImage(image: self.imgViewProfile)
             //Add Shadow and corner of the view
-            self.addViewCornerShadow(radius: 8, view: self.viewTop)
-            self.addViewCornerShadow(radius: 8, view: self.viewGender)
-            self.addViewCornerShadow(radius: 8, view: self.viewMail)
-            self.addViewCornerShadow(radius: 8, view: self.viewCity)
-            self.addViewCornerShadow(radius: 8, view: self.viewCountry)
-            self.addViewCornerShadow(radius: 8, view: self.viewAddress)
-            self.addViewCornerShadow(radius: 8, view: self.viewState)
-            self.addViewCornerShadow(radius: 8, view: self.txtViewDescription)
-            self.addViewCornerShadow(radius: 8, view: self.viewDOB)
+//            self.addViewCornerShadow(radius: 8, view: self.viewTop)
+//            self.addViewCornerShadow(radius: 8, view: self.viewGender)
+//            self.addViewCornerShadow(radius: 8, view: self.viewMail)
+//            self.addViewCornerShadow(radius: 8, view: self.viewCity)
+//            self.addViewCornerShadow(radius: 8, view: self.viewCountry)
+//            self.addViewCornerShadow(radius: 8, view: self.viewAddress)
+//            self.addViewCornerShadow(radius: 8, view: self.viewState)
+//            self.addViewCornerShadow(radius: 8, view: self.txtViewDescription)
+//            self.addViewCornerShadow(radius: 8, view: self.viewDOB)
             //Set default string in gender
             self.gender = KConstants.KMale
             //Set placeholder in text view
@@ -235,7 +237,7 @@ class SignUpViewController: BaseUIViewController {
             //Set Title
             self.title = KStoryBoards.KSignUpIdentifiers.kSignUpTitle
             //Set shadow of text view
-            self.txtViewDescription.addViewCornerShadow(radius: 8, view: self.txtViewDescription)
+           // self.txtViewDescription.addViewCornerShadow(radius: 8, view: self.txtViewDescription)
         }
     }
 }

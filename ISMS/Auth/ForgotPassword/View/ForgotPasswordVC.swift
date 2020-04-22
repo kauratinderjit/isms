@@ -52,8 +52,8 @@ class ForgotPasswordVC: BaseUIViewController
         cornerView(radius: KTextSize.KEight, view: viewPassword)
         cornerView(radius: KTextSize.KEight, view: viewConfirePassword)
         //Add shadow
-        addShadow(view: viewConfirePassword)
-        addShadow(view: viewPassword)
+       // addShadow(view: viewConfirePassword)
+       // addShadow(view: viewPassword)
     }
     
     //back button action
@@ -76,9 +76,12 @@ extension ForgotPasswordVC : UITextFieldDelegate{
 }
 //MARK:- presenter Delegate
 extension ForgotPasswordVC:ForgotPasswordDelegate{
-    func Success(){
+    func Success()
+    {
+      showAlert(Message: "Password Changed Successfully")
     }
     func Falied(message: String) {
+        showAlert(Message: message)
     }
 }
 //MARK:- view delegate
