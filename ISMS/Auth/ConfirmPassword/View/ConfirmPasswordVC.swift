@@ -50,8 +50,8 @@ class ConfirmPasswordVC: BaseUIViewController {
         cornerButton(btn: btnNext,radius: KTextSize.KEight)
         cornerView(radius: KTextSize.KEight, view: viewConfirmPass)
         cornerView(radius: KTextSize.KEight, view: viewPassword)
-        addShadow(view: viewConfirmPass)
-        addShadow(view: viewPassword)
+       // addShadow(view: viewConfirmPass)
+      //  addShadow(view: viewPassword)
     }
 }
 

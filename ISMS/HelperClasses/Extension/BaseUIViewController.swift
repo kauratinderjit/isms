@@ -39,7 +39,7 @@ protocol NavigationSearchBarDelegate:class {
     func cancelButtonPress(uiSearchBar:UISearchBar)
 }
 //MARK: BaseUIViewController
-class BaseUIViewController: UIViewController{
+class BaseUIViewController: UIViewController {
     //MARK:- Variables
     private var pickerDelegate:SharedUIPickerDelegate?
     private var datePickerDelegate:SharedUIDatePickerDelegate?
@@ -90,7 +90,6 @@ class BaseUIViewController: UIViewController{
     
     //For Set the status bar content white
     override open var preferredStatusBarStyle: UIStatusBarStyle {
-        
         return .lightContent
     }
     //MARK:- SetPickerView
@@ -445,6 +444,13 @@ class BaseUIViewController: UIViewController{
         self.searchBar.returnKeyType = .done
         self.searchBar.delegate = self
         self.searchBar.isHidden = true
+        self.searchBar.barStyle = .black
+        self.searchBar.backgroundColor = .white
+        self.searchBar.searchTextField.backgroundColor = .white
+        self.searchBar.searchTextField.textColor = .black
+        self.searchBar.searchTextField.layer.borderWidth = 0.5
+        self.searchBar.searchTextField.layer.borderColor = UIColor.lightGray.cgColor
+        self.searchBar.searchTextField.layer.cornerRadius = 8
         self.searchBar.showsCancelButton.toggle()
         self.navigationTitle = navigationTitle
         self.navigationSearchBarDelegate = navigationSearchBarDelegates
@@ -455,9 +461,9 @@ class BaseUIViewController: UIViewController{
     
     //MARK:- Create right search button in navigation contorller
     func createRightNavSearchBarButton(){
-        let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "search"), style: .done, target: self, action: #selector(self.unHideSearchBar(_:)))
+        let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "searchGray"), style: .done, target: self, action: #selector(self.unHideSearchBar(_:)))
         //NAVAL
-        rightBarButtonItem.tintColor = .gray
+        rightBarButtonItem.tintColor = .darkGray
         //        rightBarButtonItem.setBackgroundImage(UIImage(named: "search"), for: .normal, barMetrics: .default)
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
     }

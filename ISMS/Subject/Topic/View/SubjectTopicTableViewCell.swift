@@ -47,7 +47,8 @@ class SubjectTopicTableViewCell: UITableViewCell {
         if let txt = data.topicName {
         lblTxt.text = txt
         }
-        imgView.layer.cornerRadius = 16.0
+        //imgView.layer.cornerRadius = imgView.frame.height / 2
+        imgView.createCircleImage()
           if let txt = data.topicName {
             CommonFunctions.sharedmanagerCommon.addLabelOnTheImgeViewWithFirstCharacter(string: txt , imgView: imgView)
         }

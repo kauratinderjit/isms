@@ -143,6 +143,7 @@ extension SubjectSkillRatingVC : ViewDelegate {
         // cornerButton(btn: btnSubmit, radius: 8)
         //Title
         self.title = SubjectSkillRating.kSubjectSkillRatingVC
+        textfieldSubject.txtfieldPadding(leftpadding: 10, rightPadding: 0)
         self.tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
         self.viewModel?.isSearching = false

@@ -107,7 +107,7 @@ class StudentListVC: BaseUIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorColor = KAPPContentRelatedConstants.kLightBlueColour
-        
+        dropDownTextField.txtfieldPadding(leftpadding: 10, rightPadding: 0)
         SetpickerView(self.view)
         
         self.setSearchBarInNavigationController(placeholderText: KSearchBarPlaceHolder.kUserSearchBarStudentPlaceHolder, navigationTitle: KStoryBoards.KAddStudentIdentifiers.kStudentListTitle, navigationController: self.navigationController, navigationSearchBarDelegates: self)
@@ -401,17 +401,17 @@ extension StudentListVC : UIScrollViewDelegate{
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
-        if(velocity.y>0) {
-            //Code will work without the animation block.I am using animation block incase if you want to set any delay to it.
-            UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
-                self.navigationController?.setNavigationBarHidden(true, animated: true)
-            }, completion: nil)
-            
-        } else {
-            UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
-                self.navigationController?.setNavigationBarHidden(false, animated: true)
-            }, completion: nil)
-        }
+//        if(velocity.y>0) {
+//            //Code will work without the animation block.I am using animation block incase if you want to set any delay to it.
+//            UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
+//                self.navigationController?.setNavigationBarHidden(true, animated: true)
+//            }, completion: nil)
+//            
+//        } else {
+//            UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
+//                self.navigationController?.setNavigationBarHidden(false, animated: true)
+//            }, completion: nil)
+//        }
         
         if (tableView.contentOffset.y < pointNow.y)
         {

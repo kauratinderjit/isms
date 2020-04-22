@@ -30,6 +30,7 @@ class ViewTeacherRatingVC: BaseUIViewController {
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 600
+        tableView.separatorColor = KAPPContentRelatedConstants.kLightBlueColour
         // Do any additional setup after loading the view.
     }
     
@@ -39,6 +40,7 @@ class ViewTeacherRatingVC: BaseUIViewController {
         self.ViewModel?.attachView(viewDelegate: self)
         //Title
         self.title = "View Teacher Feedback"
+        txtFieldTeacher.txtfieldPadding(leftpadding: 20, rightPadding: 0)
         //Table View Settings
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
