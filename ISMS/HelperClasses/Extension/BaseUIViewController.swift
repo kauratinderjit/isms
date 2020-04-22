@@ -39,7 +39,7 @@ protocol NavigationSearchBarDelegate:class {
     func cancelButtonPress(uiSearchBar:UISearchBar)
 }
 //MARK: BaseUIViewController
-class BaseUIViewController: UIViewController{
+class BaseUIViewController: UIViewController {
     //MARK:- Variables
     private var pickerDelegate:SharedUIPickerDelegate?
     private var datePickerDelegate:SharedUIDatePickerDelegate?
@@ -90,7 +90,6 @@ class BaseUIViewController: UIViewController{
     
     //For Set the status bar content white
     override open var preferredStatusBarStyle: UIStatusBarStyle {
-        
         return .lightContent
     }
     //MARK:- SetPickerView
