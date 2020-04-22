@@ -35,7 +35,7 @@ class StudentUploadHomeWorkVC: BaseUIViewController {
     
     @IBAction func actionSubmit(_ sender: UIButton) {
         self.showAlert(Message: "Homework has been uploaded successfully.")
-        _ = self.navigationController?.popViewController(animated: true)
+       // _ = self.navigationController?.popViewController(animated: true)
     }
     
 }
