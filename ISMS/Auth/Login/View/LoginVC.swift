@@ -20,7 +20,9 @@ class LoginVC: BaseUIViewController {
     @IBOutlet weak var btnForgot: UIButton!
     @IBOutlet weak var kPhoneNoTop: NSLayoutConstraint!
     @IBOutlet weak var kConstantBtnLoginTop: NSLayoutConstraint!
+    @IBOutlet weak var imgMobile: UIImageView!
     
+    @IBOutlet weak var imgPassword: UIImageView!
     //MARK:-  Variables
     var viewModel:LoginViewModel?
     
@@ -72,8 +74,8 @@ class LoginVC: BaseUIViewController {
         cornerButton(btn: btnLogin,radius: KTextSize.KEight)
         cornerView(radius:KTextSize.KEight, view: viewPhnNo)
         cornerView(radius: KTextSize.KEight, view: viewPassword)
-        addShadow(view: viewPhnNo)
-        addShadow(view: viewPassword)
+        //addShadow(view: viewPhnNo)
+        //addShadow(view: viewPassword)
         
         //Set phone number top constant when phone number top is 100
         kPhoneNoTop.constant = 100
@@ -81,6 +83,19 @@ class LoginVC: BaseUIViewController {
         btnLogin.isHidden = true
         btnForgot.isUserInteractionEnabled = false
         lblForgot.isHidden = true
+        
+        //Image Tint Color Change
+        if let myImage = UIImage(named: "mobile") {
+            let tintableImage = myImage.withRenderingMode(.alwaysTemplate)
+            imgMobile.image = tintableImage
+        }
+        imgMobile.tintColor = KAPPContentRelatedConstants.kThemeColour
+        
+        if let myImage = UIImage(named: "lock") {
+                   let tintableImage = myImage.withRenderingMode(.alwaysTemplate)
+                   imgPassword.image = tintableImage
+               }
+        imgPassword.tintColor = KAPPContentRelatedConstants.kThemeColour
     }
     
     //Unhide Navigation Controller
