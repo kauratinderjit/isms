@@ -435,6 +435,10 @@ extension AddHomeWorkVC : ViewDelegate {
 }
 
 extension AddHomeWorkVC : AddHomeWorkDelegate {
+    func studentHomeworkDetail(data: [HomeworkListStudentData]) {
+        
+    }
+    
     func subjectList(data: [HomeworkResultHWData]) {
         
     }

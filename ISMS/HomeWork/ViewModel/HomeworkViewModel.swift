@@ -16,6 +16,7 @@ protocol AddHomeWorkDelegate: class {
     func addedSuccessfully ()
     func attachmentDeletedSuccessfully ()
     func subjectList(data: [HomeworkResultHWData])
+    func studentHomeworkDetail(data: [HomeworkListStudentData])
 }
 
 
@@ -133,8 +134,8 @@ class HomeworkViewModel {
         HomeworkApi.sharedManager.getHoweworkList(url: url, parameters: nil, completionResponse: { (response) in
                    self.homeworkViewDelegate?.hideLoader()
                 switch response.statusCode{
-                case KStatusCode.kStatusCode200:
-                    self.addHomeworkDelegate?.AddHomeworkSucceed(array: response.resultData! )
+                case KStatusCode.kStatusCode200: break
+                   // self.addHomeworkDelegate?.AddHomeworkSucceed(array: response.resultData! )
                 case KStatusCode.kStatusCode401:
                     self.homeworkViewDelegate?.showAlert(alert: response.message ?? "")
                     //self.AddHomeWorkDelegate?.unauthorizedUser()
@@ -245,7 +246,7 @@ class HomeworkViewModel {
                  self.homeworkViewDelegate?.hideLoader()
                 switch response.statusCode{
                 case KStatusCode.kStatusCode200:
-                    self.addHomeworkDelegate?.AddHomeworkSucceed(array: response.resultData! )
+                    self.addHomeworkDelegate?.studentHomeworkDetail(data: response.resultData!)
                 case KStatusCode.kStatusCode401:
                     self.homeworkViewDelegate?.showAlert(alert: response.message ?? "")
                     //self.AddHomeWorkDelegate?.unauthorizedUser()

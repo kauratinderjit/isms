@@ -170,7 +170,7 @@ class HomeworkApi {
     }
     
     
-    func getHoweworkList(url : String,parameters: [String : Any]?,completionResponse:  @escaping (HomeworkListModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
+    func getHoweworkList(url : String,parameters: [String : Any]?,completionResponse:  @escaping (StundentHWListModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
         
         let urlCmplete = BaseUrl.kBaseURL+url
         print(urlCmplete)
@@ -184,7 +184,7 @@ class HomeworkApi {
         let headers = [KConstants.kHeaderAuthorization:KConstants.kHeaderBearer+" "+accessTokken,KConstants.kAccept: KConstants.kApplicationJson]
         
         
-                Alamofire.request(urlCmplete, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers : headers)
+                Alamofire.request(urlCmplete, method: .get, parameters: parameters, encoding: JSONEncoding.default, headers : headers)
             .responseJSON { response in
             CommonFunctions.sharedmanagerCommon.println(object: "response list:- \(response) ")
             if response.result.isSuccess
@@ -194,7 +194,7 @@ class HomeworkApi {
                 if let responseData  = data as? [String : Any]
                 {
                     print("your response data subjec kk1: \(responseData)")
-                    self.getHomeworkListJSON(data: responseData, completionResponse: { (responseModel) in
+                    self.getStuHomeworkListJSON(data: responseData, completionResponse: { (responseModel) in
                         CommonFunctions.sharedmanagerCommon.println(object: "response list2:- \(String(describing: responseModel.resultData)) ")
                         completionResponse(responseModel)
                     }, completionError: { (mapperError) in
@@ -210,6 +210,17 @@ class HomeworkApi {
                 complitionError(response.error)
                 return
             }
+        }
+    }
+    
+    private func getStuHomeworkListJSON(data: [String : Any],completionResponse:  @escaping (StundentHWListModel) -> Void,completionError: @escaping (String?) -> Void)  {
+        
+        let SubjectListData = StundentHWListModel(JSON: data)
+        
+        if SubjectListData != nil{
+            completionResponse(SubjectListData!)
+        }else{
+            completionError(Alerts.kMapperModelError)
         }
     }
     

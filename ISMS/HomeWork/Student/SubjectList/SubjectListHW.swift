@@ -89,6 +89,11 @@ extension SubjectListHW : UITableViewDelegate, UITableViewDataSource {
 }
 
 extension SubjectListHW : AddHomeWorkDelegate {
+    func studentHomeworkDetail(data: [HomeworkListStudentData]) {
+        
+    }
+    
+
     func subjectList(data: [HomeworkResultHWData]) {
                 arrSubjectlist = data
         

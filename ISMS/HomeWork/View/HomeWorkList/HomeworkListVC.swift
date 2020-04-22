@@ -98,6 +98,10 @@ extension HomeworkListVC : ViewDelegate {
 }
 
 extension HomeworkListVC : AddHomeWorkDelegate {
+    func studentHomeworkDetail(data: [HomeworkListStudentData]) {
+        
+    }
+    
     func subjectList(data: [HomeworkResultHWData]) {
         
     }
