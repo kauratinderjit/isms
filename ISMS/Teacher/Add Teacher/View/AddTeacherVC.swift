@@ -61,6 +61,8 @@ class AddTeacherVC: BaseUIViewController {
         // Do any additional setup after loading the view.
         self.viewModel = AddTeacherViewModel.init(delegate : self as AddTeacherDelegate)
         self.viewModel?.attachView(viewDelegate: self as ViewDelegate)
+        
+        strDepartmentsIds = "\(UserDefaultExtensionModel.shared.HODDepartmentId)"
         DispatchQueue.main.async {
             self.setupUI()
         }

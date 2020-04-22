@@ -112,6 +112,7 @@ class AddStudentVC: BaseUIViewController {
         DispatchQueue.main.async {
             self.setupUI()
         }
+        selectedDepartmentID = UserDefaultExtensionModel.shared.HODDepartmentId
         hitGetStudentDetailApi()
     }
     
