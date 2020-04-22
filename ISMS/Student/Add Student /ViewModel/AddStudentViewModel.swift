@@ -78,7 +78,7 @@ class AddStudentViewModel{
             paramDict[KApiParameters.AddStudentApi.StudentUserId] =  studentUserId
             paramDict[KApiParameters.AddStudentApi.ClassIdb] = classId ?? 0
             paramDict[KApiParameters.AddStudentApi.GuardianId] = guardianId
-            paramDict[KApiParameters.AddStudentApi.GuardianUserId] = guardianUserId
+            paramDict[KApiParameters.AddStudentApi.GuardianUserId] = 0
             paramDict[KApiParameters.AddStudentApi.RelationId] = relationID
             paramDict[KApiParameters.AddStudentApi.SessionId] =  1
             paramDict[KApiParameters.AddStudentApi.studentIDProofTitle] =  studentIdProofTile ?? ""

@@ -34,7 +34,7 @@ class RatingTeacherVC: BaseUIViewController {
         self.viewModel = TeacherRatingAddViewModel.init(delegate : self)
         self.viewModel?.attachView(viewDelegate: self as! ViewDelegate)
         setUI()
-        self.viewModel?.TeacherList(studentID : 20)
+        self.viewModel?.TeacherList(studentID : 42)
         
         // Do any additional setup after loading the view.
     }

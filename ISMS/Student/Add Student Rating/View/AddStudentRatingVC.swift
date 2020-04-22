@@ -77,7 +77,7 @@ class AddStudentRatingVC: BaseUIViewController {
         
         }
         
-        self.viewModel?.getSubjectWiseRating(enrollmentsId: 6, classId: 33)
+//        self.viewModel?.getSubjectWiseRating(enrollmentsId: 6, classId: 33)
         tableView.reloadData()
 //        if type == "Edit" {
 //
@@ -211,9 +211,7 @@ extension AddStudentRatingVC : AddStudentRatingDelegate {
           }else{
               txtfieldStudent.text = ""
             }
-           
-            
-            tableView.reloadData()
+                tableView.reloadData()
         }
     }
     

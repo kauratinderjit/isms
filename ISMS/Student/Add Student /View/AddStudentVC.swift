@@ -196,7 +196,7 @@ class AddStudentVC: BaseUIViewController {
         view.endEditing(true)
         if studentId == 0{
             //For Add Student
-            self.ViewModel?.addStudent(studentId: self.studentId, studentUserId: studentUserId, studentImg: studentImgUrl,firstName: txtFieldFirstName.text, lastName: txtFieldLastName.text, address: txtFieldAddress.text, dateOfBirth: studentDOB,  gender: gender, rollNoOrAddmissionId: txtFieldRollnoOrAddmissionId.text, email: txtFieldEmail.text, phoneNumber: txtFieldPhoneNumber.text,studentIdProof: studentIdUrl, others: txtFieldOthers.text,parentImg: parentImgUrl, parentFirstName: txtParentFirstName.text, parentLastName: txtParentLastName.text,parentAddress: txtparentAddress.text,parentDOB: parentDOB,parentGender: parentGender,parentEmail: txtParentEmail.text,parentPhoneNo: txtParentPhoneNo.text,parentIdProof:parentIdUrl,parentOthers: txtParentOthers.text,relationID: selectedRelationID, studentIdProofTile: txtFieldStudentIdProof.text, parentIdProofTitle:textFieldIDProof.text, classId: selectedClassID, guardianId: gardianId, guardianUserId: gardianUserId)
+            self.ViewModel?.addStudent(studentId: self.studentId, studentUserId: studentUserId, studentImg: studentImgUrl,firstName: txtFieldFirstName.text, lastName: txtFieldLastName.text, address: txtFieldAddress.text, dateOfBirth: studentDOB,  gender: gender, rollNoOrAddmissionId: txtFieldRollnoOrAddmissionId.text, email: txtFieldEmail.text, phoneNumber: txtFieldPhoneNumber.text,studentIdProof: studentIdUrl, others: txtFieldOthers.text,parentImg: parentImgUrl, parentFirstName: txtParentFirstName.text, parentLastName: txtParentLastName.text,parentAddress: txtparentAddress.text,parentDOB: parentDOB,parentGender: parentGender,parentEmail: txtParentEmail.text,parentPhoneNo: txtParentPhoneNo.text,parentIdProof:parentIdUrl,parentOthers: txtParentOthers.text,relationID: selectedRelationID, studentIdProofTile: txtFieldStudentIdProof.text, parentIdProofTitle:textFieldIDProof.text, classId: selectedClassID, guardianId: gardianId, guardianUserId: 0)
         }else if studentId != 0{
             //For set the nil value to Profile Image Url/Id Proof Image Url
             if studentImgUrl != nil||parentImgUrl != nil || parentIdUrl != nil || studentIdUrl != nil {
@@ -975,7 +975,7 @@ extension AddStudentVC : AddStudentDelegate{
                     let containsSameValue = departmentData.contains(where: {$0.id == value.id})
                     if containsSameValue == false{
                         departmentData.append(value)
-                        if value.id ==  31{
+                        if value.id ==  44{
                             self.txtFieldDepartment.text = value.name
                         }
                     }
