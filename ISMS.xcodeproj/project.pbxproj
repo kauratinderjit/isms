@@ -5019,7 +5019,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.seasia.isms;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = Isms_Dev_Prov;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Volumes/DATA/ISMS git/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/navaldeepkaur/Documents/ISMS/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -5045,7 +5045,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.seasia.isms;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = Isms_Dev_Prov;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Volumes/DATA/ISMS git/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/navaldeepkaur/Documents/ISMS/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
