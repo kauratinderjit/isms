@@ -30,6 +30,8 @@ class DepartmentTableViewCell: UITableViewCell {
     }
 
     func setCellUI(data :[GetDepartmentListResultData]?,indexPath: IndexPath){
+        
+       if data?.count ?? 0 > 0 {
        
         let rsltData = data?[indexPath.row]
         lblTitle.text = ""
@@ -64,6 +66,7 @@ class DepartmentTableViewCell: UITableViewCell {
                 CommonFunctions.sharedmanagerCommon.addLabelOnTheImgeViewWithFirstCharacter(string: nameStr, imgView: self.imgViewLogo)
 //                CommonFunctions.sharedmanagerCommon.println(object: "Image is nil in list.")
             }
+        }
         }
     }
 }
