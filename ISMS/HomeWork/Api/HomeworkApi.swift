@@ -213,6 +213,8 @@ class HomeworkApi {
         }
     }
     
+    
+    
     private func getStuHomeworkListJSON(data: [String : Any],completionResponse:  @escaping (StundentHWListModel) -> Void,completionError: @escaping (String?) -> Void)  {
         
         let SubjectListData = StundentHWListModel(JSON: data)
