@@ -31,6 +31,8 @@ class HODListTableViewCell: UITableViewCell {
     
     func setCellUI(data :[GetHodListResultData]?,indexPath: IndexPath){
         
+        
+        if data?.count ?? 0 > 0 {
         let rsltData = data?[indexPath.row]
         lblTitle.text = ""
         
@@ -75,5 +77,5 @@ class HODListTableViewCell: UITableViewCell {
         
     
     }
-    
+    }
 }
