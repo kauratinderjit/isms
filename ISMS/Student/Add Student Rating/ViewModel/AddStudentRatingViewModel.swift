@@ -369,7 +369,7 @@ class AddStudentRatingViewModel {
 //        }
 //        ]
         let paramDict = [ "Id": 0,
-                          "TeacherId": 2,
+                          "TeacherId": teacherID!,
                           "EnrollmentId": enrollmentId!,
                           "ClassSubjectId":classSubjectId!,
                           "Comment": "good",

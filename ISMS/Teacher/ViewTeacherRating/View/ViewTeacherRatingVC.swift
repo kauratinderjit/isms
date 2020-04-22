@@ -24,7 +24,7 @@ class ViewTeacherRatingVC: BaseUIViewController {
         super.viewDidLoad()
         DispatchQueue.main.async {
             self.setUI()
-            self.ViewModel?.TeacherList(HodId: 3,enumType: 18)
+            self.ViewModel?.TeacherList(HodId: 18,enumType: 18)
             
         }
         
@@ -135,6 +135,7 @@ extension ViewTeacherRatingVC : SharedUIPickerDelegate{
                 if let index = selectedTeacherIndex {
                     if let id = arrTeacher[index].teacherId {
                         self.txtFieldTeacher.text = arrTeacher[index].teacherName
+                        self.ViewModel?.GetTeacherRating(teacherId: id)
                     }
                 }
             }else{
@@ -144,7 +145,6 @@ extension ViewTeacherRatingVC : SharedUIPickerDelegate{
     }
     
     func GetTitleForRow(index: Int) -> String {
-        
         if isSelectedTeacher == true {
             if arrTeacher.count > 0{
                 txtFieldTeacher.text = arrTeacher[0].teacherName

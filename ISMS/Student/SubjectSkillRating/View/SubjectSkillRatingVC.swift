@@ -30,9 +30,9 @@ class SubjectSkillRatingVC: BaseUIViewController {
         self.setUI()
           self.textfieldSubject.text = subjectName
        self.viewModel?.GetSkillList(id: 33, enumType: 10, type: "Skill")
-           self.viewModel?.getSubjectWiseRating(enrollmentsId: 14, classSubjectId: 6)
+           self.viewModel?.getSubjectWiseRating(enrollmentsId: 35, classSubjectId: 96)
         if let classSubectID = classId {
-        self.viewModel?.getSubjectWiseRating(enrollmentsId: 7, classSubjectId: 1)
+        self.viewModel?.getSubjectWiseRating(enrollmentsId: 35, classSubjectId: 96)
         }
     }
   
