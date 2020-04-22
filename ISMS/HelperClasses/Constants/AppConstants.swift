@@ -10,7 +10,9 @@ import Foundation
 
 public struct BaseUrl
 {
-  public static let kBaseURL =  "https://stgsd.appsndevs.com/ISMSQA/"//"http://stgsd.appsndevs.com/EducationProApi/"
+  public static let kBaseURL = "https://stgsd.appsndevs.com/ISMSQA/"
+
+   //"http://stgsd.appsndevs.com/EducationProApi/"
 }
 
 public struct ApiEndpoints
@@ -19,7 +21,7 @@ public struct ApiEndpoints
     public static let kStudentListForAttendence = "api/Institute/GetStudentForAttendence"
     public static let kAddStudentListForAttendence = "api/Institute/AddUpdateStudentAttendence"
     
-//    Poonam
+// Poonam
      public static let kGetAttendanceReportByEnrollmentId = "api/Institute/GetAttendanceReportByEnrollmentId"
     
     //MARK:- AttendanceReport Api
