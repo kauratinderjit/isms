@@ -445,6 +445,7 @@ class BaseUIViewController: UIViewController{
         self.searchBar.returnKeyType = .done
         self.searchBar.delegate = self
         self.searchBar.isHidden = true
+        self.searchBar.barStyle = .black
         self.searchBar.showsCancelButton.toggle()
         self.navigationTitle = navigationTitle
         self.navigationSearchBarDelegate = navigationSearchBarDelegates
@@ -455,9 +456,9 @@ class BaseUIViewController: UIViewController{
     
     //MARK:- Create right search button in navigation contorller
     func createRightNavSearchBarButton(){
-        let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "search"), style: .done, target: self, action: #selector(self.unHideSearchBar(_:)))
+        let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "searchGray"), style: .done, target: self, action: #selector(self.unHideSearchBar(_:)))
         //NAVAL
-        rightBarButtonItem.tintColor = .gray
+        rightBarButtonItem.tintColor = .darkGray
         //        rightBarButtonItem.setBackgroundImage(UIImage(named: "search"), for: .normal, barMetrics: .default)
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
     }

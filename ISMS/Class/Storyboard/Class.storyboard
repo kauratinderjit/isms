@@ -532,6 +532,9 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="shadowOffset">
                                                 <real key="value" value="0.80000000000000004"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="btnSubmitAction:" destination="1uR-KF-7hz" eventType="touchUpInside" id="1jg-Fe-j0v"/>
@@ -685,13 +688,13 @@
                                                                                                 <rect key="frame" x="0.0" y="0.0" width="112" height="87"/>
                                                                                                 <subviews>
                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Period" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwW-T4-bU9">
-                                                                                                        <rect key="frame" x="36" y="0.0" width="40" height="22"/>
+                                                                                                        <rect key="frame" x="37" y="0.0" width="38" height="22"/>
                                                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
                                                                                                         <nil key="textColor"/>
                                                                                                         <nil key="highlightedColor"/>
                                                                                                     </label>
                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teacher" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLH-ZF-tKQ">
-                                                                                                        <rect key="frame" x="32" y="22" width="48" height="21.5"/>
+                                                                                                        <rect key="frame" x="33" y="22" width="46" height="21.5"/>
                                                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
                                                                                                         <nil key="textColor"/>
                                                                                                         <nil key="highlightedColor"/>

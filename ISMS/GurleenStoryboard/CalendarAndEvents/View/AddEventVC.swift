@@ -55,13 +55,16 @@ class AddEventVC: BaseUIViewController {
         self.viewModel = EventScheduleViewModel.init(delegate: self)
         self.viewModel?.attachView(viewDelegate: self)
         self.title = "Add Event"
-         addShadow(view: calenderDate)
-         addShadow(view: txtViewDescription)
-         styleTextField(textField: txtfieldTitle)
-         styleLabel(textField: lblTime)
+       //  addShadow(view: calenderDate)
+       //  addShadow(view: txtViewDescription)
+         //styleTextField(textField: txtfieldTitle)
+         //styleLabel(textField: lblTime)
+        txtfieldTitle.txtfieldPadding(leftpadding: 20, rightPadding: 0)
+       //txtfieldTitle.txtfieldPadding(leftpadding: 20, rightPadding: 0)
+        txtViewDescription.textContainerInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20);
          self.CreateNavigationBackBarButton()
         
-         txtfieldTitle.attributedPlaceholder = NSAttributedString(string:"Enter Title", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        // txtfieldTitle.attributedPlaceholder = NSAttributedString(string:"Enter Title", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         
         if editMode == true {
             
