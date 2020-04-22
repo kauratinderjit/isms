@@ -42,6 +42,60 @@ class ClassApi{
         }
     }
     
+    func getClassListAccnToDepartment(url : String,parameters: [String : Any]?,completionResponse:  @escaping (GetClassListByDepartmentModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
+        
+        let urlCmplete =  BaseUrl.kBaseURL+url
+      
+        var accessTokken = ""
+        
+        if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String
+        {
+            accessTokken = str
+        }
+        
+        let headers = [KConstants.kHeaderAuthorization:KConstants.kHeaderBearer+" "+accessTokken,KConstants.kAccept: KConstants.kApplicationJson]
+        
+        Alamofire.request(urlCmplete, method: .get, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            
+            if response.result.isSuccess
+            {
+                guard let data = response.value else{return}
+                
+                if let responseData  = data as? [String : Any]
+                {
+                    print("your response data here : \(responseData)")
+                    
+                    self.getClassListAccnToDepartmentJSON(data: responseData, completionResponse: { (responseModel) in
+                        completionResponse(responseModel)
+                    }, completionError: { (mapperError) in
+                        completionnilResponse(mapperError)
+                    })
+                    
+                }else{
+                    CommonFunctions.sharedmanagerCommon.println(object: "Get Class Error:- \(data) ")
+                }
+                
+            }
+            else
+            {
+                complitionError(response.error)
+                return
+            }
+        }
+        
+    }
+    
+    private func getClassListAccnToDepartmentJSON(data: [String : Any],completionResponse:  @escaping (GetClassListByDepartmentModel) -> Void,completionError: @escaping (String?) -> Void)  {
+        
+        let classListData = GetClassListByDepartmentModel(JSON: data)
+        
+        if classListData != nil{
+            completionResponse(classListData!)
+        }else{
+            completionError(Alerts.kMapperModelError)
+        }
+    }
+    
     //MARK:- Class List Api
     func getClassList(url : String,parameters: [String : Any]?,completionResponse:  @escaping (ClassListModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
         

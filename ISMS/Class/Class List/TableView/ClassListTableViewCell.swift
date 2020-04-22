@@ -29,7 +29,7 @@ class ClassListTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setCellUI(data :[GetClassListResultData]?,indexPath: IndexPath){
+    func setCellUI(data :[GetClassListByDeptResultData]?,indexPath: IndexPath){
         
         let rsltData = data?[indexPath.row]
         lblTitle.text = ""
