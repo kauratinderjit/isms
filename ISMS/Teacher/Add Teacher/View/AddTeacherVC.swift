@@ -183,7 +183,7 @@ extension AddTeacherVC : ViewDelegate{
         //Connect textfields
         connectFields(fields: [txtFieldEmail,txtFieldFirstName,txtFieldLastName,txtFieldAddress,txtFieldIdProofName,txtFieldQualification,txtFieldWorkExperience,txtFieldAdditionalSkills,txtFieldOthers])
         //Set Shadow of textfields
-        createMultipleViewsCornerShadow(views: [txtFieldFirstName,txtFieldLastName,txtFieldDOB,txtFieldEmail,txtFieldAssignDepartments,txtFieldAddress,txtFieldQualification,txtFieldAdditionalSkills,txtFieldWorkExperience,txtFieldOthers,txtFieldPhoneNumber,txtFieldIdProofName], radius: 8)
+//        createMultipleViewsCornerShadow(views: [txtFieldFirstName,txtFieldLastName,txtFieldDOB,txtFieldEmail,txtFieldAssignDepartments,txtFieldAddress,txtFieldQualification,txtFieldAdditionalSkills,txtFieldWorkExperience,txtFieldOthers,txtFieldPhoneNumber,txtFieldIdProofName], radius: 8)
         //Create back button
         setBackButton()
         //UnHide Navigation Bar
@@ -191,18 +191,18 @@ extension AddTeacherVC : ViewDelegate{
         //Date Picker View
          setDatePickerView(self.view, type: .date)
         //Set Fonts in TextFields
-        txtFieldFirstName.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kFirstName)
-        txtFieldLastName.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kLastName)
-        txtFieldDOB.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kDOB)
-        txtFieldEmail.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kEmail)
-        txtFieldAssignDepartments.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kAssignDepartment)
-        txtFieldAddress.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kAddress)
-        txtFieldWorkExperience.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kWorkExperience)
-        txtFieldOthers.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kOthers)
-        txtFieldAdditionalSkills.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kAdditionalSkills)
-        txtFieldQualification.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kQualification)
-        txtFieldPhoneNumber.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kPhoneNumber)
-        txtFieldIdProofName.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: KPlaceholder.kIdProof)
+        txtFieldFirstName.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kFirstName)
+        txtFieldLastName.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kLastName)
+        txtFieldDOB.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kDOB)
+        txtFieldEmail.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kEmail)
+        txtFieldAssignDepartments.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kAssignDepartment)
+        txtFieldAddress.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kAddress)
+        txtFieldWorkExperience.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kWorkExperience)
+        txtFieldOthers.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kOthers)
+        txtFieldAdditionalSkills.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kAdditionalSkills)
+        txtFieldQualification.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kQualification)
+        txtFieldPhoneNumber.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kPhoneNumber)
+        txtFieldIdProofName.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kIdProof)
         
         //Set padding
         txtFieldFirstName.txtfieldPadding(leftpadding: 20, rightPadding: 0)
@@ -220,7 +220,7 @@ extension AddTeacherVC : ViewDelegate{
         //Round Image
         imgViewIdProof.createCircleImage()
         imgViewTeacher.createCircleImage()
-        cornerButton(btn: btnSubmit, radius: 8)
+       // cornerButton(btn: btnSubmit, radius: 8)
         //Set theme Color
         guard let theme = ThemeManager.shared.currentTheme else {return}
 //        btnAddProfileImage.tintColor = theme.uiButtonBackgroundColor

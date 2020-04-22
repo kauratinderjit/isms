@@ -8,6 +8,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="OpenSans-Bold.ttf">
+            <string>OpenSans-Bold</string>
+        </array>
         <array key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
         </array>
@@ -125,8 +128,12 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JlC-fb-Fca">
-                                <rect key="frame" x="321" y="769" width="53" height="53"/>
-                                <state key="normal" image="addIcon"/>
+                                <rect key="frame" x="324" y="772" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="SS2-DG-H9a"/>
+                                    <constraint firstAttribute="height" constant="50" id="hOo-oe-hBn"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="addImage"/>
                                 <connections>
                                     <segue destination="v2J-cu-bgZ" kind="show" id="lLd-7h-6XP"/>
                                 </connections>
@@ -172,7 +179,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fVf-u6-XmW">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="936"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="952"/>
                                         <subviews>
                                             <textField hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XOH-pg-EV2">
                                                 <rect key="frame" x="158" y="0.0" width="2" height="34"/>
@@ -194,18 +201,30 @@
                                                 </connections>
                                             </textView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cOi-XM-EEq">
-                                                <rect key="frame" x="76" y="794" width="262" height="42"/>
+                                                <rect key="frame" x="76" y="794" width="262" height="58"/>
                                                 <color key="backgroundColor" red="0.64313725489999995" green="0.050980392159999999" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="42" id="qaN-eL-rzf"/>
+                                                    <constraint firstAttribute="height" constant="58" id="qaN-eL-rzf"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="15"/>
                                                 <state key="normal" title="SUBMIT">
                                                     <color key="titleColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="13"/>
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                        <real key="value" value="0.80000000000000004"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                        <color key="value" red="0.29411764709999999" green="0.74509803919999995" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOffset">
+                                                        <real key="value" value="0.80000000000000004"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
@@ -423,10 +442,10 @@
                                                 </connections>
                                             </tableView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ac-c4-KvR">
-                                                <rect key="frame" x="24" y="272" width="341" height="20"/>
+                                                <rect key="frame" x="24" y="272" width="204" height="20"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="FlT-aI-kzw"/>
-                                                    <constraint firstAttribute="width" constant="341" id="GtP-Ap-f66"/>
+                                                    <constraint firstAttribute="height" constant="20" id="U1m-lI-yGk"/>
+                                                    <constraint firstAttribute="width" constant="204" id="tyU-YO-PcR"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" red="0.67399242051361785" green="0.63546283834199768" blue="0.65534651503607377" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="sRGB"/>
@@ -440,7 +459,7 @@
                                             <constraint firstItem="mXk-tB-kpQ" firstAttribute="top" secondItem="zkH-vZ-l08" secondAttribute="bottom" constant="25" id="1JM-c8-ggl"/>
                                             <constraint firstAttribute="trailing" secondItem="H1R-Ep-nBM" secondAttribute="trailing" constant="18" id="1Ru-WA-Ggq"/>
                                             <constraint firstItem="mXk-tB-kpQ" firstAttribute="leading" secondItem="fVf-u6-XmW" secondAttribute="leading" constant="18" id="5Bu-oQ-Un2"/>
-                                            <constraint firstItem="2Ac-c4-KvR" firstAttribute="top" secondItem="1kZ-47-cUv" secondAttribute="bottom" constant="35" id="6M9-iK-Ydt"/>
+                                            <constraint firstItem="2Ac-c4-KvR" firstAttribute="leading" secondItem="fVf-u6-XmW" secondAttribute="leading" constant="24" id="9TX-Zs-ozV"/>
                                             <constraint firstItem="cOi-XM-EEq" firstAttribute="top" secondItem="YFf-OW-6da" secondAttribute="bottom" constant="30" id="CxN-LO-pOE"/>
                                             <constraint firstItem="w3t-Uv-dSm" firstAttribute="leading" secondItem="fVf-u6-XmW" secondAttribute="leading" constant="18" id="EzM-RW-E2O"/>
                                             <constraint firstAttribute="trailing" secondItem="zkH-vZ-l08" secondAttribute="trailing" constant="18" id="F4T-sH-X9E"/>
@@ -450,6 +469,7 @@
                                             <constraint firstItem="zkH-vZ-l08" firstAttribute="leading" secondItem="fVf-u6-XmW" secondAttribute="leading" constant="18" id="NWH-Yo-w5E"/>
                                             <constraint firstAttribute="trailing" secondItem="cOi-XM-EEq" secondAttribute="trailing" constant="76" id="OjT-gf-640"/>
                                             <constraint firstItem="aNP-KM-g7P" firstAttribute="leading" secondItem="fVf-u6-XmW" secondAttribute="leading" constant="18" id="PMs-Uy-bcD"/>
+                                            <constraint firstItem="2Ac-c4-KvR" firstAttribute="top" secondItem="1kZ-47-cUv" secondAttribute="bottom" constant="35" id="XgU-kP-eff"/>
                                             <constraint firstItem="1kZ-47-cUv" firstAttribute="leading" secondItem="fVf-u6-XmW" secondAttribute="leading" constant="18" id="dgg-lv-9Pn"/>
                                             <constraint firstItem="H1R-Ep-nBM" firstAttribute="top" secondItem="fVf-u6-XmW" secondAttribute="top" constant="37" id="elJ-ty-MCX"/>
                                             <constraint firstItem="YFf-OW-6da" firstAttribute="top" secondItem="mXk-tB-kpQ" secondAttribute="bottom" constant="17" id="fcq-zz-V5b"/>
@@ -457,7 +477,6 @@
                                             <constraint firstItem="zkH-vZ-l08" firstAttribute="top" secondItem="aNP-KM-g7P" secondAttribute="bottom" constant="25" id="hhe-Lx-wpA"/>
                                             <constraint firstAttribute="trailing" secondItem="aNP-KM-g7P" secondAttribute="trailing" constant="18" id="jv7-gf-Caj"/>
                                             <constraint firstItem="aNP-KM-g7P" firstAttribute="top" secondItem="1kZ-47-cUv" secondAttribute="bottom" constant="25" id="odA-Zg-fZN"/>
-                                            <constraint firstAttribute="trailing" secondItem="2Ac-c4-KvR" secondAttribute="trailing" constant="49" id="pAl-Br-Arc"/>
                                             <constraint firstItem="w3t-Uv-dSm" firstAttribute="top" secondItem="H1R-Ep-nBM" secondAttribute="bottom" constant="25" id="rhU-wy-uMG"/>
                                             <constraint firstItem="YFf-OW-6da" firstAttribute="leading" secondItem="fVf-u6-XmW" secondAttribute="leading" id="vkx-a5-4DK"/>
                                             <constraint firstAttribute="trailing" secondItem="w3t-Uv-dSm" secondAttribute="trailing" constant="18" id="xMl-xN-bDm"/>
@@ -611,7 +630,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OZP-XW-grE">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="789"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="805"/>
                                         <subviews>
                                             <textField hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pDp-em-gC6">
                                                 <rect key="frame" x="158" y="0.0" width="2" height="34"/>
@@ -630,18 +649,30 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Svg-xd-vMc">
-                                                <rect key="frame" x="76" y="647" width="262" height="42"/>
+                                                <rect key="frame" x="76" y="647" width="262" height="58"/>
                                                 <color key="backgroundColor" red="0.64313725489999995" green="0.050980392159999999" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="42" id="HwM-9P-UyZ"/>
+                                                    <constraint firstAttribute="height" constant="58" id="HwM-9P-UyZ"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="15"/>
                                                 <state key="normal" title="SUBMIT HOMEWORK">
                                                     <color key="titleColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="13"/>
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                        <real key="value" value="0.80000000000000004"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                        <color key="value" red="0.29411764709999999" green="0.74509803919999995" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOffset">
+                                                        <real key="value" value="0.80000000000000004"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
@@ -760,17 +791,11 @@
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="d0o-Z8-1Vh" id="vqN-Y8-PqP"/>
+                                                    <outlet property="delegate" destination="d0o-Z8-1Vh" id="fze-mV-dVY"/>
+                                                </connections>
                                             </tableView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rc8-AI-YKb">
-                                                <rect key="frame" x="24" y="125" width="341" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="341" id="Dee-hc-d64"/>
-                                                    <constraint firstAttribute="height" constant="20" id="HkU-2L-u3q"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <color key="textColor" red="0.67399242049999997" green="0.63546283830000005" blue="0.65534651499999996" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -788,8 +813,6 @@
                                             <constraint firstAttribute="trailing" secondItem="Svg-xd-vMc" secondAttribute="trailing" constant="76" id="ZmI-kC-p1M"/>
                                             <constraint firstItem="lI9-ls-MCX" firstAttribute="top" secondItem="fA1-I4-G7M" secondAttribute="bottom" constant="25" id="a2Y-YI-qg8"/>
                                             <constraint firstItem="agc-WM-Jzl" firstAttribute="top" secondItem="lI9-ls-MCX" secondAttribute="bottom" constant="25" id="d2o-9C-w7b"/>
-                                            <constraint firstAttribute="trailing" secondItem="rc8-AI-YKb" secondAttribute="trailing" constant="49" id="hKz-fg-57S"/>
-                                            <constraint firstItem="rc8-AI-YKb" firstAttribute="top" secondItem="fA1-I4-G7M" secondAttribute="bottom" constant="35" id="hy5-FL-vgU"/>
                                             <constraint firstItem="Svg-xd-vMc" firstAttribute="leading" secondItem="OZP-XW-grE" secondAttribute="leading" constant="76" id="jtu-Fn-KZ7"/>
                                             <constraint firstItem="fA1-I4-G7M" firstAttribute="leading" secondItem="OZP-XW-grE" secondAttribute="leading" constant="18" id="obG-4A-i7d"/>
                                             <constraint firstItem="c22-KZ-hB5" firstAttribute="top" secondItem="Y2b-NV-01x" secondAttribute="bottom" constant="17" id="qov-58-jnQ"/>
@@ -841,7 +864,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cem-Eo-urc">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="617"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="633"/>
                                         <subviews>
                                             <textField hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wHk-Oc-iLG">
                                                 <rect key="frame" x="158" y="0.0" width="2" height="34"/>
@@ -860,18 +883,30 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y4n-yE-8Lk">
-                                                <rect key="frame" x="76" y="475" width="262" height="42"/>
+                                                <rect key="frame" x="76" y="475" width="262" height="58"/>
                                                 <color key="backgroundColor" red="0.64313725489999995" green="0.050980392159999999" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="42" id="ZCe-jB-BSZ"/>
+                                                    <constraint firstAttribute="height" constant="58" id="ZCe-jB-BSZ"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="15"/>
                                                 <state key="normal" title="SUBMIT">
                                                     <color key="titleColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="13"/>
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                        <real key="value" value="0.80000000000000004"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                        <color key="value" red="0.29411764709999999" green="0.74509803919999995" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOffset">
+                                                        <real key="value" value="0.80000000000000004"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
@@ -1087,11 +1122,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="addIcon" width="53" height="53"/>
+        <image name="addImage" width="32" height="32"/>
         <image name="calendar" width="15.5" height="16"/>
-        <image name="delete" width="32" height="32.5"/>
+        <image name="delete" width="20" height="20"/>
         <image name="dropDown" width="12" height="7.5"/>
-        <image name="edit" width="32.5" height="32.5"/>
+        <image name="edit" width="19" height="19"/>
         <image name="icloud.and.arrow.down" catalog="system" width="64" height="56"/>
     </resources>
 </document>

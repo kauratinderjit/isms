@@ -368,7 +368,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "479"
                   endingLineNumber = "479"
-                  offsetFromSymbolStart = "600">
+                  offsetFromSymbolStart = "484">
                </Location>
                <Location
                   uuid = "ABF74579-59AE-4487-8547-D1CD2DB06D38 - a829cb841e1dab50"
@@ -383,7 +383,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "481"
                   endingLineNumber = "481"
-                  offsetFromSymbolStart = "111">
+                  offsetFromSymbolStart = "36">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -416,7 +416,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "323"
                   endingLineNumber = "323"
-                  offsetFromSymbolStart = "113">
+                  offsetFromSymbolStart = "316">
                </Location>
                <Location
                   uuid = "B991F079-40EB-499A-8FB1-19CE8501D8FF - 526e40cdd9a17cfc"
@@ -431,7 +431,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "324"
                   endingLineNumber = "324"
-                  offsetFromSymbolStart = "41">
+                  offsetFromSymbolStart = "112">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -608,7 +608,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "68"
                   endingLineNumber = "68"
-                  offsetFromSymbolStart = "1046">
+                  offsetFromSymbolStart = "840">
                </Location>
                <Location
                   uuid = "FB809875-1FE6-4926-B87A-A9909B9FFB18 - 4a51640e477d75d0"
@@ -623,7 +623,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "68"
                   endingLineNumber = "68"
-                  offsetFromSymbolStart = "1085">
+                  offsetFromSymbolStart = "868">
                </Location>
                <Location
                   uuid = "FB809875-1FE6-4926-B87A-A9909B9FFB18 - 4a51640e477d75d0"
@@ -638,7 +638,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "68"
                   endingLineNumber = "68"
-                  offsetFromSymbolStart = "1574">
+                  offsetFromSymbolStart = "1284">
                </Location>
                <Location
                   uuid = "FB809875-1FE6-4926-B87A-A9909B9FFB18 - 4a51640e477d75d0"
@@ -653,7 +653,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "68"
                   endingLineNumber = "68"
-                  offsetFromSymbolStart = "1871">
+                  offsetFromSymbolStart = "1512">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -686,7 +686,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "66"
                   endingLineNumber = "66"
-                  offsetFromSymbolStart = "428">
+                  offsetFromSymbolStart = "340">
                </Location>
                <Location
                   uuid = "B84AD5D1-B642-4E7B-9702-8FBB5D4B0EF9 - 4a51640e477d75d0"
@@ -701,7 +701,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "66"
                   endingLineNumber = "66"
-                  offsetFromSymbolStart = "2499">
+                  offsetFromSymbolStart = "2004">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -942,7 +942,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "75"
                   endingLineNumber = "75"
-                  offsetFromSymbolStart = "113">
+                  offsetFromSymbolStart = "316">
                </Location>
                <Location
                   uuid = "61F37D36-FC39-475C-8563-47B76FDEA08D - 51c67badcf26a451"
@@ -957,7 +957,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "76"
                   endingLineNumber = "76"
-                  offsetFromSymbolStart = "41">
+                  offsetFromSymbolStart = "112">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1150,7 +1150,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "32"
                   endingLineNumber = "32"
-                  offsetFromSymbolStart = "1921">
+                  offsetFromSymbolStart = "1476">
                </Location>
                <Location
                   uuid = "9BA910CE-F721-4178-AF15-0BF05200EF84 - 836bb4d2ffe2c587"
@@ -1165,7 +1165,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "34"
                   endingLineNumber = "34"
-                  offsetFromSymbolStart = "279">
+                  offsetFromSymbolStart = "228">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1597,7 +1597,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "160"
                   endingLineNumber = "160"
-                  offsetFromSymbolStart = "492">
+                  offsetFromSymbolStart = "436">
                </Location>
                <Location
                   uuid = "0C64A8A1-748B-4EC2-9D53-AFB779F4EC8E - 33548e8be9ca2dfb"
@@ -1612,7 +1612,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "160"
                   endingLineNumber = "160"
-                  offsetFromSymbolStart = "1999">
+                  offsetFromSymbolStart = "1752">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1677,7 +1677,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "197"
                   endingLineNumber = "197"
-                  offsetFromSymbolStart = "380">
+                  offsetFromSymbolStart = "340">
                </Location>
                <Location
                   uuid = "1C43256B-6294-4691-AE31-D35E3E5E6457 - 9bbf79ac72980a8b"
@@ -1692,7 +1692,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "199"
                   endingLineNumber = "199"
-                  offsetFromSymbolStart = "111">
+                  offsetFromSymbolStart = "36">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1773,7 +1773,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "28"
                   endingLineNumber = "28"
-                  offsetFromSymbolStart = "110">
+                  offsetFromSymbolStart = "132">
                </Location>
                <Location
                   uuid = "BA2B273C-9F75-4EA3-B7BC-09136111ABB2 - c90adfa7b009a1b6"
@@ -1788,7 +1788,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "28"
                   endingLineNumber = "28"
-                  offsetFromSymbolStart = "118">
+                  offsetFromSymbolStart = "176">
                </Location>
                <Location
                   uuid = "BA2B273C-9F75-4EA3-B7BC-09136111ABB2 - 73d946b4ed1396a1"
@@ -1803,7 +1803,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
                   endingLineNumber = "0"
-                  offsetFromSymbolStart = "18">
+                  offsetFromSymbolStart = "20">
                </Location>
                <Location
                   uuid = "BA2B273C-9F75-4EA3-B7BC-09136111ABB2 - 96596fa4ba96b6"
@@ -1818,7 +1818,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "28"
                   endingLineNumber = "28"
-                  offsetFromSymbolStart = "4">
+                  offsetFromSymbolStart = "16">
                </Location>
                <Location
                   uuid = "BA2B273C-9F75-4EA3-B7BC-09136111ABB2 - 2709846b604ddc0d"
@@ -1833,7 +1833,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "28"
                   endingLineNumber = "28"
-                  offsetFromSymbolStart = "1364">
+                  offsetFromSymbolStart = "1136">
                </Location>
                <Location
                   uuid = "BA2B273C-9F75-4EA3-B7BC-09136111ABB2 - d827dc782752aecd"
@@ -1848,7 +1848,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "28"
                   endingLineNumber = "28"
-                  offsetFromSymbolStart = "1295">
+                  offsetFromSymbolStart = "1080">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1945,7 +1945,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "56"
                   endingLineNumber = "56"
-                  offsetFromSymbolStart = "1458">
+                  offsetFromSymbolStart = "1172">
                </Location>
                <Location
                   uuid = "F17038D3-4EF9-43DD-ADD3-4C7CCE933718 - 7e3c38892fc3f8dd"
@@ -1960,7 +1960,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "57"
                   endingLineNumber = "57"
-                  offsetFromSymbolStart = "145">
+                  offsetFromSymbolStart = "128">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -2409,7 +2409,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "49"
                   endingLineNumber = "49"
-                  offsetFromSymbolStart = "2000">
+                  offsetFromSymbolStart = "1540">
                </Location>
                <Location
                   uuid = "59C9FF3D-C6E0-41CC-85F0-A527BFF01E5A - bf2726f84e72c383"
@@ -2424,7 +2424,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "51"
                   endingLineNumber = "51"
-                  offsetFromSymbolStart = "111">
+                  offsetFromSymbolStart = "36">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -2457,7 +2457,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "119"
                   endingLineNumber = "119"
-                  offsetFromSymbolStart = "1716">
+                  offsetFromSymbolStart = "1304">
                </Location>
                <Location
                   uuid = "4FDE1F25-EC18-480C-9FCA-1DADD0830089 - 9e1019e98cfa3a4"
@@ -2472,7 +2472,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "121"
                   endingLineNumber = "121"
-                  offsetFromSymbolStart = "183">
+                  offsetFromSymbolStart = "160">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -2632,7 +2632,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "105"
                   endingLineNumber = "105"
-                  offsetFromSymbolStart = "345">
+                  offsetFromSymbolStart = "320">
                </Location>
                <Location
                   uuid = "60DFE256-47D5-4240-BAAE-43D8EB0F16EE - d01007d244322f27"
@@ -2647,7 +2647,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "107"
                   endingLineNumber = "107"
-                  offsetFromSymbolStart = "211">
+                  offsetFromSymbolStart = "184">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -2760,7 +2760,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "88"
                   endingLineNumber = "88"
-                  offsetFromSymbolStart = "2923">
+                  offsetFromSymbolStart = "2300">
                </Location>
                <Location
                   uuid = "93196212-2A52-4034-847F-861E973134BF - df9cbcd8f090e17d"
@@ -2775,7 +2775,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "90"
                   endingLineNumber = "90"
-                  offsetFromSymbolStart = "330">
+                  offsetFromSymbolStart = "316">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -3334,8 +3334,8 @@
             filePath = "ISMS/HomeWork/ViewModel/HomeworkViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "getHomeworkData(teacherId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3494,8 +3494,8 @@
             filePath = "ISMS/HomeWork/ViewModel/HomeworkViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "saveHomework(AssignHomeWorkId:ClassId:SubjectId:Topic:ClassSubjectId:Details:SubmissionDate:lstAssignHomeAttachmentMapping:)"
             landmarkType = "7">
             <Locations>
@@ -3542,8 +3542,8 @@
             filePath = "ISMS/HomeWork/ViewModel/HomeworkViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "saveHomework(AssignHomeWorkId:ClassId:SubjectId:Topic:ClassSubjectId:Details:SubmissionDate:lstAssignHomeAttachmentMapping:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3558,8 +3558,8 @@
             filePath = "ISMS/HomeWork/ViewModel/HomeworkViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "saveHomework(AssignHomeWorkId:ClassId:SubjectId:Topic:ClassSubjectId:Details:SubmissionDate:lstAssignHomeAttachmentMapping:)"
             landmarkType = "7">
             <Locations>
@@ -3749,10 +3749,10 @@
             filePath = "ISMS/HomeWork/View/HomeWorkList/HomeworkListVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "addedSuccessfully()"
-            landmarkType = "7">
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "HomeworkListVC"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3765,8 +3765,8 @@
             filePath = "ISMS/HomeWork/ViewModel/HomeworkViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
             landmarkName = "getHomeworkData(teacherId:)"
             landmarkType = "7">
             <Locations>
@@ -3892,8 +3892,8 @@
             filePath = "ISMS/HomeWork/ViewModel/HomeworkViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
             landmarkName = "deleteHW(homeworkId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3908,8 +3908,8 @@
             filePath = "ISMS/HomeWork/ViewModel/HomeworkViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
             landmarkName = "deleteHW(homeworkId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3924,8 +3924,8 @@
             filePath = "ISMS/HomeWork/View/HomeWorkList/HomeworkListVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "AddHomeworkSucceed(array:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3982,7 +3982,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "A866B795-F233-4CAB-9884-1634C987BEE6"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ISMS/HomeWork/Api/HomeworkApi.swift"
@@ -3998,7 +3998,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "4D74F05C-4079-483B-893C-E5D5CBDADF5D"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ISMS/HomeWork/Api/HomeworkApi.swift"
@@ -4100,8 +4100,8 @@
             filePath = "ISMS/HomeWork/Api/HomeworkApi.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "254"
-            endingLineNumber = "254"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
             landmarkName = "getHoweworkDetailData(url:parameters:completionResponse:completionnilResponse:complitionError:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4116,8 +4116,8 @@
             filePath = "ISMS/HomeWork/ViewModel/HomeworkViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "315"
-            endingLineNumber = "315"
+            startingLineNumber = "316"
+            endingLineNumber = "316"
             landmarkName = "getDataOfHW(assignmentId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4132,8 +4132,8 @@
             filePath = "ISMS/HomeWork/ViewModel/HomeworkViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "310"
-            endingLineNumber = "310"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
             landmarkName = "getDataOfHW(assignmentId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4148,8 +4148,8 @@
             filePath = "ISMS/HomeWork/Api/HomeworkApi.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "242"
-            endingLineNumber = "242"
+            startingLineNumber = "253"
+            endingLineNumber = "253"
             landmarkName = "getHoweworkDetailData(url:parameters:completionResponse:completionnilResponse:complitionError:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4158,14 +4158,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "0CED5221-65E2-4909-BA9C-7275FC9B4184"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ISMS/HomeWork/ViewModel/HomeworkViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "248"
-            endingLineNumber = "248"
+            startingLineNumber = "249"
+            endingLineNumber = "249"
             landmarkName = "getHomeworkDataForStudent(studentId:assignHomeWorkId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4174,7 +4174,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "E35E7247-2223-4573-9DD6-01891920B9E3"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ISMS/HomeWork/Api/HomeworkApi.swift"
@@ -4184,6 +4184,70 @@
             endingLineNumber = "187"
             landmarkName = "getHoweworkList(url:parameters:completionResponse:completionnilResponse:complitionError:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C30404FA-07E2-4F85-9301-B2AFA40827C8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISMS/HomeWork/Api/HomeworkApi.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
+            landmarkName = "getHoweworkList(url:parameters:completionResponse:completionnilResponse:complitionError:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "793AE1C3-1A61-4EF1-AA97-1F889699951A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISMS/HomeWork/Student/StudentDetailHomeworkVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "12C53E39-8A2B-44CE-80FB-663E6A589DE6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISMS/HomeWork/Student/StudentDetailHomeworkVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BAB620AC-97BB-46C0-BD74-7B407838B097"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISMS/HomeWork/Student/StudentDetailHomeworkVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

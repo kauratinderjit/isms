@@ -108,6 +108,7 @@ class TeacherListVC: BaseUIViewController {
         //Table View Settings
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
+        tableView.separatorColor = KAPPContentRelatedConstants.kLightBlueColour
         
         //Set Color According To Theme
         guard let theme = ThemeManager.shared.currentTheme else{return}

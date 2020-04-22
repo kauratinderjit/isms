@@ -33,6 +33,7 @@ class SubjectListVC: BaseUIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
+        tableView.separatorColor = KAPPContentRelatedConstants.kLightBlueColour
         self.ViewModel = SubjectListViewModel.init(delegate: self)
         self.ViewModel?.attachView(viewDelegate: self)
         self.title = KStoryBoards.KAddSubjectIdentifiers.kSubjectListTitle
