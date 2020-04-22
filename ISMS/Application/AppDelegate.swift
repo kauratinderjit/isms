@@ -35,7 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor.white
         UINavigationBar.appearance().isTranslucent = false
         UINavigationBar.appearance().clipsToBounds = false
-        
         UINavigationBar.appearance().backgroundColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font : (UIFont(name: "Helvetica Neue", size: 20))!, NSAttributedString.Key.foregroundColor: UIColor.black]
 

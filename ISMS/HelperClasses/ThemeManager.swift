@@ -52,7 +52,7 @@ struct ThemeColors: Codable {
     var labelBackgroundColor : String = "4BBEF8"//"A90222"
     var navigationTintColor : String = "#00008b"//"FFFFFF"
     var navigationBarTintColor : String = "FFFFFF"//"A90222"
-    var statusBarColor : String = "4BBEF8"//"A90222"
+    var statusBarColor : String = "FFFFFF"//"4BBEF8"//"A90222"
     var titleColor = "FFFFFF"
 
     

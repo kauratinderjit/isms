@@ -183,6 +183,7 @@ extension ClassAssignSubjectListVC : ClassAssignSubjectListDelegate{
             
             self.tableView.tableFooterView = UIView()
             tableView.separatorStyle = .none
+            tableView.separatorColor = KAPPContentRelatedConstants.kLightBlueColour
             
             viewModel?.isSearching = false
             

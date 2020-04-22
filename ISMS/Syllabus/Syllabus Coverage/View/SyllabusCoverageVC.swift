@@ -171,7 +171,7 @@ extension SyllabusCoverageVC : UITableViewDataSource {
       //  cell.progressBar.transform.scaledBy(x: 1, y: 9)
         //cell.progressBar.layer.cornerRadius = 6.0
       cell.progressBar.transform = CGAffineTransform(scaleX: 1, y: 3.0)
-        cell.progressBar.progressTintColor = UIColor(red: 183/255, green: 23/255, blue: 36/255, alpha: 1)
+        cell.progressBar.progressTintColor = KAPPContentRelatedConstants.kThemeColour//UIColor(red: 183/255, green: 23/255, blue: 36/255, alpha: 1)
 
          if let percentage = arrayData[indexPath.row].coveragePercentage {
       cell.lblprogressPercentage.text = "\(percentage)" + "%"
@@ -181,7 +181,7 @@ extension SyllabusCoverageVC : UITableViewDataSource {
              if let percentage = arrayData[indexPath.row].coveragePercentage {
                  cell.lblprogressPercentage.text = "\(percentage)" + "%"
                 if percentage == "100" {
-        cell.progressBar.progressTintColor = UIColor(red: 183/255, green: 23/255, blue: 36/255, alpha: 1)
+        cell.progressBar.progressTintColor = KAPPContentRelatedConstants.kThemeColour//UIColor(red: 183/255, green: 23/255, blue: 36/255, alpha: 1)
                 }
         
         }

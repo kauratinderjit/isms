@@ -29,7 +29,8 @@ class SubjectTopicVC: BaseUIViewController {
     //MARK:- View Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tableView.tableFooterView = UIView()
+        tableView.separatorColor = KAPPContentRelatedConstants.kLightBlueColour
         self.ViewModel = SubjectChapterTopicViewModel.init(delegate: self)
         self.ViewModel?.attachView(viewDelegate: self)
         
