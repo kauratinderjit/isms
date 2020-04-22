@@ -70,6 +70,15 @@ class AddSchoolViewController: BaseUIViewController {
     @IBOutlet weak var SchoolCollegeView: UIView!
     @IBOutlet weak var ContactDetailsView: UIView!
     @IBOutlet weak var txtfieldUploadCerts: UITextField!
+    
+    let formatter: DateFormatter = {
+               let formatter = DateFormatter()
+               formatter.dateFormat = "dd/MM/yyyy"
+               return formatter
+       }()
+     
+     let dateFormatter = DateFormatter()
+    
    
     //MARK:- View functions
     override func viewDidLoad() {
@@ -275,7 +284,13 @@ extension AddSchoolViewController: AddSchoolDelegate {
                 
             }
             
-            txtfield_yearOfEstablishment.text = resultdata.establishDate
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+
+                  if let dateFinal =  dateFormatter.date(from: resultdata.establishDate ?? "") {
+                             let dd = formatter.string(from: dateFinal)
+                            txtfield_yearOfEstablishment.text = dd
+                         }
+            
             txtfileldSchoolCollege.text = resultdata.typeName
             //setImage
             if let url_str = resultdata.logo{

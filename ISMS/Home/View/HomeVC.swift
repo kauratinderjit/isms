@@ -148,16 +148,19 @@ extension HomeVC : HomeViewModelDelegate{
     func hodData(data: homeResultData) {
         
         lblName.text = data.HodName
-        lblDept.text = (data.DepartmentName ?? "") + " " + "Department"
-        lblCount1.text = "\(String(describing: data.NumberofClasses!))"
-        lblCount2.text  = "\(String(describing: data.NumberofTeacher!))"
-        lblCount3.text = "\(String(describing: data.NumberofStudent!))"
-        lblName1.text = "Classes"
-        lblName2.text =  "Teachers"
-        lblName3.text =  "Students"
+        lblDept.text = (data.DepartmentName ?? "")
+   
+        lblName1.text = "\(String(describing: data.NumberofClasses!))" + " " + "Class"
+        lblName2.text =  "\(String(describing: data.NumberofTeacher!))" + " " + "Teacher"
+        lblName3.text =  "\(String(describing: data.NumberofStudent!))" + " " + "Student"
         
+        if data.lstEvent?.count ?? 0 > 0 {
         arrEventlist = data.lstEvent
         tblViewListing.reloadData()
+        }
+        else{
+            tblViewListing.isHidden = true
+        }
     }
     
     func userUnauthorize() {
