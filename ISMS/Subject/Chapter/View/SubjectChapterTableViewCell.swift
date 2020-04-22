@@ -32,7 +32,8 @@ class SubjectChapterTableViewCell: UITableViewCell {
         editBtn.tag = indexPath.row
         deleteBtn.tag = indexPath.row
          lblTxt.text = data.ChapterName
-        imgView.layer.cornerRadius = 16.0
+        //imgView.layer.cornerRadius = imgView.frame.height / 2
+        imgView.createCircleImage()
         CommonFunctions.sharedmanagerCommon.addLabelOnTheImgeViewWithFirstCharacter(string: data.ChapterName ?? "" , imgView: imgView)
     }
  

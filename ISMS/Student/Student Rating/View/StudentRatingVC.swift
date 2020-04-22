@@ -48,7 +48,7 @@ class StudentRatingVC: BaseUIViewController {
         print("your printed month : \(month!)")
         currentMonth = month!
         textfieldMonth.text = month!
-        
+        tableView.separatorStyle = .none
         tableView.reloadData()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -402,9 +402,12 @@ extension StudentRatingVC : ViewDelegate{
         
         self.tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
+        tableView.separatorColor = .white
         
         self.viewModel?.isSearching = false
-        
+        txtfieldClass.txtfieldPadding(leftpadding: 10, rightPadding: 0)
+        txtfieldSubject.txtfieldPadding(leftpadding: 10, rightPadding: 0)
+        textfieldMonth.txtfieldPadding(leftpadding: 10, rightPadding: 0)
         
     }
 }

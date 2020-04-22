@@ -107,7 +107,7 @@ class StudentListVC: BaseUIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorColor = KAPPContentRelatedConstants.kLightBlueColour
-        
+        dropDownTextField.txtfieldPadding(leftpadding: 10, rightPadding: 0)
         SetpickerView(self.view)
         
         self.setSearchBarInNavigationController(placeholderText: KSearchBarPlaceHolder.kUserSearchBarStudentPlaceHolder, navigationTitle: KStoryBoards.KAddStudentIdentifiers.kStudentListTitle, navigationController: self.navigationController, navigationSearchBarDelegates: self)

@@ -169,14 +169,14 @@ extension ClassAssignSubjectListVC : ClassAssignSubjectListDelegate{
             self.viewModel?.attachView(viewDelegate: self)
             //Set Search bar in navigation
             self.setSearchBarInNavigationController(placeholderText: KSearchBarPlaceHolder.kUserSearchBarPlaceHolder, navigationTitle: KStoryBoards.KClassListIdentifiers.kClassListTitle, navigationController: self.navigationController, navigationSearchBarDelegates: self)
-            
+            txtFieldSelectClass.txtfieldPadding(leftpadding: 20, rightPadding: 0)
             //Set Back Button
             self.setBackButton()
             
             //Set picker view
             self.SetpickerView(self.view)
             
-            cornerButton(btn: btnSubmit, radius: 8)
+           // cornerButton(btn: btnSubmit, radius: 8)
             
             //Title
             self.title = KStoryBoards.KClassListIdentifiers.kClassListTitle
