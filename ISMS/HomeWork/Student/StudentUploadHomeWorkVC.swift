@@ -29,7 +29,6 @@ class StudentUploadHomeWorkVC: BaseUIViewController {
         let importMenu = UIDocumentPickerViewController(documentTypes: ["public.data", "public.content"], in: UIDocumentPickerMode.import)
                importMenu.delegate = self
                present(importMenu, animated: true, completion: nil)
-        
     }
     
     

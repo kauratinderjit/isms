@@ -131,11 +131,11 @@ class HomeworkViewModel {
       //  let param = ["teacherId" : teacherId] as [String : Any]
         
         
-        HomeworkApi.sharedManager.getHoweworkList(url: url, parameters: nil, completionResponse: { (response) in
+        HomeworkApi.sharedManager.getHoweworkDetailData(url: url, parameters: nil, completionResponse: { (response) in
                    self.homeworkViewDelegate?.hideLoader()
                 switch response.statusCode{
-                case KStatusCode.kStatusCode200: break
-                   // self.addHomeworkDelegate?.AddHomeworkSucceed(array: response.resultData! )
+                case KStatusCode.kStatusCode200: 
+                   self.addHomeworkDelegate?.AddHomeworkSucceed(array: response.resultData! )
                 case KStatusCode.kStatusCode401:
                     self.homeworkViewDelegate?.showAlert(alert: response.message ?? "")
                     //self.AddHomeWorkDelegate?.unauthorizedUser()
