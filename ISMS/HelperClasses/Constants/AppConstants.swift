@@ -10,7 +10,8 @@ import Foundation
 
 public struct BaseUrl
 {
-  public static let kBaseURL =  "http://stgsd.appsndevs.com/EducationProApi/"
+  //public static let kBaseURL =  "http://stgsd.appsndevs.com/EducationProApi/"
+    public static let kBaseURL =  "https://stgsd.appsndevs.com/ISMSQA/"
 }
 
 public struct ApiEndpoints

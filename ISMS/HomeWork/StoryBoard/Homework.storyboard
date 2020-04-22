@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -128,17 +128,12 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JlC-fb-Fca">
-
                                 <rect key="frame" x="324" y="772" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="SS2-DG-H9a"/>
                                     <constraint firstAttribute="height" constant="50" id="hOo-oe-hBn"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="addImage"/>
-
-                                <rect key="frame" x="342" y="790" width="32" height="32"/>
-                                <state key="normal" image="addIcon"/>
-
                                 <connections>
                                     <segue destination="v2J-cu-bgZ" kind="show" id="lLd-7h-6XP"/>
                                 </connections>
@@ -447,10 +442,10 @@
                                                 </connections>
                                             </tableView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ac-c4-KvR">
-                                                <rect key="frame" x="24" y="272" width="341" height="20"/>
+                                                <rect key="frame" x="24" y="272" width="204" height="20"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="FlT-aI-kzw"/>
-                                                    <constraint firstAttribute="width" constant="341" id="GtP-Ap-f66"/>
+                                                    <constraint firstAttribute="height" constant="20" id="U1m-lI-yGk"/>
+                                                    <constraint firstAttribute="width" constant="204" id="tyU-YO-PcR"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" red="0.67399242051361785" green="0.63546283834199768" blue="0.65534651503607377" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="sRGB"/>
@@ -464,7 +459,7 @@
                                             <constraint firstItem="mXk-tB-kpQ" firstAttribute="top" secondItem="zkH-vZ-l08" secondAttribute="bottom" constant="25" id="1JM-c8-ggl"/>
                                             <constraint firstAttribute="trailing" secondItem="H1R-Ep-nBM" secondAttribute="trailing" constant="18" id="1Ru-WA-Ggq"/>
                                             <constraint firstItem="mXk-tB-kpQ" firstAttribute="leading" secondItem="fVf-u6-XmW" secondAttribute="leading" constant="18" id="5Bu-oQ-Un2"/>
-                                            <constraint firstItem="2Ac-c4-KvR" firstAttribute="top" secondItem="1kZ-47-cUv" secondAttribute="bottom" constant="35" id="6M9-iK-Ydt"/>
+                                            <constraint firstItem="2Ac-c4-KvR" firstAttribute="leading" secondItem="fVf-u6-XmW" secondAttribute="leading" constant="24" id="9TX-Zs-ozV"/>
                                             <constraint firstItem="cOi-XM-EEq" firstAttribute="top" secondItem="YFf-OW-6da" secondAttribute="bottom" constant="30" id="CxN-LO-pOE"/>
                                             <constraint firstItem="w3t-Uv-dSm" firstAttribute="leading" secondItem="fVf-u6-XmW" secondAttribute="leading" constant="18" id="EzM-RW-E2O"/>
                                             <constraint firstAttribute="trailing" secondItem="zkH-vZ-l08" secondAttribute="trailing" constant="18" id="F4T-sH-X9E"/>
@@ -474,6 +469,7 @@
                                             <constraint firstItem="zkH-vZ-l08" firstAttribute="leading" secondItem="fVf-u6-XmW" secondAttribute="leading" constant="18" id="NWH-Yo-w5E"/>
                                             <constraint firstAttribute="trailing" secondItem="cOi-XM-EEq" secondAttribute="trailing" constant="76" id="OjT-gf-640"/>
                                             <constraint firstItem="aNP-KM-g7P" firstAttribute="leading" secondItem="fVf-u6-XmW" secondAttribute="leading" constant="18" id="PMs-Uy-bcD"/>
+                                            <constraint firstItem="2Ac-c4-KvR" firstAttribute="top" secondItem="1kZ-47-cUv" secondAttribute="bottom" constant="35" id="XgU-kP-eff"/>
                                             <constraint firstItem="1kZ-47-cUv" firstAttribute="leading" secondItem="fVf-u6-XmW" secondAttribute="leading" constant="18" id="dgg-lv-9Pn"/>
                                             <constraint firstItem="H1R-Ep-nBM" firstAttribute="top" secondItem="fVf-u6-XmW" secondAttribute="top" constant="37" id="elJ-ty-MCX"/>
                                             <constraint firstItem="YFf-OW-6da" firstAttribute="top" secondItem="mXk-tB-kpQ" secondAttribute="bottom" constant="17" id="fcq-zz-V5b"/>
@@ -481,7 +477,6 @@
                                             <constraint firstItem="zkH-vZ-l08" firstAttribute="top" secondItem="aNP-KM-g7P" secondAttribute="bottom" constant="25" id="hhe-Lx-wpA"/>
                                             <constraint firstAttribute="trailing" secondItem="aNP-KM-g7P" secondAttribute="trailing" constant="18" id="jv7-gf-Caj"/>
                                             <constraint firstItem="aNP-KM-g7P" firstAttribute="top" secondItem="1kZ-47-cUv" secondAttribute="bottom" constant="25" id="odA-Zg-fZN"/>
-                                            <constraint firstAttribute="trailing" secondItem="2Ac-c4-KvR" secondAttribute="trailing" constant="49" id="pAl-Br-Arc"/>
                                             <constraint firstItem="w3t-Uv-dSm" firstAttribute="top" secondItem="H1R-Ep-nBM" secondAttribute="bottom" constant="25" id="rhU-wy-uMG"/>
                                             <constraint firstItem="YFf-OW-6da" firstAttribute="leading" secondItem="fVf-u6-XmW" secondAttribute="leading" id="vkx-a5-4DK"/>
                                             <constraint firstAttribute="trailing" secondItem="w3t-Uv-dSm" secondAttribute="trailing" constant="18" id="xMl-xN-bDm"/>
@@ -1127,14 +1122,7 @@
         </scene>
     </scenes>
     <resources>
-
-        
         <image name="addImage" width="32" height="32"/>
-
-        
-        <image name="addIcon" width="32" height="32"/>
-
-        
         <image name="calendar" width="15.5" height="16"/>
         <image name="delete" width="20" height="20"/>
         <image name="dropDown" width="12" height="7.5"/>
