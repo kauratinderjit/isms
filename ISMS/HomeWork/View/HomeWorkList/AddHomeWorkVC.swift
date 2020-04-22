@@ -61,7 +61,7 @@ class AddHomeWorkVC: BaseUIViewController {
             txtfieldTitle.text = editableHomeWorkData?.Topic
             txtViewDescription.text = editableHomeWorkData?.Details
             guard let dateFinal =  dateFormatter.date(from: editableHomeWorkData?.SubmssionDate ?? "") else {
-                print("Condition is not true ")
+                print("Condition is not true")
                 return
             }
             let dd = formatter.string(from: dateFinal)
