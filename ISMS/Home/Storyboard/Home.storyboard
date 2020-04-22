@@ -243,11 +243,8 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="40"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="2"/>
@@ -265,11 +262,8 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="40"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="2"/>
@@ -287,11 +281,8 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="40"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="2"/>
@@ -448,9 +439,12 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="49" id="U0H-L5-mxS"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dummyProfile" translatesAutoresizingMaskIntoConstraints="NO" id="E40-b8-r9o">
-                                <rect key="frame" x="148" y="62" width="74" height="74"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dummyProfile" translatesAutoresizingMaskIntoConstraints="NO" id="E40-b8-r9o">
+                                <rect key="frame" x="150.5" y="61" width="74" height="74"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="74" id="O1x-mv-091"/>
+                                    <constraint firstAttribute="height" constant="74" id="zSK-7I-wek"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="37"/>
@@ -486,6 +480,7 @@
                             <constraint firstItem="vEf-TY-EQb" firstAttribute="top" secondItem="TjL-Y5-RtQ" secondAttribute="bottom" constant="21" id="MCX-qJ-Q03"/>
                             <constraint firstItem="TjL-Y5-RtQ" firstAttribute="leading" secondItem="jVc-N4-IAU" secondAttribute="leading" id="QPr-4g-7Cg"/>
                             <constraint firstItem="kvq-Jb-gLJ" firstAttribute="top" secondItem="0NF-f3-tjd" secondAttribute="bottom" constant="10" id="RuX-2Z-Av4"/>
+                            <constraint firstItem="E40-b8-r9o" firstAttribute="centerX" secondItem="abH-t3-Ezq" secondAttribute="centerX" id="UOs-T3-Y44"/>
                             <constraint firstItem="jVc-N4-IAU" firstAttribute="trailing" secondItem="Ukb-H5-ben" secondAttribute="trailing" constant="27" id="Umo-eT-LdZ"/>
                             <constraint firstItem="TjL-Y5-RtQ" firstAttribute="trailing" secondItem="jVc-N4-IAU" secondAttribute="trailing" id="WAG-CM-m4m"/>
                             <constraint firstItem="LM8-po-sxi" firstAttribute="leading" secondItem="vEf-TY-EQb" secondAttribute="trailing" constant="27.5" id="ZwV-Bu-34d"/>
@@ -495,6 +490,7 @@
                             <constraint firstItem="fyA-DO-zU2" firstAttribute="top" secondItem="Ukb-H5-ben" secondAttribute="bottom" constant="11" id="c8J-m5-A6f"/>
                             <constraint firstItem="jVc-N4-IAU" firstAttribute="trailing" secondItem="fyA-DO-zU2" secondAttribute="trailing" id="cA8-nx-UOu"/>
                             <constraint firstItem="3YQ-Ej-v9r" firstAttribute="top" secondItem="TWX-YV-zo6" secondAttribute="bottom" constant="8" id="fSE-e7-2hf"/>
+                            <constraint firstItem="E40-b8-r9o" firstAttribute="top" secondItem="jVc-N4-IAU" secondAttribute="top" constant="17" id="i75-fc-5RB"/>
                             <constraint firstItem="0NF-f3-tjd" firstAttribute="leading" secondItem="QiP-HH-jaJ" secondAttribute="trailing" constant="28" id="iFN-O7-BVy"/>
                             <constraint firstItem="TjL-Y5-RtQ" firstAttribute="top" secondItem="jHd-2z-wrG" secondAttribute="bottom" constant="-6" id="jvv-3x-LLk"/>
                             <constraint firstItem="TWX-YV-zo6" firstAttribute="top" secondItem="QiP-HH-jaJ" secondAttribute="bottom" constant="9" id="m8w-Y1-6k2"/>
