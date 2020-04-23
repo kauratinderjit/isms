@@ -68,6 +68,7 @@ class LoginViewModel {
             //Login User Using Email And Password and get token
             LoginApi.sharedmanagerAuth.LogInApi(url: ApiEndpoints.kLogin, parameter: parm, completionResponse: { (response) in
 
+                print(response)
                 self.logInView?.hideLoader()
                 
                 if response.statusCode == KStatusCode.kStatusCode200{
@@ -141,7 +142,8 @@ class LoginViewModel {
         if let phoneEmail = phoneOrEmail{
             let postParameter : [String:Any] = [KApiParameters.LoginApiPerameters.kUsername:phoneEmail]
             
-            LoginApi.sharedmanagerAuth.veriFyPhoneNumberApi(url: ApiEndpoints.kVerifyPhoneEmail+"?\(KApiParameters.LoginApiPerameters.kUsername)=\(phoneEmail)", parameter: postParameter, completionResponse: { (verifyPhoneModel) in
+            LoginApi.sharedmanagerAuth.veriFyPhoneNumberApi(url: ApiEndpoints.kVerifyPhoneEmail+"?\(KApiParameters.LoginApiPerameters.kUsername)=\(phoneEmail)", parameter: postParameter, completionResponse:
+                { (verifyPhoneModel) in
                 self.logInView?.hideLoader()
                 switch verifyPhoneModel.statusCode{
                 case KStatusCode.kStatusCode200:
@@ -304,12 +306,16 @@ extension LoginVC : LogInDelegate{
         btnLogin.isHidden = false
         btnForgot.isUserInteractionEnabled = true
         lblForgot.isHidden = false
+        phoneNumber = data.resultData?.PhoneNo ?? ""
+        UserDefaultExtensionModel.shared.forgotUserId = data.resultData?.userId ?? 0
     }
     func loginDidSucced(data: LoginData){
         let userId = data.resultData?.userId
         self.viewModel?.getRoleId(userID: userId)
     }
-    func loginDidFalied() {
+    func loginDidFalied()
+    {
+        
     }
 }
 //MARK:- textFieldDelegate Method

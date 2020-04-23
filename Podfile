@@ -18,7 +18,10 @@ pod 'GoogleMaps'
 pod 'GooglePlaces'
 pod 'FSCalendar'
 pod 'Charts'
-
+pod 'SVPinView'
+pod 'Firebase/Auth'
+pod 'Firebase/Messaging'
+pod 'NVActivityIndicatorView'
 
   target 'ISMSTests' do
     inherit! :search_paths

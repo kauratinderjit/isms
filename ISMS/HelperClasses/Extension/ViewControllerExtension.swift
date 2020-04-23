@@ -10,6 +10,7 @@ import UIKit
 import EventKit
 import EventKitUI
 import SystemConfiguration
+import NVActivityIndicatorView
 
 
 extension UIViewController {
@@ -87,7 +88,32 @@ extension UIViewController {
         image.layer.cornerRadius = image.frame.width/2
         image.clipsToBounds = true
     }
-  
+    
+    func StartIndicator(message: String)
+    {
+        if(!CommonFunctions.isAnimating)
+        {
+            CommonFunctions.isAnimating = true
+            let size = CGSize(width: 30, height: 30)
+            
+          //  startAnimating(size, message: message, type: .ballBeat, fadeInAnimation: nil)
+            DispatchQueue.main.async {
+                NVActivityIndicatorPresenter.sharedInstance.setMessage(message)
+            }
+        }
+        //            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
+        //                       NVActivityIndicatorPresenter.sharedInstance.setMessage("Authenticating...")
+        //                   }
+    }
+  func StopIndicator()
+     {
+         CommonFunctions.isAnimating = false
+         DispatchQueue.main.async()
+             {
+             //    self.stopAnimating(nil)
+         }
+     }
+    
     // Hide Navigation Bar
     func HideNavigationBar(navigationController: UINavigationController){
          navigationController.setNavigationBarHidden(true, animated: true)

@@ -23,7 +23,37 @@ class UserDefaultExtensionModel : NSObject{
             UserDefaults.standard.synchronize()
         }
     }
-    
+    //MARK: Firebase VerifcationID
+          var firebaseVID: String
+          {
+              get
+              {
+                  if let firebaseVID =  UserDefaults.standard.string(forKey:UserDefaultKeys.firebaseVID.rawValue)
+                  {
+                      return firebaseVID
+                  }
+                  else
+                  {
+                      return ""
+                  }
+              }
+              set
+              {
+                  UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.firebaseVID.rawValue)
+                  UserDefaults.standard.synchronize()
+              }
+          }
+    //MARK:- UserIDForForgotPassword
+    var forgotUserId : Int{
+           get {
+               let userId = UserDefaults.standard.integer(forKey: UserDefaultKeys.forgotUserId.rawValue)
+               return userId
+           }
+           set {
+               UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.forgotUserId.rawValue)
+               UserDefaults.standard.synchronize()
+           }
+       }
     //MARK:- Current User Id
     var currentUserId : Int{
         get {

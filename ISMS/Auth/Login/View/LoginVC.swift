@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import Firebase
 
 class LoginVC: BaseUIViewController {
     
@@ -21,10 +23,11 @@ class LoginVC: BaseUIViewController {
     @IBOutlet weak var kPhoneNoTop: NSLayoutConstraint!
     @IBOutlet weak var kConstantBtnLoginTop: NSLayoutConstraint!
     @IBOutlet weak var imgMobile: UIImageView!
-    
     @IBOutlet weak var imgPassword: UIImageView!
     //MARK:-  Variables
     var viewModel:LoginViewModel?
+    var phoneNumber : String?
+    var userId : Int?
     
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -42,9 +45,33 @@ class LoginVC: BaseUIViewController {
     }
     
     @IBAction func ForgotPassAction(_ sender: Any){
-        pushToNextVC(storyboardName: KStoryBoards.kMain, viewControllerName: KStoryBoards.KForgotPassIdentifiers.kForgotPassVC)
+//        pushToNextVC(storyboardName: KStoryBoards.kMain, viewControllerName: KStoryBoards.KForgotPassIdentifiers.kForgotPassVC)
+        if phoneNumber == "" && phoneNumber == nil{
+            showAlert(Message: "Enter Phone Number")
+        }
+            else{
+              self.send_OTP()
+            }
     }
-    //MARK:- Other function
+    
+    //MARK:- FUNCTION RESEND OTP -->
+    func send_OTP()
+    {
+        FirbaseOTPAuth.get_otp_from_firebase(controller: self, phoneNumber: "+91" + (phoneNumber ?? ""))
+        { (result) in
+            if (result.count > 0)
+            {
+                UserDefaultExtensionModel.shared.firebaseVID = result
+                self.showAlert(Message: "OTP has been sent on given number")
+                self.pushToNextVC(storyboardName: KStoryBoards.kMain, viewControllerName: KStoryBoards.KForgotPassIdentifiers.kCheckOTPVC)
+//                self.Handle_Resend_OTP_Start_timer()
+//                self.myTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.startTimer), userInfo: nil, repeats: true)
+//                RunLoop.main.add(self.myTimer, forMode: RunLoop.Mode.common)
+            }
+        }
+    }
+    
+   //MARK:- Other function
     func setView() {
         
         //SetUp Delegates and view
