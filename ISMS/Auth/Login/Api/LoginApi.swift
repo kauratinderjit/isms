@@ -291,7 +291,7 @@ class LoginApi
         }
     }
     
-
+//homeAdminModel
        func getdata(url : String,parameters: [String : Any]?,completionResponse:  @escaping (homeModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
             
             let urlCmplete = BaseUrl.kBaseURL+url
@@ -347,6 +347,59 @@ class LoginApi
         }
     }
     
+       func getdataAdmin(url : String,parameters: [String : Any]?,completionResponse:  @escaping (homeAdminModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
+            
+            let urlCmplete = BaseUrl.kBaseURL+url
+            print(urlCmplete)
+            
+            var accessTokken = ""
+            if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String
+            {
+                accessTokken = str
+            }
+            
+            let headers = [KConstants.kHeaderAuthorization:KConstants.kHeaderBearer+" "+accessTokken,KConstants.kAccept: KConstants.kApplicationJson]
+            
+            
+            Alamofire.request(urlCmplete, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+                print(response)
+                if response.result.isSuccess
+                {
+                    guard let data = response.value else{return}
+                    
+                    if let responseData  = data as? [String : Any]
+                    {
+                        print("responseData: ",responseData)
+                        self.getAdminHomeModel(data: responseData, completionResponse: { (responseModel) in
+                            completionResponse(responseModel)
+                        }, completionError: { (mapperError) in
+                            completionnilResponse(mapperError)
+                        })
+                        
+                    }else{
+                        CommonFunctions.sharedmanagerCommon.println(object: "Get User Access Error:- \(data) ")
+                    }
+                    
+                }
+                else
+                {
+                    complitionError(response.error)
+    //                return
+                }
+            }
+            
+        }
     
+    
+    private func getAdminHomeModel(data: [String : Any],completionResponse:  @escaping (homeAdminModel) -> Void,completionError: @escaping (String?) -> Void)  {
+        
+        let UserMenuRoleIdData = homeAdminModel(JSON: data)
+        
+        if UserMenuRoleIdData != nil{
+            completionResponse(UserMenuRoleIdData!)
+        }else{
+            completionError(Alerts.kMapperModelError)
+        }
+    }
     
 }

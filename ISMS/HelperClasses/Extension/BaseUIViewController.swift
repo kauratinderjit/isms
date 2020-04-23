@@ -446,11 +446,12 @@ class BaseUIViewController: UIViewController {
         self.searchBar.isHidden = true
         self.searchBar.barStyle = .black
         self.searchBar.backgroundColor = .white
-        self.searchBar.searchTextField.backgroundColor = .white
-        self.searchBar.searchTextField.textColor = .black
-        self.searchBar.searchTextField.layer.borderWidth = 0.5
-        self.searchBar.searchTextField.layer.borderColor = UIColor.lightGray.cgColor
-        self.searchBar.searchTextField.layer.cornerRadius = 8
+        self.searchBar.backgroundColor = .white
+        self.searchBar.tintColor = .black
+        self.searchBar.layer.borderWidth = 0.5
+        self.searchBar.layer.borderColor = UIColor.lightGray.cgColor
+        self.searchBar.cornerRadius = 8
+    
         self.searchBar.showsCancelButton.toggle()
         self.navigationTitle = navigationTitle
         self.navigationSearchBarDelegate = navigationSearchBarDelegates

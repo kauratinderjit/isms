@@ -40,6 +40,7 @@ class UserRoleIdModel: Mappable{
         var departmentId : Int?
         var ImageUrl :String?
         var UserName : String?
+        var departmentName : String?
         
         init?(map: Map) {
             
@@ -53,6 +54,7 @@ class UserRoleIdModel: Mappable{
             departmentId <- map["DepartmentId"]
             ImageUrl <- map["ImageUrl"]
             UserName <- map["UserName"]
+             departmentName <- map["DepartmentName"]
 
         }
         

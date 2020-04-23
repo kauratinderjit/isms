@@ -1294,7 +1294,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wiw-JP-I13">
-                                        <rect key="frame" x="116.33333333333331" y="22" width="266" height="26"/>
+                                        <rect key="frame" x="116.33333333333333" y="22" width="250.66666666666669" height="26"/>
                                         <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -1306,16 +1306,16 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RiM-I8-hxI">
-                                        <rect key="frame" x="115.66666666666666" y="54" width="268.66666666666674" height="26"/>
+                                        <rect key="frame" x="115.66666666666667" y="54" width="253.33333333333331" height="26"/>
                                         <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="FxN-yM-DOC">
-                                        <rect key="frame" x="390.33333333333331" y="22" width="15.666666666666686" height="26"/>
+                                        <rect key="frame" x="375" y="22" width="31" height="26"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="C0S-s8-j67">
-                                        <rect key="frame" x="391.33333333333331" y="62.333333333333336" width="15.666666666666686" height="9.6666666666666643"/>
+                                        <rect key="frame" x="376" y="57.666666666666657" width="31" height="19"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Subject" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NgM-iS-sfS">
                                         <rect key="frame" x="8" y="54" width="99.666666666666671" height="26"/>

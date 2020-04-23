@@ -11,6 +11,7 @@ import Foundation
 
 protocol ClassListDelegate: class {
     func unauthorizedUser()
+     func getClassDetailDidSucceed(data : ClassDetailModel)
     func classListDidSuccess(data : [GetClassListResultData]?)
     func classListDidFailed()
     func classDeleteDidSuccess(data : DeleteClassModel)
@@ -42,7 +43,7 @@ class ClassListViewModel{
     }
     
     //MARK:- Class list
-    func classList(searchText: String,pageSize : Int,filterBy: Int,skip: Int){
+    func classList(Search: String, Skip: Int,PageSize: Int,SortColumnDir: String,  SortColumn: String, ParticularId : Int){
         
         if isSearching == false{
             self.classListView?.showLoader()
@@ -50,28 +51,27 @@ class ClassListViewModel{
         
         var postDict = [String:Any]()
         
-        postDict[KApiParameters.KCommonParametersForList.kSearch] = searchText
-        postDict[KApiParameters.KCommonParametersForList.kPageSize] = pageSize
-        postDict[KApiParameters.KCommonParametersForList.kSortColumn] = ""
-        postDict[KApiParameters.KCommonParametersForList.kSkip] = skip
-        postDict[KApiParameters.KCommonParametersForList.kSortColumnDir] = ""
+        
+        postDict = ["Search": Search ?? "","Skip":Skip ?? 0,"PageSize": PageSize ?? 0,"SortColumnDir": SortColumnDir ?? "", "SortColumn": SortColumn ?? "","ParticularId" : ParticularId] as [String : Any]
+//        postDict["departmentId"] = departmentId
+       
+       let url = "api/Institute/GetClassListByDepartmentId"
         
         
-        
-        ClassApi.sharedManager.getClassList(url: ApiEndpoints.kGetClassList, parameters: postDict, completionResponse: { (classModel) in
+        ClassApi.sharedManager.getClassList(url: url, parameters: postDict, completionResponse: { (ClassListModel) in
             
             self.classListView?.hideLoader()
 
-            switch classModel.statusCode{
+            switch ClassListModel.statusCode{
             case KStatusCode.kStatusCode200:
-                self.classListDelegate?.classListDidSuccess(data: classModel.resultData)
+                self.classListDelegate?.classListDidSuccess(data: ClassListModel.resultData)
             case KStatusCode.kStatusCode401:
-                if let msg = classModel.message{
+                if let msg = ClassListModel.message{
                     self.classListView?.showAlert(alert: msg)
                 }
                 self.classListDelegate?.unauthorizedUser()
             default:
-                if let msg = classModel.message{
+                if let msg = ClassListModel.message{
                     self.classListView?.showAlert(alert: msg)
                 }
             }
@@ -94,6 +94,86 @@ class ClassListViewModel{
                 self.classListView?.showAlert(alert: err)
             }else{
                 CommonFunctions.sharedmanagerCommon.println(object: "Class APi error response")
+            }
+        }
+    }
+    
+    func addUpdateClass(classid : Int,className : String?,selectedDepartmentId : Int?,departmentName : String?,description : String?,others : String?,imageUrl : URL?){
+        
+        //MARK:- Validations
+//        if (className!.trimmingCharacters(in: .whitespaces).isEmpty){
+//            self.classListView?.showAlert(alert: Alerts.kEmptyClass)
+//        }
+//        else if selectedDepartmentId == nil{
+//            self.classListView?.showAlert(alert: Alerts.kEmptyDepartment)
+//        }
+//        else if(description!.trimmingCharacters(in: .whitespaces).isEmpty)
+//        {
+//            self.classListView?.showAlert(alert: Alerts.kEmptyDescription)
+//        }
+//        else{
+            var othrs : String?
+            guard let departmentID = selectedDepartmentId else{
+                return
+            }
+            if others == ""{
+                othrs = nil
+            }else{
+                othrs = others
+            }
+            
+            let parameters = [KApiParameters.KAddClassApiPerameters.kClassId:classid,KApiParameters.KAddClassApiPerameters.kDepartmentId:selectedDepartmentId,KApiParameters.KAddClassApiPerameters.kName: className!,KApiParameters.KAddClassApiPerameters.kDescription : description!,KApiParameters.KAddClassApiPerameters.kOthers : othrs as Any,KApiParameters.KAddClassApiPerameters.kLogoUrl : imageUrl as Any] as [String : Any]
+            self.classListView?.showLoader()
+            ClassApi.sharedManager.addUpdateClass(url: ApiEndpoints.kAddClass, parameters: parameters, completionResponse: { (responseModel) in
+                CommonFunctions.sharedmanagerCommon.println(object: "Response Model of addClass:- \(responseModel) ")
+                self.classListView?.hideLoader()
+                switch responseModel.statusCode{
+                case KStatusCode.kStatusCode200:
+                    self.classListView?.showAlert(alert: responseModel.message ?? "")
+                    
+                    self.classList(Search: "", Skip: KIntegerConstants.kInt0,PageSize: KIntegerConstants.kInt10,SortColumnDir: "",  SortColumn: "", ParticularId : selectedDepartmentId ?? 0)
+                case KStatusCode.kStatusCode401:
+                    self.classListView?.showAlert(alert: responseModel.message ?? "")
+                    self.classListDelegate?.unauthorizedUser()
+                default:
+                    self.classListView?.showAlert(alert: responseModel.message ?? "")
+                    self.classList(Search: "", Skip: KIntegerConstants.kInt0,PageSize: KIntegerConstants.kInt10,SortColumnDir: "",  SortColumn: "", ParticularId : selectedDepartmentId ?? 0)
+                }
+            }, completionnilResponse: { (nilresponse) in
+                self.classListView?.hideLoader()
+                self.classListView?.showAlert(alert: nilresponse ?? Alerts.kMapperModelError)
+            }) { (error) in
+                self.classListView?.hideLoader()
+                self.classListView?.showAlert(alert: error?.localizedDescription ?? Alerts.kMapperModelError)
+            }
+//        }
+    }
+    
+    //MARK:- Get Class Detail
+    func getClassDetail(classId : Int){
+        
+        let getUrl = ApiEndpoints.kGetClassDetail + "?classId=\(classId)"
+        self.classListView?.showLoader()
+        ClassApi.sharedManager.getClassDetail(url: getUrl, completionResponse: { (classDetailresponse) in
+            self.classListView?.hideLoader()
+            switch classDetailresponse.statusCode{
+            case KStatusCode.kStatusCode200:
+                self.classListDelegate?.getClassDetailDidSucceed(data: classDetailresponse)
+            case KStatusCode.kStatusCode401:
+                self.classListView?.showAlert(alert: classDetailresponse.message ?? "")
+                self.classListDelegate?.unauthorizedUser()
+            default:
+                self.classListView?.showAlert(alert: classDetailresponse.message ?? "Server Error")
+            }
+        }, completionnilResponse: { (error) in
+            self.classListView?.hideLoader()
+            if let nilResponse = error{
+                self.classListView?.showAlert(alert: nilResponse)
+            }
+        }) { (error) in
+            self.classListView?.hideLoader()
+            if let err = error{
+                self.classListView?.showAlert(alert: err.localizedDescription)
             }
         }
     }
@@ -136,123 +216,4 @@ class ClassListViewModel{
             }
         }
     }
-}
-//MARK:- Custom Yes No Alert Delegate
-extension ClassListVC : YesNoAlertViewDelegate{
-    
-    func yesBtnAction() {
-        yesNoAlertView.removeFromSuperview()
-        if self.checkInternetConnection(){
-            if let classId = self.selectedClassId{
-                self.viewModel?.deleteClass(classId: classId)
-            }else{
-                CommonFunctions.sharedmanagerCommon.println(object: "Delete Class id is nil")
-            }
-        }else{
-            self.showAlert(alert: Alerts.kNoInternetConnection)
-        }
-    }
-    func noBtnAction() {
-        yesNoAlertView.removeFromSuperview()
-    }
-}
-
-//MARK:- Class Deleagate
-extension ClassListVC : ClassListDelegate{
-    func unauthorizedUser() {
-        isUnauthorizedUser = true
-        
-    }
-    func classDeleteDidSuccess(data: DeleteClassModel) {
-        isClassDeleteSuccessfully = true
-    }
-    func classDeleteDidfailed() {
-        isClassDeleteSuccessfully = false
-    }
-    func classListDidSuccess(data: [GetClassListResultData]?) {
-        isFetching = true
-        if data != nil{
-            if data?.count ?? 0 > 0{
-                for value in data!{
-                    let containsSameValue = arr_Classlist.contains(where: {$0.classId == value.classId})
-                    if containsSameValue == false{
-                        arr_Classlist.append(value)
-                    }
-                    self.tblViewCenterLabel(tblView: tableView, lblText: "", hide: true)
-                }
-            }else{
-                CommonFunctions.sharedmanagerCommon.println(object: "Zero")
-            }
-        }else{
-            CommonFunctions.sharedmanagerCommon.println(object: "Nil")
-        }
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-    func classListDidFailed() {
-        self.tableView.reloadData()
-        tblViewCenterLabel(tblView: tableView, lblText: KConstants.kPleaseTryAgain, hide: false)
-    }
-}
-
-//MARK:- UISearchController Bar Delegates
-extension ClassListVC : NavigationSearchBarDelegate{
-    
-    func textDidChange(searchBar: UISearchBar, searchText: String) {
-        viewModel?.isSearching = true
-        arr_Classlist.removeAll()
-        self.viewModel?.classList(searchText: searchText, pageSize: KIntegerConstants.kInt10, filterBy: 0, skip: KIntegerConstants.kInt0)
-        
-    }
-    
-    func cancelButtonPress(uiSearchBar: UISearchBar) {
-        viewModel?.isSearching = false
-        DispatchQueue.main.async {
-            self.arr_Classlist.removeAll()
-            self.viewModel?.classList(searchText: "", pageSize: KIntegerConstants.kInt10, filterBy: 0, skip: KIntegerConstants.kInt0)
-        }
-    }
-}
-
-//MARK:- Scroll View delegates
-extension ClassListVC : UIScrollViewDelegate{
-    
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        
-//        if(velocity.y>0) {
-//            //Code will work without the animation block.I am using animation block incase if you want to set any delay to it.
-//            UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
-//                self.navigationController?.setNavigationBarHidden(true, animated: true)
-//            }, completion: nil)
-//            
-//        } else {
-//            UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
-//                self.navigationController?.setNavigationBarHidden(false, animated: true)
-//            }, completion: nil)
-//        }
-        
-        if (tableView.contentOffset.y < pointNow.y)
-        {
-            CommonFunctions.sharedmanagerCommon.println(object: "Down scroll view")
-            isScrolling = true
-        }
-        else if (tableView.contentOffset.y + tableView.frame.size.height >= tableView.contentSize.height)
-        {
-            isScrolling = true
-            if (isFetching == true)
-            {
-                skip = skip + KIntegerConstants.kInt10
-                isFetching = false
-                self.viewModel?.classList(searchText: "", pageSize: pageSize, filterBy: 0, skip: skip)
-            }
-        }else{
-            CommonFunctions.sharedmanagerCommon.println(object: "Scrolling")
-        }
-    }
-    
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        pointNow = scrollView.contentOffset
-    }
-    
 }

@@ -21,10 +21,15 @@ class ClassListVC: BaseUIViewController {
     var isUnauthorizedUser = false
     var isClassDeleteSuccessfully = false
     var skip = Int()
+     var classId : Int = 0
     var isScrolling : Bool?
     var pageSize = KIntegerConstants.kInt10
     var pointNow:CGPoint!
     var isFetching:Bool?
+   var selectedImageUrl : URL?
+    var isClassAddSuccessFully = false
+    var HODdepartmentId = UserDefaultExtensionModel.shared.HODDepartmentId
+     var HODdepartmentName = UserDefaultExtensionModel.shared.HODDepartmentName
      public var lstActionAccess : GetMenuFromRoleIdModel.ResultData?
     
     override func viewDidLoad() {
@@ -39,7 +44,7 @@ class ClassListVC: BaseUIViewController {
         super.viewWillAppear(true)
         if checkInternetConnection(){
             self.viewModel?.isSearching = false
-            self.viewModel?.classList(searchText: "", pageSize: pageSize, filterBy: 0, skip: KIntegerConstants.kInt0)
+            self.viewModel?.classList(Search: "", Skip: KIntegerConstants.kInt0,PageSize: KIntegerConstants.kInt10,SortColumnDir: "",  SortColumn: "", ParticularId : HODdepartmentId)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
@@ -55,12 +60,13 @@ class ClassListVC: BaseUIViewController {
     @IBAction func btnEditAction(_ sender: UIButton) {
         if arr_Classlist.count > 0{
             let data = arr_Classlist[sender.tag]
-            selectedClassId = data.classId
-            let vc = UIStoryboard.init(name: KStoryBoards.kClass, bundle: Bundle.main).instantiateViewController(withIdentifier: KStoryBoards.KAddClassIdentifiers.kAddClassVC) as! AddClassVC
-            if let classId = selectedClassId{
-                vc.classId = classId
-            }
-            self.navigationController?.pushViewController(vc, animated: true)
+            classId = data.classId ?? 0
+            setupUI()
+            initializeCustomTextFieldView(self.view, isHideBlurView: true)
+            textFieldAlert.delegate = self
+            self.textFieldAlert.lblTitle.text = "update subject"
+            self.textFieldAlert.BtnTxt.setTitle("Submit", for: .normal)
+            self.viewModel?.getClassDetail(classId: classId ?? 0)
         }
     }
 
@@ -78,11 +84,72 @@ class ClassListVC: BaseUIViewController {
     }
 
     @IBAction func btnAddClass(_ sender: UIButton) {
-        let vc = UIStoryboard.init(name: KStoryBoards.kClass, bundle: Bundle.main).instantiateViewController(withIdentifier: KStoryBoards.KAddClassIdentifiers.kAddClassVC) as! AddClassVC
-        vc.classId = 0
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.view.endEditing(true)
+        self.classId = 0
+        setupUI()
+        initializeCustomTextFieldView(self.view, isHideBlurView: true)
+        textFieldAlert.delegate = self
+        self.textFieldAlert.lblTitle.text = "Add Class"
+        self.textFieldAlert.txtFieldVal.text = ""
+        self.textFieldAlert.BtnTxt.setTitle("Add", for: .normal)
+        self.textFieldAlert.btnCancel.setTitle("Cancel", for: .normal)
+        self.textFieldAlert.btnCancel.cornerRadius = 4.0
+        self.textFieldAlert.BtnTxt.cornerRadius = 4.0
+//        let vc = UIStoryboard.init(name: KStoryBoards.kClass, bundle: Bundle.main).instantiateViewController(withIdentifier: KStoryBoards.KAddClassIdentifiers.kAddClassVC) as! AddClassVC
+//        vc.classId = 0
+//        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func setUITextField(data: ClassDetailModel){
+        self.textFieldAlert.txtFieldVal.text = data.resultData?.name
+    }
+    
+    func setupUI(){
+        self.textFieldAlert.txtFieldVal.SetTextFont(textSize: KTextSize.KSixteen, placeholderText: "ClassName")
+        self.textFieldAlert.txtFieldVal.addViewCornerShadow(radius: 8, view: self.textFieldAlert.txtFieldVal)
+        self.textFieldAlert.txtFieldVal.txtfieldPadding(leftpadding: 20, rightPadding: 0)
     }
 }
+
+extension ClassListVC : TextFieldAlertDelegate{
+    func btnCancel() {
+        textFieldAlert.removeFromSuperview()
+    }
+    
+    
+    func BtnTxt() {
+        self.view.endEditing(true)
+        if self.checkInternetConnection(){
+            if classId != 0{
+                if textFieldAlert.txtFieldVal.text != ""{
+                    isClassAddSuccessFully = true
+                    self.viewModel?.addUpdateClass(classid: classId, className:textFieldAlert.txtFieldVal.text, selectedDepartmentId: HODdepartmentId, departmentName: HODdepartmentName, description: "", others: "", imageUrl: selectedImageUrl)
+//                    self.ViewModel?.addSubject(subjectName: textFieldAlert.txtFieldVal.text, subjectID: subjectId)
+                    yesNoAlertView.removeFromSuperview()
+                }
+                else {
+                    self.showAlert(alert: Alerts.kEmptySubjectName)
+                }
+                
+            }else{
+                if textFieldAlert.txtFieldVal.text != ""{
+                    isClassAddSuccessFully = true
+                  self.viewModel?.addUpdateClass(classid: 0, className:textFieldAlert.txtFieldVal.text, selectedDepartmentId: HODdepartmentId, departmentName: HODdepartmentName, description: "", others: "", imageUrl: selectedImageUrl)
+                    yesNoAlertView.removeFromSuperview()
+                }
+                else  {
+                    self.showAlert(alert: Alerts.kEmptySubjectName)
+                }
+            }
+            
+        }else{
+            self.showAlert(alert: Alerts.kNoInternetConnection)
+            yesNoAlertView.removeFromSuperview()
+        }
+        
+    }
+}
+
 
 //MARk:- View Delegate
 extension ClassListVC : ViewDelegate{
@@ -145,14 +212,145 @@ extension ClassListVC : OKAlertViewDelegate{
             isUnauthorizedUser = false
             CommonFunctions.sharedmanagerCommon.setRootLogin()
         }
+        if isClassAddSuccessFully == true{
+            isClassAddSuccessFully = false
+            textFieldAlert.removeFromSuperview()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
         if isClassDeleteSuccessfully == true {
             isClassDeleteSuccessfully = false
             if let selectedIndex = self.selectedClassArrIndex{
                 self.arr_Classlist.remove(at: selectedIndex)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    }
                 }
             }
         }
+}
+
+//MARK:- Custom Yes No Alert Delegate
+extension ClassListVC : YesNoAlertViewDelegate{
+    
+    func yesBtnAction() {
+        yesNoAlertView.removeFromSuperview()
+        if self.checkInternetConnection(){
+            if let classId = self.selectedClassId{
+                self.viewModel?.deleteClass(classId: classId)
+            }else{
+                CommonFunctions.sharedmanagerCommon.println(object: "Delete Class id is nil")
+            }
+        }else{
+            self.showAlert(alert: Alerts.kNoInternetConnection)
+        }
     }
+    func noBtnAction() {
+        yesNoAlertView.removeFromSuperview()
+    }
+}
+
+//MARK:- Class Deleagate
+extension ClassListVC : ClassListDelegate{
+    func unauthorizedUser() {
+        isUnauthorizedUser = true
+        
+    }
+    
+    func getClassDetailDidSucceed(data: ClassDetailModel) {
+       setUITextField(data: data)
+    }
+    func classDeleteDidSuccess(data: DeleteClassModel) {
+        isClassDeleteSuccessfully = true
+    }
+    func classDeleteDidfailed() {
+        isClassDeleteSuccessfully = false
+    }
+    func classListDidSuccess(data: [GetClassListResultData]?) {
+        isFetching = true
+        if data != nil{
+            if data?.count ?? 0 > 0{
+                for value in data!{
+                    let containsSameValue = arr_Classlist.contains(where: {$0.classId == value.classId})
+                    if containsSameValue == false{
+                        arr_Classlist.append(value)
+                    }
+                    self.tblViewCenterLabel(tblView: tableView, lblText: "", hide: true)
+                }
+            }else{
+                CommonFunctions.sharedmanagerCommon.println(object: "Zero")
+            }
+        }else{
+            CommonFunctions.sharedmanagerCommon.println(object: "Nil")
+        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    func classListDidFailed() {
+        self.tableView.reloadData()
+        tblViewCenterLabel(tblView: tableView, lblText: KConstants.kPleaseTryAgain, hide: false)
+    }
+}
+
+//MARK:- UISearchController Bar Delegates
+extension ClassListVC : NavigationSearchBarDelegate{
+    
+    func textDidChange(searchBar: UISearchBar, searchText: String) {
+        viewModel?.isSearching = true
+        arr_Classlist.removeAll()
+                self.viewModel?.classList(Search: searchText, Skip: KIntegerConstants.kInt0,PageSize: KIntegerConstants.kInt10,SortColumnDir: "",  SortColumn: "", ParticularId : HODdepartmentId)
+        
+    }
+    
+    func cancelButtonPress(uiSearchBar: UISearchBar) {
+        viewModel?.isSearching = false
+        DispatchQueue.main.async {
+            self.arr_Classlist.removeAll()
+//                        self.viewModel?.classList(searchText: "", pageSize: KIntegerConstants.kInt10, filterBy: 0, skip: KIntegerConstants.kInt0)
+        }
+    }
+}
+
+//MARK:- Scroll View delegates
+extension ClassListVC : UIScrollViewDelegate{
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        //        if(velocity.y>0) {
+        //            //Code will work without the animation block.I am using animation block incase if you want to set any delay to it.
+        //            UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
+        //                self.navigationController?.setNavigationBarHidden(true, animated: true)
+        //            }, completion: nil)
+        //
+        //        } else {
+        //            UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
+        //                self.navigationController?.setNavigationBarHidden(false, animated: true)
+        //            }, completion: nil)
+        //        }
+        
+        if (tableView.contentOffset.y < pointNow.y)
+        {
+            CommonFunctions.sharedmanagerCommon.println(object: "Down scroll view")
+            isScrolling = true
+        }
+        else if (tableView.contentOffset.y + tableView.frame.size.height >= tableView.contentSize.height)
+        {
+            isScrolling = true
+            if (isFetching == true)
+            {
+                skip = skip + KIntegerConstants.kInt10
+                isFetching = false
+                //                self.viewModel?.classList(searchText: "", pageSize: pageSize, filterBy: 0, skip: skip)
+            }
+        }else{
+            CommonFunctions.sharedmanagerCommon.println(object: "Scrolling")
+        }
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        pointNow = scrollView.contentOffset
+    }
+    
 }

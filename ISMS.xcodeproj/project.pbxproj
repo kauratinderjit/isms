@@ -331,6 +331,11 @@
 		9B1CDD252449B15B003E7650 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CDD1B2449B155003E7650 /* CustomTextField.swift */; };
 		9B1CDD282449B15B003E7650 /* SSBadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CDD1E2449B158003E7650 /* SSBadgeButton.swift */; };
 		9B1CDD2D2449B15B003E7650 /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CDD232449B15B003E7650 /* CustomUIButton.swift */; };
+		9B3D5B36245171280076741C /* CheckOTPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D5B35245171280076741C /* CheckOTPVC.swift */; };
+		9B3D5B3B245177930076741C /* OTPAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D5B3A245177930076741C /* OTPAuth.swift */; };
+		9B3D5B3D24518B1A0076741C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B3D5B3C24518B190076741C /* GoogleService-Info.plist */; };
+		9B3D5B402451AA830076741C /* ForgotApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D5B3F2451AA830076741C /* ForgotApi.swift */; };
+		9B3D5B422451D65F0076741C /* GetClassListByDepartmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D5B412451D65F0076741C /* GetClassListByDepartmentModel.swift */; };
 		9B44D83A244EB40900B6DEC5 /* GetStudentAttendanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B44D839244EB40900B6DEC5 /* GetStudentAttendanceModel.swift */; };
 		9B44D83D244EB42800B6DEC5 /* StudentGetAttendanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B44D83C244EB42800B6DEC5 /* StudentGetAttendanceViewModel.swift */; };
 		9B44D83F244EB4C700B6DEC5 /* TimeTableStudentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B44D83E244EB4C700B6DEC5 /* TimeTableStudentVC.swift */; };
@@ -772,6 +777,11 @@
 		9B1CDD1B2449B155003E7650 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		9B1CDD1E2449B158003E7650 /* SSBadgeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSBadgeButton.swift; sourceTree = "<group>"; };
 		9B1CDD232449B15B003E7650 /* CustomUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
+		9B3D5B35245171280076741C /* CheckOTPVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckOTPVC.swift; sourceTree = "<group>"; };
+		9B3D5B3A245177930076741C /* OTPAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPAuth.swift; sourceTree = "<group>"; };
+		9B3D5B3C24518B190076741C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9B3D5B3F2451AA830076741C /* ForgotApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotApi.swift; sourceTree = "<group>"; };
+		9B3D5B412451D65F0076741C /* GetClassListByDepartmentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetClassListByDepartmentModel.swift; sourceTree = "<group>"; };
 		9B44D839244EB40900B6DEC5 /* GetStudentAttendanceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStudentAttendanceModel.swift; sourceTree = "<group>"; };
 		9B44D83C244EB42800B6DEC5 /* StudentGetAttendanceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentGetAttendanceViewModel.swift; sourceTree = "<group>"; };
 		9B44D83E244EB4C700B6DEC5 /* TimeTableStudentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableStudentVC.swift; sourceTree = "<group>"; };
@@ -987,6 +997,7 @@
 		0C1C285D238E5A9C00F98FEC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9B3D5B412451D65F0076741C /* GetClassListByDepartmentModel.swift */,
 				0C1C285E238E5A9C00F98FEC /* ClassListModel.swift */,
 				0C1C285F238E5A9C00F98FEC /* DeleteClassModel.swift */,
 			);
@@ -3032,6 +3043,7 @@
 		2E0DCA092297E775001DC56D /* ISMS */ = {
 			isa = PBXGroup;
 			children = (
+				9B3D5B3C24518B190076741C /* GoogleService-Info.plist */,
 				9B1CDD162449B125003E7650 /* AppBase */,
 				2E8F63C9243C58E80040F9CA /* HomeWork */,
 				2E8F63BA243C589A0040F9CA /* Notes */,
@@ -3099,6 +3111,7 @@
 		2E0DCA4E2297E87B001DC56D /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				9B3D5B34245170F80076741C /* OTP */,
 				C65BF51822D3678B002F3304 /* UserRoleId */,
 				BEB79BB022A68868004275B7 /* ConfirmPassword */,
 				BEB79BAB22A68822004275B7 /* ForgotPassword */,
@@ -3559,6 +3572,7 @@
 		9B1CDD162449B125003E7650 /* AppBase */ = {
 			isa = PBXGroup;
 			children = (
+				9B3D5B392451778D0076741C /* FirebaseAuth */,
 				9B1CDD192449B14A003E7650 /* CustomClasses */,
 			);
 			path = AppBase;
@@ -3573,6 +3587,30 @@
 				9B1CDD1E2449B158003E7650 /* SSBadgeButton.swift */,
 			);
 			path = CustomClasses;
+			sourceTree = "<group>";
+		};
+		9B3D5B34245170F80076741C /* OTP */ = {
+			isa = PBXGroup;
+			children = (
+				9B3D5B35245171280076741C /* CheckOTPVC.swift */,
+			);
+			path = OTP;
+			sourceTree = "<group>";
+		};
+		9B3D5B392451778D0076741C /* FirebaseAuth */ = {
+			isa = PBXGroup;
+			children = (
+				9B3D5B3A245177930076741C /* OTPAuth.swift */,
+			);
+			path = FirebaseAuth;
+			sourceTree = "<group>";
+		};
+		9B3D5B3E2451AA680076741C /* API */ = {
+			isa = PBXGroup;
+			children = (
+				9B3D5B3F2451AA830076741C /* ForgotApi.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		9B44D838244EB40300B6DEC5 /* Model */ = {
@@ -3691,6 +3729,7 @@
 		BEB79BAB22A68822004275B7 /* ForgotPassword */ = {
 			isa = PBXGroup;
 			children = (
+				9B3D5B3E2451AA680076741C /* API */,
 				BEB79BAE22A68842004275B7 /* View */,
 				BEB79BAD22A6883A004275B7 /* ViewModel */,
 			);
@@ -4310,6 +4349,7 @@
 				2E8F63CC243C5AB90040F9CA /* Homework.storyboard in Resources */,
 				10EEEAAC239E57DC00E8485C /* Performance.storyboard in Resources */,
 				2E50E062229E47AF009E47B9 /* OpenSans-LightItalic.ttf in Resources */,
+				9B3D5B3D24518B1A0076741C /* GoogleService-Info.plist in Resources */,
 				2E50E05D229E47AF009E47B9 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				2D28B90F22B75A4A007D10F8 /* Profile.storyboard in Resources */,
 				2DB1589822C5E8E000AC6B8D /* GalleryAlert.xib in Resources */,
@@ -4489,6 +4529,7 @@
 				2E0DCA7E2297E8DC001DC56D /* UIView.swift in Sources */,
 				2DCBAA0122C0CB5D0054B3A7 /* AddSchoolAPI.swift in Sources */,
 				0C1C28C5238E5BB300F98FEC /* SubjectChapterVC.swift in Sources */,
+				9B3D5B3B245177930076741C /* OTPAuth.swift in Sources */,
 				10EEEAA3239E57DC00E8485C /* EventTableCell.swift in Sources */,
 				C65BF52422D36855002F3304 /* GetMenuFromRoleId.swift in Sources */,
 				0C7A1A1223953C6C002B5C8B /* RatingToTeacherTableViewCell.swift in Sources */,
@@ -4590,6 +4631,7 @@
 				2E3BF6EC2435D05C00A4FB22 /* CollapsibleTableViewCell.swift in Sources */,
 				2E7BE6A2244DB8920010BAAC /* SubjectListCell.swift in Sources */,
 				2D645F0222BBB685009EA9B6 /* TeacherListPresenter.swift in Sources */,
+				9B3D5B36245171280076741C /* CheckOTPVC.swift in Sources */,
 				9B1CDD252449B15B003E7650 /* CustomTextField.swift in Sources */,
 				BE06B65322A4EE70000CFCAF /* GetAllCountryModel.swift in Sources */,
 				0C1C28FE238E9CD800F98FEC /* StudentRatingTableViewCell.swift in Sources */,
@@ -4688,6 +4730,7 @@
 				2DF5642C22C252F8006F4522 /* UserAccessViewModel.swift in Sources */,
 				C61A1A832390F7140043A5D2 /* ProgramViewModel.swift in Sources */,
 				2EC88B502448337000AF60B7 /* StudentHomeWorkListVC.swift in Sources */,
+				9B3D5B422451D65F0076741C /* GetClassListByDepartmentModel.swift in Sources */,
 				0C1C28C4238E5BB300F98FEC /* SubjectChapterTableViewCell.swift in Sources */,
 				0C668588238FE346006593D5 /* AddStudentApi.swift in Sources */,
 				C680B4FE2398CE1E00675A17 /* StudentListForAttViewModel.swift in Sources */,
@@ -4823,6 +4866,7 @@
 				2E8F63CF243C60E00040F9CA /* HomeworkListVC.swift in Sources */,
 				2D645F0B22BBB983009EA9B6 /* TeacherDetailModel.swift in Sources */,
 				2D2C449622CE19EF004424D8 /* CustomTableViewPopUp.swift in Sources */,
+				9B3D5B402451AA830076741C /* ForgotApi.swift in Sources */,
 				BE356646229E538700759ACA /* WelcomeVC.swift in Sources */,
 				2DCBAA0022C0CB5D0054B3A7 /* SchoolModel.swift in Sources */,
 				BE06B65B22A54FF7000CFCAF /* BaseUIViewController.swift in Sources */,
@@ -5016,9 +5060,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.seasia.isms;
+				PRODUCT_BUNDLE_IDENTIFIER = com.seasia.berlin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = Isms_Dev_Prov;
+				PROVISIONING_PROFILE_SPECIFIER = AllSeasiaProjectsDev_5Sept2019;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/navaldeepkaur/Documents/ISMS/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -5042,9 +5086,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.seasia.isms;
+				PRODUCT_BUNDLE_IDENTIFIER = com.seasia.berlin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = Isms_Dev_Prov;
+				PROVISIONING_PROFILE_SPECIFIER = AllSeasiaProjectsDev_5Sept2019;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/navaldeepkaur/Documents/ISMS/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
