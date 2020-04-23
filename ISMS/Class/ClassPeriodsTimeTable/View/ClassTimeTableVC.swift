@@ -126,7 +126,7 @@ class ClassTimeTableVC: BaseUIViewController {
     //MARK:- Class List Dropdown
     func classListDropdownApi(){
         if checkInternetConnection(){
-            self.viewModel?.getClassListDropdown(selectId: 31, enumType: 6)
+            self.viewModel?.getClassListDropdown(selectId: 44, enumType: 6)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }

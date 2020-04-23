@@ -26,7 +26,7 @@ class SubjectWiseRatingVC: BaseUIViewController {
         self.viewModel?.attachView(viewDelegate: self)
         tableView.reloadData()
         // Do any additional setup after loading the view.
-        self.viewModel?.getSubjectWiseRating(enrollmentsId: 7, classId: 1)
+        self.viewModel?.getSubjectWiseRating(enrollmentsId: 35, classId: 44)
     }
   
     

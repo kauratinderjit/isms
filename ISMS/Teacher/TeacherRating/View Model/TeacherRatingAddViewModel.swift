@@ -90,7 +90,7 @@ class TeacherRatingAddViewModel {
         self.TeacherRatingView?.showLoader()
         
         let paramDict = ["teacherId":teacherId,"classId": classId] as [String : Any]
-        let url = ApiEndpoints.kGetSubjectListByteacherId + "?teacherId=" + "\(2)" + "&classId=" + "\(1)"
+        let url = ApiEndpoints.kGetSubjectListByteacherId + "?teacherId=" + "\(teacherId)" + "&classId=" + "\(classId)"
         TeacherRatingListAPI.sharedInstance.GetSubjectList(url: url , parameters: paramDict as [String : Any], completionResponse: { (SubjectListTeacherModel) in
             
             print("your respomnse data : ",SubjectListTeacherModel.resultData)

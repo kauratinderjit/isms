@@ -48,7 +48,7 @@ class ForgotPasswordVC: BaseUIViewController
         let backButton =  UIBarButtonItem(image: UIImage(named: kImages.KBackIcon), style: .plain, target: self, action: #selector(BackAction))
         self.navigationItem.leftBarButtonItem  = backButton
         //Corner the view and button
-        cornerButton(btn: btnNext,radius: KTextSize.KEight)
+        //cornerButton(btn: btnNext,radius: KTextSize.KEight)
         cornerView(radius: KTextSize.KEight, view: viewPassword)
         cornerView(radius: KTextSize.KEight, view: viewConfirePassword)
         //Add shadow

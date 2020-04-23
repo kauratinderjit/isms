@@ -99,7 +99,7 @@ class StudentRatingViewModel {
         self.studentRatingView?.showLoader()
         
         let paramDict = ["classid":classid,"teacherId" : teacherId] as [String : Any]
-        let url = ApiEndpoints.kGetClassSubjectsByteacherId + "?classid=" + "\(classid)" + "&teacherId=" + "\(teacherId)"
+        let url = ApiEndpoints.kGetClassSubjectsByteacherId + "?classid=" + "\(classid)" + "&teacherId=" + "\(20)"
         AddStudentRatingApi.sharedInstance.GetAddSkillList(url: url , parameters: paramDict as [String : Any], completionResponse: { (AddStudentRatingListModel) in
             
             print("your respomnse data : ",AddStudentRatingListModel.resultData)
@@ -310,8 +310,8 @@ class StudentRatingViewModel {
     func studentList(search : String?,skip : Int?,pageSize: Int?,sortColumnDir: String?,sortColumn: String?, classSubjectID : Int , classID : Int){
         self.studentRatingView?.showLoader()
         
-        let paramDict = [ "ClassId":20,
-                          "ClassSubjectId": 1] as [String : Any]
+        let paramDict = [ "ClassId":classID,
+                          "ClassSubjectId": classSubjectID] as [String : Any]
         
         StudentRatingApi.sharedInstance.GetStudentList(url: ApiEndpoints.kStudentRating, parameters: paramDict as [String : Any], completionResponse: { (StudentRatingListModel) in
             

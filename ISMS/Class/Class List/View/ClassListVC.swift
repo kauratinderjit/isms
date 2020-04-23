@@ -14,7 +14,7 @@ class ClassListVC: BaseUIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     //Veriables
-    var arr_Classlist = [GetClassListResultData]()
+    var arr_Classlist = [GetClassListByDeptResultData]()
     var viewModel : ClassListViewModel?
     var selectedClassId : Int?
     var selectedClassArrIndex : Int?
@@ -25,6 +25,7 @@ class ClassListVC: BaseUIViewController {
     var pageSize = KIntegerConstants.kInt10
     var pointNow:CGPoint!
     var isFetching:Bool?
+    var HODdepartmentId = UserDefaultExtensionModel.shared.HODDepartmentId
      public var lstActionAccess : GetMenuFromRoleIdModel.ResultData?
     
     override func viewDidLoad() {
@@ -39,7 +40,7 @@ class ClassListVC: BaseUIViewController {
         super.viewWillAppear(true)
         if checkInternetConnection(){
             self.viewModel?.isSearching = false
-            self.viewModel?.classList(searchText: "", pageSize: pageSize, filterBy: 0, skip: KIntegerConstants.kInt0)
+            self.viewModel?.classList(departmentId: HODdepartmentId)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
@@ -155,4 +156,123 @@ extension ClassListVC : OKAlertViewDelegate{
             }
         }
     }
+}
+//MARK:- Custom Yes No Alert Delegate
+extension ClassListVC : YesNoAlertViewDelegate{
+    
+    func yesBtnAction() {
+        yesNoAlertView.removeFromSuperview()
+        if self.checkInternetConnection(){
+            if let classId = self.selectedClassId{
+                self.viewModel?.deleteClass(classId: classId)
+            }else{
+                CommonFunctions.sharedmanagerCommon.println(object: "Delete Class id is nil")
+            }
+        }else{
+            self.showAlert(alert: Alerts.kNoInternetConnection)
+        }
+    }
+    func noBtnAction() {
+        yesNoAlertView.removeFromSuperview()
+    }
+}
+
+//MARK:- Class Deleagate
+extension ClassListVC : ClassListDelegate{
+    func unauthorizedUser() {
+        isUnauthorizedUser = true
+        
+    }
+    func classDeleteDidSuccess(data: DeleteClassModel) {
+        isClassDeleteSuccessfully = true
+    }
+    func classDeleteDidfailed() {
+        isClassDeleteSuccessfully = false
+    }
+    func classListDidSuccess(data: [GetClassListByDeptResultData]?) {
+        isFetching = true
+        if data != nil{
+            if data?.count ?? 0 > 0{
+                for value in data!{
+                    let containsSameValue = arr_Classlist.contains(where: {$0.classId == value.classId})
+                    if containsSameValue == false{
+                        arr_Classlist.append(value)
+                    }
+                    self.tblViewCenterLabel(tblView: tableView, lblText: "", hide: true)
+                }
+            }else{
+                CommonFunctions.sharedmanagerCommon.println(object: "Zero")
+            }
+        }else{
+            CommonFunctions.sharedmanagerCommon.println(object: "Nil")
+        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    func classListDidFailed() {
+        self.tableView.reloadData()
+        tblViewCenterLabel(tblView: tableView, lblText: KConstants.kPleaseTryAgain, hide: false)
+    }
+}
+
+//MARK:- UISearchController Bar Delegates
+extension ClassListVC : NavigationSearchBarDelegate{
+    
+    func textDidChange(searchBar: UISearchBar, searchText: String) {
+        viewModel?.isSearching = true
+        arr_Classlist.removeAll()
+        //        self.viewModel?.classList(searchText: searchText, pageSize: KIntegerConstants.kInt10, filterBy: 0, skip: KIntegerConstants.kInt0)
+        
+    }
+    
+    func cancelButtonPress(uiSearchBar: UISearchBar) {
+        viewModel?.isSearching = false
+        DispatchQueue.main.async {
+            self.arr_Classlist.removeAll()
+            //            self.viewModel?.classList(searchText: "", pageSize: KIntegerConstants.kInt10, filterBy: 0, skip: KIntegerConstants.kInt0)
+        }
+    }
+}
+
+//MARK:- Scroll View delegates
+extension ClassListVC : UIScrollViewDelegate{
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        //        if(velocity.y>0) {
+        //            //Code will work without the animation block.I am using animation block incase if you want to set any delay to it.
+        //            UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
+        //                self.navigationController?.setNavigationBarHidden(true, animated: true)
+        //            }, completion: nil)
+        //
+        //        } else {
+        //            UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
+        //                self.navigationController?.setNavigationBarHidden(false, animated: true)
+        //            }, completion: nil)
+        //        }
+        
+        if (tableView.contentOffset.y < pointNow.y)
+        {
+            CommonFunctions.sharedmanagerCommon.println(object: "Down scroll view")
+            isScrolling = true
+        }
+        else if (tableView.contentOffset.y + tableView.frame.size.height >= tableView.contentSize.height)
+        {
+            isScrolling = true
+            if (isFetching == true)
+            {
+                skip = skip + KIntegerConstants.kInt10
+                isFetching = false
+                //                self.viewModel?.classList(searchText: "", pageSize: pageSize, filterBy: 0, skip: skip)
+            }
+        }else{
+            CommonFunctions.sharedmanagerCommon.println(object: "Scrolling")
+        }
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        pointNow = scrollView.contentOffset
+    }
+    
 }

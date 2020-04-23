@@ -60,7 +60,7 @@ class StudentRatingVC: BaseUIViewController {
         }
         if checkInternetConnection(){
 //            self.viewModel?.classList(searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: KIntegerConstants.kInt0)
-            self.viewModel?.GetSkillList(id : userRoleParticularId , enumType : 17)
+            self.viewModel?.GetSkillList(id : 44 , enumType : 6)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
@@ -199,7 +199,8 @@ extension StudentRatingVC : StudentRatingDelegate {
                 self.arrSubjectList1 = data1
                 if let subjectName = arrSubjectList1[0].studentName{
                     txtfieldSubject.text = subjectName
-                    self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID: arrSubjectList1[0].studentID ?? 0, classID: RegisterClassDataModel.sharedInstance?.subjectID ?? 0 )
+                    self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID: 96, classID: RegisterClassDataModel.sharedInstance?.subjectID ?? 0 )
+//                    self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID: arrSubjectList1[0].studentID ?? 0, classID: RegisterClassDataModel.sharedInstance?.subjectID ?? 0 )
                     //                    RegisterClassDataModel.sharedInstance?.classID = arrSkillList[0].studentID
                     
                 }
@@ -312,7 +313,8 @@ extension StudentRatingVC : SharedUIPickerDelegate{
                 }
             }else if isSubjectSelected == true{
                 if let index = selectedClassArrIndex {
-                    self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID:arrSubjectList1[index].studentID ?? 0, classID:  RegisterClassDataModel.sharedInstance?.subjectID ?? 0 )
+                    self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID:96, classID:  RegisterClassDataModel.sharedInstance?.subjectID ?? 0 )
+//                    self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID:arrSubjectList1[index].studentID ?? 0, classID:  RegisterClassDataModel.sharedInstance?.subjectID ?? 0 )
                 }
             }
         }else{
