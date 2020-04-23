@@ -327,6 +327,8 @@
 		5CB7F1EE8CC8A74A757048E5 /* Pods_ISMS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C888007208C30DDC7E394E /* Pods_ISMS.framework */; };
 		63DA9B7336B3E8F878D62AF1 /* Pods_ISMSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60DEE33230370FAA807BA760 /* Pods_ISMSTests.framework */; };
 		8141B1AABFA2CECDE13474E9 /* Pods_ISMSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8DA8958D4FCB9233DC4FE1E /* Pods_ISMSUITests.framework */; };
+		9190777F2451611B00ED8143 /* GetClassListByDepartmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9190777E2451611B00ED8143 /* GetClassListByDepartmentModel.swift */; };
+		9190778324517C8E00ED8143 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9190778224517C8D00ED8143 /* Extension.swift */; };
 		9B1CDD242449B15B003E7650 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CDD1A2449B155003E7650 /* CustomButton.swift */; };
 		9B1CDD252449B15B003E7650 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CDD1B2449B155003E7650 /* CustomTextField.swift */; };
 		9B1CDD282449B15B003E7650 /* SSBadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CDD1E2449B158003E7650 /* SSBadgeButton.swift */; };
@@ -768,6 +770,8 @@
 		60DEE33230370FAA807BA760 /* Pods_ISMSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISMSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A2B5045127C6AFC8ED49002 /* Pods-ISMSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISMSTests.release.xcconfig"; path = "Target Support Files/Pods-ISMSTests/Pods-ISMSTests.release.xcconfig"; sourceTree = "<group>"; };
 		87766E9D3C767F134280AD94 /* Pods-ISMSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISMSUITests.debug.xcconfig"; path = "Target Support Files/Pods-ISMSUITests/Pods-ISMSUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9190777E2451611B00ED8143 /* GetClassListByDepartmentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetClassListByDepartmentModel.swift; sourceTree = "<group>"; };
+		9190778224517C8D00ED8143 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		9B1CDD1A2449B155003E7650 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		9B1CDD1B2449B155003E7650 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		9B1CDD1E2449B158003E7650 /* SSBadgeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSBadgeButton.swift; sourceTree = "<group>"; };
@@ -987,6 +991,7 @@
 		0C1C285D238E5A9C00F98FEC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9190777E2451611B00ED8143 /* GetClassListByDepartmentModel.swift */,
 				0C1C285E238E5A9C00F98FEC /* ClassListModel.swift */,
 				0C1C285F238E5A9C00F98FEC /* DeleteClassModel.swift */,
 			);
@@ -3269,6 +3274,7 @@
 				E036A671238FAE4700BDC9D0 /* ExamScheduleTableViewCell.swift */,
 				E036A673238FAE4800BDC9D0 /* ExamScheduleVC.swift */,
 				2E3BF6F524360C4C00A4FB22 /* AddEventVC.swift */,
+				9190778224517C8D00ED8143 /* Extension.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4617,6 +4623,7 @@
 				10EEEAA9239E57DC00E8485C /* PerformanceGraphVC.swift in Sources */,
 				2DCBA9FD22C0CB5D0054B3A7 /* MyCustomView.swift in Sources */,
 				0C5A1A8E2399292D0039CB39 /* TeacherSubjectSkillRatingViewModel.swift in Sources */,
+				9190778324517C8E00ED8143 /* Extension.swift in Sources */,
 				2D543DE222C6413200E55BFA /* OkAlert.swift in Sources */,
 				0C1C2882238E5A9D00F98FEC /* ClassListModel.swift in Sources */,
 				2DACBC7F22BA03AC00EFE5C4 /* HODListViewModel.swift in Sources */,
@@ -4640,6 +4647,7 @@
 				9B1CDD242449B15B003E7650 /* CustomButton.swift in Sources */,
 				0C668581238FE26E006593D5 /* AddStudentRatingVC.swift in Sources */,
 				10EEEA66239E509900E8485C /* PopUpTableViewCell.swift in Sources */,
+				9190777F2451611B00ED8143 /* GetClassListByDepartmentModel.swift in Sources */,
 				2D645F0D22BBBB67009EA9B6 /* AddTeacherModel.swift in Sources */,
 				C683DB0D22E072ED00011212 /* GetPeriodList.swift in Sources */,
 				0C1C28C9238E5BB300F98FEC /* GetSubjectDetail.swift in Sources */,
@@ -5019,7 +5027,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.seasia.isms;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = Isms_Dev_Prov;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/navaldeepkaur/Documents/ISMS/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/mohitsharma/Documents/Mohit Data/iSMS_CLONE/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -5045,7 +5053,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.seasia.isms;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = Isms_Dev_Prov;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/navaldeepkaur/Documents/ISMS/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/mohitsharma/Documents/Mohit Data/iSMS_CLONE/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
