@@ -13,6 +13,7 @@ protocol HomeViewModelDelegate:class {
     func didSuccessMenuAccordingRole(data: GetMenuFromRoleIdModel)
     func userUnauthorize()
     func hodData(data: homeResultData)
+    func AdminData(data: homeAdminResultData)
 }
 
 
@@ -128,4 +129,33 @@ class HomeViewModel{
     }
     
     
+    //MARK:- Home  Service
+     func getDataForAdmin(userId: Int?){
+         self.homeView?.showLoader()
+         var postDict = [String:Any]()
+         postDict[KApiParameters.KGetPagesByUserIdIdintifier.kUserId] = userId
+         LoginApi.sharedmanagerAuth.getdataAdmin(url: "api/User/DashboardAdmin?UserId=\(String(describing: userId!))" , parameters: postDict, completionResponse: { (getMenuFromRoleIdModel) in
+             
+             switch getMenuFromRoleIdModel.statusCode {
+             case KStatusCode.kStatusCode200:
+                 self.homeView?.hideLoader()
+                 self.delegate?.AdminData(data: getMenuFromRoleIdModel.resultData!)
+             case KStatusCode.kStatusCode401:
+                 self.homeView?.showAlert(alert: getMenuFromRoleIdModel.message ?? "Something went wrong")
+                 self.delegate?.userUnauthorize()
+             default:
+                 self.homeView?.hideLoader()
+                 self.homeView?.showAlert(alert: getMenuFromRoleIdModel.message ?? "Something went wrong")
+                 CommonFunctions.sharedmanagerCommon.println(object: "Get Menu using Id APi status change")
+             }
+             
+         }, completionnilResponse: { (nilResponseError) in
+             self.homeView?.hideLoader()
+             self.homeView?.showAlert(alert: nilResponseError ?? "Something went wrong")
+         }) { (error) in
+             self.homeView?.hideLoader()
+                 self.homeView?.showAlert(alert: error?.localizedDescription ?? "Something went wrong")
+         }
+     }
+     
 }

@@ -45,7 +45,7 @@
                                                         <constraint firstAttribute="width" constant="136" id="fxq-DM-b3y"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="0ez-kf-jpF">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dummyProfile" translatesAutoresizingMaskIntoConstraints="NO" id="0ez-kf-jpF">
                                                     <rect key="frame" x="14" y="47.5" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="Lbs-ZQ-WmU"/>
@@ -700,7 +700,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Class" width="100" height="100"/>
+        <image name="Class" width="25" height="25"/>
         <image name="RectanglebackIcon" width="135" height="69"/>
         <image name="Teachers" width="77" height="108.5"/>
         <image name="classSideMenu" width="27" height="27"/>

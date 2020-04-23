@@ -59,8 +59,8 @@ class AddSchoolViewController: BaseUIViewController {
     @IBOutlet weak var viewBlurr: UIView!
     @IBOutlet weak var viewtableView: UIView!
     @IBOutlet weak var viewAffiliationBoard: UIView!
-    @IBOutlet weak var btnRadioCollege: UIButton!
-    @IBOutlet weak var btnRadioSchool: UIButton!
+//    @IBOutlet weak var btnRadioCollege: UIButton!
+//    @IBOutlet weak var btnRadioSchool: UIButton!
     @IBOutlet weak var viewSchoolCollege: UIView!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var collectiviewHeight: NSLayoutConstraint!
@@ -73,7 +73,7 @@ class AddSchoolViewController: BaseUIViewController {
     
     let formatter: DateFormatter = {
                let formatter = DateFormatter()
-               formatter.dateFormat = "dd/MM/yyyy"
+               formatter.dateFormat = "yyyy-MM-dd"
                return formatter
        }()
      
@@ -330,16 +330,16 @@ extension AddSchoolViewController: AddSchoolDelegate {
                     self.collectonView.reloadData()
                 }
             }
-            if resultdata.establishType == 2{
-                //selected radio college
-                self.btnRadioCollege.setImage(UIImage(named:"radioSelected"), for: .normal)
-                self.btnRadioSchool.setImage(UIImage(named:"radioUnSelected"), for: .normal)
-            }
-            else{
-                //selected radio school
-                self.btnRadioSchool.setImage(UIImage(named:"radioSelected"), for: .normal)
-                self.btnRadioCollege.setImage(UIImage(named:"radioUnSelected"), for: .normal)
-            }
+//            if resultdata.establishType == 2{
+//                //selected radio college
+//                self.btnRadioCollege.setImage(UIImage(named:"radioSelected"), for: .normal)
+//                self.btnRadioSchool.setImage(UIImage(named:"radioUnSelected"), for: .normal)
+//            }
+//            else{
+//                //selected radio school
+//                self.btnRadioSchool.setImage(UIImage(named:"radioSelected"), for: .normal)
+//                self.btnRadioCollege.setImage(UIImage(named:"radioUnSelected"), for: .normal)
+//            }
             
             if let url = schoolData?.resultData?.logo{
                        imageURL = URL(string: url)

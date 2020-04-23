@@ -117,6 +117,7 @@ class HomeVC: BaseUIViewController {
             tblViewListing.isHidden = true
         }
         else if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Admin") {
+             self.homeViewModel?.getDataForAdmin(userId: UserDefaultExtensionModel.shared.currentUserId)
                    self.title = "Admin's Dashboard"
             tblViewListing.isHidden = true
 
@@ -145,14 +146,58 @@ class HomeVC: BaseUIViewController {
 //}
 
 extension HomeVC : HomeViewModelDelegate{
+    func AdminData(data: homeAdminResultData) {
+         lblName.text = data.AdminName
+               lblDept.text = (data.EmailId ?? "")
+         var strClass : String = "Class"
+         var strTeacher : String = "Teacher"
+         var strHOD : String = "HOD"
+        
+        if data.NoOfClasses! > 1 {
+            strClass = "Classes"
+        }
+        if data.NoOfTeachers! > 1 {
+                  strTeacher = "Teachers"
+              }
+       if data.NoOfHODs! > 1 {
+                        strHOD = "HODs"
+                    }
+              
+               lblName1.text = "\(String(describing: data.NoOfClasses!))" + " " + strClass
+               lblName2.text =  "\(String(describing: data.NoOfTeachers!))" + " " + strTeacher
+               lblName3.text =  "\(String(describing: data.NoOfHODs!))" + " " + strHOD
+               
+               if data.lstEvent?.count ?? 0 > 0 {
+               arrEventlist = data.lstEvent
+               tblViewListing.reloadData()
+               }
+               else{
+                   tblViewListing.isHidden = true
+               }
+    }
+    
     func hodData(data: homeResultData) {
         
         lblName.text = data.HodName
         lblDept.text = (data.DepartmentName ?? "")
+        
+        var strClass : String = "Class"
+        var strTeacher : String = "Teacher"
+        var strStudent : String = "Student"
+               
+               if data.NumberofClasses! > 1 {
+                   strClass = "Classes"
+               }
+               if data.NumberofTeacher! > 1 {
+                         strTeacher = "Teachers"
+                     }
+              if data.NumberofStudent! > 1 {
+                     strStudent = "Students"
+                           }
    
-        lblName1.text = "\(String(describing: data.NumberofClasses!))" + " " + "Class"
-        lblName2.text =  "\(String(describing: data.NumberofTeacher!))" + " " + "Teacher"
-        lblName3.text =  "\(String(describing: data.NumberofStudent!))" + " " + "Student"
+        lblName1.text = "\(String(describing: data.NumberofClasses!))" + " " + strClass
+        lblName2.text =  "\(String(describing: data.NumberofTeacher!))" + " " + strTeacher
+        lblName3.text =  "\(String(describing: data.NumberofStudent!))" + " " + strStudent
         
         if data.lstEvent?.count ?? 0 > 0 {
         arrEventlist = data.lstEvent
