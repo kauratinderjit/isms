@@ -130,4 +130,6 @@ enum UserDefaultKeys : String{
     case userName = "userName"
     case userProfile = "userProfile"
     
+    case HODDepartmentName = "DepartmentName"
+    
 }
