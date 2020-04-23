@@ -59,8 +59,8 @@ class AddSchoolViewController: BaseUIViewController {
     @IBOutlet weak var viewBlurr: UIView!
     @IBOutlet weak var viewtableView: UIView!
     @IBOutlet weak var viewAffiliationBoard: UIView!
-    @IBOutlet weak var btnRadioCollege: UIButton!
-    @IBOutlet weak var btnRadioSchool: UIButton!
+//    @IBOutlet weak var btnRadioCollege: UIButton!
+//    @IBOutlet weak var btnRadioSchool: UIButton!
     @IBOutlet weak var viewSchoolCollege: UIView!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var collectiviewHeight: NSLayoutConstraint!
@@ -70,6 +70,15 @@ class AddSchoolViewController: BaseUIViewController {
     @IBOutlet weak var SchoolCollegeView: UIView!
     @IBOutlet weak var ContactDetailsView: UIView!
     @IBOutlet weak var txtfieldUploadCerts: UITextField!
+    
+    let formatter: DateFormatter = {
+               let formatter = DateFormatter()
+               formatter.dateFormat = "yyyy-MM-dd"
+               return formatter
+       }()
+     
+     let dateFormatter = DateFormatter()
+    
    
     //MARK:- View functions
     override func viewDidLoad() {
@@ -275,7 +284,13 @@ extension AddSchoolViewController: AddSchoolDelegate {
                 
             }
             
-            txtfield_yearOfEstablishment.text = resultdata.establishDate
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+
+                  if let dateFinal =  dateFormatter.date(from: resultdata.establishDate ?? "") {
+                             let dd = formatter.string(from: dateFinal)
+                            txtfield_yearOfEstablishment.text = dd
+                         }
+            
             txtfileldSchoolCollege.text = resultdata.typeName
             //setImage
             if let url_str = resultdata.logo{
@@ -315,16 +330,16 @@ extension AddSchoolViewController: AddSchoolDelegate {
                     self.collectonView.reloadData()
                 }
             }
-            if resultdata.establishType == 2{
-                //selected radio college
-                self.btnRadioCollege.setImage(UIImage(named:"radioSelected"), for: .normal)
-                self.btnRadioSchool.setImage(UIImage(named:"radioUnSelected"), for: .normal)
-            }
-            else{
-                //selected radio school
-                self.btnRadioSchool.setImage(UIImage(named:"radioSelected"), for: .normal)
-                self.btnRadioCollege.setImage(UIImage(named:"radioUnSelected"), for: .normal)
-            }
+//            if resultdata.establishType == 2{
+//                //selected radio college
+//                self.btnRadioCollege.setImage(UIImage(named:"radioSelected"), for: .normal)
+//                self.btnRadioSchool.setImage(UIImage(named:"radioUnSelected"), for: .normal)
+//            }
+//            else{
+//                //selected radio school
+//                self.btnRadioSchool.setImage(UIImage(named:"radioSelected"), for: .normal)
+//                self.btnRadioCollege.setImage(UIImage(named:"radioUnSelected"), for: .normal)
+//            }
             
             if let url = schoolData?.resultData?.logo{
                        imageURL = URL(string: url)

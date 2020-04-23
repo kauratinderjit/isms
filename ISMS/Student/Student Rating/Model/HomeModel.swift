@@ -82,3 +82,64 @@ struct ListData: Mappable {
     }
     
 }
+
+class homeAdminModel : Mappable{
+    
+    var message : String?
+    var status : Bool?
+    var statusCode :  Int?
+    var resultData : homeAdminResultData?
+    var resourceType : String?
+    
+    
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        message <- map[KApiParameters.KCommonResponsePerameters.kMessage]
+        status <- map[KApiParameters.KCommonResponsePerameters.kStatus]
+        statusCode <- map[KApiParameters.KCommonResponsePerameters.kStatusCode]
+        resultData <- map[KApiParameters.KCommonResponsePerameters.kResultData]
+        resourceType <- map[KApiParameters.KCommonResponsePerameters.kResourceType]
+    }
+    
+}
+
+struct homeAdminResultData: Mappable {
+    
+    var Address : String?
+    var AdminName : String?
+    var EmailId : String?
+    var NoOfClasses : Int?
+    var NoOfHODs : Int?
+    var NoOfTeachers : Int?
+    var PhoneNo : Int?
+    var lstEvent : [ListData]?
+    var lstOfClasses : [ListData]?
+    var lstOfHODs : [ListData]?
+    var lstOfTeachers : [ListData]?
+    
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        
+        Address <- map["Address"]
+        AdminName <- map["AdminName"]
+        EmailId <- map["EmailId"]
+        NoOfClasses <- map["NoOfClasses"]
+        NoOfHODs <- map["NoOfHODs"]
+        NoOfTeachers <- map["NoOfTeachers"]
+        PhoneNo <- map["PhoneNo"]
+        lstEvent <- map["lstEvent"]
+        lstOfClasses <- map["lstOfClasses"]
+        lstOfHODs <- map["lstOfHODs"]
+        lstOfTeachers <- map["lstOfTeachers"]
+        
+
+    }
+    
+}
+

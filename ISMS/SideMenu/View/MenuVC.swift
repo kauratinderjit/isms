@@ -105,12 +105,12 @@ class MenuVC: BaseUIViewController {
                                 self.imgViewProfile.image = img
                            }
                             else{
-                                self.imgViewProfile.image = UIImage.init(named: "profile")
+                                self.imgViewProfile.image = UIImage.init(named: "dummyProfile")
                            }
             }
         }
         else{
-           self.imgViewProfile.image = UIImage.init(named: "profile")
+           self.imgViewProfile.image = UIImage.init(named: "dummyProfile")
         }
     }
     
