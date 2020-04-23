@@ -238,6 +238,7 @@ class HODApi{
     func PhoneEmailVerify(url : String,parameters: [String : Any]?,completionResponse:  @escaping (GetDetailByPhoneEmailModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
         
         let urlCmplete = BaseUrl.kBaseURL+url
+        print(urlCmplete)
         var accessTokken = ""
         if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String
         {
