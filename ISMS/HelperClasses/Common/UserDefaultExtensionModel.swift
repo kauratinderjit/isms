@@ -153,4 +153,17 @@ class UserDefaultExtensionModel : NSObject{
         }
     }
     
+   
+    
+    var HODDepartmentName : String{
+        get {
+            let HODDepartmentName = UserDefaults.standard.string(forKey: UserDefaultKeys.HODDepartmentName.rawValue) ?? ""
+            return HODDepartmentName
+        }
+        set{
+            UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.HODDepartmentName.rawValue)
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
 }
