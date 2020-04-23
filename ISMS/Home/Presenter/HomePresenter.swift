@@ -104,7 +104,7 @@ class HomeViewModel{
         self.homeView?.showLoader()
         var postDict = [String:Any]()
         postDict[KApiParameters.KGetPagesByUserIdIdintifier.kUserId] = userId
-        LoginApi.sharedmanagerAuth.getdata(url: "api/Institute/DashboardHod?UserId=\(String(describing: userId!))" , parameters: postDict, completionResponse: { (getMenuFromRoleIdModel) in
+        LoginApi.sharedmanagerAuth.getdata(url: "api/User/DashboardHod?UserId=\(String(describing: userId!))" , parameters: postDict, completionResponse: { (getMenuFromRoleIdModel) in
             
             switch getMenuFromRoleIdModel.statusCode {
             case KStatusCode.kStatusCode200:

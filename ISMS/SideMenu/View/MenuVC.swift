@@ -160,7 +160,7 @@ extension MenuVC : UITableViewDelegate{
             
        
      
-            case "ManageDepartment ":
+            case "ManageDepartment":
                 
             let storyboard = UIStoryboard.init(name: KStoryBoards.kDepartment, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: KStoryBoards.KDepartMentListIdentifiers.kDepartmentListVC) as? DepartmentListVC
@@ -291,13 +291,13 @@ extension MenuVC : UITableViewDelegate{
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
-        case "ManageInstitute":
+        case "MangeInstitue":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kSchool, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "AddSchoolVC") as? AddSchoolViewController
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
-        case "ManageHOD":
+        case "ManageHod":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kHOD, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "HODListVC") as? HODListVC
             let frontVC = revealViewController().frontViewController as? UINavigationController
@@ -472,7 +472,7 @@ extension MenuVC : UITableViewDelegate{
             frontVC?.pushViewController(vc, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
              break
-        case "Logout":
+        case "LogOut":
             initializeCustomYesNoAlert(self.view, isHideBlurView: true)
             self.yesNoAlertView.delegate = self
             yesNoAlertView.lblResponseDetailMessage.text = Alerts.kLogOutAlert
