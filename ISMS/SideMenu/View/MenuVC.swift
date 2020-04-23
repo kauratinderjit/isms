@@ -332,11 +332,23 @@ extension MenuVC : UITableViewDelegate{
             break
             
             case "ManageCalender":
-                    let storyboard = UIStoryboard.init(name: KStoryBoards.kCalender, bundle: nil)
-                    let vc = storyboard.instantiateViewController(withIdentifier: "ExamScheduleVC") as? ExamScheduleVC
-                    let frontVC = revealViewController().frontViewController as? UINavigationController
-                    frontVC?.pushViewController(vc!, animated: false)
-                    revealViewController().pushFrontViewController(frontVC, animated: true)
+                
+                
+                //mohit
+                  //  let storyboard = UIStoryboard.init(name: KStoryBoards.kCalender, bundle: nil)
+                  //  let vc = storyboard.instantiateViewController(withIdentifier: "ExamScheduleVC") as? ExamScheduleVC
+                  //  let frontVC = revealViewController().frontViewController as? UINavigationController
+                  //  frontVC?.pushViewController(vc!, animated: false)
+                  //  revealViewController().pushFrontViewController(frontVC, animated: true)
+                
+                
+                let storyboard = UIStoryboard.init(name: KStoryBoards.kCalender, bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "EventsPagerVC") as? EventsPagerVC
+                let frontVC = revealViewController().frontViewController as? UINavigationController
+                frontVC?.pushViewController(vc!, animated: false)
+                revealViewController().pushFrontViewController(frontVC, animated: true)
+                    
+                    
                     break
             
         case "ViewCalendar&Events":

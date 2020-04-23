@@ -18,12 +18,44 @@
             endingLineNumber = "200"
             landmarkName = "actionbtnDone(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FBB2A602-3987-46F4-98BA-53DCA35B7C01 - 80a6b86d058bf250"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ISMS.AddEventVC.actionbtnDone(__C.UIButton) -&gt; ()"
+                  moduleName = "ISMS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mohitsharma/Documents/Mohit%20Data/iSMS_CLONE/ISMS/GurleenStoryboard/CalendarAndEvents/View/AddEventVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "200"
+                  endingLineNumber = "200"
+                  offsetFromSymbolStart = "756">
+               </Location>
+               <Location
+                  uuid = "FBB2A602-3987-46F4-98BA-53DCA35B7C01 - fdcefb1641c34c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in ISMS.AddEventVC.actionbtnDone(__C.UIButton) -&gt; ()"
+                  moduleName = "ISMS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mohitsharma/Documents/Mohit%20Data/iSMS_CLONE/ISMS/GurleenStoryboard/CalendarAndEvents/View/AddEventVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "201"
+                  endingLineNumber = "201"
+                  offsetFromSymbolStart = "124">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "721B0048-34E4-46D9-BF8A-843F09EC4B9C"
+            uuid = "D8AE17DC-3365-44EB-A9BC-51E9794C4CC1"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -33,22 +65,6 @@
             startingLineNumber = "87"
             endingLineNumber = "87"
             landmarkName = "addUpdateEvent(eventId:title:description:startTime:endTime:evntStartDate:evntEndDate:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "DDB2F80E-E66E-49E1-9DFA-451D8E10FAAB"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ISMS/GurleenStoryboard/CalendarAndEvents/View/AddEventVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
-            landmarkName = "setView()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

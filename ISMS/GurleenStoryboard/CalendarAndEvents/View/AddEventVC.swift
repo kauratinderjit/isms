@@ -36,6 +36,7 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
     var approach = "date"
     
     var datePicker = UIDatePicker()
+    var datePickerStartDate = UIDatePicker()
     var datePickerEndDate = UIDatePicker()
     var datePickerStartTime = UIDatePicker()
     
@@ -102,7 +103,7 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
                 let dateObj = localDateFormatter2.date(from: editEventModel?.StrStartTime ?? "")
                 print("\(localDateFormatter.string(from: dateObj!))")
                 
-                self.tfEventDate.text = "\(localDateFormatter.string(from: dateObj!))"
+               // self.tfEventDate.text = "\(localDateFormatter.string(from: dateObj!))"
                 
                 //  lblTime.text = "\(localDateFormatter.string(from: dateObj!))"
                 

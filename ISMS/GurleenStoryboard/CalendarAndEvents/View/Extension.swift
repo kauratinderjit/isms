@@ -15,7 +15,7 @@ extension AddEventVC
     func showDatePickerEventDate()
     {
         //Formate Date
-        self.datePicker = UIDatePicker()
+        self.datePickerStartDate = UIDatePicker()
         
         let calendar = Calendar(identifier: .gregorian)
         let currentDate = Date()
@@ -23,10 +23,10 @@ extension AddEventVC
         components.calendar = calendar
        // let maxDate = calendar.date(byAdding: components, to: currentDate)!
         let minDate = calendar.date(byAdding: components, to: currentDate)!
-        datePicker.minimumDate = minDate
+        datePickerStartDate.minimumDate = minDate
        // datePicker.maximumDate = maxDate
         
-        self.datePicker.datePickerMode = .date
+        self.datePickerStartDate.datePickerMode = .date
         
         //ToolBar
         let toolbar = UIToolbar();
@@ -38,7 +38,7 @@ extension AddEventVC
         
         toolbar.setItems([cancelButton,spaceButton,doneButton], animated: false)
         self.tfEventDate.inputAccessoryView = toolbar
-        self.tfEventDate.inputView = datePicker
+        self.tfEventDate.inputView = datePickerStartDate
         
     }
     
@@ -116,7 +116,7 @@ extension AddEventVC
     {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
-        self.tfEventDate.text = formatter.string(from: datePicker.date)
+        self.tfEventDate.text = formatter.string(from: datePickerStartDate.date)
         self.view.endEditing(true)
     }
     @objc func donedatePickerDateEnd()

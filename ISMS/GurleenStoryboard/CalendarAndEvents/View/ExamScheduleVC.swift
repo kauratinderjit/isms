@@ -8,6 +8,8 @@
 
 import UIKit
 
+var arrEventlistGlobal = [EventScheduleListResultData]()
+
 class ExamScheduleVC: BaseUIViewController {
     
     var viewModel     : EventScheduleViewModel?
@@ -203,6 +205,7 @@ extension ExamScheduleVC : EventScheduleDelegate {
         
         if array.count > 0 {
             
+            arrEventlistGlobal = array
             arrEventlist = array
             tableView.reloadData()
         }

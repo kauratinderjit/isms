@@ -327,6 +327,7 @@
 		5CB7F1EE8CC8A74A757048E5 /* Pods_ISMS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C888007208C30DDC7E394E /* Pods_ISMS.framework */; };
 		63DA9B7336B3E8F878D62AF1 /* Pods_ISMSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60DEE33230370FAA807BA760 /* Pods_ISMSTests.framework */; };
 		8141B1AABFA2CECDE13474E9 /* Pods_ISMSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8DA8958D4FCB9233DC4FE1E /* Pods_ISMSUITests.framework */; };
+		9160CC1C24519DF6008316EF /* EventsPagerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9160CC1B24519DF6008316EF /* EventsPagerVC.swift */; };
 		9190777F2451611B00ED8143 /* GetClassListByDepartmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9190777E2451611B00ED8143 /* GetClassListByDepartmentModel.swift */; };
 		9190778324517C8E00ED8143 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9190778224517C8D00ED8143 /* Extension.swift */; };
 		9B1CDD242449B15B003E7650 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CDD1A2449B155003E7650 /* CustomButton.swift */; };
@@ -770,6 +771,7 @@
 		60DEE33230370FAA807BA760 /* Pods_ISMSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISMSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A2B5045127C6AFC8ED49002 /* Pods-ISMSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISMSTests.release.xcconfig"; path = "Target Support Files/Pods-ISMSTests/Pods-ISMSTests.release.xcconfig"; sourceTree = "<group>"; };
 		87766E9D3C767F134280AD94 /* Pods-ISMSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISMSUITests.debug.xcconfig"; path = "Target Support Files/Pods-ISMSUITests/Pods-ISMSUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9160CC1B24519DF6008316EF /* EventsPagerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPagerVC.swift; sourceTree = "<group>"; };
 		9190777E2451611B00ED8143 /* GetClassListByDepartmentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetClassListByDepartmentModel.swift; sourceTree = "<group>"; };
 		9190778224517C8D00ED8143 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		9B1CDD1A2449B155003E7650 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -3270,6 +3272,7 @@
 		2E5CD438243798EA0060D601 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9160CC1A24519DCB008316EF /* Pager */,
 				E036A672238FAE4700BDC9D0 /* CalendarEventVC.swift */,
 				E036A671238FAE4700BDC9D0 /* ExamScheduleTableViewCell.swift */,
 				E036A673238FAE4800BDC9D0 /* ExamScheduleVC.swift */,
@@ -3549,6 +3552,14 @@
 				2EC9AFC422A7CB77007E2362 /* AddDepartmentVC.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		9160CC1A24519DCB008316EF /* Pager */ = {
+			isa = PBXGroup;
+			children = (
+				9160CC1B24519DF6008316EF /* EventsPagerVC.swift */,
+			);
+			path = Pager;
 			sourceTree = "<group>";
 		};
 		928D40D656F5A3A2B94597EC /* Frameworks */ = {
@@ -4603,6 +4614,7 @@
 				0C55C2D823967D880016CC23 /* TeacherRatingTableViewCell.swift in Sources */,
 				2D28B93A22B7BAB8007D10F8 /* DepartmentTableViewCell.swift in Sources */,
 				0C5A1A782398CE560039CB39 /* SubjectSkillRatingVC.swift in Sources */,
+				9160CC1C24519DF6008316EF /* EventsPagerVC.swift in Sources */,
 				103091B1239E298F003DA163 /* ClassTimeTabelCollectionViewLayout.swift in Sources */,
 				2D28B93422B7B747007D10F8 /* DepartmentListViewModel.swift in Sources */,
 				BE356648229E694000759ACA /* ForgotPasswordVC.swift in Sources */,
