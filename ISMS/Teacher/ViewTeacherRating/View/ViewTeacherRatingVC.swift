@@ -16,6 +16,7 @@ class ViewTeacherRatingVC: BaseUIViewController {
       var ViewModel : ViewTeacherRatingViewModel?
     var arrTeacher = [ViewTeacherRatingResult]()
     var arrGetTeacherRating = [GetViewTeacherRatingResult]()
+    var idHOD = UserDefaultExtensionModel.shared.userRoleParticularId
     
     var isSelectedTeacher = false
     var selectedTeacherIndex : Int?
@@ -24,7 +25,7 @@ class ViewTeacherRatingVC: BaseUIViewController {
         super.viewDidLoad()
         DispatchQueue.main.async {
             self.setUI()
-            self.ViewModel?.TeacherList(HodId: 18,enumType: 18)
+            self.ViewModel?.TeacherList(HodId: self.idHOD,enumType: 18)
             
         }
         

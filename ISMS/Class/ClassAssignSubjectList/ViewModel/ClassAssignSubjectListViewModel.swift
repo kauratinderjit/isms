@@ -119,7 +119,7 @@ class ClassAssignSubjectListViewModel{
         ClassAssignSubjectApi.sharedInstance.getAllAssignSubjectList(url: ApiEndpoints.kGetAllAssignSubjectApi, parameters: postDict, completionResponse: { (response) in
             
             self.classAssignSubjectListView?.hideLoader()
-
+            print("assign subjects: ",response.resultData)
             switch response.statusCode{
             case KStatusCode.kStatusCode200:
                 self.classAssignSubjectListDelegate?.classSubjectDidSuccess(data: response.resultData)
@@ -172,7 +172,7 @@ class ClassAssignSubjectListViewModel{
         postDict[KApiParameters.AssignSubjectToClassApi.kClassSubjectModels] = classSubjectMapList
 
         CommonFunctions.sharedmanagerCommon.println(object: "\(classSubjectList) || Array:- \(classSubjectMapList)")
-        
+        print("submit data: ",postDict)
         self.classAssignSubjectListView?.showLoader()
         ClassAssignSubjectApi.sharedInstance.assignSubjectToClass(url: ApiEndpoints.kAssignSubjectsToClass, parameters: postDict, completionResponse: { (response) in
             self.classAssignSubjectListView?.hideLoader()

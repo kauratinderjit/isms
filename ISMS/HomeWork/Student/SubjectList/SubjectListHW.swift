@@ -83,8 +83,7 @@ extension SubjectListHW : UITableViewDelegate, UITableViewDataSource {
                    self.navigationController?.pushViewController(vc, animated: true)
                    
                }
-        
-        
+
     }
     
 }

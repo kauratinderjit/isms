@@ -16,10 +16,9 @@ let month_Formatter: DateFormatter =
     return form
 }()
 
-class AddEventVC: BaseUIViewController {
+class AddEventVC: BaseUIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var calenderDate: FSCalendar!
-    @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var txtfieldTitle: UITextField!
     @IBOutlet weak var txtViewDescription: UITextView!
     @IBOutlet weak var viewPicker: UIView!
@@ -27,8 +26,19 @@ class AddEventVC: BaseUIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     fileprivate var str_date_selected:    String? = ""
     @IBOutlet weak var lbl_MessagePlaceholder: UILabel!
-    @IBOutlet weak var btnSelectTime: UIButton!
     @IBOutlet weak var btnSend: UIBarButtonItem!
+    
+    @IBOutlet var tfEventDate: UITextField!
+    @IBOutlet var tfEventEndDate: UITextField!
+    @IBOutlet var tfStartTime: UITextField!
+    @IBOutlet var tfEndTime: UITextField!
+    
+    var approach = "date"
+    
+    var datePicker = UIDatePicker()
+    var datePickerStartDate = UIDatePicker()
+    var datePickerEndDate = UIDatePicker()
+    var datePickerStartTime = UIDatePicker()
     
     var viewModel     : EventScheduleViewModel?
     var selectedTime : String?
@@ -36,39 +46,48 @@ class AddEventVC: BaseUIViewController {
     var editMode : Bool = false
     var editEventModel : EventScheduleListResultData?
     public var lstActionAccess : GetMenuFromRoleIdModel.ResultData?
-
-
+    
+    
     //Converts string into date
     let formatter: DateFormatter = {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "dd/MM/yyyy"
-            return formatter
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        return formatter
     }()
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         setView()
+        
+        self.showDatePickerEventDate()
+        self.showDatePickerEventDateEnd()
+        self.showDatePickerEventStartTime()
+        self.showDatePickerEventEndTime()
     }
     
-    func setView() {
+    func setView()
+    {
         
         self.viewModel = EventScheduleViewModel.init(delegate: self)
         self.viewModel?.attachView(viewDelegate: self)
         self.title = "Add Event"
-       //  addShadow(view: calenderDate)
-       //  addShadow(view: txtViewDescription)
-         //styleTextField(textField: txtfieldTitle)
-         //styleLabel(textField: lblTime)
+        //  addShadow(view: calenderDate)
+        //  addShadow(view: txtViewDescription)
+        //styleTextField(textField: txtfieldTitle)
+        //styleLabel(textField: lblTime)
         txtfieldTitle.txtfieldPadding(leftpadding: 20, rightPadding: 0)
-       //txtfieldTitle.txtfieldPadding(leftpadding: 20, rightPadding: 0)
+        //txtfieldTitle.txtfieldPadding(leftpadding: 20, rightPadding: 0)
         txtViewDescription.textContainerInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20);
-         self.CreateNavigationBackBarButton()
+        self.CreateNavigationBackBarButton()
         
         // txtfieldTitle.attributedPlaceholder = NSAttributedString(string:"Enter Title", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         
-        if editMode == true {
+        if editMode == true
+        {
             
-            if editEventModel != nil {
+            if editEventModel != nil
+            {
                 
                 txtViewDescription.text = editEventModel?.Description
                 lbl_MessagePlaceholder.isHidden = true
@@ -83,8 +102,11 @@ class AddEventVC: BaseUIViewController {
                 
                 let dateObj = localDateFormatter2.date(from: editEventModel?.StrStartTime ?? "")
                 print("\(localDateFormatter.string(from: dateObj!))")
-                lblTime.text = "\(localDateFormatter.string(from: dateObj!))"
-                 
+                
+               // self.tfEventDate.text = "\(localDateFormatter.string(from: dateObj!))"
+                
+                //  lblTime.text = "\(localDateFormatter.string(from: dateObj!))"
+                
                 selectedTime = editEventModel?.StrStartTime
                 guard let strDate = editEventModel?.strStartDate else { return  }
                 str_date_selected = strDate
@@ -102,29 +124,29 @@ class AddEventVC: BaseUIViewController {
                         calenderDate.isUserInteractionEnabled = true
                         txtfieldTitle.isUserInteractionEnabled = true
                         txtViewDescription.isUserInteractionEnabled = true
-                        btnSelectTime.isUserInteractionEnabled = true
+                        //mohit     tfEventDate.isUserInteractionEnabled = true
                         self.navigationItem.rightBarButtonItem = btnSend
-                      
+                        
                     }
                     else{
                         calenderDate.isUserInteractionEnabled = false
                         txtfieldTitle.isUserInteractionEnabled = false
                         txtViewDescription.isUserInteractionEnabled = false
-                        btnSelectTime.isUserInteractionEnabled = false
+                        //mohit    tfEventDate.isUserInteractionEnabled = false
                         self.navigationItem.rightBarButtonItem = nil
                     }
                     
-                  
+                    
                 }
             }
         }
-         
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-         editMode = false
+        editMode = false
     }
-
+    
     
     private func styleLabel(textField: UILabel){
         textField.layer.masksToBounds = false
@@ -136,7 +158,7 @@ class AddEventVC: BaseUIViewController {
         textField.layer.shadowOpacity = 0.4
         textField.layer.shadowRadius = 5.0
     }
-
+    
     
     func CreateNavigationBackBarButton()
     {
@@ -153,186 +175,101 @@ class AddEventVC: BaseUIViewController {
     
     
     @objc  func PopToRootViewController()
-     {
-         _ = self.navigationController?.popViewController(animated: true)
+    {
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-           DispatchQueue.main.async{
-              self.scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: 800) }
-    }
-    
- func scrollViewDidScroll(_ scrollView: UIScrollView) {
-     print(scrollView.contentOffset.y)
-     print(scrollView.contentOffset.x)
-
- }
- 
-    
-    @IBAction func actionbtnDone(_ sender: UIButton) {
-        
-        if self.lblTime.text != "" {
-                
-                DispatchQueue.main.async {
-                    self.viewPicker.isHidden = true
-                    self.calenderDate.isUserInteractionEnabled = true
-                    self.pickerTime.minimumDate = nil
-
-                }
-            }
-    }
-    
-    @IBAction func btnSelectDate(_ sender: UIButton) {
-        
         DispatchQueue.main.async{
-             self.calenderDate.isUserInteractionEnabled = false
-             self.view.endEditing(true)
-              self.viewPicker.isHidden = false
-              let dateFormatter = DateFormatter()
-              dateFormatter.dateFormat = "h:mm a"
-              let dateFormatter1 = DateFormatter()
-              dateFormatter1.dateFormat = "HH:mm"
-              
-              let date_ = dateFormatter.string(from: self.pickerTime.date)
-              print(date_)
-              self.lblTime.text = "\(date_)"
-            self.selectedTime = "\(dateFormatter1.string(from: self.pickerTime.date))"
-          }
+            self.scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: 567) }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print(scrollView.contentOffset.y)
+        print(scrollView.contentOffset.x)
+        
     }
     
     
-    @IBAction func actionTimePicker(_ sender: UIDatePicker) {
+    @IBAction func actionbtnDone(_ sender: UIButton)
+    {
         
+        if self.tfEventDate.text != ""
+        {
             
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "h:mm a"
-            
-            let tody_date = Date()
-            
-            let dateFormatter1 = DateFormatter()
-            dateFormatter1.dateFormat = "HH:mm"
-            
-            //date format
-            let str_tody_Date = month_Formatter.string(from: tody_date)
-            print(str_tody_Date)
-            
-            //Time Format
-            let str_tody_time = dateFormatter.string(from: tody_date)
-            print(str_tody_time)
-            
-            let picker_selected_time = dateFormatter.string(from: sender.date)
-            //********
-            
-            //Selected date from Picker
-            print(self.str_date_selected)
-            
-            if self.str_date_selected == str_tody_Date {
-                
-                
-                let dateString = self.str_date_selected! + " " + picker_selected_time
-                
-                let dateFormatter2 = DateFormatter()
-                dateFormatter2.dateFormat = "yyyy-MM-dd hh:mm a"
-                
-                let dateObj = dateFormatter2.date(from: dateString)
-                
-                
-                dateFormatter2.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-                
-                    print("\(dateFormatter2.string(from: dateObj!))")
-                
-                let str_new = dateFormatter2.string(from: dateObj!)
-             
-                
-                let date_new = dateFormatter2.date(from: str_new)
-                print(date_new)
-                let currentDate = Date()
-                print(currentDate)
-                
-                let dateComparisionResult: ComparisonResult = date_new!.compare(currentDate)
-                
-                
-                if dateComparisionResult == ComparisonResult.orderedAscending
-                {
-                    
-                    print("smaller")
-                    self.pickerTime.minimumDate = Date()
-                    self.showAlert(Message: "Please select future time")
-                    let date_ = dateFormatter.string(from: Date())
-                    print(date_)
-                    self.lblTime.text = "\(date_)"
-                  //  self.str_time =  self.lblTime.text
-                    selectedTime = "\(dateFormatter1.string(from: Date()))"
-                    
-                }
-                    
-                else if dateComparisionResult == ComparisonResult.orderedDescending
-                {
-                    
-                    print("greater")
-                    
-                    //********
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "h:mm a"
-                    
-                    let date_ = dateFormatter.string(from: sender.date)
-                    print(date_)
-                    lblTime.text = "\(date_)"
-                    //str_time =  lblTime.text
-                    self.pickerTime.minimumDate = nil
-                    selectedTime = "\(dateFormatter1.string(from: sender.date))"
-                    //**********
-
-                }
-                else if dateComparisionResult == ComparisonResult.orderedSame
-                {
-                    
-                    //********
-                    let date_ = dateFormatter.string(from: sender.date)
-                    print(date_)
-                    lblTime.text = "\(date_)"
-                    //str_time =  lblTime.text
-                    self.pickerTime.minimumDate = nil
-                    selectedTime = "\(dateFormatter1.string(from: sender.date))"
-
-                    //*********
-                }
-       
-        }
-            
-            else {
-                let date_ = dateFormatter.string(from: sender.date)
-                print(date_)
-                lblTime.text = "\(date_)"
-               // str_time =  lblTime.text
+            DispatchQueue.main.async {
+                self.viewPicker.isHidden = true
+                self.calenderDate.isUserInteractionEnabled = true
                 self.pickerTime.minimumDate = nil
-                selectedTime = "\(dateFormatter1.string(from: sender.date))"
-
+                
             }
-            
-        
-    }
-    
-    
-    @IBAction func actionSendBtn(_ sender: UIBarButtonItem) {
-         if checkInternetConnection(){
-            
-            self.viewModel?.addUpdateEvent(eventId: eventId, title: txtfieldTitle.text, description: txtViewDescription.text, time: selectedTime, Date: str_date_selected)
-            
         }
-         else{
-             self.showAlert(alert: Alerts.kNoInternetConnection)
-         }
-        
     }
-    
     
 
+  
+    
+    @IBAction func actionSendBtn(_ sender: UIBarButtonItem)
+    {
+        self.animateTextView(textView: self.txtViewDescription, up: false, movementDistance: 250, scrollView:self.scrollView)
+        
+        if (self.tfEventDate.text?.count == 0)
+        {
+            self.showAlert(alert: "Please select start date")
+        }
+        else if (self.tfEventEndDate.text?.count == 0)
+        {
+            self.showAlert(alert: "Please select end date")
+        }
+        else if (self.tfStartTime.text?.count == 0)
+        {
+            self.showAlert(alert: "Please select start time")
+        }
+        else if (self.tfEndTime.text?.count == 0)
+        {
+            self.showAlert(alert: "Please select end time")
+        }
+        else if (self.txtfieldTitle.text?.count == 0)
+        {
+            self.showAlert(alert: "Please add a title")
+        }
+        else if (self.txtViewDescription.text?.count == 0)
+        {
+            self.showAlert(alert: "Please add some description")
+        }
+        else
+        {
+            if checkInternetConnection()
+            {
+               // self.viewModel?.addUpdateEvent(eventId: eventId, title: txtfieldTitle.text, description: txtViewDescription.text, time: selectedTime, Date: str_date_selected)
+                
+                self.viewModel?.addUpdateEvent(eventId: eventId, title: txtfieldTitle.text, description: txtViewDescription.text, startTime: tfStartTime.text, endTime: tfEndTime.text, evntStartDate: tfEventDate.text, evntEndDate: tfEventEndDate.text)
+            }
+            else
+            {
+                self.showAlert(alert: Alerts.kNoInternetConnection)
+            }
+        }
+    }
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        self.view.endEditing(true)
+        return true
+    }
+    
+    
 }
 
-extension AddEventVC:UITextViewDelegate{
+
+
+
+extension AddEventVC:UITextViewDelegate
+{
     
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool
+    {
         
         if text == "\n"
         {
@@ -346,8 +283,8 @@ extension AddEventVC:UITextViewDelegate{
         
         lbl_MessagePlaceholder.isHidden = true
         self.viewPicker.isHidden = true
-         self.animateTextView(textView: textView, up: true, movementDistance: 250, scrollView:self.scrollView)
-     
+        self.animateTextView(textView: textView, up: true, movementDistance: 250, scrollView:self.scrollView)
+        
         
     }
     
@@ -366,10 +303,10 @@ extension AddEventVC:UITextViewDelegate{
             txtViewDescription.text = textView.text
         }
         
-            DispatchQueue.main.async {
-                
-                self.animateTextView(textView: textView, up: false, movementDistance: 250, scrollView:self.scrollView)
-            }
+        DispatchQueue.main.async {
+            
+            self.animateTextView(textView: textView, up: false, movementDistance: 250, scrollView:self.scrollView)
+        }
         
     }
     
@@ -377,54 +314,54 @@ extension AddEventVC:UITextViewDelegate{
 extension AddEventVC:FSCalendarDelegate,FSCalendarDataSource{
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-         if date < calendar.today!
-                {
-                    calenderDate.deselect(date)
-                    self.showAlert(Message: "Please select future date.")
-                    return
-                }
-        
-                else{
-                    if date == calendar.today!
-                    {
-                    lblTime.text = "00:00"
-                    //str_time =  ""
-                    self.pickerTime.minimumDate = nil
-                    }
-                    str_date_selected = (self.formatter.string(from: date))
-                    print(str_date_selected)
-                }
+        if date < calendar.today!
+        {
+            calenderDate.deselect(date)
+            self.showAlert(Message: "Please select future date.")
+            return
+        }
+            
+        else{
+            if date == calendar.today!
+            {
+                // lblTime.text = "00:00"
+                //str_time =  ""
+                self.pickerTime.minimumDate = nil
+            }
+            str_date_selected = (self.formatter.string(from: date))
+            print(str_date_selected)
+        }
     }
     
     
     //Called when available date is selected
-//    func calendar(_ calendar: FSCalendar, didSelect date: Date) {
-//
-//
-//        if date < calendar.today!
-//        {
-//            calenderDate.deselect(date)
-//            self.showAlert(Message: "Please select future date.")
-//            return
-//        }
-//
-//        else{
-//            if date == calendar.today!
-//            {
-//            lblTime.text = "00:00"
-//            //str_time =  ""
-//            self.pickerTime.minimumDate = nil
-//            }
-//            str_date_selected = (self.formatter.string(from: date))
-//            print(str_date_selected)
-//        }
-//
-//    }
-   
+    //    func calendar(_ calendar: FSCalendar, didSelect date: Date) {
+    //
+    //
+    //        if date < calendar.today!
+    //        {
+    //            calenderDate.deselect(date)
+    //            self.showAlert(Message: "Please select future date.")
+    //            return
+    //        }
+    //
+    //        else{
+    //            if date == calendar.today!
+    //            {
+    //            lblTime.text = "00:00"
+    //            //str_time =  ""
+    //            self.pickerTime.minimumDate = nil
+    //            }
+    //            str_date_selected = (self.formatter.string(from: date))
+    //            print(str_date_selected)
+    //        }
+    //
+    //    }
+    
     //calendarCurrentPageDidChange
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
         
-     
+        
     }
     
     func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
@@ -449,11 +386,11 @@ extension AddEventVC : EventScheduleDelegate {
         
         if editMode == true {
             self.showAlert(alert: "Event updated successfully.")
-
+            
         }
         else {
             self.showAlert(alert: "Event added successfully.")
-
+            
         }
         _ = self.navigationController?.popViewController(animated: true)
     }
@@ -477,11 +414,11 @@ extension AddEventVC : ViewDelegate {
     }
     
     func showLoader() {
-         ShowLoader()
+        ShowLoader()
     }
     
     func hideLoader() {
-       HideLoader()
+        HideLoader()
     }
     
 }

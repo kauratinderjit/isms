@@ -8,6 +8,8 @@
 
 import UIKit
 
+var arrEventlistGlobal = [EventScheduleListResultData]()
+
 class ExamScheduleVC: BaseUIViewController {
     
     var viewModel     : EventScheduleViewModel?
@@ -199,17 +201,20 @@ extension ExamScheduleVC : EventScheduleDelegate {
     }
     
   
-    func EventScheduleSucceed(array: [EventScheduleListResultData]) {
+    func EventScheduleSucceed(array: [EventScheduleListResultData])
+    {
         
-        if array.count > 0 {
-            
+        if array.count > 0
+        {
+            arrEventlistGlobal = array
             arrEventlist = array
             tableView.reloadData()
         }
         
     }
     
-    func EventScheduleFailour(msg: String) {
+    func EventScheduleFailour(msg: String)
+    {
         
     }
     
@@ -218,16 +223,21 @@ extension ExamScheduleVC : EventScheduleDelegate {
 
 extension ExamScheduleVC : ViewDelegate {
     
-    func showAlert(alert: String) {
+    func showAlert(alert: String)
+    {
         print("your error : \(alert)")
         self.showAlert(Message: alert)
     }
     
-    func showLoader() {
+    func showLoader()
+    {
+        arrEventlistGlobal = [EventScheduleListResultData]()
          ShowLoader()
     }
     
-    func hideLoader() {
+    func hideLoader()
+    {
+        arrEventlistGlobal = [EventScheduleListResultData]()
        HideLoader()
     }
     

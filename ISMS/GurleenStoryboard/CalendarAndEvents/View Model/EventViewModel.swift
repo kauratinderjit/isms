@@ -68,24 +68,22 @@ class EventScheduleViewModel {
     
     
     //MARK:- Add Department
-    func addUpdateEvent(eventId:Int?,title: String?,description : String?,time: String?, Date: String?){
+    func addUpdateEvent(eventId:Int?,title: String?,description : String?,startTime: String?,endTime: String?, evntStartDate: String?,evntEndDate: String?)
+    {
         //MARK:- Validations
-        if(title!.trimmingCharacters(in: .whitespaces).isEmpty) {
+        if(title!.trimmingCharacters(in: .whitespaces).isEmpty)
+        {
             self.viewGlobalDelegate?.showAlert(alert: Alerts.kEmptyTitle)
-        }else if(description!.trimmingCharacters(in: .whitespaces).isEmpty){
+        }
+        else if(description!.trimmingCharacters(in: .whitespaces).isEmpty)
+        {
             self.viewGlobalDelegate?.showAlert(alert: Alerts.kEmptyDescription)
-          }else if(time!.trimmingCharacters(in: .whitespaces).isEmpty) {
-            self.viewGlobalDelegate?.showAlert(alert: "Please select time.")
         }
-        else if(Date!.trimmingCharacters(in: .whitespaces).isEmpty) {
-            self.viewGlobalDelegate?.showAlert(alert: "Please select date.")
-        }
-        else{
-            guard let eventId = eventId else{
-                return
-            }
+        else
+        {
+            guard let eventId = eventId else{return}
           
-            let parameters = ["EventId":eventId,"Title": title!,"Description" : description!, "strStartDate" : Date!,"StrStartTime" : time!, "StrEndTime" :time!, "strEndDate": Date!] as [String : Any]
+            let parameters = ["EventId":eventId,"Title": title!,"Description" : description!, "strStartDate" : evntStartDate!,"StrStartTime" : startTime!, "StrEndTime" :endTime!, "strEndDate": evntEndDate!] as [String : Any]
             print(parameters)
             self.viewGlobalDelegate?.showLoader()
             //AddDepartment API
