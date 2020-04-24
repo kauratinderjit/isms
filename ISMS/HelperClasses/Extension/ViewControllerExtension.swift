@@ -129,7 +129,18 @@ extension UIViewController {
     func CustomizeFontNavaigationBar(navigationController: UINavigationController){
         navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "OpenSans-Semibold", size: 20)!,.foregroundColor: UIColor.white]
     }
- 
+    //MARK:- Alert with OK Action
+    
+ func AlertMessageWithOkAction(titleStr:String, messageStr:String,Target : UIViewController, completionResponse:@escaping () -> Void) {
+        let alert = UIAlertController(title: titleStr, message: messageStr, preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
+            UIAlertAction in
+            completionResponse()
+        }
+        // Add the actions
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
     //Show Alert with message
     func showAlert(Message:String)
     {

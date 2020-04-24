@@ -45,13 +45,13 @@ class LoginVC: BaseUIViewController {
     }
     
     @IBAction func ForgotPassAction(_ sender: Any){
-//        pushToNextVC(storyboardName: KStoryBoards.kMain, viewControllerName: KStoryBoards.KForgotPassIdentifiers.kForgotPassVC)
+        //        pushToNextVC(storyboardName: KStoryBoards.kMain, viewControllerName: KStoryBoards.KForgotPassIdentifiers.kForgotPassVC)
         if phoneNumber == "" && phoneNumber == nil{
             showAlert(Message: "Enter Phone Number")
         }
-            else{
-              self.send_OTP()
-            }
+        else{
+            self.send_OTP()
+        }
     }
     
     //MARK:- FUNCTION RESEND OTP -->
@@ -63,15 +63,19 @@ class LoginVC: BaseUIViewController {
             {
                 UserDefaultExtensionModel.shared.firebaseVID = result
                 self.showAlert(Message: "OTP has been sent on given number")
-                self.pushToNextVC(storyboardName: KStoryBoards.kMain, viewControllerName: KStoryBoards.KForgotPassIdentifiers.kCheckOTPVC)
-//                self.Handle_Resend_OTP_Start_timer()
-//                self.myTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.startTimer), userInfo: nil, repeats: true)
-//                RunLoop.main.add(self.myTimer, forMode: RunLoop.Mode.common)
+                
+                let vc = UIStoryboard.init(name: KStoryBoards.kMain, bundle: Bundle.main).instantiateViewController(withIdentifier: KStoryBoards.KForgotPassIdentifiers.kCheckOTPVC) as! CheckOTPVC
+                vc.phoneNumber = self.phoneNumber ?? ""
+                self.navigationController?.pushViewController(vc, animated: true)
+               
+                //                self.Handle_Resend_OTP_Start_timer()
+                //                self.myTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.startTimer), userInfo: nil, repeats: true)
+                //                RunLoop.main.add(self.myTimer, forMode: RunLoop.Mode.common)
             }
         }
     }
     
-   //MARK:- Other function
+    //MARK:- Other function
     func setView() {
         
         //SetUp Delegates and view
@@ -119,9 +123,9 @@ class LoginVC: BaseUIViewController {
         imgMobile.tintColor = KAPPContentRelatedConstants.kThemeColour
         
         if let myImage = UIImage(named: "lock") {
-                   let tintableImage = myImage.withRenderingMode(.alwaysTemplate)
-                   imgPassword.image = tintableImage
-               }
+            let tintableImage = myImage.withRenderingMode(.alwaysTemplate)
+            imgPassword.image = tintableImage
+        }
         imgPassword.tintColor = KAPPContentRelatedConstants.kThemeColour
     }
     
@@ -144,7 +148,7 @@ class LoginVC: BaseUIViewController {
     }
     
     @objc func txtFieldPhoneNumberDidchange(_ textField: UITextField){
-       
+        
         if textField.text?.isNumber == true{
             if textField.text?.isPhoneNumber == true{
                 if textField.text?.count == 10{

@@ -118,7 +118,7 @@ class CheckOTPVC: BaseUIViewController
     //MARK:- FUNCTION RESEND OTP -->
     func resend_OTP()
     {
-        FirbaseOTPAuth.get_otp_from_firebase(controller: self, phoneNumber: self.countryCode + phoneNumber)
+        FirbaseOTPAuth.get_otp_from_firebase(controller: self, phoneNumber: "+91" + phoneNumber)
         { (result) in
             if (result.count > 0)
             {

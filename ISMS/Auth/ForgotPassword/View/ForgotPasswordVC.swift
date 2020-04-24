@@ -81,8 +81,12 @@ extension ForgotPasswordVC : UITextFieldDelegate{
 extension ForgotPasswordVC:ForgotPasswordDelegate{
     func Success(msg:String?)
     {
-      showAlert(Message: msg ?? "")
-      CommonFunctions.sharedmanagerCommon.setRootLogin()
+    
+       self.AlertMessageWithOkAction(titleStr: KAPPContentRelatedConstants.kAppTitle, messageStr: msg ?? "", Target: self)
+       {
+         CommonFunctions.sharedmanagerCommon.setRootLogin()
+        }
+     
     }
     func Falied(message: String) {
         showAlert(Message: message)
