@@ -445,7 +445,7 @@ class BaseUIViewController: UIViewController {
         self.searchBar.delegate = self
         self.searchBar.isHidden = true
         self.searchBar.barStyle = .black
-        self.searchBar.backgroundColor = .white
+       // self.searchBar.backgroundColor = .white
         self.searchBar.searchTextField.backgroundColor = .white
         self.searchBar.tintColor = .black
         self.searchBar.searchTextField.textColor = .black
@@ -465,6 +465,7 @@ class BaseUIViewController: UIViewController {
     func createRightNavSearchBarButton(){
         let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "searchGray"), style: .done, target: self, action: #selector(self.unHideSearchBar(_:)))
         //NAVAL
+        
         rightBarButtonItem.tintColor = .darkGray
         //        rightBarButtonItem.setBackgroundImage(UIImage(named: "search"), for: .normal, barMetrics: .default)
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
@@ -694,7 +695,7 @@ extension BaseUIViewController : UISearchBarDelegate{
             let titleLabel = UILabel(frame: firstFrame)
             titleLabel.text = self.navigationTitle
             titleLabel.font = UIFont(name: KAPPContentRelatedConstants.kAppGlobalFontName, size: 17)
-            titleLabel.textColor = .white
+            titleLabel.textColor = .black
             titleLabel.textAlignment = .center
             navigationItem.titleView = titleLabel
             navigationItem.titleView?.center = titleLabel.center

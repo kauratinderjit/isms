@@ -179,7 +179,7 @@ extension MenuVC : UITableViewDelegate{
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
             
-        case "ManageSyllabus" :
+        case "SyllabusCoverage"://"ManageSyllabus" :
             let storyboard = UIStoryboard.init(name: KStoryBoards.kCourses, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: KStoryBoards.KSyllabusCoverageIdentifiers.kSyllabusCoverageVC) as? SyllabusCoverageVC
             vc?.isFromStudent = true
@@ -201,7 +201,7 @@ extension MenuVC : UITableViewDelegate{
             
             break
             
-            case "AssignHomework":
+        case "AssignHomeWorks"://"AssignHomework":
                 let storyboard = UIStoryboard.init(name: "Homework", bundle: nil)
                            let vc = storyboard.instantiateViewController(withIdentifier: "HomeworkListVC") as? HomeworkListVC
                            vc?.lstActionAccess = MenuVC.menuArrayFromApi?.resultData?[indexPath.row]
@@ -248,7 +248,7 @@ extension MenuVC : UITableViewDelegate{
             frontVC?.pushViewController(vc, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
             
-        case KStoryBoards.kStudentRating.kStudentRatingVC :
+        case "RateStudent"://KStoryBoards.kStudentRating.kStudentRatingVC :
             let storyboard = UIStoryboard.init(name: KStoryBoards.kStudent, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: KStoryBoards.kStudentRating.kStudentRatingVC )
             let frontVC = revealViewController().frontViewController as? UINavigationController
@@ -331,7 +331,7 @@ extension MenuVC : UITableViewDelegate{
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
             
-            case "ManageCalender":
+        case "Calender"://"ManageCalender":
                     let storyboard = UIStoryboard.init(name: KStoryBoards.kCalender, bundle: nil)
                     let vc = storyboard.instantiateViewController(withIdentifier: "ExamScheduleVC") as? ExamScheduleVC
                     let frontVC = revealViewController().frontViewController as? UINavigationController
