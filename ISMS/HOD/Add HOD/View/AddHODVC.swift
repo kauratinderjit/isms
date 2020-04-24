@@ -86,18 +86,23 @@ class AddHODVC: BaseUIViewController {
         view.endEditing(true)
 
         //For Add Hod
-        if hodID == 0{
+        if hodID == 0
+        {
             self.viewModel?.addUpdateHOD(hodId: hodID, firstName: txtFieldFirstName.text, lastName: txtFieldLastName.text, address: txtFieldAddress.text, dateOfBirth: dateOfBirth, gender: gender, profileImageUrl: selectedProfileImageUrl, idProofName: txtFieldIdProof.text, idProofImgUrl: selectedIdProofImageURL, email: txtFieldEmail.text, departmentId: selectedDepartmentID, departmentName: txtFieldAssignDepartment.text, phoneNumber: txtFieldPhoneNumber.text, qualification: txtFieldQualification.text, workExperience: txtFieldWorkExperience.text, additionalSkills: txtFieldAdditionalSkills.text, others: txtFieldOthers.text, userId: userId)
         }
         
         //For Update Hod
-        if hodID != 0{
+        if hodID != 0
+        {
             //For set the nil value to Profile Image Url/Id Proof Image Url
-            if selectedProfileImageUrl != nil||selectedIdProofImageURL != nil{
-                if (selectedProfileImageUrl?.absoluteString.hasPrefix("http:") ?? false){
+            if selectedProfileImageUrl != nil||selectedIdProofImageURL != nil
+            {
+                if (selectedProfileImageUrl?.absoluteString.hasPrefix("http:") ?? false)
+                {
                     selectedProfileImageUrl = nil
                 }
-                if selectedIdProofImageURL?.absoluteString.hasPrefix("http:") ?? false{
+                if selectedIdProofImageURL?.absoluteString.hasPrefix("http:") ?? false
+                {
                     selectedIdProofImageURL = nil
                 }
             }
@@ -246,14 +251,18 @@ extension AddHODVC : ViewDelegate{
 
     
     //Set Detail In text fields
-    func setDataInTextFields(data: HODDetailModel){
+    func setDataInTextFields(data: HODDetailModel)
+    {
         
         
-        if let imgProfileUrl = data.resultData?.imageUrl{
-            selectedProfileImageUrl = URL.init(string: imgProfileUrl)
+        if let imgProfileUrl = data.resultData?.imageUrl
+        {
+           //mohit selectedProfileImageUrl = URL.init(string: imgProfileUrl)
             imgViewProfileHOD.contentMode = .scaleAspectFill
             imgViewProfileHOD.sd_setImage(with: URL(string: imgProfileUrl), placeholderImage: UIImage(named: kImages.kProfileImage))
-        }else{
+        }
+        else
+        {
             selectedProfileImageUrl = nil
             imgViewProfileHOD.image = UIImage.init(named: kImages.kProfileImage)
         }
@@ -322,12 +331,15 @@ extension AddHODVC : ViewDelegate{
             txtFieldAddress.text = address
         }
         
-        if let imgIDproofUrl = data.resultData?.idProof,imgIDproofUrl != ""{
+        if let imgIDproofUrl = data.resultData?.idProof,imgIDproofUrl != ""
+        {
             imgViewIdProof.sd_imageIndicator = SDWebImageActivityIndicator.gray
-            selectedIdProofImageURL = URL(string: imgIDproofUrl)
+           //mohit selectedIdProofImageURL = URL(string: imgIDproofUrl)
             imgViewIdProof.contentMode = .scaleAspectFill
             imgViewIdProof.sd_setImage(with: URL(string: imgIDproofUrl), placeholderImage: UIImage(named: kImages.kAttachmentImage))
-        }else{
+        }
+        else
+        {
             imgViewIdProof.contentMode = .center
             selectedIdProofImageURL = nil
             imgViewIdProof.image = UIImage.init(named: kImages.kAttachmentImage)

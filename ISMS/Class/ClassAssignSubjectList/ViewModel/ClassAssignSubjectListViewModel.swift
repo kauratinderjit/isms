@@ -51,16 +51,17 @@ class ClassAssignSubjectListViewModel{
         
         
         var postDict = [String:Any]()
-        
         postDict[KApiParameters.KCommonParametersForList.kSearch] = searchText
         postDict[KApiParameters.KCommonParametersForList.kPageSize] = pageSize
         postDict[KApiParameters.KCommonParametersForList.kSortColumn] = ""
         postDict[KApiParameters.KCommonParametersForList.kSkip] = skip
         postDict[KApiParameters.KCommonParametersForList.kSortColumnDir] = ""
+        postDict["ParticularId"] = UserDefaultExtensionModel.shared.HODDepartmentId
+        
         
         self.classAssignSubjectListView?.showLoader()
         
-        ClassApi.sharedManager.getClassList(url: ApiEndpoints.kGetClassList, parameters: postDict, completionResponse: { (classModel) in
+        ClassApi.sharedManager.getClassList(url: "api/Institute/GetClassListByDepartmentId", parameters: postDict, completionResponse: { (classModel) in
             
             switch classModel.statusCode{
             case KStatusCode.kStatusCode200:
