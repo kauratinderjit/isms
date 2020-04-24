@@ -179,7 +179,7 @@ extension MenuVC : UITableViewDelegate{
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
             
-        case "ManageSyllabus" :
+        case "SyllabusCoverage"://"ManageSyllabus" :
             let storyboard = UIStoryboard.init(name: KStoryBoards.kCourses, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: KStoryBoards.KSyllabusCoverageIdentifiers.kSyllabusCoverageVC) as? SyllabusCoverageVC
             vc?.isFromStudent = true
@@ -199,6 +199,7 @@ extension MenuVC : UITableViewDelegate{
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
             
+
         case "AssignHomework":
             let storyboard = UIStoryboard.init(name: "Homework", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "HomeworkListVC") as? HomeworkListVC
@@ -217,7 +218,7 @@ extension MenuVC : UITableViewDelegate{
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
             
-            
+
             break
             
             
@@ -329,6 +330,7 @@ extension MenuVC : UITableViewDelegate{
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
             
+
         case "ManageCalender":
             
             let storyboard = UIStoryboard.init(name: KStoryBoards.kCalender, bundle: nil)
@@ -337,6 +339,7 @@ extension MenuVC : UITableViewDelegate{
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
+
             
         case "ViewCalendar&Events":
             

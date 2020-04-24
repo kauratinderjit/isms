@@ -369,9 +369,9 @@ class AddStudentRatingViewModel {
 //        }
 //        ]
         let paramDict = [ "Id": 0,
-                          "TeacherId": teacherID!,
-                          "EnrollmentId": enrollmentId!,
-                          "ClassSubjectId":classSubjectId!,
+                          "TeacherId": teacherID ?? "",
+                          "EnrollmentId": enrollmentId ?? "",
+                          "ClassSubjectId":classSubjectId ?? "",
                           "Comment": "good",
                           "StudentSkillRatings":StudentSkillRatings] as [String : Any]
         

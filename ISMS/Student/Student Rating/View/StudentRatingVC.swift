@@ -49,6 +49,7 @@ class StudentRatingVC: BaseUIViewController {
         currentMonth = month!
         textfieldMonth.text = month!
         tableView.separatorStyle = .none
+        tableView.separatorColor = KAPPContentRelatedConstants.kLightBlueColour
         tableView.reloadData()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -389,7 +390,7 @@ extension StudentRatingVC : ViewDelegate{
     }
     func setUI(){
         
-        self.setSearchBarInNavigationController(placeholderText: KSearchBarPlaceHolder.kUserSearchBarPlaceHolder, navigationTitle: KStoryBoards.KClassListIdentifiers.kClassListTitle, navigationController: self.navigationController, navigationSearchBarDelegates: self)
+        self.setSearchBarInNavigationController(placeholderText: KSearchBarPlaceHolder.kUserSearchBarPlaceHolder, navigationTitle: KStoryBoards.KClassListIdentifiers.kStudentRating, navigationController: self.navigationController, navigationSearchBarDelegates: self)
         
         //Set Back Button
         self.setBackButton()
