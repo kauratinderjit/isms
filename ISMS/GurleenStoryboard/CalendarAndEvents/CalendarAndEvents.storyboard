@@ -787,7 +787,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="isd-rg-Ed4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3204" y="-2549"/>
+            <point key="canvasLocation" x="3193" y="-2518"/>
         </scene>
         <!--Exam Schedule-->
         <scene sceneID="nyH-Cb-l0Q">
