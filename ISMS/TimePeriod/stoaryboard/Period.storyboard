@@ -153,14 +153,14 @@
             <objects>
                 <viewController storyboardIdentifier="TimePeriodVC" id="M3v-rl-Dm3" customClass="TimePeriodVC" customModule="ISMS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pv0-nx-0eD">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="700"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QY9-ko-qtM">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="700"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lDH-7P-nAn">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="700"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="645"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6L5-1r-jTf">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="117"/>
@@ -223,65 +223,8 @@
                                                     <constraint firstItem="UfZ-Tx-wJh" firstAttribute="leading" secondItem="6L5-1r-jTf" secondAttribute="leading" constant="16" id="zDl-n6-8Lk"/>
                                                 </constraints>
                                             </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Ry9-JU-HRo">
-                                                <rect key="frame" x="20" y="132" width="355" height="40"/>
-                                                <subviews>
-                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="alR-xi-L7g">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="40"/>
-                                                        <color key="backgroundColor" red="0.64313725489999995" green="0.050980392159999999" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <state key="normal" title="Mon">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                    </button>
-                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZXR-1I-Pud">
-                                                        <rect key="frame" x="51" y="0.0" width="49.5" height="40"/>
-                                                        <color key="backgroundColor" red="0.64313725489999995" green="0.050980392159999999" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <state key="normal" title="Tue">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                    </button>
-                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9L2-39-WkL">
-                                                        <rect key="frame" x="101.5" y="0.0" width="50" height="40"/>
-                                                        <color key="backgroundColor" red="0.64313725489999995" green="0.050980392159999999" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <state key="normal" title="Wed">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                    </button>
-                                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mEJ-uR-BCT">
-                                                        <rect key="frame" x="152.5" y="0.0" width="50" height="40"/>
-                                                        <color key="backgroundColor" red="0.64313725489999995" green="0.050980392159999999" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <state key="normal" title="Thu">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                    </button>
-                                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rw7-5T-S1r">
-                                                        <rect key="frame" x="203.5" y="0.0" width="50" height="40"/>
-                                                        <color key="backgroundColor" red="0.64313725489999995" green="0.050980392159999999" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <state key="normal" title="Fri">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                    </button>
-                                                    <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l26-By-o2m">
-                                                        <rect key="frame" x="254.5" y="0.0" width="49.5" height="40"/>
-                                                        <color key="backgroundColor" red="0.64313725489999995" green="0.050980392159999999" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <state key="normal" title="Sat">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                    </button>
-                                                    <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kcc-3g-NPb">
-                                                        <rect key="frame" x="305" y="0.0" width="50" height="40"/>
-                                                        <color key="backgroundColor" red="0.64313725489999995" green="0.050980392159999999" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <state key="normal" title="Sun">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                    </button>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="gf0-Rv-grY"/>
-                                                </constraints>
-                                            </stackView>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yw5-3z-lka">
-                                                <rect key="frame" x="0.0" y="187" width="375" height="400"/>
+                                                <rect key="frame" x="0.0" y="127" width="375" height="400"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="400" id="Q0i-ag-HHi"/>
@@ -424,12 +367,13 @@
                                                 </prototypes>
                                             </tableView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EHb-yd-71e">
-                                                <rect key="frame" x="16" y="621" width="343" height="58"/>
+                                                <rect key="frame" x="16" y="557" width="343" height="58"/>
                                                 <color key="backgroundColor" red="0.89019607840000003" green="0.94117647059999998" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="58" id="R6c-lm-rg8"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Add">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -459,17 +403,14 @@
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="6L5-1r-jTf" secondAttribute="trailing" id="0IN-U3-Pf4"/>
                                             <constraint firstAttribute="trailing" secondItem="Yw5-3z-lka" secondAttribute="trailing" id="4xH-Cy-YTA"/>
-                                            <constraint firstItem="Ry9-JU-HRo" firstAttribute="leading" secondItem="lDH-7P-nAn" secondAttribute="leading" constant="20" symbolic="YES" id="DTR-br-NRZ"/>
-                                            <constraint firstItem="Yw5-3z-lka" firstAttribute="top" secondItem="Ry9-JU-HRo" secondAttribute="bottom" constant="15" id="EcH-86-JgK"/>
-                                            <constraint firstAttribute="trailing" secondItem="Ry9-JU-HRo" secondAttribute="trailing" id="LmA-no-ZsZ"/>
                                             <constraint firstItem="EHb-yd-71e" firstAttribute="leading" secondItem="lDH-7P-nAn" secondAttribute="leading" constant="16" id="Po6-Wk-tcK"/>
+                                            <constraint firstItem="Yw5-3z-lka" firstAttribute="top" secondItem="6L5-1r-jTf" secondAttribute="bottom" constant="10" id="WXE-Hg-cZi"/>
                                             <constraint firstItem="6L5-1r-jTf" firstAttribute="leading" secondItem="lDH-7P-nAn" secondAttribute="leading" id="adL-RW-Nmg"/>
-                                            <constraint firstItem="Ry9-JU-HRo" firstAttribute="top" secondItem="6L5-1r-jTf" secondAttribute="bottom" constant="15" id="jmH-f1-6Se"/>
-                                            <constraint firstAttribute="bottom" secondItem="EHb-yd-71e" secondAttribute="bottom" constant="21" id="qia-EO-eUd"/>
+                                            <constraint firstAttribute="bottom" secondItem="EHb-yd-71e" secondAttribute="bottom" constant="30" id="qia-EO-eUd"/>
                                             <constraint firstItem="6L5-1r-jTf" firstAttribute="top" secondItem="lDH-7P-nAn" secondAttribute="top" id="s96-Oo-c18"/>
                                             <constraint firstItem="Yw5-3z-lka" firstAttribute="leading" secondItem="lDH-7P-nAn" secondAttribute="leading" id="szy-xW-9DM"/>
                                             <constraint firstAttribute="trailing" secondItem="EHb-yd-71e" secondAttribute="trailing" constant="16" id="tdM-kj-Yor"/>
-                                            <constraint firstItem="EHb-yd-71e" firstAttribute="top" secondItem="Yw5-3z-lka" secondAttribute="bottom" constant="34" id="vJY-Qc-Oul"/>
+                                            <constraint firstItem="EHb-yd-71e" firstAttribute="top" secondItem="Yw5-3z-lka" secondAttribute="bottom" constant="30" id="vJY-Qc-Oul"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -491,7 +432,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2p0-IW-wdr"/>
                     </view>
-                    <size key="freeformSize" width="375" height="700"/>
                     <connections>
                         <outlet property="btnAddPeriod" destination="EHb-yd-71e" id="YYz-2J-qDI"/>
                         <outlet property="btnSelectClass" destination="UfZ-Tx-wJh" id="9jP-Xf-ehw"/>
@@ -502,7 +442,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oCj-XY-nyJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="389.60000000000002" y="98.050974512743636"/>
+            <point key="canvasLocation" x="389.60000000000002" y="98.50074962518741"/>
         </scene>
     </scenes>
     <resources>

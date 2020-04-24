@@ -422,7 +422,7 @@ public struct KStoryBoards
     
     internal struct KClassPeriodIdIdentifiers{
         public static let kClassPeriodTimeTableVC = "ClassPeriodsTimeTableVC"
-        public static let kClassPeriodTimeTableTitle = "Period Time Table"
+        public static let kClassPeriodTimeTableTitle = "Time Table"
         public static let kTimePeriodVC = "TimePeriodVC"
         public static let kAddPeriodTitle = "Add Period"
     }

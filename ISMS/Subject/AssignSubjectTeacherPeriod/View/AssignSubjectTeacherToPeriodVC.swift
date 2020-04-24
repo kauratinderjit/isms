@@ -49,7 +49,8 @@ class AssignSubjectTeacherToPeriodVC: BaseUIViewController {
     var selectedPeriodName:String?
     var selectedSubjectName : String?
     var selectedTeacherName : String?
-    
+    let userRoleParticularId = UserDefaultExtensionModel.shared.userRoleParticularId
+    var HODdepartmentId = UserDefaultExtensionModel.shared.HODDepartmentId
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -70,7 +71,7 @@ class AssignSubjectTeacherToPeriodVC: BaseUIViewController {
     @IBAction func btnTeacherDropDown(_ sender: UIButton) {
         if checkInternetConnection(){
             isSubjectButtonSelected = false
-            self.viewModel?.getSubjectsTeacherListDropdown(selectId: selectedTeacherID ??  0, enumType: CountryStateCity.teacher.rawValue)
+            self.viewModel?.getSubjectsTeacherListDropdown(selectId: userRoleParticularId ??  0, enumType: 18)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }

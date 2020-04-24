@@ -95,11 +95,10 @@ class StudentRatingViewModel {
     //    }
     //
     
-    func GetSubjectList(classid: Int,teacherId: Int){
+    func GetSubjectList(classid: Int,teacherId: Int, hodid: Int){
         self.studentRatingView?.showLoader()
-        
         let paramDict = ["classid":classid,"teacherId" : teacherId] as [String : Any]
-        let url = ApiEndpoints.kGetClassSubjectsByteacherId + "?classid=" + "\(classid)" + "&teacherId=" + "\(20)"
+        let url = ApiEndpoints.kGetClassSubjectsByteacherId + "?classid=" + "\(classid)" + "&teacherId=" + "\(teacherId)" + "&hodid=" + "\(hodid)"
         AddStudentRatingApi.sharedInstance.GetAddSkillList(url: url , parameters: paramDict as [String : Any], completionResponse: { (AddStudentRatingListModel) in
             
             print("your respomnse data : ",AddStudentRatingListModel.resultData)
@@ -147,7 +146,7 @@ class StudentRatingViewModel {
         
         let paramDict = [ AddStudentRating.kId:id,
                           AddStudentRating.kEnumType: enumType] as [String : Any]
-        let url = ApiEndpoints.kSkillList + "?id=" + "\(id)" + "&enumType=" + "\(enumType)"
+        let url = ApiEndpoints.kSkillList + "?id=" + "\(id)" + "&enumType=" + "\(enumType)" 
         AddStudentRatingApi.sharedInstance.GetSkillList(url: url , parameters: paramDict as [String : Any], completionResponse: { (AddStudentRatingListModel) in
             
             print("your respomnse data : ",AddStudentRatingListModel.resultData)

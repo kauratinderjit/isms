@@ -163,8 +163,8 @@ extension SyllabusCoverageVC : UITableViewDataSource {
           
             
             let morePrecisePI = Double(percentage)
-            print("your more precise pi :\(morePrecisePI!)")
-            let c = morePrecisePI! / 100
+            print("your more precise pi :\(morePrecisePI)")
+            let c = morePrecisePI / 100
             print("your c : \(c)")
             cell.progressBar.progress = Float(c)
             
@@ -181,9 +181,9 @@ extension SyllabusCoverageVC : UITableViewDataSource {
             
              if let percentage = arrayData[indexPath.row].coveragePercentage {
                  cell.lblprogressPercentage.text = "\(percentage)" + "%"
-                if percentage == "100" {
-        cell.progressBar.progressTintColor = KAPPContentRelatedConstants.kThemeColour//UIColor(red: 183/255, green: 23/255, blue: 36/255, alpha: 1)
-                }
+//                if percentage == "100" {
+//        cell.progressBar.progressTintColor = KAPPContentRelatedConstants.kThemeColour//UIColor(red: 183/255, green: 23/255, blue: 36/255, alpha: 1)
+//                }
         
         }
        return cell
