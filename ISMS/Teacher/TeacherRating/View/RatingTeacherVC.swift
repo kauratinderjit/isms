@@ -224,7 +224,8 @@ extension RatingTeacherVC : ViewDelegate{
         
         //Title
         self.title = "Teacher Rating"
-        
+        txtFieldSubject.txtfieldPadding(leftpadding: 10, rightPadding: 0)
+        txtFieldTeacher.txtfieldPadding(leftpadding: 10, rightPadding: 0)
     }
 }
 extension RatingTeacherVC : OKAlertViewDelegate{

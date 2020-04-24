@@ -1003,9 +1003,6 @@
 		0C1C285D238E5A9C00F98FEC /* Model */ = {
 			isa = PBXGroup;
 			children = (
-
-
-				9B3D5B412451D65F0076741C /* GetClassListByDepartmentModel.swift */,
 				0C1C285E238E5A9C00F98FEC /* ClassListModel.swift */,
 				0C1C285F238E5A9C00F98FEC /* DeleteClassModel.swift */,
 			);
@@ -3035,6 +3032,7 @@
 				2E0DCA082297E775001DC56D /* Products */,
 				0611384F692D6F8A97302C22 /* Pods */,
 				928D40D656F5A3A2B94597EC /* Frameworks */,
+				9BC53AF92452F78E003F002A /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3637,6 +3635,15 @@
 				9B44D83C244EB42800B6DEC5 /* StudentGetAttendanceViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9BC53AF92452F78E003F002A /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				9B3D5B412451D65F0076741C /* GetClassListByDepartmentModel.swift */,
+				2EA158A1245157B100975290 /* GetClassListByDepartmentModel.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		BEB79BA022A686C3004275B7 /* Login */ = {
@@ -5075,10 +5082,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.seasia.isms;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-
 				PROVISIONING_PROFILE_SPECIFIER = Isms_Dev_Prov;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Volumes/DATA/ISMS git/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
-
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/navaldeepkaur/Documents/GitISMS/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -5103,10 +5108,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.seasia.isms;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-
 				PROVISIONING_PROFILE_SPECIFIER = Isms_Dev_Prov;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Volumes/DATA/ISMS git/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
-
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/navaldeepkaur/Documents/GitISMS/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

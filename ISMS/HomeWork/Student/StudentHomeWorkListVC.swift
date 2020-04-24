@@ -72,6 +72,7 @@ extension StudentHomeWorkListVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        // objGetStudentHomeDetail
+        tableView.deselectRow(at: indexPath, animated: false)
         if homeWorkList?.count ?? 0 > 0 {
                    let vc = UIStoryboard.init(name:"Homework", bundle: Bundle.main).instantiateViewController(withIdentifier: "StudentDetailHomeworkVC") as! StudentDetailHomeworkVC
                  vc.objGetStudentHomeDetail = homeWorkList?[indexPath.row].AssignHomeWorkId
