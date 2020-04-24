@@ -474,14 +474,18 @@ extension MenuVC : UITableViewDelegate{
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
+
             break
-            
-        case "NewsFeed":
+       
+            case "NewsFeed":
+
             self.showAlert(Message: "Coming Soon")
             break
             
         case "ContactUs":
+
             self.showAlert(Message: "Coming Soon")
+
             break
             
         case "LogOut":

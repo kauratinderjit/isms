@@ -19,6 +19,8 @@ class SubjectListTableCell : UITableViewCell{
     
     func setCellUI(data : [GetSubjectResultData]?,indexPath: IndexPath){
         
+        if data?.count ?? 0 > 0 {
+        
         let rsltData = data![indexPath.row]
         subjectNamelbl.text = ""
         
@@ -36,5 +38,6 @@ class SubjectListTableCell : UITableViewCell{
         if let subjectName = rsltData.subjectName{
             subjectNamelbl.text = subjectName
         }
+    }
     }
 }

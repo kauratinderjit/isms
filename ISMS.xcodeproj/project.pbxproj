@@ -304,6 +304,7 @@
 		2E8F63DD243CB24B0040F9CA /* HomeworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8F63DC243CB24B0040F9CA /* HomeworkModel.swift */; };
 		2E8F63E0243CB43C0040F9CA /* HomeworkApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8F63DF243CB43C0040F9CA /* HomeworkApi.swift */; };
 		2E938B26229EA99B003A8B95 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E938B25229EA99A003A8B95 /* OpenSans-Regular.ttf */; };
+		2EA158A2245157B100975290 /* GetClassListByDepartmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA158A1245157B100975290 /* GetClassListByDepartmentModel.swift */; };
 		2EC88B502448337000AF60B7 /* StudentHomeWorkListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC88B4F2448337000AF60B7 /* StudentHomeWorkListVC.swift */; };
 		2EC88B522448340800AF60B7 /* StudentDetailHomeworkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC88B512448340800AF60B7 /* StudentDetailHomeworkVC.swift */; };
 		2EC88B5424483E6A00AF60B7 /* StudentUploadHomeWorkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC88B5324483E6A00AF60B7 /* StudentUploadHomeWorkVC.swift */; };
@@ -750,6 +751,7 @@
 		2E8F63DC243CB24B0040F9CA /* HomeworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkModel.swift; sourceTree = "<group>"; };
 		2E8F63DF243CB43C0040F9CA /* HomeworkApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkApi.swift; sourceTree = "<group>"; };
 		2E938B25229EA99A003A8B95 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		2EA158A1245157B100975290 /* GetClassListByDepartmentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetClassListByDepartmentModel.swift; sourceTree = "<group>"; };
 		2EC88B4F2448337000AF60B7 /* StudentHomeWorkListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentHomeWorkListVC.swift; sourceTree = "<group>"; };
 		2EC88B512448340800AF60B7 /* StudentDetailHomeworkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDetailHomeworkVC.swift; sourceTree = "<group>"; };
 		2EC88B5324483E6A00AF60B7 /* StudentUploadHomeWorkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentUploadHomeWorkVC.swift; sourceTree = "<group>"; };
@@ -1001,6 +1003,8 @@
 		0C1C285D238E5A9C00F98FEC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+
+
 				9B3D5B412451D65F0076741C /* GetClassListByDepartmentModel.swift */,
 				0C1C285E238E5A9C00F98FEC /* ClassListModel.swift */,
 				0C1C285F238E5A9C00F98FEC /* DeleteClassModel.swift */,
@@ -4689,6 +4693,7 @@
 				9B1CDD242449B15B003E7650 /* CustomButton.swift in Sources */,
 				0C668581238FE26E006593D5 /* AddStudentRatingVC.swift in Sources */,
 				10EEEA66239E509900E8485C /* PopUpTableViewCell.swift in Sources */,
+				2EA158A2245157B100975290 /* GetClassListByDepartmentModel.swift in Sources */,
 				2D645F0D22BBBB67009EA9B6 /* AddTeacherModel.swift in Sources */,
 				C683DB0D22E072ED00011212 /* GetPeriodList.swift in Sources */,
 				0C1C28C9238E5BB300F98FEC /* GetSubjectDetail.swift in Sources */,
@@ -5070,8 +5075,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.seasia.isms;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+
 				PROVISIONING_PROFILE_SPECIFIER = Isms_Dev_Prov;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/mohitsharma/Documents/Mohit Data/iSMS_CLONE/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Volumes/DATA/ISMS git/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
+
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -5096,8 +5103,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.seasia.isms;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+
 				PROVISIONING_PROFILE_SPECIFIER = Isms_Dev_Prov;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/mohitsharma/Documents/Mohit Data/iSMS_CLONE/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Volumes/DATA/ISMS git/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
+
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

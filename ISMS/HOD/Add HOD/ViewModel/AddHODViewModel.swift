@@ -341,7 +341,7 @@ class AddHODViewModel{
                 self?.addHODView?.showAlert(alert: GetDetailByPhoneEmailModel.message ?? "Something went wrong")
                 self?.addHodDelegate?.unauthorizedUser()
             case KStatusCode.kStatusCode404:
-                self?.addHODView?.showAlert(alert: GetDetailByPhoneEmailModel.message ?? "Something went wrong")
+               // self?.addHODView?.showAlert(alert: GetDetailByPhoneEmailModel.message ?? "Something went wrong")
                 self?.addHodDelegate?.phoneEmailVerifyDidFailed()
             default:
                 self?.addHODView?.showAlert(alert: GetDetailByPhoneEmailModel.message ?? "Something went wrong")
