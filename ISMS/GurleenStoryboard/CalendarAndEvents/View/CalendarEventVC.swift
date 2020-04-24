@@ -19,13 +19,13 @@ class CalendarEventVC: BaseUIViewController
     @IBOutlet var lblInfo: UILabel!
     
     var datesRange = [[String:Any]]()
-    var datesRangeDATE = [Date]()
+    var datesRangeDATE = [String]()
     
     
     fileprivate lazy var dateFormatter2: DateFormatter =
     {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MM-yyyy"
+        formatter.dateFormat = "dd-MM-YYYY"
         return formatter
     }()
     
@@ -73,11 +73,14 @@ class CalendarEventVC: BaseUIViewController
         while strtdate <= enddate
         {
             print(dateFormatter2.string(from: strtdate))
+            
             strtdate = Calendar.current.date(byAdding: .day, value: 1, to: strtdate)!
             
-            let obj = ["date":strtdate,"desc":descpn] as [String : Any]
+            let dd = dateFormatter2.string(from: strtdate)
             
-            datesRangeDATE.append(strtdate)
+            let obj = ["date":dd,"desc":descpn] as [String : Any]
+            
+            datesRangeDATE.append(dd)
             datesRange.append(obj)
             calendar.select(strtdate)
         }
@@ -88,13 +91,13 @@ class CalendarEventVC: BaseUIViewController
     }
     
     
-    func get_event_Info_fromDate(sDate:Date) -> String
+    func get_event_Info_fromDate(sDate:String) -> String
     {
         if(datesRange.count > 0)
         {
             for obj in datesRange
             {
-                let stDate = obj["date"]as? Date
+                let stDate = obj["date"]as? String ?? ""
                 let desc = obj["desc"] as? String ?? "N/A"
                 
                 if sDate == stDate
@@ -111,7 +114,7 @@ class CalendarEventVC: BaseUIViewController
     {
         //2020-05-23T00:00:0
         let dateFormatter = DateFormatter()
-        //  dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:s"
         let date = dateFormatter.date(from:strDate)!
         return date
@@ -159,7 +162,7 @@ extension CalendarEventVC : FSCalendarDataSource , FSCalendarDelegate , FSCalend
         self.viewInfo.isHidden = false
         self.viewStack.isHidden = false
         
-        let info = get_event_Info_fromDate(sDate:date)
+        let info = get_event_Info_fromDate(sDate:key)
         self.lblInfo.text = "Event: \(info)"
         
         
@@ -172,7 +175,12 @@ extension CalendarEventVC : FSCalendarDataSource , FSCalendarDelegate , FSCalend
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillSelectionColorFor date: Date) -> UIColor?
     {
-        if (datesRangeDATE.contains(date))
+        
+        let cDate = dateFormatter2.string(from: date)
+       // let cDate2 = dateFormatter2.date(from: cDate) ?? Date()
+        
+        
+        if (datesRangeDATE.contains(cDate))
         {
            // calendar.select(date)
             return UIColor.blue

@@ -55,16 +55,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D8AE17DC-3365-44EB-A9BC-51E9794C4CC1"
+            uuid = "1F8DEA8A-43F1-47AE-BA04-8DAA83356473"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ISMS/GurleenStoryboard/CalendarAndEvents/View Model/EventViewModel.swift"
+            filePath = "ISMS/GurleenStoryboard/CalendarAndEvents/View/CalendarEventVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "addUpdateEvent(eventId:title:description:startTime:endTime:evntStartDate:evntEndDate:)"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "get_all_Dates_from_startToEndDate(strtDate:endDate:descpn:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "771ACF5A-8C94-48A1-A1F4-AA38EB61E2E0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISMS/GurleenStoryboard/CalendarAndEvents/View/CalendarEventVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "stringToDate(strDate:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
