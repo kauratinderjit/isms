@@ -132,6 +132,7 @@ extension AddEventVC
         let formatter = DateFormatter()
         formatter.dateFormat = "hh:mm"
         self.tfStartTime.text = formatter.string(from: datePickerStartTime.date)
+        startTime = formatter.date(from: self.tfStartTime.text ?? "") ?? Date()
         self.view.endEditing(true)
     }
     @objc func donedatePickerEndTime()
@@ -139,6 +140,7 @@ extension AddEventVC
         let formatter = DateFormatter()
         formatter.dateFormat = "hh:mm"
         self.tfEndTime.text = formatter.string(from: datePicker.date)
+        endTime = formatter.date(from: self.tfEndTime.text ?? "") ?? Date()
         self.view.endEditing(true)
     }
     
@@ -148,6 +150,44 @@ extension AddEventVC
     }
     
     
+    
+    func getTime_DIfference_isCorrect() -> Bool
+    {
+        
+        if (endTime == nil || startTime == nil)
+        {
+             startTime = formatter.date(from: self.tfStartTime.text ?? "") ?? Date()
+             endTime = formatter.date(from: self.tfEndTime.text ?? "") ?? Date()
+        }
+        
+        if (self.tfEventDate.text == self.tfEventEndDate.text)
+        {
+            let val = getDateDiff(start: startTime ?? Date(), end: endTime ?? Date())
+            
+            if (val >= 1)
+            {
+                return true
+            }
+            else
+            {
+               self.showAlert(alert: "The minimum event duration should be 1 hour for same dates!")
+               return false
+            }
+        }
+        else
+        {
+            return true
+        }
+    }
+    
+    func getDateDiff(start: Date, end: Date) -> Int
+    {
+        let calendar = Calendar.current
+        let dateComponents = calendar.dateComponents([Calendar.Component.hour], from: start, to: end)
+
+        let seconds = Int(dateComponents.hour ?? 0)
+        return seconds
+    }
     
     
 }

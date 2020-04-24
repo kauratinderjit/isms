@@ -291,7 +291,7 @@ class AddStudentVC: BaseUIViewController {
         
         if let imgProfileUrl = Data.resultData?.studentImageUrl{
             imgViewStudent.sd_imageIndicator = SDWebImageActivityIndicator.gray
-            studentImgUrl = URL(string: imgProfileUrl)
+           //mohit studentImgUrl = URL(string: imgProfileUrl)
             imgViewStudent.contentMode = .scaleAspectFill
             imgViewStudent.sd_setImage(with: URL(string: imgProfileUrl), placeholderImage: UIImage(named: kImages.kProfileImage))
         }else{
@@ -338,7 +338,7 @@ class AddStudentVC: BaseUIViewController {
         }
         
         if let studentIdProofImg = Data.resultData?.studentIDProof,studentIdProofImg != ""{
-            studentIdUrl = URL(string: studentIdProofImg)
+          //mohit  studentIdUrl = URL(string: studentIdProofImg)
             studentIdProofImgView.contentMode = .scaleAspectFill
             studentIdProofImgView.sd_setImage(with: URL(string: studentIdProofImg), placeholderImage: UIImage(named: kImages.kAttachmentImage))
         }else{
@@ -377,7 +377,7 @@ class AddStudentVC: BaseUIViewController {
         
         if let imgProfileUrl = Data.resultData?.guardianImageUrl{
             parentImgView.sd_imageIndicator = SDWebImageActivityIndicator.gray
-            parentImgUrl = URL(string: imgProfileUrl)
+         //mohit   parentImgUrl = URL(string: imgProfileUrl)
             parentImgView.contentMode = .scaleAspectFill
             parentImgView.sd_setImage(with: URL(string: imgProfileUrl), placeholderImage: UIImage(named: kImages.kProfileImage))
         }else{
@@ -417,7 +417,7 @@ class AddStudentVC: BaseUIViewController {
         }
         
         if let guardianIdProofImgUrl = Data.resultData?.guardianIDProof, guardianIdProofImgUrl != ""{
-            parentIdUrl = URL(string: guardianIdProofImgUrl)
+          //mohit  parentIdUrl = URL(string: guardianIdProofImgUrl)
             parentIdProofImgView.contentMode = .scaleAspectFill
             parentIdProofImgView.sd_setImage(with: URL(string: guardianIdProofImgUrl), placeholderImage: UIImage(named: kImages.kAttachmentImage))
         }else{
@@ -997,7 +997,7 @@ extension AddStudentVC : AddStudentDelegate{
         GardianDetail = data
         let userDetail = GardianDetail?.resultData
         if let imgProfileUrl = userDetail?.imageURL{
-            parentImgUrl = URL(string: imgProfileUrl)
+         //mohit   parentImgUrl = URL(string: imgProfileUrl)
             parentImgView.contentMode = .scaleAspectFill
             parentImgView.sd_imageIndicator = SDWebImageActivityIndicator.gray
             parentImgView.sd_setImage(with: URL(string: imgProfileUrl), placeholderImage: UIImage(named: kImages.kProfileImage))
@@ -1007,7 +1007,7 @@ extension AddStudentVC : AddStudentDelegate{
         }
         
         if let gardianIdProof = userDetail?.iDProof,gardianIdProof != ""{
-            parentIdUrl = URL(string: gardianIdProof)
+          //mohit  parentIdUrl = URL(string: gardianIdProof)
             parentIdProofImgView.sd_imageIndicator = SDWebImageActivityIndicator.gray
             parentIdProofImgView.contentMode = .scaleAspectFit
             parentIdProofImgView.sd_setImage(with: URL(string: gardianIdProof), placeholderImage: UIImage(named: kImages.kAttachmentImage))
@@ -1087,7 +1087,7 @@ extension AddStudentVC : AddStudentDelegate{
             //Show Pic Of User
             if let imgProfileUrl = userDetail?.imageUrl{
                 imgViewStudent.sd_imageIndicator = SDWebImageActivityIndicator.gray
-                studentImgUrl = URL(string: imgProfileUrl)
+              //mohit  studentImgUrl = URL(string: imgProfileUrl)
                 imgViewStudent.contentMode = .scaleAspectFill
 
                 imgViewStudent.sd_setImage(with: URL(string: imgProfileUrl), placeholderImage: UIImage(named: kImages.kProfileImage))
@@ -1099,7 +1099,7 @@ extension AddStudentVC : AddStudentDelegate{
             //Set Id Proof Image of student user
             if let studentIdProofImg = userDetail?.idProof,studentIdProofImg != ""{
                 studentIdProofImgView.sd_imageIndicator = SDWebImageActivityIndicator.gray
-                studentIdUrl = URL(string: studentIdProofImg)
+              //mohit  studentIdUrl = URL(string: studentIdProofImg)
                 studentIdProofImgView.contentMode = .scaleAspectFill
                 studentIdProofImgView.sd_setImage(with: URL(string: studentIdProofImg), placeholderImage: UIImage(named: kImages.kAttachmentImage))
             }else{
