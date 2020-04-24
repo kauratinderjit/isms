@@ -17,6 +17,7 @@ class SyllabusCoverageVC : BaseUIViewController  {
     var classDropdownData : [GetCommonDropdownModel.ResultData]?
     var lastText : String?
     var isFromStudent : Bool?
+     var HODdepartmentId = UserDefaultExtensionModel.shared.HODDepartmentId
     private var pickerView = UIPickerView()
     enum PickerTypes: Int {
         case statePicker = 1
@@ -49,7 +50,7 @@ class SyllabusCoverageVC : BaseUIViewController  {
     
     func classListDropdownApi(){
         if checkInternetConnection(){
-            self.viewModel?.getClassListDropdown(selectId: 44, enumType: CountryStateCity.classes.rawValue)
+            self.viewModel?.getClassListDropdown(selectId: HODdepartmentId, enumType: CountryStateCity.classes.rawValue)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }

@@ -30,7 +30,7 @@ class TimePeriodVC: BaseUIViewController {
     var datePickerView  = UIDatePicker()
     var newitems = [PeriodsListData]()
     var lastDouplicateElement : Bool?
-   
+     var HODdepartmentId = UserDefaultExtensionModel.shared.HODDepartmentId
     
     //MARK:- Outlets
     @IBOutlet weak var btnAddPeriod: UIButton!
@@ -50,7 +50,7 @@ class TimePeriodVC: BaseUIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         if checkInternetConnection(){
-            self.ViewModel?.getClassId(id: 44 , enumtype: 6)
+            self.ViewModel?.getClassId(id:HODdepartmentId , enumtype: 6)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }

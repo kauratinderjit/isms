@@ -61,7 +61,7 @@ class AddStudentViewModel{
             paramDict[KApiParameters.AddStudentApi.studentFirstName] = firstName ?? ""
             paramDict[KApiParameters.AddStudentApi.studentLastName] = lastName ?? ""
             paramDict[KApiParameters.AddStudentApi.Studentaddress] = address ?? ""
-            paramDict[KApiParameters.AddStudentApi.studentDOB] = dateOfBirth ?? ""
+            paramDict[KApiParameters.AddStudentApi.studentDOB] = "12-05-1998"
             paramDict[KApiParameters.AddStudentApi.studentGender] = gender ?? ""
             paramDict[KApiParameters.AddStudentApi.studentEmail] = email
             paramDict[KApiParameters.AddStudentApi.studentPhoneNo] =  phoneNumber
@@ -70,7 +70,7 @@ class AddStudentViewModel{
             paramDict[KApiParameters.AddStudentApi.parentFirstName] = parentFirstName
             paramDict[KApiParameters.AddStudentApi.parentLastName] = parentLastName
             paramDict[KApiParameters.AddStudentApi.parentAddress] =  parentAddress
-            paramDict[KApiParameters.AddStudentApi.parentDOB] =  parentDOB
+            paramDict[KApiParameters.AddStudentApi.parentDOB] =  "12-05-1975"
             paramDict[KApiParameters.AddStudentApi.parentGender] = parentGender
             paramDict[KApiParameters.AddStudentApi.parentEmail] = parentEmail
             paramDict[KApiParameters.AddStudentApi.parentPhoneNo] = parentPhoneNo
@@ -80,11 +80,13 @@ class AddStudentViewModel{
             paramDict[KApiParameters.AddStudentApi.GuardianId] = guardianId
             paramDict[KApiParameters.AddStudentApi.GuardianUserId] = 0
             paramDict[KApiParameters.AddStudentApi.RelationId] = relationID
-            paramDict[KApiParameters.AddStudentApi.SessionId] =  1
+            paramDict[KApiParameters.AddStudentApi.SessionId] =  7
             paramDict[KApiParameters.AddStudentApi.studentIDProofTitle] =  studentIdProofTile ?? ""
             paramDict[KApiParameters.AddStudentApi.guardianIDProofTitle] = parentIdProofTitle ?? ""
             paramDict[KApiParameters.AddStudentApi.studentIDProof] = studentIdProof ?? ""
             paramDict[KApiParameters.AddStudentApi.guardianIDProof] = parentIdProof ?? ""
+            paramDict["StudentRoleId"] = "5"
+            paramDict["GuardianRoleId"] = "6"
             
             print("value of paramdict : ",paramDict)
 

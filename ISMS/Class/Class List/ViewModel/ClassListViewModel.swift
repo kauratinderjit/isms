@@ -53,8 +53,6 @@ class ClassListViewModel{
         
         
         postDict = ["Search": Search ?? "","Skip":Skip ?? 0,"PageSize": PageSize ?? 0,"SortColumnDir": SortColumnDir ?? "", "SortColumn": SortColumn ?? "","ParticularId" : ParticularId] as [String : Any]
-//        postDict["departmentId"] = departmentId
-       
        let url = "api/Institute/GetClassListByDepartmentId"
         
         

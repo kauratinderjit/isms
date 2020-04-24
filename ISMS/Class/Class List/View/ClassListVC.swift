@@ -308,6 +308,7 @@ extension ClassListVC : NavigationSearchBarDelegate{
         viewModel?.isSearching = false
         DispatchQueue.main.async {
             self.arr_Classlist.removeAll()
+            self.viewModel?.classList(Search: "", Skip: KIntegerConstants.kInt0,PageSize: KIntegerConstants.kInt10,SortColumnDir: "",  SortColumn: "", ParticularId : self.HODdepartmentId)
 //                        self.viewModel?.classList(searchText: "", pageSize: KIntegerConstants.kInt10, filterBy: 0, skip: KIntegerConstants.kInt0)
         }
     }
@@ -342,6 +343,7 @@ extension ClassListVC : UIScrollViewDelegate{
             {
                 skip = skip + KIntegerConstants.kInt10
                 isFetching = false
+                self.viewModel?.classList(Search: "", Skip: KIntegerConstants.kInt0,PageSize: KIntegerConstants.kInt10,SortColumnDir: "",  SortColumn: "", ParticularId : HODdepartmentId)
                 //                self.viewModel?.classList(searchText: "", pageSize: pageSize, filterBy: 0, skip: skip)
             }
         }else{
