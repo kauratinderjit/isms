@@ -88,6 +88,23 @@ class BaseUIViewController: UIViewController {
         
     }
     
+    func dateFromISOStringNew(string: String) -> String?
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        
+        let dt = dateFormatter.date(from: string)
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.dateFormat =  "dd/MM/yyyy"
+        print("\(dateFormatter.string(from: dt!))")
+        return dateFormatter.string(from: dt!)
+        
+    }
+    
+    
+    
     //For Set the status bar content white
     override open var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent

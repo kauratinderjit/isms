@@ -92,6 +92,15 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
                 txtViewDescription.text = editEventModel?.Description
                 lbl_MessagePlaceholder.isHidden = true
                 txtfieldTitle.text = editEventModel?.Title
+                self.eventId = editEventModel?.EventId ?? 0
+                
+                let strtDate = self.dateFromISOStringNew(string: editEventModel?.StartDate ?? "")
+                let endDate = self.dateFromISOStringNew(string: editEventModel?.EndDate ?? "")
+                
+                self.tfEventDate.text = strtDate
+                self.tfEventEndDate.text = endDate
+                self.tfStartTime.text = editEventModel?.StrStartTime
+                self.tfEndTime.text = editEventModel?.StrEndTime
                 
                 
                 let localDateFormatter = DateFormatter()
@@ -148,7 +157,8 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
     }
     
     
-    private func styleLabel(textField: UILabel){
+    private func styleLabel(textField: UILabel)
+    {
         textField.layer.masksToBounds = false
         textField.layer.cornerRadius = 5.0;
         textField.layer.backgroundColor = UIColor.white.cgColor
