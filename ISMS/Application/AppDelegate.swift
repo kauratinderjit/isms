@@ -9,6 +9,8 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
+import Firebase
+import FirebaseAuth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GMSServices.provideAPIKey("AIzaSyAaydbkH0_mLslxTDxx4K-l3_3uQAmjYzQ")
         GMSPlacesClient.provideAPIKey("AIzaSyAaydbkH0_mLslxTDxx4K-l3_3uQAmjYzQ")
+        FirebaseApp.configure()
         customizeThemeColors()
         set_nav_bar_color()
         checkUserAlreadyLoggedIn()

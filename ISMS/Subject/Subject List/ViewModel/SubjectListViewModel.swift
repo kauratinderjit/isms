@@ -44,7 +44,7 @@ class SubjectListViewModel{
         self.SubjectListVC?.showLoader()
         
         let paramDict = [KApiParameters.SubjectListApi.subjectSearch: search ?? "",KApiParameters.SubjectListApi.PageSkip:skip ?? 0,KApiParameters.SubjectListApi.PageSize: pageSize ?? 0,KApiParameters.SubjectListApi.sortColumnDir: sortColumnDir ?? "", KApiParameters.SubjectListApi.sortColumn: sortColumn ?? "",
-                         KApiParameters.kUpdateSyllabusApiParameter.kParticularId : 40] as [String : Any]
+                         KApiParameters.kUpdateSyllabusApiParameter.kParticularId : UserDefaultExtensionModel.shared.userRoleParticularId] as [String : Any]
         
         SubjectApi.sharedInstance.getSubjectList(url: ApiEndpoints.KSubjectListApi, parameters: paramDict as [String : Any], completionResponse: { (SubjectListModel) in
             
