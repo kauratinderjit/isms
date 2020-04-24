@@ -12,6 +12,7 @@ class ForgotPasswordVC: BaseUIViewController
 {
      //MARK:-  Properties
     
+    @IBOutlet weak var imgForgotIcon: UIImageView!
     @IBOutlet weak var viewConfirePassword: UIView!
     @IBOutlet weak var txtConfirmPassword: UITextField!
     @IBOutlet weak var viewPassword: UIView!
@@ -54,6 +55,8 @@ class ForgotPasswordVC: BaseUIViewController
         //Add shadow
        // addShadow(view: viewConfirePassword)
        // addShadow(view: viewPassword)
+        
+       
     }
     
     //back button action
@@ -76,9 +79,14 @@ extension ForgotPasswordVC : UITextFieldDelegate{
 }
 //MARK:- presenter Delegate
 extension ForgotPasswordVC:ForgotPasswordDelegate{
-    func Success()
+    func Success(msg:String?)
     {
-      showAlert(Message: "Password Changed Successfully")
+    
+       self.AlertMessageWithOkAction(titleStr: KAPPContentRelatedConstants.kAppTitle, messageStr: msg ?? "", Target: self)
+       {
+         CommonFunctions.sharedmanagerCommon.setRootLogin()
+        }
+     
     }
     func Falied(message: String) {
         showAlert(Message: message)
