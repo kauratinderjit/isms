@@ -798,7 +798,7 @@ public struct KAPPContentRelatedConstants{
     public static let kThemeColour : UIColor = UIColor.init(red: 75.0/255.0, green: 190.0/255.0, blue: 248.0/255.0, alpha: 1.0) //UIColor.init(red: 183.0/255.0, green: 23.0/255.0, blue: 36.0/255.0, alpha: 1.0)
     public static let kLightBlueColour : UIColor = UIColor.init(red: 227.0/255.0, green: 240.0/255.0, blue: 254.0/255.0, alpha: 1.0)
     public static let kThemeColorName : String = "DarkRed"
-    public static let kAppTitle = "ISMS"
+    public static let kAppTitle = "iEMS"
     public static let kAppGlobalFontName : String = "OpenSans-Semibold"
 }
 

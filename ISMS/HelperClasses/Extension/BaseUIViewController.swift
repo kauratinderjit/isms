@@ -688,7 +688,7 @@ extension BaseUIViewController:UIImagePickerControllerDelegate,UINavigationContr
         // When showing the ImagePicker update the status bar and nav bar properties.
         //UIApplication.shared.setStatusBarHidden(false, with: .none)
         //164 13 28
-        navigationController.topViewController?.title = "Select photo iSMS"
+        navigationController.topViewController?.title = "Select photo iEMS"
         navigationController.navigationBar.isTranslucent = false
         navigationController.navigationBar.barTintColor = KAPPContentRelatedConstants.kThemeColour
         navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]

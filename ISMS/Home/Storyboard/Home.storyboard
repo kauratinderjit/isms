@@ -117,13 +117,13 @@
                                                     <color key="backgroundColor" red="0.29411764705882354" green="0.74509803921568629" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="QxH-vi-81x">
-                                                    <rect key="frame" x="56" y="8" width="259" height="39"/>
+                                                    <rect key="frame" x="48" y="8" width="259" height="39"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="16"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="classSideMenu" translatesAutoresizingMaskIntoConstraints="NO" id="XAq-mk-INR">
-                                                    <rect key="frame" x="14" y="11.5" width="32" height="32"/>
+                                                    <rect key="frame" x="8" y="11.5" width="32" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="32" id="hUA-Tn-nL5"/>
                                                         <constraint firstAttribute="height" constant="32" id="kIA-hp-aTw"/>
@@ -132,15 +132,15 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="QxH-vi-81x" firstAttribute="centerY" secondItem="XAq-mk-INR" secondAttribute="centerY" id="4f4-dw-r12"/>
-                                                <constraint firstItem="XAq-mk-INR" firstAttribute="leading" secondItem="SLG-aE-763" secondAttribute="leading" constant="14" id="5pc-SR-esB"/>
+                                                <constraint firstItem="XAq-mk-INR" firstAttribute="leading" secondItem="SLG-aE-763" secondAttribute="leading" constant="8" id="5pc-SR-esB"/>
                                                 <constraint firstItem="Cg5-vX-hB6" firstAttribute="leading" secondItem="SLG-aE-763" secondAttribute="leading" id="G7g-b0-rsg"/>
                                                 <constraint firstAttribute="bottom" secondItem="Cg5-vX-hB6" secondAttribute="bottom" id="KZm-Cq-ZBv"/>
                                                 <constraint firstItem="QxH-vi-81x" firstAttribute="top" secondItem="SLG-aE-763" secondAttribute="top" constant="8" id="UdY-KM-5sK"/>
                                                 <constraint firstItem="XAq-mk-INR" firstAttribute="centerY" secondItem="Cg5-vX-hB6" secondAttribute="centerY" id="jdf-yz-CF6"/>
-                                                <constraint firstItem="QxH-vi-81x" firstAttribute="leading" secondItem="XAq-mk-INR" secondAttribute="trailing" constant="10" id="mnh-bk-yMS"/>
+                                                <constraint firstItem="QxH-vi-81x" firstAttribute="leading" secondItem="XAq-mk-INR" secondAttribute="trailing" constant="8" id="mnh-bk-yMS"/>
                                                 <constraint firstAttribute="trailing" secondItem="Cg5-vX-hB6" secondAttribute="trailing" id="of2-2A-o0q"/>
                                                 <constraint firstAttribute="bottom" secondItem="QxH-vi-81x" secondAttribute="bottom" constant="8" id="r4G-Go-JIs"/>
-                                                <constraint firstAttribute="trailing" secondItem="QxH-vi-81x" secondAttribute="trailing" constant="60" id="vhL-m0-Z6Y"/>
+                                                <constraint firstAttribute="trailing" secondItem="QxH-vi-81x" secondAttribute="trailing" constant="68" id="vhL-m0-Z6Y"/>
                                                 <constraint firstItem="Cg5-vX-hB6" firstAttribute="top" secondItem="SLG-aE-763" secondAttribute="top" id="zfE-TS-8Wt"/>
                                             </constraints>
                                         </tableViewCellContentView>
