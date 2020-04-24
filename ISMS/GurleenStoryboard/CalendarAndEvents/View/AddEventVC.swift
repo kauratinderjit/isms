@@ -40,6 +40,9 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
     var datePickerEndDate = UIDatePicker()
     var datePickerStartTime = UIDatePicker()
     
+    var startTime : Date?
+    var endTime : Date?
+    
     var viewModel     : EventScheduleViewModel?
     var selectedTime : String?
     var eventId :Int = 0
@@ -249,15 +252,19 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
         }
         else
         {
-            if checkInternetConnection()
+            let stats = self.getTime_DIfference_isCorrect()
+            if stats == true
             {
-               // self.viewModel?.addUpdateEvent(eventId: eventId, title: txtfieldTitle.text, description: txtViewDescription.text, time: selectedTime, Date: str_date_selected)
-                
-                self.viewModel?.addUpdateEvent(eventId: eventId, title: txtfieldTitle.text, description: txtViewDescription.text, startTime: tfStartTime.text, endTime: tfEndTime.text, evntStartDate: tfEventDate.text, evntEndDate: tfEventEndDate.text)
-            }
-            else
-            {
-                self.showAlert(alert: Alerts.kNoInternetConnection)
+                if checkInternetConnection()
+                {
+                   // self.viewModel?.addUpdateEvent(eventId: eventId, title: txtfieldTitle.text, description: txtViewDescription.text, time: selectedTime, Date: str_date_selected)
+                    
+                    self.viewModel?.addUpdateEvent(eventId: eventId, title: txtfieldTitle.text, description: txtViewDescription.text, startTime: tfStartTime.text, endTime: tfEndTime.text, evntStartDate: tfEventDate.text, evntEndDate: tfEventEndDate.text)
+                }
+                else
+                {
+                    self.showAlert(alert: Alerts.kNoInternetConnection)
+                }
             }
         }
     }
