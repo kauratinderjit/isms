@@ -16,6 +16,7 @@ class CalendarEventVC: BaseUIViewController
     @IBOutlet var viewInfo: UIView!
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var lblSelectedDate: UILabel!
+    @IBOutlet var lblInfo: UILabel!
     
     var datesRange = [[String:Any]]()
     var datesRangeDATE = [Date]()
@@ -87,6 +88,26 @@ class CalendarEventVC: BaseUIViewController
     }
     
     
+    func get_event_Info_fromDate(sDate:Date) -> String
+    {
+        if(datesRange.count > 0)
+        {
+            for obj in datesRange
+            {
+                let stDate = obj["date"]as? Date
+                let desc = obj["desc"] as? String ?? "N/A"
+                
+                if sDate == stDate
+                {
+                    return desc
+                }
+                
+            }
+        }
+        
+        return "N/A"
+    }
+    
     func stringToDate(strDate:String) -> Date
     {
         //2020-05-23T00:00:0
@@ -138,6 +159,11 @@ extension CalendarEventVC : FSCalendarDataSource , FSCalendarDelegate , FSCalend
         
         self.viewInfo.isHidden = false
         self.viewStack.isHidden = false
+        
+        let info = get_event_Info_fromDate(sDate:date)
+        self.lblInfo.text = "Event: \(info)"
+        
+        
     }
     
     func minimumDate(for calendar: FSCalendar) -> Date
