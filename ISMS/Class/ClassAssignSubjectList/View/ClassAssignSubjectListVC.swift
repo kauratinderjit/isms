@@ -86,7 +86,7 @@ extension ClassAssignSubjectListVC : ClassAssignSubjectListDelegate{
     func assignSubjectsToClassDidSuccess(data: AssignSubjectsToClassResponseModel) {
         if let msg = data.message {
             arrAssignSubtoClass.removeAll()
-            self.showAlert(alert: msg)
+            self.showAlert(alert: "Subject assigned successfully and now you can add syllabus by clicking selected subjects.")
         }
     }
     
@@ -261,10 +261,7 @@ extension ClassAssignSubjectListVC : ClassAssignSubjectListDelegate{
             if tableView == tblViewpopUp.tblView{
                 CommonFunctions.sharedmanagerCommon.println(object: "Selection Table View")
               
-                
-                
-                
-                
+         
                 
             }
         }
@@ -289,6 +286,8 @@ extension ClassAssignSubjectListVC : ClassAssignSubjectListDelegate{
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
             let cell = tableView.dequeueReusableCell(withIdentifier: KTableViewCellIdentifier.kSelectionTableViewCell, for: indexPath) as! SelectionTblViewCell
+            
+            if arrAllAssignedSubjects.count > 0 {
             cell.lblRowTitle.text = arrAllAssignedSubjects[indexPath.row].subjectName
 //            cell.selectionStyle = .none
             
@@ -317,6 +316,7 @@ extension ClassAssignSubjectListVC : ClassAssignSubjectListDelegate{
             }
             cell.btnIsSelected.tag = indexPath.row
             cell.btnIsSelected.addTarget(self, action: #selector(btnActionSelectDeselectSubjects(_:)), for: .touchUpInside)
+            }
             return cell
         }
     }
