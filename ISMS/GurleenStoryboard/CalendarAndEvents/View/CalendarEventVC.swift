@@ -101,7 +101,6 @@ class CalendarEventVC: BaseUIViewController
                 {
                     return desc
                 }
-                
             }
         }
         
