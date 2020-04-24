@@ -10,6 +10,7 @@ import UIKit
 import EventKit
 import EventKitUI
 import SystemConfiguration
+import NVActivityIndicatorView
 
 
 extension UIViewController {
@@ -87,7 +88,32 @@ extension UIViewController {
         image.layer.cornerRadius = image.frame.width/2
         image.clipsToBounds = true
     }
-  
+    
+    func StartIndicator(message: String)
+    {
+        if(!CommonFunctions.isAnimating)
+        {
+            CommonFunctions.isAnimating = true
+            let size = CGSize(width: 30, height: 30)
+            
+          //  startAnimating(size, message: message, type: .ballBeat, fadeInAnimation: nil)
+            DispatchQueue.main.async {
+                NVActivityIndicatorPresenter.sharedInstance.setMessage(message)
+            }
+        }
+        //            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
+        //                       NVActivityIndicatorPresenter.sharedInstance.setMessage("Authenticating...")
+        //                   }
+    }
+  func StopIndicator()
+     {
+         CommonFunctions.isAnimating = false
+         DispatchQueue.main.async()
+             {
+             //    self.stopAnimating(nil)
+         }
+     }
+    
     // Hide Navigation Bar
     func HideNavigationBar(navigationController: UINavigationController){
          navigationController.setNavigationBarHidden(true, animated: true)
@@ -103,7 +129,18 @@ extension UIViewController {
     func CustomizeFontNavaigationBar(navigationController: UINavigationController){
         navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "OpenSans-Semibold", size: 20)!,.foregroundColor: UIColor.white]
     }
- 
+    //MARK:- Alert with OK Action
+    
+ func AlertMessageWithOkAction(titleStr:String, messageStr:String,Target : UIViewController, completionResponse:@escaping () -> Void) {
+        let alert = UIAlertController(title: titleStr, message: messageStr, preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
+            UIAlertAction in
+            completionResponse()
+        }
+        // Add the actions
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
     //Show Alert with message
     func showAlert(Message:String)
     {

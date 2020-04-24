@@ -34,6 +34,7 @@ class VerifyPhoneNumberModel : Mappable {
         
         var userId : Int?
         var isRegister : Int?
+        var PhoneNo:String?
         
         init?(map: Map) {
             
@@ -42,6 +43,7 @@ class VerifyPhoneNumberModel : Mappable {
         mutating func mapping(map: Map) {
             userId <- map["UserId"]
             isRegister <- map["IsRegister"]
+            PhoneNo <- map["PhoneNo"]
         }
         
       
