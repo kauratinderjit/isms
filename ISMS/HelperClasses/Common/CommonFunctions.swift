@@ -13,7 +13,7 @@ import SWRevealViewController
 class CommonFunctions: BaseUIViewController
 {
     static let sharedmanagerCommon = CommonFunctions()
-   
+    static var isAnimating = false
     //For globally print the objects
     func println(object: Any) {
         print(object)

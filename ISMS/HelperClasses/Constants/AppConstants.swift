@@ -139,6 +139,9 @@ public struct ApiEndpoints
     //Get Time Table Api
     public static let getTimeTableListApi = "api/Institute/GetTimeTableList"
     
+    public static let forgotPassword = "api/User/ForgotPassword?UserId="
+    public static let NewPassword = "&Password="
+    
 }
 
 
@@ -302,6 +305,7 @@ public struct KStoryBoards
         public static let kCreatePassTitle = "Create Password"
         public static let kForgotPassVC = "ForgotPasswordVC"
         public  static let kCreatePassVC = "ConfirmPasswordVC"
+        public static let kCheckOTPVC = "CheckOTPVC"
     }
     
     internal struct KSignUpIdentifiers
@@ -879,6 +883,10 @@ public struct SubjectWiseRating {
     
     
 }
+//MARK:- ConstantMessages
+
+let kLoading_Getting_OTP = "Requesting OTP..."
+
 
 //MARK:- PRINT ERROR MESSAGE
 public struct kPrintErrorMsg {
