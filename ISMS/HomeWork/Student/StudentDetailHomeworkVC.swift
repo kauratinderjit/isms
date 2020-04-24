@@ -39,6 +39,9 @@ class StudentDetailHomeworkVC: BaseUIViewController {
         self.viewModel = HomeworkViewModel.init(delegate: self)
                self.viewModel?.attachView(viewDelegate: self)
         tblViewListing.tableFooterView = UIView()
+        tblViewListing.separatorColor = KAPPContentRelatedConstants.kLightBlueColour
+        tblViewListing.separatorStyle = .singleLine
+        
         self.viewModel?.getHomeworkDataForStudent(studentId: UserDefaultExtensionModel.shared.userRoleParticularId, assignHomeWorkId: objGetStudentHomeDetail ?? 0)
         
     }
