@@ -156,16 +156,6 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
            
         }
         
-        if cell.checkBox.tag == 0 && indexPath.section == 1{
-            cell.checkBox.setImage(UIImage(named: "check"), for: .normal)
-        }
-        if cell.checkBox.tag == 2 && indexPath.section == 1{
-            cell.checkBox.setImage(UIImage(named: "check"), for: .normal)
-        }
-        if cell.checkBox.tag == 1 && indexPath.section == 0{
-            cell.checkBox.setImage(UIImage(named: "check"), for: .normal)
-        }
-        
         cell.checkBox.addTarget(self, action: #selector(self.updateSyllabus), for: .touchUpInside)
         return cell
     }

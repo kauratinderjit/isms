@@ -29,6 +29,7 @@ class ClassTimeTableVC: BaseUIViewController {
     var isCameFromOtherScreen : String?
     var currentDay:String!
     let userRoleParticularId = UserDefaultExtensionModel.shared.userRoleParticularId
+      var HODdepartmentId = UserDefaultExtensionModel.shared.HODDepartmentId
     public var isFromTimeTable:Bool!
     public var isFromViewAttendence:Bool!
     public var isFromTeacher:Int!
@@ -126,7 +127,7 @@ class ClassTimeTableVC: BaseUIViewController {
     //MARK:- Class List Dropdown
     func classListDropdownApi(){
         if checkInternetConnection(){
-            self.viewModel?.getClassListDropdown(selectId: 44, enumType: 6)
+            self.viewModel?.getClassListDropdown(selectId: HODdepartmentId, enumType: 6)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
