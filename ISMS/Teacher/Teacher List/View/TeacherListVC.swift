@@ -105,6 +105,7 @@ class TeacherListVC: BaseUIViewController {
         
         //Title
         self.title = KStoryBoards.KTeacherListIdentifiers.kTeacherListTitle
+        
         //Table View Settings
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()

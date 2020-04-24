@@ -235,7 +235,7 @@ extension AddTeacherVC : ViewDelegate{
         DispatchQueue.main.async {
             if let imgProfileUrl = data.resultData?.imageUrl{
                 self.imgViewTeacher.contentMode = .scaleAspectFill
-                self.selectedProfileImageUrl = URL.init(string: imgProfileUrl)
+                //self.selectedProfileImageUrl = URL.init(string: imgProfileUrl)
                 self.imgViewTeacher.sd_setImage(with: URL(string: imgProfileUrl), placeholderImage: UIImage(named: kImages.kProfileImage))
             }else{
                 self.selectedProfileImageUrl = nil
@@ -322,7 +322,7 @@ extension AddTeacherVC : ViewDelegate{
             }
             if let imgIDproofUrl = data.resultData?.idProof,imgIDproofUrl != ""{
                 self.imgViewIdProof.sd_imageIndicator = SDWebImageActivityIndicator.gray
-                self.selectedIdProofImageURL = URL(string: imgIDproofUrl)
+             //   self.selectedIdProofImageURL = URL(string: imgIDproofUrl)
                 self.imgViewIdProof.contentMode = .center
                 self.imgViewIdProof.sd_setImage(with: URL(string: imgIDproofUrl), placeholderImage: UIImage(named: kImages.kAttachmentImage))
             }else{
