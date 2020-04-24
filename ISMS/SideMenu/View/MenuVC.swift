@@ -291,7 +291,7 @@ extension MenuVC : UITableViewDelegate{
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
-        case "MangeInstitue":
+        case "ManageInstitue":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kSchool, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "AddSchoolVC") as? AddSchoolViewController
             let frontVC = revealViewController().frontViewController as? UINavigationController
@@ -472,6 +472,15 @@ extension MenuVC : UITableViewDelegate{
             frontVC?.pushViewController(vc, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
              break
+            
+            case "NewsFeed":
+            self.showAlert(Message: "Coming Soon")
+            break
+            
+        case "ContactUs":
+             self.showAlert(Message: "Coming Soon")
+            break
+            
         case "LogOut":
             initializeCustomYesNoAlert(self.view, isHideBlurView: true)
             self.yesNoAlertView.delegate = self
