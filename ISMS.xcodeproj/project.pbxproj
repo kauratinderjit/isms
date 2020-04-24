@@ -328,6 +328,8 @@
 		5CB7F1EE8CC8A74A757048E5 /* Pods_ISMS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C888007208C30DDC7E394E /* Pods_ISMS.framework */; };
 		63DA9B7336B3E8F878D62AF1 /* Pods_ISMSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60DEE33230370FAA807BA760 /* Pods_ISMSTests.framework */; };
 		8141B1AABFA2CECDE13474E9 /* Pods_ISMSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8DA8958D4FCB9233DC4FE1E /* Pods_ISMSUITests.framework */; };
+		91E68C2C2452A94900678AA6 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E68C2B2452A94800678AA6 /* Extension.swift */; };
+		91E68C2E2452A9AB00678AA6 /* EventsPagerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E68C2D2452A9AB00678AA6 /* EventsPagerVC.swift */; };
 		9B1CDD242449B15B003E7650 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CDD1A2449B155003E7650 /* CustomButton.swift */; };
 		9B1CDD252449B15B003E7650 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CDD1B2449B155003E7650 /* CustomTextField.swift */; };
 		9B1CDD282449B15B003E7650 /* SSBadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1CDD1E2449B158003E7650 /* SSBadgeButton.swift */; };
@@ -775,6 +777,8 @@
 		60DEE33230370FAA807BA760 /* Pods_ISMSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISMSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A2B5045127C6AFC8ED49002 /* Pods-ISMSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISMSTests.release.xcconfig"; path = "Target Support Files/Pods-ISMSTests/Pods-ISMSTests.release.xcconfig"; sourceTree = "<group>"; };
 		87766E9D3C767F134280AD94 /* Pods-ISMSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISMSUITests.debug.xcconfig"; path = "Target Support Files/Pods-ISMSUITests/Pods-ISMSUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		91E68C2B2452A94800678AA6 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		91E68C2D2452A9AB00678AA6 /* EventsPagerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsPagerVC.swift; sourceTree = "<group>"; };
 		9B1CDD1A2449B155003E7650 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		9B1CDD1B2449B155003E7650 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		9B1CDD1E2449B158003E7650 /* SSBadgeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSBadgeButton.swift; sourceTree = "<group>"; };
@@ -999,11 +1003,9 @@
 		0C1C285D238E5A9C00F98FEC /* Model */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-				2EA158A1245157B100975290 /* GetClassListByDepartmentModel.swift */,
-=======
+
+
 				9B3D5B412451D65F0076741C /* GetClassListByDepartmentModel.swift */,
->>>>>>> e0bfc7af09e3b51ce312ad3a0f0618f07ede9449
 				0C1C285E238E5A9C00F98FEC /* ClassListModel.swift */,
 				0C1C285F238E5A9C00F98FEC /* DeleteClassModel.swift */,
 			);
@@ -3284,10 +3286,12 @@
 		2E5CD438243798EA0060D601 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				91E68C2D2452A9AB00678AA6 /* EventsPagerVC.swift */,
 				E036A672238FAE4700BDC9D0 /* CalendarEventVC.swift */,
 				E036A671238FAE4700BDC9D0 /* ExamScheduleTableViewCell.swift */,
 				E036A673238FAE4800BDC9D0 /* ExamScheduleVC.swift */,
 				2E3BF6F524360C4C00A4FB22 /* AddEventVC.swift */,
+				91E68C2B2452A94800678AA6 /* Extension.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4621,6 +4625,7 @@
 				C683DB1E22E082BF00011212 /* GetStudentDetail.swift in Sources */,
 				2E8F63C6243C589A0040F9CA /* NotesListVC.swift in Sources */,
 				0C1C28D4238E5BB300F98FEC /* SubjectTopicViewModel.swift in Sources */,
+				91E68C2C2452A94900678AA6 /* Extension.swift in Sources */,
 				0C1C28ED238E5BCE00F98FEC /* ProgressBarClass.swift in Sources */,
 				2DCBA9FE22C0CB5D0054B3A7 /* AttachFilesTableViewCell.swift in Sources */,
 				102003662379435F00BA4836 /* MultiRoleTableViewDataSource.swift in Sources */,
@@ -4757,6 +4762,7 @@
 				2EC88B6A2448504000AF60B7 /* ViewStudentAttendanceCell.swift in Sources */,
 				2DCF6CF422CF1E3D005E505A /* TextFieldAlert.swift in Sources */,
 				0C5A1A90239929490039CB39 /* TeacherSubjectSkillRatingVC.swift in Sources */,
+				91E68C2E2452A9AB00678AA6 /* EventsPagerVC.swift in Sources */,
 				2E0DCA802297E8DC001DC56D /* Reachability.swift in Sources */,
 				0C1C288E238E5A9D00F98FEC /* ClassPeriodsTimeTableModel.swift in Sources */,
 				2DACBC7D22BA039800EFE5C4 /* HODListModel.swift in Sources */,
@@ -5067,15 +5073,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.seasia.berlin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.seasia.isms;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-<<<<<<< HEAD
+
 				PROVISIONING_PROFILE_SPECIFIER = Isms_Dev_Prov;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Volumes/DATA/ISMS git/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
-=======
-				PROVISIONING_PROFILE_SPECIFIER = AllSeasiaProjectsDev_5Sept2019;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/navaldeepkaur/Documents/ISMS/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
->>>>>>> e0bfc7af09e3b51ce312ad3a0f0618f07ede9449
+
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -5098,15 +5101,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.seasia.berlin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.seasia.isms;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-<<<<<<< HEAD
+
 				PROVISIONING_PROFILE_SPECIFIER = Isms_Dev_Prov;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Volumes/DATA/ISMS git/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
-=======
-				PROVISIONING_PROFILE_SPECIFIER = AllSeasiaProjectsDev_5Sept2019;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/navaldeepkaur/Documents/ISMS/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
->>>>>>> e0bfc7af09e3b51ce312ad3a0f0618f07ede9449
+
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

@@ -132,6 +132,16 @@ class HomeVC: BaseUIViewController {
 
     }
     
+    
+    
+    @IBAction func TESTING_ACTION(_ sender: Any)
+    {
+       let vc = UIStoryboard.init(name:"CalendarAndEvents", bundle: Bundle.main).instantiateViewController(withIdentifier: "AddEventVC") as! AddEventVC
+       self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
+    
     @IBAction func btnMenuAction(_ sender: UIBarButtonItem) {
         self.revealViewController()?.revealToggle(animated: true)
     }
