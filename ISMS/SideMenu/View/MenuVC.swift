@@ -189,8 +189,7 @@ extension MenuVC : UITableViewDelegate{
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
             
-            
-        case "Update SyllabusCoverage":
+        case "Update SyllabusCoverage" :
             let storyboard = UIStoryboard.init(name: KStoryBoards.kCourses, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: KStoryBoards.KSyllabusCoverageIdentifiers.kSyllabusCoverageVC) as? SyllabusCoverageVC
             vc?.lstActionAccess = MenuVC.menuArrayFromApi?.resultData?[indexPath.row]
@@ -198,7 +197,6 @@ extension MenuVC : UITableViewDelegate{
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
-            
             break
             
         case "AssignHomework":
@@ -482,7 +480,7 @@ extension MenuVC : UITableViewDelegate{
             self.showAlert(Message: "Coming Soon")
             break
             
-        case "ContactUs":
+        case "ContactUS":
 
             self.showAlert(Message: "Coming Soon")
 
