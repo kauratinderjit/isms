@@ -211,6 +211,8 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
     
     @IBAction func actionSendBtn(_ sender: UIBarButtonItem)
     {
+        self.animateTextView(textView: self.txtViewDescription, up: false, movementDistance: 250, scrollView:self.scrollView)
+        
         if (self.tfEventDate.text?.count == 0)
         {
             self.showAlert(alert: "Please select start date")
@@ -266,7 +268,8 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
 extension AddEventVC:UITextViewDelegate
 {
     
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool
+    {
         
         if text == "\n"
         {

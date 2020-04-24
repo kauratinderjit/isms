@@ -25,7 +25,7 @@ class CalendarEventVC: BaseUIViewController
     fileprivate lazy var dateFormatter2: DateFormatter =
     {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MM-YYYY"
+        formatter.dateFormat = "dd-MM-yyyy"
         return formatter
     }()
     
@@ -74,15 +74,14 @@ class CalendarEventVC: BaseUIViewController
         {
             print(dateFormatter2.string(from: strtdate))
             
-            strtdate = Calendar.current.date(byAdding: .day, value: 1, to: strtdate)!
-            
             let dd = dateFormatter2.string(from: strtdate)
-            
             let obj = ["date":dd,"desc":descpn] as [String : Any]
             
             datesRangeDATE.append(dd)
             datesRange.append(obj)
             calendar.select(strtdate)
+            
+            strtdate = Calendar.current.date(byAdding: .day, value: 1, to: strtdate)!
         }
         
         self.calendar.delegate = self
@@ -97,7 +96,7 @@ class CalendarEventVC: BaseUIViewController
         {
             for obj in datesRange
             {
-                let stDate = obj["date"]as? String ?? ""
+                let stDate = obj["date"]as? String ?? "N/A"
                 let desc = obj["desc"] as? String ?? "N/A"
                 
                 if sDate == stDate
@@ -105,6 +104,8 @@ class CalendarEventVC: BaseUIViewController
                     return desc
                 }
             }
+            
+            return "N/A"
         }
         
         return "N/A"
@@ -114,7 +115,7 @@ class CalendarEventVC: BaseUIViewController
     {
         //2020-05-23T00:00:0
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        //  dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:s"
         let date = dateFormatter.date(from:strDate)!
         return date
@@ -139,22 +140,17 @@ extension CalendarEventVC : FSCalendarDataSource , FSCalendarDelegate , FSCalend
         return UIColor.black
     }
     
-//    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition)
-//    {
-//        let key = self.dateFormatter2.string(from: date)
-//        self.lblSelectedDate.text = key
-//
-//        self.viewInfo.isHidden = false
-//        self.viewStack.isHidden = false
-//
-//        calendar.deselect(date)
-//       // self.calendar.reloadData()
-//    }
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition)
+    {
+        calendar.deselect(date)
+        let key = self.dateFormatter2.string(from: date)
+        let info = get_event_Info_fromDate(sDate:key)
+        self.lblInfo.text = "Event: \(info)"
+    }
     
     func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition)
     {
         calendar.select(date)
-      //  self.calendar.reloadData()
         
         let key = self.dateFormatter2.string(from: date)
         self.lblSelectedDate.text = key
