@@ -198,17 +198,14 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
             isCheck = true
             if coveredTopicData.count == 0{
                 var data = [String:Any]()
-                    
-                data = ["chapterId":arrayData[indexPath.section].chapterID ?? 0 , "topicId": arrayData[indexPath.section].TopicListViewModels?[indexPath.row].TopicId ?? 0]
+                data = ["chapterId":arrayData[indexPath.section].chapterID ?? 0 , "topicId": arrayData[indexPath.section].TopicListViewModels?[indexPath.row].TopicId ?? 0,]
                 print("data: ",data)
                 coveredTopicData.append(data)
             }else{
                 var data = [String:Any]()
-                
                 data = ["chapterId":arrayData[indexPath.section].chapterID ?? 0 , "topicId": arrayData[indexPath.section].TopicListViewModels?[indexPath.row].TopicId ?? 0]
                 print("data: ",data)
                 coveredTopicData.append(data)
-                
             }
             print("our selected arraty: ",coveredTopicData)
             tableView.reloadData()
@@ -220,7 +217,7 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
                         if arrayData[indexPath.section].chapterID == (coveredTopicData[i] as NSDictionary).value(forKey: "chapterId") as? Int{
                             coveredTopicData.remove(at: i)
                     }
-                  
+
                     }
                 }
             }

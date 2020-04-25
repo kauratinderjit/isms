@@ -126,12 +126,12 @@ class SubjectListViewModel{
         
     }
     
-    func addSubject(subjectName: String?, subjectID: Int?){
+    func addSubject(subjectName: String?, DeptId: Int?,DeptSubjectID: Int?){
         self.SubjectListVC?.showLoader()
         do {
             try validationsAddSubject(subjectName: subjectName)
             
-            let paramDict = [KApiParameters.AddSubjectApi.subjectName:subjectName ?? "", KApiParameters.AddSubjectApi.subjectId: subjectID ?? 0] as [String : Any]
+            let paramDict = [KApiParameters.AddSubjectApi.subjectName:subjectName ?? "", "DeptId": DeptId ?? 0, "DeptSubjectID": DeptSubjectID] as [String : Any]
             print("value of param: ",paramDict)
             
             SubjectApi.sharedInstance.AddSubject(url: ApiEndpoints.KAddSubject, parameters: paramDict, completionResponse: { (responseModel) in

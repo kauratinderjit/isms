@@ -462,7 +462,7 @@ extension MenuVC : UITableViewDelegate{
         case "SyllabusCoverage"://"ManageSyllabus" :
             let storyboard = UIStoryboard.init(name: KStoryBoards.kCourses, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: KStoryBoards.KSyllabusCoverageIdentifiers.kSyllabusCoverageVC) as? SyllabusCoverageVC
-            vc?.isFromStudent = true
+            vc?.isFromStudent = false
             //vc?.lstActionAccess = MenuVC.menuArrayFromApi?.resultData?[indexPath.row].lstActionAccess
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)

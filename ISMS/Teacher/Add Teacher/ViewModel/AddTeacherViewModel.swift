@@ -285,13 +285,15 @@ class AddTeacherViewModel{
         postdict[KApiParameters.KGetDetailByPhoneEmail.kEmail] = email
         
         self.addTeacherView?.showLoader()
-
+        print("params teacher: ",postdict)
         TeacherApi.sharedManager.getTeacherDetailPhoneEmail(url: ApiEndpoints.kTeacherDetailByPhoneEmail, parameters: postdict, completionResponse: { (responseTeacherModel) in
             self.addTeacherView?.hideLoader()
 
             switch responseTeacherModel.statusCode{
             case KStatusCode.kStatusCode200:
-                CommonFunctions.sharedmanagerCommon.println(object: responseTeacherModel.message ?? "Something went wrong")
+                print("response: ",responseTeacherModel.resultData)
+                break
+//                CommonFunctions.sharedmanagerCommon.println(object: responseTeacherModel.message ?? "Something went wrong")
             case KStatusCode.kStatusCode302:
                 self.addTeacherDelegate?.detailTeacherDidSucceed(data: responseTeacherModel)
             case KStatusCode.kStatusCode401:
