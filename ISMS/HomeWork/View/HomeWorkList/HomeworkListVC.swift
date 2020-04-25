@@ -31,6 +31,7 @@ class HomeworkListVC: BaseUIViewController {
     
     func setView() {
         tblViewListing.tableFooterView = UIView()
+        setBackButton()
     }
     
     @IBAction func editAction(_ sender: UIButton) {

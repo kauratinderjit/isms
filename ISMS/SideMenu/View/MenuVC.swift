@@ -24,8 +24,6 @@ class MenuVC: BaseUIViewController {
     static var menuArray = ["Logout"]
     static var menuArrayFromApi : GetMenuFromRoleIdModel?
     var sortedMenuArray = [GetMenuFromRoleIdModel.ResultData]()
-    var disPlayList = [Int]()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,8 +58,12 @@ class MenuVC: BaseUIViewController {
         //        }
         
         self.tableView.delegate = self
-        
-  
+
+        if let resultData  =  MenuVC.menuArrayFromApi?.resultData{
+            sortedMenuArray = resultData.sorted{ $0.displayOrder ?? 0 < $1.displayOrder ?? 0  }
+            print(sortedMenuArray)
+        }
+
         
         
         
@@ -163,7 +165,7 @@ extension MenuVC : UITableViewDelegate{
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
- 
+
         case "ManageDepartment":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kDepartment, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: KStoryBoards.KDepartMentListIdentifiers.kDepartmentListVC) as? DepartmentListVC
@@ -288,7 +290,7 @@ extension MenuVC : UITableViewDelegate{
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
-        case "ManageInstitue":
+        case "ManageInstitute":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kSchool, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "AddSchoolVC") as? AddSchoolViewController
             let frontVC = revealViewController().frontViewController as? UINavigationController
@@ -330,7 +332,7 @@ extension MenuVC : UITableViewDelegate{
             
         case "ManageCalender":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kCalender, bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "ExamScheduleVC") as? ExamScheduleVC
+            let vc = storyboard.instantiateViewController(withIdentifier: "EventsPagerVC") as? EventsPagerVC
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
@@ -569,9 +571,8 @@ extension MenuVC : UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MenuTableViewCell
-        
         if sortedMenuArray.count > 0{
-        
+
         cell.setData(sortedMenuArray[indexPath.row], indexPath)
         
         cell.lblRowTitle.text = sortedMenuArray[indexPath.row].pageName// MenuVC.menuArrayFromApi?.resultData?[indexPath.row].pageName

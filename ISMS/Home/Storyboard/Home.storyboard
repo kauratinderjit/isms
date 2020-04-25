@@ -53,13 +53,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adams,Henry" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dhd-Pe-XsS">
-                                                    <rect key="frame" x="76" y="62.5" width="263" height="20"/>
+                                                    <rect key="frame" x="76" y="61" width="263" height="23.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OcZ-PW-kZ7">
-                                                    <rect key="frame" x="76" y="86.5" width="263" height="20"/>
+                                                    <rect key="frame" x="76" y="88.5" width="263" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="MLh-fQ-jNU"/>
                                                     </constraints>
@@ -68,7 +68,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="22p-cy-NMZ">
-                                                    <rect key="frame" x="76" y="86.5" width="80" height="30"/>
+                                                    <rect key="frame" x="76" y="88.5" width="80" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="33Y-dA-c36"/>
                                                         <constraint firstAttribute="height" constant="30" id="lGH-Zq-kk4"/>
@@ -144,7 +144,7 @@
                                                 <constraint firstItem="Cg5-vX-hB6" firstAttribute="top" secondItem="SLG-aE-763" secondAttribute="top" id="zfE-TS-8Wt"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.64313725489999995" green="0.050980392159999999" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.29411764709999999" green="0.74509803919999995" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="imgViewRow" destination="XAq-mk-INR" id="0xP-p4-jZS"/>
                                             <outlet property="lblRowTitle" destination="QxH-vi-81x" id="8be-7Z-n3I"/>

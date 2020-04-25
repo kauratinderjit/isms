@@ -462,14 +462,28 @@ class BaseUIViewController: UIViewController {
         self.searchBar.delegate = self
         self.searchBar.isHidden = true
         self.searchBar.barStyle = .black
-       // self.searchBar.backgroundColor = .white
-        self.searchBar.backgroundColor = .white
         self.searchBar.tintColor = .black
-        self.searchBar.tintColor = .black
-        self.searchBar.layer.borderWidth = 0.5
-        self.searchBar.layer.borderColor = UIColor.lightGray.cgColor
-        self.searchBar.cornerRadius = 8
-    
+        
+        if #available(iOS 11, *)
+        {
+            var searchTextField: UITextField?
+           if let searchField = searchBar.value(forKey: "searchField") as? UITextField {
+                      searchTextField = searchField
+            searchTextField?.textColor = .black
+            searchTextField?.backgroundColor = .white
+            searchTextField?.layer.borderWidth = 0.5
+            searchTextField?.layer.borderColor = UIColor.lightGray.cgColor
+            searchTextField?.cornerRadius = 8
+                  }
+        }
+        else{
+            self.searchBar.searchTextField.backgroundColor = .white
+            self.searchBar.searchTextField.tintColor = .black
+            self.searchBar.searchTextField.layer.borderWidth = 0.5
+            self.searchBar.searchTextField.layer.borderColor = UIColor.lightGray.cgColor
+            self.searchBar.searchTextField.cornerRadius = 8
+        }
+        
         self.searchBar.showsCancelButton.toggle()
         self.navigationTitle = navigationTitle
         self.navigationSearchBarDelegate = navigationSearchBarDelegates

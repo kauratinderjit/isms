@@ -139,17 +139,6 @@
 		10EEEAAA239E57DC00E8485C /* PerformanceTrackingTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EEEA7F239E57DC00E8485C /* PerformanceTrackingTableCell.swift */; };
 		10EEEAAB239E57DC00E8485C /* PerformanceTrackingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EEEA80239E57DC00E8485C /* PerformanceTrackingVC.swift */; };
 		10EEEAAC239E57DC00E8485C /* Performance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10EEEA83239E57DC00E8485C /* Performance.storyboard */; };
-		10EEEAAD239E57DC00E8485C /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EEEA87239E57DC00E8485C /* Model.swift */; };
-		10EEEAAE239E57DC00E8485C /* SchoolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EEEA88239E57DC00E8485C /* SchoolModel.swift */; };
-		10EEEAAF239E57DC00E8485C /* MyCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EEEA89239E57DC00E8485C /* MyCustomView.swift */; };
-		10EEEAB0239E57DC00E8485C /* AttachFilesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EEEA8B239E57DC00E8485C /* AttachFilesCollectionViewCell.swift */; };
-		10EEEAB1239E57DC00E8485C /* AttachFilesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EEEA8C239E57DC00E8485C /* AttachFilesTableViewCell.swift */; };
-		10EEEAB2239E57DC00E8485C /* AddSchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EEEA8E239E57DC00E8485C /* AddSchoolViewController.swift */; };
-		10EEEAB3239E57DC00E8485C /* SchoolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EEEA90239E57DC00E8485C /* SchoolViewModel.swift */; };
-		10EEEAB4239E57DC00E8485C /* AddSchoolAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EEEA92239E57DC00E8485C /* AddSchoolAPI.swift */; };
-		10EEEAB5239E57DC00E8485C /* GeoLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EEEA94239E57DC00E8485C /* GeoLocationVC.swift */; };
-		10EEEAB6239E57DC00E8485C /* GoogleReversGeocoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EEEA95239E57DC00E8485C /* GoogleReversGeocoding.swift */; };
-		10EEEAB7239E57DC00E8485C /* School.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10EEEA97239E57DC00E8485C /* School.storyboard */; };
 		10EEEAB8239E57DC00E8485C /* OnlinePaymentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EEEA9C239E57DC00E8485C /* OnlinePaymentCell.swift */; };
 		10EEEAB9239E57DC00E8485C /* OnlinePaymentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EEEA9D239E57DC00E8485C /* OnlinePaymentVC.swift */; };
 		10EEEABA239E57DC00E8485C /* PaymentHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10EEEA9E239E57DC00E8485C /* PaymentHistoryCell.swift */; };
@@ -578,17 +567,6 @@
 		10EEEA7F239E57DC00E8485C /* PerformanceTrackingTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformanceTrackingTableCell.swift; sourceTree = "<group>"; };
 		10EEEA80239E57DC00E8485C /* PerformanceTrackingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformanceTrackingVC.swift; sourceTree = "<group>"; };
 		10EEEA83239E57DC00E8485C /* Performance.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Performance.storyboard; sourceTree = "<group>"; };
-		10EEEA87239E57DC00E8485C /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		10EEEA88239E57DC00E8485C /* SchoolModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolModel.swift; sourceTree = "<group>"; };
-		10EEEA89239E57DC00E8485C /* MyCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCustomView.swift; sourceTree = "<group>"; };
-		10EEEA8B239E57DC00E8485C /* AttachFilesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachFilesCollectionViewCell.swift; sourceTree = "<group>"; };
-		10EEEA8C239E57DC00E8485C /* AttachFilesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachFilesTableViewCell.swift; sourceTree = "<group>"; };
-		10EEEA8E239E57DC00E8485C /* AddSchoolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSchoolViewController.swift; sourceTree = "<group>"; };
-		10EEEA90239E57DC00E8485C /* SchoolViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolViewModel.swift; sourceTree = "<group>"; };
-		10EEEA92239E57DC00E8485C /* AddSchoolAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSchoolAPI.swift; sourceTree = "<group>"; };
-		10EEEA94239E57DC00E8485C /* GeoLocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoLocationVC.swift; sourceTree = "<group>"; };
-		10EEEA95239E57DC00E8485C /* GoogleReversGeocoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleReversGeocoding.swift; sourceTree = "<group>"; };
-		10EEEA97239E57DC00E8485C /* School.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = School.storyboard; sourceTree = "<group>"; };
 		10EEEA9C239E57DC00E8485C /* OnlinePaymentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnlinePaymentCell.swift; sourceTree = "<group>"; };
 		10EEEA9D239E57DC00E8485C /* OnlinePaymentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnlinePaymentVC.swift; sourceTree = "<group>"; };
 		10EEEA9E239E57DC00E8485C /* PaymentHistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentHistoryCell.swift; sourceTree = "<group>"; };
@@ -2007,88 +1985,6 @@
 			path = StoryBoard;
 			sourceTree = "<group>";
 		};
-		10EEEA84239E57DC00E8485C /* School */ = {
-			isa = PBXGroup;
-			children = (
-				10EEEA85239E57DC00E8485C /* AddSchool */,
-				10EEEA91239E57DC00E8485C /* Api */,
-				10EEEA93239E57DC00E8485C /* GoogleMap */,
-				10EEEA96239E57DC00E8485C /* Storyboard */,
-			);
-			path = School;
-			sourceTree = "<group>";
-		};
-		10EEEA85239E57DC00E8485C /* AddSchool */ = {
-			isa = PBXGroup;
-			children = (
-				10EEEA86239E57DC00E8485C /* Model */,
-				10EEEA89239E57DC00E8485C /* MyCustomView.swift */,
-				10EEEA8A239E57DC00E8485C /* TableAndCollectionViewCell */,
-				10EEEA8D239E57DC00E8485C /* View */,
-				10EEEA8F239E57DC00E8485C /* ViewModel */,
-			);
-			path = AddSchool;
-			sourceTree = "<group>";
-		};
-		10EEEA86239E57DC00E8485C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				10EEEA87239E57DC00E8485C /* Model.swift */,
-				10EEEA88239E57DC00E8485C /* SchoolModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		10EEEA8A239E57DC00E8485C /* TableAndCollectionViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				10EEEA8B239E57DC00E8485C /* AttachFilesCollectionViewCell.swift */,
-				10EEEA8C239E57DC00E8485C /* AttachFilesTableViewCell.swift */,
-			);
-			path = TableAndCollectionViewCell;
-			sourceTree = "<group>";
-		};
-		10EEEA8D239E57DC00E8485C /* View */ = {
-			isa = PBXGroup;
-			children = (
-				10EEEA8E239E57DC00E8485C /* AddSchoolViewController.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		10EEEA8F239E57DC00E8485C /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				10EEEA90239E57DC00E8485C /* SchoolViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		10EEEA91239E57DC00E8485C /* Api */ = {
-			isa = PBXGroup;
-			children = (
-				10EEEA92239E57DC00E8485C /* AddSchoolAPI.swift */,
-			);
-			path = Api;
-			sourceTree = "<group>";
-		};
-		10EEEA93239E57DC00E8485C /* GoogleMap */ = {
-			isa = PBXGroup;
-			children = (
-				10EEEA94239E57DC00E8485C /* GeoLocationVC.swift */,
-				10EEEA95239E57DC00E8485C /* GoogleReversGeocoding.swift */,
-			);
-			path = GoogleMap;
-			sourceTree = "<group>";
-		};
-		10EEEA96239E57DC00E8485C /* Storyboard */ = {
-			isa = PBXGroup;
-			children = (
-				10EEEA97239E57DC00E8485C /* School.storyboard */,
-			);
-			path = Storyboard;
-			sourceTree = "<group>";
-		};
 		10EEEA98239E57DC00E8485C /* Payment */ = {
 			isa = PBXGroup;
 			children = (
@@ -3057,7 +2953,6 @@
 				10EEEA67239E57DB00E8485C /* NewsFeedAndLetter */,
 				10EEEA98239E57DC00E8485C /* Payment */,
 				10EEEA74239E57DB00E8485C /* PerformanceTrackingAndGraph */,
-				10EEEA84239E57DC00E8485C /* School */,
 				10EEEA6F239E57DB00E8485C /* SuperAdmin */,
 				C61A1A8A2390FCB60043A5D2 /* Principle */,
 				C61A1A622390F5C80043A5D2 /* StudentAttendence */,
@@ -4371,7 +4266,6 @@
 				2D28B90F22B75A4A007D10F8 /* Profile.storyboard in Resources */,
 				2DB1589822C5E8E000AC6B8D /* GalleryAlert.xib in Resources */,
 				2D28B92722B7B257007D10F8 /* HOD.storyboard in Resources */,
-				10EEEAB7239E57DC00E8485C /* School.storyboard in Resources */,
 				2E3B81A724320E6F0029B73B /* Courses.storyboard in Resources */,
 				2E50E05E229E47AF009E47B9 /* OpenSans-Light.ttf in Resources */,
 				10EEEAA1239E57DC00E8485C /* NewsFeedAndLetter.storyboard in Resources */,
@@ -4581,8 +4475,6 @@
 				2E0DCA7C2297E8DC001DC56D /* Strings.swift in Sources */,
 				101B566C237EA685006907C7 /* UserDefaultExtensionModel.swift in Sources */,
 				E036A692238FAE7800BDC9D0 /* CoursesVC.swift in Sources */,
-				10EEEAAD239E57DC00E8485C /* Model.swift in Sources */,
-				10EEEAB3239E57DC00E8485C /* SchoolViewModel.swift in Sources */,
 				2EC88B782448505300AF60B7 /* SubjectListModel.swift in Sources */,
 				C683DB1122E072ED00011212 /* AddPeriodApi.swift in Sources */,
 				2D2A92B322B0BC7300F2AAB6 /* AddHODViewModel.swift in Sources */,
@@ -4590,7 +4482,6 @@
 				2DE328ED22BB5D0F004687C3 /* CommomResponseModel.swift in Sources */,
 				2DB1589522C5D79400AC6B8D /* GalleryAlertCustomView.swift in Sources */,
 				2E6B386724409DF3000BA37D /* RegisterClassDataModel.swift in Sources */,
-				10EEEAAF239E57DC00E8485C /* MyCustomView.swift in Sources */,
 				0C5A1A762398CA590039CB39 /* SubjectSkillRatingTableViewCell.swift in Sources */,
 				0C1C2889238E5A9D00F98FEC /* AssignSubjectsToClassResponseModel.swift in Sources */,
 				0C1C288A238E5A9D00F98FEC /* GetAllAssignSubjectResponse.swift in Sources */,
@@ -4626,7 +4517,6 @@
 				2D28B93722B7B762007D10F8 /* DepartmentListModel.swift in Sources */,
 				2EC88B762448505300AF60B7 /* TeacherRatingListAPI.swift in Sources */,
 				0C1C28EF238E5BCE00F98FEC /* SyllabusCoverageVC.swift in Sources */,
-				10EEEAB2239E57DC00E8485C /* AddSchoolViewController.swift in Sources */,
 				2EC88B772448505300AF60B7 /* AddFeedbackModel.swift in Sources */,
 				2EC88B622448501D00AF60B7 /* ViewRatingCell.swift in Sources */,
 				C683DB1E22E082BF00011212 /* GetStudentDetail.swift in Sources */,
@@ -4664,9 +4554,7 @@
 				2D2C449422CE0E09004424D8 /* SelectionTblViewCell.swift in Sources */,
 				2E3BF6F02435D05C00A4FB22 /* ExampleData.swift in Sources */,
 				2E63606D244EC01B0003DD05 /* StundentHWListModel.swift in Sources */,
-				10EEEAB5239E57DC00E8485C /* GeoLocationVC.swift in Sources */,
 				2E5CD434243798B20060D601 /* EventScheduleApi.swift in Sources */,
-				10EEEAAE239E57DC00E8485C /* SchoolModel.swift in Sources */,
 				2DF5641022C1F72D006F4522 /* UserListVC.swift in Sources */,
 				0C1C28C6238E5BB300F98FEC /* SubjectChapterViewModel.swift in Sources */,
 				10EEEAA6239E57DC00E8485C /* ManageEventsVC.swift in Sources */,
@@ -4725,7 +4613,6 @@
 				2DF5641D22C213D4006F4522 /* UserListTableViewCell.swift in Sources */,
 				C680B5032398E5B000675A17 /* StudentListForAttendenceModel.swift in Sources */,
 				C683DB1022E072ED00011212 /* PeriodViewModel.swift in Sources */,
-				10EEEAB4239E57DC00E8485C /* AddSchoolAPI.swift in Sources */,
 				E036A687238FAE6800BDC9D0 /* NotesVC.swift in Sources */,
 				2EC88B692448504000AF60B7 /* StudentViewAttendanceVC.swift in Sources */,
 				10EEEAC7239E57FD00E8485C /* ExamResultViewModel.swift in Sources */,
@@ -4733,7 +4620,6 @@
 				C61A1A9D23913CEF0043A5D2 /* SendMessageCell.swift in Sources */,
 				2D7F4B0F22C65A4100BBDB50 /* YesNoAlertView.swift in Sources */,
 				2E8F63E0243CB43C0040F9CA /* HomeworkApi.swift in Sources */,
-				10EEEAB6239E57DC00E8485C /* GoogleReversGeocoding.swift in Sources */,
 				C683DAF222E0725C00011212 /* StudentListModel.swift in Sources */,
 				0C1C28F4238E5BCE00F98FEC /* UpdateSyllabusVC.swift in Sources */,
 				2D28B91622B75C68007D10F8 /* DepartmentApi.swift in Sources */,
@@ -4780,7 +4666,6 @@
 				2E0DCA7A2297E8DC001DC56D /* ViewControllerExtension.swift in Sources */,
 				2E50E069229E850D009E47B9 /* SignUpViewController.swift in Sources */,
 				2E63606B244E88B20003DD05 /* SubjectListHomeWorkModel.swift in Sources */,
-				10EEEAB0239E57DC00E8485C /* AttachFilesCollectionViewCell.swift in Sources */,
 				2D2A92B122B0BC5F00F2AAB6 /* AddHODVC.swift in Sources */,
 				2EC88B5424483E6A00AF60B7 /* StudentUploadHomeWorkVC.swift in Sources */,
 				2D28B91B22B78B51007D10F8 /* AddDepartmentModel.swift in Sources */,
@@ -4862,7 +4747,6 @@
 				0C7A1A1423953CA5002B5C8B /* RatingToTeacherViewModel.swift in Sources */,
 				2DCBAA0422C0CB5D0054B3A7 /* GeoLocationVC.swift in Sources */,
 				103091B7239E2F9E003DA163 /* EPGCollectionViewCell.swift in Sources */,
-				10EEEAB1239E57DC00E8485C /* AttachFilesTableViewCell.swift in Sources */,
 				2E6B386624409DF3000BA37D /* ClassIDModel.swift in Sources */,
 				103091AE239E2390003DA163 /* TimeCollectionViewCell.swift in Sources */,
 				0C1C2888238E5A9D00F98FEC /* AssignSubjectsToClassModel.swift in Sources */,
