@@ -369,6 +369,7 @@ class ThemeManager {
             UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
             UINavigationBar.appearance().isTranslucent = false
             UINavigationBar.appearance().barStyle = .blackTranslucent
+        
             ThemeManager.shared.currentTheme = theme
     }
     

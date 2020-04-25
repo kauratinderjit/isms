@@ -14,6 +14,7 @@ class StudentListToMarkAttendence: BaseUIViewController {
     @IBOutlet weak var tableViewStudent: UITableView!
     
     @IBOutlet weak var btnSubmitAttandance: UIButton!
+    @IBOutlet weak var kbtnSubmitHeight: NSLayoutConstraint!
     //Variables
     var arrStudentlist = [GetStudentListForAttResultData]()
     var viewModel : StudentListForAttViewModel?
@@ -41,8 +42,10 @@ class StudentListToMarkAttendence: BaseUIViewController {
         super.viewWillAppear(true)
         if isFromHOD == true{
             btnSubmitAttandance.isHidden = true
+            kbtnSubmitHeight.constant = 0
         }else{
             btnSubmitAttandance.isHidden = false
+            kbtnSubmitHeight.constant = 58
         }
 //          btnSubmitAttandance.isHidden = false
         arrStudentlist.removeAll()

@@ -9,7 +9,8 @@
 import Foundation
 import ObjectMapper
 
-class homeModel : Mappable{
+class homeModel : Mappable
+{
     
     var message : String?
     var status : Bool?
@@ -18,7 +19,8 @@ class homeModel : Mappable{
     var resourceType : String?
     
     
-    required init?(map: Map) {
+    required init?(map: Map)
+    {
         
     }
     
@@ -32,23 +34,29 @@ class homeModel : Mappable{
     
 }
 
-struct homeResultData: Mappable {
-    
+struct homeResultData: Mappable
+{
+    //HOD
     var HodName : String?
     var DepartmentName : String?
     var NumberofClasses : Int?
     var NumberofTeacher : Int?
     var NumberofStudent : Int?
+    
     var lstEvent : [ListData]?
     var lstStudent : [ListData]?
-     var lstTeacher : [ListData]?
-     var lstclass : [ListData]?
+    var lstTeacher : [ListData]?
+    var lstclass : [ListData]?
     
-    init?(map: Map) {
+    
+    
+    init?(map: Map)
+    {
         
     }
     
-    mutating func mapping(map: Map) {
+    mutating func mapping(map: Map)
+    {
         
         HodName <- map["HodName"]
         DepartmentName <- map["DepartmentName"]
@@ -60,7 +68,9 @@ struct homeResultData: Mappable {
         lstTeacher <- map["lstTeacher"]
         lstclass <- map["lstclass"]
         
-
+        
+        
+        
     }
     
 }
@@ -142,4 +152,8 @@ struct homeAdminResultData: Mappable {
     }
     
 }
+
+
+
+
 
