@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -766,7 +766,6 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="actionbtnSubmit:" destination="d0o-Z8-1Vh" eventType="touchUpInside" id="3Xj-Ym-etB"/>
-                                                    <segue destination="Aff-b4-Qe3" kind="show" id="19B-jl-fU4"/>
                                                 </connections>
                                             </button>
                                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fA1-I4-G7M">
@@ -986,11 +985,11 @@
             <objects>
                 <viewController storyboardIdentifier="StudentUploadHomeWorkVC" title="Add Homework" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Aff-b4-Qe3" customClass="StudentUploadHomeWorkVC" customModule="ISMS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KJq-F5-gJN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jNT-mO-kJ5">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cem-Eo-urc">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="641"/>
@@ -1191,6 +1190,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Add Notes" id="4CB-Lt-rWM"/>
                     <connections>
+                        <outlet property="btnSubmit" destination="y4n-yE-8Lk" id="2QT-d5-W9T"/>
                         <outlet property="heightTableView" destination="oo0-nw-Tvw" id="UGX-bd-tkj"/>
                         <outlet property="lblPlaceHolderComment" destination="D52-9H-qwf" id="BhF-TU-adG"/>
                         <outlet property="scrollView" destination="jNT-mO-kJ5" id="Eir-hK-Odu"/>

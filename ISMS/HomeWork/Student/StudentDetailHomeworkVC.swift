@@ -22,7 +22,7 @@ class StudentDetailHomeworkVC: BaseUIViewController {
       var viewModel : HomeworkViewModel?
     var objGetStudentHomeDetail : Int?
     var uploadData = NSMutableArray()
-
+    var  datalocal: [HomeworkListStudentData]?
     
     let formatter: DateFormatter = {
               let formatter = DateFormatter()
@@ -49,8 +49,16 @@ class StudentDetailHomeworkVC: BaseUIViewController {
 
     
     @IBAction func actionbtnSubmit(_ sender: UIButton) {
-        
-        
+       // StudentUploadHomeWorkVC
+        if datalocal?.count ?? 0 > 0 {
+            let vc = UIStoryboard.init(name:"Homework", bundle: Bundle.main).instantiateViewController(withIdentifier: "StudentUploadHomeWorkVC") as! StudentUploadHomeWorkVC
+            vc.AssignHomeWorkId = datalocal?[0].AssignHomeWorkId
+            //vc.StudentHomeworkId = datalocal?[0].
+            vc.lststuattachmentModels = datalocal?[0].lststuattachmentModels
+            vc.datalocalStu = datalocal
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }
     }
     
     @IBAction func actionBtnDownload(_ sender: UIButton) {
@@ -86,7 +94,7 @@ extension StudentDetailHomeworkVC : ViewDelegate {
 
 extension StudentDetailHomeworkVC : AddHomeWorkDelegate {
     func studentHomeworkDetail(data: [HomeworkListStudentData]) {
-        
+        datalocal = data
         txtfieldTitle.text = data[0].Topic
         txtViewDescription.text = data[0].Details
         

@@ -16,12 +16,44 @@ class StudentUploadHomeWorkVC: BaseUIViewController {
     @IBOutlet weak var tblViewListing: UITableView!
     @IBOutlet weak var heightTableView: NSLayoutConstraint!
     var uploadData = NSMutableArray()
-
+ var viewModel : HomeworkViewModel?
+    var AssignHomeWorkId : Int? = 0
+     var StudentId : Int? = 0
+    var StudentHomeworkId : Int? = 0
+      var lststuattachmentModels: [lstattachmentModels]?
+    @IBOutlet weak var btnSubmit: UIButton!
+     var  datalocalStu: [HomeworkListStudentData]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Upload Tasks"
         heightTableView.constant = 0
+        self.viewModel = HomeworkViewModel.init(delegate: self)
+                      self.viewModel?.attachView(viewDelegate: self)
+        
+        if datalocalStu != nil  {
+            
+             self.title = "Update Tasks"
+             heightTableView.constant =  CGFloat((lststuattachmentModels?.count ?? 0) * 51)
+          //  txtViewComment.text = datalocalStu?[0].
+             btnSubmit.setTitle("UPDATE", for: .normal)
+             lblPlaceHolderComment.isHidden = true
+             if lststuattachmentModels?.count ?? 0 > 0 {
+                 
+                 for (index, element) in (lststuattachmentModels?.enumerated())! {
+                   print("Item \(index): \(element)")
+                   
+                 var modelHW = [String: Any]()
+                                      modelHW["url"] = nil
+                                      modelHW["fileName"] = element.FileName
+                                      modelHW["id"] = element.AssignWorkAttachmentId
+                                      uploadData.add(modelHW)
+                 }
+                 
+             }
+             
+
+         }
     }
     
 
@@ -34,7 +66,38 @@ class StudentUploadHomeWorkVC: BaseUIViewController {
     
     @IBAction func actionSubmit(_ sender: UIButton) {
         
-        
+        if checkInternetConnection(){
+                   
+                   if txtViewComment.text == "" {
+                    self.showAlert(Message: "Please enter comment")
+                   }
+                   
+                 
+                   else {
+                   var attachementArr = [URL]()
+                        _ = uploadData.enumerated().map { (index,element) in
+                          
+                          let dd = element as? [String:Any]
+                           if let url = dd?["url"] as? URL {
+                               if url != nil {
+                           attachementArr.append((dd?["url"] as? URL)!)
+                               }
+                           }
+                          }
+                       
+                     
+
+                    
+                  StudentId =  UserDefaultExtensionModel.shared.userRoleParticularId
+                    self.viewModel?.uploadHomeworkStudent(AssignHomeWorkId: AssignHomeWorkId ?? 0, StudentId: StudentId ?? 0, StudentHomeworkId: StudentHomeworkId ?? 0, Comment: txtViewComment.text, Status: true, lstAssignHomeAttachmentMapping: attachementArr)
+                       
+                   }
+                   
+               }
+               
+                else{
+                   self.showAlert(Message: Alerts.kNoInternetConnection)
+               }
         //self.showAlert(Message: "Homework has been uploaded successfully.")
        // _ = self.navigationController?.popViewController(animated: true)
     }
@@ -149,6 +212,10 @@ extension StudentUploadHomeWorkVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AddNotesCell
         
+        if datalocalStu != nil  {
+            cell.btnDel.isHidden = true
+        }
+        
         cell.btnDel.tag = indexPath.row
 
        
@@ -162,4 +229,77 @@ extension StudentUploadHomeWorkVC : UITableViewDelegate, UITableViewDataSource {
     }
   
     
+}
+extension StudentUploadHomeWorkVC : ViewDelegate {
+    
+    func showAlert(alert: String) {
+        self.showAlert(Message: alert)
+    }
+    
+    func showLoader() {
+          self.ShowLoader()
+    }
+    
+    func hideLoader() {
+        self.HideLoader()
+    }
+    
+}
+
+extension StudentUploadHomeWorkVC : AddHomeWorkDelegate {
+    func studentHomeworkDetail(data: [HomeworkListStudentData]) {
+        
+//        txtfieldTitle.text = data[0].Topic
+//        txtViewDescription.text = data[0].Details
+//
+//        if txtViewDescription.text == "" {
+//            txtViewDescription.text = "No Description Available"
+//        }
+        
+        
+        if data[0].lstattachmentModels?.count ?? 0 > 0 {
+            for (index, element) in (data[0].lstattachmentModels?.enumerated())! {
+                          print("Item \(index): \(element)")
+                          
+                        var modelHW = [String: Any]()
+                         modelHW["url"] = element.AttachmentUrl
+                         modelHW["fileName"] = element.FileName
+                         modelHW["id"] = element.AssignWorkAttachmentId
+                         uploadData.add(modelHW)
+                         heightTableView.constant =  CGFloat((data[0].lstattachmentModels?.count ?? 0) * 51)
+                        tblViewListing.reloadData()
+            }
+        }
+        
+    }
+    
+    func subjectList(data: [HomeworkResultHWData]) {
+        
+    }
+    
+    func attachmentDeletedSuccessfully() {
+        
+    }
+    
+    func addedSuccessfully() {
+        
+    }
+    
+    func getSubjectList(arr: [GetSubjectHWResultData]) {
+        
+    }
+    
+    
+    func classListDidSuccess(data: GetCommonDropdownModel) {
+        
+    }
+    
+    
+    func AddHomeworkSucceed(array: [HomeworkResultData]) {
+
+    }
+    
+    func AddHomeworkFailour(msg: String) {
+         self.showAlert(Message: msg)
+    }
 }
