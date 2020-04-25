@@ -94,6 +94,7 @@ class AddHomeWorkVC: BaseUIViewController {
     }
     
     func setUp() {
+         setBackButton()
         self.title = "Add Homework"
         tblView.tableFooterView = UIView()
         setDatePickerView(self.view, type: .date)

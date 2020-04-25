@@ -249,10 +249,10 @@
                                                 <rect key="frame" x="18" y="37" width="378" height="50"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="UaV-F1-ORu">
-                                                        <rect key="frame" x="346" y="12" width="24" height="26"/>
+                                                        <rect key="frame" x="358" y="12" width="12" height="26"/>
                                                     </imageView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Class" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oRD-P6-Pe4">
-                                                        <rect key="frame" x="8" y="8" width="330" height="34"/>
+                                                        <rect key="frame" x="8" y="8" width="342" height="34"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="34" id="qon-aA-ZcJ"/>
                                                         </constraints>
@@ -299,10 +299,10 @@
                                                 <rect key="frame" x="18" y="112" width="378" height="50"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="W5o-L2-pqD">
-                                                        <rect key="frame" x="346" y="12" width="24" height="26"/>
+                                                        <rect key="frame" x="358" y="12" width="12" height="26"/>
                                                     </imageView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Subject" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nmj-Ub-VBd">
-                                                        <rect key="frame" x="8" y="8" width="330" height="34"/>
+                                                        <rect key="frame" x="8" y="8" width="342" height="34"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="34" id="6E9-Hu-zMZ"/>
                                                         </constraints>
@@ -1259,8 +1259,8 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Data Found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6H1-lc-Wya">
-                                <rect key="frame" x="0.0" y="426" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="61" y="409" width="291" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
