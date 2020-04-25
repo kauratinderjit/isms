@@ -1258,9 +1258,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Data Found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6H1-lc-Wya">
-                                <rect key="frame" x="61" y="409" width="291" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Data Found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6eK-50-IVy">
+                                <rect key="frame" x="149.5" y="437.5" width="115" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1269,15 +1268,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="BAU-8F-bSU" firstAttribute="bottom" secondItem="pKI-nO-j2k" secondAttribute="bottom" id="2fL-k2-nkO"/>
+                            <constraint firstItem="6eK-50-IVy" firstAttribute="centerY" secondItem="MhV-bS-0tT" secondAttribute="centerY" id="G0d-ZH-gIq"/>
                             <constraint firstItem="BAU-8F-bSU" firstAttribute="leading" secondItem="pKI-nO-j2k" secondAttribute="leading" id="TOa-fk-pmm"/>
                             <constraint firstItem="BAU-8F-bSU" firstAttribute="top" secondItem="MhV-bS-0tT" secondAttribute="top" id="n9a-zs-QBn"/>
                             <constraint firstItem="BAU-8F-bSU" firstAttribute="trailing" secondItem="pKI-nO-j2k" secondAttribute="trailing" id="wGC-gY-0VP"/>
+                            <constraint firstItem="6eK-50-IVy" firstAttribute="centerX" secondItem="MhV-bS-0tT" secondAttribute="centerX" id="xjs-81-Rlf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pKI-nO-j2k"/>
                     </view>
                     <navigationItem key="navigationItem" id="FiS-Va-y2M"/>
                     <connections>
-                        <outlet property="LblNoDataFound" destination="6H1-lc-Wya" id="t3P-2a-umT"/>
+                        <outlet property="LblNoDataFound" destination="6eK-50-IVy" id="To5-sH-Rf7"/>
                         <outlet property="table_View" destination="BAU-8F-bSU" id="vCr-dM-dbh"/>
                     </connections>
                 </viewController>
