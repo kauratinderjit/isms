@@ -95,7 +95,7 @@ class SyllabusCoverageVC : BaseUIViewController  {
                 }) {
                     print("Index found :\(index)")
                     let total = classDropdownData?[index].id ?? 0
-                     self.viewModel?.getData(teacherId: 0, classID: total)
+                     self.viewModel?.getData(teacherId: userRoleParticularId, classID: total)
                 }
                 
                 
@@ -252,7 +252,7 @@ extension SyllabusCoverageVC : SyllabusCoverageDelegate {
                 
                 if boolFirstTime == true {
                 boolFirstTime = false
-                    self.viewModel?.getData(teacherId: 2, classID: selectedClassId ?? 0)}
+                    self.viewModel?.getData(teacherId: userRoleParticularId, classID: selectedClassId ?? 0)}
 
                }else{
                     

@@ -35,6 +35,7 @@ struct AddStudentRatingResultData: Mappable{
     
     var studentID : Int?
     var studentName : String?
+    var classSubjectId : Int?
     
     var isSelected = 0
     var ratingValue = 0
@@ -45,5 +46,6 @@ struct AddStudentRatingResultData: Mappable{
     mutating func mapping(map: Map) {
         studentID <- map["ID"]
         studentName <- map["Name"]
+        classSubjectId <- map["ClassSubjectId"]
     }
 }

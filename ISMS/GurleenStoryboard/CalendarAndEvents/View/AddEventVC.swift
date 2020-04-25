@@ -144,15 +144,13 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
                         calenderDate.isUserInteractionEnabled = false
                         txtfieldTitle.isUserInteractionEnabled = false
                         txtViewDescription.isUserInteractionEnabled = false
-                        //mohit    tfEventDate.isUserInteractionEnabled = false
+                        //mohit tfEventDate.isUserInteractionEnabled = false
                         self.navigationItem.rightBarButtonItem = nil
                         tfEventDate.isUserInteractionEnabled = false
                         tfEventEndDate.isUserInteractionEnabled = false
                         tfStartTime.isUserInteractionEnabled = false
                          tfEndTime.isUserInteractionEnabled = false
                     }
-                    
-                    
                 }
             }
         }

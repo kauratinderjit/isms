@@ -196,18 +196,18 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
         indexRow = indexPath.row
         section = indexPath.section
         firstRun = 2
+        let item = arrayData[indexPath.section].TopicListViewModels?[indexPath.row]
         if isCheck == false {
             isCheck = true
-            if coveredTopicData.count == 0{
-                var data = [String:Any]()
-                data = ["chapterId":arrayData[indexPath.section].chapterID ?? 0 , "topicId": arrayData[indexPath.section].TopicListViewModels?[indexPath.row].TopicId ?? 0,]
-                print("data: ",data)
-                coveredTopicData.append(data)
-            }else{
-                var data = [String:Any]()
-                data = ["chapterId":arrayData[indexPath.section].chapterID ?? 0 , "topicId": arrayData[indexPath.section].TopicListViewModels?[indexPath.row].TopicId ?? 0]
-                print("data: ",data)
-                coveredTopicData.append(data)
+            if coveredTopicData.count > 0{
+                for i in 0..<coveredTopicData.count{
+                    if i<coveredTopicData.count{
+                        if item?.TopicId == (coveredTopicData[i] as NSDictionary).value(forKey: "topicId") as? Int{
+                            coveredTopicData[i]["IsCover"] = true
+                        }
+                        
+                    }
+                }
             }
             print("our selected arraty: ",coveredTopicData)
             tableView.reloadData()
@@ -216,12 +216,13 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
             if coveredTopicData.count > 0{
                 for i in 0..<coveredTopicData.count{
                     if i<coveredTopicData.count{
-                        if arrayData[indexPath.section].chapterID == (coveredTopicData[i] as NSDictionary).value(forKey: "chapterId") as? Int{
-                            coveredTopicData.remove(at: i)
-                    }
-
+                        if item?.TopicId == (coveredTopicData[i] as NSDictionary).value(forKey: "topicId") as? Int{
+                            coveredTopicData[i]["IsCover"] = false
+                        }
+                        
                     }
                 }
+              
             }
              print("our selected arraty delete: ",coveredTopicData)
             tableView.reloadData()
@@ -251,21 +252,26 @@ extension UpdateSyllabusVC: CollapsibleTableViewHeaderDelegate {
 extension UpdateSyllabusVC : UpdateSyllabusDelegate {
     func UpdateSyllabusSucceed(array: [UpdateSyllabusResultData] ) {
         arrayData = array
-      if array.count > 0{
-        for i in 0..<arrayData.count{
-            if let total = arrayData[i].TopicListViewModels{
-                for j in 0..<total.count{
-                    if let item = arrayData[i].TopicListViewModels?[j]{
-                        if item.isCover == 1{
-                            var data = [String:Any]()
-                            data = ["chapterId":arrayData[i].chapterID ?? 0 , "topicId": arrayData[i].TopicListViewModels?[j].TopicId ?? 0]
-                            print("data: ",data)
-                            coveredTopicData.append(data)
+        if array.count > 0{
+            for i in 0..<arrayData.count{
+                if let total = arrayData[i].TopicListViewModels{
+                    for j in 0..<total.count{
+                        if let item = arrayData[i].TopicListViewModels?[j]{
+                            if item.isCover == 1{
+                                var data = [String:Any]()
+                                data = ["chapterId":arrayData[i].chapterID ?? 0 , "topicId": arrayData[i].TopicListViewModels?[j].TopicId ?? 0,"IsCover":true]
+                                print("data: ",data)
+                                coveredTopicData.append(data)
+                            }else{
+                                var data = [String:Any]()
+                                data = ["chapterId":arrayData[i].chapterID ?? 0 , "topicId": arrayData[i].TopicListViewModels?[j].TopicId ?? 0,"IsCover":false]
+                                print("data: ",data)
+                                coveredTopicData.append(data)
+                            }
                         }
                     }
                 }
-            }
-            
+                
             }
         }
         tableView.reloadData()
