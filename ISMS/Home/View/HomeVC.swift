@@ -24,6 +24,14 @@ class HomeVC: BaseUIViewController {
     @IBOutlet weak var lblName2: UILabel!
     @IBOutlet weak var lblName3: UILabel!
     @IBOutlet weak var viewEvents: UIView!
+    
+    @IBOutlet var iv1: UIImageView!
+    @IBOutlet var iv2: UIImageView!
+    @IBOutlet var iv3: UIImageView!
+    
+    
+    
+    
     var arrEventlist : [ListData]?
     
     var roleUserName:String?
@@ -203,6 +211,15 @@ extension HomeVC : HomeViewModelDelegate
     
     func hodData(data: homeResultData)
     {
+        
+        self.iv1.isHidden = false
+        self.iv2.isHidden = false
+        self.iv3.isHidden = false
+        
+        self.lblName1.isHidden = false
+        self.lblName2.isHidden = false
+        self.lblName3.isHidden = false
+        
         print(data)
         lblName.text = data.HodName
         lblDept.text = (data.DepartmentName ?? "")
@@ -241,12 +258,21 @@ extension HomeVC : HomeViewModelDelegate
     
     func teacherData(data: teacherData)
     {
+        
+        self.iv1.isHidden = false
+        self.iv2.isHidden = false
+        self.iv3.isHidden = false
+        
+        self.lblName1.isHidden = false
+        self.lblName2.isHidden = false
+        self.lblName3.isHidden = false
+        
         print(data)
         lblName.text = data.TeacherName
-        lblDept.text = "DEPARTMENT"
+        lblDept.text = ""
         
         var strClass : String = "Class"
-        var strTeacher : String = "Teacher"
+        var strTeacher : String = "Subjects"
         var strStudent : String = "Student"
         
         if data.NoOfClasses ?? 0 > 1
@@ -266,54 +292,64 @@ extension HomeVC : HomeViewModelDelegate
         lblName2.text =  "\(String(describing: data.NoOfSubjects!))" + " " + strTeacher
         lblName3.text =  "\(String(describing: data.NoOfStudents!))" + " " + strStudent
         
-        //        if data.lstEvent?.count ?? 0 > 0
-        //        {
-        //            arrEventlist = data.lstEvent
-        //            tblViewListing.reloadData()
-        //        }
-        //        else
-        //        {
-        //            tblViewListing.isHidden = true
-        //        }
+        if data.lstEvent?.count ?? 0 > 0
+        {
+            arrEventlist = data.lstEvent
+            tblViewListing.reloadData()
+        }
+        else
+        {
+            tblViewListing.isHidden = true
+        }
     }
+    
     
     
     func studentData(data: StudentData)
     {
         print(data)
-        lblName.text = data.TeacherName
-        lblDept.text = "DEPARTMENT"
+        lblName.text = data.StudentName
+        lblDept.text = ""
         
-        var strClass : String = "Class"
-        var strTeacher : String = "Teacher"
-        var strStudent : String = "Student"
+        self.iv1.isHidden = true
+        self.iv2.isHidden = true
+        self.iv3.isHidden = true
         
-        if data.NoOfClasses ?? 0 > 1
-        {
-            strClass = "Classes"
-        }
-        if data.NoOfSubjects ?? 0 > 1
+        self.lblName1.isHidden = true
+        self.lblName2.isHidden = true
+        self.lblName3.isHidden = true
+        
+        
+//        var strClass : String = "Class"
+        var strTeacher = "Teacher"
+//        var strStudent : String = "Student"
+        
+//        if data.NoOfClasses ?? 0 > 1
+//        {
+//            strClass = "Classes"
+//        }
+        if data.subjectNameLists?.count ?? 0 > 1
         {
             strTeacher = "Subjects"
         }
-        if data.NoOfStudents ?? 0 > 1
-        {
-            strStudent = "Students"
-        }
+//        if data.NoOfStudents ?? 0 > 1
+//        {
+//            strStudent = "Students"
+//        }
         
-        lblName1.text = "\(String(describing: data.NoOfClasses!))" + " " + strClass
-        lblName2.text =  "\(String(describing: data.NoOfSubjects!))" + " " + strTeacher
-        lblName3.text =  "\(String(describing: data.NoOfStudents!))" + " " + strStudent
+        lblName1.text = "\(String(describing: data.subjectNameLists?.count ?? 0))" + " " + "Subjects"
+      //  lblName2.text =  "\(String(describing: data.NoOfSubjects!))" + " " + strTeacher
+     //   lblName3.text =  "\(String(describing: data.NoOfStudents!))" + " " + strStudent
         
-        //        if data.lstEvent?.count ?? 0 > 0
-        //        {
-        //            arrEventlist = data.lstEvent
-        //            tblViewListing.reloadData()
-        //        }
-        //        else
-        //        {
-        //            tblViewListing.isHidden = true
-        //        }
+                if data.lstEvent?.count ?? 0 > 0
+                {
+                    arrEventlist = data.lstEvent
+                    tblViewListing.reloadData()
+                }
+                else
+                {
+                    tblViewListing.isHidden = true
+                }
     }
     
     func userUnauthorize()
