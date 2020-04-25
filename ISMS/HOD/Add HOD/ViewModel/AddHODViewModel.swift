@@ -163,6 +163,11 @@ class AddHODViewModel{
             case ValidationError.emptyWorkExperience:
                 addHODView?.showAlert(alert: Alerts.kEmptyWorkExperience)
                 
+            case ValidationError.emptyQualification:
+                addHODView?.showAlert(alert: Alerts.kEmptyQualifications)
+                
+                
+                
             case ValidationError.emptyFatherName:
                 addHODView?.showAlert(alert: Alerts.kEmptyOthers)
                 
@@ -275,21 +280,32 @@ class AddHODViewModel{
         }
         
   
-        if departmentId == nil{
+        if departmentId == nil
+        {
             throw ValidationError.emptyDepartmentID
         }
         
-        guard let qualification  = qualification, !qualification.isEmpty, !qualification.trimmingCharacters(in: .whitespaces).isEmpty
-            else
+        if (qualification?.count == 0)
         {
             throw ValidationError.emptyQualification
         }
         
-        guard let workExperience  = workExperience, !workExperience.isEmpty, !workExperience.trimmingCharacters(in: .whitespaces).isEmpty
-            else
+        if (workExperience?.count == 0)
         {
             throw ValidationError.emptyWorkExperience
         }
+        
+//        guard let qualification  = qualification, !qualification.isEmpty, !qualification.trimmingCharacters(in: .whitespaces).isEmpty
+//            else
+//        {
+//            throw ValidationError.emptyQualification
+//        }
+        
+//        guard let workExperience  = workExperience, !workExperience.isEmpty, !workExperience.trimmingCharacters(in: .whitespaces).isEmpty
+//            else
+//        {
+//            throw ValidationError.emptyWorkExperience
+//        }
     }
     
     //MARk:- Get departments dropdown data

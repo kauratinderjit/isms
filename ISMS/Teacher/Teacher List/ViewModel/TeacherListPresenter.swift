@@ -55,6 +55,7 @@ class TeacherListViewModel{
         postDict[KApiParameters.KCommonParametersForList.kSortColumn] = ""
         postDict[KApiParameters.KCommonParametersForList.kSkip] = skip
         postDict[KApiParameters.KCommonParametersForList.kSortColumnDir] = ""
+        postDict["ParticularId"] = UserDefaultExtensionModel.shared.HODDepartmentId
         
         TeacherApi.sharedManager.getTeacherList(url: ApiEndpoints.kGetTeacherList, parameters: postDict, completionResponse: { (teacherModel) in
             self.teacherListView?.hideLoader()

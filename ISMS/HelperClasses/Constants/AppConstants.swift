@@ -231,7 +231,8 @@ public struct Alerts
     public static let kEmptyRollNoAddmissionID = "Please enter addmission id or roll no."
     public static let kEmptyFatherName : String = "Please enter father name."
     public static let kEmptyDesignation : String = "Please select designation."
-    public static let kEmptyWorkExperience : String = "Please select work experience."
+    public static let kEmptyWorkExperience : String = "Please add work experience."
+    public static let kEmptyQualifications : String = "Please add qualification."
 
     public static let kMapperModelError: String = "Mapper Error."
     public static let kUnderAge: String = "You are under age."
@@ -797,6 +798,9 @@ public struct KTableViewCellIdentifier{
 public struct KAPPContentRelatedConstants{
     public static let kThemeColour : UIColor = UIColor.init(red: 75.0/255.0, green: 190.0/255.0, blue: 248.0/255.0, alpha: 1.0) //UIColor.init(red: 183.0/255.0, green: 23.0/255.0, blue: 36.0/255.0, alpha: 1.0)
     public static let kLightBlueColour : UIColor = UIColor.init(red: 227.0/255.0, green: 240.0/255.0, blue: 254.0/255.0, alpha: 1.0)
+    public static let kGreenColor = UIColor.init(red: 101.0/255.0, green: 222.0/255.0, blue: 146.0/255.0, alpha: 1.0)
+     public static let kRedColor = UIColor.init(red: 185.0/255.0, green: 43.0/255.0, blue: 62.0/255.0, alpha: 1.0)
+    
     public static let kThemeColorName : String = "DarkRed"
     public static let kAppTitle = "iEMS"
     public static let kAppGlobalFontName : String = "OpenSans-Semibold"
@@ -1044,7 +1048,7 @@ public struct KConstants{
     static let kPeriodGreater: String = "End time must be greater then start time"
     static let kNextPeriod: String = "End time must be smaller then next period start time"
      static let kGardianExist : String = "Guardian exist"
-     static let kHODExist : String = "HOD Exist"
+     static let kHODExist : String = "HOD exist"
 }
 
 //MARK:- Navigation Titles
