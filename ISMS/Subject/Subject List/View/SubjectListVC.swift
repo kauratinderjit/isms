@@ -127,7 +127,7 @@ extension SubjectListVC : TextFieldAlertDelegate{
             if subjectId != 0{
                 if textFieldAlert.txtFieldVal.text != ""{
                     isSubjectAddSuccessFully = true
-                    self.ViewModel?.addSubject(subjectName: textFieldAlert.txtFieldVal.text, DeptId: HODdepartmentId,DeptSubjectID: 0)
+                    self.ViewModel?.addSubject(subjectName: textFieldAlert.txtFieldVal.text, DeptId: HODdepartmentId,DeptSubjectID: subjectId)
                     yesNoAlertView.removeFromSuperview()
                 }
                 else {

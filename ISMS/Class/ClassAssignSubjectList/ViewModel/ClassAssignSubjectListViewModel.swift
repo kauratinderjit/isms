@@ -112,6 +112,8 @@ class ClassAssignSubjectListViewModel{
         postDict[KApiParameters.KCommonParametersForList.kSkip] = skip
         postDict[KApiParameters.KCommonParametersForList.kSortColumnDir] = ""
         postDict[KApiParameters.KAddClassApiPerameters.kClassId] = classId
+        postDict[KApiParameters.KAddClassApiPerameters.kClassId] = classId
+        postDict[KApiParameters.kUpdateSyllabusApiParameter.kParticularId] = UserDefaultExtensionModel.shared.HODDepartmentId
         
         if isSearching == false{
             self.classAssignSubjectListView?.showLoader()

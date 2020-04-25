@@ -228,7 +228,7 @@ extension AddStudentRatingVC : AddStudentRatingDelegate {
             if data1.count > 0 {
                 if let studentName = arrSubjectlist[0].studentName{
                     txtfieldSubject.text = studentName
-                    RegisterClassDataModel.sharedInstance?.subjectID = arrSubjectlist[0].studentID
+                    RegisterClassDataModel.sharedInstance?.subjectID = arrSubjectlist[0].classSubjectId
                 }
             }else {
                 txtfieldSubject.text = ""
@@ -419,7 +419,7 @@ extension AddStudentRatingVC : SharedUIPickerDelegate{
         else if isSubjectSelected == true {
             if arrSubjectlist.count > 0 {
                 selectedSubjectId = arrSubjectlist[index].studentID
-                RegisterClassDataModel.sharedInstance?.subjectID = arrSubjectlist[index].studentID
+                RegisterClassDataModel.sharedInstance?.subjectID = arrSubjectlist[index].classSubjectId
                 //                selectstudentRating = arrSubjectlist[index].studentID ?? 0
                 txtfieldSubject.text = arrSubjectlist[index].studentName
             }

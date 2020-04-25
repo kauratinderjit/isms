@@ -62,7 +62,11 @@ class StudentRatingVC: BaseUIViewController {
         }
         if checkInternetConnection(){
 //            self.viewModel?.classList(searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: KIntegerConstants.kInt0)
-            self.viewModel?.GetSkillList(id : HODdepartmentId , enumType : 6)
+            if isFromHod == true{
+                self.viewModel?.GetSkillList(id : HODdepartmentId , enumType : 6)
+            }else{
+                self.viewModel?.GetSkillList(id : userRoleParticularId , enumType : 17)
+            }
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
@@ -204,7 +208,7 @@ extension StudentRatingVC : StudentRatingDelegate {
                 self.arrSubjectList1 = data1
                 if let subjectName = arrSubjectList1[0].studentName{
                     txtfieldSubject.text = subjectName
-                    self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID: 96, classID: RegisterClassDataModel.sharedInstance?.subjectID ?? 0 )
+                    self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID: arrSubjectList1[0].classSubjectId ?? 0, classID: RegisterClassDataModel.sharedInstance?.subjectID ?? 0 )
 //                    self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID: arrSubjectList1[0].studentID ?? 0, classID: RegisterClassDataModel.sharedInstance?.subjectID ?? 0 )
                     //                    RegisterClassDataModel.sharedInstance?.classID = arrSkillList[0].studentID
                     
@@ -323,7 +327,7 @@ extension StudentRatingVC : SharedUIPickerDelegate{
                 }
             }else if isSubjectSelected == true{
                 if let index = selectedClassArrIndex {
-                    self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID:96, classID:  RegisterClassDataModel.sharedInstance?.subjectID ?? 0 )
+                    self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID:arrSubjectList1[index].classSubjectId ?? 0, classID:  RegisterClassDataModel.sharedInstance?.subjectID ?? 0 )
 //                    self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID:arrSubjectList1[index].studentID ?? 0, classID:  RegisterClassDataModel.sharedInstance?.subjectID ?? 0 )
                 }
             }
@@ -478,6 +482,7 @@ extension StudentRatingVC : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if arrStudent.count > 0{
             tableView.separatorStyle = .singleLine
+             tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: true)
             return arrStudent.count
         }else{
             tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
@@ -490,13 +495,6 @@ extension StudentRatingVC : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: StudentRating.kStudentRatingCell, for: indexPath) as! StudentRatingTableViewCell
         
         cell.setCellUI(data: arrStudent, indexPath: indexPath)
-        //        if let name = arrStudent[indexPath.row].studentName {
-        //            cell.lblStudentName.text = name
-        //        }
-        //
-        //        if let rating = arrStudent[indexPath.row].studentRating {
-        //            cell.lblPercentage.text = rating
-        //        }
         return cell
         
     }
