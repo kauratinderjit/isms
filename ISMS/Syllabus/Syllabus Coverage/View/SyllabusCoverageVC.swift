@@ -37,17 +37,20 @@ class SyllabusCoverageVC : BaseUIViewController  {
         
         self.viewModel = SyllabusCoverageViewModel.init(delegate: self)
         self.viewModel?.attachView(viewDelegate: self)
-        
-      
+        self.classListDropdownApi()
         setPickerView()
         boolFirstTime = true
-         self.classListDropdownApi()
+         
         //self.viewModel?.getData(teacherId: 0, classID: 10)
         setBackButton()
      //   tableView.allowsSelection = false
         tableView.reloadData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
     
     func classListDropdownApi(){
         if checkInternetConnection(){

@@ -67,8 +67,10 @@ class UpdateSyllabusVC: BaseUIViewController {
         if let percentage = subjectData?.coveragePercentage {
             
              lblProgressPercentage.text = "\(String(describing: percentage))" +  "%"
+            progressBar.cornerRadius = progressBar.layer.fs_height / 2
+            progressBar.clipsToBounds = true
             progressBar.transform = CGAffineTransform(scaleX: 1, y: 3.0)
-            progressBar.progressTintColor = UIColor(red: 183/255, green: 23/255, blue: 36/255, alpha: 1)
+            progressBar.progressTintColor = KAPPContentRelatedConstants.kThemeColour//UIColor(red: 183/255, green: 23/255, blue: 36/255, alpha: 1)
             //    let floatPercentage = percentage / 100
                 print("your float percenage : \(percentage)")
               
@@ -283,7 +285,11 @@ extension UpdateSyllabusVC : UpdateSyllabusDelegate {
 extension UpdateSyllabusVC : ViewDelegate {
     
     func showAlert(alert: String) {
-        self.showAlert(Message: alert)
+        //self.showAlert(Message: alert)
+        
+        self.AlertMessageWithOkAction(titleStr: KAPPContentRelatedConstants.kAppTitle, messageStr: alert, Target: self) {
+            self.navigationController?.popViewController(animated: false)
+        }
     }
     
     func showLoader() {
