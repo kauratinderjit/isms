@@ -129,7 +129,15 @@ class HomeViewModel{
             {
             case KStatusCode.kStatusCode200:
                 self.homeView?.hideLoader()
-                self.delegate?.hodData(data: getMenuFromRoleIdModel.resultData!)
+                
+                if (getMenuFromRoleIdModel.resultData != nil)
+                {
+                   self.delegate?.hodData(data: getMenuFromRoleIdModel.resultData!)
+                }
+                else
+                {
+                    self.homeView?.showAlert(alert: getMenuFromRoleIdModel.message ?? "Something went wrong")
+                }
             case KStatusCode.kStatusCode401:
                 self.homeView?.showAlert(alert: getMenuFromRoleIdModel.message ?? "Something went wrong")
                 self.delegate?.userUnauthorize()
