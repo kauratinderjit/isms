@@ -26,9 +26,9 @@ class MenuTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func setData(_ menuArr: GetMenuFromRoleIdModel?,_ indexPath: IndexPath){
+    func setData(_ menuArr: GetMenuFromRoleIdModel.ResultData?,_ indexPath: IndexPath){
         
-        if let data = menuArr?.resultData?[indexPath.row]{
+        if let data = menuArr{
             let title = data.pageName
             lblRowTitle.text = title
             lblRowTitle.numberOfLines = 0

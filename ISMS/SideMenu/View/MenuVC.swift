@@ -23,6 +23,9 @@ class MenuVC: BaseUIViewController {
     @IBOutlet weak var tableView: UITableView!
     static var menuArray = ["Logout"]
     static var menuArrayFromApi : GetMenuFromRoleIdModel?
+    var sortedMenuArray = [GetMenuFromRoleIdModel.ResultData]()
+    var disPlayList = [Int]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,8 +61,12 @@ class MenuVC: BaseUIViewController {
         
         self.tableView.delegate = self
         
+        if let resultData  =  MenuVC.menuArrayFromApi?.resultData{
+            sortedMenuArray = resultData.sorted{ $0.displayOrder ?? 0 < $1.displayOrder ?? 0  }
+            print(sortedMenuArray)
+        }
         
-        //   print("array count: ",MenuVC.menuArrayFromApi.count)
+        
         
     }
     
@@ -134,13 +141,13 @@ extension MenuVC : UITableViewDelegate{
         tableView.deselectRow(at: indexPath, animated: true)
         
         print("your get result : \(String(describing: MenuVC.menuArrayFromApi?.resultData?[indexPath.row].pageUrl))")
-                
-        switch MenuVC.menuArrayFromApi?.resultData?[indexPath.row].pageUrl!
+        
+        switch sortedMenuArray[indexPath.row].pageUrl!
         {
         case "ManageTeachers":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kTeacher, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: KStoryBoards.KTeacherListIdentifiers.kTeacherListVC) as? TeacherListVC
-            vc?.lstActionAccess = MenuVC.menuArrayFromApi?.resultData?[indexPath.row]
+            vc?.lstActionAccess = sortedMenuArray[indexPath.row]
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
@@ -155,7 +162,7 @@ extension MenuVC : UITableViewDelegate{
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
             
-        case "ManageDepartment ":
+        case "ManageDepartment":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kDepartment, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: KStoryBoards.KDepartMentListIdentifiers.kDepartmentListVC) as? DepartmentListVC
             //vc?.lstActionAccess = MenuVC.menuArrayFromApi?.resultData?[indexPath.row].lstActionAccess
@@ -186,7 +193,7 @@ extension MenuVC : UITableViewDelegate{
         case "Update SyllabusCoverage":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kCourses, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: KStoryBoards.KSyllabusCoverageIdentifiers.kSyllabusCoverageVC) as? SyllabusCoverageVC
-            vc?.lstActionAccess = MenuVC.menuArrayFromApi?.resultData?[indexPath.row]
+            vc?.lstActionAccess = sortedMenuArray[indexPath.row]
             vc?.isFromStudent = false
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
@@ -196,7 +203,7 @@ extension MenuVC : UITableViewDelegate{
         case "AssignHomework":
             let storyboard = UIStoryboard.init(name: "Homework", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "HomeworkListVC") as? HomeworkListVC
-            vc?.lstActionAccess = MenuVC.menuArrayFromApi?.resultData?[indexPath.row]
+            vc?.lstActionAccess = sortedMenuArray[indexPath.row]
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
@@ -331,7 +338,7 @@ extension MenuVC : UITableViewDelegate{
             let storyboard = UIStoryboard.init(name: KStoryBoards.kCalender, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "ExamScheduleVC") as? ExamScheduleVC
             let frontVC = revealViewController().frontViewController as? UINavigationController
-            vc?.lstActionAccess = MenuVC.menuArrayFromApi?.resultData?[indexPath.row]
+            vc?.lstActionAccess = sortedMenuArray[indexPath.row]
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
@@ -463,7 +470,7 @@ extension MenuVC : UITableViewDelegate{
         case "AssignHomeWorks":
             let storyboard = UIStoryboard.init(name: "Homework", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "HomeworkListVC") as? HomeworkListVC
-            vc?.lstActionAccess = MenuVC.menuArrayFromApi?.resultData?[indexPath.row]
+            vc?.lstActionAccess = sortedMenuArray[indexPath.row]
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
@@ -482,7 +489,7 @@ extension MenuVC : UITableViewDelegate{
             let storyboard = UIStoryboard.init(name: KStoryBoards.kCalender, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "ExamScheduleVC") as? ExamScheduleVC
             let frontVC = revealViewController().frontViewController as? UINavigationController
-            vc?.lstActionAccess = MenuVC.menuArrayFromApi?.resultData?[indexPath.row]
+            vc?.lstActionAccess = sortedMenuArray[indexPath.row]
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
@@ -560,8 +567,9 @@ extension MenuVC : UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MenuTableViewCell
-        cell.setData(MenuVC.menuArrayFromApi, indexPath)
-        cell.lblRowTitle.text =  MenuVC.menuArrayFromApi?.resultData?[indexPath.row].pageName
+        cell.setData(sortedMenuArray[indexPath.row], indexPath)
+        
+        cell.lblRowTitle.text = sortedMenuArray[indexPath.row].pageName// MenuVC.menuArrayFromApi?.resultData?[indexPath.row].pageName
         cell.lblRowTitle.numberOfLines = 0
         if let theme = ThemeManager.shared.currentTheme{
             cell.viewBG.backgroundColor = theme.mainColor//KAPPContentRelatedConstants.kThemeColour//theme.mainColor
