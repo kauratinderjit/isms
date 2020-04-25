@@ -35,7 +35,7 @@ class HomeVC: BaseUIViewController {
     static var roleIdFromUserRoleId : Int?
     
     fileprivate var userRoleDelegate = MultiRoleTableViewDataSource()
-
+    
     @IBOutlet var multiRoleView: UIView!
     @IBOutlet weak var barBtnMenu: UIBarButtonItem!
     @IBOutlet weak var multiRoleTableView: UITableView!
@@ -43,101 +43,114 @@ class HomeVC: BaseUIViewController {
     @IBOutlet weak var heightofMultiRoleTableView: NSLayoutConstraint!
     var menuArray = [KMenuRowsTitles.kHomeTitle,KMenuRowsTitles.kManageInstituteTitle,KMenuRowsTitles.kManageRolesTitle,KMenuRowsTitles.kManageDepartmentsTitle,KMenuRowsTitles.kManageHODTitle,KMenuRowsTitles.kManageClassesTitle,KMenuRowsTitles.kManageTeachersTitle,KMenuRowsTitles.kManageStudentTitle,KMenuRowsTitles.kManageSubjectTitle,KMenuRowsTitles.kManageClassSubjectTitle,KMenuRowsTitles.kClassPeriodTimeTableTitle,KMenuRowsTitles.kAssignSubjectTeacherToPeriodTitle,KMenuRowsTitles.kAddPeriod,KMenuRowsTitles.kLogOutTitle]
     
-     var menuHOD = [KMenuRowsTitles.kHomeTitle,KMenuRowsTitles.kManageTeachersTitle,KMenuRowsTitles.kManageStudentTitle,KMenuRowsTitles.kManageSubjectTitle,KMenuRowsTitles.kManageClassSubjectTitle,KMenuRowsTitles.kClassPeriodTimeTableTitle,KMenuRowsTitles.kAssignSubjectTeacherToPeriodTitle,KMenuRowsTitles.kAddPeriod,KMenuRowsTitles.kLogOutTitle]
- 
+    var menuHOD = [KMenuRowsTitles.kHomeTitle,KMenuRowsTitles.kManageTeachersTitle,KMenuRowsTitles.kManageStudentTitle,KMenuRowsTitles.kManageSubjectTitle,KMenuRowsTitles.kManageClassSubjectTitle,KMenuRowsTitles.kClassPeriodTimeTableTitle,KMenuRowsTitles.kAssignSubjectTeacherToPeriodTitle,KMenuRowsTitles.kAddPeriod,KMenuRowsTitles.kLogOutTitle]
+    
     var menuVC = MenuVC()
     @IBOutlet weak var tblViewListing: UITableView!
     
     
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-//        self.homeViewModel = HomeViewModel.init(delegate: self)
-//        self.homeViewModel?.attachView(view: self)
-//        setLeftMenuButton()
-//
-//        //If it is came from direct login screen and have only one role then it is executed zero index role id of user
-//        if HomeVC.isCameDirectFromLoginScreen == true{
-//            HomeVC.isCameDirectFromLoginScreen = false
-//            if let userRoleId = UserDefaults.standard.value(forKey: UserDefaultKeys.userRoleId.rawValue) as? Int,let userId = UserDefaults.standard.value(forKey: UserDefaultKeys.userId.rawValue) as? Int{
-//                self.homeViewModel?.getMenuFromUserRoleId(userId: userId, roleId: userRoleId)
-//            }
-//        }else{
-//            //For Multi Roles Of User
-//            if let userRoleId = UserDefaults.standard.value(forKey: UserDefaultKeys.userRoleId.rawValue) as? Int
-//            {
-//                self.homeViewModel?.getMenuFromUserRoleId(userId: UserDefaultExtensionModel.shared.currentUserId, roleId: userRoleId)
-//            }
-//            else{
-//
-//            }
-//         //   menuVC.getMenuArraySuccess(data: )
-//        }
-//
-//        self.title = KAPPContentRelatedConstants.kAppTitle
+        //        self.homeViewModel = HomeViewModel.init(delegate: self)
+        //        self.homeViewModel?.attachView(view: self)
+        //        setLeftMenuButton()
+        //
+        //        //If it is came from direct login screen and have only one role then it is executed zero index role id of user
+        //        if HomeVC.isCameDirectFromLoginScreen == true{
+        //            HomeVC.isCameDirectFromLoginScreen = false
+        //            if let userRoleId = UserDefaults.standard.value(forKey: UserDefaultKeys.userRoleId.rawValue) as? Int,let userId = UserDefaults.standard.value(forKey: UserDefaultKeys.userId.rawValue) as? Int{
+        //                self.homeViewModel?.getMenuFromUserRoleId(userId: userId, roleId: userRoleId)
+        //            }
+        //        }else{
+        //            //For Multi Roles Of User
+        //            if let userRoleId = UserDefaults.standard.value(forKey: UserDefaultKeys.userRoleId.rawValue) as? Int
+        //            {
+        //                self.homeViewModel?.getMenuFromUserRoleId(userId: UserDefaultExtensionModel.shared.currentUserId, roleId: userRoleId)
+        //            }
+        //            else{
+        //
+        //            }
+        //         //   menuVC.getMenuArraySuccess(data: )
+        //        }
+        //
+        //        self.title = KAPPContentRelatedConstants.kAppTitle
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)
+    {
         
-               // Do any additional setup after loading the view.
-               self.homeViewModel = HomeViewModel.init(delegate: self)
-               self.homeViewModel?.attachView(view: self)
-               setLeftMenuButton()
-
-
-               //If it is came from direct login screen and have only one role then it is executed zero index role id of user
-               if HomeVC.isCameDirectFromLoginScreen == true{
-                   HomeVC.isCameDirectFromLoginScreen = false
-                   if let userRoleId = UserDefaults.standard.value(forKey: UserDefaultKeys.userRoleId.rawValue) as? Int,let userId = UserDefaults.standard.value(forKey: UserDefaultKeys.userId.rawValue) as? Int{
-                       self.homeViewModel?.getMenuFromUserRoleId(userId: userId, roleId: userRoleId)
-                   }
-               }else{
-                   //For Multi Roles Of User
-                   if let userRoleId = UserDefaults.standard.value(forKey: UserDefaultKeys.userRoleId.rawValue) as? Int
-                   {
-                       self.homeViewModel?.getMenuFromUserRoleId(userId: UserDefaultExtensionModel.shared.currentUserId, roleId: userRoleId)
-                   }
-                   else{
-                       
-                   }
-                //   menuVC.getMenuArraySuccess(data: )
-               }
-               
-               self.title = KAPPContentRelatedConstants.kAppTitle
+        // Do any additional setup after loading the view.
+        self.homeViewModel = HomeViewModel.init(delegate: self)
+        self.homeViewModel?.attachView(view: self)
+        setLeftMenuButton()
+        
+        
+        //If it is came from direct login screen and have only one role then it is executed zero index role id of user
+        if HomeVC.isCameDirectFromLoginScreen == true
+        {
+            HomeVC.isCameDirectFromLoginScreen = false
+            if let userRoleId = UserDefaults.standard.value(forKey: UserDefaultKeys.userRoleId.rawValue) as? Int,let userId = UserDefaults.standard.value(forKey: UserDefaultKeys.userId.rawValue) as? Int
+            {
+                self.homeViewModel?.getMenuFromUserRoleId(userId: userId, roleId: userRoleId)
+            }
+        }
+        else
+        {
+            //For Multi Roles Of User
+            if let userRoleId = UserDefaults.standard.value(forKey: UserDefaultKeys.userRoleId.rawValue) as? Int
+            {
+                self.homeViewModel?.getMenuFromUserRoleId(userId: UserDefaultExtensionModel.shared.currentUserId, roleId: userRoleId)
+            }
+            else
+            {
+                
+            }
+            //   menuVC.getMenuArraySuccess(data: )
+        }
+        
+        self.title = KAPPContentRelatedConstants.kAppTitle
         self.homeViewModel?.getRoleId(userID: UserDefaultExtensionModel.shared.currentUserId)
         
-        if UserDefaultExtensionModel.shared.currentHODRoleName == "HOD" {
+        if UserDefaultExtensionModel.shared.currentHODRoleName == "HOD"
+        {
             self.title = "HOD's Dashboard"
-            self.homeViewModel?.getData(userId: UserDefaultExtensionModel.shared.currentUserId) }
-        else if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Teacher") {
-              self.title = "Teacher's Dashboard"
+            self.homeViewModel?.getData(userId: UserDefaultExtensionModel.shared.currentUserId)
+        }
+        else if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Teacher")
+        {
+            self.title = "Teacher's Dashboard"
+            self.homeViewModel?.getDataTeacher(userId: UserDefaultExtensionModel.shared.currentUserId)
+            //mohit tblViewListing.isHidden = true
+        }
+        else if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Admin")
+        {
+            self.homeViewModel?.getDataForAdmin(userId: UserDefaultExtensionModel.shared.currentUserId)
+            self.title = "Admin's Dashboard"
             tblViewListing.isHidden = true
         }
-        else if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Admin") {
-             self.homeViewModel?.getDataForAdmin(userId: UserDefaultExtensionModel.shared.currentUserId)
-                   self.title = "Admin's Dashboard"
-            tblViewListing.isHidden = true
-
-             }
-        else if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Student") {
-                     self.title = "Student's Dashboard"
-            tblViewListing.isHidden = true
-
-               }
+        else if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Student")
+        {
+            self.title = "Student's Dashboard"
+            // tblViewListing.isHidden = true
+            self.homeViewModel?.getDataStudent(userId: UserDefaultExtensionModel.shared.currentUserId)
+            
+        }
         
-         
-
+        
+        
     }
     
     
     
     @IBAction func TESTING_ACTION(_ sender: Any)
     {
-       let vc = UIStoryboard.init(name:"CalendarAndEvents", bundle: Bundle.main).instantiateViewController(withIdentifier: "AddEventVC") as! AddEventVC
-       self.navigationController?.pushViewController(vc, animated: true)
+        let vc = UIStoryboard.init(name:"CalendarAndEvents", bundle: Bundle.main).instantiateViewController(withIdentifier: "AddEventVC") as! AddEventVC
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     
@@ -155,81 +168,167 @@ class HomeVC: BaseUIViewController {
 //    }
 //}
 
-extension HomeVC : HomeViewModelDelegate{
-    func AdminData(data: homeAdminResultData) {
-         lblName.text = data.AdminName
-               lblDept.text = (data.EmailId ?? "")
-         var strClass : String = "Class"
-         var strTeacher : String = "Teacher"
-         var strHOD : String = "HOD"
+extension HomeVC : HomeViewModelDelegate
+{
+    func AdminData(data: homeAdminResultData)
+    {
+        lblName.text = data.AdminName
+        lblDept.text = (data.EmailId ?? "")
+        var strClass : String = "Class"
+        var strTeacher : String = "Teacher"
+        var strHOD : String = "HOD"
         
         if data.NoOfClasses! > 1 {
             strClass = "Classes"
         }
         if data.NoOfTeachers! > 1 {
-                  strTeacher = "Teachers"
-              }
-       if data.NoOfHODs! > 1 {
-                        strHOD = "HODs"
-                    }
-              
-               lblName1.text = "\(String(describing: data.NoOfClasses!))" + " " + strClass
-               lblName2.text =  "\(String(describing: data.NoOfTeachers!))" + " " + strTeacher
-               lblName3.text =  "\(String(describing: data.NoOfHODs!))" + " " + strHOD
-               
-               if data.lstEvent?.count ?? 0 > 0 {
-               arrEventlist = data.lstEvent
-               tblViewListing.reloadData()
-               }
-               else{
-                   tblViewListing.isHidden = true
-               }
-    }
-    
-    func hodData(data: homeResultData) {
+            strTeacher = "Teachers"
+        }
+        if data.NoOfHODs! > 1 {
+            strHOD = "HODs"
+        }
         
-        lblName.text = data.HodName
-        lblDept.text = (data.DepartmentName ?? "")
-        
-        var strClass : String = "Class"
-        var strTeacher : String = "Teacher"
-        var strStudent : String = "Student"
-               
-               if data.NumberofClasses! > 1 {
-                   strClass = "Classes"
-               }
-               if data.NumberofTeacher! > 1 {
-                         strTeacher = "Teachers"
-                     }
-              if data.NumberofStudent! > 1 {
-                     strStudent = "Students"
-                           }
-   
-        lblName1.text = "\(String(describing: data.NumberofClasses!))" + " " + strClass
-        lblName2.text =  "\(String(describing: data.NumberofTeacher!))" + " " + strTeacher
-        lblName3.text =  "\(String(describing: data.NumberofStudent!))" + " " + strStudent
+        lblName1.text = "\(String(describing: data.NoOfClasses!))" + " " + strClass
+        lblName2.text =  "\(String(describing: data.NoOfTeachers!))" + " " + strTeacher
+        lblName3.text =  "\(String(describing: data.NoOfHODs!))" + " " + strHOD
         
         if data.lstEvent?.count ?? 0 > 0 {
-        arrEventlist = data.lstEvent
-        tblViewListing.reloadData()
+            arrEventlist = data.lstEvent
+            tblViewListing.reloadData()
         }
         else{
             tblViewListing.isHidden = true
         }
     }
     
-    func userUnauthorize() {
+    func hodData(data: homeResultData)
+    {
+        print(data)
+        lblName.text = data.HodName
+        lblDept.text = (data.DepartmentName ?? "")
+        
+        var strClass : String = "Class"
+        var strTeacher : String = "Teacher"
+        var strStudent : String = "Student"
+        
+        if data.NumberofClasses! > 1
+        {
+            strClass = "Classes"
+        }
+        if data.NumberofTeacher! > 1
+        {
+            strTeacher = "Teachers"
+        }
+        if data.NumberofStudent! > 1
+        {
+            strStudent = "Students"
+        }
+        
+        lblName1.text = "\(String(describing: data.NumberofClasses!))" + " " + strClass
+        lblName2.text =  "\(String(describing: data.NumberofTeacher!))" + " " + strTeacher
+        lblName3.text =  "\(String(describing: data.NumberofStudent!))" + " " + strStudent
+        
+        if data.lstEvent?.count ?? 0 > 0
+        {
+            arrEventlist = data.lstEvent
+            tblViewListing.reloadData()
+        }
+        else
+        {
+            tblViewListing.isHidden = true
+        }
+    }
+    
+    func teacherData(data: teacherData)
+    {
+        print(data)
+        lblName.text = data.TeacherName
+        lblDept.text = "DEPARTMENT"
+        
+        var strClass : String = "Class"
+        var strTeacher : String = "Teacher"
+        var strStudent : String = "Student"
+        
+        if data.NoOfClasses ?? 0 > 1
+        {
+            strClass = "Classes"
+        }
+        if data.NoOfSubjects ?? 0 > 1
+        {
+            strTeacher = "Subjects"
+        }
+        if data.NoOfStudents ?? 0 > 1
+        {
+            strStudent = "Students"
+        }
+        
+        lblName1.text = "\(String(describing: data.NoOfClasses!))" + " " + strClass
+        lblName2.text =  "\(String(describing: data.NoOfSubjects!))" + " " + strTeacher
+        lblName3.text =  "\(String(describing: data.NoOfStudents!))" + " " + strStudent
+        
+        //        if data.lstEvent?.count ?? 0 > 0
+        //        {
+        //            arrEventlist = data.lstEvent
+        //            tblViewListing.reloadData()
+        //        }
+        //        else
+        //        {
+        //            tblViewListing.isHidden = true
+        //        }
+    }
+    
+    
+    func studentData(data: StudentData)
+    {
+        print(data)
+        lblName.text = data.TeacherName
+        lblDept.text = "DEPARTMENT"
+        
+        var strClass : String = "Class"
+        var strTeacher : String = "Teacher"
+        var strStudent : String = "Student"
+        
+        if data.NoOfClasses ?? 0 > 1
+        {
+            strClass = "Classes"
+        }
+        if data.NoOfSubjects ?? 0 > 1
+        {
+            strTeacher = "Subjects"
+        }
+        if data.NoOfStudents ?? 0 > 1
+        {
+            strStudent = "Students"
+        }
+        
+        lblName1.text = "\(String(describing: data.NoOfClasses!))" + " " + strClass
+        lblName2.text =  "\(String(describing: data.NoOfSubjects!))" + " " + strTeacher
+        lblName3.text =  "\(String(describing: data.NoOfStudents!))" + " " + strStudent
+        
+        //        if data.lstEvent?.count ?? 0 > 0
+        //        {
+        //            arrEventlist = data.lstEvent
+        //            tblViewListing.reloadData()
+        //        }
+        //        else
+        //        {
+        //            tblViewListing.isHidden = true
+        //        }
+    }
+    
+    func userUnauthorize()
+    {
         isUnauthorizedUser = true
     }
     
     func didSuccessUserRole(data: UserRoleIdModel) {
-       // UserDefaults.standard.set(data.resultData?.count ?? 0, forKey: UserDefaultKeys.userRolesCount.rawValue)
-//        UserDefaults.standard.synchronize()
+        // UserDefaults.standard.set(data.resultData?.count ?? 0, forKey: UserDefaultKeys.userRolesCount.rawValue)
+        //        UserDefaults.standard.synchronize()
         UserDefaultExtensionModel.shared.userName = data.resultData?[0].UserName ?? ""
         UserDefaultExtensionModel.shared.userProfile = data.resultData?[0].ImageUrl ?? ""
         
         if data.resultData?.count ?? 0 == 0{
-                debugPrint("Count is zero")
+            debugPrint("Count is zero")
         }else if data.resultData?.count ?? 0 == 1{
             debugPrint("Count is one")
         }else if data.resultData?.count ?? 0 > 1{
@@ -239,7 +338,7 @@ extension HomeVC : HomeViewModelDelegate{
     
     func didSuccessMenuAccordingRole(data: GetMenuFromRoleIdModel)
     {
-           menuVC.getMenuArraySuccess(data: data)
+        menuVC.getMenuArraySuccess(data: data)
         CommonFunctions.sharedmanagerCommon.println(object: "Role menu:- \(data.resultData)")
         _ = data.resultData?.enumerated().map({ (index,valueNew) in
             let sideMenuName = valueNew.pageName
@@ -281,7 +380,7 @@ extension HomeVC : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ExamScheduleTableViewCell
-       
+        
         cell?.lblTitle.text = arrEventlist?[indexPath.row].Name
         
         cell?.imgView.addInitials(first: "E", second: "")
@@ -295,6 +394,6 @@ extension HomeVC : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-    
-}
+        
+    }
 }
