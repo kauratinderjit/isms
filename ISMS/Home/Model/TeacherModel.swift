@@ -46,7 +46,7 @@ struct teacherData: Mappable
     var lstStudentName: [LstStudentNameDec]?
     var lstSubjectName: [LstSubjectNameDec]?
     
-    
+    var lstEvent: [ListData]?
     
     init?(map: Map)
     {
@@ -67,6 +67,7 @@ struct teacherData: Mappable
         NoOfStudents <- map["NoOfStudents"]
         NoOfSubjects <- map["NoOfSubjects"]
         
+        lstEvent <- map["lstEvent"]
         
     }
     
@@ -123,6 +124,7 @@ struct LstclassNameDec: Mappable
         className <- map["ClassName"]
     }
 }
+
 
 
 

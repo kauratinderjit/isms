@@ -146,6 +146,10 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
                         txtViewDescription.isUserInteractionEnabled = false
                         //mohit    tfEventDate.isUserInteractionEnabled = false
                         self.navigationItem.rightBarButtonItem = nil
+                        tfEventDate.isUserInteractionEnabled = false
+                        tfEventEndDate.isUserInteractionEnabled = false
+                        tfStartTime.isUserInteractionEnabled = false
+                         tfEndTime.isUserInteractionEnabled = false
                     }
                     
                     

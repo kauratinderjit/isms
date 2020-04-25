@@ -47,14 +47,11 @@ struct StudentData: Mappable
 {
     
     //Teacher
-    var TeacherName: String?
-    var NoOfClasses, NoOfStudents, NoOfSubjects: Int?
+    var StudentName: String?
+    var StudentId : Int?
     
-    var lstclassName: [classNameDec]?
-    var lstStudentName: [StudentNameDec]?
-    var lstSubjectName: [SubjectNameDec]?
-    
-    
+    var subjectNameLists: [subjectNameLists]?
+    var lstEvent: [ListData]?
     
     init?(map: Map)
     {
@@ -66,60 +63,22 @@ struct StudentData: Mappable
         
         
         //teacher
-        TeacherName <- map["TeacherName"]
-        lstclassName <- map["lstclassName"]
-        lstStudentName <- map["lstStudentName"]
-        lstSubjectName <- map["lstSubjectName"]
-        
-        NoOfClasses <- map["NoOfClasses"]
-        NoOfStudents <- map["NoOfStudents"]
-        NoOfSubjects <- map["NoOfSubjects"]
-        
+        StudentName <- map["StudentName"]
+        StudentId <- map["StudentId"]
+        subjectNameLists <- map["subjectNameLists"]
+        lstEvent <- map["lstEvent"]
         
     }
     
 }
 
-// MARK: - LstStudentName
-struct StudentNameDec: Mappable
-{
-    var studentID: Int?
-    var studentName: String?
-       
-       init?(map: Map)
-       {
-           
-       }
-       
-       mutating func mapping(map: Map)
-       {
-           studentID <- map["StudentId"]
-           studentName <- map["StudentName"]
-       }
-}
-//
-// MARK: - LstSubjectName
-struct SubjectNameDec: Mappable
-{
-    var subjectID: Int?
-    var subjectName: String?
-    
-    init?(map: Map)
-    {
-        
-    }
-    mutating func mapping(map: Map)
-    {
-        subjectID <- map["SubjectId"]
-        subjectName <- map["SubjectName"]
-    }
-}
+
 
 // MARK: - LstclassName
-struct classNameDec: Mappable
+struct subjectNameLists: Mappable
 {
-    var classID: Int?
-    var className: String?
+    var SubjectId: Int?
+    var SubjectName: String?
 
     init?(map: Map)
     {
@@ -127,12 +86,9 @@ struct classNameDec: Mappable
     }
     mutating func mapping(map: Map)
     {
-        classID <- map["ClassId"]
-        className <- map["ClassName"]
+        SubjectId <- map["SubjectId"]
+        SubjectId <- map["SubjectId"]
     }
 }
-
-
-
 
 

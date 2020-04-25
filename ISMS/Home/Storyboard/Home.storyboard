@@ -506,6 +506,9 @@
                     <navigationItem key="navigationItem" id="ub0-3Y-AHb"/>
                     <connections>
                         <outlet property="heightofMultiRoleTableView" destination="eqD-h7-tK2" id="El1-Tu-jae"/>
+                        <outlet property="iv1" destination="vEf-TY-EQb" id="IcA-OX-rEL"/>
+                        <outlet property="iv2" destination="0NF-f3-tjd" id="ZSm-o5-l1m"/>
+                        <outlet property="iv3" destination="Ukb-H5-ben" id="bMq-qN-fAX"/>
                         <outlet property="lblCount1" destination="QiP-HH-jaJ" id="jNc-EP-Wdl"/>
                         <outlet property="lblCount2" destination="LM8-po-sxi" id="pYN-Oh-N28"/>
                         <outlet property="lblCount3" destination="J9G-lq-iMe" id="Zbr-Za-tOK"/>
