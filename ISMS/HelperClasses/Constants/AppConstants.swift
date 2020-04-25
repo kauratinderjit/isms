@@ -231,7 +231,8 @@ public struct Alerts
     public static let kEmptyRollNoAddmissionID = "Please enter addmission id or roll no."
     public static let kEmptyFatherName : String = "Please enter father name."
     public static let kEmptyDesignation : String = "Please select designation."
-    public static let kEmptyWorkExperience : String = "Please select work experience."
+    public static let kEmptyWorkExperience : String = "Please add work experience."
+    public static let kEmptyQualifications : String = "Please add qualification."
 
     public static let kMapperModelError: String = "Mapper Error."
     public static let kUnderAge: String = "You are under age."
