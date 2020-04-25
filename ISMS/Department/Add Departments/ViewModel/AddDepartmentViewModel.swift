@@ -152,7 +152,7 @@ extension AddDepartmentVC : ViewDelegate{
             txtfieldOthers.text = othrs
         }
         if let imageUrl = data.resultData?.logoUrl{
-            selectedImageUrl = URL(string: imageUrl)
+          //mohit  selectedImageUrl = URL(string: imageUrl)
             imgViewDepartment.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: kImages.kProfileImage))
         }else{
             selectedImageUrl = nil

@@ -32,6 +32,7 @@ class StudentRatingVC: BaseUIViewController {
     var arrSkillList = [AddStudentRatingResultData]()
     var arrSubjectList1 = [AddStudentRatingResultData]()
     let userRoleParticularId = UserDefaultExtensionModel.shared.userRoleParticularId
+     var HODdepartmentId = UserDefaultExtensionModel.shared.HODDepartmentId
     var isFromHod :Bool!
     var currentMonth = ""
     var arrMonthlist = ["Jan","Feb","March","April","May","June","July","Augest","September","October","Novemeber","Decemeber"]
@@ -61,7 +62,7 @@ class StudentRatingVC: BaseUIViewController {
         }
         if checkInternetConnection(){
 //            self.viewModel?.classList(searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: KIntegerConstants.kInt0)
-            self.viewModel?.GetSkillList(id : 44 , enumType : 6)
+            self.viewModel?.GetSkillList(id : HODdepartmentId , enumType : 6)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
@@ -177,8 +178,11 @@ extension StudentRatingVC : StudentRatingDelegate {
                     var newclassid = arrSkillList[0].studentID!
                      RegisterClassDataModel.sharedInstance?.subjectID = newclassid
                     //                    RegisterClassDataModel.sharedInstance?.classID = arrSkillList[0].studentID
-                    self.viewModel?.GetSubjectList(classid: newclassid,teacherId: userRoleParticularId)
-                    
+                     if isFromHod == true{
+                        self.viewModel?.GetSubjectList(classid: newclassid,teacherId: 0,hodid:userRoleParticularId )
+                     }else{
+                        self.viewModel?.GetSubjectList(classid: newclassid,teacherId: userRoleParticularId,hodid:0)
+                    }
                 }
                 
                 
@@ -308,7 +312,12 @@ extension StudentRatingVC : SharedUIPickerDelegate{
                 if let index = selectedClassArrIndex {
                     if let id = arrSkillList[index].studentID {
                          RegisterClassDataModel.sharedInstance?.subjectID = id
-                        self.viewModel?.GetSubjectList(classid: id,teacherId: userRoleParticularId)
+                        if isFromHod == true{
+                            self.viewModel?.GetSubjectList(classid: id,teacherId: 0,hodid:userRoleParticularId )
+                        }else{
+                            self.viewModel?.GetSubjectList(classid: id,teacherId: userRoleParticularId,hodid:0)
+                        }
+//                        self.viewModel?.GetSubjectList(classid: id,teacherId: userRoleParticularId, hodid: )
                         //                        self.viewModel?.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: pageSize,sortColumnDir: "",sortColumn: "", particularId: id)
                     }
                 }
@@ -467,8 +476,14 @@ extension StudentRatingVC : UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        tableView.separatorStyle = .singleLine
-        return arrStudent.count
+        if arrStudent.count > 0{
+            tableView.separatorStyle = .singleLine
+            return arrStudent.count
+        }else{
+            tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
+            return 0
+        }
+       
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

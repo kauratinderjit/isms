@@ -74,8 +74,8 @@ class UpdateSyllabusVC: BaseUIViewController {
               
                 
                 let morePrecisePI = Double(percentage)
-                print("your more precise pi :\(morePrecisePI!)")
-                let c = morePrecisePI! / 100
+            print("your more precise pi :\(morePrecisePI)")
+            let c = morePrecisePI / 100
                 print("your c : \(c)")
                 progressBar.progress = Float(c)
                 
@@ -144,17 +144,20 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
                 
             }
         }
-      
-        if isCheck == true{
-             if cell.checkBox.tag == indexRow && indexPath.section == section{
-                cell.checkBox.setImage(UIImage(named: "check"), for: .normal)
+        
+        if isFromStudent == false{
+            if isCheck == true{
+                if cell.checkBox.tag == indexRow && indexPath.section == section{
+                    cell.checkBox.setImage(UIImage(named: "check"), for: .normal)
+                }
+            }else{
+                if cell.checkBox.tag == indexRow && indexPath.section == section{
+                    cell.checkBox.setImage(UIImage(named: "uncheck"), for: .normal)
+                }
+                
             }
-        }else{
-             if cell.checkBox.tag == indexRow && indexPath.section == section{
-                cell.checkBox.setImage(UIImage(named: "uncheck"), for: .normal)
-            }
-           
         }
+        
         
         cell.checkBox.addTarget(self, action: #selector(self.updateSyllabus), for: .touchUpInside)
         return cell
@@ -187,6 +190,7 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if isFromStudent == false{
         indexRow = indexPath.row
         section = indexPath.section
         firstRun = 2
@@ -220,9 +224,9 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
                     }
                 }
             }
-            
              print("our selected arraty delete: ",coveredTopicData)
             tableView.reloadData()
+            }
         }
     }
 

@@ -59,12 +59,13 @@ class ClassListVC: BaseUIViewController {
     //MARK:- Button Actions
     @IBAction func btnEditAction(_ sender: UIButton) {
         if arr_Classlist.count > 0{
+             self.view.endEditing(true)
             let data = arr_Classlist[sender.tag]
             classId = data.classId ?? 0
             setupUI()
             initializeCustomTextFieldView(self.view, isHideBlurView: true)
             textFieldAlert.delegate = self
-            self.textFieldAlert.lblTitle.text = "update subject"
+            self.textFieldAlert.lblTitle.text = "Update Class"
             self.textFieldAlert.BtnTxt.setTitle("Submit", for: .normal)
             self.viewModel?.getClassDetail(classId: classId ?? 0)
         }
