@@ -240,12 +240,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="sTq-b2-Het">
-                                        <rect key="frame" x="170" y="26" width="150" height="2.5"/>
+                                        <rect key="frame" x="140" y="26" width="180" height="2.5"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="150" id="D04-Iw-ejJ"/>
+                                            <constraint firstAttribute="width" constant="180" id="D04-Iw-ejJ"/>
                                             <constraint firstAttribute="height" constant="2.5" id="bmg-Vq-PPE"/>
                                         </constraints>
-                                        <color key="trackTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="trackTintColor" red="0.89019607840000003" green="0.94117647059999998" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </progressView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vGj-nf-RCv">
                                         <rect key="frame" x="333" y="17" width="42" height="21"/>
@@ -270,7 +270,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="m4Y-rP-Ba1">
-                                <rect key="frame" x="0.0" y="93" width="375" height="479"/>
+                                <rect key="frame" x="0.0" y="93" width="375" height="463"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="oCO-N6-VS1" id="cG9-Hi-RJ5"/>
@@ -278,10 +278,10 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sed-Ck-wVj">
-                                <rect key="frame" x="70" y="596" width="235" height="42"/>
-                                <color key="backgroundColor" red="0.71764705880000002" green="0.090196078430000007" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="20" y="580" width="335" height="58"/>
+                                <color key="backgroundColor" red="0.29411764709999999" green="0.74509803919999995" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="42" id="kzK-KV-xIB"/>
+                                    <constraint firstAttribute="height" constant="58" id="kzK-KV-xIB"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="UPDATE">
@@ -289,7 +289,19 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="13"/>
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="0.80000000000000004"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" red="0.29411764709999999" green="0.74509803919999995" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOffset">
+                                        <real key="value" value="0.80000000000000004"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -299,15 +311,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="wqI-be-5bd" firstAttribute="trailing" secondItem="sed-Ck-wVj" secondAttribute="trailing" constant="70" id="0as-eS-Ehv"/>
-                            <constraint firstItem="m4Y-rP-Ba1" firstAttribute="bottom" secondItem="wqI-be-5bd" secondAttribute="bottom" constant="-95" id="3Iy-Nc-5XX"/>
+                            <constraint firstItem="wqI-be-5bd" firstAttribute="trailing" secondItem="sed-Ck-wVj" secondAttribute="trailing" constant="20" id="0as-eS-Ehv"/>
                             <constraint firstItem="m4Y-rP-Ba1" firstAttribute="top" secondItem="wqI-be-5bd" secondAttribute="top" constant="49" id="4iS-QW-tJ0"/>
                             <constraint firstItem="gvc-yG-93K" firstAttribute="leading" secondItem="wqI-be-5bd" secondAttribute="leading" id="CLe-Fb-lp7"/>
                             <constraint firstItem="m4Y-rP-Ba1" firstAttribute="leading" secondItem="wqI-be-5bd" secondAttribute="leading" id="Mv8-f9-lZn"/>
                             <constraint firstItem="sed-Ck-wVj" firstAttribute="top" secondItem="m4Y-rP-Ba1" secondAttribute="bottom" constant="24" id="Zig-ic-lxm"/>
                             <constraint firstItem="gvc-yG-93K" firstAttribute="top" secondItem="wqI-be-5bd" secondAttribute="top" id="aad-2I-Usv"/>
                             <constraint firstItem="wqI-be-5bd" firstAttribute="bottom" secondItem="sed-Ck-wVj" secondAttribute="bottom" constant="29" id="bBK-G3-gKN"/>
-                            <constraint firstItem="sed-Ck-wVj" firstAttribute="leading" secondItem="wqI-be-5bd" secondAttribute="leading" constant="70" id="cgU-Md-vQg"/>
+                            <constraint firstItem="sed-Ck-wVj" firstAttribute="leading" secondItem="wqI-be-5bd" secondAttribute="leading" constant="20" id="cgU-Md-vQg"/>
                             <constraint firstItem="m4Y-rP-Ba1" firstAttribute="trailing" secondItem="wqI-be-5bd" secondAttribute="trailing" id="eTx-et-yMs"/>
                             <constraint firstItem="gvc-yG-93K" firstAttribute="trailing" secondItem="wqI-be-5bd" secondAttribute="trailing" id="fIp-u3-gaI"/>
                         </constraints>
