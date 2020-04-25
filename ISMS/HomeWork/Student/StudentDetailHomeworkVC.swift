@@ -10,7 +10,8 @@ import UIKit
 
 class StudentDetailHomeworkVC: BaseUIViewController {
     
-    
+    let documentInteractionController = UIDocumentInteractionController()
+
     @IBOutlet weak var txtfieldClass: UITextField!
     @IBOutlet weak var txtfieldSubject: UITextField!
     @IBOutlet weak var txtfieldTitle: UITextField!
@@ -168,7 +169,38 @@ extension StudentDetailHomeworkVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 57
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let dataFoRow = uploadData[indexPath.row] as? [String:Any]
+        storeAndShare(withURLString: dataFoRow?["url"] as? String ?? "")
+    }
   
+    
+    func storeAndShare(withURLString: String) {
+        guard let url = URL(string: withURLString) else { return }
+        /// START YOUR ACTIVITY INDICATOR HERE
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data, error == nil else { return }
+            let tmpURL = FileManager.default.temporaryDirectory
+                .appendingPathComponent(response?.suggestedFilename ?? "fileName")
+            do {
+                try data.write(to: tmpURL)
+            } catch {
+                print(error)
+            }
+            DispatchQueue.main.async {
+                /// STOP YOUR ACTIVITY INDICATOR HERE
+                self.share(url: tmpURL)
+            }
+            }.resume()
+    }
+    
+    
+       func share(url: URL) {
+           documentInteractionController.url = url
+           documentInteractionController.uti = url.typeIdentifier ?? "public.data, public.content"
+           documentInteractionController.name = url.localizedName ?? url.lastPathComponent
+           documentInteractionController.presentPreview(animated: true)
+       }
     
 }
 extension StudentDetailHomeworkVC:  URLSessionDownloadDelegate {
