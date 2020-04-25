@@ -40,7 +40,7 @@ class ViewTeacherRatingVC: BaseUIViewController {
         self.ViewModel = ViewTeacherRatingViewModel.init(delegate: self)
         self.ViewModel?.attachView(viewDelegate: self)
         //Title
-        self.title = "View Teacher Feedback"
+        self.title = "Teacher Feedback"
         txtFieldTeacher.txtfieldPadding(leftpadding: 20, rightPadding: 0)
         //Table View Settings
         tableView.separatorStyle = .none

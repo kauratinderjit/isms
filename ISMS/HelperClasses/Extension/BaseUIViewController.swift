@@ -276,8 +276,18 @@ class BaseUIViewController: UIViewController {
             self.datePickerView.datePickerMode = .time
         }else{
             self.datePickerView.datePickerMode = .date
-            self.datePickerView.maximumDate = Calendar.current.date(byAdding: .year, value: 1, to: Date())
-             self.datePickerView.minimumDate = Date()
+
+            
+            if (AddHomeWorkVC.isFromHomeWorkDate == true)
+            {
+                self.datePickerView.minimumDate = Calendar.current.date(byAdding: .year, value: 0, to: Date())
+
+            }
+            else{
+                self.datePickerView.maximumDate = Calendar.current.date(byAdding: .year, value: 0, to: Date())
+
+            }
+
         }
         // ToolBar for done and cancel
         let toolBar = UIToolbar.init(frame: CGRect(x: 0, y: 0, width: datePickerView.frame.width, height: 44))
@@ -478,11 +488,11 @@ class BaseUIViewController: UIViewController {
                   }
         }
         else{
-            self.searchBar.searchTextField.backgroundColor = .white
-            self.searchBar.searchTextField.tintColor = .black
-            self.searchBar.searchTextField.layer.borderWidth = 0.5
-            self.searchBar.searchTextField.layer.borderColor = UIColor.lightGray.cgColor
-            self.searchBar.searchTextField.cornerRadius = 8
+            self.searchBar.backgroundColor = .white
+            self.searchBar.tintColor = .black
+            self.searchBar.layer.borderWidth = 0.5
+            self.searchBar.layer.borderColor = UIColor.lightGray.cgColor
+            self.searchBar.cornerRadius = 8
         }
         
         self.searchBar.showsCancelButton.toggle()

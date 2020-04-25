@@ -37,6 +37,7 @@ class AddHomeWorkVC: BaseUIViewController {
     var attachmentId : Int? = 0
     var selectedIndexPathForDelAttachment : Int? = 0
     var editableHomeWorkData : HomeworkResultData?
+    static var isFromHomeWorkDate:Bool?
     @IBOutlet weak var heightTblView: NSLayoutConstraint!
     @IBOutlet weak var btnAdd: UIButton!
     
@@ -93,7 +94,15 @@ class AddHomeWorkVC: BaseUIViewController {
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        AddHomeWorkVC.isFromHomeWorkDate = false 
+    }
+    
     func setUp() {
+        
+        AddHomeWorkVC.isFromHomeWorkDate = true
          setBackButton()
         self.title = "Add Homework"
         tblView.tableFooterView = UIView()

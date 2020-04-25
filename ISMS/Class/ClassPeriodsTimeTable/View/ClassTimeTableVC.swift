@@ -48,7 +48,7 @@ class ClassTimeTableVC: BaseUIViewController {
         if isFromTeacher == 0{
             self.title = "Attendance"
         }else if isFromTeacher == 1{
-            self.title = "Mark Student Attendance"
+            self.title = "Time Table"
         }else if isFromTeacher == 2{
             self.title = KStoryBoards.KClassPeriodIdIdentifiers.kClassPeriodTimeTableTitle
         }
@@ -127,7 +127,12 @@ class ClassTimeTableVC: BaseUIViewController {
     //MARK:- Class List Dropdown
     func classListDropdownApi(){
         if checkInternetConnection(){
-            self.viewModel?.getClassListDropdown(selectId: HODdepartmentId, enumType: 6)
+            if isFromTeacher == 1 {
+                 self.viewModel?.getClassListDropdown(selectId: userRoleParticularId, enumType: 17)
+            }else{
+                 self.viewModel?.getClassListDropdown(selectId: HODdepartmentId, enumType: 6)
+            }
+           
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }

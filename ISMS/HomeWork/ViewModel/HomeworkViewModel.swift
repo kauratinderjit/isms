@@ -100,7 +100,7 @@ class HomeworkViewModel {
             
             switch response["StatusCode"] as? Int{
             case 200:
-                self.homeworkViewDelegate?.showAlert(alert: "Homework upoaded successfully.")
+                self.homeworkViewDelegate?.showAlert(alert: response["Message"]  as? String ?? "")
                 self.addHomeworkDelegate?.addedSuccessfully()
             case 401:
                 self.homeworkViewDelegate?.showAlert(alert: response["Message"] as? String ?? "")
