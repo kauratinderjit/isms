@@ -366,8 +366,8 @@
             filePath = "ISMS/SideMenu/View/MenuVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "515"
-            endingLineNumber = "515"
+            startingLineNumber = "513"
+            endingLineNumber = "513"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
