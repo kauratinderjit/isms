@@ -61,10 +61,7 @@ class MenuVC: BaseUIViewController {
         
         self.tableView.delegate = self
         
-        if let resultData  =  MenuVC.menuArrayFromApi?.resultData{
-            sortedMenuArray = resultData.sorted{ $0.displayOrder ?? 0 < $1.displayOrder ?? 0  }
-            print(sortedMenuArray)
-        }
+  
         
         
         
@@ -76,6 +73,11 @@ class MenuVC: BaseUIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if let resultData  =  MenuVC.menuArrayFromApi?.resultData{
+              sortedMenuArray = resultData.sorted{ $0.displayOrder ?? 0 < $1.displayOrder ?? 0  }
+              print(sortedMenuArray)
+          }
         
         //        if let theme = ThemeManager.shared.currentTheme{
         //            tableView.backgroundColor = theme.mainColor
@@ -567,6 +569,9 @@ extension MenuVC : UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MenuTableViewCell
+        
+        if sortedMenuArray.count > 0{
+        
         cell.setData(sortedMenuArray[indexPath.row], indexPath)
         
         cell.lblRowTitle.text = sortedMenuArray[indexPath.row].pageName// MenuVC.menuArrayFromApi?.resultData?[indexPath.row].pageName
@@ -574,6 +579,8 @@ extension MenuVC : UITableViewDataSource{
         if let theme = ThemeManager.shared.currentTheme{
             cell.viewBG.backgroundColor = theme.mainColor//KAPPContentRelatedConstants.kThemeColour//theme.mainColor
         }
+        }
+        
         return cell
     }
 }

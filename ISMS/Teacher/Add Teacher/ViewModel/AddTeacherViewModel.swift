@@ -297,7 +297,11 @@ class AddTeacherViewModel{
             case KStatusCode.kStatusCode401:
                 self.addTeacherDelegate?.unauthorizedUser()
             case KStatusCode.kStatusCode404:
-                self.addTeacherView?.showAlert(alert: responseTeacherModel.message ?? "Something went wrong.")
+               // self.addTeacherView?.showAlert(alert: responseTeacherModel.message ?? "Something went wrong.")
+                self.addTeacherDelegate?.getTeacherDetailFailed()
+
+                case KStatusCode.kStatusCode409:
+                 self.addTeacherView?.showAlert(alert: responseTeacherModel.message ?? "Something went wrong.")
                 self.addTeacherDelegate?.getTeacherDetailFailed()
                 CommonFunctions.sharedmanagerCommon.println(object: responseTeacherModel.message ?? "")
             default:
