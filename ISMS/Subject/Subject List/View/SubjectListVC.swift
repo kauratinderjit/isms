@@ -127,7 +127,7 @@ extension SubjectListVC : TextFieldAlertDelegate{
             if subjectId != 0{
                 if textFieldAlert.txtFieldVal.text != ""{
                     isSubjectAddSuccessFully = true
-                    self.ViewModel?.addSubject(subjectName: textFieldAlert.txtFieldVal.text, subjectID: subjectId)
+                    self.ViewModel?.addSubject(subjectName: textFieldAlert.txtFieldVal.text, DeptId: HODdepartmentId,DeptSubjectID: 0)
                     yesNoAlertView.removeFromSuperview()
                 }
                 else {
@@ -137,7 +137,7 @@ extension SubjectListVC : TextFieldAlertDelegate{
             }else{
                 if textFieldAlert.txtFieldVal.text != ""{
                     isSubjectAddSuccessFully = true
-                    self.ViewModel?.addSubject(subjectName: textFieldAlert.txtFieldVal.text, subjectID: subjectId)
+                   self.ViewModel?.addSubject(subjectName: textFieldAlert.txtFieldVal.text, DeptId: HODdepartmentId,DeptSubjectID: 0)
                     yesNoAlertView.removeFromSuperview()
                 }
                 else  {
