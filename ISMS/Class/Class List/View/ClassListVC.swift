@@ -208,19 +208,17 @@ extension ClassListVC : UITableViewDataSource{
 extension ClassListVC : OKAlertViewDelegate{
     //Ok Button Clicked
     func okBtnAction() {
-        self.okAlertView.removeFromSuperview()
         if isUnauthorizedUser == true{
             isUnauthorizedUser = false
             CommonFunctions.sharedmanagerCommon.setRootLogin()
-        }
-        if isClassAddSuccessFully == true{
+        }else if isClassAddSuccessFully == true{
+            
             isClassAddSuccessFully = false
             textFieldAlert.removeFromSuperview()
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
-        }
-        if isClassDeleteSuccessfully == true {
+        }else if isClassDeleteSuccessfully == true {
             isClassDeleteSuccessfully = false
             if let selectedIndex = self.selectedClassArrIndex{
                 self.arr_Classlist.remove(at: selectedIndex)
@@ -229,6 +227,7 @@ extension ClassListVC : OKAlertViewDelegate{
                     }
                 }
             }
+         self.okAlertView.removeFromSuperview()
         }
 }
 
@@ -256,7 +255,6 @@ extension ClassListVC : YesNoAlertViewDelegate{
 extension ClassListVC : ClassListDelegate{
     func unauthorizedUser() {
         isUnauthorizedUser = true
-        
     }
     
     func getClassDetailDidSucceed(data: ClassDetailModel) {
@@ -268,8 +266,9 @@ extension ClassListVC : ClassListDelegate{
     func classDeleteDidfailed() {
         isClassDeleteSuccessfully = false
     }
-    func classListDidSuccess(data: [GetClassListResultData]?) {
+    func classListDidSuccess(data: [GetClassListResultData]?){
         isFetching = true
+        arr_Classlist.removeAll()
         if data != nil{
             if data?.count ?? 0 > 0{
                 for value in data!{

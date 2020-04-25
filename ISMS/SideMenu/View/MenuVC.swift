@@ -160,7 +160,7 @@ extension MenuVC : UITableViewDelegate{
             
             
             
-        case "ManageDepartment ":
+        case "ManageDepartment":
             
             let storyboard = UIStoryboard.init(name: KStoryBoards.kDepartment, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: KStoryBoards.KDepartMentListIdentifiers.kDepartmentListVC) as? DepartmentListVC
@@ -291,7 +291,7 @@ extension MenuVC : UITableViewDelegate{
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
-        case "ManageInstitute":
+        case "ManageInstitue":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kSchool, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "AddSchoolVC") as? AddSchoolViewController
             let frontVC = revealViewController().frontViewController as? UINavigationController

@@ -44,8 +44,7 @@ class ClassListTableViewCell: UITableViewCell {
         if let strTitle = rsltData?.name{
             lblTitle.text = strTitle
         }
-        
-        
+       
         if let imgProfileUrl = rsltData?.logoUrl{
             imgViewLogo.sd_imageIndicator = SDWebImageActivityIndicator.gray
 
