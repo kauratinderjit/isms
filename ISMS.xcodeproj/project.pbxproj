@@ -332,6 +332,8 @@
 		9B44D83D244EB42800B6DEC5 /* StudentGetAttendanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B44D83C244EB42800B6DEC5 /* StudentGetAttendanceViewModel.swift */; };
 		9B44D83F244EB4C700B6DEC5 /* TimeTableStudentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B44D83E244EB4C700B6DEC5 /* TimeTableStudentVC.swift */; };
 		9B44D841244EB4F900B6DEC5 /* TimeTableStudentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B44D840244EB4F800B6DEC5 /* TimeTableStudentViewModel.swift */; };
+		9BB0260C24548CE0009AEB8C /* TeacherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB0260A24548CE0009AEB8C /* TeacherModel.swift */; };
+		9BB0260D24548CE0009AEB8C /* Student Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB0260B24548CE0009AEB8C /* Student Model.swift */; };
 		BE06B65122A4ED26000CFCAF /* SignUpApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE06B65022A4ED26000CFCAF /* SignUpApi.swift */; };
 		BE06B65322A4EE70000CFCAF /* GetAllCountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE06B65222A4EE70000CFCAF /* GetAllCountryModel.swift */; };
 		BE06B65522A4F4D1000CFCAF /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE06B65422A4F4D1000CFCAF /* SignUpViewModel.swift */; };
@@ -770,6 +772,8 @@
 		9B44D83C244EB42800B6DEC5 /* StudentGetAttendanceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentGetAttendanceViewModel.swift; sourceTree = "<group>"; };
 		9B44D83E244EB4C700B6DEC5 /* TimeTableStudentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableStudentVC.swift; sourceTree = "<group>"; };
 		9B44D840244EB4F800B6DEC5 /* TimeTableStudentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableStudentViewModel.swift; sourceTree = "<group>"; };
+		9BB0260A24548CE0009AEB8C /* TeacherModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherModel.swift; sourceTree = "<group>"; };
+		9BB0260B24548CE0009AEB8C /* Student Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student Model.swift"; sourceTree = "<group>"; };
 		A8DA8958D4FCB9233DC4FE1E /* Pods_ISMSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISMSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1EB2A5499D2FE4C456F9A36 /* Pods-ISMS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISMS.release.xcconfig"; path = "Target Support Files/Pods-ISMS/Pods-ISMS.release.xcconfig"; sourceTree = "<group>"; };
 		BE06B65022A4ED26000CFCAF /* SignUpApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpApi.swift; sourceTree = "<group>"; };
@@ -2601,6 +2605,8 @@
 		2DACBC8D22BA54EE00EFE5C4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9BB0260B24548CE0009AEB8C /* Student Model.swift */,
+				9BB0260A24548CE0009AEB8C /* TeacherModel.swift */,
 				2EDE39902441C8DC00CEBBC8 /* HomeModel.swift */,
 			);
 			path = Model;
@@ -4519,6 +4525,7 @@
 				0C1C28EF238E5BCE00F98FEC /* SyllabusCoverageVC.swift in Sources */,
 				2EC88B772448505300AF60B7 /* AddFeedbackModel.swift in Sources */,
 				2EC88B622448501D00AF60B7 /* ViewRatingCell.swift in Sources */,
+				9BB0260D24548CE0009AEB8C /* Student Model.swift in Sources */,
 				C683DB1E22E082BF00011212 /* GetStudentDetail.swift in Sources */,
 				2E8F63C6243C589A0040F9CA /* NotesListVC.swift in Sources */,
 				0C1C28D4238E5BB300F98FEC /* SubjectTopicViewModel.swift in Sources */,
@@ -4621,6 +4628,7 @@
 				2D7F4B0F22C65A4100BBDB50 /* YesNoAlertView.swift in Sources */,
 				2E8F63E0243CB43C0040F9CA /* HomeworkApi.swift in Sources */,
 				C683DAF222E0725C00011212 /* StudentListModel.swift in Sources */,
+				9BB0260C24548CE0009AEB8C /* TeacherModel.swift in Sources */,
 				0C1C28F4238E5BCE00F98FEC /* UpdateSyllabusVC.swift in Sources */,
 				2D28B91622B75C68007D10F8 /* DepartmentApi.swift in Sources */,
 				0C1C28F3238E5BCE00F98FEC /* UpdateSyllabusTableViewCell.swift in Sources */,

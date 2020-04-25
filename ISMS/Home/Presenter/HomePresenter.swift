@@ -8,12 +8,15 @@
 
 import Foundation
 
-protocol HomeViewModelDelegate:class {
+protocol HomeViewModelDelegate:class
+{
     func didSuccessUserRole(data: UserRoleIdModel)
     func didSuccessMenuAccordingRole(data: GetMenuFromRoleIdModel)
     func userUnauthorize()
     func hodData(data: homeResultData)
     func AdminData(data: homeAdminResultData)
+    func teacherData(data: teacherData)
+    func studentData(data: StudentData)
 }
 
 
@@ -100,16 +103,41 @@ class HomeViewModel{
     }
     
     //MARK:- Home  Service
-    func getData(userId: Int?){
+    func getData(userId: Int?)
+    {
         self.homeView?.showLoader()
         var postDict = [String:Any]()
+        
+        
+        var strUrl = "api/User/DashboardHod?UserId=\(String(describing: userId!))"
+        
         postDict[KApiParameters.KGetPagesByUserIdIdintifier.kUserId] = userId
-        LoginApi.sharedmanagerAuth.getdata(url: "api/User/DashboardHod?UserId=\(String(describing: userId!))" , parameters: postDict, completionResponse: { (getMenuFromRoleIdModel) in
+        
+        if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Teacher")
+        {
+            strUrl = "api/User/DashboardTeacher?UserId=\(String(describing: userId!))"
+        }
+        
+        if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Student")
+        {
+            strUrl = "api/User/DashboardStudent?UserId=\(String(describing: userId!))"
+        }
+        
+        LoginApi.sharedmanagerAuth.getdata(url: strUrl , parameters: postDict, completionResponse: { (getMenuFromRoleIdModel) in
             
-            switch getMenuFromRoleIdModel.statusCode {
+            switch getMenuFromRoleIdModel.statusCode
+            {
             case KStatusCode.kStatusCode200:
                 self.homeView?.hideLoader()
-                self.delegate?.hodData(data: getMenuFromRoleIdModel.resultData!)
+                
+                if (getMenuFromRoleIdModel.resultData != nil)
+                {
+                   self.delegate?.hodData(data: getMenuFromRoleIdModel.resultData!)
+                }
+                else
+                {
+                    self.homeView?.showAlert(alert: getMenuFromRoleIdModel.message ?? "Something went wrong")
+                }
             case KStatusCode.kStatusCode401:
                 self.homeView?.showAlert(alert: getMenuFromRoleIdModel.message ?? "Something went wrong")
                 self.delegate?.userUnauthorize()
@@ -130,7 +158,97 @@ class HomeViewModel{
     
     
     //MARK:- Home  Service
-     func getDataForAdmin(userId: Int?){
+    func getDataTeacher(userId: Int?)
+    {
+        self.homeView?.showLoader()
+        var postDict = [String:Any]()
+        
+        var strUrl = "api/User/DashboardTeacher?UserId=\(String(describing: userId!))"
+        postDict[KApiParameters.KGetPagesByUserIdIdintifier.kUserId] = userId
+        
+        LoginApi.sharedmanagerAuth.getdataTeacherDashboard(url: strUrl , parameters: postDict, completionResponse: { (response) in
+            
+            switch response.statusCode
+            {
+            case KStatusCode.kStatusCode200:
+                self.homeView?.hideLoader()
+                
+                if (response.resultData != nil)
+                {
+                   self.delegate?.teacherData(data: response.resultData!)
+                }
+                else
+                {
+                   self.homeView?.showAlert(alert: response.message ?? "Something went wrong")
+                }
+                
+            case KStatusCode.kStatusCode401:
+                self.homeView?.showAlert(alert: response.message ?? "Something went wrong")
+                self.delegate?.userUnauthorize()
+            default:
+                self.homeView?.hideLoader()
+                self.homeView?.showAlert(alert: response.message ?? "Something went wrong")
+                CommonFunctions.sharedmanagerCommon.println(object: "Get Menu using Id APi status change")
+            }
+            
+        }, completionnilResponse: { (nilResponseError) in
+            self.homeView?.hideLoader()
+            self.homeView?.showAlert(alert: nilResponseError ?? "Something went wrong")
+        }) { (error) in
+            self.homeView?.hideLoader()
+                self.homeView?.showAlert(alert: error?.localizedDescription ?? "Something went wrong")
+        }
+    }
+    
+    
+    
+    //MARK:- Home  Service
+    func getDataStudent(userId: Int?)
+    {
+        self.homeView?.showLoader()
+        var postDict = [String:Any]()
+        
+        let strUrl = "api/User/DashboardStudent?UserId=\(String(describing: userId!))"
+        postDict[KApiParameters.KGetPagesByUserIdIdintifier.kUserId] = userId
+        
+        LoginApi.sharedmanagerAuth.getdataStudentDashboard(url: strUrl , parameters: postDict, completionResponse: { (response) in
+            
+            switch response.statusCode
+            {
+            case KStatusCode.kStatusCode200:
+                self.homeView?.hideLoader()
+                
+                if (response.resultData != nil)
+                {
+                   self.delegate?.studentData(data: response.resultData!)
+                }
+                else
+                {
+                   self.homeView?.showAlert(alert: response.message ?? "Something went wrong")
+                }
+                
+            case KStatusCode.kStatusCode401:
+                self.homeView?.showAlert(alert: response.message ?? "Something went wrong")
+                self.delegate?.userUnauthorize()
+            default:
+                self.homeView?.hideLoader()
+                self.homeView?.showAlert(alert: response.message ?? "Something went wrong")
+                CommonFunctions.sharedmanagerCommon.println(object: "Get Menu using Id APi status change")
+            }
+            
+        }, completionnilResponse: { (nilResponseError) in
+            self.homeView?.hideLoader()
+            self.homeView?.showAlert(alert: nilResponseError ?? "Something went wrong")
+        }) { (error) in
+            self.homeView?.hideLoader()
+                self.homeView?.showAlert(alert: error?.localizedDescription ?? "Something went wrong")
+        }
+    }
+    
+    
+    //MARK:- Home  Service
+     func getDataForAdmin(userId: Int?)
+     {
          self.homeView?.showLoader()
          var postDict = [String:Any]()
          postDict[KApiParameters.KGetPagesByUserIdIdintifier.kUserId] = userId
