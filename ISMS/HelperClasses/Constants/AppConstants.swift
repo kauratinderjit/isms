@@ -1048,7 +1048,7 @@ public struct KConstants{
     static let kPeriodGreater: String = "End time must be greater then start time"
     static let kNextPeriod: String = "End time must be smaller then next period start time"
      static let kGardianExist : String = "Guardian exist"
-     static let kHODExist : String = "HOD Exist"
+     static let kHODExist : String = "HOD exist"
 }
 
 //MARK:- Navigation Titles
