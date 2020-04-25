@@ -422,7 +422,7 @@ public struct KStoryBoards
     
     internal struct KClassPeriodIdIdentifiers{
         public static let kClassPeriodTimeTableVC = "ClassPeriodsTimeTableVC"
-        public static let kClassPeriodTimeTableTitle = "Period Time Table"
+        public static let kClassPeriodTimeTableTitle = "Time Table"
         public static let kTimePeriodVC = "TimePeriodVC"
         public static let kAddPeriodTitle = "Add Period"
     }
@@ -797,6 +797,9 @@ public struct KTableViewCellIdentifier{
 public struct KAPPContentRelatedConstants{
     public static let kThemeColour : UIColor = UIColor.init(red: 75.0/255.0, green: 190.0/255.0, blue: 248.0/255.0, alpha: 1.0) //UIColor.init(red: 183.0/255.0, green: 23.0/255.0, blue: 36.0/255.0, alpha: 1.0)
     public static let kLightBlueColour : UIColor = UIColor.init(red: 227.0/255.0, green: 240.0/255.0, blue: 254.0/255.0, alpha: 1.0)
+    public static let kGreenColor = UIColor.init(red: 101.0/255.0, green: 222.0/255.0, blue: 146.0/255.0, alpha: 1.0)
+     public static let kRedColor = UIColor.init(red: 185.0/255.0, green: 43.0/255.0, blue: 62.0/255.0, alpha: 1.0)
+    
     public static let kThemeColorName : String = "DarkRed"
     public static let kAppTitle = "iEMS"
     public static let kAppGlobalFontName : String = "OpenSans-Semibold"

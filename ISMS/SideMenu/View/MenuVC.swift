@@ -134,8 +134,7 @@ extension MenuVC : UITableViewDelegate{
         tableView.deselectRow(at: indexPath, animated: true)
         
         print("your get result : \(String(describing: MenuVC.menuArrayFromApi?.resultData?[indexPath.row].pageUrl))")
-        
-        
+                
         switch MenuVC.menuArrayFromApi?.resultData?[indexPath.row].pageUrl!
         {
         case "ManageTeachers":
@@ -147,9 +146,7 @@ extension MenuVC : UITableViewDelegate{
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
             
-            
         case "ManageClasses":
-            
             let storyboard = UIStoryboard.init(name: KStoryBoards.kClass, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: KStoryBoards.KClassListIdentifiers.kClassListVC) as? ClassListVC
             //  vc?.lstActionAccess = MenuVC.menuArrayFromApi?.resultData?[indexPath.row].lstActionAccess
@@ -158,10 +155,7 @@ extension MenuVC : UITableViewDelegate{
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
             
-            
-            
-        case "ManageDepartment":
-            
+        case "ManageDepartment ":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kDepartment, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: KStoryBoards.KDepartMentListIdentifiers.kDepartmentListVC) as? DepartmentListVC
             //vc?.lstActionAccess = MenuVC.menuArrayFromApi?.resultData?[indexPath.row].lstActionAccess
@@ -179,9 +173,9 @@ extension MenuVC : UITableViewDelegate{
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
             
-        case "SyllabusCoverage"://"ManageSyllabus" :
+        case "ManageSyllabus" :
             let storyboard = UIStoryboard.init(name: KStoryBoards.kCourses, bundle: nil)
-             let vc = storyboard.instantiateViewController(withIdentifier: KStoryBoards.KSyllabusCoverageIdentifiers.kSyllabusCoverageVC) as? SyllabusCoverageVC
+            let vc = storyboard.instantiateViewController(withIdentifier: KStoryBoards.KSyllabusCoverageIdentifiers.kSyllabusCoverageVC) as? SyllabusCoverageVC
             vc?.isFromStudent = true
             //vc?.lstActionAccess = MenuVC.menuArrayFromApi?.resultData?[indexPath.row].lstActionAccess
             let frontVC = revealViewController().frontViewController as? UINavigationController
@@ -189,7 +183,7 @@ extension MenuVC : UITableViewDelegate{
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
             
-        case "Update SyllabusCoverage" :
+        case "Update SyllabusCoverage":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kCourses, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: KStoryBoards.KSyllabusCoverageIdentifiers.kSyllabusCoverageVC) as? SyllabusCoverageVC
             vc?.lstActionAccess = MenuVC.menuArrayFromApi?.resultData?[indexPath.row]
@@ -199,17 +193,15 @@ extension MenuVC : UITableViewDelegate{
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
             
-
-        case "AssignHomeWorks":
+        case "AssignHomework":
             let storyboard = UIStoryboard.init(name: "Homework", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "HomeworkListVC") as? HomeworkListVC
             vc?.lstActionAccess = MenuVC.menuArrayFromApi?.resultData?[indexPath.row]
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
-            
-            
             break
+            
         case "View&UpdateHomework":
             let storyboard = UIStoryboard.init(name: "Homework", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "SubjectListHW") as? SubjectListHW
@@ -217,24 +209,13 @@ extension MenuVC : UITableViewDelegate{
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
-            
-
             break
-            case "HomeWork":
-                       let storyboard = UIStoryboard.init(name: "Homework", bundle: nil)
-                       let vc = storyboard.instantiateViewController(withIdentifier: "SubjectListHW") as? SubjectListHW
-                       // vc?.lstActionAccess = MenuVC.menuArrayFromApi?.resultData?[indexPath.row]
-                       let frontVC = revealViewController().frontViewController as? UINavigationController
-                       frontVC?.pushViewController(vc!, animated: false)
-                       revealViewController().pushFrontViewController(frontVC, animated: true)
-                       
-
-                       break
             
-        case "ManageClassWiseSubject":
-            
+        //            case KStoryBoards.kAssignSubjectToClass.kClassAssignSubjectListVC:
+        case "ManageClassWiseSubject" :
             let storyboard = UIStoryboard.init(name: KStoryBoards.kClass, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: KStoryBoards.kAssignSubjectToClass.kClassAssignSubjectListVC) as? ClassAssignSubjectListVC
+            
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
@@ -298,7 +279,7 @@ extension MenuVC : UITableViewDelegate{
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
-        case "ManageInstitue":
+        case "ManageInstitute":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kSchool, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "AddSchoolVC") as? AddSchoolViewController
             let frontVC = revealViewController().frontViewController as? UINavigationController
@@ -338,38 +319,22 @@ extension MenuVC : UITableViewDelegate{
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
             
-
         case "ManageCalender":
-            
             let storyboard = UIStoryboard.init(name: KStoryBoards.kCalender, bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "EventsPagerVC") as? EventsPagerVC
+            let vc = storyboard.instantiateViewController(withIdentifier: "ExamScheduleVC") as? ExamScheduleVC
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
-
             
         case "ViewCalendar&Events":
-            
             let storyboard = UIStoryboard.init(name: KStoryBoards.kCalender, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "ExamScheduleVC") as? ExamScheduleVC
             let frontVC = revealViewController().frontViewController as? UINavigationController
             vc?.lstActionAccess = MenuVC.menuArrayFromApi?.resultData?[indexPath.row]
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
-            
             break
-            
-            case "Calender":
-                      
-                      let storyboard = UIStoryboard.init(name: KStoryBoards.kCalender, bundle: nil)
-                      let vc = storyboard.instantiateViewController(withIdentifier: "ExamScheduleVC") as? ExamScheduleVC
-                      let frontVC = revealViewController().frontViewController as? UINavigationController
-                      vc?.lstActionAccess = MenuVC.menuArrayFromApi?.resultData?[indexPath.row]
-                      frontVC?.pushViewController(vc!, animated: false)
-                      revealViewController().pushFrontViewController(frontVC, animated: true)
-                      
-                      break
             
         case "ManagePeriod":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kPeriod, bundle: nil)
@@ -414,7 +379,7 @@ extension MenuVC : UITableViewDelegate{
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
             
-        case "ViewStudentRating":
+        case "StudentRatings":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kStudent, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "StudentRatingVC") as? StudentRatingVC
             vc?.isFromHod = true
@@ -440,14 +405,7 @@ extension MenuVC : UITableViewDelegate{
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
-            case "TimeTableAndAttendence":
-                       let storyboard = UIStoryboard.init(name: KStoryBoards.kClass, bundle: nil)
-                       let vc = storyboard.instantiateViewController(withIdentifier: "TimeTableStudentVC") as? TimeTableStudentVC
-                       vc?.isFromTimeTableParent = false
-                       let frontVC = revealViewController().frontViewController as? UINavigationController
-                       frontVC?.pushViewController(vc!, animated: false)
-                       revealViewController().pushFrontViewController(frontVC, animated: true)
-                       break
+            
         case "ViewTimetableParent":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kClass, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "TimeTableStudentVC") as? TimeTableStudentVC
@@ -491,36 +449,95 @@ extension MenuVC : UITableViewDelegate{
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
-            //            AddStudentRatingVC
+        //            AddStudentRatingVC
+        case "SyllabusCoverage"://"ManageSyllabus" :
+            let storyboard = UIStoryboard.init(name: KStoryBoards.kCourses, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: KStoryBoards.KSyllabusCoverageIdentifiers.kSyllabusCoverageVC) as? SyllabusCoverageVC
+            vc?.isFromStudent = true
+            //vc?.lstActionAccess = MenuVC.menuArrayFromApi?.resultData?[indexPath.row].lstActionAccess
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(vc!, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
+            break
             
-            case "RateStudent":
-                     let storyboard = UIStoryboard.init(name: KStoryBoards.kStudent, bundle: nil)
-                     let vc = storyboard.instantiateViewController(withIdentifier: "StudentRatingVC") as? StudentRatingVC
-                     vc?.isFromHod = false
-                     let frontVC = revealViewController().frontViewController as? UINavigationController
-                     frontVC?.pushViewController(vc!, animated: false)
-                     revealViewController().pushFrontViewController(frontVC, animated: true)
-                     break
+        case "AssignHomeWorks":
+            let storyboard = UIStoryboard.init(name: "Homework", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "HomeworkListVC") as? HomeworkListVC
+            vc?.lstActionAccess = MenuVC.menuArrayFromApi?.resultData?[indexPath.row]
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(vc!, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
+            break
+            
+        case "HomeWork":
+            let storyboard = UIStoryboard.init(name: "Homework", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "SubjectListHW") as? SubjectListHW
+            // vc?.lstActionAccess = MenuVC.menuArrayFromApi?.resultData?[indexPath.row]
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(vc!, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
+            break
+            
+        case "Calender":
+            let storyboard = UIStoryboard.init(name: KStoryBoards.kCalender, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "ExamScheduleVC") as? ExamScheduleVC
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            vc?.lstActionAccess = MenuVC.menuArrayFromApi?.resultData?[indexPath.row]
+            frontVC?.pushViewController(vc!, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
+            break
+            
+        case "ManageInstitue":
+            let storyboard = UIStoryboard.init(name: KStoryBoards.kSchool, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "AddSchoolVC") as? AddSchoolViewController
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(vc!, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
+            break
+            
         case "AssignHomework":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kStudent, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "AssignHomeworkVC")
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
-
             break
-       
-            case "NewsFeed":
-
+            
+        case "ViewStudentRating":
+            let storyboard = UIStoryboard.init(name: KStoryBoards.kStudent, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "StudentRatingVC") as? StudentRatingVC
+            vc?.isFromHod = true
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(vc!, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
+            break
+        case "TimeTableAndAttendence":
+            let storyboard = UIStoryboard.init(name: KStoryBoards.kClass, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "TimeTableStudentVC") as? TimeTableStudentVC
+            vc?.isFromTimeTableParent = false
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(vc!, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
+            break
+            
+        case "RateStudent":
+            let storyboard = UIStoryboard.init(name: KStoryBoards.kStudent, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "StudentRatingVC") as? StudentRatingVC
+            vc?.isFromHod = false
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(vc!, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
+            break
+        case "NewsFeed":
+            
             self.showAlert(Message: "Coming Soon")
             break
             
         case "ContactUS":
-
-            self.showAlert(Message: "Coming Soon")
-
-            break
             
+            self.showAlert(Message: "Coming Soon")
+            
+            break
         case "LogOut":
             initializeCustomYesNoAlert(self.view, isHideBlurView: true)
             self.yesNoAlertView.delegate = self
@@ -528,6 +545,7 @@ extension MenuVC : UITableViewDelegate{
         default:
             print(Alerts.kNoRecordFound)
             break
+            
         }
     }
 }

@@ -33,6 +33,7 @@ class StudentListToMarkAttendence: BaseUIViewController {
         tableViewStudent.tableFooterView = UIView()
         tableViewStudent.delegate = self
         tableViewStudent.dataSource = self
+        tableViewStudent.separatorColor = KAPPContentRelatedConstants.kLightBlueColour
         // Do any additional setup after loading the view.
     }
     

@@ -38,18 +38,18 @@ class StudentListMarkAttCell: UITableViewCell{
         studentAbsent.tag = indexPath.row
         
         if rsltData.isSelected == 1{
-            StudentPresent.backgroundColor = UIColor.green
+            StudentPresent.backgroundColor = KAPPContentRelatedConstants.kGreenColor
             studentAbsent.backgroundColor = .clear
         }else if rsltData.isSelected == 2{
             StudentPresent.backgroundColor = .clear
-            studentAbsent.backgroundColor = .red
+            studentAbsent.backgroundColor = KAPPContentRelatedConstants.kRedColor
         }else{
             if rsltData.status == "P"{
-                StudentPresent.backgroundColor = UIColor.green
+                StudentPresent.backgroundColor = KAPPContentRelatedConstants.kGreenColor
                 studentAbsent.backgroundColor = .clear
             }else if rsltData.status == "A"{
                 StudentPresent.backgroundColor = .clear
-                studentAbsent.backgroundColor = .red
+                studentAbsent.backgroundColor = KAPPContentRelatedConstants.kRedColor
             }else{
                 StudentPresent.backgroundColor = .clear
                 studentAbsent.backgroundColor = .clear

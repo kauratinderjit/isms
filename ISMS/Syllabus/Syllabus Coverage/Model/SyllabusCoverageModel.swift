@@ -37,7 +37,7 @@ struct SyllabusCoverageListResultData: Mappable {
     
   
     var ClassSubjectId : Int?
-    var coveragePercentage : String?
+    var coveragePercentage : Int?
     var subjectName : String?
     
   
