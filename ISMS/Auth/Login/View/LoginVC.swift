@@ -45,7 +45,7 @@ class LoginVC: BaseUIViewController {
     }
     
     @IBAction func ForgotPassAction(_ sender: Any){
-   //             pushToNextVC(storyboardName: KStoryBoards.kMain, viewControllerName: KStoryBoards.KForgotPassIdentifiers.kForgotPassVC)
+  //              pushToNextVC(storyboardName: KStoryBoards.kMain, viewControllerName: KStoryBoards.KForgotPassIdentifiers.kForgotPassVC)
         if phoneNumber == "" && phoneNumber == nil{
             showAlert(Message: "Enter Phone Number")
         }
@@ -156,6 +156,7 @@ class LoginVC: BaseUIViewController {
                     self.viewModel?.verifyPhNumber(phoneOrEmail: textField.text)
                 }else{
                     viewPassword.isHidden = true
+                    txtFieldPassword.text = ""
                     btnLogin.isHidden = true
                     btnForgot.isUserInteractionEnabled = false
                     lblForgot.isHidden = true

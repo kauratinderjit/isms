@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ico-Xa-YDc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ico-Xa-YDc">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -186,7 +186,7 @@
             <objects>
                 <viewController id="bSH-bS-bld" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="T3a-qu-pTa">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1250"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5zY-0k-k51">
@@ -544,7 +544,7 @@
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8lM-K4-AAb">
-                                                <rect key="frame" x="211.5" y="110" width="37" height="37"/>
+                                                <rect key="frame" x="174.5" y="73" width="74" height="74"/>
                                                 <state key="normal" image="AddIcon"/>
                                                 <connections>
                                                     <action selector="ActionAddimage:" destination="bSH-bS-bld" eventType="touchUpInside" id="vAk-rU-819"/>
@@ -663,7 +663,7 @@
             <objects>
                 <viewController storyboardIdentifier="AddSchoolVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GMA-8A-Fml" customClass="AddSchoolViewController" customModule="ISMS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OlW-Ca-bEB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1500"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kXp-wy-4P9">
@@ -987,7 +987,7 @@
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="NFZ-24-jkT">
-                                                                <rect key="frame" x="326" y="22.5" width="12" height="7.5"/>
+                                                                <rect key="frame" x="314" y="18.5" width="24" height="15"/>
                                                             </imageView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Znf-gK-MKY">
                                                                 <rect key="frame" x="0.0" y="12" width="351" height="50"/>
@@ -1044,7 +1044,7 @@
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="8Lp-zx-mZI">
-                                                                        <rect key="frame" x="326" y="21.5" width="12" height="7.5"/>
+                                                                        <rect key="frame" x="314" y="17.5" width="24" height="15"/>
                                                                     </imageView>
                                                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMs-NF-XHW">
                                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
@@ -1097,7 +1097,7 @@
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="attachment" translatesAutoresizingMaskIntoConstraints="NO" id="Quy-Eh-hyO">
-                                                                <rect key="frame" x="323" y="18.5" width="15" height="13.5"/>
+                                                                <rect key="frame" x="308" y="11.5" width="30" height="27"/>
                                                             </imageView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Sb-Pb-w5o">
                                                                 <rect key="frame" x="0.0" y="0.0" width="351" height="50"/>
@@ -1209,7 +1209,7 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="123" height="120.5"/>
                                                                 </imageView>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQ4-0X-l3K">
-                                                                    <rect key="frame" x="99" y="0.0" width="24" height="24"/>
+                                                                    <rect key="frame" x="75" y="0.0" width="48" height="48"/>
                                                                     <state key="normal" image="cross"/>
                                                                     <connections>
                                                                         <action selector="ActionCrossBtn:" destination="GMA-8A-Fml" eventType="touchUpInside" id="ycv-rW-Gue"/>
@@ -1371,7 +1371,7 @@
                                                         </connections>
                                                     </button>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uploadImage" translatesAutoresizingMaskIntoConstraints="NO" id="o7z-0I-7vt">
-                                                        <rect key="frame" x="12" y="22" width="18" height="16"/>
+                                                        <rect key="frame" x="12" y="14" width="36" height="32"/>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.29411764709999999" green="0.74509803919999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1400,7 +1400,7 @@
                                                         </connections>
                                                     </button>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uploadDoc" translatesAutoresizingMaskIntoConstraints="NO" id="egN-UI-BW3">
-                                                        <rect key="frame" x="12" y="21" width="16.5" height="18"/>
+                                                        <rect key="frame" x="12" y="12" width="33" height="36"/>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

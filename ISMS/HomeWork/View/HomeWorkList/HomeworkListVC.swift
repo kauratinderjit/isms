@@ -80,6 +80,9 @@ extension HomeworkListVC : UITableViewDelegate, UITableViewDataSource {
         return 91
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
 }
 extension HomeworkListVC : ViewDelegate {
     

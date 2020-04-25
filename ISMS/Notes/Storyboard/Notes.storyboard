@@ -307,7 +307,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C9Y-LF-r4i">
-                                <rect key="frame" x="10" y="129" width="394" height="40"/>
+                                <rect key="frame" x="10" y="118" width="394" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Subject: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5K-E0-uLd">
                                         <rect key="frame" x="8" y="7" width="107.5" height="26"/>
@@ -350,7 +350,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cZ9-aJ-PSU">
-                                <rect key="frame" x="10" y="194" width="394" height="40"/>
+                                <rect key="frame" x="10" y="172" width="394" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Topic : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sd4-gH-8Ea">
                                         <rect key="frame" x="10" y="9" width="110" height="21"/>
@@ -363,7 +363,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PF5-ez-TCy">
-                                        <rect key="frame" x="122" y="2.5" width="262" height="34"/>
+                                        <rect key="frame" x="122" y="6.5" width="262" height="26"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="26" id="w6v-Z3-3iu"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -378,30 +381,48 @@
                                     <constraint firstAttribute="trailing" secondItem="PF5-ez-TCy" secondAttribute="trailing" constant="10" id="zF9-Va-stq"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PY9-jv-yow">
-                                <rect key="frame" x="10" y="259" width="173" height="40"/>
-                                <color key="backgroundColor" red="0.40784313729999999" green="0.43921568630000002" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PY9-jv-yow">
+                                <rect key="frame" x="10" y="237" width="173" height="48"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="yFb-oO-eoS"/>
+                                    <constraint firstAttribute="height" constant="48" id="yFb-oO-eoS"/>
                                     <constraint firstAttribute="width" constant="173" id="yL1-Hg-zLp"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <state key="normal" title="Attach Files">
-                                    <color key="titleColor" white="0.89742080479999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                <state key="normal" title="Attach Files" image="WhiteAttachment">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="0.80000000000000004"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOffset">
+                                        <real key="value" value="0.80000000000000004"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="btnAttachFiles:" destination="qK9-EV-df0" eventType="touchUpInside" id="hAh-wg-tLj"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgb-Fr-48o">
-                                <rect key="frame" x="20" y="796" width="374" height="38"/>
-                                <color key="backgroundColor" red="1" green="0.076984426280000004" blue="0.079345311370000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="20" y="776" width="374" height="58"/>
+                                <color key="backgroundColor" red="0.29411764709999999" green="0.74509803919999995" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="37" id="Da8-8d-CBj"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="58" id="Da8-8d-CBj"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title="Submit">
-                                    <color key="titleColor" white="0.89742080479999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
                         </subviews>
@@ -409,12 +430,12 @@
                         <constraints>
                             <constraint firstItem="wOj-ce-YBl" firstAttribute="bottom" secondItem="hgb-Fr-48o" secondAttribute="bottom" constant="28" id="7LH-Jm-pmH"/>
                             <constraint firstItem="hgb-Fr-48o" firstAttribute="leading" secondItem="wOj-ce-YBl" secondAttribute="leading" constant="20" id="A6f-Zx-Zns"/>
-                            <constraint firstItem="C9Y-LF-r4i" firstAttribute="top" secondItem="PLE-5i-NjU" secondAttribute="bottom" constant="25" id="Kwq-xs-bbx"/>
+                            <constraint firstItem="C9Y-LF-r4i" firstAttribute="top" secondItem="PLE-5i-NjU" secondAttribute="bottom" constant="14" id="Kwq-xs-bbx"/>
                             <constraint firstItem="wOj-ce-YBl" firstAttribute="trailing" secondItem="C9Y-LF-r4i" secondAttribute="trailing" constant="10" id="PBH-SI-Ake"/>
                             <constraint firstItem="PY9-jv-yow" firstAttribute="top" secondItem="cZ9-aJ-PSU" secondAttribute="bottom" constant="25" id="V3u-et-MFC"/>
                             <constraint firstItem="wOj-ce-YBl" firstAttribute="trailing" secondItem="cZ9-aJ-PSU" secondAttribute="trailing" constant="10" id="Wdh-Sg-HzI"/>
                             <constraint firstItem="wOj-ce-YBl" firstAttribute="trailing" secondItem="PLE-5i-NjU" secondAttribute="trailing" constant="10" id="YfJ-eB-Bvh"/>
-                            <constraint firstItem="cZ9-aJ-PSU" firstAttribute="top" secondItem="C9Y-LF-r4i" secondAttribute="bottom" constant="25" id="cGO-q1-oHd"/>
+                            <constraint firstItem="cZ9-aJ-PSU" firstAttribute="top" secondItem="C9Y-LF-r4i" secondAttribute="bottom" constant="14" id="cGO-q1-oHd"/>
                             <constraint firstItem="wOj-ce-YBl" firstAttribute="trailing" secondItem="hgb-Fr-48o" secondAttribute="trailing" constant="20" id="dsx-Gp-fZv"/>
                             <constraint firstItem="cZ9-aJ-PSU" firstAttribute="leading" secondItem="wOj-ce-YBl" secondAttribute="leading" constant="10" id="gIq-NS-ehw"/>
                             <constraint firstItem="PLE-5i-NjU" firstAttribute="top" secondItem="wOj-ce-YBl" secondAttribute="top" constant="20" id="i1k-xD-5Bx"/>
@@ -432,6 +453,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="WhiteAttachment" width="21" height="23.5"/>
         <image name="addImage" width="32" height="32"/>
         <image name="delete" width="20" height="20"/>
         <image name="dropDown" width="12" height="7.5"/>
