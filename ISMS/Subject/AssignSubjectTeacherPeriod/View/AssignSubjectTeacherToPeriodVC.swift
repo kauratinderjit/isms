@@ -62,7 +62,7 @@ class AssignSubjectTeacherToPeriodVC: BaseUIViewController {
         if checkInternetConnection(){
             isSubjectButtonSelected = true
             //Hit Subject Api Dropdown
-            self.viewModel?.getSubjectsTeacherListDropdown(selectId: classId ?? 0, enumType: CountryStateCity.classSubjects.rawValue)
+            self.viewModel?.getSubjectsTeacherListDropdown(selectId: classId ?? 0, enumType: 21)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
@@ -76,7 +76,7 @@ class AssignSubjectTeacherToPeriodVC: BaseUIViewController {
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
     }
-    
+     
     @IBAction func btnOkAction(_ sender: UIButton) {
         popUpView.removeFromSuperview()
         removeBlurEffect()

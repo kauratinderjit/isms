@@ -22,7 +22,8 @@ class SubjectListVC: BaseUIViewController {
     var pageSize = KIntegerConstants.kInt10
     var pointNow:CGPoint!
     var isFetching:Bool?
-    
+    var HODdepartmentId = UserDefaultExtensionModel.shared.HODDepartmentId
+    var HODdepartmentName = UserDefaultExtensionModel.shared.HODDepartmentName
     
     @IBOutlet weak var btnAddSubject: UIButton!
     @IBOutlet weak var tableView: UITableView!

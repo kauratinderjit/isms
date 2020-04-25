@@ -24,8 +24,7 @@ class MenuVC: BaseUIViewController {
     static var menuArray = ["Logout"]
     static var menuArrayFromApi : GetMenuFromRoleIdModel?
     var sortedMenuArray = [GetMenuFromRoleIdModel.ResultData]()
-    var disPlayList = [Int]()
-    
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +64,9 @@ class MenuVC: BaseUIViewController {
             sortedMenuArray = resultData.sorted{ $0.displayOrder ?? 0 < $1.displayOrder ?? 0  }
             print(sortedMenuArray)
         }
-    
+        
+        
+        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
