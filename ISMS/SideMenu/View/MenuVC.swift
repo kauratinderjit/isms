@@ -65,9 +65,7 @@ class MenuVC: BaseUIViewController {
             sortedMenuArray = resultData.sorted{ $0.displayOrder ?? 0 < $1.displayOrder ?? 0  }
             print(sortedMenuArray)
         }
-        
-        
-        
+    
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

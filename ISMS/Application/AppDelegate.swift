@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+      
         
         GMSServices.provideAPIKey("AIzaSyAaydbkH0_mLslxTDxx4K-l3_3uQAmjYzQ")
         GMSPlacesClient.provideAPIKey("AIzaSyAaydbkH0_mLslxTDxx4K-l3_3uQAmjYzQ")
@@ -40,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().clipsToBounds = false
         UINavigationBar.appearance().backgroundColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font : (UIFont(name: "Helvetica Neue", size: 20))!, NSAttributedString.Key.foregroundColor: UIColor.black]
-
+      
     }
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

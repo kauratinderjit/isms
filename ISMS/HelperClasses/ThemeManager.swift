@@ -33,9 +33,9 @@ extension UIColor {
 }
 
 
-let hodThemeDict : [String:String] = ["mainColor":"4BBEF8","textFieldBackgroundColor":"FFFFFF","uiButtonBackgroundColor":"4BBEF8","uiBarButtonBackgroundColor":"4ABCF5","uiButtonTintColor":"FFFFFF","uiButtonTextColor":"FFFFFF","textFieldTextColor":"A9A9A9","labelTextColor":"000000","labelBackgroundColor":"4BBEF8","navigationTintColor":"#00008b","navigationBarTintColor":"FFFFFF","statusBarColor": "FFFFFF"] //["mainColor":"00008b","textFieldBackgroundColor":"FFFFFF","uiButtonBackgroundColor":"#00008b","uiBarButtonBackgroundColor":"#00008b","uiButtonTintColor":"FFFFFF","uiButtonTextColor":"FFFFFF","textFieldTextColor":"A9A9A9","labelTextColor":"000000","labelBackgroundColor":"#00008b","navigationTintColor":"#FFFFFF","navigationBarTintColor":"#00008b","statusBarColor":"#00008b"]
+let hodThemeDict : [String:String] = ["mainColor":"4BBEF8","textFieldBackgroundColor":"FFFFFF","uiButtonBackgroundColor":"4BBEF8","uiBarButtonBackgroundColor":"4ABCF5","uiButtonTintColor":"FFFFFF","uiButtonTextColor":"FFFFFF","textFieldTextColor":"A9A9A9","labelTextColor":"000000","labelBackgroundColor":"4BBEF8","navigationTintColor":"#00008b","navigationBarTintColor":"FFFFFF","statusBarColor": "4BBEF8"] //["mainColor":"00008b","textFieldBackgroundColor":"FFFFFF","uiButtonBackgroundColor":"#00008b","uiBarButtonBackgroundColor":"#00008b","uiButtonTintColor":"FFFFFF","uiButtonTextColor":"FFFFFF","textFieldTextColor":"A9A9A9","labelTextColor":"000000","labelBackgroundColor":"#00008b","navigationTintColor":"#FFFFFF","navigationBarTintColor":"#00008b","statusBarColor":"#00008b"]
 
-let studentThemeDict : [String:String] = ["mainColor":"4BBEF8","textFieldBackgroundColor":"FFFFFF","uiButtonBackgroundColor":"4BBEF8","uiBarButtonBackgroundColor":"4ABCF5","uiButtonTintColor":"FFFFFF","uiButtonTextColor":"FFFFFF","textFieldTextColor":"A9A9A9","labelTextColor":"000000","labelBackgroundColor":"4BBEF8","navigationTintColor":"#00008b","navigationBarTintColor":"FFFFFF","statusBarColor": "FFFFFF"]
+let studentThemeDict : [String:String] = ["mainColor":"4BBEF8","textFieldBackgroundColor":"FFFFFF","uiButtonBackgroundColor":"4BBEF8","uiBarButtonBackgroundColor":"4ABCF5","uiButtonTintColor":"FFFFFF","uiButtonTextColor":"FFFFFF","textFieldTextColor":"A9A9A9","labelTextColor":"000000","labelBackgroundColor":"4BBEF8","navigationTintColor":"#00008b","navigationBarTintColor":"FFFFFF","statusBarColor": "4BBEF8"]
 
 
 //["mainColor":"17442A","textFieldBackgroundColor":"FFFFFF","uiButtonBackgroundColor":"17442A","uiBarButtonBackgroundColor":"17442A","uiButtonTintColor":"FFFFFF","uiButtonTextColor":"FFFFFF","textFieldTextColor":"A9A9A9","labelTextColor":"000000","labelBackgroundColor":"17442A","navigationTintColor":"FFFFFF","navigationBarTintColor":"17442A","statusBarColor": "17442A"]
@@ -43,7 +43,7 @@ let studentThemeDict : [String:String] = ["mainColor":"4BBEF8","textFieldBackgro
 
 //let defaultThemeDict : [String:String] = ["mainColor":"A90222","textFieldBackgroundColor":"FFFFFF","uiButtonBackgroundColor":"A90222","uiBarButtonBackgroundColor":"A90222","uiButtonTintColor":"FFFFFF","uiButtonTextColor":"FFFFFF","textFieldTextColor":"A9A9A9","labelTextColor":"000000","labelBackgroundColor":"A90222","navigationTintColor":"FFFFFF","navigationBarTintColor":"A90222","statusBarColor": "A90222"]
 
-let defaultThemeDict : [String:String] = ["mainColor":"4BBEF8","textFieldBackgroundColor":"FFFFFF","uiButtonBackgroundColor":"4BBEF8","uiBarButtonBackgroundColor":"4ABCF5","uiButtonTintColor":"FFFFFF","uiButtonTextColor":"FFFFFF","textFieldTextColor":"A9A9A9","labelTextColor":"000000","labelBackgroundColor":"4BBEF8","navigationTintColor":"#00008b","navigationBarTintColor":"FFFFFF","statusBarColor": "FFFFFF"]
+let defaultThemeDict : [String:String] = ["mainColor":"4BBEF8","textFieldBackgroundColor":"FFFFFF","uiButtonBackgroundColor":"4BBEF8","uiBarButtonBackgroundColor":"4ABCF5","uiButtonTintColor":"FFFFFF","uiButtonTextColor":"FFFFFF","textFieldTextColor":"A9A9A9","labelTextColor":"000000","labelBackgroundColor":"4BBEF8","navigationTintColor":"#00008b","navigationBarTintColor":"FFFFFF","statusBarColor": "4BBEF8"]
 
 struct ThemeColors: Codable {
 
@@ -58,7 +58,7 @@ struct ThemeColors: Codable {
     var labelBackgroundColor : String = "4BBEF8"//"A90222"
     var navigationTintColor : String = "#00008b"//"FFFFFF"
     var navigationBarTintColor : String = "FFFFFF"//"A90222"
-    var statusBarColor : String = "FFFFFF"//"4BBEF8"//"A90222"
+    var statusBarColor : String = "4BBEF8"//"4BBEF8"//"A90222"
     var titleColor = "FFFFFF"
 
     
