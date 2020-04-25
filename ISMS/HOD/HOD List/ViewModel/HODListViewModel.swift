@@ -161,7 +161,9 @@ extension HODListVC : HODListDelegate{
         
         isFetching = true
         if data != nil{
-            if data?.count ?? 0 > 0{
+            if data?.count ?? 0 > 0
+            {
+                arrHODlist = [GetHodListResultData]()
                 for value in data!{
                     
                     let containsSameValue = arrHODlist.contains(where: {$0.hodId == value.hodId})

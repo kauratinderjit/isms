@@ -186,7 +186,9 @@ extension DepartmentListVC : DepartmentListDelegate{
     func departmentListDidSuccess(data: [GetDepartmentListResultData]?) {
         isFetching = true
         if data != nil{
-            if data?.count ?? 0 > 0{
+            if data?.count ?? 0 > 0
+            {
+                arrDepartmentlist = [GetDepartmentListResultData]()
                 for value in data!{
                     let containsSameValue = arrDepartmentlist.contains(where: {$0.departmentId == value.departmentId})
                     if containsSameValue == false{
