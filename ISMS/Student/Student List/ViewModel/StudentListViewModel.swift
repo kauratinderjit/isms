@@ -47,6 +47,8 @@ class StudentListViewModel{
         
         let paramDict = [KApiParameters.StudentListApi.StudentClassId: classId ?? 0,KApiParameters.StudentListApi.StudentSearch:Search ?? "",KApiParameters.StudentListApi.PageSkip: Skip ?? 10,KApiParameters.StudentListApi.PageSize: PageSize] as [String : Any]
         
+        
+        print("param: ",paramDict)
         AdStudentApi.sharedInstance.getStudentList(url: ApiEndpoints.KStudentListApi, parameters: paramDict as [String : Any], completionResponse: { (StudentListModel) in
             print("student list: ",StudentListModel.resultData)
             if StudentListModel.statusCode == KStatusCode.kStatusCode200{

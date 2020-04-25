@@ -230,6 +230,7 @@ extension StudentListVC : StudentListDelegate{
     
     func StudentListDidSuccess(data : [GetStudentResultData]?) {
         isFetching = true
+         arrStudentlist.removeAll()
         if data != nil{
             if data?.count ?? 0 > 0{
                 guard let rsltData = data else{
@@ -384,7 +385,7 @@ extension StudentListVC : NavigationSearchBarDelegate{
     func textDidChange(searchBar: UISearchBar, searchText: String) {
         DispatchQueue.main.async {
             self.arrStudentlist.removeAll()
-            self.ViewModel?.studentList(classId : 0, Search: searchText, Skip: KIntegerConstants.kInt0, PageSize: KIntegerConstants.kInt10)
+            self.ViewModel?.studentList(classId :self.selectedClassID, Search: searchText, Skip: KIntegerConstants.kInt0, PageSize: KIntegerConstants.kInt10)
         }
     }
     
