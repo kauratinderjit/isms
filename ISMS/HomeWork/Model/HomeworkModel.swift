@@ -90,4 +90,26 @@ struct lstattachmentModels: Mappable {
     
 
 
+struct lststuattachmentModels: Mappable {
+    
+    var AssignHomeWorkId : Int?
+    var AttachmentUrl : String?
+    var FileName : String?
+    var IFile : URL?
+    var Comment : String?
+    var StudentHomeworkId : Int?
+    
+    init?(map: Map) {
+    }
+    
+    mutating func mapping(map: Map) {
+   
+       AssignHomeWorkId <- map["AssignHomeWorkId"]
+       AttachmentUrl <- map["AttachmentUrl"]
+      Comment <- map["Comment"]
+       FileName <- map["FileName"]
+        StudentHomeworkId <- map["StudentHomeworkId"]
 
+    }
+    
+}

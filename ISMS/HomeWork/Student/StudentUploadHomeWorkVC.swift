@@ -20,10 +20,12 @@ class StudentUploadHomeWorkVC: BaseUIViewController {
     var AssignHomeWorkId : Int? = 0
      var StudentId : Int? = 0
     var StudentHomeworkId : Int? = 0
-      var lststuattachmentModels: [lstattachmentModels]?
+      var lststuattachmentModels: [lststuattachmentModels]?
     @IBOutlet weak var btnSubmit: UIButton!
      var  datalocalStu: [HomeworkListStudentData]?
-    
+    var booledit = false
+    var boolAlreadySelected = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Upload Tasks"
@@ -33,9 +35,10 @@ class StudentUploadHomeWorkVC: BaseUIViewController {
         
         if lststuattachmentModels?.count ?? 0 > 0  {
             
+            StudentHomeworkId = lststuattachmentModels?[0].StudentHomeworkId
              self.title = "Update Tasks"
              heightTableView.constant =  CGFloat((lststuattachmentModels?.count ?? 0) * 51)
-          //  txtViewComment.text = datalocalStu?[0].
+             txtViewComment.text = lststuattachmentModels?[0].Comment
              btnSubmit.setTitle("UPDATE", for: .normal)
              lblPlaceHolderComment.isHidden = true
              if lststuattachmentModels?.count ?? 0 > 0 {
@@ -46,8 +49,9 @@ class StudentUploadHomeWorkVC: BaseUIViewController {
                  var modelHW = [String: Any]()
                                       modelHW["url"] = nil
                                       modelHW["fileName"] = element.FileName
-                                      modelHW["id"] = element.AssignWorkAttachmentId
+                                      modelHW["id"] = element.AssignHomeWorkId
                                       uploadData.add(modelHW)
+                    boolAlreadySelected = true
                  }
                  
              }
@@ -87,8 +91,7 @@ class StudentUploadHomeWorkVC: BaseUIViewController {
                        
                      
 
-                    
-                  StudentId =  UserDefaultExtensionModel.shared.userRoleParticularId
+                   StudentId =  UserDefaultExtensionModel.shared.enrollmentIdStudent
                     self.viewModel?.uploadHomeworkStudent(AssignHomeWorkId: AssignHomeWorkId ?? 0, StudentId: StudentId ?? 0, StudentHomeworkId: StudentHomeworkId ?? 0, Comment: txtViewComment.text, Status: true, lstAssignHomeAttachmentMapping: attachementArr)
                        
                    }
@@ -149,44 +152,84 @@ extension StudentUploadHomeWorkVC: UIDocumentMenuDelegate,UIDocumentPickerDelega
         guard let myURL = urls.first else {
             return
         }
-        if uploadData.count <= 5 {
-            
-            if uploadData.count > 0 {
-            
-            _ = uploadData.enumerated().map { (index,element) in
-            
-            let dd = element as? [String:Any]
-            if dd?["fileName"] as? String == myURL.lastPathComponent {
-                self.showAlert(Message: "You have already selected this file.")
-            }
-            
-            else{
-                var modelHW = [String: Any]()
-                      modelHW["url"] = myURL
-                      modelHW["fileName"] = myURL.lastPathComponent
-                      modelHW["id"] = 0
-                      uploadData.add(modelHW)
-            }
-        }
-            
-        }
-      
-            
-        else{
-                                 var modelHW = [String: Any]()
-                                 modelHW["url"] = myURL
-                                 modelHW["fileName"] = myURL.lastPathComponent
-                                 modelHW["id"] = 0
-                                 uploadData.add(modelHW)
-            }}
-        else{
-            self.showAlert(Message: "Maximum limit to upload the document is 5.")
-        }
-         
+        booledit = false
         
-        heightTableView.constant  = CGFloat(uploadData.count * 51)
-        self.tblViewListing.reloadData()
-        print("import result : \(myURL)")
+        if  boolAlreadySelected == true {
+            if uploadData.count == 1 {
+                
+                             print(uploadData.count)
+                            _ = uploadData.enumerated().map { (index,element) in
+                            
+                            let dd = element as? [String:Any]
+                            if dd?["fileName"] as? String == myURL.lastPathComponent {
+                                self.showAlert(Message: "You have already selected this file.")
+                                booledit = true
+                                return
+                            }
+                                }
+                
+                               
+                                
+                                
+                                if booledit == false {
+                                    uploadData.removeAllObjects()
+                                    boolAlreadySelected = false
+
+                                var modelHW = [String: Any]()
+                                      modelHW["url"] = myURL
+                                      modelHW["fileName"] = myURL.lastPathComponent
+                                      modelHW["id"] = 0
+                                    uploadData.add(modelHW)
+                                    
+                                    
+                }
+       
+                        heightTableView.constant  = CGFloat(uploadData.count * 51)
+                        self.tblViewListing.reloadData()
+                        print("import result : \(myURL)")
+            
+            } } else {
+            if uploadData.count == 0 {
+//                  if uploadData.count > 0 {
+//                   print(uploadData.count)
+//                  _ = uploadData.enumerated().map { (index,element) in
+//
+//                  let dd = element as? [String:Any]
+//                  if dd?["fileName"] as? String == myURL.lastPathComponent {
+//                      self.showAlert(Message: "You have already selected this file.")
+//                      booledit = true
+//                      return
+//                  }
+//                      }
+//                      if booledit == false {
+//                      var modelHW = [String: Any]()
+//                            modelHW["url"] = myURL
+//                            modelHW["fileName"] = myURL.lastPathComponent
+//                            modelHW["id"] = 0
+//                          uploadData.add(modelHW) }
+//              }
+//
+//
+//              else{
+                                       var modelHW = [String: Any]()
+                                       modelHW["url"] = myURL
+                                       modelHW["fileName"] = myURL.lastPathComponent
+                                       modelHW["id"] = 0
+                                       uploadData.add(modelHW)
+                //  }
+            
+        }
+              else{
+                  self.showAlert(Message: "Maximum limit to upload the document is 1.")
+              }
+               
+              
+              heightTableView.constant  = CGFloat(uploadData.count * 51)
+              self.tblViewListing.reloadData()
+              print("import result : \(myURL)")
+        }
+
+        
     }
     
     
