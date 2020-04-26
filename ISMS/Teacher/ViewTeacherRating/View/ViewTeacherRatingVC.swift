@@ -17,7 +17,7 @@ class ViewTeacherRatingVC: BaseUIViewController {
     var arrTeacher = [ViewTeacherRatingResult]()
     var arrGetTeacherRating = [GetViewTeacherRatingResult]()
     var idHOD = UserDefaultExtensionModel.shared.userRoleParticularId
-    
+     var HODdepartmentId = UserDefaultExtensionModel.shared.HODDepartmentId
     var isSelectedTeacher = false
     var selectedTeacherIndex : Int?
     var selectedId : Int?
@@ -93,24 +93,25 @@ extension ViewTeacherRatingVC : UITableViewDelegate{
         cell.layoutMargins = UIEdgeInsets.zero
     }
     
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 70;
-//    }
-    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-//        return UITableView.automaticDimension;//Choose your custom row height
-//    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
-        return 150;//Choose your custom row height
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70;
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
+        return UITableView.automaticDimension;//Choose your custom row height
+    }
+    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+//    {
+//        return 130;//Choose your custom row height
+//    }
     
 }
 extension ViewTeacherRatingVC : UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if arrGetTeacherRating.count > 0{
             tableView.separatorStyle = .singleLine
+            tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: true)
             return (arrGetTeacherRating.count)
         }else{
             tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
@@ -121,7 +122,11 @@ extension ViewTeacherRatingVC : UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //
         let cell = tableView.dequeueReusableCell(withIdentifier: "RatingCell", for: indexPath) as! ViewRatingCell
-//
+        
+        if let date = arrGetTeacherRating[indexPath.row].date{
+            let finalDate = self.dateFromISOString(string: date)
+            cell.lblDate.text = finalDate
+        }
         cell.setCellUI(data: arrGetTeacherRating, indexPath: indexPath)
         return cell
     }
@@ -136,7 +141,7 @@ extension ViewTeacherRatingVC : SharedUIPickerDelegate{
                 if let index = selectedTeacherIndex {
                     if let id = arrTeacher[index].teacherId {
                         self.txtFieldTeacher.text = arrTeacher[index].teacherName
-                        self.ViewModel?.GetTeacherRating(teacherId: id)
+                        self.ViewModel?.GetTeacherRating(teacherId: id , ParticularId: HODdepartmentId)
                     }
                 }
             }else{
@@ -168,7 +173,7 @@ extension ViewTeacherRatingVC : SharedUIPickerDelegate{
 }
 extension ViewTeacherRatingVC : ViewTeacherRatingDelegate{
     func GetTeacherRatingDidSuccess(data: [GetViewTeacherRatingResult]?) {
-        
+        arrGetTeacherRating.removeAll()
         if let data1 = data {
             if data1.count>0
             {
@@ -191,7 +196,7 @@ extension ViewTeacherRatingVC : ViewTeacherRatingDelegate{
                 self.arrTeacher = data1
                 if let teacherId = arrTeacher[0].teacherId{
                   self.txtFieldTeacher.text = arrTeacher[0].teacherName
-                    self.ViewModel?.GetTeacherRating(teacherId: teacherId)
+                    self.ViewModel?.GetTeacherRating(teacherId: teacherId,ParticularId: HODdepartmentId)
                     
                 }
             }

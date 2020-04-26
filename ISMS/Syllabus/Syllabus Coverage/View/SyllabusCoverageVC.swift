@@ -109,7 +109,12 @@ class SyllabusCoverageVC : BaseUIViewController  {
                 }) {
                     print("Index found :\(index)")
                     let total = classDropdownData?[index].id ?? 0
-                     self.viewModel?.getData(teacherId: userRoleParticularId, classID: total)
+                    if isFromStudent == true{
+                        self.viewModel?.getData(teacherId: 0, classID: total)
+                    }else{
+                         self.viewModel?.getData(teacherId: userRoleParticularId, classID: total)
+                    }
+                    
                 }
                 
                 
@@ -174,7 +179,14 @@ extension SyllabusCoverageVC : UITableViewDelegate {
 extension SyllabusCoverageVC : UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrayData.count
+        if arrayData.count > 0{
+            tableView.separatorStyle = .none
+            tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: true)
+            return (arrayData.count)
+        }else{
+            tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -276,15 +288,21 @@ extension SyllabusCoverageVC : SyllabusCoverageDelegate {
                 
                 if boolFirstTime == true {
                 boolFirstTime = false
-                    self.viewModel?.getData(teacherId: userRoleParticularId, classID: selectedClassId ?? 0)}
+                    
+                    if isFromStudent == true{
+                          self.viewModel?.getData(teacherId: 0, classID: selectedClassId ?? 0)
+                }else{
+                     self.viewModel?.getData(teacherId: userRoleParticularId, classID: selectedClassId ?? 0)
+                }
+                  
 
                }else{
                     
                    CommonFunctions.sharedmanagerCommon.println(object: "Count is zero.")
                }
            }
+        }
     }
-    
 
 func SyllabusCoverageSucceed(array: [SyllabusCoverageListResultData]) {
    // self.showAlert(Message: "Good")

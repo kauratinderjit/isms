@@ -44,7 +44,7 @@ class StundentHWListModel : Mappable{
         var ClassSubjectId : Int?
         var SubjectId : Int?
         var lstattachmentModels: [lstattachmentModels]?
-         var lststuattachmentModels: [lstattachmentModels]?
+         var lststuattachmentModels: [lststuattachmentModels]?
 
         init?(map: Map) {
             

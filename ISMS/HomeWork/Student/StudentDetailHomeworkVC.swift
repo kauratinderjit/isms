@@ -42,10 +42,13 @@ class StudentDetailHomeworkVC: BaseUIViewController {
         tblViewListing.tableFooterView = UIView()
         tblViewListing.separatorColor = KAPPContentRelatedConstants.kLightBlueColour
         tblViewListing.separatorStyle = .singleLine
-        self.viewModel?.getHomeworkDataForStudent(studentId: UserDefaultExtensionModel.shared.userRoleParticularId, assignHomeWorkId: objGetStudentHomeDetail ?? 0)
+       
         documentInteractionController.delegate = self
 
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+         self.viewModel?.getHomeworkDataForStudent(studentId: UserDefaultExtensionModel.shared.enrollmentIdStudent, assignHomeWorkId: objGetStudentHomeDetail ?? 0)
     }
 
     
@@ -185,7 +188,9 @@ extension StudentDetailHomeworkVC : UITableViewDelegate, UITableViewDataSource {
   
     
     func storeAndShare(withURLString: String) {
-        guard let url = URL(string: withURLString) else { return }
+        let urlString = withURLString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+
+        guard let url = URL(string: urlString) else { return }
         /// START YOUR ACTIVITY INDICATOR HERE
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data, error == nil else { return }

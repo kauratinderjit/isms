@@ -85,7 +85,7 @@ class HomeViewModel{
                 self.homeView?.hideLoader()
                 self.delegate?.didSuccessMenuAccordingRole(data: getMenuFromRoleIdModel)
             case KStatusCode.kStatusCode401:
-                self.homeView?.showAlert(alert: getMenuFromRoleIdModel.message ?? "Something went wrong")
+//                self.homeView?.showAlert(alert: getMenuFromRoleIdModel.message ?? "Something went wrong")
                 self.delegate?.userUnauthorize()
             default:
                 self.homeView?.hideLoader()

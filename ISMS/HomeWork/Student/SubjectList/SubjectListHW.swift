@@ -77,6 +77,7 @@ extension SubjectListHW : UITableViewDelegate, UITableViewDataSource {
                    let assignedData = arrSubjectlist[indexPath.row].lstASTopic
                    let vc = UIStoryboard.init(name:"Homework", bundle: Bundle.main).instantiateViewController(withIdentifier: "StudentHomeWorkListVC") as! StudentHomeWorkListVC
                    vc.homeWorkList = assignedData
+            vc.assignHomeWorkId =  assignedData?[0].AssignHomeWorkId
                    self.navigationController?.pushViewController(vc, animated: true)
                    
                }
