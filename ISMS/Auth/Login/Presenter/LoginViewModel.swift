@@ -280,7 +280,10 @@ extension LoginVC : LogInDelegate{
                 UserDefaultExtensionModel.shared.currentHODRoleName = data.resultData?.first?.roleName ?? ""
             UserDefaultExtensionModel.shared.HODDepartmentId = data.resultData?.first?.departmentId ?? 0
             UserDefaultExtensionModel.shared.HODDepartmentName = data.resultData?.first?.departmentName ?? ""
-
+            UserDefaultExtensionModel.shared.StudentClassId = data.resultData?.first?.classId ?? 0
+            UserDefaultExtensionModel.shared.UserName = data.resultData?.first?.UserName ?? ""
+            UserDefaultExtensionModel.shared.enrollmentIdStudent = data.resultData?.first?.enrollmentId ?? 0
+            
         }else if  data.resultData?.count ?? 0 > 1 {
             //When user have more then one role then it move to multiple user role screen
             let vc = UIStoryboard.init(name: KStoryBoards.kMain, bundle: Bundle.main).instantiateViewController(withIdentifier: KStoryBoards.KUserRoleIdIdentifiers.kUserRoleIdVC) as! UserRoleIdVC

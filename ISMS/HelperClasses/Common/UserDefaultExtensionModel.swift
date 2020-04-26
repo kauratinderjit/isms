@@ -196,4 +196,37 @@ class UserDefaultExtensionModel : NSObject{
         }
     }
     
+    
+    var StudentClassId : Int{
+        get {
+            let StudentClassId = UserDefaults.standard.integer(forKey: UserDefaultKeys.StudentClassId.rawValue)
+            return StudentClassId
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.StudentClassId.rawValue)
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
+    var UserName : String{
+        get {
+            let UserName = UserDefaults.standard.string(forKey: UserDefaultKeys.userName.rawValue) ?? ""
+            return UserName
+        }
+        set{
+            UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.userName.rawValue)
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
+    var enrollmentIdStudent : Int{
+        get {
+            let enrollmentIdStudent = UserDefaults.standard.integer(forKey: UserDefaultKeys.enrollmentIdStudent.rawValue)
+            return enrollmentIdStudent
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.enrollmentIdStudent.rawValue)
+            UserDefaults.standard.synchronize()
+        }
+    }
 }

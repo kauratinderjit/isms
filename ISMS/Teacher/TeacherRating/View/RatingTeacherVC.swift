@@ -29,12 +29,14 @@ class RatingTeacherVC: BaseUIViewController {
     var selectedSubjectId : Int?
     var selectedTeacherArrIndex : Int?
     var check = true
+      let studentClassId = UserDefaultExtensionModel.shared.StudentClassId
+     let userRoleParticularId = UserDefaultExtensionModel.shared.userRoleParticularId
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel = TeacherRatingAddViewModel.init(delegate : self)
         self.viewModel?.attachView(viewDelegate: self as! ViewDelegate)
         setUI()
-        self.viewModel?.TeacherList(studentID : 42)
+        self.viewModel?.TeacherList(studentID : userRoleParticularId)
         
         // Do any additional setup after loading the view.
     }

@@ -24,6 +24,7 @@ class StudentRatingVC: BaseUIViewController {
     var selectedSubjectId : Int?
     var selectedStudentId : Int?
     var selectedClassArrIndex : Int?
+     var selectedSubjectArrIndex : Int?
     var pageSize = KIntegerConstants.kInt10
     var isClassSelected = false
     var isSubjectSelected = false
@@ -35,6 +36,7 @@ class StudentRatingVC: BaseUIViewController {
      var HODdepartmentId = UserDefaultExtensionModel.shared.HODDepartmentId
     var isFromHod :Bool!
     var currentMonth = ""
+    var selectedClassSubjectId : Int?
     var arrMonthlist = ["Jan","Feb","March","April","May","June","July","Augest","September","October","Novemeber","Decemeber"]
     @IBOutlet var textfieldMonth: UITextField!
     //MARK:- CLASS OVERRIDE FUNCTIONS
@@ -142,21 +144,21 @@ class StudentRatingVC: BaseUIViewController {
         isSubjectSelected = false
         isMonthSelected =  true
         if checkInternetConnection(){
-            if arrMonthlist.count > 0{
-                UpdatePickerModel(count: arrMonthlist.count, sharedPickerDelegate: self as! SharedUIPickerDelegate, View:  self.view)
-                //  selectedSubjectId = arrSubjectlist[0].subjectId
-                
-                let text = textfieldMonth.text!
-                if let index = arrMonthlist.index(where: { (dict) -> Bool in
-                    
-                    
-                    return dict ?? "" == text // Will found index of matched id
-                }) {
-                    print("Index found :\(index)")
-                    UpdatePickerModel4(count: arrClassList.count, sharedPickerDelegate: self as! SharedUIPickerDelegate, View:  self.view, index: index)
-                }
-            }
-            //           self.viewModel?.classList(searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: KIntegerConstants.kInt0)
+//            if arrMonthlist.count > 0{
+//                UpdatePickerModel2(count: arrMonthlist.count, sharedPickerDelegate: self, View:  self.view, index: 0)
+//
+////                selectedSubjectId = arrMonthlist[0]
+//                let text = txtfieldSubject.text!
+//                if let index = arrMonthlist.index(where: { (dict) -> Bool in
+//                    return arrMonthlist[index] ?? "" == text // Will found index of matched id
+//                })
+//                {
+//                    print("Index found :\(index)")
+//                    UpdatePickerModel2(count: arrMonthlist.count, sharedPickerDelegate: self, View:  self.view, index: index)
+//                }
+//
+//
+//            }
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
@@ -207,6 +209,7 @@ extension StudentRatingVC : StudentRatingDelegate {
             {
                 self.arrSubjectList1 = data1
                 if let subjectName = arrSubjectList1[0].studentName{
+                     selectedClassSubjectId = arrSubjectList1[0].classSubjectId
                     txtfieldSubject.text = subjectName
                     self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID: arrSubjectList1[0].classSubjectId ?? 0, classID: RegisterClassDataModel.sharedInstance?.subjectID ?? 0 )
 //                    self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID: arrSubjectList1[0].studentID ?? 0, classID: RegisterClassDataModel.sharedInstance?.subjectID ?? 0 )
@@ -313,6 +316,7 @@ extension StudentRatingVC : SharedUIPickerDelegate{
         if checkInternetConnection(){
             //            arrAllAssignedSubjects.removeAll()
             if isClassSelected == true {
+                isClassSelected = false
                 if let index = selectedClassArrIndex {
                     if let id = arrSkillList[index].studentID {
                          RegisterClassDataModel.sharedInstance?.subjectID = id
@@ -326,7 +330,9 @@ extension StudentRatingVC : SharedUIPickerDelegate{
                     }
                 }
             }else if isSubjectSelected == true{
-                if let index = selectedClassArrIndex {
+                isSubjectSelected = false
+                if let index = selectedSubjectArrIndex {
+                    selectedClassSubjectId = arrSubjectList1[index].classSubjectId
                     self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID:arrSubjectList1[index].classSubjectId ?? 0, classID:  RegisterClassDataModel.sharedInstance?.subjectID ?? 0 )
 //                    self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID:arrSubjectList1[index].studentID ?? 0, classID:  RegisterClassDataModel.sharedInstance?.subjectID ?? 0 )
                 }
@@ -372,6 +378,7 @@ extension StudentRatingVC : SharedUIPickerDelegate{
             if arrSubjectList1.count > 0 {
                 selectedSubjectId = arrSubjectList1[index].studentID
                 txtfieldSubject.text = arrSubjectList1[index].studentName
+                selectedSubjectArrIndex = index
             }
             
         }
@@ -438,6 +445,9 @@ extension StudentRatingVC : UITableViewDelegate {
             let vc = storyboard.instantiateViewController(withIdentifier: "SubjectSkillRatingVC") as! SubjectSkillRatingVC
 //            if arrSubjectlist.count > 0{
                 vc.subjectName = txtfieldSubject.text
+            vc.enrollmentId = arrStudent[indexPath.row].enrollmentId
+            vc.subjectClassId = selectedClassSubjectId
+            
 //            }
             
             //        if let id = arrSubjectList[indexPath.row].ClassSubjectId {
@@ -455,6 +465,8 @@ extension StudentRatingVC : UITableViewDelegate {
             else {
                 vc.type = "Show"
             }
+            vc.arrStudent = arrStudent
+            vc.isEditStudentRating = true
             if let name = arrStudent[indexPath.row].studentName {
                 vc.studentName = name
             }

@@ -20,6 +20,8 @@ class SubjectSkillRatingVC: BaseUIViewController {
     @IBOutlet var textfieldSubject: UITextField!
     @IBOutlet var tableView: UITableView!
     var classId : Int?
+    var enrollmentId : Int?
+    var subjectClassId : Int?
     
     
     override func viewDidLoad() {
@@ -30,9 +32,10 @@ class SubjectSkillRatingVC: BaseUIViewController {
         self.setUI()
           self.textfieldSubject.text = subjectName
        self.viewModel?.GetSkillList(id: 33, enumType: 10, type: "Skill")
-           self.viewModel?.getSubjectWiseRating(enrollmentsId: 35, classSubjectId: 96)
-        if let classSubectID = classId {
-        self.viewModel?.getSubjectWiseRating(enrollmentsId: 35, classSubjectId: 96)
+        if enrollmentId != nil {
+            if subjectClassId != nil {
+                self.viewModel?.getSubjectWiseRating(enrollmentsId: enrollmentId, classSubjectId: subjectClassId)
+            }
         }
     }
   

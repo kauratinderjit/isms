@@ -379,7 +379,7 @@ class AddStudentRatingViewModel {
             
             if SubjectListModel.statusCode == KStatusCode.kStatusCode200{
                 self.addStudentRatingView?.hideLoader()
-                self.addStudentRatingDelegate?.AddStudentRatingDidSucceed(data : "Student Rating Added Successfully")
+                self.addStudentRatingDelegate?.AddStudentRatingDidSucceed(data : SubjectListModel.message ?? "")
             }else if SubjectListModel.statusCode == KStatusCode.kStatusCode401{
                 self.addStudentRatingView?.hideLoader()
                 self.addStudentRatingView?.showAlert(alert: SubjectListModel.message ?? "")
