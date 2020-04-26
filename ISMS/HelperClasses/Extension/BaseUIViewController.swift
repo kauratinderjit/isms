@@ -83,7 +83,7 @@ class BaseUIViewController: UIViewController {
         let dt = dateFormatter.date(from: string)
         dateFormatter.timeZone = TimeZone.current
         dateFormatter.dateFormat =  "yyyy-MM-dd"
-        print("\(dateFormatter.string(from: dt!))")
+//        print("\(dateFormatter.string(from: dt!))")
         return dateFormatter.string(from: dt!)
         
     }

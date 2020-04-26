@@ -73,11 +73,11 @@ class ViewTeacherRatingViewModel {
             
         }
     
-    func GetTeacherRating(teacherId : Int){
+    func GetTeacherRating(teacherId : Int, ParticularId: Int){
         self.ViewTeacherRatingVC?.showLoader()
         
         let paramDict = ["teacherId": teacherId] as [String : Any]
-        let url = "api/Institute/GetTeacherRatingByHOD" + "?teacherId=" + "\(teacherId)"
+        let url = "api/Institute/GetTeacherRatingByHOD" + "?teacherId=" + "\(teacherId)" + "&particularId=" + "\(ParticularId)"
         print("url: ",url)
         TeacherRatingListAPI.sharedInstance.GetTeacherRating(url: url, parameters: paramDict as [String : Any], completionResponse: { (GetStudentTeacherRatingModel) in
             print("teacher list: ",GetStudentTeacherRatingModel.resultData)

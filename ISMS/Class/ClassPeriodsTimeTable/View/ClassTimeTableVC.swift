@@ -486,8 +486,8 @@ extension ClassTimeTableVC : ClassPeriodsTimeTableDelegate{
                 //Set data when user first time come
                 classDropdownData = data
                 selectedClassId = classDropdownData.resultData?[0].id
-                txtFieldClass.text = classDropdownData.resultData?[0].name
-                self.viewModel?.getTimeTableAccordingClass(classId: 21, teacherId: userRoleParticularId)
+                txtFieldClass.text = "Select Class"
+//                self.viewModel?.getTimeTableAccordingClass(classId: 21, teacherId: userRoleParticularId)
             }else{
                 self.showAlert(alert: "There is no classes")
                 CommonFunctions.sharedmanagerCommon.println(object: "Count is zero.")

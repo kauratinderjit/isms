@@ -357,6 +357,7 @@ extension HomeVC : HomeViewModelDelegate
     func userUnauthorize()
     {
         isUnauthorizedUser = true
+        
     }
     
     func didSuccessUserRole(data: UserRoleIdModel) {
