@@ -75,7 +75,13 @@ class UpdateSyllabusVC: BaseUIViewController {
             progressBar.progressTintColor = KAPPContentRelatedConstants.kThemeColour//UIColor(red: 183/255, green: 23/255, blue: 36/255, alpha: 1)
             //    let floatPercentage = percentage / 100
                 print("your float percenage : \(percentage)")
-              
+            if percentage < 100 && percentage > 0{
+                progressBar.progressTintColor = UIColor.green
+            }else if percentage == 100{
+                progressBar.progressTintColor = UIColor.red
+            }else if percentage == 0{
+                progressBar.progressTintColor = UIColor.darkGray
+            }
                 
                 let morePrecisePI = Double(percentage)
             print("your more precise pi :\(morePrecisePI)")
@@ -124,10 +130,19 @@ class UpdateSyllabusVC: BaseUIViewController {
 extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
 
      func numberOfSections(in tableView: UITableView) -> Int {
-        return arrayData.count
+        
+        if arrayData.count > 0{
+            tableView.separatorStyle = .singleLine
+            return (arrayData.count)
+            tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: true)
+        }else{
+            tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
+            return 0
+        }
     }
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: true)
         return arrayData[section].collapsed ?? false ? 0 : arrayData[section].TopicListViewModels?.count ?? 0
     }
     

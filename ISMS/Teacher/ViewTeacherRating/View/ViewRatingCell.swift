@@ -35,9 +35,11 @@ class ViewRatingCell : UITableViewCell{
                 lblSubject.text = subjectName
             }
             
-            if let date = rsltData.date{
-                lblDate.text = "2020-04-14"
-            }
+//            if let date = rsltData.date{
+//                
+//                let finalDate = self.dateFromISOString(string: rsltData.date)
+//                lblDate.text = finalDate
+//            }
             if let className = rsltData.className{
                 lblClass.text = className
             }

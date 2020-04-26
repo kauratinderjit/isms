@@ -47,13 +47,11 @@ class TeacherRatingAddViewModel {
         let url = ApiEndpoints.kTeacherRatingAdd + "?studentId=" + "\(studentID)"
         TeacherRatingListAPI.sharedInstance.GetTeacherList(url: url , parameters: paramDict as [String : Any], completionResponse: { (TeacherRatingAddModel) in
             
-            print("your respomnse data : ",TeacherRatingAddModel.resultData)
+            print("your response data : ",TeacherRatingAddModel.resultData)
             
             if TeacherRatingAddModel.statusCode == KStatusCode.kStatusCode200 {
                 self.TeacherRatingView?.hideLoader()
-                
-                self.TeacherRatingDelegate?.GetTeacherListDidSucceed(data: TeacherRatingAddModel.resultData )
-                
+                self.TeacherRatingDelegate?.GetTeacherListDidSucceed(data: TeacherRatingAddModel.resultData)
             }else if TeacherRatingAddModel.statusCode == KStatusCode.kStatusCode401 {
                 self.TeacherRatingView?.hideLoader()
                 self.TeacherRatingView?.showAlert(alert: TeacherRatingAddModel.message ?? "")

@@ -192,6 +192,7 @@ extension ClassListVC : UITableViewDataSource{
         if arr_Classlist.count > 0{
                 tableView.separatorStyle = .singleLine
             return (arr_Classlist.count)
+            tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: true)
         }else{
             tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
             return 0

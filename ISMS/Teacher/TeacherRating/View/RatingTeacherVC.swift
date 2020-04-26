@@ -28,7 +28,7 @@ class RatingTeacherVC: BaseUIViewController {
     var selectedTeacherId : Int?
     var selectedSubjectId : Int?
     var selectedTeacherArrIndex : Int?
-    var check = true
+    var check = false
       let studentClassId = UserDefaultExtensionModel.shared.StudentClassId
      let userRoleParticularId = UserDefaultExtensionModel.shared.userRoleParticularId
     override func viewDidLoad() {
@@ -92,7 +92,7 @@ class RatingTeacherVC: BaseUIViewController {
     }
     
     @IBAction func btnSubmit(_ sender: Any) {
-        self.viewModel?.submit(teacherId : RegisterClassDataModel.sharedInstance?.enrolmentID ?? 0, StudentId:  RegisterClassDataModel.sharedInstance?.subjectID ?? 0, classSubjectId: RegisterClassDataModel.sharedInstance?.tagID ?? 0 ,feedback: self.txtViewFeedback.text,anonymous: check)
+        self.viewModel?.submit(teacherId : RegisterClassDataModel.sharedInstance?.enrolmentID ?? 0, StudentId: userRoleParticularId, classSubjectId: RegisterClassDataModel.sharedInstance?.tagID ?? 0 ,feedback: self.txtViewFeedback.text,anonymous: check)
     }
     
     @IBAction func btnImgCheck(_ sender: Any) {
@@ -149,8 +149,8 @@ extension RatingTeacherVC : SharedUIPickerDelegate{
                 selectedTeacherId = arrTeacherList[index].teacherId
                 txtFieldTeacher.text = arrTeacherList[index].teacherName
                 selectedTeacherArrIndex = index
-                  RegisterClassDataModel.sharedInstance?.enrolmentID = arrTeacherList[0].teacherId
-                 RegisterClassDataModel.sharedInstance?.subjectID = arrTeacherList[0].studentId
+                  RegisterClassDataModel.sharedInstance?.enrolmentID = arrTeacherList[index].teacherId
+                 RegisterClassDataModel.sharedInstance?.subjectID = arrTeacherList[index].studentId
             }
         }
         else if isSubjectSelected == true {
