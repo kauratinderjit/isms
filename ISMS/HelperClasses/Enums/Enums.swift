@@ -115,7 +115,6 @@ enum NetworkingError: Error {
 }
 
 enum UserDefaultKeys : String{
-    
     case userAuthToken = "userAuthToken"
     case userId = "userId"
     case userRoleName = "userRoleName"
@@ -134,5 +133,6 @@ enum UserDefaultKeys : String{
     case StudentClassId = "ClassId"
     case HODDepartmentName = "DepartmentName"
     case UserName = "UserName"
-      case enrollmentIdStudent = "EnrollmentId"
+    case enrollmentIdStudent = "EnrollmentId"
+    case classNameStudent = "ClassName"
 }
