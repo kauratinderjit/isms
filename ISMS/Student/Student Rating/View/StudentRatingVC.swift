@@ -455,6 +455,8 @@ extension StudentRatingVC : UITableViewDelegate {
             else {
                 vc.type = "Show"
             }
+            vc.arrStudent = arrStudent
+            vc.isEditStudentRating = true
             if let name = arrStudent[indexPath.row].studentName {
                 vc.studentName = name
             }

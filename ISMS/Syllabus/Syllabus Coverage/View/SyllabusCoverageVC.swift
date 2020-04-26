@@ -37,9 +37,7 @@ class SyllabusCoverageVC : BaseUIViewController  {
         
         self.viewModel = SyllabusCoverageViewModel.init(delegate: self)
         self.viewModel?.attachView(viewDelegate: self)
-        self.classListDropdownApi()
-        setPickerView()
-        boolFirstTime = true
+       
          
         //self.viewModel?.getData(teacherId: 0, classID: 10)
         setBackButton()
@@ -47,9 +45,12 @@ class SyllabusCoverageVC : BaseUIViewController  {
         tableView.reloadData()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)
+    {
         super.viewWillAppear(animated)
-        
+        self.classListDropdownApi()
+               setPickerView()
+               boolFirstTime = true
     }
     
     func classListDropdownApi(){
@@ -143,6 +144,9 @@ class SyllabusCoverageVC : BaseUIViewController  {
 extension SyllabusCoverageVC : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: false)
+        
         let storyboard = UIStoryboard.init(name: "Courses", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "UpdateSyllabusVC") as! UpdateSyllabusVC
             vc.subjectData = arrayData[indexPath.row]
