@@ -79,8 +79,11 @@ class CalendarEventVC: BaseUIViewController
             
             datesRangeDATE.append(dd)
             datesRange.append(obj)
-            calendar.select(strtdate)
             
+            if strtdate >= Date()
+            {
+               calendar.select(strtdate)
+            }
             strtdate = Calendar.current.date(byAdding: .day, value: 1, to: strtdate)!
         }
         
