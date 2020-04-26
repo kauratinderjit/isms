@@ -116,6 +116,9 @@ class AddStudentVC: BaseUIViewController {
         hitGetStudentDetailApi()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
     override func viewWillDisappear(_ animated: Bool) {
         if isCameFromImagePickerController != true{
 //            ViewModel?.deattachView()

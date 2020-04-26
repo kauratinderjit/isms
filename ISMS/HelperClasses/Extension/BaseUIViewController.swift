@@ -524,6 +524,9 @@ class BaseUIViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = nil
     }
     
+    func hideSearchBar(){
+      self.searchBar.isHidden = true
+    }
     //MARK:-OpenGallery and Camera
     func OpenGalleryCamera(camera:Bool,imagePickerDelegate:UIImagePickerDelegate){
         if(camera == true){
