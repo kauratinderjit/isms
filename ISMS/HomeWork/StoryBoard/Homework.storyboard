@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -249,10 +249,10 @@
                                                 <rect key="frame" x="18" y="37" width="378" height="50"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="UaV-F1-ORu">
-                                                        <rect key="frame" x="346" y="12" width="24" height="26"/>
+                                                        <rect key="frame" x="358" y="12" width="12" height="26"/>
                                                     </imageView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Class" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oRD-P6-Pe4">
-                                                        <rect key="frame" x="8" y="8" width="330" height="34"/>
+                                                        <rect key="frame" x="8" y="8" width="342" height="34"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="34" id="qon-aA-ZcJ"/>
                                                         </constraints>
@@ -299,10 +299,10 @@
                                                 <rect key="frame" x="18" y="112" width="378" height="50"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="W5o-L2-pqD">
-                                                        <rect key="frame" x="346" y="12" width="24" height="26"/>
+                                                        <rect key="frame" x="358" y="12" width="12" height="26"/>
                                                     </imageView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Subject" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nmj-Ub-VBd">
-                                                        <rect key="frame" x="8" y="8" width="330" height="34"/>
+                                                        <rect key="frame" x="8" y="8" width="342" height="34"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="34" id="6E9-Hu-zMZ"/>
                                                         </constraints>
@@ -900,7 +900,7 @@
                                                                         <constraint firstAttribute="width" constant="30" id="qJ9-28-SR9"/>
                                                                     </constraints>
                                                                     <color key="tintColor" red="0.29233244060000002" green="0.74697750809999997" blue="0.97409313919999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <state key="normal" image="icloud.and.arrow.down" catalog="system"/>
+                                                                    <state key="normal" image="downloadImg"/>
                                                                     <connections>
                                                                         <action selector="actionBtnDownload:" destination="d0o-Z8-1Vh" eventType="touchUpInside" id="jZA-LJ-Ah1"/>
                                                                     </connections>
@@ -1852,9 +1852,9 @@
         <image name="backIcon" width="8" height="14"/>
         <image name="calendar" width="15.5" height="16"/>
         <image name="delete" width="20" height="20"/>
+        <image name="downloadImg" width="16" height="16"/>
         <image name="dropDown" width="12" height="7.5"/>
         <image name="edit" width="19" height="19"/>
         <image name="grayCalendar" width="17" height="17"/>
-        <image name="icloud.and.arrow.down" catalog="system" width="64" height="56"/>
     </resources>
 </document>

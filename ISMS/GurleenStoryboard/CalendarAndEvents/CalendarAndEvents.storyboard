@@ -328,11 +328,11 @@
             <objects>
                 <viewController storyboardIdentifier="AddEventVC" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yEE-f2-6f4" customClass="AddEventVC" customModule="ISMS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="29f-Jf-LgK">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="730"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="674"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Slr-lr-x7N">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="730"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="674"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CvZ-Y0-oY3">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="700"/>
@@ -759,13 +759,14 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="qk3-I4-QKO">
-                        <barButtonItem key="rightBarButtonItem" image="paperplane" catalog="system" id="Cxf-ZT-0B8">
-                            <color key="tintColor" red="0.29411764709999999" green="0.74509803919999995" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="send" id="Cxf-ZT-0B8">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="actionSendBtn:" destination="yEE-f2-6f4" id="VY2-tY-iHx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="750"/>
                     <connections>
@@ -824,7 +825,7 @@
                         <viewLayoutGuide key="safeArea" id="cF8-GN-EvN"/>
                     </view>
                     <navigationItem key="navigationItem" title="Scheduled Events" id="zAc-Hs-ziN">
-                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="gFX-2w-Zh6">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="plus" id="gFX-2w-Zh6">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="addNewEvent:" destination="um8-eg-z6N" id="grv-zk-dQS"/>
@@ -844,7 +845,8 @@
     <resources>
         <image name="delete" width="20" height="20"/>
         <image name="edit" width="19" height="19"/>
-        <image name="paperplane" catalog="system" width="64" height="60"/>
         <image name="plus" catalog="system" width="64" height="56"/>
+        <image name="plus" width="32" height="32"/>
+        <image name="send" width="30" height="30"/>
     </resources>
 </document>
