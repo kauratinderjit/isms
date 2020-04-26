@@ -26,12 +26,14 @@ class HomeworkListVC: BaseUIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        setBackButton()
         self.viewModel?.getHomeworkData(teacherId:UserDefaultExtensionModel.shared.userRoleParticularId)
     }
     
     func setView() {
         tblViewListing.tableFooterView = UIView()
-        setBackButton()
+        
+        self.title = "Assigned Homework"
     }
     
     @IBAction func editAction(_ sender: UIButton) {
