@@ -840,7 +840,7 @@
     <resources>
         <image name="delete" width="20" height="20"/>
         <image name="edit" width="19" height="19"/>
-        <image name="plus" width="28" height="28"/>
+        <image name="plus" width="22" height="22"/>
         <image name="send" width="25" height="25"/>
     </resources>
 </document>
