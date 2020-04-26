@@ -274,11 +274,8 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="m4Y-rP-Ba1">
-<<<<<<< HEAD
+
                                 <rect key="frame" x="0.0" y="113" width="375" height="459"/>
-=======
-                                <rect key="frame" x="0.0" y="93" width="375" height="463"/>
->>>>>>> 03e01abcb26961f6ec61b398d9e174af7c4301eb
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="oCO-N6-VS1" id="cG9-Hi-RJ5"/>
