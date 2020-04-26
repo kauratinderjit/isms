@@ -205,14 +205,12 @@ extension MenuVC : UITableViewDelegate{
             break
             
         case "AssignHomework":
-            
             let storyboard = UIStoryboard.init(name: "Homework", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "HomeworkListVC") as? HomeworkListVC
             vc?.lstActionAccess = sortedMenuArray[indexPath.row]
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
-            
             break
             
         case "View&UpdateHomework":
@@ -474,21 +472,12 @@ extension MenuVC : UITableViewDelegate{
             break
             
         case "AssignHomeWorks":
-            
-            
-            //            let storyboard = UIStoryboard.init(name: "Homework", bundle: nil)
-            //            let vc = storyboard.instantiateViewController(withIdentifier: "HomeworkListVC") as? HomeworkListVC
-            //            vc?.lstActionAccess = sortedMenuArray[indexPath.row]
-            //            let frontVC = revealViewController().frontViewController as? UINavigationController
-            //            frontVC?.pushViewController(vc!, animated: false)
-            //            revealViewController().pushFrontViewController(frontVC, animated: true)
-            
             let storyboard = UIStoryboard.init(name: "Homework", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "HomeWorkPagerVC") as? HomeWorkPagerVC
+            let vc = storyboard.instantiateViewController(withIdentifier: "HomeworkListVC") as? HomeworkListVC
+            vc?.lstActionAccess = sortedMenuArray[indexPath.row]
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
-            
             break
             
         case "HomeWork":
@@ -534,12 +523,27 @@ extension MenuVC : UITableViewDelegate{
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
         case "TimeTableAndAttendence":
-            let storyboard = UIStoryboard.init(name: KStoryBoards.kClass, bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "TimeTableStudentVC") as? TimeTableStudentVC
-            vc?.isFromTimeTableParent = false
-            let frontVC = revealViewController().frontViewController as? UINavigationController
-            frontVC?.pushViewController(vc!, animated: false)
-            revealViewController().pushFrontViewController(frontVC, animated: true)
+            if UserDefaultExtensionModel.shared.currentUserRoleId == 5{
+                let storyboard = UIStoryboard.init(name: KStoryBoards.kClass, bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "TimeTableStudentVC") as? TimeTableStudentVC
+                vc?.isFromTimeTableParent = false
+                let frontVC = revealViewController().frontViewController as? UINavigationController
+                frontVC?.pushViewController(vc!, animated: false)
+                revealViewController().pushFrontViewController(frontVC, animated: true)
+            }else{
+                let storyboard = UIStoryboard.init(name: KStoryBoards.kClass, bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "ClassTimeTableVC") as? ClassTimeTableVC
+                //            vc?.isFromTimeTable = false
+                vc?.isFromViewAttendence = true
+                vc?.teacherViewTimeTble = false
+                vc?.isFromStudentViewAttendance = false
+                vc?.isFromTeacher = 1
+                vc?.teacherViewTimeTble = false
+                
+                let frontVC = revealViewController().frontViewController as? UINavigationController
+                frontVC?.pushViewController(vc!, animated: false)
+                revealViewController().pushFrontViewController(frontVC, animated: true)
+            }
             break
             
         case "RateStudent":

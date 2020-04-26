@@ -456,32 +456,32 @@ extension StudentRatingVC : UITableViewDelegate {
             //        }
             self.navigationController?.pushViewController(vc, animated: true)
         }else{
-            let storyboard = UIStoryboard.init(name: "Student", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "AddStudentRatingVC") as! AddStudentRatingVC
-            if currentMonth == textfieldMonth.text! {
-                //User can edit or not
-                vc.type = "Edit"
-            }
-            else {
-                vc.type = "Show"
-            }
-            vc.arrStudent = arrStudent
-            vc.isEditStudentRating = true
-            if let name = arrStudent[indexPath.row].studentName {
-                vc.studentName = name
-            }
-            if let className = txtfieldClass.text {
-                vc.className = className
-            }
-            if let subjectName = txtfieldSubject.text {
-                vc.subjectName = subjectName
-            }
-            
-            if let classid = selectedClassId {
-                vc.selectedClassId = classid
-            }
-            
-            self.navigationController?.pushViewController(vc, animated: true)
+//            let storyboard = UIStoryboard.init(name: "Student", bundle: nil)
+//            let vc = storyboard.instantiateViewController(withIdentifier: "AddStudentRatingVC") as! AddStudentRatingVC
+//            if currentMonth == textfieldMonth.text! {
+//                //User can edit or not
+//                vc.type = "Edit"
+//            }
+//            else {
+//                vc.type = "Show"
+//            }
+//            vc.arrStudent = arrStudent
+//            vc.isEditStudentRating = true
+//            if let name = arrStudent[indexPath.row].studentName {
+//                vc.studentName = name
+//            }
+//            if let className = txtfieldClass.text {
+//                vc.className = className
+//            }
+//            if let subjectName = txtfieldSubject.text {
+//                vc.subjectName = subjectName
+//            }
+//
+//            if let classid = selectedClassId {
+//                vc.selectedClassId = classid
+//            }
+//
+//            self.navigationController?.pushViewController(vc, animated: true)
         }
         
     }
