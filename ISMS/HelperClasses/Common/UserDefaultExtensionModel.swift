@@ -229,4 +229,26 @@ class UserDefaultExtensionModel : NSObject{
             UserDefaults.standard.synchronize()
         }
     }
+    
+//    var classNameStudent : String{
+//        get {
+//            let classNameStudent = UserDefaults.standard.string(forKey: UserDefaultKeys.classNameStudent.rawValue)
+//            return classNameStudent
+//        }
+//        set {
+//            UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.classNameStudent.rawValue)
+//            UserDefaults.standard.synchronize()
+//        }
+//    }
+    
+    var classNameStudent : String{
+        get {
+            let classNameStudent = UserDefaults.standard.string(forKey: UserDefaultKeys.classNameStudent.rawValue) ?? ""
+            return classNameStudent
+        }
+        set{
+            UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.classNameStudent.rawValue)
+            UserDefaults.standard.synchronize()
+        }
+    }
 }
