@@ -58,12 +58,12 @@ class MenuVC: BaseUIViewController {
         //        }
         
         self.tableView.delegate = self
-
+        
         if let resultData  =  MenuVC.menuArrayFromApi?.resultData{
             sortedMenuArray = resultData.sorted{ $0.displayOrder ?? 0 < $1.displayOrder ?? 0  }
             print(sortedMenuArray)
         }
-
+        
         
         
         
@@ -77,9 +77,9 @@ class MenuVC: BaseUIViewController {
         super.viewWillAppear(animated)
         
         if let resultData  =  MenuVC.menuArrayFromApi?.resultData{
-              sortedMenuArray = resultData.sorted{ $0.displayOrder ?? 0 < $1.displayOrder ?? 0  }
-              print(sortedMenuArray)
-          }
+            sortedMenuArray = resultData.sorted{ $0.displayOrder ?? 0 < $1.displayOrder ?? 0  }
+            print(sortedMenuArray)
+        }
         
         //        if let theme = ThemeManager.shared.currentTheme{
         //            tableView.backgroundColor = theme.mainColor
@@ -165,7 +165,7 @@ extension MenuVC : UITableViewDelegate{
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
-
+            
         case "ManageDepartment":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kDepartment, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: KStoryBoards.KDepartMentListIdentifiers.kDepartmentListVC) as? DepartmentListVC
@@ -205,12 +205,14 @@ extension MenuVC : UITableViewDelegate{
             break
             
         case "AssignHomework":
+            
             let storyboard = UIStoryboard.init(name: "Homework", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "HomeworkListVC") as? HomeworkListVC
             vc?.lstActionAccess = sortedMenuArray[indexPath.row]
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
+            
             break
             
         case "View&UpdateHomework":
@@ -472,12 +474,21 @@ extension MenuVC : UITableViewDelegate{
             break
             
         case "AssignHomeWorks":
+            
+            
+            //            let storyboard = UIStoryboard.init(name: "Homework", bundle: nil)
+            //            let vc = storyboard.instantiateViewController(withIdentifier: "HomeworkListVC") as? HomeworkListVC
+            //            vc?.lstActionAccess = sortedMenuArray[indexPath.row]
+            //            let frontVC = revealViewController().frontViewController as? UINavigationController
+            //            frontVC?.pushViewController(vc!, animated: false)
+            //            revealViewController().pushFrontViewController(frontVC, animated: true)
+            
             let storyboard = UIStoryboard.init(name: "Homework", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "HomeworkListVC") as? HomeworkListVC
-            vc?.lstActionAccess = sortedMenuArray[indexPath.row]
+            let vc = storyboard.instantiateViewController(withIdentifier: "HomeWorkPagerVC") as? HomeWorkPagerVC
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
+            
             break
             
         case "HomeWork":
@@ -523,27 +534,12 @@ extension MenuVC : UITableViewDelegate{
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
         case "TimeTableAndAttendence":
-            if UserDefaultExtensionModel.shared.currentUserRoleId == 5{
-                let storyboard = UIStoryboard.init(name: KStoryBoards.kClass, bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "TimeTableStudentVC") as? TimeTableStudentVC
-                vc?.isFromTimeTableParent = false
-                let frontVC = revealViewController().frontViewController as? UINavigationController
-                frontVC?.pushViewController(vc!, animated: false)
-                revealViewController().pushFrontViewController(frontVC, animated: true)
-            }else{
-                let storyboard = UIStoryboard.init(name: KStoryBoards.kClass, bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "ClassTimeTableVC") as? ClassTimeTableVC
-                //            vc?.isFromTimeTable = false
-                vc?.isFromViewAttendence = true
-                vc?.teacherViewTimeTble = false
-                vc?.isFromStudentViewAttendance = false
-                vc?.isFromTeacher = 1
-                vc?.teacherViewTimeTble = false
-                
-                let frontVC = revealViewController().frontViewController as? UINavigationController
-                frontVC?.pushViewController(vc!, animated: false)
-                revealViewController().pushFrontViewController(frontVC, animated: true)
-            }
+            let storyboard = UIStoryboard.init(name: KStoryBoards.kClass, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "TimeTableStudentVC") as? TimeTableStudentVC
+            vc?.isFromTimeTableParent = false
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(vc!, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
             break
             
         case "RateStudent":
@@ -587,13 +583,13 @@ extension MenuVC : UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MenuTableViewCell
         if sortedMenuArray.count > 0{
-
-        cell.setData(sortedMenuArray[indexPath.row], indexPath)
-        
-        cell.lblRowTitle.text = sortedMenuArray[indexPath.row].pageName// MenuVC.menuArrayFromApi?.resultData?[indexPath.row].pageName
-        cell.lblRowTitle.numberOfLines = 0
-        if let theme = ThemeManager.shared.currentTheme{
-            cell.viewBG.backgroundColor = theme.mainColor//KAPPContentRelatedConstants.kThemeColour//theme.mainColor
+            
+            cell.setData(sortedMenuArray[indexPath.row], indexPath)
+            
+            cell.lblRowTitle.text = sortedMenuArray[indexPath.row].pageName// MenuVC.menuArrayFromApi?.resultData?[indexPath.row].pageName
+            cell.lblRowTitle.numberOfLines = 0
+            if let theme = ThemeManager.shared.currentTheme{
+                cell.viewBG.backgroundColor = theme.mainColor//KAPPContentRelatedConstants.kThemeColour//theme.mainColor
             }
         }
         
