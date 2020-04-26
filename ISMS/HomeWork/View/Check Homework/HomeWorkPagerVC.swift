@@ -34,7 +34,8 @@ class HomeWorkPagerVC: UIViewController
         }
         else
         {
-            self.CheckHomeWork_Selected()
+            self.showAlert(Message: "Coming Soon")
+            // self.CheckHomeWork_Selected()
         }
     }
     
