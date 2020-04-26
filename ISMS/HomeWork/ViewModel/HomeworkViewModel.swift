@@ -349,4 +349,51 @@ class HomeworkViewModel {
           }
           
       }
+    
+
+
+    
+    
+    func uploadHomeworkStudent(AssignHomeWorkId : Int ,StudentId : Int,  StudentHomeworkId : Int , Comment : String ,Status: Bool, lstAssignHomeAttachmentMapping : [URL]) {
+           
+            homeworkViewDelegate?.showLoader()
+           
+           let url = "api/Institute/AddUpdateStudenthomeWorkUpload"
+         
+           let param = [
+                        "StudentId" : UserDefaultExtensionModel.shared.userRoleParticularId,
+                        "AssignHomeWorkId" : AssignHomeWorkId ,
+                        "StudentHomeworkId": StudentHomeworkId,
+                        "Comment" : Comment,
+                        "Status" :Status ,
+                        "lstAssignHomeAttachmentMapping":lstAssignHomeAttachmentMapping] as [String : Any]
+           
+           
+           HomeworkApi.sharedManager.multipartApi(postDict: param, url: url, completionResponse: { (response) in
+               
+               self.homeworkViewDelegate?.hideLoader()
+               
+               switch response["StatusCode"] as? Int{
+               case 200:
+                   self.homeworkViewDelegate?.showAlert(alert: "Homework upoaded successfully.")
+                   self.addHomeworkDelegate?.addedSuccessfully()
+               case 401:
+                   self.homeworkViewDelegate?.showAlert(alert: response["Message"] as? String ?? "")
+                   //self.AddHomeWorkDelegate?.unauthorizedUser()
+               default:
+                   self.homeworkViewDelegate?.showAlert(alert: response["Message"] as? String ?? "")
+               }
+
+               
+           }) { (error) in
+                           self.homeworkViewDelegate?.hideLoader()
+               if let err = error?.localizedDescription{
+                   self.homeworkViewDelegate?.showAlert(alert: err)
+               }else{
+                   CommonFunctions.sharedmanagerCommon.println(object: SyllabusCoverage.kSyllabusResponseError)
+               }
+
+           }
+       }
+       
 }
