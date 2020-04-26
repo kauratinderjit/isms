@@ -312,8 +312,10 @@ class StudentRatingViewModel {
         let paramDict = [ "ClassId":classID,
                           "ClassSubjectId": classSubjectID] as [String : Any]
         
+        print("param: ",paramDict)
+        
         StudentRatingApi.sharedInstance.GetStudentList(url: ApiEndpoints.kStudentRating, parameters: paramDict as [String : Any], completionResponse: { (StudentRatingListModel) in
-            
+             print("response: ",StudentRatingListModel.resultData)
             if StudentRatingListModel.statusCode == KStatusCode.kStatusCode200{
                 self.studentRatingView?.hideLoader()
                 self.studentRatingDelegate?.StudentRatingListDidSucceed(data : StudentRatingListModel.resultData!)

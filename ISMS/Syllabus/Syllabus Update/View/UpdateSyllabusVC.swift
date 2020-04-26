@@ -48,7 +48,9 @@ class UpdateSyllabusVC: BaseUIViewController {
         
         self.viewModel = UpdateSyllabusViewModel.init(delegate: self)
         self.viewModel?.attachView(viewDelegate: self)
-        if isFromStudent == true{
+        if UserDefaultExtensionModel.shared.currentUserRoleId == 5{
+             btnUpdate.isHidden = true
+        }else if isFromStudent == true {
             btnUpdate.isHidden = true
         }else{
             btnUpdate.isHidden = false
@@ -131,6 +133,7 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CollapsibleTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell") as? CollapsibleTableViewCell ??
             CollapsibleTableViewCell(style: .default, reuseIdentifier: "cell")
+       
         print("our cell tag : ",indexPath.row)
         let item = arrayData[indexPath.section].TopicListViewModels?[indexPath.row]
         cell.checkBox.tag = indexPath.row
@@ -144,8 +147,9 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
                 
             }
         }
-        
-        if isFromStudent == false{
+        if UserDefaultExtensionModel.shared.currentUserRoleId == 5{
+            
+        }else if isFromStudent == false{
             if isCheck == true{
                 if cell.checkBox.tag == indexRow && indexPath.section == section{
                     cell.checkBox.setImage(UIImage(named: "check"), for: .normal)
@@ -174,7 +178,15 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
         header.titleLabel.text = arrayData[section].chapterName
         header.arrowLabel.text = ">"
         header.setCollapsed(arrayData[section].collapsed ?? false)
-        
+        if arrayData[section].chapterStatus ==  "Completed"{
+            header.contentView.backgroundColor = UIColor.green
+        }
+        if arrayData[section].chapterStatus ==  "Inprocess"{
+             header.contentView.backgroundColor = UIColor.orange
+        }
+        if arrayData[section].chapterStatus ==  "Not Started"{
+              header.contentView.backgroundColor = UIColor.darkGray
+        }
         header.section = section
         header.delegate = self
         
@@ -190,7 +202,8 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if isFromStudent == false{
+        if UserDefaultExtensionModel.shared.currentUserRoleId == 5{
+        }else if isFromStudent == false {
         indexRow = indexPath.row
         section = indexPath.section
         firstRun = 2

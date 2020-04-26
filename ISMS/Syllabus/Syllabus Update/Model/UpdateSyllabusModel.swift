@@ -41,7 +41,7 @@ class UpdateSyllabusModel : Mappable{
         var SubjectName : String?
         var chapter : String?
         var collapsed: Bool?
-
+        var chapterStatus: String?
         var chapterID : Int?
         var chapterName : String?
          var TopicListViewModels : [TopicListViewModels]?
@@ -57,7 +57,7 @@ class UpdateSyllabusModel : Mappable{
             SubjectName <- map[KApiParameters.kUpdateSyllabusApiParameter.kSubjectName]
             chapterID <- map[KApiParameters.kUpdateSyllabusApiParameter.kChapterId]
             TopicListViewModels <- map["TopicListViewModels"]
-
+            chapterStatus <- map["ChapterStatus"]
             chapterName <- map[KApiParameters.kUpdateSyllabusApiParameter.kChapterName]
         }
         

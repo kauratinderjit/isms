@@ -17,7 +17,9 @@ class StudentViewAttendanceVC: BaseUIViewController {
     
     var isSelectStartDate = false
     var isSeclectEndDate = false
-      var classId,timeTableId,teacherId,classSubjectId :Int?
+     let userRoleParticularId = UserDefaultExtensionModel.shared.userRoleParticularId
+    let studentClassId = UserDefaultExtensionModel.shared.StudentClassId
+      var classId,timeTableId,teacherId,classSubjectId,periodId :Int?
      var arrAttendanceList = [GetStudentAttendanceResultData]()
      var viewModel : StudentGetAttendanceViewModel?
     override func viewDidLoad() {
@@ -26,6 +28,8 @@ class StudentViewAttendanceVC: BaseUIViewController {
         tableView.tableFooterView = UIView()
         tableView.delegate = self
         tableView.dataSource = self
+        setBackButton()
+       self.lblStudentName.text =  UserDefaultExtensionModel.shared.UserName
         self.viewModel = StudentGetAttendanceViewModel.init(delegate: self)
         self.viewModel?.attachView(viewDelegate: self)
         setDatePickerView(self.view, type: .date)
@@ -40,7 +44,7 @@ class StudentViewAttendanceVC: BaseUIViewController {
         }else if lblEndDate.text == ""{
             self.showAlert(alert:"Please Enter End Date")
         }else{
-              self.viewModel?.GetAttendance(StartDate: lblStartDate.text ?? "",EndDate: lblEndDate.text ?? "",StudentId: 14,PeriodId: 115,SubjectId: 1,EnrollmentId: 7,ClassId: 1,SessionId: 0)
+            self.viewModel?.GetAttendance(StartDate: lblStartDate.text ?? "",EndDate: lblEndDate.text ?? "",StudentId: userRoleParticularId,PeriodId: periodId ?? 0,SubjectId: classSubjectId ?? 0,EnrollmentId: UserDefaultExtensionModel.shared.enrollmentIdStudent,ClassId: studentClassId ?? 0,SessionId: 0)
         }
      
     }

@@ -131,7 +131,8 @@ enum UserDefaultKeys : String{
     case userProfile = "userProfile"
     case firebaseVID = "firebaseVID"
     case forgotUserId = "forgotUserId"
-    
+    case StudentClassId = "ClassId"
     case HODDepartmentName = "DepartmentName"
-    
+    case UserName = "UserName"
+      case enrollmentIdStudent = "EnrollmentId"
 }

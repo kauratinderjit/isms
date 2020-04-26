@@ -25,7 +25,7 @@ class TimeTableStudentVC: BaseUIViewController {
     var arrGetTimeTablePeriodModel = [GetTimeTableModel.PeriodDetailModel]()
     var isCameFromOtherScreen : String?
     var currentDay:String!
-    let userRoleParticularId = UserDefaultExtensionModel.shared.userRoleParticularId
+    let studentClassId = UserDefaultExtensionModel.shared.StudentClassId
     public var isFromTimeTableParent:Bool!
     
     //MARK:- ViewLifeCycle functions
@@ -33,7 +33,7 @@ class TimeTableStudentVC: BaseUIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setUI()
-         self.viewModel?.getTimeTableAccordingClass(classId : 1, teacherId: 2)
+         self.viewModel?.getTimeTableAccordingClass(classId : studentClassId, teacherId: 0)
 //        classListDropdownApi()
     }
     
@@ -44,9 +44,6 @@ class TimeTableStudentVC: BaseUIViewController {
         }else{
                 self.title = "TimeTable"
         }
-        
-        
-      
     
 //        checkCameFromWhichScreen()
     }
@@ -259,6 +256,7 @@ extension TimeTableStudentVC: UICollectionViewDelegate {
                     if period.teacherId != 0{
                         let storyboard = UIStoryboard.init(name: "StudentAttendence", bundle: nil)
                         let vc = storyboard.instantiateViewController(withIdentifier: "StudentViewAttendanceVC") as! StudentViewAttendanceVC
+                        vc.periodId = period.periodId
                         vc.timeTableId = period.timeTableId
                         vc.classId = selectedClassId
                         vc.teacherId = period.teacherId

@@ -523,18 +523,27 @@ extension MenuVC : UITableViewDelegate{
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
         case "TimeTableAndAttendence":
-            let storyboard = UIStoryboard.init(name: KStoryBoards.kClass, bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "ClassTimeTableVC") as? ClassTimeTableVC
-            //            vc?.isFromTimeTable = false
-            vc?.isFromViewAttendence = true
-            vc?.teacherViewTimeTble = false
-            vc?.isFromStudentViewAttendance = false
-            vc?.isFromTeacher = 1
-            vc?.teacherViewTimeTble = false
-            
-            let frontVC = revealViewController().frontViewController as? UINavigationController
-            frontVC?.pushViewController(vc!, animated: false)
-            revealViewController().pushFrontViewController(frontVC, animated: true)
+            if UserDefaultExtensionModel.shared.currentUserRoleId == 5{
+                let storyboard = UIStoryboard.init(name: KStoryBoards.kClass, bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "TimeTableStudentVC") as? TimeTableStudentVC
+                vc?.isFromTimeTableParent = false
+                let frontVC = revealViewController().frontViewController as? UINavigationController
+                frontVC?.pushViewController(vc!, animated: false)
+                revealViewController().pushFrontViewController(frontVC, animated: true)
+            }else{
+                let storyboard = UIStoryboard.init(name: KStoryBoards.kClass, bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "ClassTimeTableVC") as? ClassTimeTableVC
+                //            vc?.isFromTimeTable = false
+                vc?.isFromViewAttendence = true
+                vc?.teacherViewTimeTble = false
+                vc?.isFromStudentViewAttendance = false
+                vc?.isFromTeacher = 1
+                vc?.teacherViewTimeTble = false
+                
+                let frontVC = revealViewController().frontViewController as? UINavigationController
+                frontVC?.pushViewController(vc!, animated: false)
+                revealViewController().pushFrontViewController(frontVC, animated: true)
+            }
             break
             
         case "RateStudent":
