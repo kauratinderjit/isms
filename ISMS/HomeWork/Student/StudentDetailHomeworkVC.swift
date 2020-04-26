@@ -42,8 +42,9 @@ class StudentDetailHomeworkVC: BaseUIViewController {
         tblViewListing.tableFooterView = UIView()
         tblViewListing.separatorColor = KAPPContentRelatedConstants.kLightBlueColour
         tblViewListing.separatorStyle = .singleLine
-        
         self.viewModel?.getHomeworkDataForStudent(studentId: UserDefaultExtensionModel.shared.userRoleParticularId, assignHomeWorkId: objGetStudentHomeDetail ?? 0)
+        documentInteractionController.delegate = self
+
         
     }
 
@@ -228,5 +229,30 @@ extension StudentDetailHomeworkVC:  URLSessionDownloadDelegate {
         } catch let error {
             print("Copy Error: \(error.localizedDescription)")
         }
+    }
+}
+//MARK:- UIDocumentMenuDelegate UIDocumentPickerDelegate
+extension StudentDetailHomeworkVC: UIDocumentMenuDelegate,UIDocumentPickerDelegate{
+    func documentMenu(_ documentMenu: UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
+        documentPicker.delegate = self
+        present(documentPicker, animated: true, completion: nil)
+        
+    }
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+ 
+    }
+  
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+        print("view was cancelled")
+        dismiss(animated: true, completion: nil)
+    }
+}
+//MARK:- UIDocumentInteractionControllerDelegate
+extension StudentDetailHomeworkVC: UIDocumentInteractionControllerDelegate{
+    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
+        guard let navVC = self.navigationController else {
+            return self
+        }
+        return navVC
     }
 }

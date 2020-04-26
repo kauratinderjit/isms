@@ -31,7 +31,7 @@ class StudentUploadHomeWorkVC: BaseUIViewController {
         self.viewModel = HomeworkViewModel.init(delegate: self)
                       self.viewModel?.attachView(viewDelegate: self)
         
-        if datalocalStu != nil  {
+        if lststuattachmentModels?.count ?? 0 > 0  {
             
              self.title = "Update Tasks"
              heightTableView.constant =  CGFloat((lststuattachmentModels?.count ?? 0) * 51)

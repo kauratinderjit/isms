@@ -16,6 +16,8 @@ class AddStudentRatingVC: BaseUIViewController {
     @IBOutlet var tableView: UITableView!
     var isUnauthorizedUser = false
     var isFetching:Bool?
+    
+    var arrStudent = [StudentRatingResultData]()
     var arrClassList = [GetClassListResultData]()
     var arrSubjectlist=[AddStudentRatingResultData]()
     var arrStudentByClassId = [StudentsByClassId]()
@@ -48,6 +50,7 @@ class AddStudentRatingVC: BaseUIViewController {
     @IBOutlet var btnClass: UIButton!
     @IBOutlet var btnStudent: UIButton!
     @IBOutlet var btnSubject: UIButton!
+    var isEditStudentRating:Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -243,7 +246,10 @@ extension AddStudentRatingVC : AddStudentRatingDelegate {
     }
     
     func AddStudentRatingDidSucceed(data: String) {
-        self.showAlert(alert: data)
+       // self.showAlert(alert: data)
+        self.AlertMessageWithOkAction(titleStr: "iSMS", messageStr: data, Target: self) {
+            self.navigationController?.popViewController(animated: false)
+        }
     }
     
     func studentListDidSucceed(data: [AddStudentRatingResultData]?) {

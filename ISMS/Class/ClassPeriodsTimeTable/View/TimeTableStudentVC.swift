@@ -126,7 +126,7 @@ class TimeTableStudentVC: BaseUIViewController {
         collectionView.register(programNib, forCellWithReuseIdentifier: "periodCell")
         
         collectionView.isHidden = false
-        collectionView.backgroundColor = UIColor.lightGray
+        collectionView.backgroundColor = UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 0.6)
         let layout = ClassTimeTableCollectionViewLayout()
         layout.days = self.arrGetTimeTableDaysModel
         collectionView.setCollectionViewLayout(layout, animated: false)
@@ -190,13 +190,13 @@ extension TimeTableStudentVC: UICollectionViewDataSource {
                 
                 if currentDay == day.dayName
                 {
-                    dayCell.backgroundColor = UIColor(red: 134/255, green: 11/255, blue: 27/255, alpha: 1)
+                    dayCell.backgroundColor = theme?.mainColor//UIColor(red: 134/255, green: 11/255, blue: 27/255, alpha: 1)
                     dayCell.lbl_Day.textColor = UIColor.white
                 }
                 else
                 {
-                    dayCell.backgroundColor = theme?.uiButtonBackgroundColor
-                    dayCell.lbl_Day.textColor = UIColor.white
+                    dayCell.backgroundColor = UIColor.white//theme?.uiButtonBackgroundColor
+                    dayCell.lbl_Day.textColor = UIColor.gray
                 }
                 dayCell.configureWith(day: day)
             }
@@ -219,7 +219,8 @@ extension TimeTableStudentVC: UICollectionViewDataSource {
                     }
                     else
                     {
-                        periodCell.backgroundColor = UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
+                       // periodCell.backgroundColor = UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
+                        periodCell.backgroundColor = UIColor.white
                     }
                     //                        //When User is Teacher
                     //                        if period.isTeacher == true{
