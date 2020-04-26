@@ -68,13 +68,14 @@ class StudentDetailHomeworkVC: BaseUIViewController {
     @IBAction func actionBtnDownload(_ sender: UIButton) {
         
         let dic = uploadData[sender.tag] as? [String:Any]
-
-        guard let url = URL(string: dic?["url"] as! String) else { return }
-             
-             let urlSession = URLSession(configuration: .default, delegate: self, delegateQueue: OperationQueue())
-             
-             let downloadTask = urlSession.downloadTask(with: url)
-             downloadTask.resume()
+              storeAndShare(withURLString: dic?["url"] as? String ?? "")
+//
+//        guard let url = URL(string: dic?["url"] as! String) else { return }
+//
+//             let urlSession = URLSession(configuration: .default, delegate: self, delegateQueue: OperationQueue())
+//
+//             let downloadTask = urlSession.downloadTask(with: url)
+//             downloadTask.resume()
 
         
     }
