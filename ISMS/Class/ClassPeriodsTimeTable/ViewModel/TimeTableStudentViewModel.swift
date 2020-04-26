@@ -47,13 +47,13 @@ class TimeTableStudentViewModel{
         postDict[KApiParameters.KCommonParametersForList.kSortColumnDir] = ""
         postDict["ParticularId"] = classId
         //Check If user have particular id
-        switch teacherId {
-        case 3:
-            postDict["TeacherId"] = 0
-        default:
-            postDict["TeacherId"] = UserDefaultExtensionModel.shared.userRoleParticularId
-        }
-        
+//        switch teacherId {
+//        case 3:
+//            postDict["TeacherId"] = 0
+//        default:
+//            postDict["TeacherId"] = UserDefaultExtensionModel.shared.userRoleParticularId
+//        }
+         postDict["TeacherId"] = 0
         print("array post timetable : ",postDict)
         
         ClassApi.sharedManager.getClassTimeTable(url: ApiEndpoints.getTimeTableListApi, params: postDict, completionResponse: { (getTimetabelResponse) in

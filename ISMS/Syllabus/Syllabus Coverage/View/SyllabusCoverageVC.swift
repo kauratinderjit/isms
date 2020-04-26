@@ -14,6 +14,10 @@ class SyllabusCoverageVC : BaseUIViewController  {
     @IBOutlet var textfieldClass: UITextField!
     @IBOutlet var tableView: UITableView!
     @IBOutlet var txtfieldExtraPicker: UITextField!
+    
+    @IBOutlet weak var imgDropDown: UIImageView!
+    @IBOutlet weak var btnClassDropDown: UIButton!
+    
     var classDropdownData : [GetCommonDropdownModel.ResultData]?
     var lastText : String?
     var isFromStudent : Bool?
@@ -29,7 +33,7 @@ class SyllabusCoverageVC : BaseUIViewController  {
     var boolFirstTime = false
     @IBOutlet weak var viewBehindClass: UIView!
     public var lstActionAccess : GetMenuFromRoleIdModel.ResultData?
-
+  let studentClassId = UserDefaultExtensionModel.shared.StudentClassId
     
     //MARK:- OVERRIDE CLASS FUNCTIONS
     override func viewDidLoad() {
@@ -55,9 +59,18 @@ class SyllabusCoverageVC : BaseUIViewController  {
     
     func classListDropdownApi(){
         if checkInternetConnection(){
-            if isFromStudent == true{
+            if UserDefaultExtensionModel.shared.currentUserRoleId == 5{
+                imgDropDown.isHidden = true
+                btnClassDropDown.isUserInteractionEnabled = false
+                textfieldClass.text = ""
+                 self.viewModel?.getData(teacherId: 0, classID: studentClassId ?? 0)
+            }else if isFromStudent == true{
+                  imgDropDown.isHidden = false
+                  btnClassDropDown.isUserInteractionEnabled = true
                  self.viewModel?.getClassListDropdown(selectId: HODdepartmentId, enumType: CountryStateCity.classes.rawValue)
             }else{
+                imgDropDown.isHidden = false
+                   btnClassDropDown.isUserInteractionEnabled = true
                  self.viewModel?.getClassListDropdown(selectId: userRoleParticularId, enumType: 17)
             }
            
@@ -185,10 +198,17 @@ extension SyllabusCoverageVC : UITableViewDataSource {
       //  cell.progressBar.transform.scaledBy(x: 1, y: 9)
         cell.progressBar.layer.cornerRadius = 1.5
       cell.progressBar.transform = CGAffineTransform(scaleX: 1, y: 3.0)
-        cell.progressBar.progressTintColor = KAPPContentRelatedConstants.kThemeColour//UIColor(red: 183/255, green: 23/255, blue: 36/255, alpha: 1)
+//        cell.progressBar.progressTintColor = KAPPContentRelatedConstants.kThemeColour//UIColor(red: 183/255, green: 23/255, blue: 36/255, alpha: 1)
 
          if let percentage = arrayData[indexPath.row].coveragePercentage {
       cell.lblprogressPercentage.text = "\(percentage)" + "%"
+            if percentage < 100 && percentage > 0{
+                cell.progressBar.progressTintColor = UIColor.green
+            }else if percentage == 100{
+                cell.progressBar.progressTintColor = UIColor.red
+            }else if percentage == 0{
+                cell.progressBar.progressTintColor = UIColor.darkGray
+            }
         }
         
             

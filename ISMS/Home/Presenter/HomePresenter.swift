@@ -220,6 +220,7 @@ class HomeViewModel{
                 
                 if (response.resultData != nil)
                 {
+                    print("data: ",response.resultData)
                    self.delegate?.studentData(data: response.resultData!)
                 }
                 else
