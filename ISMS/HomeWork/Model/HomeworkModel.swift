@@ -35,6 +35,8 @@ class HomeworkListModel : Mappable{
     
     struct HomeworkResultData: Mappable {
         
+        var StudentAttacmentUrl : String?
+        var Comment : String?
         var AssignHomeWorkId : Int?
         var ClassName : String?
         var SubjectName : String?
@@ -63,6 +65,8 @@ class HomeworkListModel : Mappable{
             ClassSubjectId <- map["ClassSubjectId"]
             SubjectId <- map["SubjectId"]
             lstattachmentModels <- map["lstattachmentModels"]
+            Comment <- map["Comment"]
+            StudentAttacmentUrl <- map["StudentAttacmentUrl"]
             
         }
         

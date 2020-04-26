@@ -112,7 +112,7 @@ class BaseUIViewController: UIViewController {
     //MARK:- SetPickerView
     func SetpickerView(_ view : UIView) {
         //UIView
-        self.view_pickerView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - 300, width: UIScreen.main.bounds.width, height: 244))
+        self.view_pickerView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - 400, width: UIScreen.main.bounds.width, height: 244))
         // UIPickerView
         self.pickerView = UIPickerView()
         self.pickerView = UIPickerView(frame:CGRect(x: 0, y: 44, width: view_pickerView.frame.size.width, height: 244))

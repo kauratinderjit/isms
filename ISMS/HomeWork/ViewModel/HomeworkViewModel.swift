@@ -121,6 +121,58 @@ class HomeworkViewModel {
         }
     }
     
+    
+    //mohit
+    func getDataOfHW(SubjectID : Int?,ClassID : Int?,ClassSubjectID : Int?,TeacherID : Int?)
+    {
+          
+        
+        self.homeworkViewDelegate?.showLoader()
+        let param = ["SubjectId" : SubjectID!,"ClassId" : ClassID!,"ClassSubjectId" : ClassSubjectID!,"TeacherId" : TeacherID! ] as [String : Any]
+               
+      
+        HomeworkApi.sharedManager.getHoweworkDetailData(url: "api/Institute/GetStudentHomeWorkDetail", parameters: param , completionResponse: { (SubjectListModel) in
+              
+              if SubjectListModel.statusCode == KStatusCode.kStatusCode200{
+                  self.homeworkViewDelegate?.hideLoader()
+                
+                if SubjectListModel.resultData != nil
+                {
+                   self.addHomeworkDelegate?.AddHomeworkSucceed(array:SubjectListModel.resultData!)
+                }
+              }else if SubjectListModel.statusCode == KStatusCode.kStatusCode401{
+                  self.homeworkViewDelegate?.hideLoader()
+                  self.homeworkViewDelegate?.showAlert(alert: SubjectListModel.message ?? "")
+                //self.homeworkViewDelegate?.unauthorizedUser()
+              }else{
+                self.homeworkViewDelegate?.hideLoader()
+                  CommonFunctions.sharedmanagerCommon.println(object: "student APi status change")
+              }
+              
+          }, completionnilResponse: { (nilResponseError) in
+              
+              self.homeworkViewDelegate?.hideLoader()
+              
+              if let error = nilResponseError{
+                  self.homeworkViewDelegate?.showAlert(alert: error)
+                  
+              }else{
+                  CommonFunctions.sharedmanagerCommon.println(object: "student APi Nil response")
+              }
+              
+          }) { (error) in
+              self.homeworkViewDelegate?.hideLoader()
+              if let err = error?.localizedDescription{
+                  self.homeworkViewDelegate?.showAlert(alert: err)
+              }else{
+                  CommonFunctions.sharedmanagerCommon.println(object: "student APi error response")
+              }
+          }
+          
+      }
+    
+    
+    
     func getHomeworkData(teacherId : Int) {
         
          homeworkViewDelegate?.showLoader()
@@ -134,7 +186,7 @@ class HomeworkViewModel {
         HomeworkApi.sharedManager.getHoweworkDetailData(url: url, parameters: nil, completionResponse: { (response) in
                    self.homeworkViewDelegate?.hideLoader()
                 switch response.statusCode{
-                case KStatusCode.kStatusCode200: 
+                case KStatusCode.kStatusCode200:
                    self.addHomeworkDelegate?.AddHomeworkSucceed(array: response.resultData! )
                 case KStatusCode.kStatusCode401:
                     self.homeworkViewDelegate?.showAlert(alert: response.message ?? "")
