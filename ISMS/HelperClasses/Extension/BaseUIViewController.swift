@@ -475,8 +475,8 @@ class BaseUIViewController: UIViewController {
         self.searchBar.barStyle = .black
         self.searchBar.tintColor = .black
         
-        if #available(iOS 11, *)
-        {
+//        if #available(iOS 11, *)
+//        {
             var searchTextField: UITextField?
            if let searchField = searchBar.value(forKey: "searchField") as? UITextField {
                       searchTextField = searchField
@@ -486,14 +486,14 @@ class BaseUIViewController: UIViewController {
             searchTextField?.layer.borderColor = UIColor.lightGray.cgColor
             searchTextField?.cornerRadius = 8
                   }
-        }
-        else{
-            self.searchBar.backgroundColor = .white
-            self.searchBar.tintColor = .black
-            self.searchBar.layer.borderWidth = 0.5
-            self.searchBar.layer.borderColor = UIColor.lightGray.cgColor
-            self.searchBar.cornerRadius = 8
-        }
+//        }
+//        else{
+//            self.searchBar.backgroundColor = .white
+//            self.searchBar.tintColor = .black
+//            self.searchBar.layer.borderWidth = 0.5
+//            self.searchBar.layer.borderColor = UIColor.lightGray.cgColor
+//            self.searchBar.cornerRadius = 8
+//        }
         
         self.searchBar.showsCancelButton.toggle()
         self.navigationTitle = navigationTitle
