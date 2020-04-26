@@ -40,7 +40,7 @@ class AddHomeWorkVC: BaseUIViewController {
     static var isFromHomeWorkDate:Bool?
     @IBOutlet weak var heightTblView: NSLayoutConstraint!
     @IBOutlet weak var btnAdd: UIButton!
-    
+     var booledit = false
     let formatter: DateFormatter = {
               let formatter = DateFormatter()
               formatter.dateFormat = "dd/MM/yyyy"
@@ -360,6 +360,7 @@ extension AddHomeWorkVC: UIDocumentMenuDelegate,UIDocumentPickerDelegate{
         guard let myURL = urls.first else {
             return
         }
+        booledit = false
         if uploadData.count <= 5 {
             
             if uploadData.count > 0 {
@@ -369,16 +370,19 @@ extension AddHomeWorkVC: UIDocumentMenuDelegate,UIDocumentPickerDelegate{
             let dd = element as? [String:Any]
             if dd?["fileName"] as? String == myURL.lastPathComponent {
                 self.showAlert(Message: "You have already selected this file.")
+                booledit = true
+                return
             }
-            
-            else{
+                }
+                if booledit == false {
+          
                 var modelHW = [String: Any]()
                       modelHW["url"] = myURL
                       modelHW["fileName"] = myURL.lastPathComponent
                       modelHW["id"] = 0
                       uploadData.add(modelHW)
-            }
-        }
+           
+                }
             
         }
       

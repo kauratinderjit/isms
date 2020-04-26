@@ -357,11 +357,13 @@ class HomeworkViewModel {
     func uploadHomeworkStudent(AssignHomeWorkId : Int ,StudentId : Int,  StudentHomeworkId : Int , Comment : String ,Status: Bool, lstAssignHomeAttachmentMapping : [URL]) {
            
             homeworkViewDelegate?.showLoader()
+        //getworklistbyId
+        //getstudenthomeworkdetail
            
            let url = "api/Institute/AddUpdateStudenthomeWorkUpload"
          
            let param = [
-                        "StudentId" : UserDefaultExtensionModel.shared.userRoleParticularId,
+                        "EnrollmentId" : StudentId,
                         "AssignHomeWorkId" : AssignHomeWorkId ,
                         "StudentHomeworkId": StudentHomeworkId,
                         "Comment" : Comment,
