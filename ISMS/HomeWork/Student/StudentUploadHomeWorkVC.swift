@@ -29,6 +29,7 @@ class StudentUploadHomeWorkVC: BaseUIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Upload Tasks"
+        setBackButton()
         heightTableView.constant = 0
         self.viewModel = HomeworkViewModel.init(delegate: self)
                       self.viewModel?.attachView(viewDelegate: self)

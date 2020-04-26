@@ -44,6 +44,7 @@ class StudentDetailHomeworkVC: BaseUIViewController {
         tblViewListing.separatorStyle = .singleLine
        
         documentInteractionController.delegate = self
+        setBackButton()
 
         
     }
