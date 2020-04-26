@@ -41,7 +41,7 @@ class SubjectListHW: BaseUIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         if checkInternetConnection() {
-            self.ViewModel?.subjectList(studentId : UserDefaultExtensionModel.shared.userRoleParticularId)
+            self.ViewModel?.subjectList(studentId : UserDefaultExtensionModel.shared.enrollmentIdStudent)
         }else {
             self.showAlert(Message: Alerts.kNoInternetConnection)
         }

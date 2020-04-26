@@ -244,12 +244,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="sTq-b2-Het">
-                                        <rect key="frame" x="140" y="26" width="180" height="2.5"/>
+                                        <rect key="frame" x="170" y="26" width="150" height="2.5"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="180" id="D04-Iw-ejJ"/>
+                                            <constraint firstAttribute="width" constant="150" id="D04-Iw-ejJ"/>
                                             <constraint firstAttribute="height" constant="2.5" id="bmg-Vq-PPE"/>
                                         </constraints>
-                                        <color key="trackTintColor" red="0.89019607840000003" green="0.94117647059999998" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="trackTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </progressView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vGj-nf-RCv">
                                         <rect key="frame" x="333" y="17" width="42" height="21"/>
