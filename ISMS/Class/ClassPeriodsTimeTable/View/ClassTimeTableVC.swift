@@ -184,7 +184,7 @@ class ClassTimeTableVC: BaseUIViewController {
         collectionView.register(programNib, forCellWithReuseIdentifier: "periodCell")
         
         collectionView.isHidden = false
-        collectionView.backgroundColor = UIColor.lightGray
+        collectionView.backgroundColor = UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 0.6)
         let layout = ClassTimeTableCollectionViewLayout()
         layout.days = self.arrGetTimeTableDaysModel
         collectionView.setCollectionViewLayout(layout, animated: false)
