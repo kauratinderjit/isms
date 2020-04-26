@@ -56,6 +56,7 @@ class HomeVC: BaseUIViewController {
     var menuVC = MenuVC()
     @IBOutlet weak var tblViewListing: UITableView!
     
+    @IBOutlet weak var topEventView: NSLayoutConstraint!
     
     
     override func viewDidLoad()
@@ -96,7 +97,8 @@ class HomeVC: BaseUIViewController {
         self.homeViewModel = HomeViewModel.init(delegate: self)
         self.homeViewModel?.attachView(view: self)
         setLeftMenuButton()
-        
+        tblViewListing.tableFooterView = UIView()
+
         
         //If it is came from direct login screen and have only one role then it is executed zero index role id of user
         if HomeVC.isCameDirectFromLoginScreen == true
@@ -146,7 +148,7 @@ class HomeVC: BaseUIViewController {
             self.title = "Student's Dashboard"
             // tblViewListing.isHidden = true
             self.homeViewModel?.getDataStudent(userId: UserDefaultExtensionModel.shared.currentUserId)
-            
+            topEventView.constant = -100
         }
         
         
