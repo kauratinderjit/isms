@@ -188,35 +188,37 @@ extension StudentUploadHomeWorkVC: UIDocumentMenuDelegate,UIDocumentPickerDelega
                         self.tblViewListing.reloadData()
                         print("import result : \(myURL)")
             
-        } else {
-            if uploadData.count <= 1 {
-                  if uploadData.count > 0 {
-                   print(uploadData.count)
-                  _ = uploadData.enumerated().map { (index,element) in
-                  
-                  let dd = element as? [String:Any]
-                  if dd?["fileName"] as? String == myURL.lastPathComponent {
-                      self.showAlert(Message: "You have already selected this file.")
-                      booledit = true
-                      return
-                  }
-                      }
-                      if booledit == false {
-                      var modelHW = [String: Any]()
-                            modelHW["url"] = myURL
-                            modelHW["fileName"] = myURL.lastPathComponent
-                            modelHW["id"] = 0
-                          uploadData.add(modelHW) }
-              }
-            
-                  
-              else{
+            } } else {
+            if uploadData.count == 0 {
+//                  if uploadData.count > 0 {
+//                   print(uploadData.count)
+//                  _ = uploadData.enumerated().map { (index,element) in
+//
+//                  let dd = element as? [String:Any]
+//                  if dd?["fileName"] as? String == myURL.lastPathComponent {
+//                      self.showAlert(Message: "You have already selected this file.")
+//                      booledit = true
+//                      return
+//                  }
+//                      }
+//                      if booledit == false {
+//                      var modelHW = [String: Any]()
+//                            modelHW["url"] = myURL
+//                            modelHW["fileName"] = myURL.lastPathComponent
+//                            modelHW["id"] = 0
+//                          uploadData.add(modelHW) }
+//              }
+//
+//
+//              else{
                                        var modelHW = [String: Any]()
                                        modelHW["url"] = myURL
                                        modelHW["fileName"] = myURL.lastPathComponent
                                        modelHW["id"] = 0
                                        uploadData.add(modelHW)
-                  }}
+                //  }
+            
+        }
               else{
                   self.showAlert(Message: "Maximum limit to upload the document is 1.")
               }
@@ -227,7 +229,7 @@ extension StudentUploadHomeWorkVC: UIDocumentMenuDelegate,UIDocumentPickerDelega
               print("import result : \(myURL)")
         }
 
-        }
+        
     }
     
     
