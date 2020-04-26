@@ -148,7 +148,7 @@ class HomeVC: BaseUIViewController {
             self.title = "Student's Dashboard"
             // tblViewListing.isHidden = true
             self.homeViewModel?.getDataStudent(userId: UserDefaultExtensionModel.shared.currentUserId)
-            topEventView.constant = -100
+          
         }
         
         
@@ -321,7 +321,7 @@ extension HomeVC : HomeViewModelDelegate
         self.lblName2.isHidden = true
         self.lblName3.isHidden = true
         
-        
+          topEventView.constant = -100
 //        var strClass : String = "Class"
         var strTeacher = "Teacher"
 //        var strStudent : String = "Student"
