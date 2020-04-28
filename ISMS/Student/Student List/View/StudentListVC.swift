@@ -232,7 +232,8 @@ extension StudentListVC : StudentListDelegate{
         isFetching = true
          arrStudentlist.removeAll()
         if data != nil{
-            if data?.count ?? 0 > 0{
+            if data?.count ?? 0 > 0
+            {
                 guard let rsltData = data else{
                     return
                 }
@@ -256,15 +257,20 @@ extension StudentListVC : StudentListDelegate{
                     }
                     self.tblViewCenterLabel(tblView: tableView, lblText: "", hide: true)
                 }
-            }else{
+            }
+            else
+            {
                 //Remove the array student list
-                if isClassSelected == true{
+                if isClassSelected == true
+                {
                     arrStudentlist.removeAll()
                 }
-                //                self.tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
+                self.tblViewCenterLabel(tblView: tableView, lblText: KConstants.KDataNotFound, hide: false)
                 //                CommonFunctions.sharedmanagerCommon.println(object: "Zero")
             }
-        }else{
+        }
+        else
+        {
             arrStudentlist.removeAll()
             self.tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
             //            CommonFunctions.sharedmanagerCommon.println(object: "Nil")
