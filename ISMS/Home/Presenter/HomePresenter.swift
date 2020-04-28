@@ -17,6 +17,7 @@ protocol HomeViewModelDelegate:class
     func AdminData(data: homeAdminResultData)
     func teacherData(data: teacherData)
     func studentData(data: StudentData)
+     func parentData(data: teacherData)
 }
 
 
@@ -246,6 +247,48 @@ class HomeViewModel{
         }
     }
     
+    //MARK:- ParentsDashboardApi
+    func getDataParentDashboardApi(userId: Int?)
+       {
+           self.homeView?.showLoader()
+           var postDict = [String:Any]()
+           
+           var strUrl = "api/User/DashboardParents?UserId=\(String(describing: userId!))"
+           postDict[KApiParameters.KGetPagesByUserIdIdintifier.kUserId] = userId
+           
+           LoginApi.sharedmanagerAuth.getdataParentDashboard(url: strUrl , parameters: postDict, completionResponse: { (response) in
+               
+               switch response.statusCode
+               {
+               case KStatusCode.kStatusCode200:
+                   self.homeView?.hideLoader()
+                   
+                   if (response.resultData != nil)
+                   {
+                      self.delegate?.parentData(data: response.resultData!)
+                   }
+                   else
+                   {
+                      self.homeView?.showAlert(alert: response.message ?? "Something went wrong")
+                   }
+                   
+               case KStatusCode.kStatusCode401:
+                   self.homeView?.showAlert(alert: response.message ?? "Something went wrong")
+                   self.delegate?.userUnauthorize()
+               default:
+                   self.homeView?.hideLoader()
+                   self.homeView?.showAlert(alert: response.message ?? "Something went wrong")
+                   CommonFunctions.sharedmanagerCommon.println(object: "Get Menu using Id APi status change")
+               }
+               
+           }, completionnilResponse: { (nilResponseError) in
+               self.homeView?.hideLoader()
+               self.homeView?.showAlert(alert: nilResponseError ?? "Something went wrong")
+           }) { (error) in
+               self.homeView?.hideLoader()
+                   self.homeView?.showAlert(alert: error?.localizedDescription ?? "Something went wrong")
+           }
+       }
     
     //MARK:- Home  Service
      func getDataForAdmin(userId: Int?)

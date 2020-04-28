@@ -167,7 +167,7 @@ extension ClassListVC : ViewDelegate{
     }
     func setUI(){
         //Set Search bar in navigation
-        self.setSearchBarInNavigationController(placeholderText: KSearchBarPlaceHolder.kUserSearchBarPlaceHolder, navigationTitle: KStoryBoards.KClassListIdentifiers.kClassListTitle, navigationController: self.navigationController, navigationSearchBarDelegates: self)
+        self.setSearchBarInNavigationController(placeholderText: "Search Class", navigationTitle: KStoryBoards.KClassListIdentifiers.kClassListTitle, navigationController: self.navigationController, navigationSearchBarDelegates: self)
         //Set Back Button
         self.setBackButton()
         //Title
