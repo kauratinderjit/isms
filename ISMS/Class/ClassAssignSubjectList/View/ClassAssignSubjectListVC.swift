@@ -86,7 +86,11 @@ extension ClassAssignSubjectListVC : ClassAssignSubjectListDelegate{
     func assignSubjectsToClassDidSuccess(data: AssignSubjectsToClassResponseModel) {
         if let msg = data.message {
             arrAssignSubtoClass.removeAll()
-            self.showAlert(alert: "Subject assigned successfully and now you can add syllabus by clicking selected subjects.")
+            
+            self.AlertMessageWithOkAction(titleStr: KAPPContentRelatedConstants.kAppTitle, messageStr: "Subject assigned successfully and now you can add syllabus by clicking selected subjects.", Target: self) {
+                self.arrAllAssignedSubjects.removeAll()
+                self.viewModel?.getAllAssignSubjectList(classId: self.selectedClassId ?? 0, searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: self.skip)
+            }
         }
     }
     

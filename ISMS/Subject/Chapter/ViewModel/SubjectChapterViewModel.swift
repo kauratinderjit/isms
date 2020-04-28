@@ -9,16 +9,17 @@
 import Foundation
 protocol SubjectChapterDelegate: class {
     func unauthorizedUser()
-//    func SubjectListDidSuccess(data: [GetSubjectResultData]?)
-//    func SubjectListDidFailed()
-   func SubjectDeleteSuccess(data: DeleteSubjectModel)
-   func GetChapterList()
-//    func SubjectDetailDidSuccess(Data: GetSubjectDetail)
-//    func SubjectDetailDidFailed()
+    //    func SubjectListDidSuccess(data: [GetSubjectResultData]?)
+    //    func SubjectListDidFailed()
+    func SubjectDeleteSuccess(data: DeleteSubjectModel)
+    func GetChapterList()
+    //    func SubjectDetailDidSuccess(Data: GetSubjectDetail)
+    //    func SubjectDetailDidFailed()
     func chapterList(data: [ChaptersData])
 }
 class SubjectChapterViewModel{
     
+    var isSearching : Bool?
     //Global ViewDelegate weak object
     private weak var ChapterView : ViewDelegate?
     
@@ -47,15 +48,19 @@ class SubjectChapterViewModel{
 extension SubjectChapterViewModel {
     
     func chapterList(search : String?,skip : Int?,pageSize: Int?,sortColumnDir: String?,sortColumn: String?, particularId : Int) {
+       
+        if isSearching == false
+        {
+            self.ChapterView?.showLoader()
+        }
         
-        self.ChapterView?.showLoader()
         let paramDict = [KApiParameters.SubjectListApi.subjectSearch: search ?? "",KApiParameters.SubjectListApi.PageSkip:skip ?? 0,KApiParameters.SubjectListApi.PageSize: pageSize ?? 0,KApiParameters.SubjectListApi.sortColumnDir: sortColumnDir ?? "", KApiParameters.SubjectListApi.sortColumn: sortColumn ?? "", KApiParameters.kUpdateSyllabusApiParameter.kParticularId :particularId ] as [String : Any]
         
         SubjectChapterApi.sharedInstance.getChapterList(url: ApiEndpoints.KChapterListApi, parameters: paramDict as [String : Any], completionResponse: { (SubjectListModel) in
             self.ChapterView?.hideLoader()
             if SubjectListModel.statusCode == KStatusCode.kStatusCode200{
                 if let resltdata = SubjectListModel.resultData {
-                self.ChapterDelegate?.chapterList(data: resltdata)
+                    self.ChapterDelegate?.chapterList(data: resltdata)
                 }
             }else if SubjectListModel.statusCode == KStatusCode.kStatusCode401{
                 self.ChapterDelegate?.unauthorizedUser()
@@ -77,7 +82,7 @@ extension SubjectChapterViewModel {
         self.ChapterView?.showLoader()
         let paramDict = [KApiParameters.AddSubjectApi.chapterId:ChapterId,KApiParameters.AddSubjectApi.chapterName:ChapterName, KApiParameters.AddSubjectApi.kclassSubjectId :ClassSubjectId ,"IsCover": false,
                          "CoveredBy": 0] as [String : Any]
-       
+        
         SubjectApi.sharedInstance.AddSubject(url: ApiEndpoints.KAddChapterApi, parameters: paramDict, completionResponse: { (responseModel) in
             print(responseModel)
             self.ChapterView?.hideLoader()
@@ -91,7 +96,7 @@ extension SubjectChapterViewModel {
         }) { (error) in
             self.ChapterView?.hideLoader()
             self.ChapterView?.showAlert(alert: error?.localizedDescription ?? "")
-       
+            
         }
     }
     
@@ -127,23 +132,23 @@ extension SubjectChapterViewModel {
             }
         }
     }
-   
+    
     func deletechapter(chapterId: Int){
         let url = ApiEndpoints.KDeleteChapterApi +  "\(chapterId)"
         let param = [ChapterVC.chapterParam.kChapterId : chapterId ]
         self.ChapterView?.showLoader()
         SubjectApi.sharedInstance.deleteSubjectApi(url: url,completionResponse: {DeleteSubjectModel in
-             self.ChapterView?.hideLoader()
+            self.ChapterView?.hideLoader()
             if DeleteSubjectModel.statusCode == KStatusCode.kStatusCode200{
                 if DeleteSubjectModel.status == true{
-                   self.ChapterView?.hideLoader()
-             self.ChapterDelegate?.SubjectDeleteSuccess(data: DeleteSubjectModel)
+                    self.ChapterView?.hideLoader()
+                    self.ChapterDelegate?.SubjectDeleteSuccess(data: DeleteSubjectModel)
                 }else{
-                   self.ChapterView?.hideLoader()
-                   self.ChapterView?.showAlert(alert: DeleteSubjectModel.message ?? Alerts.kServerErrorAlert)
-                     }
+                    self.ChapterView?.hideLoader()
+                    self.ChapterView?.showAlert(alert: DeleteSubjectModel.message ?? Alerts.kServerErrorAlert)
+                }
             }
-    }, completionnilResponse: { (nilResponse) in
+        }, completionnilResponse: { (nilResponse) in
             self.ChapterView?.hideLoader()
             if let res = nilResponse{
                 self.ChapterView?.showAlert(alert: res)
@@ -160,16 +165,16 @@ extension SubjectChapterViewModel {
 extension SubjectChapterVC : UITableViewDelegate{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-           if segue.identifier == "ChapterToTopic"{
-           let vc = segue.destination as? SubjectTopicVC
-               vc?.ChapterID = ChapterID
-           }
-       }
+        if segue.identifier == "ChapterToTopic"{
+            let vc = segue.destination as? SubjectTopicVC
+            vc?.ChapterID = ChapterID
+        }
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       //self.performSegue(withIdentifier: "SubjectToChapter", sender: self)
+        //self.performSegue(withIdentifier: "SubjectToChapter", sender: self)
         ChapterID = arrChapterList[indexPath.row].ChapterId ?? 0
-                  self.performSegue(withIdentifier: "ChapterToTopic", sender: self)
-
+        self.performSegue(withIdentifier: "ChapterToTopic", sender: self)
+        
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -188,7 +193,13 @@ extension SubjectChapterVC : UITableViewDataSource , SubjectChapterTableViewDele
     func didPressDeleteButton(_ tag: Int) {
         if let ChapterId = arrChapterList[tag].ChapterId {
             print("your chapter id : \(ChapterId)")
-            self.ViewModel?.deletechapter(chapterId: ChapterId)
+            self.AlertMessageWithOkCancelAction(titleStr: KAPPContentRelatedConstants.kAppTitle, messageStr: "Do you want to delete this Chapter?", Target: self) { (actn) in
+                if (actn == "Yes")
+                {
+                    self.ViewModel?.deletechapter(chapterId: ChapterId)
+                }
+            }
+            
         }
     }
     //Mark:- EDIT BUTTON ACTION
@@ -200,7 +211,7 @@ extension SubjectChapterVC : UITableViewDataSource , SubjectChapterTableViewDele
                     self.textFieldAlert.txtFieldVal.text = chapterName
                 }
             }
-              self.setupCustomViewForUpdate()
+            self.setupCustomViewForUpdate()
             textFieldAlert.delegate = self
         }
     }
@@ -222,9 +233,10 @@ extension SubjectChapterVC : UITableViewDataSource , SubjectChapterTableViewDele
         cell.cellDelegate = self
         cell.deleteBtn.tag = indexPath.row
         
-        
+        if(arrChapterList.count > 0){
         let row = arrChapterList[indexPath.row]
         cell.setCellUI(data: row, indexPath: indexPath)
+    }
         return cell
     }
 }
@@ -232,17 +244,17 @@ extension SubjectChapterVC : UITableViewDataSource , SubjectChapterTableViewDele
 extension SubjectChapterVC : SubjectChapterDelegate{
     func GetChapterList() {
         if let id = subject_Id {
-       self.ViewModel?.chapterList(search : "",skip : KIntegerConstants.kInt0,pageSize: 10,sortColumnDir: "",sortColumn: "", particularId: id)
+            self.ViewModel?.chapterList(search : "",skip : KIntegerConstants.kInt0,pageSize: 10,sortColumnDir: "",sortColumn: "", particularId: id)
         }
     }
     
     func SubjectDeleteSuccess(data: DeleteSubjectModel) {
-      //  isSubjectDelete = true
+        //  isSubjectDelete = true
         initializeCustomOkAlert(self.view, isHideBlurView: true)
         okAlertView.delegate = self
         okAlertView.lblResponseDetailMessage.text = data.message
         if let id = subject_Id {
-         self.ViewModel?.chapterList(search : "",skip : KIntegerConstants.kInt0,pageSize: pageSize,sortColumnDir: "",sortColumn: "", particularId: id)
+            self.ViewModel?.chapterList(search : "",skip : KIntegerConstants.kInt0,pageSize: pageSize,sortColumnDir: "",sortColumn: "", particularId: id)
         }
     }
     func chapterList(data: [ChaptersData]) {
@@ -261,28 +273,28 @@ extension SubjectChapterVC : OKAlertViewDelegate {
         if isUnauthorizedUser == true{
             isUnauthorizedUser = false
             CommonFunctions.sharedmanagerCommon.setRootLogin()
-//        }else if isSubjectAddSuccessFully == true{
-//            isSubjectAddSuccessFully = false
-//            textFieldAlert.removeFromSuperview()
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-//        }else if isSubjectDelete == true{
-//            isSubjectDelete = false
-//            if let selectedIndex = self.selectedSubjectArrIndex{
-//                self.arrChapterList.remove(at: selectedIndex)
-//                DispatchQueue.main.async {
-//                    self.tableView.reloadData()
-//                }
-//            }
-//
-//        }
-        textFieldAlert.removeFromSuperview()
-        okAlertView.removeFromSuperview()
-        DispatchQueue.main.async {
-        self.tableView.reloadData()
-     }
-    }
+            //        }else if isSubjectAddSuccessFully == true{
+            //            isSubjectAddSuccessFully = false
+            //            textFieldAlert.removeFromSuperview()
+            //            DispatchQueue.main.async {
+            //                self.tableView.reloadData()
+            //            }
+            //        }else if isSubjectDelete == true{
+            //            isSubjectDelete = false
+            //            if let selectedIndex = self.selectedSubjectArrIndex{
+            //                self.arrChapterList.remove(at: selectedIndex)
+            //                DispatchQueue.main.async {
+            //                    self.tableView.reloadData()
+            //                }
+            //            }
+            //
+            //        }
+            textFieldAlert.removeFromSuperview()
+            okAlertView.removeFromSuperview()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
         else {
             textFieldAlert.removeFromSuperview()
             okAlertView.removeFromSuperview()
@@ -290,24 +302,24 @@ extension SubjectChapterVC : OKAlertViewDelegate {
                 self.tableView.reloadData()
             }
         }
-}
+    }
 }
 
 extension SubjectChapterVC : UIScrollViewDelegate{
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
-//        if(velocity.y>0) {
-//            //Code will work without the animation block.I am using animation block incase if you want to set any delay to it.
-//            UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
-//                self.navigationController?.setNavigationBarHidden(true, animated: true)
-//            }, completion: nil)
-//            
-//        } else {
-//            UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
-//                self.navigationController?.setNavigationBarHidden(false, animated: true)
-//            }, completion: nil)
-//        }
+        //        if(velocity.y>0) {
+        //            //Code will work without the animation block.I am using animation block incase if you want to set any delay to it.
+        //            UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
+        //                self.navigationController?.setNavigationBarHidden(true, animated: true)
+        //            }, completion: nil)
+        //
+        //        } else {
+        //            UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
+        //                self.navigationController?.setNavigationBarHidden(false, animated: true)
+        //            }, completion: nil)
+        //        }
         
         if (tableView.contentOffset.y < pointNow.y)
         {
@@ -322,7 +334,9 @@ extension SubjectChapterVC : UIScrollViewDelegate{
                 skip = skip + KIntegerConstants.kInt10
                 
                 isFetching = false
-                self.ViewModel?.chapterList(search : "",skip : skip,pageSize: pageSize,sortColumnDir: "",sortColumn: "", particularId: 40)
+                if let id = subject_Id {
+                self.ViewModel?.chapterList(search : "",skip : skip,pageSize: pageSize,sortColumnDir: "",sortColumn: "", particularId: id)
+                }
                 
             }
         }else{
@@ -339,15 +353,21 @@ extension SubjectChapterVC : UIScrollViewDelegate{
 extension SubjectChapterVC : NavigationSearchBarDelegate{
     func textDidChange(searchBar: UISearchBar, searchText: String) {
         DispatchQueue.main.async {
+            self.ViewModel?.isSearching = true
             self.arrChapterList.removeAll()
-            self.ViewModel?.chapterList(search : "",skip : KIntegerConstants.kInt0,pageSize: KIntegerConstants.kInt10,sortColumnDir: "",sortColumn: "", particularId: 40)
+            if let id = self.subject_Id {
+            self.ViewModel?.chapterList(search : searchText,skip : KIntegerConstants.kInt0,pageSize: KIntegerConstants.kInt10,sortColumnDir: "",sortColumn: "", particularId: id)
+            }
         }
     }
     
     func cancelButtonPress(uiSearchBar: UISearchBar) {
         DispatchQueue.main.async {
+            self.ViewModel?.isSearching = false
             self.arrChapterList.removeAll()
-            self.ViewModel?.chapterList(search : "",skip : KIntegerConstants.kInt0,pageSize:  KIntegerConstants.kInt10,sortColumnDir: "",sortColumn: "", particularId: 40)
+            if let id = self.subject_Id {
+            self.ViewModel?.chapterList(search : "",skip : KIntegerConstants.kInt0,pageSize:  KIntegerConstants.kInt10,sortColumnDir: "",sortColumn: "", particularId: id)
+            }
         }
     }
 }
@@ -356,7 +376,7 @@ extension SubjectChapterVC :ViewDelegate {
         initializeCustomOkAlert(self.view, isHideBlurView: true)
         okAlertView.delegate = self
         okAlertView.lblResponseDetailMessage.text = alert
-       // backToInitial()
+        // backToInitial()
     }
     
     func showLoader() {
@@ -406,15 +426,15 @@ extension SubjectChapterVC : TextFieldAlertDelegate {
             if subject_Id != 0{
                 if textFieldAlert.txtFieldVal.text != ""{
                     isSubjectAddSuccessFully = true
-                  textFieldAlert.removeFromSuperview()
+                    textFieldAlert.removeFromSuperview()
                     if setButton == ChapterVC.CustomViewString.kAdd {
-                         if let text = textFieldAlert.txtFieldVal.text {
-                    self.ViewModel?.addChapter(ChapterId: 0, ChapterName: text, ClassSubjectId: subject_Id ?? 0)
+                        if let text = textFieldAlert.txtFieldVal.text {
+                            self.ViewModel?.addChapter(ChapterId: 0, ChapterName: text, ClassSubjectId: subject_Id ?? 0)
                         }
                     }
                     else {
                         if let text = textFieldAlert.txtFieldVal.text {
-                    self.ViewModel?.addChapter(ChapterId: ChapterID, ChapterName:text, ClassSubjectId: subject_Id ?? 0)
+                            self.ViewModel?.addChapter(ChapterId: ChapterID, ChapterName:text, ClassSubjectId: subject_Id ?? 0)
                             //
                         }
                     }
@@ -440,8 +460,8 @@ extension SubjectChapterVC : TextFieldAlertDelegate {
             yesNoAlertView.removeFromSuperview()
         }
         
-        }
     }
-    
+}
+
 
 

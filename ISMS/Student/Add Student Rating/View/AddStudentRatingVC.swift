@@ -247,7 +247,7 @@ extension AddStudentRatingVC : AddStudentRatingDelegate {
     
     func AddStudentRatingDidSucceed(data: String) {
        // self.showAlert(alert: data)
-        self.AlertMessageWithOkAction(titleStr: "iSMS", messageStr: data, Target: self) {
+        self.AlertMessageWithOkAction(titleStr: KAPPContentRelatedConstants.kAppTitle, messageStr: data, Target: self) {
             self.navigationController?.popViewController(animated: false)
         }
     }

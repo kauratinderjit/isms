@@ -41,7 +41,7 @@ class SubjectChapterVC: BaseUIViewController {
         self.ViewModel?.attachView(viewDelegate: self)
         
         self.title = KStoryBoards.KAddSubjectIdentifiers.kSubjectListTitle
-        
+        setBackButton()
         self.setSearchBarInNavigationController(placeholderText: KSearchBarPlaceHolder.kUserSearchBarSubjectPlaceHolder, navigationTitle: KStoryBoards.KAddSubjectIdentifiers.kSubjectListTitle, navigationController: self.navigationController, navigationSearchBarDelegates: self)
     
     

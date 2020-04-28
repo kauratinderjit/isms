@@ -228,7 +228,7 @@ extension ClassAssignSubjectListVC : NavigationSearchBarDelegate{
     }
     
     func cancelButtonPress(uiSearchBar: UISearchBar) {
-        viewModel?.isSearching = true
+        viewModel?.isSearching = false
         DispatchQueue.main.async {
             self.viewModel?.getAllAssignSubjectList(classId: self.selectedClassId ?? 0, searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: KIntegerConstants.kInt0)
         }

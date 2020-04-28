@@ -141,6 +141,22 @@ extension UIViewController {
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func AlertMessageWithOkCancelAction(titleStr:String, messageStr:String,Target : UIViewController, completionResponse:@escaping (String) -> Void) {
+           let alert = UIAlertController(title: titleStr, message: messageStr, preferredStyle: UIAlertController.Style.alert)
+           let okAction = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) {
+               UIAlertAction in
+               completionResponse("Yes")
+           }
+           let CancelAction = UIAlertAction(title: "No", style: UIAlertAction.Style.default) {
+               UIAlertAction in
+               completionResponse("No")
+           }
+           // Add the actions
+           alert.addAction(okAction)
+           alert.addAction(CancelAction)
+           self.present(alert, animated: true, completion: nil)
+       }
     //Show Alert with message
     func showAlert(Message:String)
     {

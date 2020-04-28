@@ -10,7 +10,7 @@ import Foundation
 
 public struct BaseUrl
 {
-  public static let kBaseURL =  "https://stgsd.appsndevs.com/ISMSQA/"//"https://stgsd.appsndevs.com/IsmsTest/"
+  public static let kBaseURL =  "https://stgsd.appsndevs.com/IsmsTest/"//"https://stgsd.appsndevs.com/ISMSQA/"
 
    //"http://stgsd.appsndevs.com/EducationProApi/"
 }
@@ -414,6 +414,7 @@ public struct KStoryBoards
         public static let kAddTitle = "Add Subject"
         public static let kUpdateTitle = "Update Subject"
         public static let kSubjectListTitle = "Subject List"
+         public static let kTopicListTitle = "Topic List"
     }
     
     internal struct KUserRoleIdIdentifiers{
@@ -1107,6 +1108,7 @@ public struct KSearchBarPlaceHolder{
     static let kUserSearchBarPlaceHolder : String = "Search User"
     static let kUserSearchBarStudentPlaceHolder : String = "Search Student"
       static let kUserSearchBarSubjectPlaceHolder : String = "Search Subject"
+    static let kUserSearchBarTopicPlaceHolder : String = "Search Topics"
 
     
 }

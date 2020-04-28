@@ -22,6 +22,7 @@ protocol SubjectChapterTopicDelegate: class {
 
 class SubjectChapterTopicViewModel{
     
+    var isSearching : Bool?
     //Global ViewDelegate weak object
     private weak var TopicView : ViewDelegate?
     
@@ -49,7 +50,10 @@ class SubjectChapterTopicViewModel{
     //MARK:- GET TOPIC LIST
     func TopicList(search : String?,skip : Int?,pageSize: Int?,sortColumnDir: String?,sortColumn: String? , particularID : Int ){
         
-        self.TopicView?.showLoader()
+        if isSearching == false{
+                 self.TopicView?.showLoader()
+              }
+        
         let paramDict = [KApiParameters.SubjectListApi.subjectSearch: search ?? "",KApiParameters.SubjectListApi.PageSkip:skip ?? 0,KApiParameters.SubjectListApi.PageSize: pageSize ?? 0,KApiParameters.SubjectListApi.sortColumnDir: sortColumnDir ?? "", KApiParameters.SubjectListApi.sortColumn: sortColumn ?? "", KApiParameters.SubjectListApi.particularId : particularID] as [String : Any]
  
         
@@ -205,8 +209,10 @@ extension SubjectTopicVC : UITableViewDataSource , SubjectTopicTableViewDelegate
        let cell = tableView.dequeueReusableCell(withIdentifier: KTableViewCellIdentifier.kTopicTableView, for: indexPath) as! SubjectTopicTableViewCell
         cell.cellDelegate = self
         cell.deleteBtn.tag = indexPath.row
+        if(arrSubjectlist.count > 0){
         let row = arrSubjectlist[indexPath.row]
         cell.setCellUI(data: row, indexPath: indexPath)
+        }
          return cell
     }
 }
@@ -307,8 +313,9 @@ extension SubjectTopicVC : UIScrollViewDelegate {
                 skip = skip + KIntegerConstants.kInt10
                 
                 isFetching = false
-               // self.ViewModel?.chapterList(search : "",skip : skip,pageSize: pageSize,sortColumnDir: "",sortColumn: "")
-                
+                 if let ChapterId = self.ChapterID {
+                self.ViewModel?.TopicList(search: "", skip: skip, pageSize: pageSize, sortColumnDir: "", sortColumn: "", particularID: ChapterId )
+                }
             }
         }else{
             CommonFunctions.sharedmanagerCommon.println(object: "Scrolling")
@@ -324,18 +331,27 @@ extension SubjectTopicVC : UIScrollViewDelegate {
 extension SubjectTopicVC : NavigationSearchBarDelegate{
     func textDidChange(searchBar: UISearchBar, searchText: String) {
         DispatchQueue.main.async {
+            self.ViewModel?.isSearching = true
             self.arrSubjectlist.removeAll()
         //    self.ViewModel?.chapterList(search : "",skip : KIntegerConstants.kInt0,pageSize: KIntegerConstants.kInt10,sortColumnDir: "",sortColumn: "")
+            if let ChapterId = self.ChapterID {
+             self.ViewModel?.TopicList(search: searchText, skip: 0, pageSize: 10, sortColumnDir: "", sortColumn: "", particularID: ChapterId)
+             }
         }
     }
     
     func cancelButtonPress(uiSearchBar: UISearchBar) {
         DispatchQueue.main.async {
+            self.ViewModel?.isSearching = true
             self.arrSubjectlist.removeAll()
-           // self.ViewModel?.chapterList(search : "",skip : KIntegerConstants.kInt0,pageSize:  KIntegerConstants.kInt10,sortColumnDir: "",sortColumn: "")
+            if let ChapterId = self.ChapterID {
+          self.ViewModel?.TopicList(search: "", skip: 0, pageSize: 10, sortColumnDir: "", sortColumn: "", particularID: ChapterId)
+          }
         }
     }
 }
+
+
 extension SubjectTopicVC :ViewDelegate {
     func showAlert(alert: String){
         initializeCustomOkAlert(self.view, isHideBlurView: true)
