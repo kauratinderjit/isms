@@ -66,7 +66,8 @@ class SubjectListVC: BaseUIViewController {
             textFieldAlert.delegate = self
             self.textFieldAlert.lblTitle.text = "update subject"
             self.textFieldAlert.BtnTxt.setTitle("Submit", for: .normal)
-            self.ViewModel?.subjectDetail(subjectId: data.subjectId)
+            //self.ViewModel?.subjectDetail(subjectId: data.subjectId ?? 0)
+             self.textFieldAlert.txtFieldVal.text = data.subjectName
             
         }
         
@@ -299,6 +300,13 @@ extension SubjectListVC : UITableViewDataSource{
     }
 }
 extension SubjectListVC : SubjectListDelegate{
+    func UpdatedSubject(msg: String?) {
+        showAlert(alert: msg ?? "")
+        arrSubjectlist.removeAll()
+        self.ViewModel?.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: 10,sortColumnDir: "",sortColumn: "")
+
+    }
+    
     func unauthorizedUser() {
         isUnauthorizedUser = true
     }
@@ -328,7 +336,7 @@ extension SubjectListVC : SubjectListDelegate{
                     
                     let containsSameValue = arrSubjectlist.contains(where: {$0.subjectId == value.subjectId})
                     
-                    if containsSameValue == false{
+                 if containsSameValue == false{
                         arrSubjectlist.append(value)
                     }
                     self.tblViewCenterLabel(tblView: tableView, lblText: "", hide: true)

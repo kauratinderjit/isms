@@ -15,6 +15,7 @@ protocol SubjectListDelegate: class {
     func SubjectDeleteSuccess(data: DeleteSubjectModel)
     func SubjectDetailDidSuccess(Data: GetSubjectDetail)
     func SubjectDetailDidFailed()
+    func UpdatedSubject(msg:String?)
 }
 class SubjectListViewModel{
     
@@ -141,11 +142,13 @@ class SubjectListViewModel{
                 if responseModel.statusCode == KStatusCode.kStatusCode200{
                     
                     if responseModel.resultData != nil{
-                        self.SubjectListVC?.showAlert(alert: responseModel.message ?? "")
+                       // self.SubjectListVC?.showAlert(alert: responseModel.message ?? "")
+                        self.SubjectListDelegate?.UpdatedSubject(msg: responseModel.message ?? "")
                     }else{
-                        self.SubjectListVC?.showAlert(alert: responseModel.message ?? "")
+                        self.SubjectListDelegate?.UpdatedSubject(msg: responseModel.message ?? "")
+                       // self.SubjectListVC?.showAlert(alert: responseModel.message ?? "")
                     }
-                    self.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: 10,sortColumnDir: "",sortColumn: "")
+                  //  self.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: 10,sortColumnDir: "",sortColumn: "")
 
                     
                 }else if responseModel.statusCode == KStatusCode.kStatusCode401{
@@ -196,6 +199,7 @@ class SubjectListViewModel{
         
         SubjectApi.sharedInstance.getSubjectDetail(url: ApiEndpoints.KSubjectDetailApi + "\(subjectId ?? 0)", parameters: nil, completionResponse: { (GetSubjectDetail) in
             
+            print(ApiEndpoints.KSubjectDetailApi + "\(subjectId ?? 0)")
             if GetSubjectDetail.statusCode == KStatusCode.kStatusCode200{
                 self.SubjectListVC?.hideLoader()
                 self.SubjectListDelegate?.SubjectDetailDidSuccess(Data: GetSubjectDetail)
