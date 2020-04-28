@@ -463,8 +463,20 @@ extension AddTeacherVC : UITextFieldDelegate{
 //    }
     
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+        let rawString = string
+        let range = rawString.rangeOfCharacter(from: .whitespaces)
+        
+        if ((textField.text?.count)! == 0 && range  != nil)
+        || ((textField.text?.count)! > 0 && textField.text?.last  == " " && range != nil)
+        {
+            return false
+        }
+        return true
+    }
     
-    
+     
     func textFieldDidEndEditing(_ textField: UITextField) {
         view.endEditing(true)
         
