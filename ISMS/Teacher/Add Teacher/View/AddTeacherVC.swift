@@ -9,7 +9,8 @@
 import UIKit
 import SDWebImage
 
-class AddTeacherVC: BaseUIViewController {
+class AddTeacherVC: BaseUIViewController
+{
     @IBOutlet weak var imgViewTeacher: UIImageView!
     @IBOutlet weak var btnAddProfileImage: UIButton!
     @IBOutlet weak var txtFieldFirstName: UITextField!
