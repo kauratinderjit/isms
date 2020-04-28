@@ -1023,9 +1023,9 @@ public struct KConstants{
     static var kTeacher : String = "Teacher"
     static var kDesc : String = "Desc"
     static var kAsc : String = "ASC"
-    static var kNoDataFound : String = "No data found."
+    static var kNoDataFound : String = "No records to display"
     static var kPleaseTryAgain : String = "Please try again."
-    static var KDataNotFound : String = "Data not available!"
+    static var KDataNotFound : String = "No records to display"
     
     //Button Title
     static var kBtnLoginTitle = "LOGIN"
