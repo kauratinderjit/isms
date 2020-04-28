@@ -79,6 +79,8 @@ class AddSchoolViewController: BaseUIViewController {
      
      let dateFormatter = DateFormatter()
     
+    var headerTitle = "Manage School"
+    
    
     //MARK:- View functions
     override func viewDidLoad() {
@@ -92,6 +94,8 @@ class AddSchoolViewController: BaseUIViewController {
         imgViewProfile.layer.cornerRadius = imgViewProfile.frame.width/2
         self.hideKeyboardWhenTappedAround()
         documentInteractionController.delegate = self
+        
+        self.title = headerTitle
         
     }
     override func viewWillAppear(_ animated: Bool) {
