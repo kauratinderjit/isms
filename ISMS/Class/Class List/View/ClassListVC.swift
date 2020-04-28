@@ -191,8 +191,10 @@ extension ClassListVC : UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if arr_Classlist.count > 0{
                 tableView.separatorStyle = .singleLine
-            return (arr_Classlist.count)
+            
             tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: true)
+            return (arr_Classlist.count)
+            
         }else{
             tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
             return 0
@@ -270,20 +272,34 @@ extension ClassListVC : ClassListDelegate{
     func classListDidSuccess(data: [GetClassListResultData]?){
         isFetching = true
         arr_Classlist.removeAll()
-        if data != nil{
-            if data?.count ?? 0 > 0{
-                for value in data!{
+        if data != nil
+        {
+            if data?.count ?? 0 > 0
+            {
+                for value in data!
+                {
                     let containsSameValue = arr_Classlist.contains(where: {$0.classId == value.classId})
-                    if containsSameValue == false{
+                    if containsSameValue == false
+                    {
                         arr_Classlist.append(value)
                     }
+                    
+                    
                     self.tblViewCenterLabel(tblView: tableView, lblText: "", hide: true)
                 }
-            }else{
-                CommonFunctions.sharedmanagerCommon.println(object: "Zero")
+                
+                
             }
-        }else{
+            else
+            {
+                CommonFunctions.sharedmanagerCommon.println(object: "Zero")
+                tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
+            }
+        }
+        else
+        {
             CommonFunctions.sharedmanagerCommon.println(object: "Nil")
+            tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
         }
         DispatchQueue.main.async {
             self.tableView.reloadData()

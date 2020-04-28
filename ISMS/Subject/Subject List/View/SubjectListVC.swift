@@ -303,15 +303,18 @@ extension SubjectListVC : SubjectListDelegate{
         isUnauthorizedUser = true
     }
     
-    func SubjectDetailDidSuccess(Data: GetSubjectDetail) {
+    func SubjectDetailDidSuccess(Data: GetSubjectDetail)
+    {
         setUITextField(data: Data)
     }
     
-    func SubjectDetailDidFailed() {
+    func SubjectDetailDidFailed()
+    {
         
     }
     
-    func SubjectDeleteSuccess(data: DeleteSubjectModel) {
+    func SubjectDeleteSuccess(data: DeleteSubjectModel)
+    {
         isSubjectDelete = true
         initializeCustomOkAlert(self.view, isHideBlurView: true)
         okAlertView.delegate = self
@@ -323,21 +326,30 @@ extension SubjectListVC : SubjectListDelegate{
     func SubjectListDidSuccess(data: [GetSubjectResultData]?) {
         isFetching = true
         if data != nil{
-            if data?.count ?? 0 > 0{
-                for value in data!{
+            if data?.count ?? 0 > 0
+            {
+                for value in data!
+                {
                     
                     let containsSameValue = arrSubjectlist.contains(where: {$0.subjectId == value.subjectId})
                     
-                    if containsSameValue == false{
+                    if containsSameValue == false
+                    {
                         arrSubjectlist.append(value)
                     }
                     self.tblViewCenterLabel(tblView: tableView, lblText: "", hide: true)
                 }
                 
-            }else{
+            }
+            else
+            {
+                self.tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
                 CommonFunctions.sharedmanagerCommon.println(object: "Zero")
             }
-        }else{
+        }
+        else
+        {
+            self.tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
             CommonFunctions.sharedmanagerCommon.println(object: "Nil")
         }
         
