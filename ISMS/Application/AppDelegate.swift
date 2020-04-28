@@ -17,13 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
+    let GoogleAPIKey = "AIzaSyC9XlPw-l_lY4ga__R5daHFQ8Aj4c8gqOU"//salon app
+  //  let GoogleAPIKey = "AIzaSyAaydbkH0_mLslxTDxx4K-l3_3uQAmjYzQ"
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
       
         
-        GMSServices.provideAPIKey("AIzaSyAaydbkH0_mLslxTDxx4K-l3_3uQAmjYzQ")
-        GMSPlacesClient.provideAPIKey("AIzaSyAaydbkH0_mLslxTDxx4K-l3_3uQAmjYzQ")
+        GMSServices.provideAPIKey(GoogleAPIKey)
+        GMSPlacesClient.provideAPIKey(GoogleAPIKey)
+        
         FirebaseApp.configure()
         customizeThemeColors()
         set_nav_bar_color()

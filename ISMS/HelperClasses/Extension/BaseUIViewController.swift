@@ -10,7 +10,8 @@ import UIKit
 import AVFoundation
 
 //MARK: Global Interface
-protocol ViewDelegate:class{
+protocol ViewDelegate:class
+{
     func showAlert(alert: String)
     func showLoader()
     func hideLoader()

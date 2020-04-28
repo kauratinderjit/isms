@@ -40,6 +40,10 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>App needs camera permission for taking picture.</string>
+	<key>NSLocationUsageDescription</key>
+	<string>App needs to know your current location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>App needs to know your current location</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>App needs permission for read pics and documents.</string>
 	<key>UIAppFonts</key>
