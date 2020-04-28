@@ -125,10 +125,15 @@ class AddTeacherViewModel{
                 addTeacherView?.showAlert(alert: Alerts.kSelectIdProofImage)
             case ValidationError.emptyDepartmentID:
                 addTeacherView?.showAlert(alert: Alerts.kEmptyAssignDepartment)
+                
             case ValidationError.emptyWorkExperience:
-                addTeacherView?.showAlert(alert: Alerts.kEmptyEmail)
+                addTeacherView?.showAlert(alert: Alerts.kEmptyWorkExperience)
             case ValidationError.minCharactersPhoneNumber:
                 addTeacherView?.showAlert(alert: Alerts.kMinPhoneNumberCharacter)
+                
+            case ValidationError.emptyQualification:
+                addTeacherView?.showAlert(alert: Alerts.kEmptyQualifications)
+                
             default:
                 break
             }
@@ -208,17 +213,32 @@ class AddTeacherViewModel{
                 throw ValidationError.emptyIdProofImage
             }
         }
+        
+        
         guard let departmentID = assignDepartmentId,!departmentID.isEmpty,!departmentID.trimmingCharacters(in: .whitespaces).isEmpty else{
             throw ValidationError.emptyDepartmentID
         }
-        guard let qualification  = qualification, !qualification.isEmpty, !qualification.trimmingCharacters(in: .whitespaces).isEmpty
-            else{
+        
+        
+        if (qualification?.count == 0)
+        {
             throw ValidationError.emptyQualification
         }
-        guard let workExperience  = workExperience, !workExperience.isEmpty, !workExperience.trimmingCharacters(in: .whitespaces).isEmpty
-            else{
+        
+        if (workExperience?.count == 0)
+        {
             throw ValidationError.emptyWorkExperience
         }
+        
+        
+//        guard let qualification  = qualification, !qualification.isEmpty, !qualification.trimmingCharacters(in: .whitespaces).isEmpty
+//            else{
+//            throw ValidationError.emptyQualification
+//        }
+//        guard let workExperience  = workExperience, !workExperience.isEmpty, !workExperience.trimmingCharacters(in: .whitespaces).isEmpty
+//            else{
+//            throw ValidationError.emptyWorkExperience
+//        }
     }
     
     //MARk:- Get Departments dropdown data
@@ -443,8 +463,20 @@ extension AddTeacherVC : UITextFieldDelegate{
 //    }
     
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+        let rawString = string
+        let range = rawString.rangeOfCharacter(from: .whitespaces)
+        
+        if ((textField.text?.count)! == 0 && range  != nil)
+        || ((textField.text?.count)! > 0 && textField.text?.last  == " " && range != nil)
+        {
+            return false
+        }
+        return true
+    }
     
-    
+     
     func textFieldDidEndEditing(_ textField: UITextField) {
         view.endEditing(true)
         

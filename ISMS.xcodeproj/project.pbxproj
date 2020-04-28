@@ -328,6 +328,9 @@
 		9B3D5B3D24518B1A0076741C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B3D5B3C24518B190076741C /* GoogleService-Info.plist */; };
 		9B3D5B402451AA830076741C /* ForgotApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D5B3F2451AA830076741C /* ForgotApi.swift */; };
 		9B3D5B422451D65F0076741C /* GetClassListByDepartmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D5B412451D65F0076741C /* GetClassListByDepartmentModel.swift */; };
+		9B42A2F32455E54C00C8FBD5 /* CheckHomeworkDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B42A2F02455E54B00C8FBD5 /* CheckHomeworkDetails.swift */; };
+		9B42A2F42455E54C00C8FBD5 /* CheckHomeworkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B42A2F12455E54B00C8FBD5 /* CheckHomeworkVC.swift */; };
+		9B42A2F52455E54C00C8FBD5 /* HomeWorkPagerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B42A2F22455E54C00C8FBD5 /* HomeWorkPagerVC.swift */; };
 		9B44D83A244EB40900B6DEC5 /* GetStudentAttendanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B44D839244EB40900B6DEC5 /* GetStudentAttendanceModel.swift */; };
 		9B44D83D244EB42800B6DEC5 /* StudentGetAttendanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B44D83C244EB42800B6DEC5 /* StudentGetAttendanceViewModel.swift */; };
 		9B44D83F244EB4C700B6DEC5 /* TimeTableStudentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B44D83E244EB4C700B6DEC5 /* TimeTableStudentVC.swift */; };
@@ -633,7 +636,7 @@
 		2DACBC9122BA552600EFE5C4 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		2DACBC9322BA555100EFE5C4 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		2DACBC9622BA5A4800EFE5C4 /* HODListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HODListTableViewCell.swift; sourceTree = "<group>"; };
-		2DACBC9822BA6BC200EFE5C4 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
+		2DACBC9822BA6BC200EFE5C4 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		2DACBC9A22BA6BD700EFE5C4 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		2DB1589422C5D79400AC6B8D /* GalleryAlertCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryAlertCustomView.swift; sourceTree = "<group>"; };
 		2DB1589722C5E8E000AC6B8D /* GalleryAlert.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GalleryAlert.xib; sourceTree = "<group>"; };
@@ -768,6 +771,9 @@
 		9B3D5B3C24518B190076741C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9B3D5B3F2451AA830076741C /* ForgotApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotApi.swift; sourceTree = "<group>"; };
 		9B3D5B412451D65F0076741C /* GetClassListByDepartmentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetClassListByDepartmentModel.swift; sourceTree = "<group>"; };
+		9B42A2F02455E54B00C8FBD5 /* CheckHomeworkDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckHomeworkDetails.swift; sourceTree = "<group>"; };
+		9B42A2F12455E54B00C8FBD5 /* CheckHomeworkVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckHomeworkVC.swift; sourceTree = "<group>"; };
+		9B42A2F22455E54C00C8FBD5 /* HomeWorkPagerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeWorkPagerVC.swift; sourceTree = "<group>"; };
 		9B44D839244EB40900B6DEC5 /* GetStudentAttendanceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStudentAttendanceModel.swift; sourceTree = "<group>"; };
 		9B44D83C244EB42800B6DEC5 /* StudentGetAttendanceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentGetAttendanceViewModel.swift; sourceTree = "<group>"; };
 		9B44D83E244EB4C700B6DEC5 /* TimeTableStudentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableStudentVC.swift; sourceTree = "<group>"; };
@@ -3287,6 +3293,7 @@
 		2E8F63CD243C60330040F9CA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9B42A2EF2455E54200C8FBD5 /* Check Homework */,
 				2E8F63D7243CA3C00040F9CA /* Add Homework */,
 				2E8F63D6243CA3A80040F9CA /* HomeWorkList */,
 			);
@@ -3520,6 +3527,16 @@
 				9B3D5B3F2451AA830076741C /* ForgotApi.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		9B42A2EF2455E54200C8FBD5 /* Check Homework */ = {
+			isa = PBXGroup;
+			children = (
+				9B42A2F02455E54B00C8FBD5 /* CheckHomeworkDetails.swift */,
+				9B42A2F12455E54B00C8FBD5 /* CheckHomeworkVC.swift */,
+				9B42A2F22455E54C00C8FBD5 /* HomeWorkPagerVC.swift */,
+			);
+			path = "Check Homework";
 			sourceTree = "<group>";
 		};
 		9B44D838244EB40300B6DEC5 /* Model */ = {
@@ -4524,6 +4541,7 @@
 				2EC88B762448505300AF60B7 /* TeacherRatingListAPI.swift in Sources */,
 				0C1C28EF238E5BCE00F98FEC /* SyllabusCoverageVC.swift in Sources */,
 				2EC88B772448505300AF60B7 /* AddFeedbackModel.swift in Sources */,
+				9B42A2F32455E54C00C8FBD5 /* CheckHomeworkDetails.swift in Sources */,
 				2EC88B622448501D00AF60B7 /* ViewRatingCell.swift in Sources */,
 				9BB0260D24548CE0009AEB8C /* Student Model.swift in Sources */,
 				C683DB1E22E082BF00011212 /* GetStudentDetail.swift in Sources */,
@@ -4548,6 +4566,7 @@
 				2D645F0222BBB685009EA9B6 /* TeacherListPresenter.swift in Sources */,
 				9B3D5B36245171280076741C /* CheckOTPVC.swift in Sources */,
 				9B1CDD252449B15B003E7650 /* CustomTextField.swift in Sources */,
+				9B42A2F52455E54C00C8FBD5 /* HomeWorkPagerVC.swift in Sources */,
 				BE06B65322A4EE70000CFCAF /* GetAllCountryModel.swift in Sources */,
 				0C1C28FE238E9CD800F98FEC /* StudentRatingTableViewCell.swift in Sources */,
 				BE35664A229E833500759ACA /* ConfirmPasswordVC.swift in Sources */,
@@ -4720,6 +4739,7 @@
 				2DACBC8322BA0B2D00EFE5C4 /* DeleteHODModel.swift in Sources */,
 				10EEEAB8239E57DC00E8485C /* OnlinePaymentCell.swift in Sources */,
 				0C1C28F1238E5BCE00F98FEC /* UpdateSyllabusApi.swift in Sources */,
+				9B42A2F42455E54C00C8FBD5 /* CheckHomeworkVC.swift in Sources */,
 				10EEEAA7239E57DC00E8485C /* ManageUserTableCell.swift in Sources */,
 				0C66858A238FE36B006593D5 /* AddStudentRatingViewModel.swift in Sources */,
 				2DF5641222C1F742006F4522 /* UserListViewModel.swift in Sources */,

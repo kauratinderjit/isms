@@ -9,7 +9,8 @@
 import UIKit
 import SDWebImage
 
-class AddTeacherVC: BaseUIViewController {
+class AddTeacherVC: BaseUIViewController
+{
     @IBOutlet weak var imgViewTeacher: UIImageView!
     @IBOutlet weak var btnAddProfileImage: UIButton!
     @IBOutlet weak var txtFieldFirstName: UITextField!
@@ -378,94 +379,7 @@ extension AddTeacherVC : ViewDelegate{
         }
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
-    {
-        if(textField == txtFieldEmail)
-        {
-            if range.location == 0 && string == " "
-            {
-                return false
-            }
-            
-            return true
-        }
-        else if(textField == txtFieldFirstName)
-        {
-            if range.location == 0 && string == " "
-            {
-                return false
-            }
-            return true
-        }
-        else if(textField == txtFieldLastName)
-        {
-            if range.location == 0 && string == " "
-            {
-                return false
-            }
-            return true
-        }
-        else if(textField == txtFieldIdProofName)
-        {
-            if range.location == 0 && string == " "
-            {
-                return false
-            }
-            return true
-        }
-        else if(textField == txtFieldOthers)
-        {
-            if range.location == 0 && string == " "
-            {
-                return false
-            }
-            return true
-        }
-        else if(textField == txtFieldAddress)
-        {
-            if range.location == 0 && string == " "
-            {
-                return false
-            }
-            return true
-        }
-        else if(textField == txtFieldPhoneNumber)
-        {
-            if range.location == 0 && string == " "
-            {
-                return false
-            }
-            return true
-        }
-        else if(textField == txtFieldQualification)
-        {
-            if range.location == 0 && string == " "
-            {
-                return false
-            }
-            return true
-        }
-        else if(textField == txtFieldWorkExperience)
-        {
-            if range.location == 0 && string == " "
-            {
-                return false
-            }
-            return true
-        }
-        else if(textField == txtFieldAdditionalSkills)
-        {
-            if range.location == 0 && string == " "
-            {
-                return false
-            }
-            return true
-        }
-        else
-        {
-            return true
-        }
-    }
+   
 }
 
 

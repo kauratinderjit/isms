@@ -399,7 +399,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ha-Oa-ob3">
-                                <rect key="frame" x="240" y="478" width="50" height="50"/>
+                                <rect key="frame" x="263" y="456" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="A7A-BP-FtC"/>
                                     <constraint firstAttribute="height" constant="50" id="BbT-C1-sfQ"/>
@@ -412,10 +412,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="PZ2-WF-TgS" firstAttribute="trailing" secondItem="3ha-Oa-ob3" secondAttribute="trailing" constant="30" id="4Vy-oM-kGx"/>
+                            <constraint firstItem="PZ2-WF-TgS" firstAttribute="trailing" secondItem="3ha-Oa-ob3" secondAttribute="trailing" constant="7" id="4Vy-oM-kGx"/>
                             <constraint firstItem="qZi-Co-kqo" firstAttribute="leading" secondItem="PZ2-WF-TgS" secondAttribute="leading" id="DhU-p1-0gG"/>
                             <constraint firstItem="PZ2-WF-TgS" firstAttribute="bottom" secondItem="qZi-Co-kqo" secondAttribute="bottom" id="H3m-nm-AQ9"/>
-                            <constraint firstItem="PZ2-WF-TgS" firstAttribute="bottom" secondItem="3ha-Oa-ob3" secondAttribute="bottom" constant="40" id="N4J-U9-hVl"/>
+                            <constraint firstItem="PZ2-WF-TgS" firstAttribute="bottom" secondItem="3ha-Oa-ob3" secondAttribute="bottom" constant="62" id="N4J-U9-hVl"/>
                             <constraint firstItem="PZ2-WF-TgS" firstAttribute="trailing" secondItem="qZi-Co-kqo" secondAttribute="trailing" id="fr3-Xf-Ek3"/>
                             <constraint firstItem="qZi-Co-kqo" firstAttribute="top" secondItem="PZ2-WF-TgS" secondAttribute="top" id="jpf-YS-Hqj"/>
                         </constraints>

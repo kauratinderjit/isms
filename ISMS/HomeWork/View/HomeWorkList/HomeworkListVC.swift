@@ -103,8 +103,10 @@ extension HomeworkListVC : ViewDelegate {
     
 }
 
-extension HomeworkListVC : AddHomeWorkDelegate {
-    func studentHomeworkDetail(data: [HomeworkListStudentData]) {
+extension HomeworkListVC : AddHomeWorkDelegate
+{
+    func studentHomeworkDetail(data: [HomeworkListStudentData])
+    {
         
     }
     
@@ -134,11 +136,16 @@ extension HomeworkListVC : AddHomeWorkDelegate {
         
         homeWorkList = array
         
-        if homeWorkList?.count ?? 0 > 0 {
+        if homeWorkList?.count ?? 0 > 0
+        {
             lblNoDataFound.isHidden = true
+            self.tblViewCenterLabel(tblView: tblViewListing, lblText: "", hide: true)
+           
         }
-        else {
+        else
+        {
             lblNoDataFound.isHidden = false
+            self.tblViewCenterLabel(tblView: tblViewListing, lblText: KConstants.kNoDataFound, hide: false)
         }
         tblViewListing.reloadData()
     }
