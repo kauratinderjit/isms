@@ -150,6 +150,13 @@ class HomeVC: BaseUIViewController {
             self.homeViewModel?.getDataStudent(userId: UserDefaultExtensionModel.shared.currentUserId)
           
         }
+        else if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Parent")
+               {
+                   self.title = "Parent's Dashboard"
+                   // tblViewListing.isHidden = true
+                   self.homeViewModel?.getDataParentDashboardApi(userId: UserDefaultExtensionModel.shared.currentUserId)
+                 
+               }
         
         
         
@@ -180,6 +187,10 @@ class HomeVC: BaseUIViewController {
 
 extension HomeVC : HomeViewModelDelegate
 {
+    func parentData(data: teacherData) {
+        
+    }
+    
     func AdminData(data: homeAdminResultData)
     {
         lblName.text = data.AdminName

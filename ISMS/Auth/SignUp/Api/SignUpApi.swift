@@ -307,6 +307,60 @@ class SignUpApi {
         }
     }
     
+    func getUserDetailByPhoneEmail(url : String,parameters: [String : Any]?,completionResponse:  @escaping (GetUserDetailByPhoneEmail) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
+        
+        let urlCmplete = BaseUrl.kBaseURL+url
+        print("user : ",urlCmplete)
+        
+        var accessTokken = ""
+        if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String
+        {
+            accessTokken = str
+        }
+        
+        let headers = [KConstants.kHeaderAuthorization:KConstants.kHeaderBearer+" "+accessTokken,KConstants.kAccept: KConstants.kApplicationJson]
+        
+        
+        Alamofire.request(urlCmplete, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print(response)
+            if response.result.isSuccess
+            {
+                guard let data = response.value else{return}
+                
+                if let responseData  = data as? [String : Any]
+                {
+                    print("responseData: ",responseData)
+                    self.getUserDetailIdJSON(data: responseData, completionResponse: { (responseModel) in
+                        completionResponse(responseModel)
+                    }, completionError: { (mapperError) in
+                        completionnilResponse(mapperError)
+                    })
+                    
+                }else{
+                    CommonFunctions.sharedmanagerCommon.println(object: "Get User Access Error:- \(data) ")
+                }
+                
+            }
+            else
+            {
+                complitionError(response.error)
+                return
+            }
+        }
+        
+    }
+    
+    private func getUserDetailIdJSON(data: [String : Any],completionResponse:  @escaping (GetUserDetailByPhoneEmail) -> Void,completionError: @escaping (String?) -> Void)  {
+        
+        let getUserDetailData = GetUserDetailByPhoneEmail(JSON: data)
+        
+        if getUserDetailData != nil{
+            completionResponse(getUserDetailData!)
+        }else{
+            completionError(Alerts.kMapperModelError)
+        }
+    }
+    
     func getCommonDropdownApiPeriod(url : String, parameter : [String:Any]?, completionResponse:  @escaping (GetDropDownModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,Error: @escaping (Error?) -> Void)
     {
         let urlComplete = BaseUrl.kBaseURL + url

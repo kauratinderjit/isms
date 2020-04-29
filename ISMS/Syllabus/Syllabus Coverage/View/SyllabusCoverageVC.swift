@@ -279,8 +279,10 @@ extension SyllabusCoverageVC : SyllabusCoverageDelegate {
        
        func classListDidSuccess(data: GetCommonDropdownModel)
        {
-           if data.resultData != nil{
-               if data.resultData?.count ?? 0 > 0{
+           if data.resultData != nil
+           {
+               if data.resultData?.count ?? 0 > 0
+               {
               
                 classDropdownData = data.resultData
                    textfieldClass.text = data.resultData?[0].name
@@ -296,11 +298,17 @@ extension SyllabusCoverageVC : SyllabusCoverageDelegate {
                 }
                   
 
-               }else{
+               }
+                else
+                {
                     
                    CommonFunctions.sharedmanagerCommon.println(object: "Count is zero.")
                }
            }
+        }
+        else
+        {
+           
         }
     }
 

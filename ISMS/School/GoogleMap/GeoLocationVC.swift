@@ -40,6 +40,8 @@ class GeoLocationVC: BaseUIViewController {
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
             MapView.delegate = self
+            MapView.isMyLocationEnabled = true
+            MapView.settings.myLocationButton = true
             self.MapView.bringSubviewToFront(map_centerPin)
             self.MapView.bringSubviewToFront(lbl_address)
             self.checkUsersLocationServicesAuthorization()

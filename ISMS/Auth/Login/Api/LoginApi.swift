@@ -430,6 +430,53 @@ class LoginApi
         }
     
     
+    //MARK:-ParentDashboardApi
+    
+    func getdataParentDashboard(url : String,parameters: [String : Any]?,completionResponse:  @escaping (homeTeacherModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
+              
+              let urlCmplete = BaseUrl.kBaseURL+url
+              print(urlCmplete)
+              
+              var accessTokken = ""
+              if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String
+              {
+                  accessTokken = str
+              }
+              
+              let headers = [KConstants.kHeaderAuthorization:KConstants.kHeaderBearer+" "+accessTokken,KConstants.kAccept: KConstants.kApplicationJson]
+              
+              
+              Alamofire.request(urlCmplete, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+                  print(response)
+                  if response.result.isSuccess
+                  {
+                      guard let data = response.value else{return}
+                      
+                      if let responseData  = data as? [String : Any]
+                      {
+                          print("responseData: ",responseData)
+                          
+                          self.getParentHomeModel(data: responseData, completionResponse: { (responseModel) in
+                              completionResponse(responseModel)
+                          }, completionError: { (mapperError) in
+                              completionnilResponse(mapperError)
+                          })
+                          
+                      }else{
+                          CommonFunctions.sharedmanagerCommon.println(object: "Get User Access Error:- \(data) ")
+                      }
+                      
+                  }
+                  else
+                  {
+                      complitionError(response.error)
+      //                return
+                  }
+              }
+              
+          }
+    
+    
     private func getHomeModel(data: [String : Any],completionResponse:  @escaping (homeModel) -> Void,completionError: @escaping (String?) -> Void)  {
         
         let UserMenuRoleIdData = homeModel(JSON: data)
@@ -514,6 +561,17 @@ class LoginApi
     private func getStudentHomeModel(data: [String : Any],completionResponse:  @escaping (homeStudentModel) -> Void,completionError: @escaping (String?) -> Void)  {
         
         let UserMenuRoleIdData = homeStudentModel(JSON: data)
+        
+        if UserMenuRoleIdData != nil{
+            completionResponse(UserMenuRoleIdData!)
+        }else{
+            completionError(Alerts.kMapperModelError)
+        }
+    }
+    
+    private func getParentHomeModel(data: [String : Any],completionResponse:  @escaping (homeTeacherModel) -> Void,completionError: @escaping (String?) -> Void)  {
+        
+        let UserMenuRoleIdData = homeTeacherModel(JSON: data)
         
         if UserMenuRoleIdData != nil{
             completionResponse(UserMenuRoleIdData!)

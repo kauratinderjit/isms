@@ -33,6 +33,7 @@ class AddSchoolViewController: BaseUIViewController {
     var dictionaries = [[String:Any]]()
         //NSMutableArray()
     var typeID : Int?
+    var lastAlert = ""
     
     //MARK:- Outlets
     @IBOutlet weak var imgViewProfile: UIImageView!
@@ -79,6 +80,8 @@ class AddSchoolViewController: BaseUIViewController {
      
      let dateFormatter = DateFormatter()
     
+    var headerTitle = "Manage School"
+    
    
     //MARK:- View functions
     override func viewDidLoad() {
@@ -92,6 +95,8 @@ class AddSchoolViewController: BaseUIViewController {
         imgViewProfile.layer.cornerRadius = imgViewProfile.frame.width/2
         self.hideKeyboardWhenTappedAround()
         documentInteractionController.delegate = self
+        
+        self.title = headerTitle
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -183,7 +188,8 @@ class AddSchoolViewController: BaseUIViewController {
             self.viewModel?.getSchoolColleges(id:establishType, enumType: 4 )
         }
     }
-    @IBAction func openLocationSelection(_ sender: UIButton) {
+    @IBAction func openLocationSelection(_ sender: UIButton)
+    {
         self.performSegue(withIdentifier: "moveToMaps", sender: self)
     }
     
@@ -195,10 +201,20 @@ class AddSchoolViewController: BaseUIViewController {
     
     @IBAction func uploadCertificates(_ sender: UIButton) {
         //actionSheet
-        viewPopUp.isHidden = false
-        viewtableView.isHidden = false
-        tableView.isHidden = true
-        viewBlurr.isHidden = false
+        
+        
+        if uploadData.count < 5
+        {
+            viewPopUp.isHidden = false
+            viewtableView.isHidden = false
+            tableView.isHidden = true
+            viewBlurr.isHidden = false
+        }
+        else
+        {
+             self.showAlert(alert: "Sorry you can not add more than 5 attachments in one time.")
+        }
+        
     }
     
     @IBAction func Action_submitInfo(_ sender: Any) {
@@ -222,10 +238,12 @@ class AddSchoolViewController: BaseUIViewController {
         //arrayDeletedItems.append(imageSelected)
         arrayAttachmentsToShow.remove(at: i)
 
-        if arrayAttachments.count == 0{
+        if arrayAttachments.count == 0
+        {
             collectiviewHeight.constant = 0.0
         }
-        else{
+        else
+        {
             self.collectiviewHeight.constant =  164.0
         }
         self.collectonView.reloadData()
@@ -246,9 +264,13 @@ class AddSchoolViewController: BaseUIViewController {
         viewBlurr.isHidden = true
         viewtableView.isHidden = true
     }
+    
+    
+    
 }
 //MARK:- AddSchoolDelegate
-extension AddSchoolViewController: AddSchoolDelegate {
+extension AddSchoolViewController: AddSchoolDelegate
+{
     func unauthorizedUser() {
         isUnauthorizedUser = true
     }
@@ -356,33 +378,47 @@ extension AddSchoolViewController: AddSchoolDelegate {
     }
 }
 //MARK:- ViewDelegate
-extension AddSchoolViewController: ViewDelegate{
+extension AddSchoolViewController: ViewDelegate
+{
     
-    func showLoader() {
+    
+    func showLoader()
+    {
         ShowLoader()
     }
     
-    func hideLoader() {
+    func hideLoader()
+    {
         HideLoader()
     }
-    func showAlert(alert: String){
+    func showAlert(alert: String)
+    {
         initializeCustomOkAlert(self.view, isHideBlurView: true)
         okAlertView.delegate = self
         okAlertView.lblResponseDetailMessage.text = alert
         self.viewBlurr.isHidden = true
         self.viewtableView.isHidden = true
+        self.lastAlert = alert
     }
 }
 //MARK:- Ok Alert Delegates
 //MARK:- Custom Ok Alert
 extension AddSchoolViewController : OKAlertViewDelegate{
     
+    
+    
     //Ok Button Clicked
-    func okBtnAction() {
+    func okBtnAction()
+    {
         self.okAlertView.removeFromSuperview()
         if isUnauthorizedUser == true{
             isUnauthorizedUser = false
             CommonFunctions.sharedmanagerCommon.setRootLogin()
+        }
+        
+        if (self.lastAlert == "Institute updated successfully" || self.lastAlert == "School updated successfully")
+        {
+            self.navigationController?.popToRootViewController(animated: true)
         }
      
     }
@@ -407,6 +443,11 @@ extension AddSchoolViewController: UIDocumentMenuDelegate,UIDocumentPickerDelega
         let modelq = AttachedFiles.init(type: "File", instituteAttachmentName: "\(String(describing: myURL))" ,instituteFileName: "", instituteAttachmentId: 0)
         arrayAttachmentsToShow.append(modelq)
         self.collectonView.reloadData()
+        
+        self.stackView.endEditing(true)
+        self.view.endEditing(true)
+        viewBlurr.isHidden = true
+        viewtableView.isHidden = true
     }
   
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
@@ -437,6 +478,11 @@ extension AddSchoolViewController:UIImagePickerDelegate{
             let model = AttachedFiles.init(type: "Image", instituteAttachmentName: "\(String(describing: url))" ,instituteFileName: "", instituteAttachmentId: 0)
             arrayAttachmentsToShow.append(model)
             self.collectonView.reloadData()
+            
+            self.stackView.endEditing(true)
+            self.view.endEditing(true)
+            viewBlurr.isHidden = true
+            viewtableView.isHidden = true
             
         }
         
@@ -496,11 +542,15 @@ extension AddSchoolViewController : UICollectionViewDelegate , UICollectionViewD
         
         return cell
     }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
         let dataFoRow = arrayAttachmentsToShow[indexPath.row]
-        if(dataFoRow.type == "File"){
+        
+        if(dataFoRow.type == "File")
+        {
             storeAndShare(withURLString: dataFoRow.instituteAttachmentName ?? "")
         }
+        
     }
     
 }
@@ -588,14 +638,16 @@ extension UIViewController
 }
 extension AddSchoolViewController {
     
-    func share(url: URL) {
+    func share(url: URL)
+    {
         documentInteractionController.url = url
         documentInteractionController.uti = url.typeIdentifier ?? "public.data, public.content"
         documentInteractionController.name = url.localizedName ?? url.lastPathComponent
         documentInteractionController.presentPreview(animated: true)
     }
     
-    func storeAndShare(withURLString: String) {
+    func storeAndShare(withURLString: String)
+    {
         guard let url = URL(string: withURLString) else { return }
         /// START YOUR ACTIVITY INDICATOR HERE
         URLSession.shared.dataTask(with: url) { data, response, error in
@@ -609,7 +661,13 @@ extension AddSchoolViewController {
             }
             DispatchQueue.main.async {
                 /// STOP YOUR ACTIVITY INDICATOR HERE
-                self.share(url: tmpURL)
+               // self.share(url: tmpURL)
+                
+                let pdfFilePath = URL(string: tmpURL.absoluteString)
+                let pdfData = NSData(contentsOf: pdfFilePath!)
+                let activityVC = UIActivityViewController(activityItems: [pdfData!], applicationActivities: nil)
+                self.present(activityVC, animated: true, completion: nil)
+                
             }
             }.resume()
     }

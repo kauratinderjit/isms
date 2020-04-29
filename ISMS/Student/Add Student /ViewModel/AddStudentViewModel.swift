@@ -47,10 +47,10 @@ class AddStudentViewModel{
     }
     
     //MARK:- Add Student
-    func addStudent(studentId:Int?,studentUserId: Int?,studentImg: URL?,firstName: String?,lastName: String?,address: String?,dateOfBirth: String?,gender: String?,rollNoOrAddmissionId: String?,email:String?,phoneNumber: String?,studentIdProof:URL?,others:String?,parentImg: URL?, parentFirstName: String?, parentLastName: String?,parentAddress: String?, parentDOB: String?,parentGender: String?,parentEmail: String?,parentPhoneNo: String?,parentIdProof:URL?,parentOthers: String?,relationID: Int?,studentIdProofTile: String?,parentIdProofTitle:String?,classId:Int?,guardianId: Int?,guardianUserId: Int?){
+    func addStudent(studentId:Int?,studentUserId: Int?,studentImg: URL?,firstName: String?,lastName: String?,address: String?,dateOfBirth: String?,gender: String?,rollNoOrAddmissionId: String?,email:String?,phoneNumber: String?,studentIdProof:URL?,others:String?,parentImg: URL?, parentFirstName: String?, parentLastName: String?,parentAddress: String?, parentDOB: String?,parentGender: String?,parentEmail: String?,parentPhoneNo: String?,parentIdProof:URL?,parentOthers: String?,relationID: Int?,studentIdProofTile: String?,parentIdProofTitle:String?,classId:Int?,guardianId: Int?,guardianUserId: Int?,idProofName: String?, parentIdProofName: String?){
         
         do {
-            try validationsAddStudent(firstName: firstName,lastName: lastName,address: address,dateOfBirth: dateOfBirth,gender: gender,rollNoOrAddmissionId: rollNoOrAddmissionId,email:email,phoneNumber: phoneNumber,parentFirstName: parentFirstName, parentLastName: parentLastName,parentAddress: parentAddress, parentDOB: parentDOB,parentEmail: parentEmail,parentPhoneNo: parentPhoneNo,classId: classId)
+            try validationsAddStudent(firstName: firstName,lastName: lastName,address: address,dateOfBirth: dateOfBirth,gender: gender,rollNoOrAddmissionId: rollNoOrAddmissionId,email:email,phoneNumber: phoneNumber,parentFirstName: parentFirstName, parentLastName: parentLastName,parentAddress: parentAddress, parentDOB: parentDOB,parentEmail: parentEmail,parentPhoneNo: parentPhoneNo,classId: classId, idProofName: idProofName, parentIdProofName: parentIdProofName)
             
             var paramDict = [String: Any]()
             
@@ -126,7 +126,10 @@ class AddStudentViewModel{
         }
         catch let error {
             
-            switch  error {
+            switch  error
+            {
+            case ValidationError.phoneOrEmailIsEmpty:
+                self.addStudentView?.showAlert(alert: Alerts.kEmptyStudentPhoneNo)
                 
             case ValidationError.emptyFirstName:
                 self.addStudentView?.showAlert(alert: Alerts.kEmptyFirstName)
@@ -160,7 +163,8 @@ class AddStudentViewModel{
             case ValidationError.emptyRollNoAdmissionId:
                 self.addStudentView?.showAlert(alert: Alerts.kEmptyRollNoAddmissionID)
                 
-                
+            case ValidationError.emptyIDProofName:
+                self.addStudentView?.showAlert(alert: Alerts.kEmptyIdProof)
                 
             case ValidationError.emptyParentFirstName:
                 self.addStudentView?.showAlert(alert: Alerts.kEmptyParentFName)
@@ -179,6 +183,11 @@ class AddStudentViewModel{
             case ValidationError.emptyParentPhoneNo:
                 self.addStudentView?.showAlert(alert: Alerts.kEmptyParentPhoneNo)
                 
+            case ValidationError.emptyParentprofId:
+              self.addStudentView?.showAlert(alert: Alerts.kEmptyIdProof)
+                
+            case ValidationError.emptyClassId:
+                 self.addStudentView?.showAlert(alert: Alerts.kselectClass)
                 
             default:
                 break
@@ -191,7 +200,7 @@ class AddStudentViewModel{
     
     
     //MARK:- Validations Add Student
-    func validationsAddStudent(firstName: String?,lastName: String?,address: String?,dateOfBirth: String?,gender: String?,rollNoOrAddmissionId: String?,email:String?,phoneNumber: String?,parentFirstName: String?, parentLastName: String?,parentAddress: String?, parentDOB: String?,parentEmail: String?,parentPhoneNo: String?,classId: Int?) throws
+    func validationsAddStudent(firstName: String?,lastName: String?,address: String?,dateOfBirth: String?,gender: String?,rollNoOrAddmissionId: String?,email:String?,phoneNumber: String?,parentFirstName: String?, parentLastName: String?,parentAddress: String?, parentDOB: String?,parentEmail: String?,parentPhoneNo: String?,classId: Int?,idProofName : String?,parentIdProofName : String?) throws
     {
         if email == nil&&phoneNumber == nil||email == ""&&phoneNumber == ""{
             throw ValidationError.phoneOrEmailIsEmpty
@@ -244,9 +253,17 @@ class AddStudentViewModel{
             throw ValidationError.emptyRollNoAdmissionId
         }
         
+        guard let idProofName  = idProofName, !idProofName.isEmpty, !idProofName.trimmingCharacters(in: .whitespaces).isEmpty else{
+                 throw ValidationError.emptyIDProofName
+             }
+           guard let parentIdProofName  = parentIdProofName, !parentIdProofName.isEmpty, !parentIdProofName.trimmingCharacters(in: .whitespaces).isEmpty else{
+                          throw ValidationError.emptyParentprofId
+                      }
+                    
+        
         //Optional Fields Validation
         if parentEmail == nil&&parentPhoneNo == nil||parentEmail == ""&&parentPhoneNo == ""{
-            throw ValidationError.phoneOrEmailIsEmpty
+            throw ValidationError.emptyParentPhoneNo
         }else{
             if let emailAdd = parentEmail,!emailAdd.isEmpty,!emailAdd.trimmingCharacters(in: .whitespaces).isEmpty&&parentPhoneNo == "",!emailAdd.isValidEmail(){
                 //                if !emailAdd.isValidEmail(){

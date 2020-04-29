@@ -101,7 +101,8 @@ class AddStudentVC: BaseUIViewController {
     var parentDOB : String?
     var isCameFromImagePickerController : Bool?
     var selectedPreviousTextField : UITextField?//For Phone and Email of Student and Parents
-    
+    var isGuardianDOBSelected:Bool?
+    var selectedStudentDOB:Date?
     //MARK:- Life Cycle of VC
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,6 +117,9 @@ class AddStudentVC: BaseUIViewController {
         hitGetStudentDetailApi()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
     override func viewWillDisappear(_ animated: Bool) {
         if isCameFromImagePickerController != true{
 //            ViewModel?.deattachView()
@@ -197,7 +201,7 @@ class AddStudentVC: BaseUIViewController {
         view.endEditing(true)
         if studentId == 0{
             //For Add Student
-            self.ViewModel?.addStudent(studentId: self.studentId, studentUserId: studentUserId, studentImg: studentImgUrl,firstName: txtFieldFirstName.text, lastName: txtFieldLastName.text, address: txtFieldAddress.text, dateOfBirth: studentDOB,  gender: gender, rollNoOrAddmissionId: txtFieldRollnoOrAddmissionId.text, email: txtFieldEmail.text, phoneNumber: txtFieldPhoneNumber.text,studentIdProof: studentIdUrl, others: txtFieldOthers.text,parentImg: parentImgUrl, parentFirstName: txtParentFirstName.text, parentLastName: txtParentLastName.text,parentAddress: txtparentAddress.text,parentDOB: parentDOB,parentGender: parentGender,parentEmail: txtParentEmail.text,parentPhoneNo: txtParentPhoneNo.text,parentIdProof:parentIdUrl,parentOthers: txtParentOthers.text,relationID: selectedRelationID, studentIdProofTile: txtFieldStudentIdProof.text, parentIdProofTitle:textFieldIDProof.text, classId: selectedClassID, guardianId: gardianId, guardianUserId: 0)
+            self.ViewModel?.addStudent(studentId: self.studentId, studentUserId: studentUserId, studentImg: studentImgUrl,firstName: txtFieldFirstName.text, lastName: txtFieldLastName.text, address: txtFieldAddress.text, dateOfBirth: studentDOB,  gender: gender, rollNoOrAddmissionId: txtFieldRollnoOrAddmissionId.text, email: txtFieldEmail.text, phoneNumber: txtFieldPhoneNumber.text,studentIdProof: studentIdUrl, others: txtFieldOthers.text,parentImg: parentImgUrl, parentFirstName: txtParentFirstName.text, parentLastName: txtParentLastName.text,parentAddress: txtparentAddress.text,parentDOB: parentDOB,parentGender: parentGender,parentEmail: txtParentEmail.text,parentPhoneNo: txtParentPhoneNo.text,parentIdProof:parentIdUrl,parentOthers: txtParentOthers.text,relationID: selectedRelationID, studentIdProofTile: txtFieldStudentIdProof.text, parentIdProofTitle:textFieldIDProof.text, classId: selectedClassID, guardianId: gardianId, guardianUserId: 0, idProofName: txtFieldStudentIdProof.text, parentIdProofName: textFieldIDProof.text)
         }else if studentId != 0{
             //For set the nil value to Profile Image Url/Id Proof Image Url
             if studentImgUrl != nil||parentImgUrl != nil || parentIdUrl != nil || studentIdUrl != nil {
@@ -216,7 +220,7 @@ class AddStudentVC: BaseUIViewController {
             }
         
             //For Update Student
-            self.ViewModel?.addStudent(studentId: self.studentId, studentUserId: studentUserId, studentImg: studentImgUrl,firstName: txtFieldFirstName.text, lastName: txtFieldLastName.text, address: txtFieldAddress.text, dateOfBirth: studentDOB,  gender: gender, rollNoOrAddmissionId: txtFieldRollnoOrAddmissionId.text, email: txtFieldEmail.text, phoneNumber: txtFieldPhoneNumber.text,studentIdProof: studentIdUrl,others: txtFieldOthers.text,parentImg: parentImgUrl, parentFirstName: txtParentFirstName.text, parentLastName: txtParentLastName.text,parentAddress: txtparentAddress.text,parentDOB: parentDOB,parentGender: parentGender,parentEmail: txtParentEmail.text,parentPhoneNo: txtParentPhoneNo.text,parentIdProof:parentIdUrl,parentOthers: txtParentOthers.text,relationID: selectedRelationID,studentIdProofTile: txtFieldStudentIdProof.text,parentIdProofTitle:textFieldIDProof.text, classId: selectedClassID, guardianId: gardianId, guardianUserId: gardianUserId)
+            self.ViewModel?.addStudent(studentId: self.studentId, studentUserId: studentUserId, studentImg: studentImgUrl,firstName: txtFieldFirstName.text, lastName: txtFieldLastName.text, address: txtFieldAddress.text, dateOfBirth: studentDOB,  gender: gender, rollNoOrAddmissionId: txtFieldRollnoOrAddmissionId.text, email: txtFieldEmail.text, phoneNumber: txtFieldPhoneNumber.text,studentIdProof: studentIdUrl,others: txtFieldOthers.text,parentImg: parentImgUrl, parentFirstName: txtParentFirstName.text, parentLastName: txtParentLastName.text,parentAddress: txtparentAddress.text,parentDOB: parentDOB,parentGender: parentGender,parentEmail: txtParentEmail.text,parentPhoneNo: txtParentPhoneNo.text,parentIdProof:parentIdUrl,parentOthers: txtParentOthers.text,relationID: selectedRelationID,studentIdProofTile: txtFieldStudentIdProof.text,parentIdProofTitle:textFieldIDProof.text, classId: selectedClassID, guardianId: gardianId, guardianUserId: gardianUserId,idProofName: txtFieldStudentIdProof.text, parentIdProofName: textFieldIDProof.text)
         }
         
     }
@@ -497,8 +501,8 @@ class AddStudentVC: BaseUIViewController {
     @IBAction func btnClassDropDown(_ sender: Any) {
         classDropDown = true
         if classData.count > 0{
-            self.txtFieldClassDropDown.text = self.classData[0].name
-            self.selectedClassID = self.classData[0].id ?? 0
+         //  self.txtFieldClassDropDown.text = self.classData[0].name
+         //   self.selectedClassID = self.classData[0].id ?? 0
             self.selectedDepartmentIndex = 0
             print("Selected Department:- \(String(describing: self.classData[0].name))")
             UpdatePickerModel(count: classData.count , sharedPickerDelegate: self, View:  self.view)
@@ -693,12 +697,27 @@ extension AddStudentVC: SharedUIDatePickerDelegate{
             }else{
                 if DateVal == KConstants.kIsStudentDOB{
                     studentDOB = "\(datePicker.date)"
+                    selectedStudentDOB = datePicker.date
                     txtFieldDOB.text = strDate
                     ageYears = intYear
                 }else if DateVal == KConstants.kIsParentDOB{
+                    if let studentDOB = selectedStudentDOB{
+                    let studentYears = CommonFunctions.sharedmanagerCommon.getYearsBetweenDates(startDate: studentDOB , endDate: Date())
+                    if  let studentDOB = studentYears{
+                    if intYear < studentDOB{
+                        showAlert(alert: "Guardian age must be grater than student.")
+                        }
+                   
+                    else{
                     parentDOB = "\(datePicker.date)"
                     txtParentDOB.text = strDate
                     parentAgeYear = intYear
+                    }
+                        }
+                                           }
+                    else{
+                        showAlert(alert: "Fill student detail first.")
+                    }
                 }
             }
         }
@@ -714,7 +733,7 @@ extension AddStudentVC: SharedUIPickerDelegate{
              relationDropDown = false
             if let count = relationData.resultData?.count{
                 if count > 0{
-                    
+             
                     if selectedRelationIndex == 0{
                         self.txtParentRelation.text = self.relationData?.resultData?[0].name
                         self.selectedRelationID = self.relationData?.resultData?[0].id ?? 0
@@ -735,7 +754,8 @@ extension AddStudentVC: SharedUIPickerDelegate{
             }
         }else if(classDropDown == true){
             if checkInternetConnection(){
-                
+                self.selectedClassID = classData[selectedClassIndex ?? 0].id
+                self.txtFieldClassDropDown.text = classData[selectedClassIndex ?? 0].name
             }else{
                 
                 self.showAlert(alert: Alerts.kNoInternetConnection)
@@ -749,7 +769,7 @@ extension AddStudentVC: SharedUIPickerDelegate{
           if(relationDropDown == true){
             if let count = relationData.resultData?.count{
                 if count > 0{
-                    txtParentRelation.text = relationData?.resultData?[0].name
+                   // txtParentRelation.text = relationData?.resultData?[0].name
                     return relationData?.resultData?[index].name ?? ""
                 }
                 return ""
@@ -766,7 +786,8 @@ extension AddStudentVC: SharedUIPickerDelegate{
             return ""
         }else if(classDropDown == true){
             if classData.count > 0{
-                self.txtFieldClassDropDown.text = classData[0].name
+                selectedClassIndex = 0
+               // self.txtFieldClassDropDown.text = classData[0].name
                 return classData[index].name ?? ""
             }
             return ""
@@ -782,11 +803,11 @@ extension AddStudentVC: SharedUIPickerDelegate{
             if let count = relationData.resultData?.count{
                 if count > 0{
                     if (self.relationData.resultData?[exist: index]?.name) != nil{
-                        self.txtParentRelation.text = self.relationData?.resultData?[index].name
-                        self.selectedRelationID = self.relationData?.resultData?[index].id ?? 0
+//                        self.txtParentRelation.text = self.relationData?.resultData?[index].name
+//                        self.selectedRelationID = self.relationData?.resultData?[index].id ?? 0
                         self.selectedRelationIndex = index
-                        print("Selected Department:- \(String(describing: self.relationData?.resultData?[index].id))")
-                    }
+//                        print("Selected Department:- \(String(describing: self.relationData?.resultData?[index].id))")
+                   }
                 }
             }
          }else if(departmentDropDown == true){
@@ -796,8 +817,9 @@ extension AddStudentVC: SharedUIPickerDelegate{
             }
         }else if(classDropDown == true){
             if classData.count > 0{
-                self.selectedClassID = classData[index].id
-                self.txtFieldClassDropDown.text = classData[index].name
+                selectedClassIndex = index
+              //  self.selectedClassID = classData[index].id
+             //   self.txtFieldClassDropDown.text = classData[index].name
             }
         }
     }
@@ -836,7 +858,7 @@ extension AddStudentVC : ViewDelegate{
     func setupUI(){
         
         isCameFromImagePickerController = false
-        
+         self.gender = KConstants.KMale
         SetpickerView(self.view)
         setBackButton()
         setDatePickerView(self.view, type: .date)
@@ -847,7 +869,7 @@ extension AddStudentVC : ViewDelegate{
             self.title = KNavigationTitle.kUpdateStudentTitle
         }
         
-        gender = KConstants.KMale
+    
         parentGender = KConstants.KMale
         cornerImage(image: imgViewStudent)
         cornerImage(image: parentImgView)
@@ -948,8 +970,8 @@ extension AddStudentVC : AddStudentDelegate{
     }
     
     func getClassdropdownDidSucceed(data: [ResultData]?) {
-        self.txtFieldClassDropDown.text = data?.first?.name
-        selectedClassID = data?.first?.id
+     //   self.txtFieldClassDropDown.text = data?.first?.name
+       // selectedClassID = data?.first?.id
         if data != nil{
             if data?.count ?? 0 > 0{
                 for value in data!{

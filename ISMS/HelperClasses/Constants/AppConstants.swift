@@ -10,7 +10,7 @@ import Foundation
 
 public struct BaseUrl
 {
-  public static let kBaseURL = "https://stgsd.appsndevs.com/IsmsTest/" //"https://stgsd.appsndevs.com/ISMSQA/"
+  public static let kBaseURL =  "https://stgsd.appsndevs.com/IsmsTest/"//"https://stgsd.appsndevs.com/ISMSQA/"
 
    //"http://stgsd.appsndevs.com/EducationProApi/"
 }
@@ -107,6 +107,8 @@ public struct ApiEndpoints
      public static let kAddTeacherFeedBack = "api/Institute/AddTeacherFeedBack"
      public static let kGetTeacherRatingByHOD = "api/Institute/GetTeacherRatingByHOD"
 
+//    getUserDetailByPhoneNumber on signup
+   public static let kGetUserDetailByPhoneEmail =  "api/User/GetUserDetailByPhoneEmail"
     
     //Chapter Api
     public static let KChapterListApi = "api/Institute/GetChapterList"
@@ -233,6 +235,7 @@ public struct Alerts
     public static let kEmptyDesignation : String = "Please select designation."
     public static let kEmptyWorkExperience : String = "Please add work experience."
     public static let kEmptyQualifications : String = "Please add qualification."
+     public static let kselectClass : String = "Please select class."
 
     public static let kMapperModelError: String = "Mapper Error."
     public static let kUnderAge: String = "You are under age."
@@ -250,6 +253,7 @@ public struct Alerts
     public static let kEmptyParentDOB : String = "Please enter parent DOB."
     public static let kEmptyParentEmail : String = "Please enter parent Email."
     public static let kEmptyParentPhoneNo : String = "Please enter parent phone number."
+     public static let kEmptyStudentPhoneNo : String = "Please enter student phone number."
     
     public static let kDeleteStudentAlert = "Do you really want to delete this Student."
     public static let kDeleteSubjectAlert = "Do you really want to delete this Subject."
@@ -347,6 +351,7 @@ public struct KStoryBoards
         public static let kUpdateClassTitle = "Update Class"
     }
     internal struct KClassListIdentifiers{
+         public static let kSubjectListTitle = "Subject List"
         public static let kClassListTitle = "Class List"
         public static let kStudentRating = "Student Rating"
         public static let kClassListVC = "ClassListVC"
@@ -414,6 +419,8 @@ public struct KStoryBoards
         public static let kAddTitle = "Add Subject"
         public static let kUpdateTitle = "Update Subject"
         public static let kSubjectListTitle = "Subject List"
+         public static let kTopicListTitle = "Topic List"
+         public static let kChapterListTitle = "Chapter List"
     }
     
     internal struct KUserRoleIdIdentifiers{
@@ -1023,8 +1030,10 @@ public struct KConstants{
     static var kTeacher : String = "Teacher"
     static var kDesc : String = "Desc"
     static var kAsc : String = "ASC"
-    static var kNoDataFound : String = "No data found."
+    static var kNoDataFound : String = "No records to display"
     static var kPleaseTryAgain : String = "Please try again."
+    static var KDataNotFound : String = "No records to display"
+    
     //Button Title
     static var kBtnLoginTitle = "LOGIN"
     static var kBtnDoneTitle = "DONE"
@@ -1105,6 +1114,9 @@ public struct KSearchBarPlaceHolder{
     static let kUserSearchBarPlaceHolder : String = "Search User"
     static let kUserSearchBarStudentPlaceHolder : String = "Search Student"
       static let kUserSearchBarSubjectPlaceHolder : String = "Search Subject"
+    static let kUserSearchBarTopicPlaceHolder : String = "Search Topics"
+     static let kUserSearchBarChapterPlaceHolder : String = "Search Chapter"
+     static let kUserSearchBarClassPlaceHolder : String = "Search Subject"
 
     
 }

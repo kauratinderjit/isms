@@ -31,6 +31,7 @@ class ClassAssignSubjectListVC: BaseUIViewController {
     var pageSize = KIntegerConstants.kInt1000
     var pointNow:CGPoint!
     var isFetching:Bool?
+    var selectedClassIndex = 0
     
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -86,7 +87,11 @@ extension ClassAssignSubjectListVC : ClassAssignSubjectListDelegate{
     func assignSubjectsToClassDidSuccess(data: AssignSubjectsToClassResponseModel) {
         if let msg = data.message {
             arrAssignSubtoClass.removeAll()
-            self.showAlert(alert: "Subject assigned successfully and now you can add syllabus by clicking selected subjects.")
+            
+            self.AlertMessageWithOkAction(titleStr: KAPPContentRelatedConstants.kAppTitle, messageStr: "Subject assigned successfully and now you can add syllabus by clicking selected subjects.", Target: self) {
+                self.arrAllAssignedSubjects.removeAll()
+                self.viewModel?.getAllAssignSubjectList(classId: self.selectedClassId ?? 0, searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: self.skip)
+            }
         }
     }
     
@@ -98,6 +103,7 @@ extension ClassAssignSubjectListVC : ClassAssignSubjectListDelegate{
     func classSubjectDidSuccess(data: [GetAllAssignSubjectResultData]?) {
         if data != nil{
             if data?.count ?? 0 > 0{
+                 self.tblViewCenterLabel(tblView: tableView, lblText: "", hide: true)
                 for value in (data)!{
                     let containsSameValue = arrAllAssignedSubjects.contains(where: {$0.subjectId == value.subjectId})
                     if containsSameValue == false{
@@ -106,9 +112,13 @@ extension ClassAssignSubjectListVC : ClassAssignSubjectListDelegate{
                 }
             }else{
                 CommonFunctions.sharedmanagerCommon.println(object: "Zero")
+                self.tblViewCenterLabel(tblView: tblViewpopUp.tblView, lblText: KConstants.KDataNotFound, hide: false)
+
             }
         }else{
             CommonFunctions.sharedmanagerCommon.println(object: "Nil")
+            self.tblViewCenterLabel(tblView: tblViewpopUp.tblView, lblText: KConstants.KDataNotFound, hide: false)
+
         }
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -128,9 +138,9 @@ extension ClassAssignSubjectListVC : ClassAssignSubjectListDelegate{
                 if arrClassList.count > 0{
                     //Hit Get All Assigned Subjects List to Class Api first time
 //                    if isFirstTime == true{
-                        txtFieldSelectClass.text = arrClassList[0].name
-                        selectedClassId = arrClassList[0].classId
-                        self.viewModel?.getAllAssignSubjectList(classId: selectedClassId ?? 0, searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: skip)
+                       // txtFieldSelectClass.text = arrClassList[0].name
+                       // selectedClassId = arrClassList[0].classId
+                       // self.viewModel?.getAllAssignSubjectList(classId: selectedClassId ?? 0, searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: skip)
 //                    }else{
 //                    }
                     
@@ -168,8 +178,9 @@ extension ClassAssignSubjectListVC : ClassAssignSubjectListDelegate{
             self.viewModel = ClassAssignSubjectListViewModel.init(delegate: self)
             self.viewModel?.attachView(viewDelegate: self)
             //Set Search bar in navigation
-            self.setSearchBarInNavigationController(placeholderText: KSearchBarPlaceHolder.kUserSearchBarPlaceHolder, navigationTitle: KStoryBoards.KClassListIdentifiers.kClassListTitle, navigationController: self.navigationController, navigationSearchBarDelegates: self)
+            self.setSearchBarInNavigationController(placeholderText: KSearchBarPlaceHolder.kUserSearchBarClassPlaceHolder, navigationTitle: KStoryBoards.KClassListIdentifiers.kSubjectListTitle, navigationController: self.navigationController, navigationSearchBarDelegates: self)
             txtFieldSelectClass.txtfieldPadding(leftpadding: 20, rightPadding: 0)
+            tblViewCenterLabel(tblView: tableView, lblText: "Select Class for view subjects", hide: false)
             //Set Back Button
             self.setBackButton()
             
@@ -276,7 +287,7 @@ extension ClassAssignSubjectListVC : ClassAssignSubjectListDelegate{
                     tblViewpopUp.tblView.separatorStyle = .singleLine
                     return (arrAllAssignedSubjects.count)
                 }else{
-                    tblViewCenterLabel(tblView: tblViewpopUp.tblView, lblText: KConstants.kNoDataFound, hide: false)
+                   // tblViewCenterLabel(tblView: tblViewpopUp.tblView, lblText: KConstants.kNoDataFound, hide: false)
                     return 0
                 }
             default:
@@ -352,6 +363,8 @@ extension ClassAssignSubjectListVC : ClassAssignSubjectListDelegate{
 extension ClassAssignSubjectListVC : SharedUIPickerDelegate{
     func DoneBtnClicked() {
         if checkInternetConnection(){
+            selectedClassId = arrClassList[self.selectedClassIndex].classId
+            txtFieldSelectClass.text = arrClassList[self.selectedClassIndex].name
             arrAllAssignedSubjects.removeAll()
             self.viewModel?.getAllAssignSubjectList(classId: selectedClassId ?? 0, searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: 0)
         }else{
@@ -361,7 +374,8 @@ extension ClassAssignSubjectListVC : SharedUIPickerDelegate{
     
     func GetTitleForRow(index: Int) -> String {
         if arrClassList.count > 0{
-            txtFieldSelectClass.text = arrClassList[0].name
+            self.selectedClassIndex = 0
+           // txtFieldSelectClass.text = arrClassList[0].name
             return arrClassList[index].name ?? ""
         }
         return ""
@@ -369,8 +383,9 @@ extension ClassAssignSubjectListVC : SharedUIPickerDelegate{
     
     func SelectedRow(index: Int) {
         if arrClassList.count > 0{
+            self.selectedClassIndex = index
             selectedClassId = arrClassList[index].classId
-            txtFieldSelectClass.text = arrClassList[index].name
+          //  txtFieldSelectClass.text = arrClassList[index].name
         }
     }
 }
@@ -404,5 +419,4 @@ extension ClassAssignSubjectListVC : CustomTableViewPopUpDelegate{
         tblViewpopUp.isHidden = true
     }
 }
-
 

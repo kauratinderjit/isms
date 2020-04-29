@@ -31,8 +31,11 @@ class SubjectTopicVC: BaseUIViewController {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
         tableView.separatorColor = KAPPContentRelatedConstants.kLightBlueColour
+        setBackButton()
         self.ViewModel = SubjectChapterTopicViewModel.init(delegate: self)
         self.ViewModel?.attachView(viewDelegate: self)
+        self.title = KStoryBoards.KAddSubjectIdentifiers.kTopicListTitle
+           self.setSearchBarInNavigationController(placeholderText: KSearchBarPlaceHolder.kUserSearchBarTopicPlaceHolder, navigationTitle: KStoryBoards.KAddSubjectIdentifiers.kTopicListTitle, navigationController: self.navigationController, navigationSearchBarDelegates: self)
         
         if let ChapterId = ChapterID {
         self.ViewModel?.TopicList(search: "", skip: 0, pageSize: 10, sortColumnDir: "", sortColumn: "", particularID: ChapterId)
@@ -56,3 +59,4 @@ class SubjectTopicVC: BaseUIViewController {
         textFieldAlert.delegate = self
     }
 }
+

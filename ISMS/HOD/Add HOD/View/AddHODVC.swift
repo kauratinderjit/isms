@@ -82,7 +82,8 @@ class AddHODVC: BaseUIViewController {
     }
     
     //MARK:- Submit Action
-    @IBAction func btnSubmitAction(_ sender: UIButton) {
+    @IBAction func btnSubmitAction(_ sender: UIButton)
+    {
         view.endEditing(true)
 
         //For Add Hod

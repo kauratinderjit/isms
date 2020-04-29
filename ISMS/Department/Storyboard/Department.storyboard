@@ -28,7 +28,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I0I-uy-g7x">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="838"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="668"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dummyProfile" translatesAutoresizingMaskIntoConstraints="NO" id="NGQ-Tt-2uP">
                                                 <rect key="frame" x="127.5" y="32" width="120" height="120"/>
@@ -80,7 +80,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="110" id="aP8-mS-dQb"/>
                                                 </constraints>
-                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next"/>
                                                 <userDefinedRuntimeAttributes>
@@ -223,7 +223,7 @@
                                     <constraint firstItem="I0I-uy-g7x" firstAttribute="top" secondItem="ooC-Dz-Cue" secondAttribute="top" id="3hl-aJ-QAs"/>
                                     <constraint firstAttribute="trailing" secondItem="I0I-uy-g7x" secondAttribute="trailing" id="Bor-RJ-PqA"/>
                                     <constraint firstItem="I0I-uy-g7x" firstAttribute="leading" secondItem="ooC-Dz-Cue" secondAttribute="leading" id="dhp-G0-vK7"/>
-                                    <constraint firstAttribute="bottom" secondItem="F8F-BZ-MG4" secondAttribute="bottom" constant="190" id="iIk-ac-gIm"/>
+                                    <constraint firstAttribute="bottom" secondItem="F8F-BZ-MG4" secondAttribute="bottom" constant="20" id="iIk-ac-gIm"/>
                                 </constraints>
                             </scrollView>
                         </subviews>

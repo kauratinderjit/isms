@@ -9,7 +9,8 @@
 import UIKit
 import SDWebImage
 
-class AddTeacherVC: BaseUIViewController {
+class AddTeacherVC: BaseUIViewController
+{
     @IBOutlet weak var imgViewTeacher: UIImageView!
     @IBOutlet weak var btnAddProfileImage: UIButton!
     @IBOutlet weak var txtFieldFirstName: UITextField!
@@ -33,7 +34,7 @@ class AddTeacherVC: BaseUIViewController {
     @IBOutlet weak var btnDOB: UIButton!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var viewGender: UIView!
-
+    
     //Veriables
     var viewModel : AddTeacherViewModel?
     var assignDepartmentData : GetCommonDropdownModel?
@@ -52,9 +53,9 @@ class AddTeacherVC: BaseUIViewController {
     var isTeacherAddUpdateSuccess = false
     var isUnauthorizedUser = false
     var selectedPreviousTextField : UITextField?
-
-
-
+    
+    
+    
     //MARK:- Life Cycle of VC
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,7 +131,7 @@ class AddTeacherVC: BaseUIViewController {
             gender = KConstants.KNA
         }
     }
-   
+    
     //MARK:- Date Of Birth Button Action
     @IBAction func btnDateOfBirth(_ sender: UIButton) {
         view.endEditing(true)
@@ -181,17 +182,17 @@ extension AddTeacherVC : ViewDelegate{
     }
     
     func setupUI(){
-
+        
         //Connect textfields
         connectFields(fields: [txtFieldEmail,txtFieldFirstName,txtFieldLastName,txtFieldAddress,txtFieldIdProofName,txtFieldQualification,txtFieldWorkExperience,txtFieldAdditionalSkills,txtFieldOthers])
         //Set Shadow of textfields
-//        createMultipleViewsCornerShadow(views: [txtFieldFirstName,txtFieldLastName,txtFieldDOB,txtFieldEmail,txtFieldAssignDepartments,txtFieldAddress,txtFieldQualification,txtFieldAdditionalSkills,txtFieldWorkExperience,txtFieldOthers,txtFieldPhoneNumber,txtFieldIdProofName], radius: 8)
+        //        createMultipleViewsCornerShadow(views: [txtFieldFirstName,txtFieldLastName,txtFieldDOB,txtFieldEmail,txtFieldAssignDepartments,txtFieldAddress,txtFieldQualification,txtFieldAdditionalSkills,txtFieldWorkExperience,txtFieldOthers,txtFieldPhoneNumber,txtFieldIdProofName], radius: 8)
         //Create back button
         setBackButton()
         //UnHide Navigation Bar
         UnHideNavigationBar(navigationController: self.navigationController)
         //Date Picker View
-         setDatePickerView(self.view, type: .date)
+        setDatePickerView(self.view, type: .date)
         //Set Fonts in TextFields
         txtFieldFirstName.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kFirstName)
         txtFieldLastName.SetTextFont(textSize: KTextSize.KFourteen, placeholderText: KPlaceholder.kLastName)
@@ -222,10 +223,10 @@ extension AddTeacherVC : ViewDelegate{
         //Round Image
         imgViewIdProof.createCircleImage()
         imgViewTeacher.createCircleImage()
-       // cornerButton(btn: btnSubmit, radius: 8)
+        // cornerButton(btn: btnSubmit, radius: 8)
         //Set theme Color
         guard let theme = ThemeManager.shared.currentTheme else {return}
-//        btnAddProfileImage.tintColor = theme.uiButtonBackgroundColor
+        //        btnAddProfileImage.tintColor = theme.uiButtonBackgroundColor
         btnSubmit.backgroundColor = theme.uiButtonBackgroundColor
         btnSubmit.titleLabel?.textColor = theme.uiButtonTextColor
     }
@@ -289,7 +290,7 @@ extension AddTeacherVC : ViewDelegate{
                     self.txtFieldPhoneNumber.text = String(describing: phone)
                 }
             }
-//
+            //
             if let idProofName = data.resultData?.idProofTitle{
                 self.txtFieldIdProofName.text = idProofName
             }
@@ -322,7 +323,7 @@ extension AddTeacherVC : ViewDelegate{
             }
             if let imgIDproofUrl = data.resultData?.idProof,imgIDproofUrl != ""{
                 self.imgViewIdProof.sd_imageIndicator = SDWebImageActivityIndicator.gray
-             //   self.selectedIdProofImageURL = URL(string: imgIDproofUrl)
+                //   self.selectedIdProofImageURL = URL(string: imgIDproofUrl)
                 self.imgViewIdProof.contentMode = .center
                 self.imgViewIdProof.sd_setImage(with: URL(string: imgIDproofUrl), placeholderImage: UIImage(named: kImages.kAttachmentImage))
             }else{
@@ -371,12 +372,14 @@ extension AddTeacherVC : ViewDelegate{
             sender.setImage(UIImage(named: kImages.kUncheck), for: .normal)
             //remove action ids
             if let selectedDepartmentId = self.assignDepartmentData?.resultData?[sender.tag].id,let selectedDepartmentName = self.assignDepartmentData?.resultData?[sender.tag].name{
-                    var selectedDepartment = SelectedDepartmentDataModel(departmentName: selectedDepartmentName, departmentId: selectedDepartmentId)
-                    selectedDepartment.isSelected = 0
-                    arrSelectedDepartmentsData = arrSelectedDepartmentsData.filter(){$0.departmentId != selectedDepartment.departmentId}
+                var selectedDepartment = SelectedDepartmentDataModel(departmentName: selectedDepartmentName, departmentId: selectedDepartmentId)
+                selectedDepartment.isSelected = 0
+                arrSelectedDepartmentsData = arrSelectedDepartmentsData.filter(){$0.departmentId != selectedDepartment.departmentId}
             }
         }
     }
+    
+   
 }
 
 
@@ -454,24 +457,24 @@ extension AddTeacherVC : UITableViewDataSource{
 //MARK:- Custom Table Popup View delegate
 extension AddTeacherVC : CustomTableViewPopUpDelegate{
     func submitButton() {
-      if arrSelectedDepartmentsData.count > 0{
-        let arrSelectedDepartmentsNames = arrSelectedDepartmentsData.map({ (model) -> String in
+        if arrSelectedDepartmentsData.count > 0{
+            let arrSelectedDepartmentsNames = arrSelectedDepartmentsData.map({ (model) -> String in
                 if arrSelectedDepartmentsData.count > 0{
                     return model.departmentName!
                 }else{
                     return ""
                 }
             })
-        let arrDepartmentIds = arrSelectedDepartmentsData.map({ (model) -> Int in
-            if arrSelectedDepartmentsData.count > 0{
-                return model.departmentId!
-            }else{
-                return 0
-            }
-        })
-        txtFieldAssignDepartments.text = arrSelectedDepartmentsNames.joined(separator: ",")
-        strDepartmentsIds = arrDepartmentIds.map { String($0) }.joined(separator: ", ")
-      }else{
+            let arrDepartmentIds = arrSelectedDepartmentsData.map({ (model) -> Int in
+                if arrSelectedDepartmentsData.count > 0{
+                    return model.departmentId!
+                }else{
+                    return 0
+                }
+            })
+            txtFieldAssignDepartments.text = arrSelectedDepartmentsNames.joined(separator: ",")
+            strDepartmentsIds = arrDepartmentIds.map { String($0) }.joined(separator: ", ")
+        }else{
             txtFieldAssignDepartments.text = ""
             strDepartmentsIds = ""
         }

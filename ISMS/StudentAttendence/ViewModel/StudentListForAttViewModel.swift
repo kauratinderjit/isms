@@ -50,6 +50,7 @@ class StudentListForAttViewModel {
         
         StudentListForAttendenceApi.sharedManager.getStudentList(url: ApiEndpoints.kStudentListForAttendence, parameters: postDict, completionResponse: { (StudentListForAttModel) in
             self.studentListView?.hideLoader()
+            print("studentList: ",StudentListForAttModel.resultData)
 //            print(StudentListForAttModel.resultData)
             switch StudentListForAttModel.statusCode{
             case KStatusCode.kStatusCode200:
@@ -92,7 +93,7 @@ class StudentListForAttViewModel {
         postDict[KApiParameters.kAddStudentAttendence.kClassSubjectId] = ClassSubjectId
         postDict[KApiParameters.kAddStudentAttendence.kListAttendences] = ListAttendences
         
-        
+        print("postDict: ",postDict)
         StudentListForAttendenceApi.sharedManager.AddStudentAttendence(url: ApiEndpoints.kAddStudentListForAttendence, parameters: postDict, completionResponse: { (AddStudentModel) in
             self.studentListView?.hideLoader()
             print("data: ",AddStudentModel.message)
