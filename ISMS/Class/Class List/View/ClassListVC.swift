@@ -23,7 +23,7 @@ class ClassListVC: BaseUIViewController {
     var skip = Int()
      var classId : Int = 0
     var isScrolling : Bool?
-    var pageSize = KIntegerConstants.kInt10
+    var pageSize = KIntegerConstants.kInt1000
     var pointNow:CGPoint!
     var isFetching:Bool?
    var selectedImageUrl : URL?
