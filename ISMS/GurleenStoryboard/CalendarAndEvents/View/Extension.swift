@@ -78,6 +78,11 @@ extension AddEventVC
         self.datePickerStartTime = UIDatePicker()
         self.datePickerStartTime.datePickerMode = .time
         
+        if (self.selectedStrtDate == self.selectedStrtDate2)
+        {
+            self.datePickerStartTime.minimumDate = Date()
+        }
+        
         //ToolBar
         let toolbar = UIToolbar();
         toolbar.sizeToFit()
@@ -117,6 +122,8 @@ extension AddEventVC
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
         self.tfEventDate.text = formatter.string(from: datePickerStartDate.date)
+        self.selectedStrtDate = self.tfEventDate.text!
+        self.showDatePickerEventStartTime()
         self.view.endEditing(true)
     }
     @objc func donedatePickerDateEnd()
