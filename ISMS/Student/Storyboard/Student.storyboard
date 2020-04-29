@@ -263,7 +263,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </textField>
                                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="Fq7-5C-71S">
-                                                                        <rect key="frame" x="289" y="22.5" width="28" height="7.5"/>
+                                                                        <rect key="frame" x="289" y="18.5" width="28" height="15"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="28" id="V5Q-4R-pjH"/>
                                                                         </constraints>
@@ -313,20 +313,20 @@
                                                                 <rect key="frame" x="24" y="705" width="327" height="52"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lZZ-Nt-zIB">
-                                                                        <rect key="frame" x="8" y="14" width="26.5" height="26.5"/>
+                                                                        <rect key="frame" x="8" y="14" width="53" height="23.5"/>
                                                                         <state key="normal" image="radioSelected"/>
                                                                         <connections>
                                                                             <action selector="selectGenderButton:" destination="2os-n4-7le" eventType="touchUpInside" id="HCh-hJ-P4l"/>
                                                                         </connections>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Male" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b10-Nx-tfk">
-                                                                        <rect key="frame" x="50.5" y="17" width="34.5" height="20.5"/>
+                                                                        <rect key="frame" x="77" y="17" width="33" height="17.5"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFl-aK-B2k">
-                                                                        <rect key="frame" x="140.5" y="20.5" width="14" height="14"/>
+                                                                        <rect key="frame" x="140.5" y="19" width="14" height="14"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="14" id="6RK-MD-fcH"/>
                                                                             <constraint firstAttribute="height" constant="14" id="sf6-mt-dah"/>
@@ -337,13 +337,13 @@
                                                                         </connections>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Female" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pJv-sa-e1b">
-                                                                        <rect key="frame" x="170.5" y="17" width="50.5" height="20.5"/>
+                                                                        <rect key="frame" x="170.5" y="17" width="50.5" height="17.5"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="alp-Pj-uq6">
-                                                                        <rect key="frame" x="268" y="20.5" width="14" height="14"/>
+                                                                        <rect key="frame" x="268" y="19" width="14" height="14"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="14" id="mAc-UD-ybt"/>
                                                                             <constraint firstAttribute="height" constant="14" id="vos-8A-J4S"/>
@@ -354,7 +354,7 @@
                                                                         </connections>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HjQ-62-I15">
-                                                                        <rect key="frame" x="298" y="17" width="21" height="20.5"/>
+                                                                        <rect key="frame" x="298" y="17" width="21" height="17.5"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="21" id="v0N-dO-kQe"/>
                                                                         </constraints>
@@ -979,33 +979,33 @@
                                                                 <rect key="frame" x="24" y="2157" width="327" height="52"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fiS-il-bVs">
-                                                                        <rect key="frame" x="8" y="14" width="26.5" height="26.5"/>
+                                                                        <rect key="frame" x="8" y="14" width="53" height="53"/>
                                                                         <state key="normal" image="radioSelected"/>
                                                                         <connections>
                                                                             <action selector="selectParentGender:" destination="2os-n4-7le" eventType="touchUpInside" id="8f1-BF-95k"/>
                                                                         </connections>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Male" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RgW-W6-God">
-                                                                        <rect key="frame" x="50.5" y="17" width="34.5" height="20.5"/>
+                                                                        <rect key="frame" x="77" y="32" width="33" height="17.5"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ghV-pa-AGq">
-                                                                        <rect key="frame" x="141" y="16.5" width="13.5" height="22"/>
+                                                                        <rect key="frame" x="134" y="27" width="27" height="27"/>
                                                                         <state key="normal" image="radioUnSelected"/>
                                                                         <connections>
                                                                             <action selector="selectParentGender:" destination="2os-n4-7le" eventType="touchUpInside" id="stE-el-q5H"/>
                                                                         </connections>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Female" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIS-kS-0VX">
-                                                                        <rect key="frame" x="170.5" y="17" width="51" height="20.5"/>
+                                                                        <rect key="frame" x="177" y="32" width="49" height="17.5"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <button opaque="NO" tag="2" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qvy-6X-NKl">
-                                                                        <rect key="frame" x="260" y="16.5" width="22" height="22"/>
+                                                                        <rect key="frame" x="260" y="29.5" width="22" height="22"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="22" id="Mxi-nC-3e4"/>
                                                                             <constraint firstAttribute="height" constant="22" id="NJ1-V4-kxK"/>
@@ -1016,7 +1016,7 @@
                                                                         </connections>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p2o-In-Cta">
-                                                                        <rect key="frame" x="298" y="17" width="21" height="20.5"/>
+                                                                        <rect key="frame" x="298" y="32" width="21" height="17.5"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="21" id="qdm-cJ-gqF"/>
                                                                         </constraints>
@@ -1460,18 +1460,18 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Student Class: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kgn-uw-mOx">
-                                        <rect key="frame" x="8" y="22" width="151" height="26"/>
+                                        <rect key="frame" x="8" y="18" width="151" height="34"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="26" id="gEd-jC-Zzh"/>
+                                            <constraint firstAttribute="height" constant="34" id="gEd-jC-Zzh"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Class " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CtM-9m-mlY">
-                                        <rect key="frame" x="167" y="22" width="180" height="26"/>
+                                        <rect key="frame" x="167" y="18" width="180" height="34"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="26" id="9hf-B8-xg6"/>
+                                            <constraint firstAttribute="height" constant="34" id="BzB-Cp-yep"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -1488,10 +1488,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="gdJ-d8-NUB">
-                                        <rect key="frame" x="355" y="22" width="12" height="26"/>
+                                        <rect key="frame" x="355" y="18" width="12" height="34"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hSz-fT-Jkq">
-                                        <rect key="frame" x="167" y="22" width="200" height="30"/>
+                                        <rect key="frame" x="167" y="20" width="200" height="30"/>
                                         <connections>
                                             <action selector="btnOpenDropDown:" destination="WEq-tj-7XP" eventType="touchUpInside" id="VAj-DT-sJV"/>
                                         </connections>
@@ -1500,15 +1500,13 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="CtM-9m-mlY" firstAttribute="centerY" secondItem="kgn-uw-mOx" secondAttribute="centerY" id="2um-PA-CYk"/>
-                                    <constraint firstItem="CtM-9m-mlY" firstAttribute="bottom" secondItem="kgn-uw-mOx" secondAttribute="bottom" id="5kR-Uz-2rV"/>
                                     <constraint firstItem="gdJ-d8-NUB" firstAttribute="leading" secondItem="CtM-9m-mlY" secondAttribute="trailing" constant="8" id="Bsn-Vp-gzo"/>
                                     <constraint firstItem="hSz-fT-Jkq" firstAttribute="trailing" secondItem="gdJ-d8-NUB" secondAttribute="trailing" id="GcC-2O-nAw"/>
                                     <constraint firstItem="gdJ-d8-NUB" firstAttribute="bottom" secondItem="kgn-uw-mOx" secondAttribute="bottom" id="H6y-bh-yD9"/>
-                                    <constraint firstItem="CtM-9m-mlY" firstAttribute="top" secondItem="kgn-uw-mOx" secondAttribute="top" id="I8X-0e-uif"/>
+                                    <constraint firstItem="hSz-fT-Jkq" firstAttribute="centerY" secondItem="CtM-9m-mlY" secondAttribute="centerY" id="OhU-lX-mDT"/>
                                     <constraint firstItem="CtM-9m-mlY" firstAttribute="leading" secondItem="kgn-uw-mOx" secondAttribute="trailing" constant="8" id="SG2-3M-GDP"/>
                                     <constraint firstAttribute="height" constant="70" id="Tm9-b4-Yd4"/>
                                     <constraint firstItem="gdJ-d8-NUB" firstAttribute="centerY" secondItem="kgn-uw-mOx" secondAttribute="centerY" id="Zxl-EK-rjw"/>
-                                    <constraint firstItem="hSz-fT-Jkq" firstAttribute="top" secondItem="CtM-9m-mlY" secondAttribute="top" id="aKb-10-mRf"/>
                                     <constraint firstAttribute="trailing" secondItem="gdJ-d8-NUB" secondAttribute="trailing" constant="8" id="jm2-IL-zcJ"/>
                                     <constraint firstItem="hSz-fT-Jkq" firstAttribute="leading" secondItem="CtM-9m-mlY" secondAttribute="leading" id="vNl-5A-36N"/>
                                     <constraint firstItem="gdJ-d8-NUB" firstAttribute="top" secondItem="kgn-uw-mOx" secondAttribute="top" id="weO-Ox-n09"/>
@@ -1660,7 +1658,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dbX-3h-0o3">
-                                        <rect key="frame" x="112" y="25" width="236" height="38"/>
+                                        <rect key="frame" x="112" y="25" width="224" height="38"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -1700,13 +1698,13 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="QF1-nJ-HFS">
-                                        <rect key="frame" x="355" y="25" width="12" height="38"/>
+                                        <rect key="frame" x="343" y="25" width="24" height="38"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="1Dj-6M-eES">
-                                        <rect key="frame" x="356" y="86.5" width="12" height="7.5"/>
+                                        <rect key="frame" x="356" y="82.5" width="12" height="15"/>
                                     </imageView>
                                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="C8o-Zk-6Rq">
-                                        <rect key="frame" x="356" y="130.5" width="12" height="7.5"/>
+                                        <rect key="frame" x="356" y="126.5" width="12" height="15"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Subject" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UP5-df-9jW">
                                         <rect key="frame" x="8" y="77" width="96" height="26"/>
@@ -1882,7 +1880,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="CI5-qt-DgV">
-                                                            <rect key="frame" x="329" y="27.5" width="16" height="7.5"/>
+                                                            <rect key="frame" x="329" y="24" width="16" height="15"/>
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8S-zk-OAm">
                                                             <rect key="frame" x="211" y="11" width="30" height="30"/>
@@ -1958,7 +1956,7 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="131"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Class" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BXW-Cb-6JQ">
-                                        <rect key="frame" x="8" y="22" width="94.5" height="26"/>
+                                        <rect key="frame" x="8" y="22" width="82.5" height="26"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="26" id="nND-Cb-TeO"/>
                                         </constraints>
@@ -1967,7 +1965,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b7d-3F-hHA">
-                                        <rect key="frame" x="118" y="22" width="229" height="26"/>
+                                        <rect key="frame" x="106" y="22" width="229" height="26"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -1984,13 +1982,13 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NB7-88-trs">
-                                        <rect key="frame" x="118" y="22" width="249" height="30"/>
+                                        <rect key="frame" x="106" y="22" width="261" height="30"/>
                                         <connections>
                                             <action selector="ActionClassPicker:" destination="Ah5-py-Wpn" eventType="touchUpInside" id="ImZ-XN-XnA"/>
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ddsfdf" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8r7-cU-V5s">
-                                        <rect key="frame" x="118" y="54" width="230" height="26"/>
+                                        <rect key="frame" x="106" y="54" width="230" height="26"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -2007,16 +2005,16 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="JMw-eq-3YN">
-                                        <rect key="frame" x="355" y="22" width="12" height="26"/>
+                                        <rect key="frame" x="343" y="22" width="24" height="26"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="kA8-tq-cK2">
-                                        <rect key="frame" x="355" y="63.5" width="13" height="7.5"/>
+                                        <rect key="frame" x="343" y="59.5" width="25" height="15"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="CY4-Fx-0G0">
-                                        <rect key="frame" x="356" y="94.5" width="12" height="7"/>
+                                        <rect key="frame" x="344" y="94.5" width="24" height="7"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Student" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mIF-Zd-7Bh">
-                                        <rect key="frame" x="8" y="54" width="102" height="26"/>
+                                        <rect key="frame" x="8" y="54" width="90" height="26"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="26" id="uTU-dD-s6v"/>
                                         </constraints>
@@ -2034,7 +2032,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="dss" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nOp-uK-nmg">
-                                        <rect key="frame" x="118" y="85" width="231.5" height="26"/>
+                                        <rect key="frame" x="106" y="85" width="231.5" height="26"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -2051,7 +2049,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aek-LI-hE3">
-                                        <rect key="frame" x="119" y="83" width="257" height="30"/>
+                                        <rect key="frame" x="107" y="83" width="257" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="NLR-eQ-Kwf"/>
                                             <constraint firstAttribute="width" constant="257" id="y8Y-T8-oOs"/>
@@ -2061,7 +2059,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tfx-Wk-DY6">
-                                        <rect key="frame" x="118" y="52" width="258" height="30"/>
+                                        <rect key="frame" x="106" y="52" width="258" height="30"/>
                                         <connections>
                                             <action selector="ActionStudentPicker:" destination="Ah5-py-Wpn" eventType="touchUpInside" id="vH5-A0-Rj7"/>
                                         </connections>
