@@ -542,11 +542,15 @@ extension AddSchoolViewController : UICollectionViewDelegate , UICollectionViewD
         
         return cell
     }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
         let dataFoRow = arrayAttachmentsToShow[indexPath.row]
-        if(dataFoRow.type == "File"){
+        
+        if(dataFoRow.type == "File")
+        {
             storeAndShare(withURLString: dataFoRow.instituteAttachmentName ?? "")
         }
+        
     }
     
 }
@@ -634,14 +638,16 @@ extension UIViewController
 }
 extension AddSchoolViewController {
     
-    func share(url: URL) {
+    func share(url: URL)
+    {
         documentInteractionController.url = url
         documentInteractionController.uti = url.typeIdentifier ?? "public.data, public.content"
         documentInteractionController.name = url.localizedName ?? url.lastPathComponent
         documentInteractionController.presentPreview(animated: true)
     }
     
-    func storeAndShare(withURLString: String) {
+    func storeAndShare(withURLString: String)
+    {
         guard let url = URL(string: withURLString) else { return }
         /// START YOUR ACTIVITY INDICATOR HERE
         URLSession.shared.dataTask(with: url) { data, response, error in
@@ -655,7 +661,13 @@ extension AddSchoolViewController {
             }
             DispatchQueue.main.async {
                 /// STOP YOUR ACTIVITY INDICATOR HERE
-                self.share(url: tmpURL)
+               // self.share(url: tmpURL)
+                
+                let pdfFilePath = URL(string: tmpURL.absoluteString)
+                let pdfData = NSData(contentsOf: pdfFilePath!)
+                let activityVC = UIActivityViewController(activityItems: [pdfData!], applicationActivities: nil)
+                self.present(activityVC, animated: true, completion: nil)
+                
             }
             }.resume()
     }

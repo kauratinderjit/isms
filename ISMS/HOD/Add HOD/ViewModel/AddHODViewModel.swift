@@ -121,6 +121,10 @@ class AddHODViewModel{
             
             switch  error {
                 
+                
+            case ValidationError.phoneOrEmailIsEmpty:
+                addHODView?.showAlert(alert: "Phone Number or Email Address should not be empty")
+                
             case ValidationError.emptyPhoneNumber:
                 addHODView?.showAlert(alert: Alerts.kEmptyPhoneNumber)
                 
@@ -216,24 +220,50 @@ class AddHODViewModel{
     //MARK:- Validations Add HOD
     func validationsAddHOD(hodId:Int?,firstName: String?,lastName: String?,address: String?,dateOfBirth: String?,gender: String?,profileImageUrl: URL? ,idProofName: String? ,idProofImgUrl: URL?,email:String?,phoneNumber: String?,departmentId: Int?,departmentName: String?,qualification: String?,workExperience: String?,additionalSkills:String?,others: String?) throws
     {
-        if email == nil&&phoneNumber == nil||email == ""&&phoneNumber == ""{
+        if email == nil&&phoneNumber == nil||email == ""&&phoneNumber == ""
+        {
             throw ValidationError.phoneOrEmailIsEmpty
-        }else{
-            if let emailAdd = email,!emailAdd.isEmpty,!emailAdd.trimmingCharacters(in: .whitespaces).isEmpty&&phoneNumber == "",!emailAdd.isValidEmail(){
+        }
+        else
+        {
+            
+            if let emailAdd = email,!emailAdd.isEmpty,!emailAdd.trimmingCharacters(in: .whitespaces).isEmpty&&phoneNumber == "",!emailAdd.isValidEmail()
+            {
                 //                if !emailAdd.isValidEmail(){
                 throw ValidationError.invalidEmail
                 //                }
-            }else if let phNo = phoneNumber,!phNo.isEmpty,!phNo.trimmingCharacters(in: .whitespaces).isEmpty&&email == ""{
-                if let phNo = phoneNumber,phNo.count < 10{
+            }
+            else if let phNo = phoneNumber,!phNo.isEmpty,!phNo.trimmingCharacters(in: .whitespaces).isEmpty&&email == ""
+            {
+                if let phNo = phoneNumber,phNo.count < 10
+                {
                     throw ValidationError.minCharactersPhoneNumber
                 }
-            }else if let phNo = phoneNumber,!phNo.isEmpty,!phNo.trimmingCharacters(in: .whitespaces).isEmpty,let emailAdd = email,!emailAdd.isEmpty,!emailAdd.trimmingCharacters(in: .whitespaces).isEmpty{
-                if phNo.count < 10{
+                else if phNo.count == 0
+                {
+                    throw ValidationError.emptyPhoneNumber
+                }
+            }
+            else if let phNo = phoneNumber,!phNo.isEmpty,!phNo.trimmingCharacters(in: .whitespaces).isEmpty,let emailAdd = email,!emailAdd.isEmpty,!emailAdd.trimmingCharacters(in: .whitespaces).isEmpty{
+                if phNo.count < 10
+                {
                     throw ValidationError.minCharactersPhoneNumber
                 }
-                else if !emailAdd.isValidEmail(){
+                else if !emailAdd.isValidEmail()
+                {
                     throw ValidationError.invalidEmail
                 }
+                
+            }
+            
+                
+            else if phoneNumber?.count ?? 0 > 10
+            {
+                throw ValidationError.minCharactersPhoneNumber
+            }
+            else if phoneNumber?.count ?? 0 == 0
+            {
+                throw ValidationError.emptyPhoneNumber
             }
         }
         
@@ -532,6 +562,23 @@ extension AddHODVC : UITextFieldDelegate{
                     }
                 }
             }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+        if textField == txtFieldFirstName || textField == txtFieldLastName
+        {
+            if let _  = string.rangeOfCharacter(from: NSCharacterSet.decimalDigits)
+            {
+               return false
+            }
+            else
+            {
+               return true
+            }
+        }
+        
+        return true
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool{
