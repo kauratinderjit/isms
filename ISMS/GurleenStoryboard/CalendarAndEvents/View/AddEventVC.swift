@@ -50,7 +50,10 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
     var editEventModel : EventScheduleListResultData?
     public var lstActionAccess : GetMenuFromRoleIdModel.ResultData?
     
-    
+    @IBOutlet weak var selectedStartDate: UILabel!
+    @IBOutlet weak var selectEndDate: UILabel!
+    @IBOutlet weak var selectStartTime: UILabel!
+    @IBOutlet weak var selectEndTime: UILabel!
     //Converts string into date
     let formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -91,7 +94,6 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
             
             if editEventModel != nil
             {
-                
                 txtViewDescription.text = editEventModel?.Description
                 lbl_MessagePlaceholder.isHidden = true
                 txtfieldTitle.text = editEventModel?.Title
@@ -132,7 +134,8 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
                 _ = arrAccess?.enumerated().map { (index,element) in
                     
                     if element.actionName == "Edit" {
-                        
+                        self.title = "Update Event"
+
                         calenderDate.isUserInteractionEnabled = true
                         txtfieldTitle.isUserInteractionEnabled = true
                         txtViewDescription.isUserInteractionEnabled = true
@@ -141,6 +144,8 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
                         
                     }
                     else{
+                        self.title = "View Event Details"
+
                         calenderDate.isUserInteractionEnabled = false
                         txtfieldTitle.isUserInteractionEnabled = false
                         txtViewDescription.isUserInteractionEnabled = false
@@ -150,6 +155,10 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
                         tfEventEndDate.isUserInteractionEnabled = false
                         tfStartTime.isUserInteractionEnabled = false
                          tfEndTime.isUserInteractionEnabled = false
+                        selectEndDate.text = "End Date"
+                        selectedStartDate.text = "Start Date"
+                        selectStartTime.text = "Start Time"
+                        selectEndTime.text = "End Time"
                     }
                 }
             }
