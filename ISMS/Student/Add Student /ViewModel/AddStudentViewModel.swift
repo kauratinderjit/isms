@@ -356,7 +356,7 @@ class AddStudentViewModel{
                     self?.addStudentDelegate?.unauthorizedUser()
                 case KStatusCode.kStatusCode404:
                     self?.addStudentDelegate?.studentParentNotExist(isStudent: false)
-            case KStatusCode.kStatusCode409:
+                case KStatusCode.kStatusCode409:
                 self?.addStudentView?.showAlert(alert: GetDetailByPhoneEmailGardianModel.message ?? "Something went wrong")
                 default:
                     CommonFunctions.sharedmanagerCommon.println(object: "verifyPhoneAndEmailGardian APi status change")
