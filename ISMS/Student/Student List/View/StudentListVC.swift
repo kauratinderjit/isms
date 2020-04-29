@@ -45,10 +45,12 @@ class StudentListVC: BaseUIViewController {
         if checkInternetConnection(){
             arrStudentlist.removeAll()
             
+           
               self.ViewModel?.getClassId(id:departmentId, enumtype: 6)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
+         
     }
     
     @IBAction func BtnEditAction(_ sender: Any) {
@@ -107,6 +109,7 @@ class StudentListVC: BaseUIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorColor = KAPPContentRelatedConstants.kLightBlueColour
+        self.tblViewCenterLabel(tblView: tableView, lblText: "Select student class", hide: false)
         dropDownTextField.txtfieldPadding(leftpadding: 10, rightPadding: 0)
         SetpickerView(self.view)
         
@@ -181,7 +184,7 @@ extension StudentListVC : UITableViewDataSource{
             tableView.separatorStyle = .singleLine
             return (arrStudentlist.count)
         }else{
-            tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
+          //  tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
             return 0
         }
     }
@@ -205,9 +208,9 @@ extension StudentListVC : StudentListDelegate{
             if count > 0 {
 //                UpdatePickerModel2(count: classData?.resultData?.count ?? 0, sharedPickerDelegate: self, View:  self.view, index: 0)
                 var resultData = classData.resultData
-                self.dropDownTextField.text = resultData?[0].name
-                var newClassId = resultData?[0].id
-                 self.ViewModel?.studentList(classId : newClassId, Search: "", Skip: KIntegerConstants.kInt0, PageSize: pageSize)
+               // self.dropDownTextField.text = resultData?[0].name
+              //  var newClassId = resultData?[0].id
+               //  self.ViewModel?.studentList(classId : newClassId, Search: "", Skip: KIntegerConstants.kInt0, PageSize: pageSize)
             }else{
                 print("Department Count is zero.")
             }
@@ -339,7 +342,7 @@ extension StudentListVC: SharedUIPickerDelegate{
             if count > 0{
                 //Bool for set the array in the list of students for selected class
                 isClassSelected = true
-                
+                dropDownTextField.text = classData?.resultData?[selectedClassIndex].name
                 if selectedClassIndex == 0{
                     self.dropDownTextField.text = self.classData?.resultData?[selectedClassIndex].name
                     self.selectedClassID = self.classData?.resultData?[selectedClassIndex].id ?? 0
@@ -356,7 +359,7 @@ extension StudentListVC: SharedUIPickerDelegate{
     func GetTitleForRow(index: Int) -> String {
         if let count = classData.resultData?.count{
             if count > 0{
-                dropDownTextField.text = classData?.resultData?[0].name
+                //dropDownTextField.text = classData?.resultData?[0].name
                 selectedClassID = classData?.resultData?[0].id ?? 0
                 selectedClassIndex = 0
                 return classData?.resultData?[index].name ?? ""
@@ -372,7 +375,7 @@ extension StudentListVC: SharedUIPickerDelegate{
         if let count = classData.resultData?.count{
             if count > 0{
                 if (self.classData.resultData?[exist: index]?.name) != nil{
-                    self.dropDownTextField.text = self.classData?.resultData?[index].name
+                   // self.dropDownTextField.text = self.classData?.resultData?[index].name
                     self.selectedClassID = self.classData?.resultData?[index].id ?? 0
                     self.selectedClassIndex = index
                     print("Selected Department:- \(String(describing: self.classData?.resultData?[index].name))")
@@ -391,14 +394,18 @@ extension StudentListVC : NavigationSearchBarDelegate{
     func textDidChange(searchBar: UISearchBar, searchText: String) {
         DispatchQueue.main.async {
             self.arrStudentlist.removeAll()
+            if self.selectedClassID != nil{
             self.ViewModel?.studentList(classId :self.selectedClassID, Search: searchText, Skip: KIntegerConstants.kInt0, PageSize: KIntegerConstants.kInt10)
+            }
         }
     }
     
     func cancelButtonPress(uiSearchBar: UISearchBar) {
         DispatchQueue.main.async {
             self.arrStudentlist.removeAll()
-            self.ViewModel?.studentList(classId : 0, Search: "", Skip: KIntegerConstants.kInt0, PageSize: KIntegerConstants.kInt10)
+             if self.selectedClassID != nil{
+            self.ViewModel?.studentList(classId : self.selectedClassID, Search: "", Skip: KIntegerConstants.kInt0, PageSize: KIntegerConstants.kInt10)
+            }
         }
     }
 }

@@ -233,6 +233,7 @@ public struct Alerts
     public static let kEmptyDesignation : String = "Please select designation."
     public static let kEmptyWorkExperience : String = "Please add work experience."
     public static let kEmptyQualifications : String = "Please add qualification."
+     public static let kselectClass : String = "Please select class."
 
     public static let kMapperModelError: String = "Mapper Error."
     public static let kUnderAge: String = "You are under age."
@@ -250,6 +251,7 @@ public struct Alerts
     public static let kEmptyParentDOB : String = "Please enter parent DOB."
     public static let kEmptyParentEmail : String = "Please enter parent Email."
     public static let kEmptyParentPhoneNo : String = "Please enter parent phone number."
+     public static let kEmptyStudentPhoneNo : String = "Please enter student phone number."
     
     public static let kDeleteStudentAlert = "Do you really want to delete this Student."
     public static let kDeleteSubjectAlert = "Do you really want to delete this Subject."
