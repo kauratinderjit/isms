@@ -215,9 +215,9 @@ class AddTeacherViewModel{
         }
         
         
-        guard let departmentID = assignDepartmentId,!departmentID.isEmpty,!departmentID.trimmingCharacters(in: .whitespaces).isEmpty else{
-            throw ValidationError.emptyDepartmentID
-        }
+//        guard let departmentID = assignDepartmentId,!departmentID.isEmpty,!departmentID.trimmingCharacters(in: .whitespaces).isEmpty else{
+//            throw ValidationError.emptyDepartmentID
+//        }
         
         
         if (qualification?.count == 0)

@@ -94,6 +94,7 @@ enum ValidationError: Error {
     case emptyClassId
     case emptySubjectName
     case emptySubjectDescription
+    case emptyParentprofId
 }
 
 enum CountryStateCity : Int{
