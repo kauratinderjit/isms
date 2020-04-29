@@ -534,6 +534,23 @@ extension AddHODVC : UITextFieldDelegate{
             }
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+        if textField == txtFieldFirstName || textField == txtFieldLastName
+        {
+            if let _  = string.rangeOfCharacter(from: NSCharacterSet.decimalDigits)
+            {
+               return false
+            }
+            else
+            {
+               return true
+            }
+        }
+        
+        return true
+    }
+    
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool{
         return true
     }

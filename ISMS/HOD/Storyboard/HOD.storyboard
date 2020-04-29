@@ -52,7 +52,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="obp-v9-kTe">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1343"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sm6-6i-wGl">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile Number*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sm6-6i-wGl">
                                                                 <rect key="frame" x="24" y="0.0" width="327" height="20.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20.5" id="iqM-KM-r5j"/>
@@ -87,7 +87,7 @@
                                                                     <outlet property="delegate" destination="LAF-cG-Jeh" id="gop-sC-bDZ"/>
                                                                 </connections>
                                                             </textField>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gmail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9T-0e-MNq">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9T-0e-MNq">
                                                                 <rect key="frame" x="24" y="104.5" width="327" height="20.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20.5" id="c5u-Np-22h"/>
@@ -122,7 +122,7 @@
                                                                     <outlet property="delegate" destination="LAF-cG-Jeh" id="iAu-2A-sfH"/>
                                                                 </connections>
                                                             </textField>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z0P-lV-h8c">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z0P-lV-h8c">
                                                                 <rect key="frame" x="24" y="209" width="327" height="20.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20.5" id="gkx-V7-M32"/>
@@ -157,7 +157,7 @@
                                                                     <outlet property="delegate" destination="LAF-cG-Jeh" id="x8P-T7-AFh"/>
                                                                 </connections>
                                                             </textField>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IxD-2G-zfB">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IxD-2G-zfB">
                                                                 <rect key="frame" x="24" y="313.5" width="327" height="20.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20.5" id="D57-DV-Jfb"/>
@@ -189,7 +189,7 @@
                                                                     <outlet property="delegate" destination="LAF-cG-Jeh" id="jee-YX-cO3"/>
                                                                 </connections>
                                                             </textField>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Im0-89-OFB">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Im0-89-OFB">
                                                                 <rect key="frame" x="24" y="418" width="327" height="20.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20.5" id="QC0-6o-wrN"/>
@@ -221,7 +221,7 @@
                                                                     <outlet property="delegate" destination="LAF-cG-Jeh" id="nOt-wO-TIi"/>
                                                                 </connections>
                                                             </textField>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select DOB" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ltP-2Q-O4s">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select DOB*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ltP-2Q-O4s">
                                                                 <rect key="frame" x="24" y="522.5" width="327" height="20.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20.5" id="Svy-Jt-Ucw"/>
@@ -278,7 +278,7 @@
                                                                     <constraint firstItem="wOz-bO-X7t" firstAttribute="top" secondItem="cPB-lc-HSp" secondAttribute="top" id="mm4-pu-gsA"/>
                                                                 </constraints>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Gender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ijl-7O-7QE">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Gender*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ijl-7O-7QE">
                                                                 <rect key="frame" x="24" y="627" width="327" height="21"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="21" id="zFf-51-khr"/>
@@ -379,7 +379,7 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Id Proof Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRx-3O-haN">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Id Proof Name*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRx-3O-haN">
                                                                 <rect key="frame" x="24" y="732" width="327" height="20.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20.5" id="Jo0-dv-BuQ"/>
@@ -446,7 +446,7 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Department Name " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8h-v9-CjS">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Department Name*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8h-v9-CjS">
                                                                 <rect key="frame" x="24" y="836.5" width="327" height="20.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20.5" id="x7P-Vl-Gky"/>
@@ -503,7 +503,7 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qualification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVA-7U-2vD">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qualification*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVA-7U-2vD">
                                                                 <rect key="frame" x="24" y="941" width="327" height="20.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20.5" id="894-kV-qMP"/>
@@ -538,7 +538,7 @@
                                                                     <outlet property="delegate" destination="LAF-cG-Jeh" id="Pin-UR-k2l"/>
                                                                 </connections>
                                                             </textField>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work Experience" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mpr-5E-ToF">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work Experience*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mpr-5E-ToF">
                                                                 <rect key="frame" x="24" y="1045.5" width="327" height="20.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20.5" id="kjC-wP-3ht"/>
@@ -919,7 +919,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jfK-Ij-AeP">
-                                <rect key="frame" x="240" y="478" width="50" height="50"/>
+                                <rect key="frame" x="260" y="442" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="Clq-f1-idG"/>
                                     <constraint firstAttribute="height" constant="50" id="low-R6-Ttv"/>
@@ -932,11 +932,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="6Gv-aG-ggW" firstAttribute="bottom" secondItem="jfK-Ij-AeP" secondAttribute="bottom" constant="40" id="7wE-58-13t"/>
+                            <constraint firstItem="6Gv-aG-ggW" firstAttribute="bottom" secondItem="jfK-Ij-AeP" secondAttribute="bottom" constant="76" id="7wE-58-13t"/>
                             <constraint firstItem="gri-PJ-oQm" firstAttribute="top" secondItem="6Gv-aG-ggW" secondAttribute="top" id="Hj3-2J-F1U"/>
                             <constraint firstItem="6Gv-aG-ggW" firstAttribute="bottom" secondItem="gri-PJ-oQm" secondAttribute="bottom" id="e8Z-Xg-3SR"/>
                             <constraint firstItem="6Gv-aG-ggW" firstAttribute="trailing" secondItem="gri-PJ-oQm" secondAttribute="trailing" id="emc-0m-0eN"/>
-                            <constraint firstItem="6Gv-aG-ggW" firstAttribute="trailing" secondItem="jfK-Ij-AeP" secondAttribute="trailing" constant="30" id="k9x-Tk-46c"/>
+                            <constraint firstItem="6Gv-aG-ggW" firstAttribute="trailing" secondItem="jfK-Ij-AeP" secondAttribute="trailing" constant="10" id="k9x-Tk-46c"/>
                             <constraint firstItem="gri-PJ-oQm" firstAttribute="leading" secondItem="6Gv-aG-ggW" secondAttribute="leading" id="mgR-Fi-beR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Gv-aG-ggW"/>
