@@ -107,6 +107,8 @@ public struct ApiEndpoints
      public static let kAddTeacherFeedBack = "api/Institute/AddTeacherFeedBack"
      public static let kGetTeacherRatingByHOD = "api/Institute/GetTeacherRatingByHOD"
 
+//    getUserDetailByPhoneNumber on signup
+   public static let kGetUserDetailByPhoneEmail =  "api/User/GetUserDetailByPhoneEmail"
     
     //Chapter Api
     public static let KChapterListApi = "api/Institute/GetChapterList"

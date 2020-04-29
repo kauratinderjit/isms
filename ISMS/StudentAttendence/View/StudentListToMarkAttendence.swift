@@ -184,10 +184,18 @@ extension StudentListToMarkAttendence :  StudentListForAttDelegate{
                 
                 arrStudentlist.removeAll()
                 _ = rsltData.map({ (data) in
-                    let arr = ["EnrollmentId" : 0, "Status" : ""] as [String : Any]
-                    studentAttendenceArray.append(arr)
+                    if data.status == nil {
+                        let arr = ["EnrollmentId" :data.enrollmentId, "Status" : ""] as [String : Any]
+                         studentAttendenceArray.append(arr)
+                    }else{
+                          let arr = ["EnrollmentId" :data.enrollmentId, "Status" : data.status] as [String : Any]
+                         studentAttendenceArray.append(arr)
+                    }
+                    
+                   
                     arrStudentlist.append(data)
                 })
+                
                 self.tblViewCenterLabel(tblView: tableViewStudent, lblText: "", hide: true)
             }else{
                 CommonFunctions.sharedmanagerCommon.println(object: "Zero")

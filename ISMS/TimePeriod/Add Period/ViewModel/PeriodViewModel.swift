@@ -100,10 +100,11 @@ class PeriodViewModel{
         self.TimePeriodVC?.showLoader()
         AddPeriodApi.sharedInstance.AddPeriodList(url: ApiEndpoints.kAddPeriod, parameters: params as [String : Any], completionResponse: { (AddPeriodModel) in
             
-            print("Add period table: ",AddPeriodModel)
+            print("Add period table: ",AddPeriodModel.resultData)
             
             if AddPeriodModel.statusCode == KStatusCode.kStatusCode200{
                 self.TimePeriodVC?.hideLoader()
+                  print("Add period msg: ",AddPeriodModel.message)
                 self.TimePeriodVC?.showAlert(alert: AddPeriodModel.message ?? "")
                self.PeriodDelegate?.addPeriodSucced(msg: AddPeriodModel.message ?? "")
             }else if AddPeriodModel.statusCode == KStatusCode.kStatusCode401{
