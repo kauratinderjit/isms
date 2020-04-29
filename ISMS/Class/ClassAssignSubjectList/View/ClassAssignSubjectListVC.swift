@@ -178,7 +178,7 @@ extension ClassAssignSubjectListVC : ClassAssignSubjectListDelegate{
             self.viewModel = ClassAssignSubjectListViewModel.init(delegate: self)
             self.viewModel?.attachView(viewDelegate: self)
             //Set Search bar in navigation
-            self.setSearchBarInNavigationController(placeholderText: KSearchBarPlaceHolder.kUserSearchBarSubjectPlaceHolder, navigationTitle: KStoryBoards.KClassListIdentifiers.kClassListTitle, navigationController: self.navigationController, navigationSearchBarDelegates: self)
+            self.setSearchBarInNavigationController(placeholderText: KSearchBarPlaceHolder.kUserSearchBarClassPlaceHolder, navigationTitle: KStoryBoards.KClassListIdentifiers.kSubjectListTitle, navigationController: self.navigationController, navigationSearchBarDelegates: self)
             txtFieldSelectClass.txtfieldPadding(leftpadding: 20, rightPadding: 0)
             tblViewCenterLabel(tblView: tableView, lblText: "Select Class for view subjects", hide: false)
             //Set Back Button
