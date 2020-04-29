@@ -107,6 +107,8 @@ public struct ApiEndpoints
      public static let kAddTeacherFeedBack = "api/Institute/AddTeacherFeedBack"
      public static let kGetTeacherRatingByHOD = "api/Institute/GetTeacherRatingByHOD"
 
+//    getUserDetailByPhoneNumber on signup
+   public static let kGetUserDetailByPhoneEmail =  "api/User/GetUserDetailByPhoneEmail"
     
     //Chapter Api
     public static let KChapterListApi = "api/Institute/GetChapterList"
@@ -349,6 +351,7 @@ public struct KStoryBoards
         public static let kUpdateClassTitle = "Update Class"
     }
     internal struct KClassListIdentifiers{
+         public static let kSubjectListTitle = "Subject List"
         public static let kClassListTitle = "Class List"
         public static let kStudentRating = "Student Rating"
         public static let kClassListVC = "ClassListVC"
@@ -417,6 +420,7 @@ public struct KStoryBoards
         public static let kUpdateTitle = "Update Subject"
         public static let kSubjectListTitle = "Subject List"
          public static let kTopicListTitle = "Topic List"
+         public static let kChapterListTitle = "Chapter List"
     }
     
     internal struct KUserRoleIdIdentifiers{
@@ -1111,6 +1115,8 @@ public struct KSearchBarPlaceHolder{
     static let kUserSearchBarStudentPlaceHolder : String = "Search Student"
       static let kUserSearchBarSubjectPlaceHolder : String = "Search Subject"
     static let kUserSearchBarTopicPlaceHolder : String = "Search Topics"
+     static let kUserSearchBarChapterPlaceHolder : String = "Search Chapter"
+     static let kUserSearchBarClassPlaceHolder : String = "Search Subject"
 
     
 }

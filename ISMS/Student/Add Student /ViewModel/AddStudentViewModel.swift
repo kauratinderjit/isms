@@ -370,15 +370,16 @@ class AddStudentViewModel{
             self?.addStudentView?.hideLoader()
             
             switch GetDetailByPhoneEmailGardianModel.statusCode{
-            case KStatusCode.kStatusCode302:
-                //                    self.addStudentView?.hideLoader()
-                self?.addStudentDelegate?.PhoneEmailVerifyGardianDidSuccess(data : GetDetailByPhoneEmailGardianModel)
-            case KStatusCode.kStatusCode401:
-                self?.addStudentView?.showAlert(alert: GetDetailByPhoneEmailGardianModel.message ?? "")
-                self?.addStudentDelegate?.unauthorizedUser()
-            case KStatusCode.kStatusCode404:
-                self?.addStudentDelegate?.studentParentNotExist(isStudent: false)
-            case KStatusCode.kStatusCode409:
+
+                case KStatusCode.kStatusCode302:
+//                    self.addStudentView?.hideLoader()
+                    self?.addStudentDelegate?.PhoneEmailVerifyGardianDidSuccess(data : GetDetailByPhoneEmailGardianModel)
+                case KStatusCode.kStatusCode401:
+                    self?.addStudentView?.showAlert(alert: GetDetailByPhoneEmailGardianModel.message ?? "")
+                    self?.addStudentDelegate?.unauthorizedUser()
+                case KStatusCode.kStatusCode404:
+                    self?.addStudentDelegate?.studentParentNotExist(isStudent: false)
+                case KStatusCode.kStatusCode409:
                 self?.addStudentView?.showAlert(alert: GetDetailByPhoneEmailGardianModel.message ?? "Something went wrong")
             default:
                 CommonFunctions.sharedmanagerCommon.println(object: "verifyPhoneAndEmailGardian APi status change")

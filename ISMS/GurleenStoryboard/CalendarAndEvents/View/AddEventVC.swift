@@ -40,6 +40,9 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
     var datePickerEndDate = UIDatePicker()
     var datePickerStartTime = UIDatePicker()
     
+    var selectedStrtDate = ""
+    var selectedStrtDate2 = ""
+    
     var startTime : Date?
     var endTime : Date?
     
@@ -50,7 +53,10 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
     var editEventModel : EventScheduleListResultData?
     public var lstActionAccess : GetMenuFromRoleIdModel.ResultData?
     
-    
+    @IBOutlet weak var selectedStartDate: UILabel!
+    @IBOutlet weak var selectEndDate: UILabel!
+    @IBOutlet weak var selectStartTime: UILabel!
+    @IBOutlet weak var selectEndTime: UILabel!
     //Converts string into date
     let formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -91,7 +97,6 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
             
             if editEventModel != nil
             {
-                
                 txtViewDescription.text = editEventModel?.Description
                 lbl_MessagePlaceholder.isHidden = true
                 txtfieldTitle.text = editEventModel?.Title
@@ -115,7 +120,7 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
                 let dateObj = localDateFormatter2.date(from: editEventModel?.StrStartTime ?? "")
                 print("\(localDateFormatter.string(from: dateObj!))")
                 
-               // self.tfEventDate.text = "\(localDateFormatter.string(from: dateObj!))"
+                // self.tfEventDate.text = "\(localDateFormatter.string(from: dateObj!))"
                 
                 //  lblTime.text = "\(localDateFormatter.string(from: dateObj!))"
                 
@@ -132,6 +137,7 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
                 _ = arrAccess?.enumerated().map { (index,element) in
                     
                     if element.actionName == "Edit" {
+                        self.title = "Update Event"
                         
                         calenderDate.isUserInteractionEnabled = true
                         txtfieldTitle.isUserInteractionEnabled = true
@@ -141,6 +147,8 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
                         
                     }
                     else{
+                        self.title = "View Event Details"
+                        
                         calenderDate.isUserInteractionEnabled = false
                         txtfieldTitle.isUserInteractionEnabled = false
                         txtViewDescription.isUserInteractionEnabled = false
@@ -149,10 +157,30 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
                         tfEventDate.isUserInteractionEnabled = false
                         tfEventEndDate.isUserInteractionEnabled = false
                         tfStartTime.isUserInteractionEnabled = false
-                         tfEndTime.isUserInteractionEnabled = false
+                        tfEndTime.isUserInteractionEnabled = false
+                        selectEndDate.text = "End Date"
+                        selectedStartDate.text = "Start Date"
+                        selectStartTime.text = "Start Time"
+                        selectEndTime.text = "End Time"
                     }
                 }
             }
+        }
+        else
+        {
+            //Start Date
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd/MM/yyyy"
+            self.tfEventDate.text = formatter.string(from: Date())
+            self.selectedStrtDate =  self.tfEventDate.text!
+            self.selectedStrtDate2 = self.selectedStrtDate
+            
+            //Start Time
+            formatter.dateFormat = "hh:mm"
+            self.tfStartTime.text = formatter.string(from: Date())
+            startTime = formatter.date(from: self.tfStartTime.text ?? "") ?? Date()
+            
+            self.showDatePickerEventStartTime()
         }
         
     }

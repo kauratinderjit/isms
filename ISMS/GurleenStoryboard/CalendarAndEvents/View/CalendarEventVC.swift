@@ -80,10 +80,12 @@ class CalendarEventVC: BaseUIViewController
             datesRangeDATE.append(dd)
             datesRange.append(obj)
             
-            if strtdate >= Date()
-            {
-               calendar.select(strtdate)
-            }
+//            if strtdate >= Date()
+//            {
+//               calendar.select(strtdate)
+//            }
+            
+            calendar.select(strtdate)
             strtdate = Calendar.current.date(byAdding: .day, value: 1, to: strtdate)!
         }
         
@@ -167,10 +169,10 @@ extension CalendarEventVC : FSCalendarDataSource , FSCalendarDelegate , FSCalend
         
     }
     
-    func minimumDate(for calendar: FSCalendar) -> Date
-    {
-        return Date()
-    }
+//    func minimumDate(for calendar: FSCalendar) -> Date
+//    {
+//        return Date()
+//    }
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillSelectionColorFor date: Date) -> UIColor?
     {

@@ -17,6 +17,7 @@ protocol SignUpDelegate:class{
     func DidSuccedRole(data: UserRoleIdModel)
     func DidFailedRole()
     func DidSuccedRoleMenu(data: GetMenuFromRoleIdModel)
+    func GetUserDetailSuccess(data: GetUserDetailByPhoneEmail )
     func DidFailedRoleMenu()
 }
 
@@ -33,6 +34,45 @@ class SignUpViewModel{
     //Detaching view
     func detachView() {
         signUpView = nil
+    }
+    
+    func getUserByPhoneNumber(Phone: String, Email:String){
+        self.signUpView?.showLoader()
+        var postDict = [String:Any]()
+        postDict["Phone"] = Phone
+        postDict["Email"] = Email
+        
+        print("our params: ",postDict)
+        
+        SignUpApi.sharedInstance.getUserDetailByPhoneEmail(url: ApiEndpoints.kGetUserDetailByPhoneEmail, parameters: postDict, completionResponse: { (GetUserDetailByPhoneEmail) in
+            if GetUserDetailByPhoneEmail.statusCode == KStatusCode.kStatusCode302{
+                self.signUpView?.hideLoader()
+                self.delegate?.GetUserDetailSuccess(data: GetUserDetailByPhoneEmail)
+            }else{
+                self.signUpView?.hideLoader()
+                CommonFunctions.sharedmanagerCommon.println(object: "status change")
+            }
+        }, completionnilResponse: { (nilResponseError) in
+            
+            self.signUpView?.hideLoader()
+            self.delegate?.DidFailedRoleMenu()
+            
+            if let error = nilResponseError{
+                self.signUpView?.showAlert(alert: error)
+                
+            }else{
+                CommonFunctions.sharedmanagerCommon.println(object: "Class APi Nil response")
+            }
+            
+        }) { (error) in
+            self.signUpView?.hideLoader()
+            self.delegate?.DidFailedRoleMenu()
+            if let err = error?.localizedDescription{
+                self.signUpView?.showAlert(alert: err)
+            }else{
+                CommonFunctions.sharedmanagerCommon.println(object: "Class APi error response")
+            }
+        }
     }
     //Api to fetch Country list
     func GetCountryList(selectedCountryId: Int,enumType: Int)
@@ -264,279 +304,4 @@ class SignUpViewModel{
         }
     }
 }
-//MARK:- View Delegate
-extension SignUpViewController : ViewDelegate{
-    func showAlert(alert: String){
-        initializeCustomOkAlert(self.view, isHideBlurView: true)
-        okAlertView.delegate = self
-        okAlertView.lblResponseDetailMessage.text = alert
-    }
-    func showLoader() {
-        ShowLoader()
-    }
-    func hideLoader() {
-        HideLoader()
-    }
-}
-//MARK:- SignUp Delegates
-extension SignUpViewController:SignUpDelegate{
-    func signUpSuccess(message: String) {
-        self.showAlert(alert: message)
-        CommonFunctions.sharedmanagerCommon.setRootLogin()
-    }
-    
-    func DidSuccedRoleMenu(data: GetMenuFromRoleIdModel) {
-        print("menu: ",data.resultData ?? "")
-    }
-    func DidFailedRoleMenu() {
-    }
-    func DidSuccedRole(data: UserRoleIdModel) {
-        if data.resultData?.count ?? 0 <= 1{
-         
-            self.viewModel?.getMenuFromUserRoleId(userId: UserDefaultExtensionModel.shared.currentUserId, roleId: data.resultData?.first?.roleId)
-            let storyboard = UIStoryboard.init(name: KStoryBoards.kHome, bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: KStoryBoards.kSWRevealVC)
-            appDelegate.window?.rootViewController = vc
-        }else if  data.resultData?.count ?? 0 > 1 {
-            let vc = UIStoryboard.init(name: KStoryBoards.kMain, bundle: Bundle.main).instantiateViewController(withIdentifier: KStoryBoards.KUserRoleIdIdentifiers.kUserRoleIdVC) as! UserRoleIdVC
-            vc.roleIdArr = data
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-    func DidFailedRole() {
-    }
-    func getAllStateData(data: GetCommonDropdownModel) {
-        stateData = data
-        if let count = stateData?.resultData?.count{
-            if count > 0{
-                if firstTimeLoad == true{
-                    txtState.text = stateData?.resultData?[0].name
-                    self.viewModel?.getCityList(selectedCityId: stateData?.resultData?[0].id ?? 0, enumType: CountryStateCity.city.rawValue)
-                }else{
-                    //Set the data in the textfield from 0 index when api hit
-                    if stateData?.resultData?[0].name != nil||stateData?.resultData?[0].id != nil{
-                        txtState.text = stateData?.resultData?[0].name
-                        self.viewModel?.getCityList(selectedCityId: stateData?.resultData?[0].id ?? 0, enumType: CountryStateCity.city.rawValue)
-                    }else{
-                        CommonFunctions.sharedmanagerCommon.println(object: "State Value is nil.")
-                    }
-                }
-            }else{
-                CommonFunctions.sharedmanagerCommon.println(object: "State count is zero.")
-            }
-        }else{
-            CommonFunctions.sharedmanagerCommon.println(object: "Count is nil")
-        }
-    }
-    func getAllCityData(data: GetCommonDropdownModel) {
-        cityData = data
-        if let count = cityData?.resultData?.count{
-            if count > 0{
-                if firstTimeLoad == true{
-                    firstTimeLoad = false
-                    txtCity.text = cityData?.resultData?[0].name
-                    selectedCityId = cityData?.resultData?[0].id
-                }else{
-                    if cityData?.resultData?[0].name != nil{
-                        txtCity.text = cityData?.resultData?[0].name
-                        selectedCityId = cityData?.resultData?[0].id
-                    }else{
-                        CommonFunctions.sharedmanagerCommon.println(object: "City is nil.")
-                    }
-                }
-            }else{
-                //                txtCity.text = ""
-            }
-        }else{
-            CommonFunctions.sharedmanagerCommon.println(object: "City count is not wrapped")
-        }
-    }
-  
-    func GetAllCountryData(data: GetCommonDropdownModel) {
-        if firstTimeLoad == true{
-            countryData = data
-            if countryData?.resultData?[exist: 0]?.name != nil{
-                txtCountry.text = countryData?.resultData?[0].name
-                self.viewModel?.getStateList(selectedStateId: countryData?.resultData?[0].id ?? 0, enumType: 2)
-            }
-        }else{
-            if countryData.resultData?[exist: selectedCountryIndex]?.name != nil{
-                txtCountry.text = countryData?.resultData?[selectedCountryIndex].name
-                self.viewModel?.getStateList(selectedStateId: countryData?.resultData?[selectedCountryIndex].id ?? 0, enumType: 2)
-            }
-        }
-    }
-    func getDataFalied(message: String){
-        self.showAlert(alert: message)
-    }
-}
 
-//MARK:- Picker View Delegates
-extension SignUpViewController:SharedUIPickerDelegate{
-    func DoneBtnClicked(){
-        if selectCountry == true{
-            selectCountry = false
-            if let count = countryData?.resultData?.count{
-                if count > 0{
-                 
-//                    if txtCountry.text == countryData?.resultData?[0].name{
-//                        self.txtCountry.text = countryData?.resultData?[0].name
-//                        if let id = countryData?.resultData?[0].id{
-//                            self.viewModel?.getStateList(selectedStateId: id, enumType: 2)
-//                        }
-//                    }else{
-//                        self.txtCountry.text = countryData?.resultData?[selectedCountryIndex].name
-//                        if let id = countryData?.resultData?[selectedCountryIndex].id{
-//                            self.viewModel?.getStateList(selectedStateId: id, enumType: 2)
-//                        }
-//                    }
-                //gurleen
-                 self.txtCountry.text = countryData?.resultData?[selectedCountryIndex].name
-                 if let id = countryData?.resultData?[selectedCountryIndex].id {
-                       self.viewModel?.getStateList(selectedStateId: id, enumType: 2)
-                    }
-                }
-            }
-        }
-        if selectState == true{
-            selectState = false
-            againSelectState = true
-//            if txtState.text == stateData?.resultData?[0].name{
-//                txtState.text = stateData?.resultData?[0].name
-//                if let id = stateData?.resultData?[0].id{
-//                    self.viewModel?.getCityList(selectedCityId: id, enumType: 3)
-//                }
-//            }else{
-//                if stateData?.resultData?[exist: selectedStateIndex]?.name != nil{
-//                    txtState.text = stateData?.resultData?[selectedStateIndex].name
-//                    if let id = stateData?.resultData?[selectedStateIndex].id{
-//                        self.viewModel?.getCityList(selectedCityId: id, enumType: 3)
-//                    }
-//                }
-//            }
-            //gurleen
-            self.txtState.text = stateData?.resultData?[selectedStateIndex].name
-            if let id = stateData?.resultData?[selectedStateIndex].id{
-            self.viewModel?.getCityList(selectedCityId: id, enumType: 3)
-            }
-        }
-        if selectCity == true{
-            selectCity = false
-            //For Prevent Index out of range error
-            if cityData?.resultData?[exist: selectedCityIndex]?.name != nil{
-                self.txtCity.text = cityData?.resultData?[selectedCityIndex].name
-                selectedCityId = cityData?.resultData?[selectedCityIndex].id
-            }
-        }
-    }
-    func GetTitleForRow(index: Int) -> String{
-        //Set the picker country value first time in country field
-        if self.selectCountry == true{
-            if let count = countryData.resultData?.count{
-                if count > 0{
-                    txtCountry.text = countryData?.resultData?[0].name
-                    return countryData?.resultData?[index].name ?? ""
-                }
-            }
-        }else if self.selectState == true{
-            if let count = stateData.resultData?.count{
-                if count > 0{
-                    txtState.text = stateData?.resultData?[0].name
-                    return  self.stateData?.resultData?[index].name ?? ""
-                }
-            }
-        }else if self.selectCity == true{
-            if let count = cityData.resultData?.count{
-                if count > 0{
-                    txtCity.text = cityData?.resultData?[0].name
-                    return self.cityData?.resultData?[index].name ?? ""
-                }
-            }
-        }
-        return ""
-    }
-    func SelectedRow(index: Int){
-        DispatchQueue.main.async {
-            if self.selectCountry == true{
-                self.selectedCountryIndex = index
-                //Using Exist Method of collection prevent from indexoutof range error
-                if (self.countryData.resultData?[exist: index]?.name) != nil{
-                    //self.txtCountry.text = self.countryData?.resultData?[index].name
-                    CommonFunctions.sharedmanagerCommon.println(object: "Selected Country:- \(String(describing: self.countryData?.resultData?[index].name))")
-                }
-            }else if self.selectState == true{
-                self.selectedStateIndex = index
-                if (self.stateData.resultData?[exist: index]?.name) != nil{
-                   // self.txtState.text = self.stateData?.resultData?[index].name
-                    CommonFunctions.sharedmanagerCommon.println(object: "Selected State:- \(String(describing: self.stateData?.resultData?[index].name))")
-                }
-            }else if self.selectCity == true{
-                self.selectedCityIndex = index
-                if (self.cityData.resultData?[exist: index]?.name) != nil{
-                  //  self.txtCity.text = self.cityData?.resultData?[index].name
-                    CommonFunctions.sharedmanagerCommon.println(object: "Selected City:- \(String(describing: self.cityData?.resultData?[index].name))")
-                }
-            }
-        }
-    }
-}
-
-//MARK:- UIImagePickerView Delegate
-extension SignUpViewController:UIImagePickerDelegate{
-    func selectedImageUrl(url: URL) {
-        selectedImageURl = url
-    }
-    func SelectedMedia(image: UIImage?, videoURL: URL?){
-        self.imgViewProfile.contentMode = .scaleAspectFill
-        self.imgViewProfile.image = image
-        CommonFunctions.sharedmanagerCommon.println(object: "Byte Array count:- \(byteArrayofImages)")
-    }
-}
-
-//MARK:- Custom Gallery Alert
-extension SignUpViewController : GalleryAlertCustomViewDelegate{
-    func galleryBtnAction() {
-        self.OpenGalleryCamera(camera: false, imagePickerDelegate: self)
-        CommonFunctions.sharedmanagerCommon.println(object: "Gallery")
-        galleryAlertView.removeFromSuperview()
-    }
-    func cameraButtonAction() {
-        self.OpenGalleryCamera(camera: true, imagePickerDelegate: self)
-        CommonFunctions.sharedmanagerCommon.println(object: "Camera")
-        galleryAlertView.removeFromSuperview()
-    }
-    func cancelButtonAction() {
-        galleryAlertView.removeFromSuperview()
-    }
-}
-//MARK:- UIDatePickerDelegates
-extension SignUpViewController : SharedUIDatePickerDelegate{
-    func doneButtonClicked(datePicker: UIDatePicker) {
-        let strDate = CommonFunctions.sharedmanagerCommon.convertDateIntoStringWithDDMMYYYY(date: datePicker.date)
-        CommonFunctions.sharedmanagerCommon.println(object: "String Converted Date:- \(strDate)")
-        selectedDOB = "\(datePicker.date)"
-        let years = CommonFunctions.sharedmanagerCommon.getYearsBetweenDates(startDate: datePicker.date, endDate: Date())
-        if let intYear = years{
-            if intYear < 18{
-                self.showAlert(alert: Alerts.kUnderAge)
-                return
-            }else{
-                txtFieldDOB.text = strDate
-                ageYears = intYear
-            }
-        }
-    }
-}
-
-//MARK:- Custom Ok Alert
-extension SignUpViewController : OKAlertViewDelegate{
-    //Ok Button Clicked
-    func okBtnAction() {
-        if okAlertView.lblResponseDetailMessage.text == "User updated successfully"{
-//            let userId = varifyPhnResponseModel?.resultData?.userId
-//            self.viewModel?.getRoleId(userID: userId)
-            CommonFunctions.sharedmanagerCommon.setRootLogin()
-        }
-        okAlertView.removeFromSuperview()
-    }
-}
