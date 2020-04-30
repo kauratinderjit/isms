@@ -10,8 +10,8 @@ import Foundation
 
 public struct BaseUrl
 {
-  public static let kBaseURL = "https://stgsd.appsndevs.com/ISMSQA/"
-//"https://stgsd.appsndevs.com/IsmsTest/"//"https://stgsd.appsndevs.com/ISMSQA/"
+ // public static let kBaseURL = "https://stgsd.appsndevs.com/ISMSQA/"
+    public static let kBaseURL = "https://stgsd.appsndevs.com/IsmsTest/"//"https://stgsd.appsndevs.com/ISMSQA/"
 
    //"http://stgsd.appsndevs.com/EducationProApi/"
 }
