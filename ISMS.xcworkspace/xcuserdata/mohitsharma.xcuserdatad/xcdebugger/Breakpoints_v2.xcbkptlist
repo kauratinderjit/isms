@@ -20,5 +20,69 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "33DCDFC9-9138-4F66-9B4A-6F761A6A57A5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISMS/HOD/Add HOD/ViewModel/AddHODViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "addUpdateHOD(hodId:firstName:lastName:address:dateOfBirth:gender:profileImageUrl:idProofName:idProofImgUrl:email:departmentId:departmentName:phoneNumber:qualification:workExperience:additionalSkills:others:userId:strProfileImageLink:strDocLink:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "46BF9B07-5B99-4C7E-8F8C-BF74AB4F6311"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISMS/HOD/Add HOD/ViewModel/AddHODViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "addUpdateHOD(hodId:firstName:lastName:address:dateOfBirth:gender:profileImageUrl:idProofName:idProofImgUrl:email:departmentId:departmentName:phoneNumber:qualification:workExperience:additionalSkills:others:userId:strProfileImageLink:strDocLink:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "670C858B-331F-4BA8-BF37-ECB54E767261"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISMS/HOD/Add HOD/ViewModel/AddHODViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "addUpdateHOD(hodId:firstName:lastName:address:dateOfBirth:gender:profileImageUrl:idProofName:idProofImgUrl:email:departmentId:departmentName:phoneNumber:qualification:workExperience:additionalSkills:others:userId:strProfileImageLink:strDocLink:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F79E7C80-568D-4D15-87FC-50761C36C23D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ISMS/HOD/Add HOD/ViewModel/AddHODViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "addUpdateHOD(hodId:firstName:lastName:address:dateOfBirth:gender:profileImageUrl:idProofName:idProofImgUrl:email:departmentId:departmentName:phoneNumber:qualification:workExperience:additionalSkills:others:userId:strProfileImageLink:strDocLink:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
