@@ -1114,6 +1114,7 @@ public struct KSearchBarPlaceHolder{
     
     static let kUserSearchBarPlaceHolder : String = "Search User"
     static let kUserSearchBarStudentPlaceHolder : String = "Search Student"
+    static let kUserSearchBarDepartmentPlaceHolder : String = "Search Department"
       static let kUserSearchBarSubjectPlaceHolder : String = "Search Subject"
     static let kUserSearchBarTopicPlaceHolder : String = "Search Topics"
      static let kUserSearchBarChapterPlaceHolder : String = "Search Chapter"
