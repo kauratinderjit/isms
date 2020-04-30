@@ -10,7 +10,8 @@ import Foundation
 
 import Alamofire
 
-class HomeworkApi {
+class HomeworkApi
+{
     
     static let sharedManager = HomeworkApi()
     

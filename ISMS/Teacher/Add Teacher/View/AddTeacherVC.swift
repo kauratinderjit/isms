@@ -91,11 +91,13 @@ class AddTeacherVC: BaseUIViewController
         view.endEditing(true)
         
         //For Add teacher
-        if teacherID == 0{
+        if teacherID == 0
+        {
             self.viewModel?.addUpdateTeacher(teacherId: teacherID, profileImageUrl: selectedProfileImageUrl, firstName: txtFieldFirstName.text, lastName: txtFieldLastName.text, address: txtFieldAddress.text, dateOfBirth:dateOfBirth, others: txtFieldOthers.text, gender: gender, email: txtFieldEmail.text, phoneNumber: txtFieldPhoneNumber.text, idProofImgUrl: selectedIdProofImageURL, idProofName: txtFieldIdProofName.text, assignDepartmentId: strDepartmentsIds, qualification: txtFieldQualification.text, workExperience: txtFieldWorkExperience.text, additionalSkills: txtFieldAdditionalSkills.text, userID: 0)
         }
         //For Update teacher
-        if teacherID != 0{
+        if teacherID != 0
+        {
             //For set the nil value to Profile Image Url/Id Proof Image Url
             if selectedProfileImageUrl != nil||selectedIdProofImageURL != nil{
                 if (selectedProfileImageUrl?.absoluteString.hasPrefix("http:") ?? false){

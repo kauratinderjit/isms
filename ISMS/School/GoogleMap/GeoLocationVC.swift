@@ -113,7 +113,7 @@ class GeoLocationVC: BaseUIViewController {
             case .restricted, .denied:
                 // Disable location features
                 
-                let alert = UIAlertController(title: "Allow Location Access", message: "ISMS needs access to your location. Turn on Location Services in your device settings.", preferredStyle: UIAlertController.Style.alert)
+                let alert = UIAlertController(title: "Allow Location Access", message: "iEMS needs access to your location. Turn on Location Services in your device settings.", preferredStyle: UIAlertController.Style.alert)
                 
                 // Button to Open Settings
                 alert.addAction(UIAlertAction(title: "Settings", style: UIAlertAction.Style.default, handler: { action in
