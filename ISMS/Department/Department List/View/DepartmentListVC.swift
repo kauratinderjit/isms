@@ -99,7 +99,7 @@ extension DepartmentListVC : ViewDelegate{
         self.viewModel = DepartmentListViewModel.init(delegate: self)
         self.viewModel?.attachView(viewDelegate: self)
         //Set Search bar in navigation
-        self.setSearchBarInNavigationController(placeholderText: KSearchBarPlaceHolder.kUserSearchBarPlaceHolder, navigationTitle: KStoryBoards.KDepartMentListIdentifiers.kDepartmentListTitle, navigationController: self.navigationController, navigationSearchBarDelegates: self)
+        self.setSearchBarInNavigationController(placeholderText: KSearchBarPlaceHolder.kUserSearchBarDepartmentPlaceHolder, navigationTitle: KStoryBoards.KDepartMentListIdentifiers.kDepartmentListTitle, navigationController: self.navigationController, navigationSearchBarDelegates: self)
         //Title
         self.title = KStoryBoards.KDepartMentListIdentifiers.kDepartmentListTitle
         setBackButton()

@@ -55,6 +55,9 @@ class AddHODVC: BaseUIViewController {
     var hodDetail : GetDetailByPhoneEmailModel?
     var selectedPreviousTextField : UITextField?
     
+    var strImagelink = ""
+    var strIDlink = ""
+    
     //MARK:- Life Cycle of VC
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,7 +92,7 @@ class AddHODVC: BaseUIViewController {
         //For Add Hod
         if hodID == 0
         {
-            self.viewModel?.addUpdateHOD(hodId: hodID, firstName: txtFieldFirstName.text, lastName: txtFieldLastName.text, address: txtFieldAddress.text, dateOfBirth: dateOfBirth, gender: gender, profileImageUrl: selectedProfileImageUrl, idProofName: txtFieldIdProof.text, idProofImgUrl: selectedIdProofImageURL, email: txtFieldEmail.text, departmentId: selectedDepartmentID, departmentName: txtFieldAssignDepartment.text, phoneNumber: txtFieldPhoneNumber.text, qualification: txtFieldQualification.text, workExperience: txtFieldWorkExperience.text, additionalSkills: txtFieldAdditionalSkills.text, others: txtFieldOthers.text, userId: userId)
+            self.viewModel?.addUpdateHOD(hodId: hodID, firstName: txtFieldFirstName.text, lastName: txtFieldLastName.text, address: txtFieldAddress.text, dateOfBirth: dateOfBirth, gender: gender, profileImageUrl: selectedProfileImageUrl, idProofName: txtFieldIdProof.text, idProofImgUrl: selectedIdProofImageURL, email: txtFieldEmail.text, departmentId: selectedDepartmentID, departmentName: txtFieldAssignDepartment.text, phoneNumber: txtFieldPhoneNumber.text, qualification: txtFieldQualification.text, workExperience: txtFieldWorkExperience.text, additionalSkills: txtFieldAdditionalSkills.text, others: txtFieldOthers.text, userId: userId, strProfileImageLink: self.strImagelink, strDocLink: self.strIDlink)
         }
         
         //For Update Hod
@@ -107,7 +110,7 @@ class AddHODVC: BaseUIViewController {
                     selectedIdProofImageURL = nil
                 }
             }
-            self.viewModel?.addUpdateHOD(hodId: hodID, firstName: txtFieldFirstName.text, lastName: txtFieldLastName.text, address: txtFieldAddress.text, dateOfBirth: dateOfBirth, gender: gender, profileImageUrl: selectedProfileImageUrl, idProofName: txtFieldIdProof.text, idProofImgUrl: selectedIdProofImageURL, email: txtFieldEmail.text, departmentId: selectedDepartmentID, departmentName: txtFieldAssignDepartment.text, phoneNumber: txtFieldPhoneNumber.text, qualification: txtFieldQualification.text, workExperience: txtFieldWorkExperience.text, additionalSkills: txtFieldAdditionalSkills.text, others: txtFieldOthers.text, userId: userId)
+            self.viewModel?.addUpdateHOD(hodId: hodID, firstName: txtFieldFirstName.text, lastName: txtFieldLastName.text, address: txtFieldAddress.text, dateOfBirth: dateOfBirth, gender: gender, profileImageUrl: selectedProfileImageUrl, idProofName: txtFieldIdProof.text, idProofImgUrl: selectedIdProofImageURL, email: txtFieldEmail.text, departmentId: selectedDepartmentID, departmentName: txtFieldAssignDepartment.text, phoneNumber: txtFieldPhoneNumber.text, qualification: txtFieldQualification.text, workExperience: txtFieldWorkExperience.text, additionalSkills: txtFieldAdditionalSkills.text, others: txtFieldOthers.text, userId: userId, strProfileImageLink: self.strImagelink, strDocLink: self.strIDlink)
 
         }
 
@@ -260,6 +263,7 @@ extension AddHODVC : ViewDelegate{
         {
            //mohit selectedProfileImageUrl = URL.init(string: imgProfileUrl)
             imgViewProfileHOD.contentMode = .scaleAspectFill
+            self.strImagelink = data.resultData?.imageUrl ?? ""
             imgViewProfileHOD.sd_setImage(with: URL(string: imgProfileUrl), placeholderImage: UIImage(named: kImages.kProfileImage))
         }
         else
@@ -337,6 +341,7 @@ extension AddHODVC : ViewDelegate{
             imgViewIdProof.sd_imageIndicator = SDWebImageActivityIndicator.gray
            //mohit selectedIdProofImageURL = URL(string: imgIDproofUrl)
             imgViewIdProof.contentMode = .scaleAspectFill
+            self.strIDlink = data.resultData?.idProof ?? ""
             imgViewIdProof.sd_setImage(with: URL(string: imgIDproofUrl), placeholderImage: UIImage(named: kImages.kAttachmentImage))
         }
         else

@@ -44,7 +44,8 @@ class AddHODViewModel{
     }
     
     //MARK:- Add/Update HOD
-    func addUpdateHOD(hodId : Int?,firstName: String?,lastName: String?,address: String?,dateOfBirth: String?,gender: String?,profileImageUrl : URL?,idProofName : String?,idProofImgUrl: URL?,email:String?,departmentId: Int?,departmentName: String?,phoneNumber: String?,qualification: String?,workExperience: String?,additionalSkills:String?,others: String?,userId:Int?){
+    func addUpdateHOD(hodId : Int?,firstName: String?,lastName: String?,address: String?,dateOfBirth: String?,gender: String?,profileImageUrl : URL?,idProofName : String?,idProofImgUrl: URL?,email:String?,departmentId: Int?,departmentName: String?,phoneNumber: String?,qualification: String?,workExperience: String?,additionalSkills:String?,others: String?,userId:Int?,strProfileImageLink:String,strDocLink:String)
+    {
         
         
         do {
@@ -54,7 +55,7 @@ class AddHODViewModel{
             
             var othrs : String?
             var addSkills : String?
-         
+            
             
             if others == ""{
                 othrs = nil
@@ -67,11 +68,21 @@ class AddHODViewModel{
             }else{
                 addSkills = additionalSkills
             }
-           
+            
+            
+            
+            
             var postDict = [String: Any]()
-
+            
             postDict[KApiParameters.KAddHODApiParameters.kHODId] = hodId ?? 0
             postDict[KApiParameters.KAddHODApiParameters.kImageUrl] = profileImageUrl ?? ""
+            
+            if (profileImageUrl == nil)
+            {
+                postDict[KApiParameters.KAddHODApiParameters.kImageUrl] = strProfileImageLink
+            }
+            
+            
             postDict[KApiParameters.KAddHODApiParameters.kFirstName] = firstName ?? ""
             postDict[KApiParameters.KAddHODApiParameters.kLastName] = lastName ?? ""
             postDict[KApiParameters.KAddHODApiParameters.kAddress] = address ?? ""
@@ -79,7 +90,15 @@ class AddHODViewModel{
             postDict[KApiParameters.KAddHODApiParameters.kGender] = gender ?? ""
             postDict[KApiParameters.KAddHODApiParameters.kEmail] = email ?? ""
             postDict[KApiParameters.KAddHODApiParameters.kPhoneNo] = phoneNumber ?? ""
+            
+            
             postDict[KApiParameters.KAddHODApiParameters.kIDProof] = idProofImgUrl ?? ""
+            if (idProofImgUrl == nil)
+            {
+                postDict[KApiParameters.KAddHODApiParameters.kIDProof] = strDocLink
+            }
+            
+            
             postDict[KApiParameters.KAddHODApiParameters.kIDProofTitle] = idProofName ?? ""
             postDict[KApiParameters.KAddHODApiParameters.kDepartmentId] = departmentId ?? 0
             postDict[KApiParameters.KAddHODApiParameters.kDepartmentName] = departmentName ?? ""
@@ -89,33 +108,33 @@ class AddHODViewModel{
             postDict[KApiParameters.KAddHODApiParameters.kOthers] = othrs ?? ""
             postDict[KApiParameters.KAddHODApiParameters.kCityId] = 1
             postDict[KApiParameters.KAddHODApiParameters.kuserId] = userId ?? 0
-
             
-                HODApi.sharedManager.addUpdateHod(url: ApiEndpoints.kAddHod, parameters: postDict, completionResponse: {[weak self] (responseModel) in
-                    self?.addHODView?.hideLoader()
-                    
-                    switch responseModel.statusCode{
-                    case KStatusCode.kStatusCode200:
-                        self?.addHODView?.showAlert(alert: responseModel.message ?? "")
-                        self?.addHodDelegate?.addUpdateHodDidSuccess(data: responseModel)
-                    case KStatusCode.kStatusCode404:
-                        self?.addHODView?.showAlert(alert: responseModel.message ?? "")
-                    case KStatusCode.kStatusCode401:
-                        self?.addHODView?.showAlert(alert: responseModel.message ?? "")
-                        self?.addHodDelegate?.unauthorizedUser()
-                    default :
-                        self?.addHODView?.showAlert(alert: responseModel.message ?? "")
-                        CommonFunctions.sharedmanagerCommon.println(object: "default in add/update")
-                    }
-                    
+            
+            HODApi.sharedManager.addUpdateHod(url: ApiEndpoints.kAddHod, parameters: postDict, completionResponse: {[weak self] (responseModel) in
+                self?.addHODView?.hideLoader()
+                
+                switch responseModel.statusCode{
+                case KStatusCode.kStatusCode200:
+                    self?.addHODView?.showAlert(alert: responseModel.message ?? "")
+                    self?.addHodDelegate?.addUpdateHodDidSuccess(data: responseModel)
+                case KStatusCode.kStatusCode404:
+                    self?.addHODView?.showAlert(alert: responseModel.message ?? "")
+                case KStatusCode.kStatusCode401:
+                    self?.addHODView?.showAlert(alert: responseModel.message ?? "")
+                    self?.addHodDelegate?.unauthorizedUser()
+                default :
+                    self?.addHODView?.showAlert(alert: responseModel.message ?? "")
+                    CommonFunctions.sharedmanagerCommon.println(object: "default in add/update")
+                }
+                
                 }, completionnilResponse: {[weak self] (nilResponse) in
                     self?.addHODView?.hideLoader()
                     self?.addHODView?.showAlert(alert: nilResponse ?? Alerts.kMapperModelError)
-                }) {[weak self] (error) in
-                    self?.addHODView?.hideLoader()
-                    self?.addHODView?.showAlert(alert: error?.localizedDescription ?? Alerts.kMapperModelError)
-                }
-
+            }) {[weak self] (error) in
+                self?.addHODView?.hideLoader()
+                self?.addHODView?.showAlert(alert: error?.localizedDescription ?? Alerts.kMapperModelError)
+            }
+            
             
         } catch let error {
             
@@ -136,7 +155,7 @@ class AddHODViewModel{
                 
             case ValidationError.invalidEmail:
                 addHODView?.showAlert(alert: Alerts.kInvalidEmail)
-
+                
             case ValidationError.emptyFirstName:
                 addHODView?.showAlert(alert: Alerts.kEmptyFirstName)
                 
@@ -177,45 +196,45 @@ class AddHODViewModel{
                 
             default:
                 break
-          
+                
             }
             
         }
         
     }
-   
+    
     //MARK:- HOD Detail
     func getHODDetail(hodId : Int){
         
-            let getUrl = ApiEndpoints.kGetHodDetail + "?hodId=\(hodId)"
+        let getUrl = ApiEndpoints.kGetHodDetail + "?hodId=\(hodId)"
+        
+        self.addHODView?.showLoader()
+        HODApi.sharedManager.getHODDetail(url: getUrl, completionResponse: {[weak self] (hodDetailresponse) in
             
-            self.addHODView?.showLoader()
-            HODApi.sharedManager.getHODDetail(url: getUrl, completionResponse: {[weak self] (hodDetailresponse) in
-                
-                self?.addHODView?.hideLoader()
-                
-                switch hodDetailresponse.statusCode{
-                    case KStatusCode.kStatusCode200:
-//                        self.addHODView?.showAlert(alert: hodDetailresponse.message ?? "")
-                        self?.addHodDelegate?.detailHODDidSucceed(data: hodDetailresponse)
-                    case KStatusCode.kStatusCode401:
-                        self?.addHODView?.showAlert(alert: hodDetailresponse.message ?? "")
-                        self?.addHodDelegate?.unauthorizedUser()
-                    default :
-                        CommonFunctions.sharedmanagerCommon.println(object: "default in detail")
-                        self?.addHODView?.showAlert(alert: hodDetailresponse.message ?? "")
-                }
+            self?.addHODView?.hideLoader()
+            
+            switch hodDetailresponse.statusCode{
+            case KStatusCode.kStatusCode200:
+                //                        self.addHODView?.showAlert(alert: hodDetailresponse.message ?? "")
+                self?.addHodDelegate?.detailHODDidSucceed(data: hodDetailresponse)
+            case KStatusCode.kStatusCode401:
+                self?.addHODView?.showAlert(alert: hodDetailresponse.message ?? "")
+                self?.addHodDelegate?.unauthorizedUser()
+            default :
+                CommonFunctions.sharedmanagerCommon.println(object: "default in detail")
+                self?.addHODView?.showAlert(alert: hodDetailresponse.message ?? "")
+            }
             }, completionnilResponse: {[weak self] (error) in
                 self?.addHODView?.hideLoader()
                 if let nilResponse = error{
                     self?.addHODView?.showAlert(alert: nilResponse)
                 }
-            }) { [weak self] (error) in
-                self?.addHODView?.hideLoader()
-                if let err = error{
-                    self?.addHODView?.showAlert(alert: err.localizedDescription)
-                }
+        }) { [weak self] (error) in
+            self?.addHODView?.hideLoader()
+            if let err = error{
+                self?.addHODView?.showAlert(alert: err.localizedDescription)
             }
+        }
     }
     //MARK:- Validations Add HOD
     func validationsAddHOD(hodId:Int?,firstName: String?,lastName: String?,address: String?,dateOfBirth: String?,gender: String?,profileImageUrl: URL? ,idProofName: String? ,idProofImgUrl: URL?,email:String?,phoneNumber: String?,departmentId: Int?,departmentName: String?,qualification: String?,workExperience: String?,additionalSkills:String?,others: String?) throws
@@ -255,7 +274,7 @@ class AddHODViewModel{
                 }
                 
             }
-            
+                
                 
             else if phoneNumber?.count ?? 0 > 10
             {
@@ -267,7 +286,7 @@ class AddHODViewModel{
             }
         }
         
-
+        
         guard let firstName = firstName,  !firstName.isEmpty, !firstName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else
         {
             throw ValidationError.emptyFirstName
@@ -309,7 +328,7 @@ class AddHODViewModel{
             
         }
         
-  
+        
         if departmentId == nil
         {
             throw ValidationError.emptyDepartmentID
@@ -325,17 +344,17 @@ class AddHODViewModel{
             throw ValidationError.emptyWorkExperience
         }
         
-//        guard let qualification  = qualification, !qualification.isEmpty, !qualification.trimmingCharacters(in: .whitespaces).isEmpty
-//            else
-//        {
-//            throw ValidationError.emptyQualification
-//        }
+        //        guard let qualification  = qualification, !qualification.isEmpty, !qualification.trimmingCharacters(in: .whitespaces).isEmpty
+        //            else
+        //        {
+        //            throw ValidationError.emptyQualification
+        //        }
         
-//        guard let workExperience  = workExperience, !workExperience.isEmpty, !workExperience.trimmingCharacters(in: .whitespaces).isEmpty
-//            else
-//        {
-//            throw ValidationError.emptyWorkExperience
-//        }
+        //        guard let workExperience  = workExperience, !workExperience.isEmpty, !workExperience.trimmingCharacters(in: .whitespaces).isEmpty
+        //            else
+        //        {
+        //            throw ValidationError.emptyWorkExperience
+        //        }
     }
     
     //MARk:- Get departments dropdown data
@@ -348,7 +367,7 @@ class AddHODViewModel{
         
         HODApi.sharedManager.getDepartmentsDropdownData(selectedDepartmentId: selectId, enumType: enumType, completionResponse: {[weak self] (responseModel) in
             self?.addHODView?.hideLoader()
-
+            
             switch responseModel.statusCode{
             case KStatusCode.kStatusCode200:
                 self?.addHodDelegate?.getDepartmentdropdownDidSucceed(data: responseModel)
@@ -360,11 +379,11 @@ class AddHODViewModel{
                 self?.addHODView?.showAlert(alert: responseModel.message ?? "")
             }
             
-        }, completionnilResponse: {[weak self] (nilResponse) in
-            self?.addHODView?.hideLoader()
-            if let nilRes = nilResponse{
-                self?.addHODView?.showAlert(alert: nilRes)
-            }
+            }, completionnilResponse: {[weak self] (nilResponse) in
+                self?.addHODView?.hideLoader()
+                if let nilRes = nilResponse{
+                    self?.addHODView?.showAlert(alert: nilRes)
+                }
         }) {[weak self] (error) in
             self?.addHODView?.hideLoader()
             if let err = error{
@@ -378,7 +397,7 @@ class AddHODViewModel{
         
         let paramDict = [KApiParameters.KGetDetailByPhoneEmail.kPhone: phoneNum ?? "",KApiParameters.KGetDetailByPhoneEmail.kEmail:email ?? ""] as [String : Any]
         
-         HODApi.sharedManager.PhoneEmailVerify(url: ApiEndpoints.KHODPhoneEmailVerifyApi, parameters: paramDict as [String : Any], completionResponse: {[weak self] (GetDetailByPhoneEmailModel) in
+        HODApi.sharedManager.PhoneEmailVerify(url: ApiEndpoints.KHODPhoneEmailVerifyApi, parameters: paramDict as [String : Any], completionResponse: {[weak self] (GetDetailByPhoneEmailModel) in
             self?.addHODView?.hideLoader()
             switch GetDetailByPhoneEmailModel.statusCode{
             case KStatusCode.kStatusCode302:
@@ -387,27 +406,27 @@ class AddHODViewModel{
                 self?.addHODView?.showAlert(alert: GetDetailByPhoneEmailModel.message ?? "Something went wrong")
                 self?.addHodDelegate?.unauthorizedUser()
             case KStatusCode.kStatusCode404:
-               // self?.addHODView?.showAlert(alert: GetDetailByPhoneEmailModel.message ?? "Something went wrong")
+                // self?.addHODView?.showAlert(alert: GetDetailByPhoneEmailModel.message ?? "Something went wrong")
                 self?.addHodDelegate?.phoneEmailVerifyDidFailed()
             default:
                 self?.addHODView?.showAlert(alert: GetDetailByPhoneEmailModel.message ?? "Something went wrong")
             }
             
-        }, completionnilResponse: {[weak self] (nilResponseError) in
-            
-            self?.addHODView?.hideLoader()
-//            self?.addHodDelegate?.phoneEmailVerifyDidFailed()
-            
-            if let error = nilResponseError{
-                self?.addHODView?.showAlert(alert: error)
+            }, completionnilResponse: {[weak self] (nilResponseError) in
                 
-            }else{
-                CommonFunctions.sharedmanagerCommon.println(object: "verifyPhoneAndEmail APi Nil response")
-            }
-            
+                self?.addHODView?.hideLoader()
+                //            self?.addHodDelegate?.phoneEmailVerifyDidFailed()
+                
+                if let error = nilResponseError{
+                    self?.addHODView?.showAlert(alert: error)
+                    
+                }else{
+                    CommonFunctions.sharedmanagerCommon.println(object: "verifyPhoneAndEmail APi Nil response")
+                }
+                
         }) {[weak self] (error) in
             self?.addHODView?.hideLoader()
-//            self?.addHodDelegate?.phoneEmailVerifyDidFailed()
+            //            self?.addHodDelegate?.phoneEmailVerifyDidFailed()
             if let err = error?.localizedDescription{
                 self?.addHODView?.showAlert(alert: err)
             }else{
@@ -531,37 +550,37 @@ extension AddHODVC : UITextFieldDelegate{
     func textFieldDidEndEditing(_ textField: UITextField) {
         view.endEditing(true)
         //Validations for phone number and email student
-            view.endEditing(true)
-            if textField == txtFieldPhoneNumber {
-                //When User start entering phone but less then 10 digits then this check is continue
-                if txtFieldPhoneNumber.text?.count ?? 0 > 0 && txtFieldPhoneNumber.text?.count ?? 0 < 10 {
+        view.endEditing(true)
+        if textField == txtFieldPhoneNumber {
+            //When User start entering phone but less then 10 digits then this check is continue
+            if txtFieldPhoneNumber.text?.count ?? 0 > 0 && txtFieldPhoneNumber.text?.count ?? 0 < 10 {
+                DispatchQueue.main.async {
+                    self.resignAllTextfields(txtFieldArr: [self.txtFieldPhoneNumber,self.txtFieldEmail,self.txtFieldFirstName,self.txtFieldLastName,self.txtFieldAddress,self.txtFieldQualification,self.txtFieldWorkExperience,self.txtFieldAdditionalSkills,self.txtFieldOthers])
+                    
+                }
+                showAlert(alert: Alerts.kMinPhoneNumberCharacter)
+                return
+            }else if txtFieldPhoneNumber.text?.count ?? 0 == 10{
+                selectedPreviousTextField = txtFieldPhoneNumber
+                viewModel?.verifyPhoneAndEmail(phoneNum: txtFieldPhoneNumber.text, email: txtFieldEmail.text)
+            }
+            //We are not handle here empty because Email Or Phone is optional
+            
+        }
+        if textField == txtFieldEmail{
+            if txtFieldEmail.text?.count ?? 0 > 0{
+                if let email = txtFieldEmail.text, !email.isValidEmail(){
                     DispatchQueue.main.async {
                         self.resignAllTextfields(txtFieldArr: [self.txtFieldPhoneNumber,self.txtFieldEmail,self.txtFieldFirstName,self.txtFieldLastName,self.txtFieldAddress,self.txtFieldQualification,self.txtFieldWorkExperience,self.txtFieldAdditionalSkills,self.txtFieldOthers])
-
                     }
-                    showAlert(alert: Alerts.kMinPhoneNumberCharacter)
+                    self.showAlert(alert: Alerts.kInvalidEmail)
                     return
-                }else if txtFieldPhoneNumber.text?.count ?? 0 == 10{
-                    selectedPreviousTextField = txtFieldPhoneNumber
+                }else{
+                    selectedPreviousTextField = txtFieldEmail
                     viewModel?.verifyPhoneAndEmail(phoneNum: txtFieldPhoneNumber.text, email: txtFieldEmail.text)
                 }
-                //We are not handle here empty because Email Or Phone is optional
-                
             }
-            if textField == txtFieldEmail{
-                if txtFieldEmail.text?.count ?? 0 > 0{
-                    if let email = txtFieldEmail.text, !email.isValidEmail(){
-                        DispatchQueue.main.async {
-                            self.resignAllTextfields(txtFieldArr: [self.txtFieldPhoneNumber,self.txtFieldEmail,self.txtFieldFirstName,self.txtFieldLastName,self.txtFieldAddress,self.txtFieldQualification,self.txtFieldWorkExperience,self.txtFieldAdditionalSkills,self.txtFieldOthers])
-                        }
-                        self.showAlert(alert: Alerts.kInvalidEmail)
-                        return
-                    }else{
-                        selectedPreviousTextField = txtFieldEmail
-                        viewModel?.verifyPhoneAndEmail(phoneNum: txtFieldPhoneNumber.text, email: txtFieldEmail.text)
-                    }
-                }
-            }
+        }
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
@@ -570,11 +589,11 @@ extension AddHODVC : UITextFieldDelegate{
         {
             if let _  = string.rangeOfCharacter(from: NSCharacterSet.decimalDigits)
             {
-               return false
+                return false
             }
             else
             {
-               return true
+                return true
             }
         }
         

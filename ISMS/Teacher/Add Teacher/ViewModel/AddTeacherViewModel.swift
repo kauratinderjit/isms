@@ -482,16 +482,25 @@ extension AddTeacherVC : UITextFieldDelegate{
         
         if textField == txtFieldPhoneNumber {
             //When User start entering phone but less then 10 digits then this check is continue
-            if txtFieldPhoneNumber.text?.count ?? 0 > 0 && txtFieldPhoneNumber.text?.count ?? 0 < 10 {
+            if txtFieldPhoneNumber.text?.count ?? 0 > 0 && txtFieldPhoneNumber.text?.count ?? 0 < 10
+            {
                 DispatchQueue.main.async {
                    self.resignAllTextfields(txtFieldArr: [self.txtFieldEmail,self.txtFieldFirstName,self.txtFieldLastName,self.txtFieldAddress,self.txtFieldIdProofName,self.txtFieldQualification,self.txtFieldWorkExperience,self.txtFieldAdditionalSkills,self.txtFieldOthers])
                     
                 }
                 showAlert(alert: Alerts.kMinPhoneNumberCharacter)
                 return
-            }else if txtFieldPhoneNumber.text?.count ?? 0 == 10{
+            }
+            else if txtFieldPhoneNumber.text?.count ?? 0 == 10
+            {
                 selectedPreviousTextField = txtFieldPhoneNumber
-                self.viewModel?.getTeacherDetailByPhoneEmail(phone: txtFieldPhoneNumber.text, email: txtFieldEmail.text)
+                
+                if teacherID != 0//dont prefill data when we adding new teacher 
+                {
+                    self.viewModel?.getTeacherDetailByPhoneEmail(phone: txtFieldPhoneNumber.text, email: txtFieldEmail.text)
+                }
+                
+                
             }
             //We are not handle here empty because Email Or Phone is optional
             
@@ -504,9 +513,16 @@ extension AddTeacherVC : UITextFieldDelegate{
                     }
                     self.showAlert(alert: Alerts.kInvalidEmail)
                     return
-                }else{
+                }
+                else
+                {
                     selectedPreviousTextField = txtFieldEmail
-                    self.viewModel?.getTeacherDetailByPhoneEmail(phone: txtFieldPhoneNumber.text, email: txtFieldEmail.text)
+                    
+                    if teacherID != 0//dont prefill data when we adding new teacher
+                    {
+                        self.viewModel?.getTeacherDetailByPhoneEmail(phone: txtFieldPhoneNumber.text, email: txtFieldEmail.text)
+                    }
+                    
                 }
             }
         }

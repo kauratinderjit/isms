@@ -180,7 +180,7 @@ extension ClassAssignSubjectListVC : ClassAssignSubjectListDelegate{
             //Set Search bar in navigation
             self.setSearchBarInNavigationController(placeholderText: KSearchBarPlaceHolder.kUserSearchBarClassPlaceHolder, navigationTitle: KStoryBoards.KClassListIdentifiers.kSubjectListTitle, navigationController: self.navigationController, navigationSearchBarDelegates: self)
             txtFieldSelectClass.txtfieldPadding(leftpadding: 20, rightPadding: 0)
-            tblViewCenterLabel(tblView: tableView, lblText: "Select Class for view subjects", hide: false)
+            tblViewCenterLabel(tblView: tableView, lblText: "Select class for assign subject", hide: false)
             //Set Back Button
             self.setBackButton()
             
