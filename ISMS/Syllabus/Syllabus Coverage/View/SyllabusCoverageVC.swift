@@ -100,8 +100,6 @@ class SyllabusCoverageVC : BaseUIViewController  {
     @objc func doneClick() {
         if let text = textfieldClass.text {
            lastText = text
-           
-             
                 arrayData.removeAll()
                 
                 if let index = classDropdownData?.index(where: { (dict) -> Bool in
@@ -114,12 +112,7 @@ class SyllabusCoverageVC : BaseUIViewController  {
                     }else{
                          self.viewModel?.getData(teacherId: userRoleParticularId, classID: total)
                     }
-                    
                 }
-                
-                
-            
-           
         }
         txtfieldExtraPicker.resignFirstResponder()
     }
@@ -215,11 +208,11 @@ extension SyllabusCoverageVC : UITableViewDataSource {
          if let percentage = arrayData[indexPath.row].coveragePercentage {
       cell.lblprogressPercentage.text = "\(percentage)" + "%"
             if percentage < 100 && percentage > 0{
-                cell.progressBar.progressTintColor = UIColor.green
+                cell.progressBar.progressTintColor = UIColor(red: 30/255, green: 144/255, blue: 255/255, alpha: 1)
             }else if percentage == 100{
-                cell.progressBar.progressTintColor = UIColor.red
+                cell.progressBar.progressTintColor = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 1)
             }else if percentage == 0{
-                cell.progressBar.progressTintColor = UIColor.darkGray
+                cell.progressBar.progressTintColor = UIColor(red: 169/255, green: 169/255, blue: 169/255, alpha: 1)
             }
         }
         
@@ -285,17 +278,17 @@ extension SyllabusCoverageVC : SyllabusCoverageDelegate {
                {
               
                 classDropdownData = data.resultData
-                   textfieldClass.text = data.resultData?[0].name
+//                   textfieldClass.text = data.resultData?[0].name
                    selectedClassId = data.resultData?[0].id
                 
                 if boolFirstTime == true {
                 boolFirstTime = false
                     
-                    if isFromStudent == true{
-                          self.viewModel?.getData(teacherId: 0, classID: selectedClassId ?? 0)
-                }else{
-                     self.viewModel?.getData(teacherId: userRoleParticularId, classID: selectedClassId ?? 0)
-                }
+//                    if isFromStudent == true{
+//                          self.viewModel?.getData(teacherId: 0, classID: selectedClassId ?? 0)
+//                }else{
+//                     self.viewModel?.getData(teacherId: userRoleParticularId, classID: selectedClassId ?? 0)
+//                }
                   
 
                }

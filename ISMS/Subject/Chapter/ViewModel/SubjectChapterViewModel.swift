@@ -219,9 +219,10 @@ extension SubjectChapterVC : UITableViewDataSource , SubjectChapterTableViewDele
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if arrChapterList.count > 0{
             tableView.separatorStyle = .singleLine
+             self.tblViewCenterLabel(tblView: tableView, lblText: KConstants.KDataNotFound, hide: true)
             return (arrChapterList.count)
         }else{
-            tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: true)
+            tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
             return 0
         }
     }

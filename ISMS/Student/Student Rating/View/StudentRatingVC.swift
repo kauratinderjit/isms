@@ -179,15 +179,15 @@ extension StudentRatingVC : StudentRatingDelegate {
             {
                 self.arrSkillList = data1
                 if let className = arrSkillList[0].studentName{
-                    txtfieldClass.text = className
+//                    txtfieldClass.text = className
                     var newclassid = arrSkillList[0].studentID!
                      RegisterClassDataModel.sharedInstance?.subjectID = newclassid
                     //                    RegisterClassDataModel.sharedInstance?.classID = arrSkillList[0].studentID
-                     if isFromHod == true{
-                        self.viewModel?.GetSubjectList(classid: newclassid,teacherId: 0,hodid:userRoleParticularId )
-                     }else{
-                        self.viewModel?.GetSubjectList(classid: newclassid,teacherId: userRoleParticularId,hodid:0)
-                    }
+//                     if isFromHod == true{
+//                        self.viewModel?.GetSubjectList(classid: newclassid,teacherId: 0,hodid:userRoleParticularId )
+//                     }else{
+//                        self.viewModel?.GetSubjectList(classid: newclassid,teacherId: userRoleParticularId,hodid:0)
+//                    }
                 }
                 
                 
@@ -200,7 +200,7 @@ extension StudentRatingVC : StudentRatingDelegate {
     
     func GetSubjectListDidSucceed(data: [AddStudentRatingResultData]?) {
         print("our data : ",data)
-        
+        arrSubjectList1.removeAll()
         self.isFetching = true
         
         if let data1 = data {
@@ -217,6 +217,9 @@ extension StudentRatingVC : StudentRatingDelegate {
                 }
                 
                 
+            }else{
+                txtfieldSubject.text = ""
+                txtfieldSubject.text = "No Subject assign"
             }
             
             
@@ -327,13 +330,26 @@ extension StudentRatingVC : SharedUIPickerDelegate{
 //                        self.viewModel?.GetSubjectList(classid: id,teacherId: userRoleParticularId, hodid: )
                         //                        self.viewModel?.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: pageSize,sortColumnDir: "",sortColumn: "", particularId: id)
                     }
+                }else{
+                    selectedClassArrIndex = 0
+                    if let id = arrSkillList[selectedClassArrIndex ?? 0].studentID {
+                        RegisterClassDataModel.sharedInstance?.subjectID = id
+                        if isFromHod == true{
+                            self.viewModel?.GetSubjectList(classid: id,teacherId: 0,hodid:userRoleParticularId )
+                        }else{
+                            self.viewModel?.GetSubjectList(classid: id,teacherId: userRoleParticularId,hodid:0)
+                        }
+                        //                        self.viewModel?.GetSubjectList(classid: id,teacherId: userRoleParticularId, hodid: )
+                        //                        self.viewModel?.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: pageSize,sortColumnDir: "",sortColumn: "", particularId: id)
+                    }
                 }
             }else if isSubjectSelected == true{
                 isSubjectSelected = false
                 if let index = selectedSubjectArrIndex {
-                    selectedClassSubjectId = arrSubjectList1[index].classSubjectId
-                    self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID:arrSubjectList1[index].classSubjectId ?? 0, classID:  RegisterClassDataModel.sharedInstance?.subjectID ?? 0 )
-//                    self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID:arrSubjectList1[index].studentID ?? 0, classID:  RegisterClassDataModel.sharedInstance?.subjectID ?? 0 )
+                    if arrSubjectList1.count>index{
+                        selectedClassSubjectId = arrSubjectList1[index].classSubjectId
+                        self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID:arrSubjectList1[index].classSubjectId ?? 0, classID:  RegisterClassDataModel.sharedInstance?.subjectID ?? 0 )
+                    }
                 }
             }
         }else{

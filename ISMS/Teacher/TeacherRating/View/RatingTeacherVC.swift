@@ -118,6 +118,13 @@ extension RatingTeacherVC : SharedUIPickerDelegate{
                                self.viewModel?.GetSubjectList(teacherId: teacherId,classId: classId)
                         }
                     }
+                }else{
+                    selectedTeacherArrIndex = 0
+                    if let teacherId = arrTeacherList[0].teacherId {
+                        if let classId = arrTeacherList[0].classId{
+                            self.viewModel?.GetSubjectList(teacherId: teacherId,classId: classId)
+                        }
+                    }
                 }
             }
         }else{
@@ -189,8 +196,8 @@ extension RatingTeacherVC : TeacherRatingAddDelegate{
                     if let classId = arrTeacherList[0].classId{
                       RegisterClassDataModel.sharedInstance?.enrolmentID = arrTeacherList[0].teacherId
                         RegisterClassDataModel.sharedInstance?.subjectID = arrTeacherList[0].studentId
-                        txtFieldTeacher.text = arrTeacherList[0].teacherName
-                        self.viewModel?.GetSubjectList(teacherId: teacherId,classId: classId)
+//                        txtFieldTeacher.text = arrTeacherList[0].teacherName
+//                        self.viewModel?.GetSubjectList(teacherId: teacherId,classId: classId)
                         }
                     }
                 }
@@ -235,6 +242,7 @@ extension RatingTeacherVC : OKAlertViewDelegate{
     //Ok Button Clicked
     func okBtnAction() {
         okAlertView.removeFromSuperview()
+         navigationController?.popViewController(animated: false)
     }
 }
 

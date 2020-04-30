@@ -198,9 +198,10 @@ extension SubjectTopicVC : UITableViewDataSource , SubjectTopicTableViewDelegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if arrSubjectlist.count > 0 {
             tableView.separatorStyle = .singleLine
+              self.tblViewCenterLabel(tblView: tableView, lblText: KConstants.KDataNotFound, hide: true)
             return (arrSubjectlist.count)
         }else{
-            tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: true)
+            tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
             return 0
         }
     }

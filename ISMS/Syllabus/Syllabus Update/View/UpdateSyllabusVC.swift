@@ -43,6 +43,7 @@ class UpdateSyllabusVC: BaseUIViewController {
     
     var indexRow : Int?
     var section :Int?
+    var indexPath :  IndexPath?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,11 +77,11 @@ class UpdateSyllabusVC: BaseUIViewController {
             //    let floatPercentage = percentage / 100
                 print("your float percenage : \(percentage)")
             if percentage < 100 && percentage > 0{
-                progressBar.progressTintColor = UIColor.green
+                progressBar.progressTintColor =  UIColor(red: 30/255, green: 144/255, blue: 255/255, alpha: 1)
             }else if percentage == 100{
-                progressBar.progressTintColor = UIColor.red
+                progressBar.progressTintColor =  UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 1)
             }else if percentage == 0{
-                progressBar.progressTintColor = UIColor.darkGray
+                progressBar.progressTintColor = UIColor(red: 169/255, green: 169/255, blue: 169/255, alpha: 1)
             }
                 
                 let morePrecisePI = Double(percentage)
@@ -97,18 +98,18 @@ class UpdateSyllabusVC: BaseUIViewController {
                      btnUpdate.isHidden = true
                     self.title = "Syllabus Details"
                  }
-    }
+        }
     }
     
     @objc func updateSyllabus(_ sender: UIButton) {
-       
+        tableView.selectRow(at: indexPath, animated: true, scrollPosition: .bottom)
+        tableView.delegate?.tableView!(tableView, didSelectRowAt: self.indexPath!)
     }
     
     @IBAction func backbtnAction(_ sender: UIBarButtonItem) {
         
         self.navigationController?.popViewController(animated: true)
     }
-    
   
     @IBAction func ActionUpdate(_ sender: Any) {
         print(UserDefaultExtensionModel.shared.currentUserId)
@@ -119,11 +120,6 @@ class UpdateSyllabusVC: BaseUIViewController {
     }
 
 }
-
-
-
-
-
 //
 // MARK: - View Controller DataSource and Delegate
 //
@@ -150,11 +146,12 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CollapsibleTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell") as? CollapsibleTableViewCell ??
             CollapsibleTableViewCell(style: .default, reuseIdentifier: "cell")
-       
+    
         print("our cell tag : ",indexPath.row)
         let item = arrayData[indexPath.section].TopicListViewModels?[indexPath.row]
         cell.checkBox.tag = indexPath.row
         cell.nameLabel.text = item?.TopicName
+        self.indexPath = indexPath
         var isCover = item?.isCover
         if firstRun == 1{
             if isCover == 0{
@@ -178,9 +175,7 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
                 
             }
         }
-        
-        
-        cell.checkBox.addTarget(self, action: #selector(self.updateSyllabus), for: .touchUpInside)
+//        cell.checkBox.addTarget(self, action: #selector(self.updateSyllabus), for: .touchUpInside)
         return cell
     }
     
@@ -196,13 +191,16 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
         header.arrowLabel.text = ">"
         header.setCollapsed(arrayData[section].collapsed ?? false)
         if arrayData[section].chapterStatus ==  "Completed"{
-            header.contentView.backgroundColor = UIColor.green
+            header.contentView.backgroundColor = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 1)
+            header.titleLabel.textColor = UIColor.white
         }
         if arrayData[section].chapterStatus ==  "Inprocess"{
-             header.contentView.backgroundColor = UIColor.orange
+             header.contentView.backgroundColor =  UIColor(red: 30/255, green: 144/255, blue: 255/255, alpha: 1)
+            header.titleLabel.textColor = UIColor.white
         }
-        if arrayData[section].chapterStatus ==  "Not Started"{
-              header.contentView.backgroundColor = UIColor.darkGray
+        if arrayData[section].chapterStatus ==  ""{
+              header.contentView.backgroundColor = UIColor(red: 169/255, green: 169/255, blue: 169/255, alpha: 1)
+            header.titleLabel.textColor = UIColor.white
         }
         header.section = section
         header.delegate = self
