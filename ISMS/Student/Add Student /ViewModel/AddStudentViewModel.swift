@@ -23,7 +23,7 @@ protocol AddStudentDelegate: class {
 
 class AddStudentViewModel{
     
-  
+    
     //Global ViewDelegate weak object
     private weak var addStudentView : ViewDelegate?
     
@@ -50,7 +50,7 @@ class AddStudentViewModel{
     func addStudent(studentId:Int?,studentUserId: Int?,studentImg: URL?,firstName: String?,lastName: String?,address: String?,dateOfBirth: String?,gender: String?,rollNoOrAddmissionId: String?,email:String?,phoneNumber: String?,studentIdProof:URL?,others:String?,parentImg: URL?, parentFirstName: String?, parentLastName: String?,parentAddress: String?, parentDOB: String?,parentGender: String?,parentEmail: String?,parentPhoneNo: String?,parentIdProof:URL?,parentOthers: String?,relationID: Int?,studentIdProofTile: String?,parentIdProofTitle:String?,classId:Int?,guardianId: Int?,guardianUserId: Int?,idProofName: String?, parentIdProofName: String?){
         
         do {
-            try validationsAddStudent(firstName: firstName,lastName: lastName,address: address,dateOfBirth: dateOfBirth,gender: gender,rollNoOrAddmissionId: rollNoOrAddmissionId,email:email,phoneNumber: phoneNumber,parentFirstName: parentFirstName, parentLastName: parentLastName,parentAddress: parentAddress, parentDOB: parentDOB,parentEmail: parentEmail,parentPhoneNo: parentPhoneNo,classId: classId, idProofName: idProofName, parentIdProofName: parentIdProofName)
+            try validationsAddStudent(firstName: firstName,lastName: lastName,address: address,dateOfBirth: dateOfBirth,gender: gender,rollNoOrAddmissionId: rollNoOrAddmissionId,email:email,phoneNumber: phoneNumber,parentFirstName: parentFirstName, parentLastName: parentLastName,parentAddress: parentAddress, parentDOB: parentDOB,parentEmail: parentEmail,parentPhoneNo: parentPhoneNo,classId: classId, idProofName: idProofName, parentIdProofName: parentIdProofName,relationId:relationID)
             
             var paramDict = [String: Any]()
             
@@ -89,7 +89,7 @@ class AddStudentViewModel{
             paramDict["GuardianRoleId"] = "6"
             
             print("value of paramdict : ",paramDict)
-
+            
             self.addStudentView?.showLoader()
             
             AdStudentApi.sharedInstance.addStudent(url: ApiEndpoints.KAddStudentApi, parameters: paramDict, completionResponse: { (responseModel) in
@@ -98,9 +98,9 @@ class AddStudentViewModel{
                 self.addStudentView?.hideLoader()
                 if responseModel.statusCode == KStatusCode.kStatusCode200{
                     self.addStudentView?.showAlert(alert: responseModel.message ?? "Something went wrong")
-//                    if responseModel.resultData != nil{
+                    //                    if responseModel.resultData != nil{
                     self.addStudentDelegate?.AddStudentDidSuccess(data: responseModel)
-//                    }
+                    //                    }
                 }else if responseModel.statusCode == KStatusCode.kStatusCode401{
                     self.addStudentView?.hideLoader()
                     self.addStudentView?.showAlert(alert: responseModel.message ?? "")
@@ -184,14 +184,16 @@ class AddStudentViewModel{
                 self.addStudentView?.showAlert(alert: Alerts.kEmptyParentPhoneNo)
                 
             case ValidationError.emptyParentprofId:
-              self.addStudentView?.showAlert(alert: Alerts.kEmptyIdProof)
+                self.addStudentView?.showAlert(alert: Alerts.kEmptyIdProof)
                 
             case ValidationError.emptyClassId:
-                 self.addStudentView?.showAlert(alert: Alerts.kselectClass)
+                self.addStudentView?.showAlert(alert: Alerts.kselectClass)
                 
+              case ValidationError.emptyRelation:
+                self.addStudentView?.showAlert(alert: Alerts.kEmptyRelation)
             default:
                 break
-//                self.signUPView?.showAlert(alertMessage: SignUpStrings.Alerts.k_EmptyFirstName)
+                //                self.signUPView?.showAlert(alertMessage: SignUpStrings.Alerts.k_EmptyFirstName)
             }
             
             
@@ -200,7 +202,7 @@ class AddStudentViewModel{
     
     
     //MARK:- Validations Add Student
-    func validationsAddStudent(firstName: String?,lastName: String?,address: String?,dateOfBirth: String?,gender: String?,rollNoOrAddmissionId: String?,email:String?,phoneNumber: String?,parentFirstName: String?, parentLastName: String?,parentAddress: String?, parentDOB: String?,parentEmail: String?,parentPhoneNo: String?,classId: Int?,idProofName : String?,parentIdProofName : String?) throws
+    func validationsAddStudent(firstName: String?,lastName: String?,address: String?,dateOfBirth: String?,gender: String?,rollNoOrAddmissionId: String?,email:String?,phoneNumber: String?,parentFirstName: String?, parentLastName: String?,parentAddress: String?, parentDOB: String?,parentEmail: String?,parentPhoneNo: String?,classId: Int?,idProofName : String?,parentIdProofName : String?,relationId:Int?) throws
     {
         if email == nil&&phoneNumber == nil||email == ""&&phoneNumber == ""{
             throw ValidationError.phoneOrEmailIsEmpty
@@ -233,9 +235,11 @@ class AddStudentViewModel{
         
         guard let address = address,!address.isEmpty,!address.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
             else{
-            throw ValidationError.emptyAddress
+                throw ValidationError.emptyAddress
         }
-        
+        guard let relationId = relationId,relationId != 0 else{
+                     throw ValidationError.emptyRelation
+             }
         guard let dob = dateOfBirth,!dob.isEmpty,!dob.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
             else{
                 throw ValidationError.emptyDateOfBith
@@ -254,12 +258,10 @@ class AddStudentViewModel{
         }
         
         guard let idProofName  = idProofName, !idProofName.isEmpty, !idProofName.trimmingCharacters(in: .whitespaces).isEmpty else{
-                 throw ValidationError.emptyIDProofName
-             }
-           guard let parentIdProofName  = parentIdProofName, !parentIdProofName.isEmpty, !parentIdProofName.trimmingCharacters(in: .whitespaces).isEmpty else{
-                          throw ValidationError.emptyParentprofId
-                      }
-                    
+            throw ValidationError.emptyIDProofName
+        }
+        
+        
         
         //Optional Fields Validation
         if parentEmail == nil&&parentPhoneNo == nil||parentEmail == ""&&parentPhoneNo == ""{
@@ -290,19 +292,22 @@ class AddStudentViewModel{
         
         guard let parentLastName  = parentLastName, !parentLastName.isEmpty, !parentLastName.trimmingCharacters(in: .whitespaces).isEmpty
             else{
-            throw ValidationError.emptyParentLastName
+                throw ValidationError.emptyParentLastName
         }
         
         guard let parentAddress  = parentAddress, !parentAddress.isEmpty, !parentAddress.trimmingCharacters(in: .whitespaces).isEmpty
             else{
-            throw ValidationError.emptyParentAddress
+                throw ValidationError.emptyParentAddress
         }
         
         guard let parentDOB  = parentDOB, !parentDOB.isEmpty, !parentDOB.trimmingCharacters(in: .whitespaces).isEmpty
             else{
-            throw ValidationError.emptyParentDOB
+                throw ValidationError.emptyParentDOB
         }
         
+        guard let parentIdProofName  = parentIdProofName, !parentIdProofName.isEmpty, !parentIdProofName.trimmingCharacters(in: .whitespaces).isEmpty else{
+            throw ValidationError.emptyParentprofId
+        }
         /*guard let others = others,!others.isEmpty,!others.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else{
          throw ValidationError.emptyOthers
          }*/
@@ -320,10 +325,10 @@ class AddStudentViewModel{
             self?.addStudentView?.hideLoader()
             switch VerifyEmailPhoneUserModel.statusCode{
             case KStatusCode.kStatusCode302:
-//                self.addStudentView?.hideLoader()
+                //                self.addStudentView?.hideLoader()
                 self?.addStudentDelegate?.PhoneEmailVerifyDidSuccess(data : VerifyEmailPhoneUserModel)
             case KStatusCode.kStatusCode401:
-//                self.addStudentView?.hideLoader()
+                //                self.addStudentView?.hideLoader()
                 self?.addStudentView?.showAlert(alert: VerifyEmailPhoneUserModel.message ?? "Something went wrong[")
                 self?.addStudentDelegate?.unauthorizedUser()
             case KStatusCode.kStatusCode404:
@@ -335,16 +340,16 @@ class AddStudentViewModel{
                 break
             }
             
-        }, completionnilResponse: {[weak self] (nilResponseError) in
-            
-            self?.addStudentView?.hideLoader()
-            if let error = nilResponseError{
-                self?.addStudentView?.showAlert(alert: error)
+            }, completionnilResponse: {[weak self] (nilResponseError) in
                 
-            }else{
-                CommonFunctions.sharedmanagerCommon.println(object: "verifyPhoneAndEmail Student APi Nil response")
-            }
-            
+                self?.addStudentView?.hideLoader()
+                if let error = nilResponseError{
+                    self?.addStudentView?.showAlert(alert: error)
+                    
+                }else{
+                    CommonFunctions.sharedmanagerCommon.println(object: "verifyPhoneAndEmail Student APi Nil response")
+                }
+                
         }) {[weak self] (error) in
             self?.addStudentView?.hideLoader()
             if let err = error?.localizedDescription{
@@ -363,8 +368,9 @@ class AddStudentViewModel{
         debugPrint("Parameters of guardian:- \(paramDict)")
         AdStudentApi.sharedInstance.PhoneEmailVerifyGardian(url: ApiEndpoints.KGardianPhoneEmailVerifyApi, parameters: paramDict as [String : Any], completionResponse: { [weak self](GetDetailByPhoneEmailGardianModel) in
             self?.addStudentView?.hideLoader()
-
+            
             switch GetDetailByPhoneEmailGardianModel.statusCode{
+
                 case KStatusCode.kStatusCode302:
 //                    self.addStudentView?.hideLoader()
                     self?.addStudentDelegate?.PhoneEmailVerifyGardianDidSuccess(data : GetDetailByPhoneEmailGardianModel)
@@ -373,24 +379,24 @@ class AddStudentViewModel{
                     self?.addStudentDelegate?.unauthorizedUser()
                 case KStatusCode.kStatusCode404:
                     self?.addStudentDelegate?.studentParentNotExist(isStudent: false)
-            case KStatusCode.kStatusCode409:
+                case KStatusCode.kStatusCode409:
                 self?.addStudentView?.showAlert(alert: GetDetailByPhoneEmailGardianModel.message ?? "Something went wrong")
-                default:
-                    CommonFunctions.sharedmanagerCommon.println(object: "verifyPhoneAndEmailGardian APi status change")
+            default:
+                CommonFunctions.sharedmanagerCommon.println(object: "verifyPhoneAndEmailGardian APi status change")
                 break
             }
             
-        }, completionnilResponse: { (nilResponseError) in
-            
-            self.addStudentView?.hideLoader()
-            
-            if let error = nilResponseError{
-                self.addStudentView?.showAlert(alert: error)
+            }, completionnilResponse: { (nilResponseError) in
                 
-            }else{
-                CommonFunctions.sharedmanagerCommon.println(object: "verifyPhoneAndEmailGardian APi Nil response")
-            }
-            
+                self.addStudentView?.hideLoader()
+                
+                if let error = nilResponseError{
+                    self.addStudentView?.showAlert(alert: error)
+                    
+                }else{
+                    CommonFunctions.sharedmanagerCommon.println(object: "verifyPhoneAndEmailGardian APi Nil response")
+                }
+                
         }) { (error) in
             self.addStudentView?.hideLoader()
             if let err = error?.localizedDescription{
@@ -409,7 +415,7 @@ class AddStudentViewModel{
         AdStudentApi.sharedInstance.getStudentDetail(url: ApiEndpoints.KStudentDetailApi + "\(enrollmentId ?? 0)", parameters: nil, completionResponse: {[weak self] (GetStudentDetail) in
             if GetStudentDetail.statusCode == KStatusCode.kStatusCode200{
                 self?.addStudentView?.hideLoader()
-//                self?.addStudentView?.showAlert(alert: GetStudentDetail.message ?? "")
+                //                self?.addStudentView?.showAlert(alert: GetStudentDetail.message ?? "")
                 self?.addStudentDelegate?.StudentDetailDidSuccess(Data: GetStudentDetail)
             }else if GetStudentDetail.statusCode == KStatusCode.kStatusCode401{
                 self?.addStudentView?.hideLoader()
@@ -421,17 +427,17 @@ class AddStudentViewModel{
                 CommonFunctions.sharedmanagerCommon.println(object: "student APi status change")
             }
             
-        }, completionnilResponse: { (nilResponseError) in
-            
-            self.addStudentView?.hideLoader()
-            
-            if let error = nilResponseError{
-                self.addStudentView?.showAlert(alert: error)
+            }, completionnilResponse: { (nilResponseError) in
                 
-            }else{
-                CommonFunctions.sharedmanagerCommon.println(object: "student APi Nil response")
-            }
-            
+                self.addStudentView?.hideLoader()
+                
+                if let error = nilResponseError{
+                    self.addStudentView?.showAlert(alert: error)
+                    
+                }else{
+                    CommonFunctions.sharedmanagerCommon.println(object: "student APi Nil response")
+                }
+                
         }) { (error) in
             self.addStudentView?.hideLoader()
             if let err = error?.localizedDescription{
@@ -446,19 +452,19 @@ class AddStudentViewModel{
     func getRelationId(id: Int?, enumtype: Int?){
         guard let selectId = id else{ return }
         guard let enumType = enumtype else { return }
-//        self.addStudentView?.showLoader()
+        //        self.addStudentView?.showLoader()
         
         AdStudentApi.sharedInstance.getClassDropdownData(id: selectId, enumType: enumType, completionResponse: {[weak self] (responseModel) in
-//            self?.addStudentView?.hideLoader()
+            //            self?.addStudentView?.hideLoader()
             self?.addStudentDelegate?.getRelationdropdownDidSucceed(data: responseModel)
             
-        }, completionnilResponse: {[weak self] (nilResponse) in
-//            self?.addStudentView?.hideLoader()
-            if let nilRes = nilResponse{
-                self?.addStudentView?.showAlert(alert: nilRes)
-            }
+            }, completionnilResponse: {[weak self] (nilResponse) in
+                //            self?.addStudentView?.hideLoader()
+                if let nilRes = nilResponse{
+                    self?.addStudentView?.showAlert(alert: nilRes)
+                }
         }) {[weak self] (error) in
-//            self?.addStudentView?.hideLoader()
+            //            self?.addStudentView?.hideLoader()
             if let err = error{
                 self?.addStudentView?.showAlert(alert: err.localizedDescription)
             }
@@ -468,21 +474,21 @@ class AddStudentViewModel{
         guard let selectId = id else{ return }
         guard let enumType = enumtype else { return }
         
-//        self.addStudentView?.showLoader()
+        //        self.addStudentView?.showLoader()
         
         AdStudentApi.sharedInstance.getDepartmentDropdownData(id: selectId, enumType: enumType, completionResponse: { (responseModel) in
-//            self.addStudentView?.hideLoader()
+            //            self.addStudentView?.hideLoader()
             self.addStudentDelegate?.getDepartmentdropdownDidSucceed(data: responseModel.resultData)
             
             
             
         }, completionnilResponse: { (nilResponse) in
-//            self.addStudentView?.hideLoader()
+            //            self.addStudentView?.hideLoader()
             if let nilRes = nilResponse{
                 self.addStudentView?.showAlert(alert: nilRes)
             }
         }) { (error) in
-//            self.addStudentView?.hideLoader()
+            //            self.addStudentView?.hideLoader()
             if let err = error{
                 self.addStudentView?.showAlert(alert: err.localizedDescription)
             }
@@ -502,10 +508,10 @@ class AddStudentViewModel{
                 self.addStudentDelegate?.getClassdropdownDidSucceed(data: responseModel.resultData)
             }else{
                 self.addStudentView?.hideLoader()
-
+                
             }
             
-           
+            
             
             
             

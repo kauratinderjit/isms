@@ -251,7 +251,8 @@ class SignUpViewController: BaseUIViewController {
         }
     }
     
-    func AutoTextDataTextField(data: GetUserDetailByPhoneEmail){
+    func AutoTextDataTextField(data: GetUserDetailByPhoneEmail)
+    {
         let userDetail = data
         
 //        Show Pic Of User

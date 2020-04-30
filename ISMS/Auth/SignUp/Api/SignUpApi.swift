@@ -74,6 +74,7 @@ class SignUpApi {
         CommonFunctions.sharedmanagerCommon.println(object: "Post dictionary:- \(postDict)")
         
         let url = BaseUrl.kBaseURL+url
+        print(url)
         var accessTokken = ""
         if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String
         {
