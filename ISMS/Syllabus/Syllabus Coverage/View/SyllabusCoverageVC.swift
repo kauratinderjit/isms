@@ -64,6 +64,11 @@ class SyllabusCoverageVC : BaseUIViewController  {
                 btnClassDropDown.isUserInteractionEnabled = false
                 textfieldClass.text = UserDefaultExtensionModel.shared.classNameStudent
                  self.viewModel?.getData(teacherId: 0, classID: studentClassId ?? 0)
+            }else if UserDefaultExtensionModel.shared.currentUserRoleId == 6{
+                imgDropDown.isHidden = true
+                btnClassDropDown.isUserInteractionEnabled = false
+                textfieldClass.text = UserDefaultExtensionModel.shared.classNameStudent
+                self.viewModel?.getData(teacherId: 0, classID: studentClassId ?? 0)
             }else if isFromStudent == true{
                   imgDropDown.isHidden = false
                   btnClassDropDown.isUserInteractionEnabled = true

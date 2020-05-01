@@ -340,6 +340,7 @@
                         <outlet property="lblProgressPercentage" destination="vGj-nf-RCv" id="X2H-vH-810"/>
                         <outlet property="lblSubjectName" destination="Oat-RS-x4s" id="cVi-63-tSJ"/>
                         <outlet property="progressBar" destination="sTq-b2-Het" id="jvC-vC-hwu"/>
+                        <outlet property="tableBottomConstraints" destination="Zig-ic-lxm" id="18u-Ic-e0q"/>
                         <outlet property="tableView" destination="m4Y-rP-Ba1" id="Qea-IA-PZ6"/>
                     </connections>
                 </viewController>

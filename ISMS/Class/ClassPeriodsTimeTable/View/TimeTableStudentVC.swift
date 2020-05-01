@@ -40,9 +40,9 @@ class TimeTableStudentVC: BaseUIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if isFromTimeTableParent == false{
-                self.title = "Attendance"
+                self.title = "Time Table"
         }else{
-                self.title = "TimeTable"
+                self.title = "Time Table"
         }
     
 //        checkCameFromWhichScreen()
@@ -248,9 +248,6 @@ extension TimeTableStudentVC: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 extension TimeTableStudentVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if isFromTimeTableParent == true{
-            
-        }else{
             if let daysModel = self.arrGetTimeTableDaysModel?[indexPath.section - 1] {
                 if let period = daysModel.periodDetailListModel?[indexPath.row - 1] {
                     print(period)
@@ -266,7 +263,6 @@ extension TimeTableStudentVC: UICollectionViewDelegate {
                     }
                 }
             }
-        }
     }
 }
 
