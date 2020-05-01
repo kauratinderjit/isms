@@ -237,7 +237,7 @@ extension StudentListVC : StudentListDelegate{
     func StudentListDidSuccess(data : [GetStudentResultData]?)
     {
         isFetching = true
-         arrStudentlist.removeAll()
+        // arrStudentlist.removeAll()
         if data != nil{
             if data?.count ?? 0 > 0
             {
@@ -250,13 +250,16 @@ extension StudentListVC : StudentListDelegate{
                 tableView.dataSource = self
                 
                 //When user select the class for change the data in list selected
-                if isClassSelected == true{
+                if isClassSelected == true
+                {
                     arrStudentlist.removeAll()
                     _ = rsltData.map({ (data) in
                         arrStudentlist.append(data)
                     })
                     self.tblViewCenterLabel(tblView: tableView, lblText: "", hide: true)
-                }else{
+                }
+                else
+                {
                     for value in rsltData{
                         let containsSameValue = arrStudentlist.contains(where: {$0.enrollmentId == value.enrollmentId})
                         if containsSameValue == false{
