@@ -16,15 +16,16 @@ class StudentUploadHomeWorkVC: BaseUIViewController {
     @IBOutlet weak var tblViewListing: UITableView!
     @IBOutlet weak var heightTableView: NSLayoutConstraint!
     var uploadData = NSMutableArray()
- var viewModel : HomeworkViewModel?
+  var viewModel : HomeworkViewModel?
     var AssignHomeWorkId : Int? = 0
      var StudentId : Int? = 0
     var StudentHomeworkId : Int? = 0
-      var lststuattachmentModels: [lststuattachmentModels]?
+      var lststuattachmentModels: [stuAttachmentViewModels]?
     @IBOutlet weak var btnSubmit: UIButton!
      var  datalocalStu: [HomeworkListStudentData]?
     var booledit = false
-    var boolAlreadySelected = false
+    var selectedIndexPathForDelAttachment : Int? = 0
+   var deletedAttachmentArray = NSMutableArray()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,35 +34,46 @@ class StudentUploadHomeWorkVC: BaseUIViewController {
         heightTableView.constant = 0
         self.viewModel = HomeworkViewModel.init(delegate: self)
                       self.viewModel?.attachView(viewDelegate: self)
-        
-        if lststuattachmentModels?.count ?? 0 > 0  {
+        print(datalocalStu)
+        print(lststuattachmentModels)
+        if datalocalStu != nil  {
             
-            StudentHomeworkId = lststuattachmentModels?[0].StudentHomeworkId
+            StudentHomeworkId = datalocalStu?[0].lststuattachmentModels?[0].StudentHomeworkId
              self.title = "Update Tasks"
-             heightTableView.constant =  CGFloat((lststuattachmentModels?.count ?? 0) * 51)
-             txtViewComment.text = lststuattachmentModels?[0].Comment
+            heightTableView.constant =  CGFloat((lststuattachmentModels?.count ?? 0) * 52)
+             txtViewComment.text = datalocalStu?[0].lststuattachmentModels?[0].Comment
              btnSubmit.setTitle("UPDATE", for: .normal)
              lblPlaceHolderComment.isHidden = true
-             if lststuattachmentModels?.count ?? 0 > 0 {
+            if lststuattachmentModels?.count ?? 0 > 0 {
                  
-                 for (index, element) in (lststuattachmentModels?.enumerated())! {
+                for (index, element) in (lststuattachmentModels?.enumerated())! {
                    print("Item \(index): \(element)")
                    
                  var modelHW = [String: Any]()
-                                      modelHW["url"] = nil
+                    modelHW["url"] = element.AttachmentUrl
                                       modelHW["fileName"] = element.FileName
-                                      modelHW["id"] = element.AssignHomeWorkId
+                                      modelHW["id"] = element.StudentAttachmentId
                                       uploadData.add(modelHW)
-                    boolAlreadySelected = true
-                 }
                  
+                 }
+                tblViewListing.reloadData()
              }
-             
-
          }
     }
     
-
+    
+    
+    @IBAction func actionDel(_ sender: UIButton) {
+        if uploadData.count > 0   {
+                 selectedIndexPathForDelAttachment = sender.tag
+                                     initializeCustomYesNoAlert(self.view, isHideBlurView: true)
+                                     yesNoAlertView.delegate = self
+                                     yesNoAlertView.lblResponseDetailMessage.text = "Do you really want to delete this attachment?"
+                                     
+                                 }
+        
+    }
+    
     @IBAction func actionActionFiles(_ sender: UIButton) {
         let importMenu = UIDocumentPickerViewController(documentTypes: ["public.data", "public.content"], in: UIDocumentPickerMode.import)
                importMenu.delegate = self
@@ -93,7 +105,7 @@ class StudentUploadHomeWorkVC: BaseUIViewController {
                      
 
                    StudentId =  UserDefaultExtensionModel.shared.enrollmentIdStudent
-                    self.viewModel?.uploadHomeworkStudent(AssignHomeWorkId: AssignHomeWorkId ?? 0, StudentId: StudentId ?? 0, StudentHomeworkId: StudentHomeworkId ?? 0, Comment: txtViewComment.text, Status: true, lstAssignHomeAttachmentMapping: attachementArr)
+                    self.viewModel?.uploadHomeworkStudent(AssignHomeWorkId: AssignHomeWorkId ?? 0, StudentId: StudentId ?? 0, StudentHomeworkId: StudentHomeworkId ?? 0, Comment: txtViewComment.text, Status: true, lstAssignHomeAttachmentMapping: attachementArr, delArr: deletedAttachmentArray)
                        
                    }
                    
@@ -105,7 +117,39 @@ class StudentUploadHomeWorkVC: BaseUIViewController {
         //self.showAlert(Message: "Homework has been uploaded successfully.")
        // _ = self.navigationController?.popViewController(animated: true)
     }
+}
+
+extension StudentUploadHomeWorkVC : YesNoAlertViewDelegate{
     
+    func yesBtnAction() {
+        if self.checkInternetConnection(){
+            
+            let dic = uploadData[selectedIndexPathForDelAttachment ?? 0] as? [String:Any]
+
+           if dic?["id"] as? Int == 0 {
+            uploadData.removeObject(at: selectedIndexPathForDelAttachment ?? 0)
+                              tblViewListing.reloadData()
+          }else{
+            let dd = uploadData[selectedIndexPathForDelAttachment ?? 0] as? [String: Any]
+            var modelHW = [String : Any]()
+            modelHW["StudentAttachmentId"] = dd?["id"]
+            modelHW["AttachmentUrl"] = dd?["url"]
+            deletedAttachmentArray.add(modelHW)
+            uploadData.removeObject(at: selectedIndexPathForDelAttachment ?? 0)
+               tblViewListing.reloadData()
+          }
+            yesNoAlertView.removeFromSuperview()
+
+        }else{
+            self.showAlert(alert: Alerts.kNoInternetConnection)
+            yesNoAlertView.removeFromSuperview()
+        }
+        yesNoAlertView.removeFromSuperview()
+    }
+    
+    func noBtnAction() {
+        yesNoAlertView.removeFromSuperview()
+    }
 }
 extension StudentUploadHomeWorkVC:UITextViewDelegate{
     
@@ -153,83 +197,48 @@ extension StudentUploadHomeWorkVC: UIDocumentMenuDelegate,UIDocumentPickerDelega
         guard let myURL = urls.first else {
             return
         }
-        booledit = false
-        
-        if  boolAlreadySelected == true {
-            if uploadData.count == 1 {
-                
-                             print(uploadData.count)
-                            _ = uploadData.enumerated().map { (index,element) in
-                            
-                            let dd = element as? [String:Any]
-                            if dd?["fileName"] as? String == myURL.lastPathComponent {
-                                self.showAlert(Message: "You have already selected this file.")
-                                booledit = true
-                                return
-                            }
-                                }
-                
-                               
-                                
-                                
-                                if booledit == false {
-                                    uploadData.removeAllObjects()
-                                    boolAlreadySelected = false
-
-                                var modelHW = [String: Any]()
-                                      modelHW["url"] = myURL
-                                      modelHW["fileName"] = myURL.lastPathComponent
-                                      modelHW["id"] = 0
-                                    uploadData.add(modelHW)
-                                    
-                                    
-                }
-       
-                        heightTableView.constant  = CGFloat(uploadData.count * 51)
-                        self.tblViewListing.reloadData()
-                        print("import result : \(myURL)")
-            
-            } } else {
-            if uploadData.count == 0 {
-//                  if uploadData.count > 0 {
-//                   print(uploadData.count)
-//                  _ = uploadData.enumerated().map { (index,element) in
-//
-//                  let dd = element as? [String:Any]
-//                  if dd?["fileName"] as? String == myURL.lastPathComponent {
-//                      self.showAlert(Message: "You have already selected this file.")
-//                      booledit = true
-//                      return
-//                  }
-//                      }
-//                      if booledit == false {
-//                      var modelHW = [String: Any]()
-//                            modelHW["url"] = myURL
-//                            modelHW["fileName"] = myURL.lastPathComponent
-//                            modelHW["id"] = 0
-//                          uploadData.add(modelHW) }
-//              }
-//
-//
-//              else{
-                                       var modelHW = [String: Any]()
-                                       modelHW["url"] = myURL
-                                       modelHW["fileName"] = myURL.lastPathComponent
-                                       modelHW["id"] = 0
-                                       uploadData.add(modelHW)
-                //  }
-            
-        }
-              else{
-                  self.showAlert(Message: "Maximum limit to upload the document is 1.")
-              }
-               
+  booledit = false
+          if uploadData.count <= 5 {
               
-              heightTableView.constant  = CGFloat(uploadData.count * 51)
-              self.tblViewListing.reloadData()
-              print("import result : \(myURL)")
-        }
-
+              if uploadData.count > 0 {
+              
+              _ = uploadData.enumerated().map { (index,element) in
+              
+              let dd = element as? [String:Any]
+              if dd?["fileName"] as? String == myURL.lastPathComponent {
+                  self.showAlert(Message: "You have already selected this file.")
+                  booledit = true
+                  return
+              }
+                  }
+                  if booledit == false {
+            
+                  var modelHW = [String: Any]()
+                        modelHW["url"] = myURL
+                        modelHW["fileName"] = myURL.lastPathComponent
+                        modelHW["id"] = 0
+                        uploadData.add(modelHW)
+             
+                  }
+              
+          }
+        
+              
+          else{
+                                   var modelHW = [String: Any]()
+                                   modelHW["url"] = myURL
+                                   modelHW["fileName"] = myURL.lastPathComponent
+                                   modelHW["id"] = 0
+                                   uploadData.add(modelHW)
+              }}
+          else{
+              self.showAlert(Message: "Maximum limit to upload the document is 5.")
+          }
+           
+          
+          heightTableView.constant  = CGFloat(uploadData.count * 51)
+          self.tblViewListing.reloadData()
+          print("import result : \(myURL)")
         
     }
     
@@ -256,9 +265,6 @@ extension StudentUploadHomeWorkVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AddNotesCell
         
-        if datalocalStu != nil  {
-            cell.btnDel.isHidden = true
-        }
         
         cell.btnDel.tag = indexPath.row
 

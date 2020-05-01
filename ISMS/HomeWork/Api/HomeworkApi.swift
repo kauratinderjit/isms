@@ -60,10 +60,7 @@ class HomeworkApi
                                               multipartFormData.append(value, withName: "IFile" )
                                           }
                     }
-//                    if let url = value as? URL{
-//                        multipartFormData.append(url, withName: key as String)
-//                    }
-                    
+
                 }
                 else
                 {
@@ -78,7 +75,19 @@ class HomeworkApi
                         multipartFormData.append("\(Item)".data(using: String.Encoding.utf8)!, withName: key as String)
                         
                     }
+                     if let Item = value as? NSMutableArray{
+                        print(Item)
+                        if Item.count > 0 {
+                             for (ind,element) in Item.enumerated()
+                                           {
+                            let dic = element as? [String : Any]
+                            let dd = dic?["StudentAttachmentId"] as? Int
+                        multipartFormData.append("\(dd!)".data(using: String.Encoding.utf8)!, withName: "lstdeleteattachmentModel[" + "\(ind)" + "].StudentAttachmentId")
+                            }
+                    }
+                    
                 }
+            }
             }
             
         }, usingThreshold: UInt64.init(), to: url, method: .post, headers: headers) { (result) in

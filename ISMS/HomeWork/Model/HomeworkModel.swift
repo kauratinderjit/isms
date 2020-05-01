@@ -97,11 +97,9 @@ struct lstattachmentModels: Mappable {
 struct lststuattachmentModels: Mappable {
     //atinder
     var AssignHomeWorkId : Int?
-    var AttachmentUrl : String?
-    var FileName : String?
-    var IFile : URL?
     var Comment : String?
     var StudentHomeworkId : Int?
+    var stuAttachmentViewModels : [stuAttachmentViewModels]?
     
     init?(map: Map) {
     }
@@ -109,10 +107,27 @@ struct lststuattachmentModels: Mappable {
     mutating func mapping(map: Map) {
    
        AssignHomeWorkId <- map["AssignHomeWorkId"]
-       AttachmentUrl <- map["AttachmentUrl"]
-      Comment <- map["Comment"]
-       FileName <- map["FileName"]
+        Comment <- map["Comment"]
         StudentHomeworkId <- map["StudentHomeworkId"]
+        stuAttachmentViewModels <- map["stuAttachmentViewModels"]
+
+    }
+    
+}
+struct stuAttachmentViewModels: Mappable {
+    //atinder
+    var AttachmentUrl : String?
+    var FileName : String?
+    var StudentAttachmentId : Int?
+    
+    init?(map: Map) {
+    }
+    
+    mutating func mapping(map: Map) {
+   
+       AttachmentUrl <- map["AttachmentUrl"]
+       FileName <- map["FileName"]
+        StudentAttachmentId <- map["StudentAttachmentId"]
 
     }
     

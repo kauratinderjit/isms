@@ -292,7 +292,6 @@ class AddHomeWorkVC: BaseUIViewController {
                                 yesNoAlertView.lblResponseDetailMessage.text = "Do you really want to delete this attachment?"
                                 
                             }
-       
         
     }
     
@@ -311,7 +310,6 @@ extension AddHomeWorkVC : YesNoAlertViewDelegate{
                               tblView.reloadData()
           }else{
             self.viewModel?.deleteAttachment(assignWorkAttachmentId: dic?["id"] as? Int )
-           
           }
             yesNoAlertView.removeFromSuperview()
 

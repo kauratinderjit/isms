@@ -406,7 +406,7 @@ class HomeworkViewModel {
 
     
     
-    func uploadHomeworkStudent(AssignHomeWorkId : Int ,StudentId : Int,  StudentHomeworkId : Int , Comment : String ,Status: Bool, lstAssignHomeAttachmentMapping : [URL]) {
+    func uploadHomeworkStudent(AssignHomeWorkId : Int ,StudentId : Int,  StudentHomeworkId : Int , Comment : String ,Status: Bool, lstAssignHomeAttachmentMapping : [URL],delArr: NSMutableArray ) {
            
             homeworkViewDelegate?.showLoader()
         //getworklistbyId
@@ -420,7 +420,8 @@ class HomeworkViewModel {
                         "StudentHomeworkId": StudentHomeworkId,
                         "Comment" : Comment,
                         "Status" :Status ,
-                        "lstAssignHomeAttachmentMapping":lstAssignHomeAttachmentMapping] as [String : Any]
+                        "lstAssignHomeAttachmentMapping":lstAssignHomeAttachmentMapping,
+                        "lstdeleteattachmentModel": delArr] as [String : Any]
            
            
            HomeworkApi.sharedManager.multipartApi(postDict: param, url: url, completionResponse: { (response) in
