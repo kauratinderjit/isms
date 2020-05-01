@@ -340,9 +340,9 @@ extension HomeVC : HomeViewModelDelegate
             strStudent = "Students"
         }
         
-        lblName1.text = "\(String(describing: data.NoOfClasses!))" + " " + strClass
-        lblName2.text =  "\(String(describing: data.NoOfSubjects!))" + " " + strTeacher
-        lblName3.text =  "\(String(describing: data.NoOfStudents!))" + " " + strStudent
+        lblName1.text = "\(String(describing: data.NoOfClasses ?? 0))" + " " + strClass
+        lblName2.text =  "\(String(describing: data.NoOfSubjects ?? 0))" + " " + strTeacher
+        lblName3.text =  "\(String(describing: data.NoOfStudents ?? 0))" + " " + strStudent
         
         if data.lstEvent?.count ?? 0 > 0
         {
@@ -446,11 +446,11 @@ extension HomeVC : ViewDelegate{
         self.HideLoader()
     }
     
-    func showAlert(alert: String) {
+    func showAlert(alert: String)
+    {
         initializeCustomOkAlert(self.view, isHideBlurView: true)
         okAlertView.delegate = self
     }
-    
 }
 
 extension HomeVC : OKAlertViewDelegate{
