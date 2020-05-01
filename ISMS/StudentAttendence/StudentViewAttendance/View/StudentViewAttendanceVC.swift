@@ -38,9 +38,9 @@ class StudentViewAttendanceVC: BaseUIViewController {
     
 
     @IBAction func btnGetAttendance(_ sender: Any) {
-        if lblStartDate.text == ""{
+        if lblStartDate.text == "Start Date"{
              self.showAlert(alert:"Please Enter Start Date")
-        }else if lblEndDate.text == ""{
+        }else if lblEndDate.text == "End Date"{
             self.showAlert(alert:"Please Enter End Date")
         }else{
             self.viewModel?.GetAttendance(StartDate: lblStartDate.text ?? "",EndDate: lblEndDate.text ?? "",StudentId: userRoleParticularId,PeriodId: periodId ?? 0,SubjectId: classSubjectId ?? 0,EnrollmentId: UserDefaultExtensionModel.shared.enrollmentIdStudent,ClassId: studentClassId ?? 0,SessionId: 0)

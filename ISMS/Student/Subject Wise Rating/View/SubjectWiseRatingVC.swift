@@ -17,7 +17,8 @@ class SubjectWiseRatingVC: BaseUIViewController {
     
     @IBOutlet var tableView: UITableView!
    
-    
+    var studentClassId = UserDefaultExtensionModel.shared.StudentClassId
+    var enrollmentIdStudent = UserDefaultExtensionModel.shared.enrollmentIdStudent
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
@@ -25,8 +26,9 @@ class SubjectWiseRatingVC: BaseUIViewController {
         self.viewModel = SubjectWiseRatingViewModel.init(delegate: self)
         self.viewModel?.attachView(viewDelegate: self)
         tableView.reloadData()
+        setBackButton()
         // Do any additional setup after loading the view.
-        self.viewModel?.getSubjectWiseRating(enrollmentsId: 35, classId: 44)
+        self.viewModel?.getSubjectWiseRating(enrollmentsId: enrollmentIdStudent, classId: studentClassId)
     }
   
     
@@ -75,6 +77,8 @@ extension SubjectWiseRatingVC : UITableViewDelegate {
         if arrSubjectList.count > 0{
              self.subjectName = arrSubjectList[indexPath.row].Name
                vc.subjectName = self.subjectName
+                vc.subjectClassId = arrSubjectList[indexPath.row].classSubjectId
+                vc.enrollmentId = enrollmentIdStudent
         }
      
         //        if let id = arrSubjectList[indexPath.row].ClassSubjectId {

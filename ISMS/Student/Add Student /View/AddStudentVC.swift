@@ -59,6 +59,9 @@ class AddStudentVC: BaseUIViewController {
     @IBOutlet weak var viewDepartment: UIView!
     @IBOutlet weak var ViewClass: UIView!
     @IBOutlet weak var txtFieldClassDropDown: UITextField!
+    
+    
+    
     //Variables
     var selectStudentIdProof : Bool?
     var selectParentIdProof : Bool?

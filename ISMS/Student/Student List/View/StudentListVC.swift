@@ -276,7 +276,7 @@ extension StudentListVC : StudentListDelegate{
                 {
                     arrStudentlist.removeAll()
                 }
-                self.tblViewCenterLabel(tblView: tableView, lblText: KConstants.KDataNotFound, hide: false)
+               // self.tblViewCenterLabel(tblView: tableView, lblText: KConstants.KDataNotFound, hide: false)
                 //                CommonFunctions.sharedmanagerCommon.println(object: "Zero")
             }
         }

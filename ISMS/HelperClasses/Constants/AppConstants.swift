@@ -145,6 +145,10 @@ public struct ApiEndpoints
     public static let forgotPassword = "api/User/ForgotPassword?UserId="
     public static let NewPassword = "&Password="
     
+     public static let kGetEventsByRoleParticularId = "api/Institute/GetEventsByRoleParticularId"
+    
+
+    
 }
 
 

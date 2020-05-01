@@ -17,7 +17,8 @@ protocol HomeViewModelDelegate:class
     func AdminData(data: homeAdminResultData)
     func teacherData(data: teacherData)
     func studentData(data: StudentData)
-     func parentData(data: teacherData)
+    func parentData(data: ParentResultData)
+    func EventModelSucced(data: [EventResultData]?)
 }
 
 
@@ -265,7 +266,7 @@ class HomeViewModel{
                    
                    if (response.resultData != nil)
                    {
-                      self.delegate?.parentData(data: response.resultData!)
+                    self.delegate?.parentData(data: response.resultData!)
                    }
                    else
                    {
@@ -319,5 +320,51 @@ class HomeViewModel{
                  self.homeView?.showAlert(alert: error?.localizedDescription ?? "Something went wrong")
          }
      }
+    
+    func GetEvents(){
+        
+        let params = ["enumTypeId":0, "Search":"", "Skip": 10,"PageSize": 0,"SortColumnDir": "", "SortColumn": "","ParticularId": 0 ] as [String : Any]
+        
+          self.homeView?.showLoader()
+        
+        LoginApi.sharedmanagerAuth.GetEvent(url: ApiEndpoints.kGetEventsByRoleParticularId, parameters: params as [String : Any], completionResponse: { (EventModel) in
+            
+            if EventModel.statusCode == KStatusCode.kStatusCode200{
+                self.homeView?.hideLoader()
+                if let result = EventModel.resultData {
+                    self.delegate?.EventModelSucced(data: EventModel.resultData)
+                }
+            }else if EventModel.statusCode == KStatusCode.kStatusCode401{
+                self.homeView?.hideLoader()
+                self.homeView?.showAlert(alert: EventModel.message ?? "")
+//                self.delegate?.unauthorizedUser()
+            }else if EventModel.statusCode == KStatusCode.kStatusCode400{
+                self.homeView?.hideLoader()
+                self.homeView?.showAlert(alert: EventModel.message ?? "")
+            }else{
+                self.homeView?.hideLoader()
+                CommonFunctions.sharedmanagerCommon.println(object: "student APi status change")
+            }
+            
+        }, completionnilResponse: { (nilResponseError) in
+            
+            self.homeView?.hideLoader()
+            
+            if let error = nilResponseError{
+                self.homeView?.showAlert(alert: error)
+                
+            }else{
+                CommonFunctions.sharedmanagerCommon.println(object: "student APi Nil response")
+            }
+            
+        }) { (error) in
+            self.homeView?.hideLoader()
+            if let err = error?.localizedDescription{
+                self.homeView?.showAlert(alert: err)
+            }else{
+                CommonFunctions.sharedmanagerCommon.println(object: "student APi error response")
+            }
+        }
+    }
      
 }

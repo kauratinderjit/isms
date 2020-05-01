@@ -33,6 +33,7 @@ class UpdateSyllabusVC: BaseUIViewController {
     var subjectData : SyllabusCoverageListResultData?
     var isCheck = false
     
+    @IBOutlet weak var tableBottomConstraints: NSLayoutConstraint!
     @IBOutlet weak var btnUpdate: UIButton!
     @IBOutlet var progressBar: UIProgressView!
     @IBOutlet var lblSubjectName: UILabel!
@@ -51,10 +52,20 @@ class UpdateSyllabusVC: BaseUIViewController {
         self.viewModel?.attachView(viewDelegate: self)
         if UserDefaultExtensionModel.shared.currentUserRoleId == 5{
              btnUpdate.isHidden = true
+            self.title = "Syllabus Coverage"
+            tableBottomConstraints.constant = -80
+        }else if UserDefaultExtensionModel.shared.currentUserRoleId == 6{
+            btnUpdate.isHidden = true
+            self.title = "Syllabus Coverage"
+            tableBottomConstraints.constant = -80
         }else if isFromStudent == true {
             btnUpdate.isHidden = true
+            self.title = "Syllabus Coverage"
+            tableBottomConstraints.constant = -80
         }else{
             btnUpdate.isHidden = false
+            self.title = "Update Syllabus"
+            tableBottomConstraints.constant = 24
         }
         
         
@@ -163,6 +174,8 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
         }
         if UserDefaultExtensionModel.shared.currentUserRoleId == 5{
             
+        }else if UserDefaultExtensionModel.shared.currentUserRoleId == 6{
+            
         }else if isFromStudent == false{
             if isCheck == true{
                 if cell.checkBox.tag == indexRow && indexPath.section == section{
@@ -218,6 +231,7 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if UserDefaultExtensionModel.shared.currentUserRoleId == 5{
+        }else if UserDefaultExtensionModel.shared.currentUserRoleId == 6{
         }else if isFromStudent == false {
         indexRow = indexPath.row
         section = indexPath.section

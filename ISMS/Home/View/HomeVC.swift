@@ -30,9 +30,14 @@ class HomeVC: BaseUIViewController {
     @IBOutlet var iv3: UIImageView!
     
     
+    @IBOutlet weak var collectionView: UICollectionView!
     
+    var studentArr = [StudentResultData]()
+    private let sectionInsets = UIEdgeInsets(top: 8.0,left: 8.0,bottom: 8.0,right: 8.0)
+    private let itemsPerRow: CGFloat = 3
     
     var arrEventlist : [ListData]?
+    var eventArr = [EventResultData]()
     
     var roleUserName:String?
     var homeViewModel : HomeViewModel?
@@ -129,11 +134,13 @@ class HomeVC: BaseUIViewController {
         if UserDefaultExtensionModel.shared.currentHODRoleName == "HOD"
         {
             self.title = "HOD's Dashboard"
+            collectionView.isHidden = true
             self.homeViewModel?.getData(userId: UserDefaultExtensionModel.shared.currentUserId)
         }
         else if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Teacher")
         {
             self.title = "Teacher's Dashboard"
+              collectionView.isHidden = true
             self.homeViewModel?.getDataTeacher(userId: UserDefaultExtensionModel.shared.currentUserId)
             //mohit tblViewListing.isHidden = true
         }
@@ -141,11 +148,13 @@ class HomeVC: BaseUIViewController {
         {
             self.homeViewModel?.getDataForAdmin(userId: UserDefaultExtensionModel.shared.currentUserId)
             self.title = "Admin's Dashboard"
+              collectionView.isHidden = true
             tblViewListing.isHidden = true
         }
         else if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Student")
         {
             self.title = "Student's Dashboard"
+              collectionView.isHidden = true
             // tblViewListing.isHidden = true
             self.homeViewModel?.getDataStudent(userId: UserDefaultExtensionModel.shared.currentUserId)
           
@@ -153,6 +162,15 @@ class HomeVC: BaseUIViewController {
         else if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Parent")
                {
                    self.title = "Parent's Dashboard"
+                self.iv1.isHidden = true
+                self.iv2.isHidden = true
+                self.iv3.isHidden = true
+                
+                self.lblName1.isHidden = true
+                self.lblName2.isHidden = true
+                self.lblName3.isHidden = true
+                
+                topEventView.constant = 10
                    // tblViewListing.isHidden = true
                    self.homeViewModel?.getDataParentDashboardApi(userId: UserDefaultExtensionModel.shared.currentUserId)
                  
@@ -187,8 +205,29 @@ class HomeVC: BaseUIViewController {
 
 extension HomeVC : HomeViewModelDelegate
 {
-    func parentData(data: teacherData) {
+    func parentData(data: ParentResultData) {
+        lblName.text = data.parentName
+        lblDept.text = (data.email ?? "")
+        self.studentArr = data.students!
+        collectionView.reloadData()
         
+        UserDefaultExtensionModel.shared.StudentClassId = studentArr[0].classId ?? 0
+        UserDefaultExtensionModel.shared.enrollmentIdStudent = studentArr[0].enrollmentId ?? 0
+        UserDefaultExtensionModel.shared.classNameStudent = studentArr[0].className!
+        UserDefaultExtensionModel.shared.UserName = studentArr[0].studentName!
+        
+        
+        print("student",UserDefaultExtensionModel.shared.StudentClassId)
+          print("student",UserDefaultExtensionModel.shared.enrollmentIdStudent)
+          print("student",UserDefaultExtensionModel.shared.classNameStudent)
+         print("student",UserDefaultExtensionModel.shared.UserName)
+        self.homeViewModel?.GetEvents()
+    }
+    
+    func EventModelSucced(data: [EventResultData]?){
+        self.eventArr = data!
+        tblViewListing.reloadData()
+//        tableView.reloadData()
     }
     
     func AdminData(data: homeAdminResultData)
@@ -301,9 +340,9 @@ extension HomeVC : HomeViewModelDelegate
             strStudent = "Students"
         }
         
-        lblName1.text = "\(String(describing: data.NoOfClasses!))" + " " + strClass
-        lblName2.text =  "\(String(describing: data.NoOfSubjects!))" + " " + strTeacher
-        lblName3.text =  "\(String(describing: data.NoOfStudents!))" + " " + strStudent
+        lblName1.text = "\(String(describing: data.NoOfClasses ?? 0))" + " " + strClass
+        lblName2.text =  "\(String(describing: data.NoOfSubjects ?? 0))" + " " + strTeacher
+        lblName3.text =  "\(String(describing: data.NoOfStudents ?? 0))" + " " + strStudent
         
         if data.lstEvent?.count ?? 0 > 0
         {
@@ -407,11 +446,11 @@ extension HomeVC : ViewDelegate{
         self.HideLoader()
     }
     
-    func showAlert(alert: String) {
+    func showAlert(alert: String)
+    {
         initializeCustomOkAlert(self.view, isHideBlurView: true)
         okAlertView.delegate = self
     }
-    
 }
 
 extension HomeVC : OKAlertViewDelegate{
@@ -425,13 +464,15 @@ extension HomeVC : OKAlertViewDelegate{
 }
 extension HomeVC : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrEventlist?.count ?? 0
+        return eventArr.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ExamScheduleTableViewCell
         
-        cell?.lblTitle.text = arrEventlist?[indexPath.row].Name
+        cell?.lblTitle.text = eventArr[indexPath.row].title
+        cell?.lblDate.text = eventArr[indexPath.row].strStartDate
+        cell?.lblTime.text = eventArr[indexPath.row].strStartTime
         
         cell?.imgView.addInitials(first: "E", second: "")
         return cell!
@@ -444,6 +485,44 @@ extension HomeVC : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        
     }
 }
+extension HomeVC : UICollectionViewDelegateFlowLayout {
+    //1
+    func collectionView(_ collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout,sizeForItemAt indexPath: IndexPath) -> CGSize {
+        //2
+        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+        let availableWidth = view.frame.width - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+        return CGSize(width: widthPerItem, height: widthPerItem)
+    }
+    
+    //3
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+    
+    // 4
+    func collectionView(_ collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout,minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInsets.left
+    }
+}
+
+extension HomeVC: UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return studentArr.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellCollection", for: indexPath as IndexPath) as! StudentCollectionViewCell
+        cell.setCellUI(data :studentArr,indexPath: indexPath)
+        
+//        cell.imageCell.image = UIImage(named: self.bookImages![indexPath.row])
+        return cell
+    }
+}
+
+
+
+
+
