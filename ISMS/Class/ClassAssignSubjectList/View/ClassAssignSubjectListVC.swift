@@ -112,7 +112,7 @@ extension ClassAssignSubjectListVC : ClassAssignSubjectListDelegate{
                 }
             }else{
                 CommonFunctions.sharedmanagerCommon.println(object: "Zero")
-                self.tblViewCenterLabel(tblView: tblViewpopUp.tblView, lblText: KConstants.KDataNotFound, hide: false)
+               // self.tblViewCenterLabel(tblView: tblViewpopUp.tblView, lblText: KConstants.KDataNotFound, hide: false)
 
             }
         }else{
