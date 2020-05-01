@@ -831,6 +831,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="btnAdd" destination="gFX-2w-Zh6" id="WlZ-Yd-QqZ"/>
                         <outlet property="mainView" destination="JfN-Ic-Jgf" id="JN1-Di-fl4"/>
                     </connections>
                 </viewController>
