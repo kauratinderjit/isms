@@ -321,9 +321,9 @@ class HomeViewModel{
          }
      }
     
-    func GetEvents(){
+    func GetEvents(enumTypeId: Int, Search:String, Skip: Int,PageSize: Int,SortColumnDir: String, SortColumn: String,ParticularId: Int ){
         
-        let params = ["enumTypeId":0, "Search":"", "Skip": 10,"PageSize": 0,"SortColumnDir": "", "SortColumn": "","ParticularId": 0 ] as [String : Any]
+        let params = ["enumTypeId":enumTypeId, "Search":Search, "Skip": Skip,"PageSize": PageSize,"SortColumnDir": SortColumnDir, "SortColumn": SortColumn,"ParticularId": ParticularId] as [String : Any]
         
           self.homeView?.showLoader()
         

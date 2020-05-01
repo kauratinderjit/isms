@@ -34,7 +34,8 @@ class StudentCollectionViewCell : UICollectionViewCell{
                 if error == nil{
                     print("error is NilLiteralConvertible")
                     self.imageViewStudent.contentMode = .scaleAspectFill
-                    self.imageViewStudent.image = img
+                
+                    self.imageViewStudent.image =  img
                 }else{
                     if let nameStr = rsltData?.studentImageUrl{
                         CommonFunctions.sharedmanagerCommon.addLabelOnTheImgeViewWithFirstCharacter(string: nameStr, imgView: self.imageViewStudent)
@@ -52,4 +53,35 @@ class StudentCollectionViewCell : UICollectionViewCell{
         
     }
     
+    
+    func setCellUIDept(data :[departmentList]?,indexPath: IndexPath){
+        let rsltData = data?[indexPath.row]
+        lblStudentName.text = rsltData?.departmentName
+        //Set buttons tag
+        imageViewStudent.createCircleImage()
+        
+        if let imgProfileUrl = rsltData?.deptImage{
+            imageViewStudent.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            
+            imageViewStudent.sd_setImage(with: URL.init(string: imgProfileUrl)) { (img, error, cacheType, url) in
+                
+                if error == nil{
+                    print("error is NilLiteralConvertible")
+                    self.imageViewStudent.contentMode = .scaleAspectFill
+                    
+                    self.imageViewStudent.image =  img
+                }else{
+                    if let nameStr = rsltData?.deptImage{
+                        CommonFunctions.sharedmanagerCommon.addLabelOnTheImgeViewWithFirstCharacter(string: nameStr, imgView: self.imageViewStudent)
+                        CommonFunctions.sharedmanagerCommon.println(object: "Image is nil in list.")
+                    }
+                }
+            }
+        }else{
+            if let nameStr = rsltData?.deptImage{
+                CommonFunctions.sharedmanagerCommon.addLabelOnTheImgeViewWithFirstCharacter(string: nameStr, imgView: self.imageViewStudent)
+                CommonFunctions.sharedmanagerCommon.println(object: "Image is nil in list.")
+            }
+        }
+    }
 }

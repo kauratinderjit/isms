@@ -39,14 +39,8 @@ struct teacherData: Mappable
 {
     
     //Teacher
-    var TeacherName: String?
-    var NoOfClasses, NoOfStudents, NoOfSubjects: Int?
-    
-    var lstclassName: [LstclassNameDec]?
-    var lstStudentName: [LstStudentNameDec]?
-    var lstSubjectName: [LstSubjectNameDec]?
-    
-    var lstEvent: [ListData]?
+    var dashBoardTeacherViewModel: [dashBoardTeacherViewModel]?
+    var departmentList : [departmentList]?
     
     init?(map: Map)
     {
@@ -55,29 +49,20 @@ struct teacherData: Mappable
     
     mutating func mapping(map: Map)
     {
-        
-        
-        //teacher
-        TeacherName <- map["TeacherName"]
-        lstclassName <- map["lstclassName"]
-        lstStudentName <- map["lstStudentName"]
-        lstSubjectName <- map["lstSubjectName"]
-        
-        NoOfClasses <- map["NoOfClasses"]
-        NoOfStudents <- map["NoOfStudents"]
-        NoOfSubjects <- map["NoOfSubjects"]
-        
-        lstEvent <- map["lstEvent"]
+        dashBoardTeacherViewModel <- map["DashBoardTeacherViewModel"]
+        departmentList <- map["DepartmentList"]
         
     }
     
 }
 
 // MARK: - LstStudentName
-struct LstStudentNameDec: Mappable
+struct dashBoardTeacherViewModel: Mappable
 {
-    var studentID: Int?
-    var studentName: String?
+    var teacherId: Int?
+    var teacherImage: String?
+    var teacherName: String?
+  
        
        init?(map: Map)
        {
@@ -86,16 +71,21 @@ struct LstStudentNameDec: Mappable
        
        mutating func mapping(map: Map)
        {
-           studentID <- map["StudentId"]
-           studentName <- map["StudentName"]
+           teacherId <- map["TeacherId"]
+           teacherImage <- map["TeacherImage"]
+         teacherName <- map["TeacherName"]
        }
 }
 //
 // MARK: - LstSubjectName
-struct LstSubjectNameDec: Mappable
+struct departmentList: Mappable
 {
-    var subjectID: Int?
-    var subjectName: String?
+    var departmentId: Int?
+    var departmentName: String?
+    var deptImage: String?
+    var noOfClasses: Int?
+    var noOfStudents: Int?
+    var noOfSubjects: Int?
     
     init?(map: Map)
     {
@@ -103,25 +93,12 @@ struct LstSubjectNameDec: Mappable
     }
     mutating func mapping(map: Map)
     {
-        subjectID <- map["SubjectId"]
-        subjectName <- map["SubjectName"]
-    }
-}
-
-// MARK: - LstclassName
-struct LstclassNameDec: Mappable
-{
-    var classID: Int?
-    var className: String?
-
-    init?(map: Map)
-    {
-        
-    }
-    mutating func mapping(map: Map)
-    {
-        classID <- map["ClassId"]
-        className <- map["ClassName"]
+        departmentId <- map["DepartmentId"]
+        departmentName <- map["DepartmentName"]
+        deptImage <- map["DeptImage"]
+        noOfClasses <- map["NoOfClasses"]
+        noOfStudents <- map["NoOfStudents"]
+        noOfSubjects <- map["NoOfSubjects"]
     }
 }
 

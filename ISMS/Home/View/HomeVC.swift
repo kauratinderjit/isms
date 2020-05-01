@@ -8,7 +8,7 @@
 
 import UIKit
 import SWRevealViewController
-
+var selectedIndexParent =  Int()
 class HomeVC: BaseUIViewController {
     
     
@@ -29,19 +29,36 @@ class HomeVC: BaseUIViewController {
     @IBOutlet var iv2: UIImageView!
     @IBOutlet var iv3: UIImageView!
     
+    @IBOutlet weak var collectionViewBottomTable: NSLayoutConstraint!
     
+    @IBOutlet weak var viewEventTopConstraints: NSLayoutConstraint!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var lv1TopConstrtraints: NSLayoutConstraint!
+    
+    @IBOutlet weak var lblNameTopConstraints: NSLayoutConstraint!
+    
+    @IBOutlet weak var lv2TopConstraints: NSLayoutConstraint!
+    
+    
+    @IBOutlet weak var lblName2TopConstraints: NSLayoutConstraint!
+    
+    
+    @IBOutlet weak var lv3TopConstraints: NSLayoutConstraint!
+    
+    @IBOutlet weak var lblName3TopComnstraints: NSLayoutConstraint!
     var studentArr = [StudentResultData]()
-    private let sectionInsets = UIEdgeInsets(top: 8.0,left: 8.0,bottom: 8.0,right: 8.0)
+    private let sectionInsets = UIEdgeInsets(top: 5.0,left: 5.0,bottom: 5.0,right: 5.0)
     private let itemsPerRow: CGFloat = 3
     
     var arrEventlist : [ListData]?
     var eventArr = [EventResultData]()
+    var deptArr = [departmentList]()
     
     var roleUserName:String?
     var homeViewModel : HomeViewModel?
     var isUnauthorizedUser = false
+    var firstTime = 1
     //For check the user is came on home screen from login or not when user have only one role
     static var isCameDirectFromLoginScreen : Bool?
     //For set the role id when user came from login id and selectRole
@@ -139,8 +156,9 @@ class HomeVC: BaseUIViewController {
         }
         else if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Teacher")
         {
+          
             self.title = "Teacher's Dashboard"
-              collectionView.isHidden = true
+              collectionView.isHidden = false
             self.homeViewModel?.getDataTeacher(userId: UserDefaultExtensionModel.shared.currentUserId)
             //mohit tblViewListing.isHidden = true
         }
@@ -194,6 +212,14 @@ class HomeVC: BaseUIViewController {
         self.revealViewController()?.revealToggle(animated: true)
     }
     
+    func centerItemsInCollectionView(cellWidth: Double, numberOfItems: Double, spaceBetweenCell: Double, collectionView: UICollectionView) -> UIEdgeInsets {
+        let totalWidth = cellWidth * numberOfItems
+        let totalSpacingWidth = spaceBetweenCell * (numberOfItems - 1)
+        let leftInset = (collectionView.frame.width - CGFloat(totalWidth + totalSpacingWidth)) / 2
+        let rightInset = leftInset
+        return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
+    }
+    
 }
 //
 //extension HomeVC : UserRoleTableViewDelegate{
@@ -209,19 +235,46 @@ extension HomeVC : HomeViewModelDelegate
         lblName.text = data.parentName
         lblDept.text = (data.email ?? "")
         self.studentArr = data.students!
-        collectionView.reloadData()
         
-        UserDefaultExtensionModel.shared.StudentClassId = studentArr[0].classId ?? 0
-        UserDefaultExtensionModel.shared.enrollmentIdStudent = studentArr[0].enrollmentId ?? 0
-        UserDefaultExtensionModel.shared.classNameStudent = studentArr[0].className!
-        UserDefaultExtensionModel.shared.UserName = studentArr[0].studentName!
+        var data = self.centerItemsInCollectionView(cellWidth: 100, numberOfItems: Double(self.studentArr.count), spaceBetweenCell: 6, collectionView: collectionView)
+        
+        print("count",studentArr.count)
+        collectionView.reloadData()
+        if self.studentArr.count == 1{
+            self.iv1.isHidden = true
+            self.iv2.isHidden = true
+            self.iv3.isHidden = true
+            
+            self.lblName1.isHidden = true
+            self.lblName2.isHidden = true
+            self.lblName3.isHidden = true
+            
+            topEventView.constant = -100
+            
+        }else{
+            self.iv1.isHidden = true
+            self.iv2.isHidden = true
+            self.iv3.isHidden = true
+            
+            self.lblName1.isHidden = true
+            self.lblName2.isHidden = true
+            self.lblName3.isHidden = true
+            
+            topEventView.constant = 10
+        }
+            UserDefaultExtensionModel.shared.StudentClassId = studentArr[selectedIndexParent].classId ?? 0
+            UserDefaultExtensionModel.shared.enrollmentIdStudent = studentArr[selectedIndexParent].enrollmentId ?? 0
+            UserDefaultExtensionModel.shared.classNameStudent = studentArr[selectedIndexParent].className!
+            UserDefaultExtensionModel.shared.UserName = studentArr[selectedIndexParent].studentName!
+        UserDefaultExtensionModel.shared.HODDepartmentId = studentArr[selectedIndexParent].departmentId ?? 0
+       
         
         
         print("student",UserDefaultExtensionModel.shared.StudentClassId)
           print("student",UserDefaultExtensionModel.shared.enrollmentIdStudent)
           print("student",UserDefaultExtensionModel.shared.classNameStudent)
          print("student",UserDefaultExtensionModel.shared.UserName)
-        self.homeViewModel?.GetEvents()
+        self.homeViewModel?.GetEvents(enumTypeId:1, Search:"", Skip: 10,PageSize: 0,SortColumnDir: "", SortColumn: "",ParticularId: UserDefaultExtensionModel.shared.HODDepartmentId)
     }
     
     func EventModelSucced(data: [EventResultData]?){
@@ -259,6 +312,7 @@ extension HomeVC : HomeViewModelDelegate
         else{
             tblViewListing.isHidden = true
         }
+          self.homeViewModel?.GetEvents(enumTypeId:1, Search:"", Skip: 10,PageSize: 0,SortColumnDir: "", SortColumn: "",ParticularId: 0)
     }
     
     func hodData(data: homeResultData)
@@ -306,6 +360,7 @@ extension HomeVC : HomeViewModelDelegate
         {
             tblViewListing.isHidden = true
         }
+        self.homeViewModel?.GetEvents(enumTypeId:1, Search:"", Skip: 10,PageSize: 0,SortColumnDir: "", SortColumn: "",ParticularId: 0)
     }
     
     func teacherData(data: teacherData)
@@ -320,39 +375,67 @@ extension HomeVC : HomeViewModelDelegate
         self.lblName3.isHidden = false
         
         print(data)
-        lblName.text = data.TeacherName
+        lblName.text = data.dashBoardTeacherViewModel?[0].teacherName
         lblDept.text = ""
+        
+        self.deptArr = data.departmentList!
+        
+        if deptArr.count > 1{
+            collectionView.reloadData()
+            
+            lv1TopConstrtraints.constant = 120
+            lblNameTopConstraints.constant = 10
+            viewEventTopConstraints.constant = 100
+            
+            
+            lv2TopConstraints.constant = 120
+            lblName2TopConstraints.constant = 10
+            
+            lv3TopConstraints.constant = 120
+            lblName3TopComnstraints.constant = 10
+        }
+       
+//        collectionViewBottomTable.constant = 250
         
         var strClass : String = "Class"
         var strTeacher : String = "Subjects"
         var strStudent : String = "Student"
+        if deptArr.count>0{
+            self.lblDept.text = deptArr[selectedIndexParent].departmentName
+            self.lblName1.text = "\(deptArr[selectedIndexParent].noOfClasses!)" + " " + "Classes"
+            self.lblName2.text = "\(deptArr[selectedIndexParent].noOfStudents!)" + " " + "Students"
+            self.lblName3.text = "\(deptArr[selectedIndexParent].noOfSubjects!)" + " " + "Subjects"
+        }
+       
+        UserDefaultExtensionModel.shared.HODDepartmentId = deptArr[selectedIndexParent].departmentId ?? 0
         
-        if data.NoOfClasses ?? 0 > 1
-        {
-            strClass = "Classes"
-        }
-        if data.NoOfSubjects ?? 0 > 1
-        {
-            strTeacher = "Subjects"
-        }
-        if data.NoOfStudents ?? 0 > 1
-        {
-            strStudent = "Students"
-        }
-        
-        lblName1.text = "\(String(describing: data.NoOfClasses!))" + " " + strClass
-        lblName2.text =  "\(String(describing: data.NoOfSubjects!))" + " " + strTeacher
-        lblName3.text =  "\(String(describing: data.NoOfStudents!))" + " " + strStudent
-        
-        if data.lstEvent?.count ?? 0 > 0
-        {
-            arrEventlist = data.lstEvent
-            tblViewListing.reloadData()
-        }
-        else
-        {
-            tblViewListing.isHidden = true
-        }
+//        if data.das ?? 0 > 1
+//        {
+//            strClass = "Classes"
+//        }
+//        if data.NoOfSubjects ?? 0 > 1
+//        {
+//            strTeacher = "Subjects"
+//        }
+//        if data.NoOfStudents ?? 0 > 1
+//        {
+//            strStudent = "Students"
+//        }
+//
+//        lblName1.text = "\(String(describing: data.NoOfClasses!))" + " " + strClass
+//        lblName2.text =  "\(String(describing: data.NoOfSubjects!))" + " " + strTeacher
+//        lblName3.text =  "\(String(describing: data.NoOfStudents!))" + " " + strStudent
+//
+//        if data.lstEvent?.count ?? 0 > 0
+//        {
+//            arrEventlist = data.lstEvent
+//            tblViewListing.reloadData()
+//        }
+//        else
+//        {
+//            tblViewListing.isHidden = true
+//        }
+        self.homeViewModel?.GetEvents(enumTypeId:1, Search:"", Skip: 10,PageSize: 0,SortColumnDir: "", SortColumn: "",ParticularId: 0)
     }
     
     
@@ -402,6 +485,7 @@ extension HomeVC : HomeViewModelDelegate
                 {
                     tblViewListing.isHidden = true
                 }
+         self.homeViewModel?.GetEvents(enumTypeId:1, Search:"", Skip: 10,PageSize: 0,SortColumnDir: "", SortColumn: "",ParticularId: 0)
     }
     
     func userUnauthorize()
@@ -471,8 +555,8 @@ extension HomeVC : UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ExamScheduleTableViewCell
         
         cell?.lblTitle.text = eventArr[indexPath.row].title
-        cell?.lblDate.text = eventArr[indexPath.row].strStartDate
-        cell?.lblTime.text = eventArr[indexPath.row].strStartTime
+        cell?.lblDate.text = "Start Date : \(String(describing: eventArr[indexPath.row].strStartDate!))"
+        cell?.lblTime.text = "Start Time : \(String(describing: eventArr[indexPath.row].strStartTime!))"
         
         cell?.imgView.addInitials(first: "E", second: "")
         return cell!
@@ -497,9 +581,31 @@ extension HomeVC : UICollectionViewDelegateFlowLayout {
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
     
-    //3
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,insetForSectionAt section: Int) -> UIEdgeInsets {
-        return sectionInsets
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+        let cellWidth: CGFloat = flowLayout.itemSize.width
+        let cellHieght: CGFloat = flowLayout.itemSize.height
+        let cellSpacing: CGFloat = flowLayout.minimumInteritemSpacing
+        let cellCount = CGFloat(collectionView.numberOfItems(inSection: section))
+        var collectionWidth = collectionView.frame.size.width
+        var collectionHeight = collectionView.frame.size.height
+        if #available(iOS 11.0, *) {
+            collectionWidth -= collectionView.safeAreaInsets.left + collectionView.safeAreaInsets.right
+            collectionHeight -= collectionView.safeAreaInsets.top + collectionView.safeAreaInsets.bottom
+        }
+        let totalWidth = cellWidth * cellCount + cellSpacing * (cellCount - 1)
+        let totalHieght = cellHieght * cellCount + cellSpacing * (cellCount - 1)
+        if totalWidth <= collectionWidth {
+            let edgeInsetWidth = (collectionWidth - totalWidth - 45) / 2
+            
+            print(edgeInsetWidth, edgeInsetWidth)
+            return UIEdgeInsets(top: 5, left: edgeInsetWidth, bottom: flowLayout.sectionInset.top, right: edgeInsetWidth)
+        } else {
+            let edgeInsetHieght = (collectionHeight - totalHieght) / 2
+            print(edgeInsetHieght, edgeInsetHieght)
+            return UIEdgeInsets(top: edgeInsetHieght, left: flowLayout.sectionInset.top, bottom: edgeInsetHieght, right: flowLayout.sectionInset.top)
+            
+        }
     }
     
     // 4
@@ -510,19 +616,54 @@ extension HomeVC : UICollectionViewDelegateFlowLayout {
 
 extension HomeVC: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Teacher"){
+            return deptArr.count
+        }
         return studentArr.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellCollection", for: indexPath as IndexPath) as! StudentCollectionViewCell
-        cell.setCellUI(data :studentArr,indexPath: indexPath)
+           if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Teacher"){
+              cell.setCellUIDept(data :deptArr,indexPath: indexPath)
+           }else{
+            cell.setCellUI(data :studentArr,indexPath: indexPath)
+        }
         
+        if selectedIndexParent == indexPath.row{
+            UIView.animate(withDuration: 0.3, animations: {
+                cell.contentView.backgroundColor = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1)
+            })
+        }else{
+           
+                cell.contentView.backgroundColor = UIColor.clear
+          
+        }
+      
 //        cell.imageCell.image = UIImage(named: self.bookImages![indexPath.row])
         return cell
     }
+   
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellCollection", for: indexPath as IndexPath) as! StudentCollectionViewCell
+        
+        collectionView.allowsMultipleSelection = false
+        selectedIndexParent = indexPath.row
+         if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Teacher"){
+            self.lblDept.text = deptArr[selectedIndexParent].departmentName
+            self.lblName1.text = "\(deptArr[selectedIndexParent].noOfClasses!)" + " " + "Classes"
+            self.lblName2.text = "\(deptArr[selectedIndexParent].noOfStudents!)" + " " + "Students"
+            self.lblName3.text = "\(deptArr[selectedIndexParent].noOfSubjects!)" + " " + "Subjects"
+            UserDefaultExtensionModel.shared.HODDepartmentId = deptArr[selectedIndexParent].departmentId ?? 0
+            
+         }else{
+            UserDefaultExtensionModel.shared.StudentClassId = studentArr[indexPath.row].classId ?? 0
+            UserDefaultExtensionModel.shared.enrollmentIdStudent = studentArr[indexPath.row].enrollmentId ?? 0
+            UserDefaultExtensionModel.shared.classNameStudent = studentArr[indexPath.row].className!
+            UserDefaultExtensionModel.shared.UserName = studentArr[indexPath.row].studentName!
+        }
+    
+        collectionView.reloadData()
+    }
 }
-
-
-
-
-
