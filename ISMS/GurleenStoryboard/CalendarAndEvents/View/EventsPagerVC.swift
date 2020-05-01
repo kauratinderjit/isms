@@ -13,8 +13,10 @@ class EventsPagerVC: BaseUIViewController
 
     @IBOutlet var mainView: UIView!
     
+    @IBOutlet weak var btnAdd: UIBarButtonItem!
     var currentController = UIViewController()
-    
+    public var lstActionAccess : GetMenuFromRoleIdModel.ResultData?
+
     var eventListController = ExamScheduleVC()
     var celnderController = CalendarEventVC()
     
@@ -25,6 +27,19 @@ class EventsPagerVC: BaseUIViewController
         self.Events_Selected()
 
         // Do any additional setup after loading the view.
+        
+           let arrAccess = lstActionAccess?.lstActionAccess
+            
+            _ = arrAccess?.enumerated().map { (index,element) in
+                
+                if element.actionName == "Edit" {
+                    self.navigationItem.rightBarButtonItem = btnAdd
+                }
+                
+                else{
+                    self.navigationItem.rightBarButtonItem = nil
+                }
+        }
     }
     
     
