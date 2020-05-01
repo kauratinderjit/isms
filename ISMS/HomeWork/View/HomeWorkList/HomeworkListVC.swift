@@ -33,7 +33,7 @@ class HomeworkListVC: BaseUIViewController {
     func setView() {
         tblViewListing.tableFooterView = UIView()
         
-        self.title = "Assigned Homework"
+        self.title = "Assign Homework"
     }
     
     @IBAction func editAction(_ sender: UIButton) {
