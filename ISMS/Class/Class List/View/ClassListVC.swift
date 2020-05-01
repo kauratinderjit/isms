@@ -271,7 +271,7 @@ extension ClassListVC : ClassListDelegate{
     }
     func classListDidSuccess(data: [GetClassListResultData]?){
         isFetching = true
-        arr_Classlist.removeAll()
+       // arr_Classlist.removeAll()
         if data != nil
         {
             if data?.count ?? 0 > 0
