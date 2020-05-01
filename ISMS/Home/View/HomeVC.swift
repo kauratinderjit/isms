@@ -406,8 +406,10 @@ extension HomeVC : HomeViewModelDelegate
             self.lblName2.text = "\(deptArr[selectedIndexParent].noOfStudents!)" + " " + "Students"
             self.lblName3.text = "\(deptArr[selectedIndexParent].noOfSubjects!)" + " " + "Subjects"
         }
+
        
         UserDefaultExtensionModel.shared.HODDepartmentId = deptArr[selectedIndexParent].departmentId ?? 0
+
         
 //        if data.das ?? 0 > 1
 //        {
@@ -530,11 +532,11 @@ extension HomeVC : ViewDelegate{
         self.HideLoader()
     }
     
-    func showAlert(alert: String) {
+    func showAlert(alert: String)
+    {
         initializeCustomOkAlert(self.view, isHideBlurView: true)
         okAlertView.delegate = self
     }
-    
 }
 
 extension HomeVC : OKAlertViewDelegate{

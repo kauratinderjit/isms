@@ -36,6 +36,7 @@ class CalendarEventVC: BaseUIViewController
         
         self.calendar.allowsSelection = true
         self.calendar.allowsMultipleSelection = true
+        self.calendar.adjustMonthPosition()
         
         setBackButton()
         
@@ -135,6 +136,17 @@ extension CalendarEventVC : FSCalendarDataSource , FSCalendarDelegate , FSCalend
     //        cell.titleLabel.backgroundColor = UIColor.black
     //        return cell
     //    }
+    
+    func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition)   -> Bool
+    {
+        return monthPosition == .current
+    }
+    
+    func calendar(_ calendar: FSCalendar, shouldDeselect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool
+    {
+        return monthPosition == .current
+    }
+    
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor?
     {
         return UIColor.clear
@@ -147,10 +159,14 @@ extension CalendarEventVC : FSCalendarDataSource , FSCalendarDelegate , FSCalend
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition)
     {
-        calendar.deselect(date)
+       // calendar.deselect(date)
+        calendar.select(date)
+        
         let key = self.dateFormatter2.string(from: date)
         let info = get_event_Info_fromDate(sDate:key)
         self.lblInfo.text = "Event: \(info)"
+        
+       // calendar.reloadData()
     }
     
     func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition)
@@ -165,6 +181,8 @@ extension CalendarEventVC : FSCalendarDataSource , FSCalendarDelegate , FSCalend
         
         let info = get_event_Info_fromDate(sDate:key)
         self.lblInfo.text = "Event: \(info)"
+        
+       // calendar.reloadData()
         
         
     }

@@ -17,7 +17,7 @@ protocol HomeViewModelDelegate:class
     func AdminData(data: homeAdminResultData)
     func teacherData(data: teacherData)
     func studentData(data: StudentData)
-     func parentData(data: ParentResultData)
+    func parentData(data: ParentResultData)
     func EventModelSucced(data: [EventResultData]?)
 }
 
