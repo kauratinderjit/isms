@@ -488,7 +488,7 @@ class TimePeriodVC: BaseUIViewController {
                 guard let period_id = newitems[index].periodId else {
                     return
                 }
-                let refreshAlert = UIAlertController(title: "ISMS", message: "Are you sure you want to delete this period?", preferredStyle: UIAlertController.Style.alert)
+                let refreshAlert = UIAlertController(title: "iEMS", message: "Are you sure you want to delete this period?", preferredStyle: UIAlertController.Style.alert)
                 refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
                     if self.newitems.count == 1{
                         if period_id > 0{

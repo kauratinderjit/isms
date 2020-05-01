@@ -42,12 +42,15 @@ class StudentListVC: BaseUIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if checkInternetConnection(){
-            arrStudentlist.removeAll()
+        if checkInternetConnection()
+        {
+           // arrStudentlist.removeAll()
             
-           
               self.ViewModel?.getClassId(id:departmentId, enumtype: 6)
-        }else{
+             self.ViewModel?.studentList(classId : selectedClassID, Search: "", Skip: 0, PageSize: 1000)
+        }
+        else
+        {
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
          
@@ -231,13 +234,15 @@ extension StudentListVC : StudentListDelegate{
         
     }
     
-    func StudentListDidSuccess(data : [GetStudentResultData]?) {
+    func StudentListDidSuccess(data : [GetStudentResultData]?)
+    {
         isFetching = true
-         arrStudentlist.removeAll()
+        // arrStudentlist.removeAll()
         if data != nil{
             if data?.count ?? 0 > 0
             {
-                guard let rsltData = data else{
+                guard let rsltData = data else
+                {
                     return
                 }
                 
@@ -245,13 +250,16 @@ extension StudentListVC : StudentListDelegate{
                 tableView.dataSource = self
                 
                 //When user select the class for change the data in list selected
-                if isClassSelected == true{
+                if isClassSelected == true
+                {
                     arrStudentlist.removeAll()
                     _ = rsltData.map({ (data) in
                         arrStudentlist.append(data)
                     })
                     self.tblViewCenterLabel(tblView: tableView, lblText: "", hide: true)
-                }else{
+                }
+                else
+                {
                     for value in rsltData{
                         let containsSameValue = arrStudentlist.contains(where: {$0.enrollmentId == value.enrollmentId})
                         if containsSameValue == false{
@@ -268,7 +276,7 @@ extension StudentListVC : StudentListDelegate{
                 {
                     arrStudentlist.removeAll()
                 }
-                self.tblViewCenterLabel(tblView: tableView, lblText: KConstants.KDataNotFound, hide: false)
+               // self.tblViewCenterLabel(tblView: tableView, lblText: KConstants.KDataNotFound, hide: false)
                 //                CommonFunctions.sharedmanagerCommon.println(object: "Zero")
             }
         }

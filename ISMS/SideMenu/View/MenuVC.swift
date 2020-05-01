@@ -341,10 +341,10 @@ extension MenuVC : UITableViewDelegate{
             
         case "ViewCalendar&Events":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kCalender, bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "ExamScheduleVC") as? ExamScheduleVC
+            let vc = storyboard.instantiateViewController(withIdentifier: "EventsPagerVC") as? EventsPagerVC
             let frontVC = revealViewController().frontViewController as? UINavigationController
-            vc?.lstActionAccess = sortedMenuArray[indexPath.row]
             frontVC?.pushViewController(vc!, animated: false)
+            vc?.lstActionAccess = sortedMenuArray[indexPath.row]
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
             
@@ -491,11 +491,11 @@ extension MenuVC : UITableViewDelegate{
             break
             
         case "Calender":
-            let storyboard = UIStoryboard.init(name: KStoryBoards.kCalender, bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "ExamScheduleVC") as? ExamScheduleVC
+           let storyboard = UIStoryboard.init(name: KStoryBoards.kCalender, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "EventsPagerVC") as? EventsPagerVC
             let frontVC = revealViewController().frontViewController as? UINavigationController
-            vc?.lstActionAccess = sortedMenuArray[indexPath.row]
             frontVC?.pushViewController(vc!, animated: false)
+            vc?.lstActionAccess = sortedMenuArray[indexPath.row]
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
             

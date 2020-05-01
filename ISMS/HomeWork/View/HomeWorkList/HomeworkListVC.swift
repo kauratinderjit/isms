@@ -138,13 +138,13 @@ extension HomeworkListVC : AddHomeWorkDelegate
         
         if homeWorkList?.count ?? 0 > 0
         {
-            lblNoDataFound.isHidden = true
+           // lblNoDataFound.isHidden = true
             self.tblViewCenterLabel(tblView: tblViewListing, lblText: "", hide: true)
            
         }
         else
         {
-            lblNoDataFound.isHidden = false
+           // lblNoDataFound.isHidden = false
             self.tblViewCenterLabel(tblView: tblViewListing, lblText: KConstants.kNoDataFound, hide: false)
         }
         tblViewListing.reloadData()

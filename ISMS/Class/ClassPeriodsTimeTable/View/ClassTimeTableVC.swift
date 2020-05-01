@@ -17,6 +17,7 @@ class ClassTimeTableVC: BaseUIViewController {
     @IBOutlet weak var btnMoveOnAddPeriod: UIButton!
     
     @IBOutlet weak var viewDropDown: UIView!
+    
     //MARK:- Variables
     var viewModel : ClassPeriodsTimetableViewModel?
     var isUnauthorizedUser = false
@@ -43,26 +44,40 @@ class ClassTimeTableVC: BaseUIViewController {
         classListDropdownApi()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)
+    {
         super.viewWillAppear(animated)
-        if isFromTeacher == 0{
+        if isFromTeacher == 0
+        {
             self.title = "Attendance"
-        }else if isFromTeacher == 1{
+            
+        }else if isFromTeacher == 1
+        {
             self.title = "Time Table"
         }else if isFromTeacher == 2{
             self.title = KStoryBoards.KClassPeriodIdIdentifiers.kClassPeriodTimeTableTitle
         }
-        if teacherViewTimeTble == true {
+        if teacherViewTimeTble == true
+        {
               self.title = "TimeTable"
         }
         
-        if isFromStudentViewAttendance == true{
+        if isFromStudentViewAttendance == true
+        {
             viewDropDown.isHidden = true
             btnMoveOnAddPeriod.isHidden = false
-        }else{
-            viewDropDown.isHidden = false
-              btnMoveOnAddPeriod.isHidden = true
         }
+        else
+        {
+            viewDropDown.isHidden = false
+            btnMoveOnAddPeriod.isHidden = true
+        }
+        
+//        if isFromTeacher == 0
+//        {
+//            btnMoveOnAddPeriod.isHidden = true
+//        }
+        
         checkCameFromWhichScreen()
     }
     

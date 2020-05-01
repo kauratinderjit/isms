@@ -37,7 +37,8 @@ class StudentListTableCell: UITableViewCell{
 //            }
 //        }
         
-        let rsltData = data![indexPath.row]
+        guard let rsltData = data?[indexPath.row] else{return}
+        
         StudentName.text = ""
         
         studentImg.createCircleImage()

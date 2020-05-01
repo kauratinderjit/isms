@@ -426,7 +426,7 @@ class AddStudentViewModel{
                 self?.addStudentView?.showAlert(alert: GetStudentDetail.message ?? "Something went wrong")
                 CommonFunctions.sharedmanagerCommon.println(object: "student APi status change")
             }
-            
+             
             }, completionnilResponse: { (nilResponseError) in
                 
                 self.addStudentView?.hideLoader()

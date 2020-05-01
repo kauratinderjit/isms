@@ -331,9 +331,11 @@ extension SubjectListVC : SubjectListDelegate{
     }
     
     
-    func SubjectListDidSuccess(data: [GetSubjectResultData]?) {
+    func SubjectListDidSuccess(data: [GetSubjectResultData]?)
+    {
         isFetching = true
-        if data != nil{
+        if data != nil
+        {
             if data?.count ?? 0 > 0
             {
                 for value in data!
@@ -352,7 +354,7 @@ extension SubjectListVC : SubjectListDelegate{
             }
             else
             {
-                self.tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
+               // self.tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
                 CommonFunctions.sharedmanagerCommon.println(object: "Zero")
             }
         }
