@@ -187,7 +187,8 @@ extension UIViewController {
   
     //MARK:- Create Back Button in navigation Bar
     //NAVAL
-    func setBackButton(){
+    func setBackButton()
+    {
         let backButton = UIButton()
         backButton.setImage(UIImage(named: kImages.KBackIcon), for: .normal)
         backButton.addTarget(self, action: #selector(backBtnAction), for: .touchUpInside)

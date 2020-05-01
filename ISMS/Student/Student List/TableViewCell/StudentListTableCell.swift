@@ -37,7 +37,7 @@ class StudentListTableCell: UITableViewCell{
 //            }
 //        }
         
-        let rsltData = data![indexPath.row]
+        let rsltData = data?[indexPath.row]
         StudentName.text = ""
         
         studentImg.createCircleImage()
@@ -46,19 +46,19 @@ class StudentListTableCell: UITableViewCell{
         editBtn.tag = indexPath.row
         deleteBtn.tag = indexPath.row
         
-        if let className = rsltData.className{
+        if let className = rsltData?.className{
             classNamelbl.text = className
         }
         
-        if let firstname = rsltData.studentFirstName{
+        if let firstname = rsltData?.studentFirstName{
             StudentName.text = firstname
         }
         
-        if let lastname = rsltData.studentLastName{
+        if let lastname = rsltData?.studentLastName{
             StudentName.text?.append(" " + lastname)
         }
         
-        if let imgProfileUrl = rsltData.studentImageURL{
+        if let imgProfileUrl = rsltData?.studentImageURL{
             studentImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
             studentImg.sd_setImage(with: URL.init(string: imgProfileUrl)) { (img, error, cacheType, url) in
                 
@@ -67,14 +67,14 @@ class StudentListTableCell: UITableViewCell{
                     self.studentImg.contentMode = .scaleAspectFill
                     self.studentImg.image = img
                 }else{
-                    if let nameStr = rsltData.studentFirstName{
+                    if let nameStr = rsltData?.studentFirstName{
                         CommonFunctions.sharedmanagerCommon.addLabelOnTheImgeViewWithFirstCharacter(string: nameStr, imgView: self.studentImg)
                         CommonFunctions.sharedmanagerCommon.println(object: "Image is nil in list.")
                     }
                 }
             }
         }else{
-            if let nameStr = rsltData.studentFirstName{
+            if let nameStr = rsltData?.studentFirstName{
                 CommonFunctions.sharedmanagerCommon.addLabelOnTheImgeViewWithFirstCharacter(string: nameStr, imgView: self.studentImg)
                 CommonFunctions.sharedmanagerCommon.println(object: "Image is nil in list.")
             }

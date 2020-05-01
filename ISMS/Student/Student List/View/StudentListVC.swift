@@ -42,12 +42,15 @@ class StudentListVC: BaseUIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if checkInternetConnection(){
-            arrStudentlist.removeAll()
+        if checkInternetConnection()
+        {
+           // arrStudentlist.removeAll()
             
-           
               self.ViewModel?.getClassId(id:departmentId, enumtype: 6)
-        }else{
+             self.ViewModel?.studentList(classId : selectedClassID, Search: "", Skip: 0, PageSize: 1000)
+        }
+        else
+        {
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
          
@@ -231,13 +234,15 @@ extension StudentListVC : StudentListDelegate{
         
     }
     
-    func StudentListDidSuccess(data : [GetStudentResultData]?) {
+    func StudentListDidSuccess(data : [GetStudentResultData]?)
+    {
         isFetching = true
          arrStudentlist.removeAll()
         if data != nil{
             if data?.count ?? 0 > 0
             {
-                guard let rsltData = data else{
+                guard let rsltData = data else
+                {
                     return
                 }
                 

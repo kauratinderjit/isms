@@ -77,6 +77,7 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
     
     func setView()
     {
+        self.setBackButton()
         
         self.viewModel = EventScheduleViewModel.init(delegate: self)
         self.viewModel?.attachView(viewDelegate: self)

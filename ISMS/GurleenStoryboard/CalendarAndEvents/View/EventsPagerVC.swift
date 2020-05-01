@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventsPagerVC: UIViewController
+class EventsPagerVC: BaseUIViewController
 {
 
     @IBOutlet var mainView: UIView!
@@ -21,6 +21,7 @@ class EventsPagerVC: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        self.setBackButton()
         self.Events_Selected()
 
         // Do any additional setup after loading the view.
