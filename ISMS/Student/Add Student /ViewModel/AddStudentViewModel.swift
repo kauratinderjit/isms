@@ -470,7 +470,8 @@ class AddStudentViewModel{
             }
         }
     }
-    func getDepartmentId(id: Int?, enumtype: Int?){
+    func getDepartmentId(id: Int?, enumtype: Int?)
+    {
         guard let selectId = id else{ return }
         guard let enumType = enumtype else { return }
         

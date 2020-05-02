@@ -35,6 +35,7 @@ class GetDetailByPhoneEmailGardianModel: Mappable{
     internal struct ResultData: Mappable {
         
         var guardianId : Int?
+        var guardianUserId: Int?
         var userId : Int?
         var imageURL : String?
         var firstName : String?
@@ -48,8 +49,23 @@ class GetDetailByPhoneEmailGardianModel: Mappable{
         var iDProofTitle : String?
         var studentID : Int?
         var relationId : Int?
-        var guardianDOB : String?
+      //  var guardianDOB : String?
         var relationName : String?
+        
+        
+        //Gurdian
+        var GuardianFirstName : String?
+        var GuardianLastName : String?
+        var GuardianEmail : String?
+        var GuardianPhoneNo : String?
+        var GuardianIDProofTitle : String?
+        var GuardianAddress : String?
+        var GuardianOthers : String?
+        var GuardianDOB : String?
+        var GuardianGender : String?
+        var guardianIDProof: String?
+        
+        
         
         init?(map: Map) {
             
@@ -58,6 +74,7 @@ class GetDetailByPhoneEmailGardianModel: Mappable{
         mutating func mapping(map: Map) {
             
             guardianId <- map["GuardianId"]
+            guardianUserId <- map["guardianUserId"]
             userId <- map["UserId"]
             imageURL <- map["ImageURL"]
             firstName <- map["FirstName"]
@@ -71,8 +88,20 @@ class GetDetailByPhoneEmailGardianModel: Mappable{
             iDProofTitle <- map["IDProofTitle"]
             studentID <- map["StudentID"]
             relationId <- map["RelationId"]
-            guardianDOB <- map["DOB"]
+          //  guardianDOB <- map["DOB"]
             relationName <- map["RelationName"]
+            
+            
+            GuardianFirstName <- map["GuardianFirstName"]
+            GuardianLastName <- map["GuardianLastName"]
+            GuardianEmail <- map["GuardianEmail"]
+            GuardianPhoneNo <- map["GuardianPhoneNo"]
+            GuardianIDProofTitle <- map["GuardianIDProofTitle"]
+            GuardianAddress <- map["GuardianAddress"]
+            GuardianOthers <- map["GuardianOthers"]
+            GuardianDOB <- map["GuardianDOB"]
+            GuardianGender <- map["GuardianGender"]
+            guardianIDProof <- map["guardianIDProof"]
             
         }
         
