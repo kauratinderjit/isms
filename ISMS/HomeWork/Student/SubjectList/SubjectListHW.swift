@@ -21,6 +21,8 @@ class SubjectListHW: BaseUIViewController {
     var pageSize = KIntegerConstants.kInt10
     var pointNow:CGPoint!
     var isFetching:Bool?
+    public var lstActionAccess : GetMenuFromRoleIdModel.ResultData?
+
     
     @IBOutlet weak var table_View: UITableView!
     @IBOutlet weak var LblNoDataFound: UILabel!
@@ -78,6 +80,7 @@ extension SubjectListHW : UITableViewDelegate, UITableViewDataSource {
                    let vc = UIStoryboard.init(name:"Homework", bundle: Bundle.main).instantiateViewController(withIdentifier: "StudentHomeWorkListVC") as! StudentHomeWorkListVC
                    vc.homeWorkList = assignedData
             vc.assignHomeWorkId =  assignedData?[0].AssignHomeWorkId
+            vc.lstActionAccess = lstActionAccess
                    self.navigationController?.pushViewController(vc, animated: true)
                    
                }

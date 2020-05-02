@@ -26,6 +26,8 @@ class StudentUploadHomeWorkVC: BaseUIViewController {
     var booledit = false
     var selectedIndexPathForDelAttachment : Int? = 0
    var deletedAttachmentArray = NSMutableArray()
+    public var lstActionAccess : GetMenuFromRoleIdModel.ResultData?
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
