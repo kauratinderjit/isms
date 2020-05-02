@@ -57,7 +57,7 @@ class UserRoleIdModel: Mappable{
             departmentId <- map["DepartmentId"]
             ImageUrl <- map["ImageUrl"]
             UserName <- map["UserName"]
-             departmentName <- map["DepartmentName"]
+            departmentName <- map["DepartmentName"]
             classId <- map["ClassId"]
             UserName <- map["UserName"]
             enrollmentId <- map["EnrollmentId"]

@@ -29,7 +29,7 @@ class ExamScheduleVC: BaseUIViewController {
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        self.viewModel?.getData(RoleId: 0, ParticularId: 0)
+        self.viewModel?.getData(RoleId: 0, ParticularId: UserDefaultExtensionModel.shared.HODDepartmentId)
         print(lstActionAccess)
         
         let arrAccess = lstActionAccess?.lstActionAccess
@@ -88,6 +88,18 @@ extension ExamScheduleVC : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ExamScheduleTableViewCell
+        
+         if UserDefaultExtensionModel.shared.currentUserRoleId == 5{
+             cell?.btnDel.isHidden = true
+            cell?.btnEdit.isHidden = true
+         }else if UserDefaultExtensionModel.shared.currentUserRoleId == 6{
+            cell?.btnDel.isHidden = true
+            cell?.btnEdit.isHidden = true
+         }else if UserDefaultExtensionModel.shared.currentUserRoleId == 4{
+            cell?.btnDel.isHidden = true
+            cell?.btnEdit.isHidden = true
+        }
+        
         cell?.btnDel.tag = indexPath.row
         cell?.btnEdit.tag = indexPath.row
         cell?.lblTitle.text = arrEventlist[indexPath.row].Title

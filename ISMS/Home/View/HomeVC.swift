@@ -8,7 +8,8 @@
 
 import UIKit
 import SWRevealViewController
-var selectedIndexParent =  Int()
+import SDWebImage
+var selectedIndexParent =  0
 class HomeVC: BaseUIViewController {
     
     
@@ -25,6 +26,7 @@ class HomeVC: BaseUIViewController {
     @IBOutlet weak var lblName3: UILabel!
     @IBOutlet weak var viewEvents: UIView!
     
+    @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet var iv1: UIImageView!
     @IBOutlet var iv2: UIImageView!
     @IBOutlet var iv3: UIImageView!
@@ -49,7 +51,7 @@ class HomeVC: BaseUIViewController {
     @IBOutlet weak var lblName3TopComnstraints: NSLayoutConstraint!
     var studentArr = [StudentResultData]()
     private let sectionInsets = UIEdgeInsets(top: 5.0,left: 5.0,bottom: 5.0,right: 5.0)
-    private let itemsPerRow: CGFloat = 3
+    private var itemsPerRow: CGFloat = 3
     
     var arrEventlist : [ListData]?
     var eventArr = [EventResultData]()
@@ -193,9 +195,6 @@ class HomeVC: BaseUIViewController {
                    self.homeViewModel?.getDataParentDashboardApi(userId: UserDefaultExtensionModel.shared.currentUserId)
                  
                }
-        
-        
-        
     }
     
     
@@ -236,7 +235,16 @@ extension HomeVC : HomeViewModelDelegate
         lblDept.text = (data.email ?? "")
         self.studentArr = data.students!
         
-//        var data = self.centerItemsInCollectionView(cellWidth: 100, numberOfItems: Double(self.studentArr.count), spaceBetweenCell: 6, collectionView: collectionView)
+        if UserDefaultExtensionModel.shared.imageUrl != nil{
+            var  imgProfileUrl = UserDefaultExtensionModel.shared.imageUrl
+            imgProfile.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            //mohit studentImgUrl = URL(string: imgProfileUrl)
+            imgProfile.contentMode = .scaleAspectFill
+            imgProfile.sd_setImage(with: URL(string: imgProfileUrl), placeholderImage: UIImage(named: kImages.kProfileImage))
+        }else{
+            //            studentImgUrl = URL(string: "")
+            imgProfile.image = UIImage.init(named: kImages.kProfileImage)
+        }
         
         print("count",studentArr.count)
         collectionView.reloadData()
@@ -264,16 +272,10 @@ extension HomeVC : HomeViewModelDelegate
         }
             UserDefaultExtensionModel.shared.StudentClassId = studentArr[selectedIndexParent].classId ?? 0
             UserDefaultExtensionModel.shared.enrollmentIdStudent = studentArr[selectedIndexParent].enrollmentId ?? 0
-            UserDefaultExtensionModel.shared.classNameStudent = studentArr[selectedIndexParent].className!
-            UserDefaultExtensionModel.shared.UserName = studentArr[selectedIndexParent].studentName!
+            UserDefaultExtensionModel.shared.classNameStudent = studentArr[selectedIndexParent].className ?? ""
+            UserDefaultExtensionModel.shared.UserName = studentArr[selectedIndexParent].studentName ?? ""
         UserDefaultExtensionModel.shared.HODDepartmentId = studentArr[selectedIndexParent].departmentId ?? 0
        
-        
-        
-        print("student",UserDefaultExtensionModel.shared.StudentClassId)
-          print("student",UserDefaultExtensionModel.shared.enrollmentIdStudent)
-          print("student",UserDefaultExtensionModel.shared.classNameStudent)
-         print("student",UserDefaultExtensionModel.shared.UserName)
         self.homeViewModel?.GetEvents(enumTypeId:1, Search:"", Skip: 10,PageSize: 0,SortColumnDir: "", SortColumn: "",ParticularId: UserDefaultExtensionModel.shared.HODDepartmentId)
     }
     
@@ -300,6 +302,8 @@ extension HomeVC : HomeViewModelDelegate
         if data.NoOfHODs! > 1 {
             strHOD = "HODs"
         }
+        
+      
         
         lblName1.text = "\(String(describing: data.NoOfClasses!))" + " " + strClass
         lblName2.text =  "\(String(describing: data.NoOfTeachers!))" + " " + strTeacher
@@ -332,6 +336,17 @@ extension HomeVC : HomeViewModelDelegate
         
         
         
+        if UserDefaultExtensionModel.shared.imageUrl != nil{
+          var  imgProfileUrl = UserDefaultExtensionModel.shared.imageUrl
+            imgProfile.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            //mohit studentImgUrl = URL(string: imgProfileUrl)
+            imgProfile.contentMode = .scaleAspectFill
+            imgProfile.sd_setImage(with: URL(string: imgProfileUrl), placeholderImage: UIImage(named: kImages.kProfileImage))
+        }else{
+//            studentImgUrl = URL(string: "")
+            imgProfile.image = UIImage.init(named: kImages.kProfileImage)
+        }
+        
         var strClass : String = "Class"
         var strTeacher : String = "Teacher"
         var strStudent : String = "Student"
@@ -362,7 +377,7 @@ extension HomeVC : HomeViewModelDelegate
         {
             tblViewListing.isHidden = true
         }
-        self.homeViewModel?.GetEvents(enumTypeId:1, Search:"", Skip: 10,PageSize: 0,SortColumnDir: "", SortColumn: "",ParticularId: 0)
+        self.homeViewModel?.GetEvents(enumTypeId:1, Search:"", Skip: 10,PageSize: 0,SortColumnDir: "", SortColumn: "",ParticularId: UserDefaultExtensionModel.shared.HODDepartmentId)
     }
     
     func teacherData(data: teacherData)
@@ -381,6 +396,17 @@ extension HomeVC : HomeViewModelDelegate
         lblDept.text = ""
         
         self.deptArr = data.departmentList!
+        
+        if UserDefaultExtensionModel.shared.imageUrl != nil{
+            var  imgProfileUrl = UserDefaultExtensionModel.shared.imageUrl
+            imgProfile.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            //mohit studentImgUrl = URL(string: imgProfileUrl)
+            imgProfile.contentMode = .scaleAspectFill
+            imgProfile.sd_setImage(with: URL(string: imgProfileUrl), placeholderImage: UIImage(named: kImages.kProfileImage))
+        }else{
+            //            studentImgUrl = URL(string: "")
+            imgProfile.image = UIImage.init(named: kImages.kProfileImage)
+        }
         
         if deptArr.count != 1{
             collectionView.reloadData()
@@ -444,7 +470,7 @@ extension HomeVC : HomeViewModelDelegate
 //        {
 //            tblViewListing.isHidden = true
 //        }
-        self.homeViewModel?.GetEvents(enumTypeId:1, Search:"", Skip: 10,PageSize: 0,SortColumnDir: "", SortColumn: "",ParticularId: 0)
+        self.homeViewModel?.GetEvents(enumTypeId:1, Search:"", Skip: 10,PageSize: 0,SortColumnDir: "", SortColumn: "",ParticularId: UserDefaultExtensionModel.shared.HODDepartmentId)
     }
     
     
@@ -462,6 +488,17 @@ extension HomeVC : HomeViewModelDelegate
         self.lblName1.isHidden = true
         self.lblName2.isHidden = true
         self.lblName3.isHidden = true
+        
+        if UserDefaultExtensionModel.shared.imageUrl != nil{
+            var  imgProfileUrl = UserDefaultExtensionModel.shared.imageUrl
+            imgProfile.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            //mohit studentImgUrl = URL(string: imgProfileUrl)
+            imgProfile.contentMode = .scaleAspectFill
+            imgProfile.sd_setImage(with: URL(string: imgProfileUrl), placeholderImage: UIImage(named: kImages.kProfileImage))
+        }else{
+            //            studentImgUrl = URL(string: "")
+            imgProfile.image = UIImage.init(named: kImages.kProfileImage)
+        }
         
           viewEventTopConstraints.constant = -100
 //        viewEventTopConstraints
@@ -495,7 +532,7 @@ extension HomeVC : HomeViewModelDelegate
                 {
                     tblViewListing.isHidden = true
                 }
-         self.homeViewModel?.GetEvents(enumTypeId:1, Search:"", Skip: 10,PageSize: 0,SortColumnDir: "", SortColumn: "",ParticularId: 0)
+         self.homeViewModel?.GetEvents(enumTypeId:1, Search:"", Skip: 10,PageSize: 0,SortColumnDir: "", SortColumn: "",ParticularId:UserDefaultExtensionModel.shared.HODDepartmentId)
     }
     
     func userUnauthorize()
@@ -558,7 +595,14 @@ extension HomeVC : OKAlertViewDelegate{
 }
 extension HomeVC : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return eventArr.count ?? 0
+        
+        if eventArr.count>0{
+            tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: true)
+            return eventArr.count ?? 0
+        }else{
+            tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -567,7 +611,6 @@ extension HomeVC : UITableViewDataSource, UITableViewDelegate {
         cell?.lblTitle.text = eventArr[indexPath.row].title
         cell?.lblDate.text = "Start Date : \(String(describing: eventArr[indexPath.row].strStartDate!))"
         cell?.lblTime.text = "Start Time : \(String(describing: eventArr[indexPath.row].strStartTime!))"
-        
         cell?.imgView.addInitials(first: "E", second: "")
         return cell!
         
@@ -585,6 +628,8 @@ extension HomeVC : UICollectionViewDelegateFlowLayout {
     //1
     func collectionView(_ collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout,sizeForItemAt indexPath: IndexPath) -> CGSize {
         //2
+        
+        itemsPerRow = CGFloat(self.studentArr.count)
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
@@ -592,30 +637,34 @@ extension HomeVC : UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-        let cellWidth: CGFloat = flowLayout.itemSize.width
-        let cellHieght: CGFloat = flowLayout.itemSize.height
-        let cellSpacing: CGFloat = flowLayout.minimumInteritemSpacing
-        let cellCount = CGFloat(collectionView.numberOfItems(inSection: section))
-        var collectionWidth = collectionView.frame.size.width
-        var collectionHeight = collectionView.frame.size.height
-        if #available(iOS 11.0, *) {
-            collectionWidth -= collectionView.safeAreaInsets.left + collectionView.safeAreaInsets.right
-            collectionHeight -= collectionView.safeAreaInsets.top + collectionView.safeAreaInsets.bottom
-        }
-        let totalWidth = cellWidth * cellCount + cellSpacing * (cellCount - 1)
-        let totalHieght = cellHieght * cellCount + cellSpacing * (cellCount - 1)
-        if totalWidth <= collectionWidth {
-            let edgeInsetWidth = (collectionWidth - totalWidth - 45) / 2
-            
-            print(edgeInsetWidth, edgeInsetWidth)
-            return UIEdgeInsets(top: 5, left: edgeInsetWidth, bottom: flowLayout.sectionInset.top, right: edgeInsetWidth)
-        } else {
-            let edgeInsetHieght = (collectionHeight - totalHieght) / 2
-            print(edgeInsetHieght, edgeInsetHieght)
-            return UIEdgeInsets(top: edgeInsetHieght, left: flowLayout.sectionInset.top, bottom: edgeInsetHieght, right: flowLayout.sectionInset.top)
-            
-        }
+        if itemsPerRow > 4{
+            let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+            let cellWidth: CGFloat = flowLayout.itemSize.width
+            let cellHieght: CGFloat = flowLayout.itemSize.height
+            let cellSpacing: CGFloat = flowLayout.minimumInteritemSpacing
+            let cellCount = CGFloat(collectionView.numberOfItems(inSection: section))
+            var collectionWidth = collectionView.frame.size.width
+            var collectionHeight = collectionView.frame.size.height
+            if #available(iOS 11.0, *) {
+                collectionWidth -= collectionView.safeAreaInsets.left + collectionView.safeAreaInsets.right
+                collectionHeight -= collectionView.safeAreaInsets.top + collectionView.safeAreaInsets.bottom
+            }
+            let totalWidth = cellWidth * cellCount + cellSpacing * (cellCount - 1)
+            let totalHieght = cellHieght * cellCount + cellSpacing * (cellCount - 1)
+            if totalWidth <= collectionWidth {
+                let edgeInsetWidth = (collectionWidth - totalWidth - 45) / 2
+                
+                print(edgeInsetWidth, edgeInsetWidth)
+                return UIEdgeInsets(top: 5, left: edgeInsetWidth, bottom: flowLayout.sectionInset.top, right: edgeInsetWidth)
+            } else {
+                let edgeInsetHieght = (collectionHeight - totalHieght) / 2
+                print(edgeInsetHieght, edgeInsetHieght)
+                return UIEdgeInsets(top: edgeInsetHieght, left: flowLayout.sectionInset.top, bottom: edgeInsetHieght, right: flowLayout.sectionInset.top)
+                
+            }
+        }else{
+            return sectionInsets
+      
     }
     
     // 4
@@ -623,6 +672,7 @@ extension HomeVC : UICollectionViewDelegateFlowLayout {
         return sectionInsets.left
     }
 }
+    }
 
 extension HomeVC: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -666,12 +716,24 @@ extension HomeVC: UICollectionViewDataSource{
             self.lblName2.text = "\(deptArr[selectedIndexParent].noOfStudents!)" + " " + "Students"
             self.lblName3.text = "\(deptArr[selectedIndexParent].noOfSubjects!)" + " " + "Subjects"
             UserDefaultExtensionModel.shared.HODDepartmentId = deptArr[selectedIndexParent].departmentId ?? 0
-            
+            self.homeViewModel?.GetEvents(enumTypeId:1, Search:"", Skip: 10,PageSize: 0,SortColumnDir: "", SortColumn: "",ParticularId: UserDefaultExtensionModel.shared.HODDepartmentId)
          }else{
-            UserDefaultExtensionModel.shared.StudentClassId = studentArr[indexPath.row].classId ?? 0
-            UserDefaultExtensionModel.shared.enrollmentIdStudent = studentArr[indexPath.row].enrollmentId ?? 0
-            UserDefaultExtensionModel.shared.classNameStudent = studentArr[indexPath.row].className!
-            UserDefaultExtensionModel.shared.UserName = studentArr[indexPath.row].studentName!
+            if let classId = studentArr[indexPath.row].classId{
+                 UserDefaultExtensionModel.shared.StudentClassId = classId
+            }
+            if let enrollmentId = studentArr[indexPath.row].enrollmentId{
+                UserDefaultExtensionModel.shared.enrollmentIdStudent = enrollmentId
+            }
+            if let className = studentArr[indexPath.row].className{
+                 UserDefaultExtensionModel.shared.classNameStudent = className
+            }
+           
+           
+           
+            UserDefaultExtensionModel.shared.UserName = studentArr[indexPath.row].studentName ?? ""
+            UserDefaultExtensionModel.shared.HODDepartmentId = studentArr[selectedIndexParent].departmentId ?? 0
+            
+             self.homeViewModel?.GetEvents(enumTypeId:1, Search:"", Skip: 10,PageSize: 0,SortColumnDir: "", SortColumn: "",ParticularId: UserDefaultExtensionModel.shared.HODDepartmentId)
         }
     
         collectionView.reloadData()

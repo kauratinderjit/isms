@@ -594,6 +594,7 @@
                         <outlet property="collectionView" destination="ojg-2p-KGt" id="iag-hF-ZoY"/>
                         <outlet property="collectionViewBottomTable" destination="evP-Ky-REg" id="Fwj-L5-K9K"/>
                         <outlet property="heightofMultiRoleTableView" destination="eqD-h7-tK2" id="El1-Tu-jae"/>
+                        <outlet property="imgProfile" destination="E40-b8-r9o" id="Jde-lC-kFl"/>
                         <outlet property="iv1" destination="vEf-TY-EQb" id="IcA-OX-rEL"/>
                         <outlet property="iv2" destination="0NF-f3-tjd" id="ZSm-o5-l1m"/>
                         <outlet property="iv3" destination="Ukb-H5-ben" id="bMq-qN-fAX"/>

@@ -251,4 +251,15 @@ class UserDefaultExtensionModel : NSObject{
             UserDefaults.standard.synchronize()
         }
     }
+    
+    var imageUrl : String{
+        get {
+            let ImageUrl = UserDefaults.standard.string(forKey: UserDefaultKeys.ImageUrl.rawValue) ?? ""
+            return ImageUrl
+        }
+        set{
+            UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.ImageUrl.rawValue)
+            UserDefaults.standard.synchronize()
+        }
+    }
 }

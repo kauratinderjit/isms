@@ -327,6 +327,8 @@ class HomeViewModel{
         
           self.homeView?.showLoader()
         
+        print("event parans: ",params)
+        
         LoginApi.sharedmanagerAuth.GetEvent(url: ApiEndpoints.kGetEventsByRoleParticularId, parameters: params as [String : Any], completionResponse: { (EventModel) in
             
             if EventModel.statusCode == KStatusCode.kStatusCode200{
