@@ -44,8 +44,10 @@ class SubjectListVC: BaseUIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if let userName = UserDefaults.standard.value(forKey: UserDefaultKeys.userRoleName.rawValue)  as?  String{
-            if userName == KConstants.kHod{
+        if let userName = UserDefaults.standard.value(forKey: UserDefaultKeys.userRoleName.rawValue)  as?  String
+        {
+            if userName == KConstants.kHod
+            {
                 btnAddSubject.isHidden = true
             }
         }

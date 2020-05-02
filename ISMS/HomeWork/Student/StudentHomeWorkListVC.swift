@@ -18,30 +18,35 @@ class StudentHomeWorkListVC: BaseUIViewController {
     var assignHomeWorkId : Int? = 0
     
     let formatter: DateFormatter = {
-                let formatter = DateFormatter()
-                formatter.dateFormat = "dd/MM/yyyy"
-                return formatter
-        }()
-      
-      let dateFormatter = DateFormatter()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        return formatter
+    }()
+    
+    let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.viewModel = HomeworkViewModel.init(delegate: self)
         self.viewModel?.attachView(viewDelegate: self)
         setView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-      //  assignHomeWorkId = homeWorkList.AssignHomeWorkId
-      //  self.viewModel?.getHomeworkDataForStudent(studentId: UserDefaultExtensionModel.shared.enrollmentIdStudent, assignHomeWorkId: assignHomeWorkId ?? 0)
-     }
-
-   func setView() {
-       tblViewListing.tableFooterView = UIView()
-   }
-
+        //  assignHomeWorkId = homeWorkList.AssignHomeWorkId
+        //  self.viewModel?.getHomeworkDataForStudent(studentId: UserDefaultExtensionModel.shared.enrollmentIdStudent, assignHomeWorkId: assignHomeWorkId ?? 0)
+    }
+    
+    func setView()
+    {
+        tblViewListing.tableFooterView = UIView()
+        self.title = "Assign Homework"
+        self.setBackButton()
+        
+        
+    }
+    
 }
 
 extension StudentHomeWorkListVC : UITableViewDelegate, UITableViewDataSource {
@@ -55,17 +60,17 @@ extension StudentHomeWorkListVC : UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! HomeWorkCell
         cell.lblTitle.text = homeWorkList?[indexPath.row].Topic
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-
+        
         if let dateFinal =  dateFormatter.date(from: homeWorkList?[indexPath.row].SubmssionDate ?? "") {
-                   let dd = formatter.string(from: dateFinal)
-                   cell.lblClassName.text = "Submission Date: \(dd)"
-               }
-              
+            let dd = formatter.string(from: dateFinal)
+            cell.lblClassName.text = "Submission Date: \(dd)"
+        }
+        
         
         return cell
         
     }
-  
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 91
         
@@ -73,14 +78,14 @@ extension StudentHomeWorkListVC : UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       // objGetStudentHomeDetail
+        // objGetStudentHomeDetail
         tableView.deselectRow(at: indexPath, animated: false)
         if homeWorkList?.count ?? 0 > 0 {
-                   let vc = UIStoryboard.init(name:"Homework", bundle: Bundle.main).instantiateViewController(withIdentifier: "StudentDetailHomeworkVC") as! StudentDetailHomeworkVC
-                 vc.objGetStudentHomeDetail = homeWorkList?[indexPath.row].AssignHomeWorkId
-                   self.navigationController?.pushViewController(vc, animated: true)
-                   
-               }
+            let vc = UIStoryboard.init(name:"Homework", bundle: Bundle.main).instantiateViewController(withIdentifier: "StudentDetailHomeworkVC") as! StudentDetailHomeworkVC
+            vc.objGetStudentHomeDetail = homeWorkList?[indexPath.row].AssignHomeWorkId
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }
     }
     
 }
@@ -91,7 +96,7 @@ extension StudentHomeWorkListVC : ViewDelegate {
     }
     
     func showLoader() {
-          self.ShowLoader()
+        self.ShowLoader()
     }
     
     func hideLoader() {
@@ -105,7 +110,7 @@ extension StudentHomeWorkListVC : AddHomeWorkDelegate {
         
     }
     
-
+    
     
     func subjectList(data: [HomeworkResultHWData]) {
         
@@ -131,19 +136,19 @@ extension StudentHomeWorkListVC : AddHomeWorkDelegate {
     
     func AddHomeworkSucceed(array: [HomeworkResultData]) {
         
-//        homeWorkList = array
-//
-//        if homeWorkList?.count ?? 0 > 0 {
-//            LblNoDataFound.isHidden = true
-//        }
-//        else {
-//            LblNoDataFound.isHidden = false
-//        }
-//        tblViewListing.reloadData()
+        //        homeWorkList = array
+        //
+        //        if homeWorkList?.count ?? 0 > 0 {
+        //            LblNoDataFound.isHidden = true
+        //        }
+        //        else {
+        //            LblNoDataFound.isHidden = false
+        //        }
+        //        tblViewListing.reloadData()
     }
     
     func AddHomeworkFailour(msg: String) {
-         self.showAlert(Message: msg)
+        self.showAlert(Message: msg)
     }
 }
 

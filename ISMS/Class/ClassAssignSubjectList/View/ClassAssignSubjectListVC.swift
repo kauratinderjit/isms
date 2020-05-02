@@ -82,10 +82,13 @@ class ClassAssignSubjectListVC: BaseUIViewController {
 }
     
 //MARK:- Class Deleagate
-extension ClassAssignSubjectListVC : ClassAssignSubjectListDelegate{
+extension ClassAssignSubjectListVC : ClassAssignSubjectListDelegate
+{
     
-    func assignSubjectsToClassDidSuccess(data: AssignSubjectsToClassResponseModel) {
-        if let msg = data.message {
+    func assignSubjectsToClassDidSuccess(data: AssignSubjectsToClassResponseModel)
+    {
+        if let msg = data.message
+        {
             arrAssignSubtoClass.removeAll()
             
             self.AlertMessageWithOkAction(titleStr: KAPPContentRelatedConstants.kAppTitle, messageStr: "Subject assigned successfully and now you can add syllabus by clicking selected subjects.", Target: self) {
