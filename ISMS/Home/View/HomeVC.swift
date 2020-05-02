@@ -188,7 +188,7 @@ class HomeVC: BaseUIViewController {
                 self.lblName2.isHidden = true
                 self.lblName3.isHidden = true
                 
-                topEventView.constant = 10
+                viewEventTopConstraints.constant = 10
                    // tblViewListing.isHidden = true
                    self.homeViewModel?.getDataParentDashboardApi(userId: UserDefaultExtensionModel.shared.currentUserId)
                  
@@ -411,8 +411,11 @@ extension HomeVC : HomeViewModelDelegate
             self.lblName3.text = "\(deptArr[selectedIndexParent].noOfSubjects!)" + " " + "Subjects"
         }
 
+        if let department = deptArr[selectedIndexParent].departmentId {
+            UserDefaultExtensionModel.shared.HODDepartmentId = department ?? 0
+        }
        
-        UserDefaultExtensionModel.shared.HODDepartmentId = deptArr[selectedIndexParent].departmentId ?? 0
+        
 
         
 //        if data.das ?? 0 > 1
@@ -460,7 +463,8 @@ extension HomeVC : HomeViewModelDelegate
         self.lblName2.isHidden = true
         self.lblName3.isHidden = true
         
-          topEventView.constant = -100
+          viewEventTopConstraints.constant = -100
+//        viewEventTopConstraints
 //        var strClass : String = "Class"
         var strTeacher = "Teacher"
 //        var strStudent : String = "Student"
