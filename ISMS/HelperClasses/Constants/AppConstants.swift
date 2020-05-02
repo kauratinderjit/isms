@@ -192,6 +192,8 @@ public struct Alerts
     public static let kDeleteHODAlert = "Do you really want to delete this HOD."
     public static let kDeleteTeacherAlert = "Do you really want to delete this teacher."
     
+    public static let kDeleteChapterAlert = "Do you really want to delete this Chapter."
+    
     //Hardware Related Errors
     public static let kDontHaveCamera : String = "You dont't have camera."
     

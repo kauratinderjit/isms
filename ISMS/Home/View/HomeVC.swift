@@ -236,7 +236,7 @@ extension HomeVC : HomeViewModelDelegate
         lblDept.text = (data.email ?? "")
         self.studentArr = data.students!
         
-        var data = self.centerItemsInCollectionView(cellWidth: 100, numberOfItems: Double(self.studentArr.count), spaceBetweenCell: 6, collectionView: collectionView)
+//        var data = self.centerItemsInCollectionView(cellWidth: 100, numberOfItems: Double(self.studentArr.count), spaceBetweenCell: 6, collectionView: collectionView)
         
         print("count",studentArr.count)
         collectionView.reloadData()
@@ -248,8 +248,8 @@ extension HomeVC : HomeViewModelDelegate
             self.lblName1.isHidden = true
             self.lblName2.isHidden = true
             self.lblName3.isHidden = true
-            
-            topEventView.constant = -100
+            collectionView.isHidden = true
+           viewEventTopConstraints.constant = -100
             
         }else{
             self.iv1.isHidden = true
@@ -260,7 +260,7 @@ extension HomeVC : HomeViewModelDelegate
             self.lblName2.isHidden = true
             self.lblName3.isHidden = true
             
-            topEventView.constant = 10
+            viewEventTopConstraints.constant = 10
         }
             UserDefaultExtensionModel.shared.StudentClassId = studentArr[selectedIndexParent].classId ?? 0
             UserDefaultExtensionModel.shared.enrollmentIdStudent = studentArr[selectedIndexParent].enrollmentId ?? 0
@@ -330,6 +330,8 @@ extension HomeVC : HomeViewModelDelegate
         lblName.text = data.HodName
         lblDept.text = (data.DepartmentName ?? "")
         
+        
+        
         var strClass : String = "Class"
         var strTeacher : String = "Teacher"
         var strStudent : String = "Student"
@@ -380,7 +382,7 @@ extension HomeVC : HomeViewModelDelegate
         
         self.deptArr = data.departmentList!
         
-        if deptArr.count > 1{
+        if deptArr.count != 1{
             collectionView.reloadData()
             
             lv1TopConstrtraints.constant = 120
@@ -393,6 +395,8 @@ extension HomeVC : HomeViewModelDelegate
             
             lv3TopConstraints.constant = 120
             lblName3TopComnstraints.constant = 10
+        }else{
+            collectionView.isHidden = true
         }
        
 //        collectionViewBottomTable.constant = 250
