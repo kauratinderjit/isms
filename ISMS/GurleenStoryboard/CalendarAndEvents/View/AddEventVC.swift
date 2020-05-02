@@ -68,7 +68,13 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
     {
         super.viewDidLoad()
         setView()
-        
+        if UserDefaultExtensionModel.shared.currentUserRoleId == 5{
+           self.navigationItem.rightBarButtonItem = nil
+        }else if UserDefaultExtensionModel.shared.currentUserRoleId == 6{
+            self.navigationItem.rightBarButtonItem = nil
+        }else if UserDefaultExtensionModel.shared.currentUserRoleId == 4{
+              self.navigationItem.rightBarButtonItem = nil
+        }
         
         self.showDatePickerEventDate()
         self.showDatePickerEventDateEnd()
