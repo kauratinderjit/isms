@@ -39,10 +39,10 @@ class EventScheduleViewModel {
     func getData(RoleId : Int , ParticularId : Int) {
         
         //let url = SyllabusCoverage.kSyllabusCoverageUrl
-        let param = [ "RoleId":RoleId , "ParticularId": ParticularId] as [String : Any]
-        
+       
+          let params = ["enumTypeId":1, "Search":"", "Skip": 10,"PageSize": 0,"SortColumnDir": "", "SortColumn": "","ParticularId": ParticularId] as [String : Any]
 
-        EventScheduleApi.sharedManager.EventScheduleData(url:"api/Institute/GetEventsByRoleParticularId" , parameters: param, completionResponse: { (SyllabusModel) in
+        EventScheduleApi.sharedManager.EventScheduleData(url:"api/Institute/GetEventsByRoleParticularId" , parameters: params, completionResponse: { (SyllabusModel) in
             self.viewGlobalDelegate?.hideLoader()
             if let result = SyllabusModel.resultData {
                 self.eventScheduleDelegate?.EventScheduleSucceed(array : result)
@@ -68,7 +68,7 @@ class EventScheduleViewModel {
     
     
     //MARK:- Add Department
-    func addUpdateEvent(eventId:Int?,title: String?,description : String?,startTime: String?,endTime: String?, evntStartDate: String?,evntEndDate: String?)
+    func addUpdateEvent(eventId:Int?,title: String?,description : String?,startTime: String?,endTime: String?, evntStartDate: String?,evntEndDate: String?,ParticularId: Int?)
     {
         //MARK:- Validations
         if(title!.trimmingCharacters(in: .whitespaces).isEmpty)
@@ -83,7 +83,7 @@ class EventScheduleViewModel {
         {
             guard let eventId = eventId else{return}
           
-            let parameters = ["EventId":eventId,"Title": title!,"Description" : description!, "strStartDate" : evntStartDate!,"StrStartTime" : startTime!, "StrEndTime" :endTime!, "strEndDate": evntEndDate!] as [String : Any]
+            let parameters = ["EventId":eventId,"Title": title!,"Description" : description!, "strStartDate" : evntStartDate!,"StrStartTime" : startTime!, "StrEndTime" :endTime!, "strEndDate": evntEndDate!,"ParticularId": ParticularId!,"TypeId" : 1] as [String : Any]
             print(parameters)
             self.viewGlobalDelegate?.showLoader()
             //AddDepartment API

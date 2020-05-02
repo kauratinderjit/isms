@@ -52,7 +52,7 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
     var editMode : Bool = false
     var editEventModel : EventScheduleListResultData?
     public var lstActionAccess : GetMenuFromRoleIdModel.ResultData?
-    
+       var HODdepartmentId = UserDefaultExtensionModel.shared.HODDepartmentId
     @IBOutlet weak var selectedStartDate: UILabel!
     @IBOutlet weak var selectEndDate: UILabel!
     @IBOutlet weak var selectStartTime: UILabel!
@@ -68,6 +68,13 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
     {
         super.viewDidLoad()
         setView()
+        if UserDefaultExtensionModel.shared.currentUserRoleId == 5{
+           self.navigationItem.rightBarButtonItem = nil
+        }else if UserDefaultExtensionModel.shared.currentUserRoleId == 6{
+            self.navigationItem.rightBarButtonItem = nil
+        }else if UserDefaultExtensionModel.shared.currentUserRoleId == 4{
+              self.navigationItem.rightBarButtonItem = nil
+        }
         
         self.showDatePickerEventDate()
         self.showDatePickerEventDateEnd()
@@ -90,6 +97,7 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
         //txtfieldTitle.txtfieldPadding(leftpadding: 20, rightPadding: 0)
         txtViewDescription.textContainerInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20);
         self.CreateNavigationBackBarButton()
+       
         
         // txtfieldTitle.attributedPlaceholder = NSAttributedString(string:"Enter Title", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         
@@ -290,7 +298,7 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
                 {
                    // self.viewModel?.addUpdateEvent(eventId: eventId, title: txtfieldTitle.text, description: txtViewDescription.text, time: selectedTime, Date: str_date_selected)
                     
-                    self.viewModel?.addUpdateEvent(eventId: eventId, title: txtfieldTitle.text, description: txtViewDescription.text, startTime: tfStartTime.text, endTime: tfEndTime.text, evntStartDate: tfEventDate.text, evntEndDate: tfEventEndDate.text)
+                    self.viewModel?.addUpdateEvent(eventId: eventId, title: txtfieldTitle.text, description: txtViewDescription.text, startTime: tfStartTime.text, endTime: tfEndTime.text, evntStartDate: tfEventDate.text, evntEndDate: tfEventEndDate.text,ParticularId: HODdepartmentId)
                 }
                 else
                 {

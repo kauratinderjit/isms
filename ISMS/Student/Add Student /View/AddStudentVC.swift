@@ -106,6 +106,10 @@ class AddStudentVC: BaseUIViewController {
     var selectedPreviousTextField : UITextField?//For Phone and Email of Student and Parents
     var isGuardianDOBSelected:Bool?
     var selectedStudentDOB:Date?
+    var approach = "AddNew"
+    
+    
+    
     //MARK:- Life Cycle of VC
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -200,15 +204,29 @@ class AddStudentVC: BaseUIViewController {
     }
     
     //MARK:- Submit Action
-    @IBAction func btnSubmitAction(_ sender: UIButton) {
+    @IBAction func btnSubmitAction(_ sender: UIButton)
+    {
         view.endEditing(true)
-        if studentId == 0{
+        
+        if (self.approach == "AddNew")
+        {
+           self.studentId = 0
+           self.studentUserId = 0
+        }
+        
+        
+        if studentId == 0
+        {
             //For Add Student
-            self.ViewModel?.addStudent(studentId: self.studentId, studentUserId: studentUserId, studentImg: studentImgUrl,firstName: txtFieldFirstName.text, lastName: txtFieldLastName.text, address: txtFieldAddress.text, dateOfBirth: studentDOB,  gender: gender, rollNoOrAddmissionId: txtFieldRollnoOrAddmissionId.text, email: txtFieldEmail.text, phoneNumber: txtFieldPhoneNumber.text,studentIdProof: studentIdUrl, others: txtFieldOthers.text,parentImg: parentImgUrl, parentFirstName: txtParentFirstName.text, parentLastName: txtParentLastName.text,parentAddress: txtparentAddress.text,parentDOB: parentDOB,parentGender: parentGender,parentEmail: txtParentEmail.text,parentPhoneNo: txtParentPhoneNo.text,parentIdProof:parentIdUrl,parentOthers: txtParentOthers.text,relationID: selectedRelationID, studentIdProofTile: txtFieldStudentIdProof.text, parentIdProofTitle:textFieldIDProof.text, classId: selectedClassID, guardianId: gardianId, guardianUserId: 0, idProofName: txtFieldStudentIdProof.text, parentIdProofName: textFieldIDProof.text)
-        }else if studentId != 0{
+            self.ViewModel?.addStudent(studentId: self.studentId, studentUserId: studentUserId, studentImg: studentImgUrl,firstName: txtFieldFirstName.text, lastName: txtFieldLastName.text, address: txtFieldAddress.text, dateOfBirth: studentDOB,  gender: gender, rollNoOrAddmissionId: txtFieldRollnoOrAddmissionId.text, email: txtFieldEmail.text, phoneNumber: txtFieldPhoneNumber.text,studentIdProof: studentIdUrl, others: txtFieldOthers.text,parentImg: parentImgUrl, parentFirstName: txtParentFirstName.text, parentLastName: txtParentLastName.text,parentAddress: txtparentAddress.text,parentDOB: parentDOB,parentGender: parentGender,parentEmail: txtParentEmail.text,parentPhoneNo: txtParentPhoneNo.text,parentIdProof:parentIdUrl,parentOthers: txtParentOthers.text,relationID: selectedRelationID, studentIdProofTile: txtFieldStudentIdProof.text, parentIdProofTitle:textFieldIDProof.text, classId: selectedClassID, guardianId: gardianId, guardianUserId: gardianUserId, idProofName: txtFieldStudentIdProof.text, parentIdProofName: textFieldIDProof.text)
+        }
+        else if studentId != 0
+        {
             //For set the nil value to Profile Image Url/Id Proof Image Url
-            if studentImgUrl != nil||parentImgUrl != nil || parentIdUrl != nil || studentIdUrl != nil {
-                if (studentImgUrl?.absoluteString.hasPrefix("http:") ?? false){
+            if studentImgUrl != nil||parentImgUrl != nil || parentIdUrl != nil || studentIdUrl != nil
+            {
+                if (studentImgUrl?.absoluteString.hasPrefix("http:") ?? false)
+                {
                     studentImgUrl = nil
                 }
                 if parentImgUrl?.absoluteString.hasPrefix("http:") ?? false{
@@ -961,12 +979,17 @@ extension AddStudentVC : ViewDelegate{
 
 
 //MARK:- Add Student Delegates
-extension AddStudentVC : AddStudentDelegate{
-    func studentParentNotExist(isStudent: Bool) {
-        if isStudent == true{
+extension AddStudentVC : AddStudentDelegate
+{
+    func studentParentNotExist(isStudent: Bool)
+    {
+        if isStudent == true
+        {
             studentId = 0
 //            studentUserId = 0
-        }else{
+        }
+        else
+        {
             gardianId = 0
 //            gardianUserId = 0
         }
@@ -1021,7 +1044,8 @@ extension AddStudentVC : AddStudentDelegate{
     func PhoneEmailVerifyGardianDidSuccess(data: GetDetailByPhoneEmailGardianModel) {
         GardianDetail = data
         let userDetail = GardianDetail?.resultData
-        if let imgProfileUrl = userDetail?.imageURL{
+        if let imgProfileUrl = userDetail?.guardianIDProof
+        {
          //mohit   parentImgUrl = URL(string: imgProfileUrl)
             parentImgView.contentMode = .scaleAspectFill
             parentImgView.sd_imageIndicator = SDWebImageActivityIndicator.gray
@@ -1031,7 +1055,7 @@ extension AddStudentVC : AddStudentDelegate{
             parentImgView.image = UIImage.init(named: kImages.kProfileImage)
         }
         
-        if let gardianIdProof = userDetail?.iDProof,gardianIdProof != ""{
+        if let gardianIdProof = userDetail?.guardianIDProof,gardianIdProof != ""{
           //mohit  parentIdUrl = URL(string: gardianIdProof)
             parentIdProofImgView.sd_imageIndicator = SDWebImageActivityIndicator.gray
             parentIdProofImgView.contentMode = .scaleAspectFit
@@ -1042,13 +1066,14 @@ extension AddStudentVC : AddStudentDelegate{
             parentIdProofImgView.image = UIImage.init(named: kImages.kAttachmentImage)
         }
         
-        if let parentDob = userDetail?.guardianDOB{
+        if let parentDob = userDetail?.GuardianDOB{
             parentDOB = parentDob
             let date = CommonFunctions.sharedmanagerCommon.convertBackendDateFormatToLocalDate(serverSideDate: parentDob)
             txtParentDOB.text = date
         }
         
-        if let gender = userDetail?.gender{
+        if let gender = userDetail?.GuardianGender
+        {
             if(gender == KConstants.KMale)
             {
                 btnParentMale.setImage(UIImage(named:kImages.kRadioSelected), for: UIControl.State.normal)
@@ -1081,12 +1106,12 @@ extension AddStudentVC : AddStudentDelegate{
         
         
         gardianId = userDetail?.guardianId
-        gardianUserId = userDetail?.userId
+        gardianUserId = userDetail?.guardianUserId
         studentId = userDetail?.studentID
-        txtParentFirstName.text = userDetail?.firstName
-        txtParentLastName.text = userDetail?.lastName
-        txtparentAddress.text = userDetail?.address
-        txtParentEmail.text = userDetail?.email
+        txtParentFirstName.text = userDetail?.GuardianFirstName
+        txtParentLastName.text = userDetail?.GuardianLastName
+        txtparentAddress.text = userDetail?.GuardianAddress
+        txtParentEmail.text = userDetail?.GuardianEmail
         selectedRelationID = userDetail?.relationId
         txtParentRelation.text = userDetail?.relationName
         textFieldIDProof.text = userDetail?.iDProofTitle

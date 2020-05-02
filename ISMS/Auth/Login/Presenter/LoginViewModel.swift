@@ -283,7 +283,8 @@ extension LoginVC : LogInDelegate{
             UserDefaultExtensionModel.shared.StudentClassId = data.resultData?.first?.classId ?? 0
             UserDefaultExtensionModel.shared.UserName = data.resultData?.first?.UserName ?? ""
             UserDefaultExtensionModel.shared.enrollmentIdStudent = data.resultData?.first?.enrollmentId ?? 0
-             UserDefaultExtensionModel.shared.classNameStudent = data.resultData?.first?.className ?? ""
+            UserDefaultExtensionModel.shared.classNameStudent = data.resultData?.first?.className ?? ""
+            UserDefaultExtensionModel.shared.imageUrl = data.resultData?.first?.ImageUrl ?? ""
             
         }else if  data.resultData?.count ?? 0 > 1 {
             //When user have more then one role then it move to multiple user role screen

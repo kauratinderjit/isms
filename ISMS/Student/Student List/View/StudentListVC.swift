@@ -61,6 +61,7 @@ class StudentListVC: BaseUIViewController {
             
             let data = arrStudentlist[(sender as AnyObject).tag]
             let vc = UIStoryboard.init(name: KStoryBoards.kStudent, bundle: Bundle.main).instantiateViewController(withIdentifier: KStoryBoards.KAddStudentIdentifiers.kAddStudentVC) as! AddStudentVC
+            vc.approach = "Edit"
             vc.enrollmentId = data.enrollmentId
             vc.studentUserId = data.studentUserId
             self.navigationController?.pushViewController(vc, animated: true)
@@ -89,6 +90,7 @@ class StudentListVC: BaseUIViewController {
         vc.studentId = 0
         vc.enrollmentId = 0
         vc.studentUserId = 0
+        vc.approach = "AddNew"
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
