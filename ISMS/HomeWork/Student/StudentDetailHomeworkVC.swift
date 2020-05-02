@@ -57,10 +57,17 @@ class StudentDetailHomeworkVC: BaseUIViewController {
        // StudentUploadHomeWorkVC
         if datalocal?.count ?? 0 > 0 {
             let vc = UIStoryboard.init(name:"Homework", bundle: Bundle.main).instantiateViewController(withIdentifier: "StudentUploadHomeWorkVC") as! StudentUploadHomeWorkVC
-            print(datalocal)
+          //  print(datalocal)
             vc.AssignHomeWorkId = datalocal?[0].AssignHomeWorkId
             //vc.StudentHomeworkId = datalocal?[0].
-            vc.lststuattachmentModels = datalocal?[0].lststuattachmentModels?[0].stuAttachmentViewModels
+            
+            if (datalocal?.count ?? 0 > 0)
+            {
+                if (datalocal?[0].lststuattachmentModels?.count ?? 0 > 0)
+                {
+                    vc.lststuattachmentModels = datalocal?[0].lststuattachmentModels?[0].stuAttachmentViewModels
+                }
+            }
             vc.datalocalStu = datalocal
             self.navigationController?.pushViewController(vc, animated: true)
             
