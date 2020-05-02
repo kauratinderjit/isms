@@ -16,7 +16,8 @@ class StudentHomeWorkListVC: BaseUIViewController {
     var homeWorkList : [lstASTopic]?
     var homworkId: Int? = 0
     var assignHomeWorkId : Int? = 0
-    
+    public var lstActionAccess : GetMenuFromRoleIdModel.ResultData?
+
     let formatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
@@ -36,6 +37,15 @@ class StudentHomeWorkListVC: BaseUIViewController {
     override func viewWillAppear(_ animated: Bool) {
         //  assignHomeWorkId = homeWorkList.AssignHomeWorkId
         //  self.viewModel?.getHomeworkDataForStudent(studentId: UserDefaultExtensionModel.shared.enrollmentIdStudent, assignHomeWorkId: assignHomeWorkId ?? 0)
+        
+//             let arrAccess = lstActionAccess?.lstActionAccess
+//
+//              _ = arrAccess?.enumerated().map { (index,element) in
+//
+//                  if element.actionName == "View" {
+//
+//                  }
+//          }
     }
     
     func setView()

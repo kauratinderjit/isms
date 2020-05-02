@@ -155,7 +155,7 @@ class AddHomeWorkVC: BaseUIViewController {
                       print("Index found :\(index)")
                       let total = classDropdownData?[index].id ?? 0
                     selectedClassId = total
-                    self.viewModel?.getData(classId: total, teacherId: UserDefaultExtensionModel.shared.userRoleParticularId)
+                  //  self.viewModel?.getData(classId: total, teacherId: UserDefaultExtensionModel.shared.userRoleParticularId)
                   }
           }
           txtfieldExtraPicker.resignFirstResponder()
@@ -498,7 +498,7 @@ extension AddHomeWorkVC : AddHomeWorkDelegate {
                 txtfieldClass.text = classDropdownData?[0].name
                 UpdatePickerModel(count: data.resultData?.count ?? 0, sharedPickerDelegate: self, View: self.view)
 
-                self.viewModel?.getData(classId: selectedClassId ?? 0, teacherId: UserDefaultExtensionModel.shared.userRoleParticularId)
+               // self.viewModel?.getData(classId: selectedClassId ?? 0, teacherId: UserDefaultExtensionModel.shared.userRoleParticularId)
                }else{
                    self.showAlert(alert: "There is no classes")
                    CommonFunctions.sharedmanagerCommon.println(object: "Count is zero.")

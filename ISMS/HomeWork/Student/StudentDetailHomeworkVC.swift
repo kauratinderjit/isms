@@ -23,6 +23,8 @@ class StudentDetailHomeworkVC: BaseUIViewController {
     var objGetStudentHomeDetail : Int?
     var uploadData = NSMutableArray()
     var  datalocal: [HomeworkListStudentData]?
+    public var lstActionAccess : GetMenuFromRoleIdModel.ResultData?
+
     
     let formatter: DateFormatter = {
               let formatter = DateFormatter()
