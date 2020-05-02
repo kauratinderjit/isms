@@ -51,6 +51,7 @@ class GetDetailByPhoneEmailGardianModel: Mappable{
         var relationId : Int?
       //  var guardianDOB : String?
         var relationName : String?
+        var guardianImageUrl : String?
         
         
         //Gurdian
@@ -73,8 +74,8 @@ class GetDetailByPhoneEmailGardianModel: Mappable{
         
         mutating func mapping(map: Map) {
             
-            guardianId <- map["GuardianId"]
-            guardianUserId <- map["guardianUserId"]
+            guardianId <- map["UserId"]
+            guardianUserId <- map["UserId"]
             userId <- map["UserId"]
             imageURL <- map["ImageURL"]
             firstName <- map["FirstName"]
@@ -92,16 +93,18 @@ class GetDetailByPhoneEmailGardianModel: Mappable{
             relationName <- map["RelationName"]
             
             
-            GuardianFirstName <- map["GuardianFirstName"]
-            GuardianLastName <- map["GuardianLastName"]
-            GuardianEmail <- map["GuardianEmail"]
-            GuardianPhoneNo <- map["GuardianPhoneNo"]
+            GuardianFirstName <- map["FirstName"]
+            GuardianLastName <- map["FirstName"]
+            GuardianEmail <- map["Email"]
+            GuardianPhoneNo <- map["PhoneNo"]
             GuardianIDProofTitle <- map["GuardianIDProofTitle"]
-            GuardianAddress <- map["GuardianAddress"]
+            GuardianAddress <- map["Address"]
             GuardianOthers <- map["GuardianOthers"]
-            GuardianDOB <- map["GuardianDOB"]
-            GuardianGender <- map["GuardianGender"]
+            GuardianDOB <- map["DOB"]
+            GuardianGender <- map["Gender"]
             guardianIDProof <- map["guardianIDProof"]
+            guardianImageUrl <- map["ImageUrl"]
+            
             
         }
         

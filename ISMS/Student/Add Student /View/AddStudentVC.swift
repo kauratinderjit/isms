@@ -129,7 +129,7 @@ class AddStudentVC: BaseUIViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         if isCameFromImagePickerController != true{
-//            ViewModel?.deattachView()
+            //            ViewModel?.deattachView()
         }else{
             isCameFromImagePickerController = true
         }
@@ -210,8 +210,8 @@ class AddStudentVC: BaseUIViewController {
         
         if (self.approach == "AddNew")
         {
-           self.studentId = 0
-           self.studentUserId = 0
+            self.studentId = 0
+            self.studentUserId = 0
         }
         
         
@@ -239,7 +239,7 @@ class AddStudentVC: BaseUIViewController {
                     studentIdUrl = nil
                 }
             }
-        
+            
             //For Update Student
             self.ViewModel?.addStudent(studentId: self.studentId, studentUserId: studentUserId, studentImg: studentImgUrl,firstName: txtFieldFirstName.text, lastName: txtFieldLastName.text, address: txtFieldAddress.text, dateOfBirth: studentDOB,  gender: gender, rollNoOrAddmissionId: txtFieldRollnoOrAddmissionId.text, email: txtFieldEmail.text, phoneNumber: txtFieldPhoneNumber.text,studentIdProof: studentIdUrl,others: txtFieldOthers.text,parentImg: parentImgUrl, parentFirstName: txtParentFirstName.text, parentLastName: txtParentLastName.text,parentAddress: txtparentAddress.text,parentDOB: parentDOB,parentGender: parentGender,parentEmail: txtParentEmail.text,parentPhoneNo: txtParentPhoneNo.text,parentIdProof:parentIdUrl,parentOthers: txtParentOthers.text,relationID: selectedRelationID,studentIdProofTile: txtFieldStudentIdProof.text,parentIdProofTitle:textFieldIDProof.text, classId: selectedClassID, guardianId: gardianId, guardianUserId: gardianUserId,idProofName: txtFieldStudentIdProof.text, parentIdProofName: textFieldIDProof.text)
         }
@@ -276,7 +276,7 @@ class AddStudentVC: BaseUIViewController {
         
         initializeGalleryAlert(self.view, isHideBlurView: true)
         galleryAlertView.delegate = self
-    
+        
     }
     
     //MARK:- Hit Student Api
@@ -316,7 +316,7 @@ class AddStudentVC: BaseUIViewController {
         
         if let imgProfileUrl = Data.resultData?.studentImageUrl{
             imgViewStudent.sd_imageIndicator = SDWebImageActivityIndicator.gray
-           //mohit studentImgUrl = URL(string: imgProfileUrl)
+            //mohit studentImgUrl = URL(string: imgProfileUrl)
             imgViewStudent.contentMode = .scaleAspectFill
             imgViewStudent.sd_setImage(with: URL(string: imgProfileUrl), placeholderImage: UIImage(named: kImages.kProfileImage))
         }else{
@@ -363,7 +363,7 @@ class AddStudentVC: BaseUIViewController {
         }
         
         if let studentIdProofImg = Data.resultData?.studentIDProof,studentIdProofImg != ""{
-          //mohit  studentIdUrl = URL(string: studentIdProofImg)
+            //mohit  studentIdUrl = URL(string: studentIdProofImg)
             studentIdProofImgView.contentMode = .scaleAspectFill
             studentIdProofImgView.sd_setImage(with: URL(string: studentIdProofImg), placeholderImage: UIImage(named: kImages.kAttachmentImage))
         }else{
@@ -402,7 +402,7 @@ class AddStudentVC: BaseUIViewController {
         
         if let imgProfileUrl = Data.resultData?.guardianImageUrl{
             parentImgView.sd_imageIndicator = SDWebImageActivityIndicator.gray
-         //mohit   parentImgUrl = URL(string: imgProfileUrl)
+            //mohit   parentImgUrl = URL(string: imgProfileUrl)
             parentImgView.contentMode = .scaleAspectFill
             parentImgView.sd_setImage(with: URL(string: imgProfileUrl), placeholderImage: UIImage(named: kImages.kProfileImage))
         }else{
@@ -442,7 +442,7 @@ class AddStudentVC: BaseUIViewController {
         }
         
         if let guardianIdProofImgUrl = Data.resultData?.guardianIDProof, guardianIdProofImgUrl != ""{
-          //mohit  parentIdUrl = URL(string: guardianIdProofImgUrl)
+            //mohit  parentIdUrl = URL(string: guardianIdProofImgUrl)
             parentIdProofImgView.contentMode = .scaleAspectFill
             parentIdProofImgView.sd_setImage(with: URL(string: guardianIdProofImgUrl), placeholderImage: UIImage(named: kImages.kAttachmentImage))
         }else{
@@ -484,7 +484,8 @@ class AddStudentVC: BaseUIViewController {
             }
         }
         
-        if let wrappedStudentUserId = Data.resultData?.studentUserId{
+        if let wrappedStudentUserId = Data.resultData?.studentUserId
+        {
             self.studentUserId = wrappedStudentUserId
         }
         if let wrappedStudentId = Data.resultData?.studentId{
@@ -507,23 +508,23 @@ class AddStudentVC: BaseUIViewController {
     
     
     @IBAction func btnDepartmentDropDown(_ sender: Any) {
-//        departmentDropDown = true
-//        if departmentData.count > 0{
-//            self.txtFieldDepartment.text = self.departmentData[0].name
-//            self.selectedDepartmentID = self.departmentData[0].id ?? 0
-//            self.selectedDepartmentIndex = 0
-//            print("Selected Department:- \(String(describing: self.departmentData[0].name))")
-//            UpdatePickerModel(count: departmentData.count , sharedPickerDelegate: self, View:  self.view)
-//        }
+        //        departmentDropDown = true
+        //        if departmentData.count > 0{
+        //            self.txtFieldDepartment.text = self.departmentData[0].name
+        //            self.selectedDepartmentID = self.departmentData[0].id ?? 0
+        //            self.selectedDepartmentIndex = 0
+        //            print("Selected Department:- \(String(describing: self.departmentData[0].name))")
+        //            UpdatePickerModel(count: departmentData.count , sharedPickerDelegate: self, View:  self.view)
+        //        }
     }
     
     
-   
+    
     @IBAction func btnClassDropDown(_ sender: Any) {
         classDropDown = true
         if classData.count > 0{
-         //  self.txtFieldClassDropDown.text = self.classData[0].name
-         //   self.selectedClassID = self.classData[0].id ?? 0
+            //  self.txtFieldClassDropDown.text = self.classData[0].name
+            //   self.selectedClassID = self.classData[0].id ?? 0
             self.selectedDepartmentIndex = 0
             print("Selected Department:- \(String(describing: self.classData[0].name))")
             UpdatePickerModel(count: classData.count , sharedPickerDelegate: self, View:  self.view)
@@ -584,7 +585,7 @@ extension AddStudentVC : UITextFieldDelegate{
         //Validations for phone number and email student
         if textField == txtFieldPhoneNumber || textField == txtFieldEmail{
             view.endEditing(true)
-     
+            
             if textField == txtFieldPhoneNumber {
                 //When User start entering phone but less then 10 digits then this check is continue
                 if txtFieldPhoneNumber.text?.count ?? 0 > 0 && txtFieldPhoneNumber.text?.count ?? 0 < 10 {
@@ -626,7 +627,8 @@ extension AddStudentVC : UITextFieldDelegate{
                     }
                     showAlert(alert: Alerts.kMinPhoneNumberCharacter)
                     return
-                }else if  txtParentPhoneNo.text?.count ?? 0 == 10{
+                }else if  txtParentPhoneNo.text?.count ?? 0 == 10
+                {
                     selectedPreviousTextField = txtParentPhoneNo
                     ViewModel?.verifyPhoneAndEmailGardian(phoneNum: txtParentPhoneNo.text, email: txtParentEmail.text)
                 }
@@ -651,7 +653,7 @@ extension AddStudentVC : UITextFieldDelegate{
         }
         
         // return YES to allow editing to stop and to resign first responder status. NO to disallow the editing session to end
-//        return true
+        //        return true
     }
 }
 //MARK:- UIImagePickerView Delegate
@@ -668,10 +670,10 @@ extension AddStudentVC:UIImagePickerDelegate
         }else if (selectParentImg == true){
             parentImgUrl = url
         }else if selectStudentIdProof == true {
-//            selectStudentIdProof = false
+            //            selectStudentIdProof = false
             studentIdUrl = url
         }else if selectParentIdProof == true{
-//            selectParentIdProof = false
+            //            selectParentIdProof = false
             parentIdUrl = url
         }
     }
@@ -707,37 +709,47 @@ extension AddStudentVC: SharedUIDatePickerDelegate{
         print("Selected Date:- \(datePicker.date)")
         
         let strDate = CommonFunctions.sharedmanagerCommon.convertDateIntoStringWithDDMMYYYY(date: datePicker.date)
-
+        
         let years = CommonFunctions.sharedmanagerCommon.getYearsBetweenDates(startDate: datePicker.date, endDate: Date())
         
         if let intYear = years{
             
-            if intYear < 18{
+            if intYear < 18
+            {
                 self.showAlert(alert: Alerts.kUnderAge)
                 return
-            }else{
-                if DateVal == KConstants.kIsStudentDOB{
+            }
+            else
+            {
+                if DateVal == KConstants.kIsStudentDOB
+                {
                     studentDOB = "\(datePicker.date)"
                     selectedStudentDOB = datePicker.date
                     txtFieldDOB.text = strDate
                     ageYears = intYear
-                }else if DateVal == KConstants.kIsParentDOB{
-                    if let studentDOB = selectedStudentDOB{
-                    let studentYears = CommonFunctions.sharedmanagerCommon.getYearsBetweenDates(startDate: studentDOB , endDate: Date())
-                    if  let studentDOB = studentYears{
-                    if intYear < studentDOB{
-                        showAlert(alert: "Guardian age must be grater than student.")
+                }
+                else if DateVal == KConstants.kIsParentDOB
+                {
+                    if let studentDOB = selectedStudentDOB
+                    {
+                        let studentYears = CommonFunctions.sharedmanagerCommon.getYearsBetweenDates(startDate: studentDOB , endDate: Date())
+                        if  let studentDOB = studentYears
+                        {
+                            if intYear < studentDOB
+                            {
+                                showAlert(alert: "Guardian age must be grater than student.")
+                            }
+                            else
+                            {
+                                parentDOB = "\(datePicker.date)"
+                                txtParentDOB.text = strDate
+                                parentAgeYear = intYear
+                            }
                         }
-                   
-                    else{
-                    parentDOB = "\(datePicker.date)"
-                    txtParentDOB.text = strDate
-                    parentAgeYear = intYear
                     }
-                        }
-                                           }
-                    else{
-                        showAlert(alert: "Fill student detail first.")
+                    else
+                    {
+                        //mohit showAlert(alert: "Fill student detail first.")
                     }
                 }
             }
@@ -751,10 +763,10 @@ extension AddStudentVC: SharedUIDatePickerDelegate{
 extension AddStudentVC: SharedUIPickerDelegate{
     func DoneBtnClicked() {
         if(relationDropDown == true){
-             relationDropDown = false
+            relationDropDown = false
             if let count = relationData.resultData?.count{
                 if count > 0{
-             
+                    
                     if selectedRelationIndex == 0{
                         self.txtParentRelation.text = self.relationData?.resultData?[0].name
                         self.selectedRelationID = self.relationData?.resultData?[0].id ?? 0
@@ -767,7 +779,7 @@ extension AddStudentVC: SharedUIPickerDelegate{
         }else if(departmentDropDown == true){
             departmentDropDown = false
             if checkInternetConnection(){
-               self.ViewModel?.getClassId(id: 31, enumtype: 6)
+                self.ViewModel?.getClassId(id: 31, enumtype: 6)
             }else{
                 
                 self.showAlert(alert: Alerts.kNoInternetConnection)
@@ -784,54 +796,54 @@ extension AddStudentVC: SharedUIPickerDelegate{
             }
         }
     }
-
+    
     
     func GetTitleForRow(index: Int) -> String {
-          if(relationDropDown == true){
+        if(relationDropDown == true){
             if let count = relationData.resultData?.count{
                 if count > 0{
-                   // txtParentRelation.text = relationData?.resultData?[0].name
+                    // txtParentRelation.text = relationData?.resultData?[0].name
                     return relationData?.resultData?[index].name ?? ""
                 }
                 return ""
             }
-          }else if(departmentDropDown == true){
+        }else if(departmentDropDown == true){
             if departmentData.count > 0{
                 self.txtFieldDepartment.text = departmentData[0].name
                 if (self.departmentData[exist: index]?.name) != nil{
                     return departmentData[index].name ?? ""
                 }
-
+                
                 return ""
             }
             return ""
         }else if(classDropDown == true){
             if classData.count > 0{
                 selectedClassIndex = 0
-               // self.txtFieldClassDropDown.text = classData[0].name
+                // self.txtFieldClassDropDown.text = classData[0].name
                 return classData[index].name ?? ""
             }
             return ""
         }
-       
+        
         return ""
     }
     
     
     func SelectedRow(index: Int) {
-         if(relationDropDown == true){
+        if(relationDropDown == true){
             //Using Exist Method of collection prevent from indexoutof range error
             if let count = relationData.resultData?.count{
                 if count > 0{
                     if (self.relationData.resultData?[exist: index]?.name) != nil{
-//                        self.txtParentRelation.text = self.relationData?.resultData?[index].name
-//                        self.selectedRelationID = self.relationData?.resultData?[index].id ?? 0
+                        //                        self.txtParentRelation.text = self.relationData?.resultData?[index].name
+                        //                        self.selectedRelationID = self.relationData?.resultData?[index].id ?? 0
                         self.selectedRelationIndex = index
-//                        print("Selected Department:- \(String(describing: self.relationData?.resultData?[index].id))")
-                   }
+                        //                        print("Selected Department:- \(String(describing: self.relationData?.resultData?[index].id))")
+                    }
                 }
             }
-         }else if(departmentDropDown == true){
+        }else if(departmentDropDown == true){
             if departmentData.count > 0{
                 self.selectedDepartmentID = departmentData[index].id
                 self.txtFieldDepartment.text = departmentData[index].name
@@ -839,8 +851,8 @@ extension AddStudentVC: SharedUIPickerDelegate{
         }else if(classDropDown == true){
             if classData.count > 0{
                 selectedClassIndex = index
-              //  self.selectedClassID = classData[index].id
-             //   self.txtFieldClassDropDown.text = classData[index].name
+                //  self.selectedClassID = classData[index].id
+                //   self.txtFieldClassDropDown.text = classData[index].name
             }
         }
     }
@@ -869,17 +881,17 @@ extension AddStudentVC : ViewDelegate{
     }
     
     func showLoader() {
-            self.ShowLoader()
+        self.ShowLoader()
     }
     
     func hideLoader() {
-            self.HideLoader()
+        self.HideLoader()
     }
     
     func setupUI(){
         
         isCameFromImagePickerController = false
-         self.gender = KConstants.KMale
+        self.gender = KConstants.KMale
         SetpickerView(self.view)
         setBackButton()
         setDatePickerView(self.view, type: .date)
@@ -890,7 +902,7 @@ extension AddStudentVC : ViewDelegate{
             self.title = KNavigationTitle.kUpdateStudentTitle
         }
         
-    
+        
         parentGender = KConstants.KMale
         cornerImage(image: imgViewStudent)
         cornerImage(image: parentImgView)
@@ -931,14 +943,14 @@ extension AddStudentVC : ViewDelegate{
         
         
         //Set Shadows
-//        createMultipleViewsCornerShadow(views: [txtFieldFirstName,txtFieldLastName,txtFieldDOB,txtFieldEmail,txtFieldOthers,txtFieldAddress,txtFieldPhoneNumber,txtFieldRollnoOrAddmissionId], radius: 8)
-//        createMultipleViewsCornerShadow(views: [txtParentFirstName,txtParentLastName,txtParentDOB,txtParentEmail,txtParentPhoneNo,txtParentOthers,txtParentRelation,parentGenderView,textFieldIDProof,parentDOBView,txtparentAddress,studentGenderView,txtFieldStudentIdProof,viewDepartment,ViewClass], radius: 8)
+        //        createMultipleViewsCornerShadow(views: [txtFieldFirstName,txtFieldLastName,txtFieldDOB,txtFieldEmail,txtFieldOthers,txtFieldAddress,txtFieldPhoneNumber,txtFieldRollnoOrAddmissionId], radius: 8)
+        //        createMultipleViewsCornerShadow(views: [txtParentFirstName,txtParentLastName,txtParentDOB,txtParentEmail,txtParentPhoneNo,txtParentOthers,txtParentRelation,parentGenderView,textFieldIDProof,parentDOBView,txtparentAddress,studentGenderView,txtFieldStudentIdProof,viewDepartment,ViewClass], radius: 8)
         
         //Connect Multiple textfields
         connectFields(fields: [txtFieldEmail,txtFieldFirstName,txtFieldLastName,txtFieldAddress,txtFieldRollnoOrAddmissionId,txtFieldStudentIdProof,txtFieldOthers])
         
         connectFields(fields: [txtParentPhoneNo,txtParentEmail,txtParentFirstName,txtParentLastName,txtparentAddress,textFieldIDProof,txtParentOthers])
-
+        
         
         //Set padding
         txtFieldFirstName.txtfieldPadding(leftpadding: 20, rightPadding: 0)
@@ -967,8 +979,8 @@ extension AddStudentVC : ViewDelegate{
         guard let theme = ThemeManager.shared.currentTheme else {return}
         btnSubmit.backgroundColor = theme.uiButtonBackgroundColor
         btnSubmit.titleLabel?.textColor = theme.uiButtonTextColor
-//        btnAddProfileImage.tintColor = theme.uiButtonBackgroundColor
-//        parentImg.tintColor = theme.uiButtonBackgroundColor
+        //        btnAddProfileImage.tintColor = theme.uiButtonBackgroundColor
+        //        parentImg.tintColor = theme.uiButtonBackgroundColor
     }
     
     func setupCustomView(){
@@ -986,18 +998,18 @@ extension AddStudentVC : AddStudentDelegate
         if isStudent == true
         {
             studentId = 0
-//            studentUserId = 0
+            //            studentUserId = 0
         }
         else
         {
             gardianId = 0
-//            gardianUserId = 0
+            //            gardianUserId = 0
         }
     }
     
     func getClassdropdownDidSucceed(data: [ResultData]?) {
-     //   self.txtFieldClassDropDown.text = data?.first?.name
-       // selectedClassID = data?.first?.id
+        //   self.txtFieldClassDropDown.text = data?.first?.name
+        // selectedClassID = data?.first?.id
         if data != nil{
             if data?.count ?? 0 > 0{
                 for value in data!{
@@ -1029,34 +1041,58 @@ extension AddStudentVC : AddStudentDelegate
                         }
                     }
                 }
-                 self.ViewModel?.getClassId(id: UserDefaultExtensionModel.shared.HODDepartmentId, enumtype: 6)
+                self.ViewModel?.getClassId(id: UserDefaultExtensionModel.shared.HODDepartmentId, enumtype: 6)
                 
             }else{
                 CommonFunctions.sharedmanagerCommon.println(object: "Zero")
             }
         }else{
             CommonFunctions.sharedmanagerCommon.println(object: "Nil")
-            }
+        }
         
     }
-  
+    
     //Get Guardian Detail By Phone/Email
-    func PhoneEmailVerifyGardianDidSuccess(data: GetDetailByPhoneEmailGardianModel) {
+    func PhoneEmailVerifyGardianDidSuccess(data: GetDetailByPhoneEmailGardianModel)
+    {
         GardianDetail = data
         let userDetail = GardianDetail?.resultData
-        if let imgProfileUrl = userDetail?.guardianIDProof
+        
+        
+        
+        gardianId = userDetail?.guardianId
+        
+        gardianUserId = userDetail?.guardianUserId
+        studentId = userDetail?.studentID
+        txtParentFirstName.text = userDetail?.GuardianFirstName
+        txtParentLastName.text = userDetail?.GuardianLastName
+        txtparentAddress.text = userDetail?.GuardianAddress
+        
+        if (userDetail?.GuardianEmail?.count ?? 0 > 0 || userDetail?.GuardianEmail != nil)
         {
-         //mohit   parentImgUrl = URL(string: imgProfileUrl)
+            txtParentEmail.text = userDetail?.GuardianEmail
+        }
+        
+        selectedRelationID = userDetail?.relationId
+        txtParentRelation.text = userDetail?.relationName
+        textFieldIDProof.text = userDetail?.iDProofTitle
+        
+        
+        if let imgProfileUrl = userDetail?.guardianImageUrl
+        {
+            //mohit   parentImgUrl = URL(string: imgProfileUrl)
             parentImgView.contentMode = .scaleAspectFill
             parentImgView.sd_imageIndicator = SDWebImageActivityIndicator.gray
             parentImgView.sd_setImage(with: URL(string: imgProfileUrl), placeholderImage: UIImage(named: kImages.kProfileImage))
-        }else{
+        }
+        else
+        {
             parentImgUrl = URL(string: "")
             parentImgView.image = UIImage.init(named: kImages.kProfileImage)
         }
         
         if let gardianIdProof = userDetail?.guardianIDProof,gardianIdProof != ""{
-          //mohit  parentIdUrl = URL(string: gardianIdProof)
+            //mohit  parentIdUrl = URL(string: gardianIdProof)
             parentIdProofImgView.sd_imageIndicator = SDWebImageActivityIndicator.gray
             parentIdProofImgView.contentMode = .scaleAspectFit
             parentIdProofImgView.sd_setImage(with: URL(string: gardianIdProof), placeholderImage: UIImage(named: kImages.kAttachmentImage))
@@ -1087,7 +1123,7 @@ extension AddStudentVC : AddStudentDelegate
                 btnParentFemale.setImage(UIImage(named: kImages.kRadioSelected), for: UIControl.State.normal)
                 btnParentNA.setImage(UIImage(named: kImages.kUnselectedRadio), for: UIControl.State.normal)
                 self.gender = KConstants.KFemale
-                }
+            }
             else if (gender == KConstants.KNA)
             {
                 btnParentMale.setImage(UIImage(named: kImages.kUnselectedRadio), for: UIControl.State.normal)
@@ -1105,16 +1141,7 @@ extension AddStudentVC : AddStudentDelegate
         }
         
         
-        gardianId = userDetail?.guardianId
-        gardianUserId = userDetail?.guardianUserId
-        studentId = userDetail?.studentID
-        txtParentFirstName.text = userDetail?.GuardianFirstName
-        txtParentLastName.text = userDetail?.GuardianLastName
-        txtparentAddress.text = userDetail?.GuardianAddress
-        txtParentEmail.text = userDetail?.GuardianEmail
-        selectedRelationID = userDetail?.relationId
-        txtParentRelation.text = userDetail?.relationName
-        textFieldIDProof.text = userDetail?.iDProofTitle
+        
     }
     
     func unauthorizedUser() {
@@ -1126,74 +1153,75 @@ extension AddStudentVC : AddStudentDelegate
     }
     
     //Student Full Detail using student id
-    func StudentDetailDidSuccess(Data: GetStudentDetail) {
+    func StudentDetailDidSuccess(Data: GetStudentDetail)
+    {
         setDataInTextField(Data: Data)
     }
     
     //Get Detail Student By Using Phone/Email
     func PhoneEmailVerifyDidSuccess(data : VerifyEmailPhoneUserModel) {
-            userVerifyDetail = data
-            let userDetail = userVerifyDetail?.resultData
-            //Show Pic Of User
-            if let imgProfileUrl = userDetail?.imageUrl{
-                imgViewStudent.sd_imageIndicator = SDWebImageActivityIndicator.gray
-              //mohit  studentImgUrl = URL(string: imgProfileUrl)
-                imgViewStudent.contentMode = .scaleAspectFill
-
-                imgViewStudent.sd_setImage(with: URL(string: imgProfileUrl), placeholderImage: UIImage(named: kImages.kProfileImage))
-            }else{
-                studentImgUrl = URL(string: "")
-                imgViewStudent.image = UIImage.init(named: kImages.kProfileImage)
-            }
+        userVerifyDetail = data
+        let userDetail = userVerifyDetail?.resultData
+        //Show Pic Of User
+        if let imgProfileUrl = userDetail?.imageUrl{
+            imgViewStudent.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            //mohit  studentImgUrl = URL(string: imgProfileUrl)
+            imgViewStudent.contentMode = .scaleAspectFill
             
-            //Set Id Proof Image of student user
-            if let studentIdProofImg = userDetail?.idProof,studentIdProofImg != ""{
-                studentIdProofImgView.sd_imageIndicator = SDWebImageActivityIndicator.gray
-              //mohit  studentIdUrl = URL(string: studentIdProofImg)
-                studentIdProofImgView.contentMode = .scaleAspectFill
-                studentIdProofImgView.sd_setImage(with: URL(string: studentIdProofImg), placeholderImage: UIImage(named: kImages.kAttachmentImage))
-            }else{
-                studentIdProofImgView.contentMode = .center
-                studentIdUrl = URL(string: "")
-                studentIdProofImgView.image = UIImage.init(named: kImages.kAttachmentImage)
+            imgViewStudent.sd_setImage(with: URL(string: imgProfileUrl), placeholderImage: UIImage(named: kImages.kProfileImage))
+        }else{
+            studentImgUrl = URL(string: "")
+            imgViewStudent.image = UIImage.init(named: kImages.kProfileImage)
+        }
+        
+        //Set Id Proof Image of student user
+        if let studentIdProofImg = userDetail?.idProof,studentIdProofImg != ""{
+            studentIdProofImgView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            //mohit  studentIdUrl = URL(string: studentIdProofImg)
+            studentIdProofImgView.contentMode = .scaleAspectFill
+            studentIdProofImgView.sd_setImage(with: URL(string: studentIdProofImg), placeholderImage: UIImage(named: kImages.kAttachmentImage))
+        }else{
+            studentIdProofImgView.contentMode = .center
+            studentIdUrl = URL(string: "")
+            studentIdProofImgView.image = UIImage.init(named: kImages.kAttachmentImage)
+        }
+        
+        if let studentDob = userDetail?.dob{
+            studentDOB = studentDob
+            let date = CommonFunctions.sharedmanagerCommon.convertBackendDateFormatToLocalDate(serverSideDate: studentDob)
+            txtFieldDOB.text = date
+        }
+        
+        if let gender = userDetail?.gender{
+            if(gender == KConstants.KMale)
+            {
+                btnParentMale.setImage(UIImage(named:kImages.kRadioSelected), for: UIControl.State.normal)
+                btnParentFemale.setImage(UIImage(named: kImages.kUnselectedRadio), for: UIControl.State.normal)
+                btnParentNA.setImage(UIImage(named: kImages.kUnselectedRadio), for: UIControl.State.normal)
+                self.gender = KConstants.KMale
             }
-            
-            if let studentDob = userDetail?.dob{
-                studentDOB = studentDob
-                let date = CommonFunctions.sharedmanagerCommon.convertBackendDateFormatToLocalDate(serverSideDate: studentDob)
-                txtFieldDOB.text = date
+            else if (gender == KConstants.KFemale)
+            {
+                btnParentMale.setImage(UIImage(named: kImages.kUnselectedRadio), for: UIControl.State.normal)
+                btnParentFemale.setImage(UIImage(named: kImages.kRadioSelected), for: UIControl.State.normal)
+                btnParentNA.setImage(UIImage(named: kImages.kUnselectedRadio), for: UIControl.State.normal)
+                self.gender = KConstants.KFemale
             }
-            
-            if let gender = userDetail?.gender{
-                if(gender == KConstants.KMale)
-                {
-                    btnParentMale.setImage(UIImage(named:kImages.kRadioSelected), for: UIControl.State.normal)
-                    btnParentFemale.setImage(UIImage(named: kImages.kUnselectedRadio), for: UIControl.State.normal)
-                    btnParentNA.setImage(UIImage(named: kImages.kUnselectedRadio), for: UIControl.State.normal)
-                    self.gender = KConstants.KMale
-                }
-                else if (gender == KConstants.KFemale)
-                {
-                    btnParentMale.setImage(UIImage(named: kImages.kUnselectedRadio), for: UIControl.State.normal)
-                    btnParentFemale.setImage(UIImage(named: kImages.kRadioSelected), for: UIControl.State.normal)
-                    btnParentNA.setImage(UIImage(named: kImages.kUnselectedRadio), for: UIControl.State.normal)
-                    self.gender = KConstants.KFemale
-                }
-                else if (gender == KConstants.KNA)
-                {
-                    btnParentMale.setImage(UIImage(named: kImages.kUnselectedRadio), for: UIControl.State.normal)
-                    btnParentFemale.setImage(UIImage(named: kImages.kUnselectedRadio), for: UIControl.State.normal)
-                    btnParentNA.setImage(UIImage(named: kImages.kRadioSelected), for: UIControl.State.normal)
-                    self.gender = KConstants.KNA
-                }
+            else if (gender == KConstants.KNA)
+            {
+                btnParentMale.setImage(UIImage(named: kImages.kUnselectedRadio), for: UIControl.State.normal)
+                btnParentFemale.setImage(UIImage(named: kImages.kUnselectedRadio), for: UIControl.State.normal)
+                btnParentNA.setImage(UIImage(named: kImages.kRadioSelected), for: UIControl.State.normal)
+                self.gender = KConstants.KNA
             }
-
+        }
+        
         if selectedPreviousTextField == txtFieldPhoneNumber&&selectedPreviousTextField != txtFieldEmail{
             txtFieldEmail.text = userDetail?.email
         }else if selectedPreviousTextField == txtFieldEmail && selectedPreviousTextField != txtFieldPhoneNumber{
             txtFieldPhoneNumber.text = userDetail?.phoneNo
         }
-            
+        
         txtFieldFirstName.text = userDetail?.firstName
         txtFieldLastName.text = userDetail?.lastName
         txtFieldAddress.text = userDetail?.address
