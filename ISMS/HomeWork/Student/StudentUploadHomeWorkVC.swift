@@ -34,30 +34,36 @@ class StudentUploadHomeWorkVC: BaseUIViewController {
         heightTableView.constant = 0
         self.viewModel = HomeworkViewModel.init(delegate: self)
                       self.viewModel?.attachView(viewDelegate: self)
-        print(datalocalStu)
-        print(lststuattachmentModels)
-        if datalocalStu != nil  {
-            
-            StudentHomeworkId = datalocalStu?[0].lststuattachmentModels?[0].StudentHomeworkId
-             self.title = "Update Tasks"
-            heightTableView.constant =  CGFloat((lststuattachmentModels?.count ?? 0) * 52)
-             txtViewComment.text = datalocalStu?[0].lststuattachmentModels?[0].Comment
-             btnSubmit.setTitle("UPDATE", for: .normal)
-             lblPlaceHolderComment.isHidden = true
-            if lststuattachmentModels?.count ?? 0 > 0 {
-                 
-                for (index, element) in (lststuattachmentModels?.enumerated())! {
-                   print("Item \(index): \(element)")
-                   
-                 var modelHW = [String: Any]()
-                    modelHW["url"] = element.AttachmentUrl
-                                      modelHW["fileName"] = element.FileName
-                                      modelHW["id"] = element.StudentAttachmentId
-                                      uploadData.add(modelHW)
-                 
-                 }
-                tblViewListing.reloadData()
-             }
+        
+        if datalocalStu != nil
+        {
+            if (datalocalStu?.count ?? 0 > 0)
+            {
+                if (datalocalStu?[0].lststuattachmentModels?.count ?? 0 > 0)
+                {
+                    StudentHomeworkId = datalocalStu?[0].lststuattachmentModels?[0].StudentHomeworkId
+                    
+                     self.title = "Update Tasks"
+                    heightTableView.constant =  CGFloat((lststuattachmentModels?.count ?? 0) * 52)
+                     txtViewComment.text = datalocalStu?[0].lststuattachmentModels?[0].Comment
+                     btnSubmit.setTitle("UPDATE", for: .normal)
+                     lblPlaceHolderComment.isHidden = true
+                    if lststuattachmentModels?.count ?? 0 > 0 {
+                         
+                        for (index, element) in (lststuattachmentModels?.enumerated())! {
+                           print("Item \(index): \(element)")
+                           
+                         var modelHW = [String: Any]()
+                            modelHW["url"] = element.AttachmentUrl
+                                              modelHW["fileName"] = element.FileName
+                                              modelHW["id"] = element.StudentAttachmentId
+                                              uploadData.add(modelHW)
+                         
+                         }
+                        tblViewListing.reloadData()
+                     }
+                }
+            }
          }
     }
     
