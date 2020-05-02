@@ -246,12 +246,17 @@ extension TimeTableStudentVC: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegate
-extension TimeTableStudentVC: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            if let daysModel = self.arrGetTimeTableDaysModel?[indexPath.section - 1] {
-                if let period = daysModel.periodDetailListModel?[indexPath.row - 1] {
+extension TimeTableStudentVC: UICollectionViewDelegate
+{
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
+            if let daysModel = self.arrGetTimeTableDaysModel?[indexPath.section - 1]
+            {
+                guard let period = daysModel.periodDetailListModel?[indexPath.row - 1]else {return}
+                
                     print(period)
-                    if period.teacherId != 0{
+                    if period.teacherId != 0
+                    {
                         let storyboard = UIStoryboard.init(name: "StudentAttendence", bundle: nil)
                         let vc = storyboard.instantiateViewController(withIdentifier: "StudentViewAttendanceVC") as! StudentViewAttendanceVC
                         vc.periodId = period.periodId
@@ -261,7 +266,7 @@ extension TimeTableStudentVC: UICollectionViewDelegate {
                         vc.classSubjectId = period.subjectId
                         self.navigationController?.pushViewController(vc, animated: false)
                     }
-                }
+                
             }
     }
 }

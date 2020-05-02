@@ -57,8 +57,10 @@ class ClassListVC: BaseUIViewController {
     }
     
     //MARK:- Button Actions
-    @IBAction func btnEditAction(_ sender: UIButton) {
-        if arr_Classlist.count > 0{
+    @IBAction func btnEditAction(_ sender: UIButton)
+    {
+        if arr_Classlist.count > 0
+        {
              self.view.endEditing(true)
             let data = arr_Classlist[sender.tag]
             classId = data.classId ?? 0
