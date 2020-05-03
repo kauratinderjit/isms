@@ -494,7 +494,8 @@ class AddStudentVC: BaseUIViewController {
         if let wrappedGardianUserId = Data.resultData?.guardianUserId{
             self.gardianUserId = wrappedGardianUserId
         }
-        if let wrappedGardianId = Data.resultData?.guardianId{
+        if let wrappedGardianId = Data.resultData?.guardianId
+        {
             self.gardianId = wrappedGardianId
         }
     }
@@ -545,7 +546,7 @@ extension AddStudentVC : OKAlertViewDelegate{
         }else if isStudentAdd == true{
             isStudentAdd = false
             okAlertView.removeFromSuperview()
-            self.navigationController?.popViewController(animated: true)
+            //self.navigationController?.popViewController(animated: true)
         }
         okAlertView.removeFromSuperview()
     }

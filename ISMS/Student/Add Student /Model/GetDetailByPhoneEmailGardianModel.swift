@@ -74,7 +74,7 @@ class GetDetailByPhoneEmailGardianModel: Mappable{
         
         mutating func mapping(map: Map) {
             
-            guardianId <- map["UserId"]
+            guardianId <- map["GuardianId"]
             guardianUserId <- map["UserId"]
             userId <- map["UserId"]
             imageURL <- map["ImageURL"]
