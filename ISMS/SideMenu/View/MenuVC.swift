@@ -205,12 +205,24 @@ extension MenuVC : UITableViewDelegate{
             break
             
         case "AssignHomework":
-            let storyboard = UIStoryboard.init(name: "Homework", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "HomeworkListVC") as? HomeworkListVC
-            vc?.lstActionAccess = sortedMenuArray[indexPath.row]
-            let frontVC = revealViewController().frontViewController as? UINavigationController
-            frontVC?.pushViewController(vc!, animated: false)
-            revealViewController().pushFrontViewController(frontVC, animated: true)
+            
+            
+//            let storyboard = UIStoryboard.init(name: "Homework", bundle: nil)
+//            let vc = storyboard.instantiateViewController(withIdentifier: "HomeworkListVC") as? HomeworkListVC
+//            vc?.lstActionAccess = sortedMenuArray[indexPath.row]
+//            let frontVC = revealViewController().frontViewController as? UINavigationController
+//            frontVC?.pushViewController(vc!, animated: false)
+//            revealViewController().pushFrontViewController(frontVC, animated: true)
+            
+            
+             let storyboard = UIStoryboard.init(name: "Homework", bundle: nil)
+             let vc = storyboard.instantiateViewController(withIdentifier: "HomeWorkPagerVC") as? HomeWorkPagerVC
+            // vc?.lstActionAccess = sortedMenuArray[indexPath.row]
+             let frontVC = revealViewController().frontViewController as? UINavigationController
+             frontVC?.pushViewController(vc!, animated: false)
+             revealViewController().pushFrontViewController(frontVC, animated: true)
+            
+            
             break
             
         case "View&UpdateHomework":
@@ -473,12 +485,26 @@ extension MenuVC : UITableViewDelegate{
             break
             
         case "AssignHomeWorks":
+            
+            
+//            let storyboard = UIStoryboard.init(name: "Homework", bundle: nil)
+//            let vc = storyboard.instantiateViewController(withIdentifier: "HomeworkListVC") as? HomeworkListVC
+//            vc?.lstActionAccess = sortedMenuArray[indexPath.row]
+//            let frontVC = revealViewController().frontViewController as? UINavigationController
+//            frontVC?.pushViewController(vc!, animated: false)
+//            revealViewController().pushFrontViewController(frontVC, animated: true)
+            
+            
             let storyboard = UIStoryboard.init(name: "Homework", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "HomeworkListVC") as? HomeworkListVC
-            vc?.lstActionAccess = sortedMenuArray[indexPath.row]
+            let vc = storyboard.instantiateViewController(withIdentifier: "HomeWorkPagerVC") as? HomeWorkPagerVC
+           // vc?.lstActionAccess = sortedMenuArray[indexPath.row]
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
+            
+            
+            
+            
             break
             
         case "HomeWork":
