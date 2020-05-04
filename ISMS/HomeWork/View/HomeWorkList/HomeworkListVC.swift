@@ -30,9 +30,10 @@ class HomeworkListVC: BaseUIViewController {
         self.viewModel?.getHomeworkData(teacherId:UserDefaultExtensionModel.shared.userRoleParticularId)
     }
     
-    func setView() {
+    func setView()
+    {
         tblViewListing.tableFooterView = UIView()
-        
+        self.setBackButton()
         self.title = "Assign Homework"
     }
     
