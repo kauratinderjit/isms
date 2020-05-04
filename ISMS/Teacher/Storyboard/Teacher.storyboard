@@ -1341,7 +1341,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wiw-JP-I13">
-                                        <rect key="frame" x="116.33333333333331" y="22" width="266" height="26"/>
+                                        <rect key="frame" x="116.33333333333334" y="22" width="265.66666666666663" height="26"/>
                                         <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -1353,16 +1353,16 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RiM-I8-hxI">
-                                        <rect key="frame" x="115.66666666666666" y="54" width="268.66666666666674" height="26"/>
+                                        <rect key="frame" x="115.66666666666666" y="54" width="268.33333333333337" height="26"/>
                                         <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="FxN-yM-DOC">
-                                        <rect key="frame" x="390.33333333333331" y="22" width="15.666666666666686" height="26"/>
+                                        <rect key="frame" x="390" y="22" width="16" height="26"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="C0S-s8-j67">
-                                        <rect key="frame" x="391.33333333333331" y="62.333333333333321" width="15.666666666666686" height="9.6666666666666643"/>
+                                        <rect key="frame" x="391" y="59" width="16" height="16"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Subject" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NgM-iS-sfS">
                                         <rect key="frame" x="8" y="54" width="99.666666666666671" height="26"/>
@@ -1774,7 +1774,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lsa-82-QOQ">
-                                                        <rect key="frame" x="118" y="22" width="264.33333333333331" height="26"/>
+                                                        <rect key="frame" x="118" y="22" width="264" height="26"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -1786,16 +1786,16 @@
                                                         </connections>
                                                     </button>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HmN-eg-UaP">
-                                                        <rect key="frame" x="116" y="53.999999999999986" width="268.33333333333331" height="26"/>
+                                                        <rect key="frame" x="116" y="53.999999999999986" width="268" height="26"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="tZT-2S-Y98">
-                                                        <rect key="frame" x="390.33333333333331" y="22" width="15.666666666666686" height="26"/>
+                                                        <rect key="frame" x="390" y="22" width="16" height="26"/>
                                                     </imageView>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="xAw-0c-Jvt">
-                                                        <rect key="frame" x="391.33333333333331" y="61.999999999999979" width="15.666666666666686" height="9.6666666666666643"/>
+                                                        <rect key="frame" x="391" y="58.999999999999986" width="16" height="16"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Subject" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Mt-2x-EIJ">
                                                         <rect key="frame" x="8" y="53.999999999999986" width="100" height="26"/>
@@ -2381,7 +2381,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zhq-rV-a5h">
-                                        <rect key="frame" x="135.33333333333337" y="21" width="247" height="48"/>
+                                        <rect key="frame" x="135.33333333333337" y="21" width="246.66666666666663" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
@@ -2397,7 +2397,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="cJF-qp-u6p">
-                                        <rect key="frame" x="390.33333333333331" y="21" width="15.666666666666686" height="48"/>
+                                        <rect key="frame" x="390" y="21" width="16" height="48"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sqI-iv-DLM">
                                         <rect key="frame" x="135.33333333333334" y="21" width="270.66666666666663" height="30"/>
@@ -2406,7 +2406,7 @@
                                         </connections>
                                     </button>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lSN-OW-tRq">
-                                        <rect key="frame" x="0.0" y="89" width="414" height="1"/>
+                                        <rect key="frame" x="0.0" y="89" width="413.66666666666669" height="1"/>
                                         <color key="backgroundColor" red="0.89019607840000003" green="0.94117647059999998" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="fgR-mM-azg"/>
