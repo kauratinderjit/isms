@@ -615,7 +615,7 @@ extension BaseUIViewController:UIImagePickerControllerDelegate,UINavigationContr
             break;
         }
         if(isImage == true){
-            if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
+            if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
                 if #available(iOS 11.0, *) {
                     //                    if let imgUrl = info[UIImagePickerController.InfoKey.imageURL] as? URL{
                     //                        let imgName = imgUrl.lastPathComponent
@@ -631,19 +631,19 @@ extension BaseUIViewController:UIImagePickerControllerDelegate,UINavigationContr
                     //                    }
                     
                     
-                    if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+                    if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
                         
                         var urlImage:URL?
-                        guard let chosenImage = info[.originalImage] as? UIImage else {
+                        guard let chosenImage = info[.editedImage] as? UIImage else {
                             fatalError("\(info)")
                         }
                         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
                         // choose a name for your image
-                        let fileName = "/\(Double(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
+                        let fileName = "\(Double(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
                         // create the destination file url to save your image
                         let fileURL = documentsDirectory.appendingPathComponent(fileName)
                         
-                        if let data = chosenImage.jpegData(compressionQuality: 1.0),
+                        if let data = chosenImage.jpegData(compressionQuality: 0.1),
                             !FileManager.default.fileExists(atPath: fileURL.path) {
                             do {
                                 // writes the image data to disk
@@ -667,16 +667,16 @@ extension BaseUIViewController:UIImagePickerControllerDelegate,UINavigationContr
                 } else {
                     //                  Fallback on earlier versions
                     var urlImage:URL?
-                    guard let chosenImage = info[.originalImage] as? UIImage else {
+                    guard let chosenImage = info[.editedImage] as? UIImage else {
                         fatalError("\(info)")
                     }
                     let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
                     // choose a name for your image
-                    let fileName = "/\(Double(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
+                    let fileName = "\(Double(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
                     // create the destination file url to save your image
                     let fileURL = documentsDirectory.appendingPathComponent(fileName)
                     
-                    if let data = chosenImage.jpegData(compressionQuality: 1.0),
+                    if let data = chosenImage.jpegData(compressionQuality: 0.1),
                         !FileManager.default.fileExists(atPath: fileURL.path) {
                         do {
                             // writes the image data to disk
