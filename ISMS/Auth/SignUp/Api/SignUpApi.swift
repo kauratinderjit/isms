@@ -364,6 +364,7 @@ class SignUpApi {
     func getCommonDropdownApiPeriod(url : String, parameter : [String:Any]?, completionResponse:  @escaping (GetDropDownModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,Error: @escaping (Error?) -> Void)
     {
         let urlComplete = BaseUrl.kBaseURL + url
+         print("url: ",urlComplete)
         let headers    = [KConstants.kContentType : KConstants.kApplicationJson]
 
         Alamofire.request(urlComplete, method: .get, parameters: parameter, encoding: JSONEncoding.default, headers : headers)
