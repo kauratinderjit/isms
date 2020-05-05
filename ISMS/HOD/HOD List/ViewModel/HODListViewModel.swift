@@ -163,7 +163,7 @@ extension HODListVC : HODListDelegate{
         if data != nil{
             if data?.count ?? 0 > 0
             {
-                arrHODlist = [GetHodListResultData]()
+               // arrHODlist = [GetHodListResultData]()
                 for value in data!{
                     
                     let containsSameValue = arrHODlist.contains(where: {$0.hodId == value.hodId})
