@@ -268,7 +268,7 @@ class BaseUIViewController: UIViewController {
     func setDatePickerView(_ view: UIView,type: UIDatePicker.Mode){
         view.endEditing(true)
         //UIView for date picker view
-        self.viewDatePickerView = UIView(frame: CGRect(x: 0, y: view.frame.size.height - 300, width: view.frame.size.width, height: 244))
+        self.viewDatePickerView = UIView(frame: CGRect(x: 0, y: view.frame.size.height - 210, width: view.frame.size.width, height: 244))
         // UIDatePickerView
         self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 44, width: viewDatePickerView.frame.size.width, height: 200))
         self.datePickerView.backgroundColor = UIColor.white

@@ -28,7 +28,7 @@ class DepartmentListVC: BaseUIViewController {
     var pointNow:CGPoint!
     var isFetching:Bool?
     public var lstActionAccess : GetMenuFromRoleIdModel.ResultData?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()

@@ -53,10 +53,13 @@ class DepartmentListViewModel{
         postDict[KApiParameters.KCommonParametersForList.kSkip] = skip
         postDict[KApiParameters.KCommonParametersForList.kSortColumnDir] = ""
         
+        print(postDict)
+        
         DepartmentApi.sharedInstance.getDepartmentList(url: ApiEndpoints.kGetDepartmentList, parameters: postDict, completionResponse: { (departmentModel) in
             self.departmentListView?.hideLoader()
             switch departmentModel.statusCode{
             case KStatusCode.kStatusCode200:
+                
                 self.departmentListDelegate?.departmentListDidSuccess(data: departmentModel.resultData)
             case KStatusCode.kStatusCode401:
                 if let msg = departmentModel.message{
@@ -124,16 +127,7 @@ class DepartmentListViewModel{
 //MARK:- Scroll View delegates
 extension DepartmentListVC : UIScrollViewDelegate{
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-//        if(velocity.y>0) {
-//            //Code will work without the animation block.I am using animation block incase if you want to set any delay to it.
-//            UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
-//                self.navigationController?.setNavigationBarHidden(true, animated: true)
-//            }, completion: nil)
-//        } else {
-//            UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
-//                self.navigationController?.setNavigationBarHidden(false, animated: true)
-//            }, completion: nil)
-//        }
+
         if (tableView.contentOffset.y < pointNow.y){
             CommonFunctions.sharedmanagerCommon.println(object: "Down scroll view")
             isScrolling = true
@@ -188,10 +182,11 @@ extension DepartmentListVC : DepartmentListDelegate{
         if data != nil{
             if data?.count ?? 0 > 0
             {
-                arrDepartmentlist = [GetDepartmentListResultData]()
+              //  arrDepartmentlist = [GetDepartmentListResultData]()
                 for value in data!{
                     let containsSameValue = arrDepartmentlist.contains(where: {$0.departmentId == value.departmentId})
                     if containsSameValue == false{
+                        print("atinder")
                         arrDepartmentlist.append(value)
                     }
                     self.tblViewCenterLabel(tblView: tableView, lblText: "", hide: true)
