@@ -319,6 +319,7 @@ class AdStudentApi {
         
     }
     func getDepartmentDropdownData(id : Int,enumType: Int,completionResponse:  @escaping (GetDropDownModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
+       
         
         SignUpApi.sharedInstance.getCommonDropdownApiPeriod(url: ApiEndpoints.KClassdropDown+"?id=\(id)&enumType=\(enumType)", parameter: nil, completionResponse: { (responseModel) in
             completionResponse(responseModel)

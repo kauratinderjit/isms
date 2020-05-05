@@ -45,9 +45,8 @@ class StudentListVC: BaseUIViewController {
         if checkInternetConnection()
         {
            // arrStudentlist.removeAll()
-            
               self.ViewModel?.getClassId(id:departmentId, enumtype: 6)
-             self.ViewModel?.studentList(classId : selectedClassID, Search: "", Skip: 0, PageSize: 1000)
+//             self.ViewModel?.studentList(classId : selectedClassID, Search: "", Skip: 0, PageSize: 1000)
         }
         else
         {

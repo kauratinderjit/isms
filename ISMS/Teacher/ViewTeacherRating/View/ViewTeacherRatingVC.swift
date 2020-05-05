@@ -143,6 +143,11 @@ extension ViewTeacherRatingVC : SharedUIPickerDelegate{
                         self.txtFieldTeacher.text = arrTeacher[index].teacherName
                         self.ViewModel?.GetTeacherRating(teacherId: id , ParticularId: HODdepartmentId)
                     }
+                }else{
+                    if let id = arrTeacher[0].teacherId {
+                        self.txtFieldTeacher.text = arrTeacher[0].teacherName
+                        self.ViewModel?.GetTeacherRating(teacherId: id , ParticularId: HODdepartmentId)
+                    }
                 }
             }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
@@ -195,8 +200,9 @@ extension ViewTeacherRatingVC : ViewTeacherRatingDelegate{
             {
                 self.arrTeacher = data1
                 if let teacherId = arrTeacher[0].teacherId{
-                  self.txtFieldTeacher.text = arrTeacher[0].teacherName
-                    self.ViewModel?.GetTeacherRating(teacherId: teacherId,ParticularId: HODdepartmentId)
+//                  self.txtFieldTeacher.text = arrTeacher[0].teacherName
+                    self.txtFieldTeacher.text = "Select Teacher"
+//                    self.ViewModel?.GetTeacherRating(teacherId: teacherId,ParticularId: HODdepartmentId)
                     
                 }
             }
