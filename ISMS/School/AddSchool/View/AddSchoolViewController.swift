@@ -673,7 +673,7 @@ extension AddSchoolViewController {
                 
             }
             }.resume()
-           hideLoader()
+         //  hideLoader()
         
     }
 }
