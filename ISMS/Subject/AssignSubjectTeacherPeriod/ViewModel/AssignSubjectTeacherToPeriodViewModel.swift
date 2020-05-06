@@ -62,7 +62,8 @@ class AssignSubjectTeacherToPeriodViewModel{
                     self.assignSubjectTeacherToPeriodDelegate?.addSubjectTeacherToPeriodsDidSuccess()
                 case KStatusCode.kStatusCode400:
                     //When teacher is not available
-                    self.assignSubjectTeacherToPeriodDelegate?.addSubjectTeacherToPeriodsDidfailed(data: responseModel)
+                    self.assignSubjectTeacherToPeriodView?.showAlert(alert: "Another subject is planned between this time period" ?? "Something went wrong")
+//                    self.assignSubjectTeacherToPeriodDelegate?.addSubjectTeacherToPeriodsDidfailed(data: responseModel)
                 case KStatusCode.kStatusCode401:
                     self.assignSubjectTeacherToPeriodView?.showAlert(alert: responseModel.message ?? "Something went wrong")
                     self.assignSubjectTeacherToPeriodDelegate?.unauthorizedUser()

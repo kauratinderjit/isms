@@ -738,7 +738,7 @@ extension AddStudentVC: SharedUIDatePickerDelegate{
                         {
                             if intYear < studentDOB
                             {
-                                showAlert(alert: "Guardian age must be grater than student.")
+                                showAlert(alert: "Guardian age must be greater than student.")
                             }
                             else
                             {

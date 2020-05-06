@@ -387,12 +387,14 @@ extension SignUpViewController:SignUpDelegate{
         if let count = stateData?.resultData?.count{
             if count > 0{
                 if firstTimeLoad == true{
-                    txtState.text = stateData?.resultData?[0].name
+//                    txtState.text = stateData?.resultData?[0].name
+                    txtState.text = "Select state"
                     self.viewModel?.getCityList(selectedCityId: stateData?.resultData?[0].id ?? 0, enumType: CountryStateCity.city.rawValue)
                 }else{
                     //Set the data in the textfield from 0 index when api hit
                     if stateData?.resultData?[0].name != nil||stateData?.resultData?[0].id != nil{
-                        txtState.text = stateData?.resultData?[0].name
+//                        txtState.text = stateData?.resultData?[0].name
+                         txtState.text = "Select state"
                         self.viewModel?.getCityList(selectedCityId: stateData?.resultData?[0].id ?? 0, enumType: CountryStateCity.city.rawValue)
                     }else{
                         CommonFunctions.sharedmanagerCommon.println(object: "State Value is nil.")
@@ -411,11 +413,13 @@ extension SignUpViewController:SignUpDelegate{
             if count > 0{
                 if firstTimeLoad == true{
                     firstTimeLoad = false
-                    txtCity.text = cityData?.resultData?[0].name
+//                    txtCity.text = cityData?.resultData?[0].name
+                    txtCity.text = "Select city"
                     selectedCityId = cityData?.resultData?[0].id
                 }else{
                     if cityData?.resultData?[0].name != nil{
-                        txtCity.text = cityData?.resultData?[0].name
+//                        txtCity.text = cityData?.resultData?[0].name
+                         txtCity.text = "Select city"
                         selectedCityId = cityData?.resultData?[0].id
                     }else{
                         CommonFunctions.sharedmanagerCommon.println(object: "City is nil.")
@@ -433,7 +437,8 @@ extension SignUpViewController:SignUpDelegate{
         if firstTimeLoad == true{
             countryData = data
             if countryData?.resultData?[exist: 0]?.name != nil{
-                txtCountry.text = countryData?.resultData?[0].name
+//                txtCountry.text = countryData?.resultData?[0].name
+                 txtCountry.text = "Select country"
                 self.viewModel?.getStateList(selectedStateId: countryData?.resultData?[0].id ?? 0, enumType: 2)
             }
         }else{
@@ -455,19 +460,6 @@ extension SignUpViewController:SharedUIPickerDelegate{
             selectCountry = false
             if let count = countryData?.resultData?.count{
                 if count > 0{
-                    
-                    //                    if txtCountry.text == countryData?.resultData?[0].name{
-                    //                        self.txtCountry.text = countryData?.resultData?[0].name
-                    //                        if let id = countryData?.resultData?[0].id{
-                    //                            self.viewModel?.getStateList(selectedStateId: id, enumType: 2)
-                    //                        }
-                    //                    }else{
-                    //                        self.txtCountry.text = countryData?.resultData?[selectedCountryIndex].name
-                    //                        if let id = countryData?.resultData?[selectedCountryIndex].id{
-                    //                            self.viewModel?.getStateList(selectedStateId: id, enumType: 2)
-                    //                        }
-                    //                    }
-                    //gurleen
                     self.txtCountry.text = countryData?.resultData?[selectedCountryIndex].name
                     if let id = countryData?.resultData?[selectedCountryIndex].id {
                         self.viewModel?.getStateList(selectedStateId: id, enumType: 2)
