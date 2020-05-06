@@ -548,6 +548,7 @@ extension AddSchoolViewController : UICollectionViewDelegate , UICollectionViewD
         
         if(dataFoRow.type == "File")
         {
+            showLoader()
             storeAndShare(withURLString: dataFoRow.instituteAttachmentName ?? "")
         }
         
@@ -648,7 +649,9 @@ extension AddSchoolViewController {
     
     func storeAndShare(withURLString: String)
     {
-        guard let url = URL(string: withURLString) else { return }
+        let urlString = withURLString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+
+        guard let url = URL(string: urlString) else { return }
         /// START YOUR ACTIVITY INDICATOR HERE
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data, error == nil else { return }
@@ -661,15 +664,17 @@ extension AddSchoolViewController {
             }
             DispatchQueue.main.async {
                 /// STOP YOUR ACTIVITY INDICATOR HERE
-               // self.share(url: tmpURL)
+            self.share(url: tmpURL)
                 
-                let pdfFilePath = URL(string: tmpURL.absoluteString)
-                let pdfData = NSData(contentsOf: pdfFilePath!)
-                let activityVC = UIActivityViewController(activityItems: [pdfData!], applicationActivities: nil)
-                self.present(activityVC, animated: true, completion: nil)
+//                let pdfFilePath = URL(string: tmpURL.absoluteString)
+//                let pdfData = NSData(contentsOf: pdfFilePath!)
+//                let activityVC = UIActivityViewController(activityItems: [pdfData!], applicationActivities: nil)
+//                self.present(activityVC, animated: true, completion: nil)
                 
             }
             }.resume()
+           hideLoader()
+        
     }
 }
 
