@@ -22,6 +22,7 @@ pod 'SVPinView'
 pod 'Firebase/Auth'
 pod 'Firebase/Messaging'
 pod 'NVActivityIndicatorView'
+pod 'Gallery'
 
   target 'ISMSTests' do
     inherit! :search_paths

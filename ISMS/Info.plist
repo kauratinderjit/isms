@@ -44,6 +44,8 @@
 	<string>App needs to know your current location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>App needs to know your current location</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>App needs to record audios and videos for newsfeed </string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>App needs permission for read pics and documents.</string>
 	<key>UIAppFonts</key>
