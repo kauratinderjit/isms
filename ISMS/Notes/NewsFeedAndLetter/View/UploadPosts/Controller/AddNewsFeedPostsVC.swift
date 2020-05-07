@@ -15,7 +15,6 @@ import Photos
 import KMPlaceholderTextView
 
 let Kmediachanges = "Are you sure you want change media? your previous records will be deleted!"
-
 class AddNewsFeedPostsVC: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate
 {
     
@@ -24,7 +23,6 @@ class AddNewsFeedPostsVC: UIViewController,UIImagePickerControllerDelegate,UINav
     @IBOutlet var collctionViewPosts: UICollectionView!
     @IBOutlet var btnUpload: UIButton!
     @IBOutlet var txtView: KMPlaceholderTextView!
-    
     var imagePickerController = UIImagePickerController()
     
     // var postArray = [[String:Any]]()
@@ -45,8 +43,9 @@ class AddNewsFeedPostsVC: UIViewController,UIImagePickerControllerDelegate,UINav
     
     override func viewWillAppear(_ animated: Bool)
     {
+     
         self.playingAudioVideo = false
-        self.collctionViewPosts.reloadData()
+            self.collctionViewPosts.reloadData()
     }
     
     //MARK: CELL BUTTON ACTION DELETE POST
@@ -162,7 +161,9 @@ class AddNewsFeedPostsVC: UIViewController,UIImagePickerControllerDelegate,UINav
         }
         else
         {
-            
+            let vc = UIStoryboard.init(name:"Homework", bundle: Bundle.main).instantiateViewController(withIdentifier: "RecordAudioViewController") as! RecordAudioViewController
+             vc.delegateAudioRecorder = self
+             self.present(vc, animated: true, completion: nil)
         }
     }
     

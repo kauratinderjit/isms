@@ -13,7 +13,10 @@ import Photos
 protocol getVideoPathProtocol
 {
     func getFilePath(fileURL:URL)
+    
 }
+
+
 
 
 class RecordVideoVC: SwiftyCamViewController,SwiftyCamViewControllerDelegate
@@ -122,7 +125,7 @@ class RecordVideoVC: SwiftyCamViewController,SwiftyCamViewControllerDelegate
     {
         if (self.recording_running == true)
         {
-            let msg = "Are you sure you want cancel this video?"
+            let msg = "Are you sure you want to cancel this video?"
             let alertController = UIAlertController(title:"Reminder!", message: msg, preferredStyle:.alert)
 
             let Action = UIAlertAction.init(title: "YES", style: .default) { (UIAlertAction) in

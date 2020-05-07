@@ -202,5 +202,23 @@ extension AddNewsFeedPostsVC : getVideoPathProtocol,UITextViewDelegate
     }
 }
 
-
+extension AddNewsFeedPostsVC : getAudioProtocol
+{
+    func getFilePathAudio(fileURL: URL)
+    {
+        DispatchQueue.main.async
+                              {
+                                  self.postArray = NSMutableArray()
+                                  let dic = NSMutableDictionary()
+                                  dic.setValue(fileURL, forKey: "path")
+                                  dic.setValue("audio", forKey: "type")
+                                  self.postArray.add(dic)
+                                  self.collctionViewPosts.reloadData()
+                                  self.btnUpload.isHidden = false
+                                  self.collctionViewPosts.restore()
+                          }
+    }
+    
+   
+}
 
