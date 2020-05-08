@@ -52,6 +52,8 @@ class SyllabusCoverageVC : BaseUIViewController  {
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
+        arrayData.removeAll()
+        self.textfieldClass.placeholder = "Select class"
         self.classListDropdownApi()
                setPickerView()
                boolFirstTime = true

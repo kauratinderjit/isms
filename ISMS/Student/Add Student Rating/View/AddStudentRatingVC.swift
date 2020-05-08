@@ -25,7 +25,7 @@ class AddStudentRatingVC: BaseUIViewController {
     var selectedClassId : Int?
     var selectedSubjectId : Int?
     var selectStudentId : Int?
-    var selectRatingCount = [1,2,3,4,5,6,7,8,9]
+    var selectRatingCount = [0,1,2,3,4,5,6,7,8,9]
     var selectedClassArrIndex : Int?
     var pageSize = KIntegerConstants.kInt10
     var isClassSelected = false
@@ -37,7 +37,7 @@ class AddStudentRatingVC: BaseUIViewController {
     var arrSkillListNew = [AddStudentRatingResultData]()
     var arrClickedArray = [AddStudentRatingResultData]()
     var viewModel : AddStudentRatingViewModel?
-    var array = [1,2,3,4,5,6,7,8,9,10]
+    var array = [0,1,2,3,4,5,6,7,8,9]
     var clickedCount : Int?
     var arrSelect = [[String:Any]]()
     var type : String?
@@ -566,6 +566,8 @@ extension AddStudentRatingVC : OKAlertViewDelegate{
         //            okAlertView.removeFromSuperview()
         //            self.navigationController?.popViewController(animated: true)
         //        }
+        
+        
         okAlertView.removeFromSuperview()
     }
 }

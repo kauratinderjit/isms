@@ -101,7 +101,7 @@ class StudentRatingViewModel {
         let url = ApiEndpoints.kGetClassSubjectsByteacherId + "?classid=" + "\(classid)" + "&teacherId=" + "\(teacherId)" + "&hodid=" + "\(hodid)"
         AddStudentRatingApi.sharedInstance.GetAddSkillList(url: url , parameters: paramDict as [String : Any], completionResponse: { (AddStudentRatingListModel) in
             
-            print("your respomnse data : ",AddStudentRatingListModel.resultData)
+            print("your respomnse subjectdata : ",AddStudentRatingListModel.resultData)
             
             if AddStudentRatingListModel.statusCode == KStatusCode.kStatusCode200 {
                 self.studentRatingView?.hideLoader()
@@ -149,7 +149,7 @@ class StudentRatingViewModel {
         let url = ApiEndpoints.kSkillList + "?id=" + "\(id)" + "&enumType=" + "\(enumType)" 
         AddStudentRatingApi.sharedInstance.GetSkillList(url: url , parameters: paramDict as [String : Any], completionResponse: { (AddStudentRatingListModel) in
             
-            print("your respomnse data : ",AddStudentRatingListModel.resultData)
+            print("your respomnse class data : ",AddStudentRatingListModel.resultData)
             
             if AddStudentRatingListModel.statusCode == KStatusCode.kStatusCode200 {
                 self.studentRatingView?.hideLoader()
@@ -306,11 +306,12 @@ class StudentRatingViewModel {
     
     
     //MARK:- SUBJECT LIST
-    func studentList(search : String?,skip : Int?,pageSize: Int?,sortColumnDir: String?,sortColumn: String?, classSubjectID : Int , classID : Int){
+    func studentList(search : String,skip : Int,pageSize: Int,sortColumnDir: String,sortColumn: String, classSubjectID : Int , classID : Int){
         self.studentRatingView?.showLoader()
         
-        let paramDict = [ "ClassId":classID,
-                          "ClassSubjectId": classSubjectID] as [String : Any]
+//        let paramDict = [ "ClassId":classID,
+//                          "ClassSubjectId": classSubjectID] as [String : Any]
+        let paramDict = ["Search" : search,"Skip" : skip,"PageSize": pageSize,"SortColumnDir": sortColumnDir,"SortColumn": sortColumn, "ClassSubjectId" : classSubjectID, "ClassId" : classID] as [String : Any]
         
         print("param: ",paramDict)
         

@@ -17,6 +17,8 @@ class StudentViewAttendanceVC: BaseUIViewController {
     
     var isSelectStartDate = false
     var isSeclectEndDate = false
+    var startDate = Date()
+    var endDate = Date()
      let userRoleParticularId = UserDefaultExtensionModel.shared.userRoleParticularId
     let studentClassId = UserDefaultExtensionModel.shared.StudentClassId
       var classId,timeTableId,teacherId,classSubjectId,periodId :Int?
@@ -43,7 +45,12 @@ class StudentViewAttendanceVC: BaseUIViewController {
         }else if lblEndDate.text == "End Date"{
             self.showAlert(alert:"Please Enter End Date")
         }else{
-            self.viewModel?.GetAttendance(StartDate: lblStartDate.text ?? "",EndDate: lblEndDate.text ?? "",StudentId: userRoleParticularId,PeriodId: periodId ?? 0,SubjectId: classSubjectId ?? 0,EnrollmentId: UserDefaultExtensionModel.shared.enrollmentIdStudent,ClassId: studentClassId ?? 0,SessionId: 0)
+            if startDate <= endDate{
+                self.viewModel?.GetAttendance(StartDate: lblStartDate.text ?? "",EndDate: lblEndDate.text ?? "",StudentId: userRoleParticularId,PeriodId: periodId ?? 0,SubjectId: classSubjectId ?? 0,EnrollmentId: UserDefaultExtensionModel.shared.enrollmentIdStudent,ClassId: studentClassId ?? 0,SessionId: 0)
+            }else{
+                 self.showAlert(alert:"Please Enter corrrect start and end Date")
+            }
+            
         }
     }
     @IBAction func btnPickerEndDate(_ sender: Any) {
@@ -100,9 +107,12 @@ extension StudentViewAttendanceVC : UITableViewDataSource{
         if self.arrAttendanceList[indexPath.row].attendanceStatus == "P"{
             cell.lblPresntAbsent.textColor = UIColor.green
               cell.lblPresntAbsent.text = "Present"
-        }else{
+        }else if self.arrAttendanceList[indexPath.row].attendanceStatus == "A"{
             cell.lblPresntAbsent.textColor = UIColor.red
             cell.lblPresntAbsent.text = "Absent"
+        }else{
+            cell.lblPresntAbsent.textColor = UIColor.blue
+            cell.lblPresntAbsent.text = "NA"
         }
         let finalDate = self.dateFromISOString(string: self.arrAttendanceList[indexPath.row].attendanceDate ?? "\(Date())")
         cell.lblDate.text = finalDate
@@ -129,7 +139,9 @@ extension StudentViewAttendanceVC:SharedUIDatePickerDelegate{
 //        let strDate = dateFormatter.string(from: datePicker.date)
         if isSelectStartDate == true{
              lblStartDate.text = convertedDate
+            startDate = strDate ?? Date()
         }else{
+            endDate = strDate ?? Date()
             lblEndDate.text = convertedDate
         }
        

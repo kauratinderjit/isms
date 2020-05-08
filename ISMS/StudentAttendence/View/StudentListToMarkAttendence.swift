@@ -29,7 +29,7 @@ class StudentListToMarkAttendence: BaseUIViewController {
         
         self.viewModel = StudentListForAttViewModel.init(delegate: self)
         self.viewModel?.attachView(viewDelegate: self)
-        self.title = "Student Attendence"
+        self.title = "Student Attendance"
         tableViewStudent.separatorStyle = .none
         tableViewStudent.tableFooterView = UIView()
         tableViewStudent.delegate = self
@@ -67,6 +67,7 @@ class StudentListToMarkAttendence: BaseUIViewController {
     
     
     @IBAction func actionSubmitStudentAttendence(_ sender: Any) {
+        isStudentAttendanceSuccess = true
         submitStudentAtt()
     }
     

@@ -47,6 +47,7 @@ class UpdateSyllabusViewModel {
             if let msg = UpdateSyllabusModel.message {
              self.updateSyllabusViewDelegate?.showAlert(alert: msg)
             }
+            self.GetChapterList(search : "" ,Skip : 0,  PageSize : 0 , SortColumnDir : "" , SortCoumn : "" , particularId : ClassSubjectId)
         }, completionnilResponse: { (nilResponseError) in
             self.updateSyllabusViewDelegate?.hideLoader()
             // self.syllabusCoverageDelegate?.SyllabusCoverageFailour(msg :

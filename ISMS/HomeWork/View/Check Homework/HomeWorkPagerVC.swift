@@ -20,6 +20,8 @@ class HomeWorkPagerVC: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        self.setBackButton()
+        self.title = "Assign Homework"
 
         self.HomeWorkList_Selected()
         // Do any additional setup after loading the view.

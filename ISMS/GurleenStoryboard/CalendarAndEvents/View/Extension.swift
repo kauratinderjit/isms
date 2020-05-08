@@ -138,6 +138,8 @@ extension AddEventVC
     {
         let formatter = DateFormatter()
         formatter.dateFormat = "hh:mm"
+        self.startTimes = formatter.string(from: datePickerStartTime.date)
+        formatter.dateFormat = "hh:mm a"
         self.tfStartTime.text = formatter.string(from: datePickerStartTime.date)
         startTime = formatter.date(from: self.tfStartTime.text ?? "") ?? Date()
         self.view.endEditing(true)
@@ -146,6 +148,8 @@ extension AddEventVC
     {
         let formatter = DateFormatter()
         formatter.dateFormat = "hh:mm"
+        self.endTimes = formatter.string(from: datePicker.date)
+         formatter.dateFormat = "hh:mm a"
         self.tfEndTime.text = formatter.string(from: datePicker.date)
         endTime = formatter.date(from: self.tfEndTime.text ?? "") ?? Date()
         self.view.endEditing(true)

@@ -175,6 +175,12 @@ extension ViewTeacherRatingVC : SharedUIPickerDelegate{
             }
         
         }
+    
+    func cancelButtonClicked() {
+        if isSelectedTeacher{
+            
+        }
+    }
 }
 extension ViewTeacherRatingVC : ViewTeacherRatingDelegate{
     func GetTeacherRatingDidSuccess(data: [GetViewTeacherRatingResult]?) {

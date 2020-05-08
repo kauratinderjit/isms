@@ -177,7 +177,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="--SELECT CLASS--------" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LOT-xM-Tmb">
+                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="--SELECT CLASS--------" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LOT-xM-Tmb">
                                                         <rect key="frame" x="16" y="51" width="343" height="52"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="52" id="3p1-xg-hna"/>

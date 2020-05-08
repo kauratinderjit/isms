@@ -41,6 +41,7 @@ class ClassTimeTableVC: BaseUIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setUI()
+         collectionView.isHidden = true
         classListDropdownApi()
     }
     
@@ -49,12 +50,10 @@ class ClassTimeTableVC: BaseUIViewController {
         super.viewWillAppear(animated)
         if isFromTeacher == 0
         {
-            
             self.title = "Attendance"
             
         }else if isFromTeacher == 1
         {
-           
             self.title = "Time Table"
         }else if isFromTeacher == 2{
             self.title = KStoryBoards.KClassPeriodIdIdentifiers.kClassPeriodTimeTableTitle
@@ -67,21 +66,7 @@ class ClassTimeTableVC: BaseUIViewController {
         if isFromViewAttendence == true{
           self.navigationItem.rightBarButtonItem = nil
         }
-//        if isFromStudentViewAttendance == true
-//        {
-//            viewDropDown.isHidden = true
-//            btnMoveOnAddPeriod.isHidden = false
-//        }
-//        else
-//        {
-//            viewDropDown.isHidden = false
-//            btnMoveOnAddPeriod.isHidden = true
-//        }
-        
-//        if isFromTeacher == 0
-//        {
-//            btnMoveOnAddPeriod.isHidden = true
-//        }
+
         
         checkCameFromWhichScreen()
     }
@@ -486,8 +471,7 @@ extension ClassTimeTableVC : ClassPeriodsTimeTableDelegate{
                 //For check the period is present or not
                 if arrGetTimeTableDaysModel?[0].periodDetailListModel?.count ?? 0 == 0{
                     collectionView.isHidden = true
-                   
-                          btnMoveOnAddPeriod.isHidden = false
+//                  btnMoveOnAddPeriod.isHidden = false
                    
                 }else{
                     setupCollectionView()

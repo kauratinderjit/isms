@@ -34,6 +34,8 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
     @IBOutlet var tfEndTime: UITextField!
     
     var approach = "date"
+    var startTimes = ""
+    var endTimes = ""
     
     var datePicker = UIDatePicker()
     var datePickerStartDate = UIDatePicker()
@@ -69,10 +71,40 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         setView()
         if UserDefaultExtensionModel.shared.currentUserRoleId == 5{
+            self.selectStartTime.text = "Start Time"
+            self.selectEndTime.text = "End Time"
+            self.selectedStartDate.text = "Start Date"
+            self.selectEndDate.text = "End Date"
+            self.tfEventDate.isUserInteractionEnabled = false
+            self.tfEventEndDate.isUserInteractionEnabled = false
+            self.tfStartTime.isUserInteractionEnabled = false
+            self.tfEndTime.isUserInteractionEnabled = false
+            self.txtfieldTitle.isUserInteractionEnabled = false
+            self.txtViewDescription.isUserInteractionEnabled = false
            self.navigationItem.rightBarButtonItem = nil
         }else if UserDefaultExtensionModel.shared.currentUserRoleId == 6{
+            self.selectStartTime.text = "Start Time"
+            self.selectEndTime.text = "End Time"
+            self.selectedStartDate.text = "Start Date"
+            self.selectEndDate.text = "End Date"
+            self.tfEventDate.isUserInteractionEnabled = false
+            self.tfEventEndDate.isUserInteractionEnabled = false
+            self.tfStartTime.isUserInteractionEnabled = false
+            self.tfEndTime.isUserInteractionEnabled = false
+            self.txtfieldTitle.isUserInteractionEnabled = false
+            self.txtViewDescription.isUserInteractionEnabled = false
             self.navigationItem.rightBarButtonItem = nil
         }else if UserDefaultExtensionModel.shared.currentUserRoleId == 4{
+            self.selectStartTime.text = "Start Time"
+            self.selectEndTime.text = "End Time"
+            self.selectedStartDate.text = "Start Date"
+            self.selectEndDate.text = "End Date"
+            self.tfEventDate.isUserInteractionEnabled = false
+            self.tfEventEndDate.isUserInteractionEnabled = false
+            self.tfStartTime.isUserInteractionEnabled = false
+            self.tfEndTime.isUserInteractionEnabled = false
+            self.txtfieldTitle.isUserInteractionEnabled = false
+            self.txtViewDescription.isUserInteractionEnabled = false
               self.navigationItem.rightBarButtonItem = nil
         }
         
@@ -124,10 +156,10 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
                 localDateFormatter.dateFormat = "h:mm a"
                 
                 let localDateFormatter2 = DateFormatter()
-                localDateFormatter2.dateFormat = "HH:mm"
+                localDateFormatter2.dateFormat = "HH:mm a"
                 
                 let dateObj = localDateFormatter2.date(from: editEventModel?.StrStartTime ?? "")
-                print("\(localDateFormatter.string(from: dateObj!))")
+//                print("\(localDateFormatter.string(from: dateObj!))")
                 
                 // self.tfEventDate.text = "\(localDateFormatter.string(from: dateObj!))"
                 
@@ -183,9 +215,11 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
             self.tfEventDate.text = formatter.string(from: Date())
             self.selectedStrtDate =  self.tfEventDate.text!
             self.selectedStrtDate2 = self.selectedStrtDate
+               formatter.dateFormat = "hh:mm"
+            self.startTimes = formatter.string(from: Date())
             
             //Start Time
-            formatter.dateFormat = "hh:mm"
+            formatter.dateFormat = "hh:mm a"
             self.tfStartTime.text = formatter.string(from: Date())
             startTime = formatter.date(from: self.tfStartTime.text ?? "") ?? Date()
             
@@ -298,7 +332,7 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
                 {
                    // self.viewModel?.addUpdateEvent(eventId: eventId, title: txtfieldTitle.text, description: txtViewDescription.text, time: selectedTime, Date: str_date_selected)
                     
-                    self.viewModel?.addUpdateEvent(eventId: eventId, title: txtfieldTitle.text, description: txtViewDescription.text, startTime: tfStartTime.text, endTime: tfEndTime.text, evntStartDate: tfEventDate.text, evntEndDate: tfEventEndDate.text,ParticularId: HODdepartmentId)
+                    self.viewModel?.addUpdateEvent(eventId: eventId, title: txtfieldTitle.text, description: txtViewDescription.text, startTime: self.startTimes, endTime: self.endTimes, evntStartDate: tfEventDate.text, evntEndDate: tfEventEndDate.text,ParticularId: HODdepartmentId)
                 }
                 else
                 {
@@ -330,6 +364,14 @@ extension AddEventVC:UITextViewDelegate
         if text == "\n"
         {
             textView.resignFirstResponder()
+        }
+        
+        let maxAllowedCharactersPerLine = 100
+        let lines = (textView.text as NSString).replacingCharacters(in: range, with: text).components(separatedBy: .newlines)
+        for line in lines {
+            if line.characters.count > maxAllowedCharactersPerLine {
+                return false
+            }
         }
         return true
         
@@ -477,4 +519,16 @@ extension AddEventVC : ViewDelegate {
         HideLoader()
     }
     
+}
+@IBDesignable class UITextViewFixed: UITextView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setup()
+    }
+    func setup() {
+        translatesAutoresizingMaskIntoConstraints = true
+        textContainerInset = UIEdgeInsets.zero
+        textContainer.lineFragmentPadding = 0
+        translatesAutoresizingMaskIntoConstraints = false
+    }
 }

@@ -204,7 +204,7 @@ extension ExamScheduleVC : YesNoAlertViewDelegate{
 
 extension ExamScheduleVC : EventScheduleDelegate {
     func SubjectEventSuccess() {
-        self.viewModel?.getData(RoleId: 0, ParticularId: 0)
+         self.viewModel?.getData(RoleId: 0, ParticularId: UserDefaultExtensionModel.shared.HODDepartmentId)
 
     }
     

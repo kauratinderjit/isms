@@ -138,6 +138,8 @@ extension StudentListVC : OKAlertViewDelegate{
                 }
             }
             
+        }else{
+            
         }
         okAlertView.removeFromSuperview()
     }
