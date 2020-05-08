@@ -10,7 +10,7 @@ import Foundation
 
 public struct BaseUrl
 {
-  public static let kBaseURL = "https://stgsd.appsndevs.com/IsmsTest/"
+  public static let kBaseURL = "https://stgsd.appsndevs.com/ISMSQA/"
  //   public static let kBaseURL = "https://stgsd.appsndevs.com/IsmsTest/"//"https://stgsd.appsndevs.com/ISMSQA/"
 
    //"http://stgsd.appsndevs.com/EducationProApi/"
@@ -281,6 +281,7 @@ public struct KStoryBoards
     public static let kParent = "Parent"
     public static let kClass = "Class"
     public static var kHome = "Home"
+    public static var kHomeWork = "Homework"
     public static let kSchool = "School"
     public static let kUserAccess = "UserAccess"
     public static let kSWRevealVC = "SWRevealVC"

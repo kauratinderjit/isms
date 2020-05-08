@@ -591,7 +591,20 @@ extension MenuVC : UITableViewDelegate{
             break
         case "NewsFeed":
             
-            self.showAlert(Message: "Coming Soon")
+            let storyboard = UIStoryboard.init(name: KStoryBoards.kNewsfeedAndLetter, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "NewsLetterAndFeedVC") as? NewsLetterAndFeedVC
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(vc!, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
+            
+            
+            
+//            let storyboard = UIStoryboard.init(name: KStoryBoards.kHomeWork, bundle: nil)
+//            let vc = storyboard.instantiateViewController(withIdentifier: "AddNewsFeedPostsVC") as? AddNewsFeedPostsVC
+//            let frontVC = revealViewController().frontViewController as? UINavigationController
+//            frontVC?.pushViewController(vc!, animated: false)
+//            revealViewController().pushFrontViewController(frontVC, animated: true)
+            
             break
             
         case "ContactUS":

@@ -11,10 +11,16 @@ import EventKit
 import EventKitUI
 import SystemConfiguration
 import NVActivityIndicatorView
+import AVFoundation
+import AVKit
 
 
-extension UIViewController {
+extension UIViewController
+{
 
+    
+    
+    
     // This method is used to corner the buttons e.g. Save, Submit etc.
     func cornerButton(btn : UIButton,radius:Int) {
         btn.layer.cornerRadius = CGFloat(radius)
@@ -38,6 +44,8 @@ extension UIViewController {
         view.layer.shadowRadius = 8;
         view.layer.shadowOpacity = Float(opacity);
     }
+    
+    
     
     //Create Shadow and radius of the view
     func addbtnShadow(radius: Int,btn:UIButton,shadowColor:UIColor){
