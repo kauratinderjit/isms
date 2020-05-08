@@ -15,7 +15,7 @@ import Photos
 import KMPlaceholderTextView
 
 let Kmediachanges = "Are you sure you want change media? your previous records will be deleted!"
-class AddNewsFeedPostsVC: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate
+class AddNewsFeedPostsVC: UIViewController
 {
     
     
@@ -24,6 +24,7 @@ class AddNewsFeedPostsVC: UIViewController,UIImagePickerControllerDelegate,UINav
     @IBOutlet var btnUpload: UIButton!
     @IBOutlet var txtView: KMPlaceholderTextView!
     var imagePickerController = UIImagePickerController()
+      var viewModel : UploadPostViewModel?
     
     // var postArray = [[String:Any]]()
     let cellID = "CellClass_UploadPosts"
@@ -32,21 +33,29 @@ class AddNewsFeedPostsVC: UIViewController,UIImagePickerControllerDelegate,UINav
     var postArray = NSMutableArray()
     var playingAudioVideo = false
     
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         self.btnUpload.isHidden = true
         self.collctionViewPosts.setEmptyMessage("Nothing to upload!")
-        
+        self.viewModel = UploadPostViewModel.init(delegate: self)
+        self.viewModel?.attachView(viewDelegate: self)
         // Do any additional setup after loading the view.
-    }
-    
+               self.txtView.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
+           }
+           
+          
     override func viewWillAppear(_ animated: Bool)
     {
      
         self.playingAudioVideo = false
             self.collctionViewPosts.reloadData()
     }
+    
+    @objc func tapDone(sender: Any) {
+                  self.view.endEditing(true)
+              }
     
     //MARK: CELL BUTTON ACTION DELETE POST
     @IBAction func cellActionDelete(_ sender: UIButton)
@@ -172,8 +181,28 @@ class AddNewsFeedPostsVC: UIViewController,UIImagePickerControllerDelegate,UINav
     
     @IBAction func actionUploadPosts(_ sender: Any)
     {
+        if checkInternetConnection(){
+                          
+                          if txtView.text == "" {
+                           self.showAlert(Message: "Please enter something in description")
+                          }
+                          
+                        
+                          else {
+                          
+                            self.viewModel?.addPost(Title: "", Description: txtView.text, DeleteIds: 0, Links: "", NewsLetterId: 0, ParticularId: UserDefaultExtensionModel.shared.userRoleParticularId, TypeId: 0, lstAssignHomeAttachmentMapping: postArray)
+
+
+                          }
+                          
+                      }
+                      
+                       else{
+                          self.showAlert(Message: Alerts.kNoInternetConnection)
+                      }
+        
         //atinder mam now your turn to upload data on server :)
-        self.showAlert(Message: "Atinder mam uploading wala kaam aap kr dena")
+      //  self.showAlert(Message: "Atinder mam uploading wala kaam aap kr dena")
     }
     
     
@@ -201,8 +230,8 @@ extension AddNewsFeedPostsVC : GalleryControllerDelegate
         
         for img in images
         {
-           // let fimage = img.asset.image
-            let fimage = self.getAssetThumbnail(asset: img.asset, size: 200.0)
+            
+            let fimage = self.getAssetThumbnail(asset: img.asset, size: 100.0)
             let dic = NSMutableDictionary()
             dic.setValue(fimage, forKey: "path")
             dic.setValue("image", forKey: "type")
@@ -273,6 +302,34 @@ extension PHAsset
         })
         return thumbnail
     }
+}
+
+
+extension AddNewsFeedPostsVC : ViewDelegate {
+    
+    func showAlert(alert: String) {
+        self.showAlert(Message: alert)
+    }
+    
+    func showLoader() {
+          self.ShowLoader()
+    }
+    
+    func hideLoader() {
+        self.HideLoader()
+    }
+    
+}
+
+extension AddNewsFeedPostsVC : AddPostDelegate {
+    func attachmentDeletedSuccessfully() {
+        
+    }
+    
+    func addedSuccessfully() {
+        
+    }
+  
 }
 
 

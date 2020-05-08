@@ -86,26 +86,7 @@ extension AddNewsFeedPostsVC
         present(imagePickerController, animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController,
-                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])
-    {
-        
-        if let path = info[.mediaURL]
-        {
-            self.videoPath = path as? URL
-            if (self.videoPath != nil)
-            {
-                let optnl = URL(string: "www.google.com")
-                self.storeValues(path:self.videoPath ?? optnl!)
-            }
-        }
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
-    {
-        dismiss(animated: true, completion: nil)
-    }
+
     
     
     func storeValues(path:URL)
@@ -114,7 +95,6 @@ extension AddNewsFeedPostsVC
             {
                 self.postArray = NSMutableArray()
                 self.videoPath = path
-                
                 let dic = NSMutableDictionary()
                 dic.setValue(path, forKey: "path")
                 dic.setValue("video", forKey: "type")
@@ -125,6 +105,32 @@ extension AddNewsFeedPostsVC
         }
     }
     
+}
+
+
+extension AddNewsFeedPostsVC : UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+
+func imagePickerController(_ picker: UIImagePickerController,
+                           didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])
+{
+    print("atinderjit")
+    if let path = info[.mediaURL]
+    {
+        self.videoPath = path as? URL
+        if (self.videoPath != nil)
+        {
+            let optnl = URL(string: "www.google.com")
+            self.storeValues(path:self.videoPath ?? optnl!)
+        }
+    }
+    dismiss(animated: true, completion: nil)
+}
+
+func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
+{
+    dismiss(animated: true, completion: nil)
+}
+
 }
 
 extension AddNewsFeedPostsVC : UICollectionViewDelegate,UICollectionViewDataSource
@@ -200,6 +206,8 @@ extension AddNewsFeedPostsVC : getVideoPathProtocol,UITextViewDelegate
         
         return true
     }
+    
+   
 }
 
 extension AddNewsFeedPostsVC : getAudioProtocol
