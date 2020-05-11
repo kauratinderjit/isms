@@ -2,15 +2,13 @@ import UIKit
 import Photos
 
 /// Wrap a PHAsset
-public class Image: Equatable
-{
+public class Image: Equatable {
 
   public let asset: PHAsset
 
   // MARK: - Initialization
   
-  init(asset: PHAsset)
-  {
+  init(asset: PHAsset) {
     self.asset = asset
   }
 }

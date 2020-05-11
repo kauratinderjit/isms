@@ -118,7 +118,7 @@ DEPENDENCIES:
   - TPKeyboardAvoiding
 
 SPEC REPOS:
-  trunk:
+  https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - AMScrollingNavbar
     - Charts
@@ -133,7 +133,6 @@ SPEC REPOS:
     - FirebaseInstanceID
     - FirebaseMessaging
     - FSCalendar
-    - Gallery
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
     - GoogleMaps
@@ -150,6 +149,8 @@ SPEC REPOS:
     - SVPinView
     - SWRevealViewController
     - TPKeyboardAvoiding
+  trunk:
+    - Gallery
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
