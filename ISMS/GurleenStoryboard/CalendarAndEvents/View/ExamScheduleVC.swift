@@ -83,7 +83,15 @@ class ExamScheduleVC: BaseUIViewController {
 }
 extension ExamScheduleVC : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrEventlist.count
+        if arrEventlist.count>0{
+             tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: true)
+             return arrEventlist.count
+        }else{
+            tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
+                        return 0
+        }
+         
+       
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

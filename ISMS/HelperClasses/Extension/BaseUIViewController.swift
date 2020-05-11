@@ -537,6 +537,7 @@ class BaseUIViewController: UIViewController {
                 self.imagePickerDelegate = imagePickerDelegate
                 imagePicker.delegate = self
                 self.present(imagePicker, animated: true, completion: nil)
+                  
             }
             else{
                 let alert  = UIAlertController(title: KAlertTitle.kWarning, message: Alerts.kDontHaveCamera, preferredStyle: .alert)

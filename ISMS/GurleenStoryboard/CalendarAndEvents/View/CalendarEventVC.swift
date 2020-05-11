@@ -17,9 +17,13 @@ class CalendarEventVC: BaseUIViewController
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var lblSelectedDate: UILabel!
     @IBOutlet var lblInfo: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
     var datesRange = [[String:Any]]()
     var datesRangeDATE = [String]()
+    var desArray = [String]()
+    var currentDate = ""
+    var dateSelect : Date?
     
     
     fileprivate lazy var dateFormatter2: DateFormatter =
@@ -40,9 +44,9 @@ class CalendarEventVC: BaseUIViewController
         
         setBackButton()
         
-        self.viewInfo.isHidden = true
-        self.viewStack.isHidden = true
-        
+//        self.viewInfo.isHidden = true
+//        self.viewStack.isHidden = true
+        self.tableView.isHidden = true
         //   self.calendar.minimumDate = Date()
         
         fetchDates()
@@ -96,8 +100,9 @@ class CalendarEventVC: BaseUIViewController
     }
     
     
-    func get_event_Info_fromDate(sDate:String) -> String
+    func get_event_Info_fromDate(sDate:String)
     {
+        desArray.removeAll()
         if(datesRange.count > 0)
         {
             for obj in datesRange
@@ -107,14 +112,20 @@ class CalendarEventVC: BaseUIViewController
                 
                 if sDate == stDate
                 {
-                    return desc
+                    desArray.append(desc)
                 }
             }
-            
-            return "N/A"
+            if desArray.count>0{
+                
+            }else{
+                let desc =  "N/A"
+                desArray.append(desc)
+            }
+        }else{
+            let desc =  "N/A"
+                  desArray.append(desc)
         }
         
-        return "N/A"
     }
     
     func stringToDate(strDate:String) -> Date
@@ -159,14 +170,22 @@ extension CalendarEventVC : FSCalendarDataSource , FSCalendarDelegate , FSCalend
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition)
     {
-       // calendar.deselect(date)
-        calendar.select(date)
+        if dateSelect != nil{
+            calendar.deselect(dateSelect!)
+        }
+             
         
+        dateSelect = date
+       
+      calendar.select(dateSelect)
+        
+      
         let key = self.dateFormatter2.string(from: date)
-        let info = get_event_Info_fromDate(sDate:key)
-        self.lblInfo.text = "Event: \(info)"
+        get_event_Info_fromDate(sDate:key)
         
-       // calendar.reloadData()
+//        self.lblInfo.text = "Event: \(info)"
+        
+       calendar.reloadData()
     }
     
     func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition)
@@ -174,23 +193,15 @@ extension CalendarEventVC : FSCalendarDataSource , FSCalendarDelegate , FSCalend
         calendar.select(date)
         
         let key = self.dateFormatter2.string(from: date)
-        self.lblSelectedDate.text = key
+
+        currentDate = key
+        self.tableView.isHidden = false
         
-        self.viewInfo.isHidden = false
-        self.viewStack.isHidden = false
-        
-        let info = get_event_Info_fromDate(sDate:key)
-        self.lblInfo.text = "Event: \(info)"
-        
-       // calendar.reloadData()
+         get_event_Info_fromDate(sDate:key)
+        tableView.reloadData()
         
         
     }
-    
-//    func minimumDate(for calendar: FSCalendar) -> Date
-//    {
-//        return Date()
-//    }
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillSelectionColorFor date: Date) -> UIColor?
     {
@@ -211,4 +222,31 @@ extension CalendarEventVC : FSCalendarDataSource , FSCalendarDelegate , FSCalend
     
     
     
+}
+//MARK:- Table view delagate
+extension CalendarEventVC : UITableViewDelegate{
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.separatorInset = UIEdgeInsets.zero
+        cell.layoutMargins = UIEdgeInsets.zero
+    }
+}
+
+//MARK:- Table view data source
+extension CalendarEventVC : UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if desArray.count>0{
+            return desArray.count
+        }
+        return 0
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as! EventCalCell
+        if desArray.count>0{
+            cell.lblDate.text = currentDate
+            cell.lblEvent.text = desArray[indexPath.row]
+        }
+      
+        return cell
+    }
 }

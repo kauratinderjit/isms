@@ -21,7 +21,7 @@ class HomeWorkPagerVC: UIViewController
     {
         super.viewDidLoad()
         self.setBackButton()
-        self.title = "Assign Homework"
+        self.title = "Homework"
 
         self.HomeWorkList_Selected()
         // Do any additional setup after loading the view.
@@ -36,8 +36,8 @@ class HomeWorkPagerVC: UIViewController
         }
         else
         {
-            self.showAlert(Message: "Coming Soon")
-            // self.CheckHomeWork_Selected()
+//            self.showAlert(Message: "Coming Soon")
+             self.CheckHomeWork_Selected()
         }
     }
     

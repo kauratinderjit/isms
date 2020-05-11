@@ -144,7 +144,7 @@ class SignUpApi {
                     alamoManager.session.invalidateAndCancel()
                 }
             case .failure(let error):
-                CommonFunctions.sharedmanagerCommon.println(object: "Error in upload: \(error.localizedDescription)")
+                CommonFunctions.sharedmanagerCommon.println(object: "Errorss in upload: \(error.localizedDescription)")
                 completionError(error)
                 
             }
