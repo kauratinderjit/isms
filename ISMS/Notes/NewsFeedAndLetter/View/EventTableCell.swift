@@ -24,7 +24,7 @@ class EventTableCell: UITableViewCell {
     //MARK:- other functions
     func setUI ()
     {
-        viewCellBack.addViewCornerShadow(radius: 8, view: viewCellBack)
+       // viewCellBack.addViewCornerShadow(radius: 8, view: viewCellBack)
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

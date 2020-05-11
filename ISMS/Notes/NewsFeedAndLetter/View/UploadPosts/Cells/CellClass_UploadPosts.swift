@@ -15,4 +15,5 @@ class CellClass_UploadPosts: UICollectionViewCell
     @IBOutlet var btnDelete: UIButton!
     @IBOutlet var btnPlay: UIButton!
     
+    
 }

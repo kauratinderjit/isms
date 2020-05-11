@@ -57,6 +57,12 @@ class AddNewsFeedPostsVC: UIViewController
                   self.view.endEditing(true)
               }
     
+    
+    @IBAction func actionBack(_ sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    
     //MARK: CELL BUTTON ACTION DELETE POST
     @IBAction func cellActionDelete(_ sender: UIButton)
     {

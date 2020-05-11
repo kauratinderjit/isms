@@ -330,7 +330,17 @@ class HomeworkApi
                                               {
                                                 let dd = value as? [String:Any]
                                                 if let url = dd?["path"] as? URL {
-                                                  multipartFormData.append(url, withName: "LstNewsLetterAudio" )
+                                                    let keyName = dd?["type"] as? String
+                                                    if keyName == "audio" {
+                                                  multipartFormData.append(url, withName: "audio" )
+                                                    }
+                                                    else if keyName == "video"  {
+                                                        multipartFormData.append(url, withName: "video" )
+                                                    }
+                                                    
+                                                    else {
+                                                         multipartFormData.append(url, withName: "image" )
+                                                    }
                                                 }}
                         }
 
