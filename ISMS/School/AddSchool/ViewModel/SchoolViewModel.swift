@@ -122,7 +122,6 @@ class AddSchoolViewModel
         self.addSchoolView?.hideLoader()
        self.addSchoolView?.showAlert(alert: (error?.localizedDescription)!)
         }
-        
     }
     
     

@@ -87,80 +87,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0FA33901-ECEE-4DA8-AF61-A8F903B2C5E6"
+            uuid = "320FCD96-DAC6-4542-8A02-89A36CE76A01"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "View/UploadPosts/Controller/Handle Video Recorder/RecordVideoVC.swift"
+            filePath = "ISMS/Class/Class List/View/ClassListVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
-            landmarkName = "ACTION_MOVE_BACK(_:)"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
+            landmarkName = "classListDidSuccess(data:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "284B3B40-6289-4DC1-B37B-EF8027AD87B8"
+            uuid = "3105F053-BB32-4238-9B6E-C9A84C5D44D4"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "View/UploadPosts/Controller/Handle Video Recorder/RecordVideoVC.swift"
+            filePath = "ISMS/Class/Class List/View/ClassListVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "ACTION_MOVE_BACK(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "284B3B40-6289-4DC1-B37B-EF8027AD87B8 - baff4702de95277a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ISMS.RecordVideoVC.ACTION_MOVE_BACK(Any) -&gt; ()"
-                  moduleName = "ISMS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mohitsharma/Documents/Mohit%20Data/iSMS/View/UploadPosts/Controller/Handle%20Video%20Recorder/RecordVideoVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "128"
-                  endingLineNumber = "128"
-                  offsetFromSymbolStart = "340">
-               </Location>
-               <Location
-                  uuid = "284B3B40-6289-4DC1-B37B-EF8027AD87B8 - c12bee2bddcaaeba"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__C.UIAlertAction) -&gt; () in ISMS.RecordVideoVC.ACTION_MOVE_BACK(Any) -&gt; ()"
-                  moduleName = "ISMS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mohitsharma/Documents/Mohit%20Data/iSMS/View/UploadPosts/Controller/Handle%20Video%20Recorder/RecordVideoVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "130"
-                  endingLineNumber = "130"
-                  offsetFromSymbolStart = "116">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "DDABDC97-37FF-46E2-86A5-B90449CD573F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "View/UploadPosts/Controller/Handle Video Recorder/RecordVideoVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
-            landmarkName = "ACTION_MOVE_BACK(_:)"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
+            landmarkName = "classListDidSuccess(data:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

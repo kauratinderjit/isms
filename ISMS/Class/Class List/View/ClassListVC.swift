@@ -362,8 +362,9 @@ extension ClassListVC : UIScrollViewDelegate{
             {
                 skip = skip + KIntegerConstants.kInt10
                 isFetching = false
-                self.viewModel?.classList(Search: "", Skip: KIntegerConstants.kInt0,PageSize: KIntegerConstants.kInt10,SortColumnDir: "",  SortColumn: "", ParticularId : HODdepartmentId)
-                //                self.viewModel?.classList(searchText: "", pageSize: pageSize, filterBy: 0, skip: skip)
+                
+                self.viewModel?.classList(Search: "", Skip: skip,PageSize: pageSize,SortColumnDir: "",  SortColumn: "", ParticularId : HODdepartmentId)
+                
             }
         }else{
             CommonFunctions.sharedmanagerCommon.println(object: "Scrolling")
@@ -375,3 +376,4 @@ extension ClassListVC : UIScrollViewDelegate{
     }
     
 }
+

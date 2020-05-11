@@ -57,6 +57,13 @@ class StudentRatingVC: BaseUIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        arrStudent.removeAll()
+        arrSkillList.removeAll()
+        arrSubjectList1.removeAll()
+        self.txtfieldClass.text = "Select Class"
+        self.txtfieldSubject.text = "Select Subject"
+        
+        
         if isFromHod == true{
             addRatingBtn.isHidden = true
         }else{
@@ -171,9 +178,8 @@ class StudentRatingVC: BaseUIViewController {
 extension StudentRatingVC : StudentRatingDelegate {
     func GetSkillListDidSucceed(data: [AddStudentRatingResultData]?) {
         print("our data : ",data)
-        
+        arrSkillList.removeAll()
         self.isFetching = true
-        
         if let data1 = data {
             if data1.count>0
             {
@@ -229,6 +235,7 @@ extension StudentRatingVC : StudentRatingDelegate {
     
     
     func StudentRatingListDidSucceed(data: [StudentRatingResultData]) {
+        arrStudent.removeAll()
         //   print(good)
         arrStudent = data
         self.tableView.reloadData()
@@ -236,8 +243,6 @@ extension StudentRatingVC : StudentRatingDelegate {
     
     
     func classListDidSuccess(data: [GetClassListResultData]?) {
-        
-        
         self.isFetching = true
         if data != nil{
             if data?.count ?? 0 > 0{
@@ -268,6 +273,7 @@ extension StudentRatingVC : StudentRatingDelegate {
     
     func SubjectListDidSuccess(data: [GetSubjectResultData]?) {
         isFetching = true
+        arrSubjectlist.removeAll()
         if data != nil{
             if data?.count ?? 0 > 0{
                 for value in data!{
@@ -533,17 +539,38 @@ extension StudentRatingVC : UITableViewDataSource {
 extension StudentRatingVC : NavigationSearchBarDelegate{
     
     func textDidChange(searchBar: UISearchBar, searchText: String) {
-        viewModel?.isSearching = true
-        //  arrAllAssignedSubjects.removeAll()
-        //        self.viewModel?.getAllAssignSubjectList(classId: self.selectedClassId ?? 0, searchText: searchText, pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: KIntegerConstants.kInt0)
+        DispatchQueue.main.async {
+            self.arrStudent.removeAll()
+            if RegisterClassDataModel.sharedInstance?.subjectID != nil{
+                self.viewModel?.studentList(search: searchText, skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID:self.arrSubjectList1[self.selectedSubjectArrIndex ?? 0].classSubjectId ?? 0, classID:  RegisterClassDataModel.sharedInstance?.subjectID ?? 0 )
+            }
+        }
     }
     
     func cancelButtonPress(uiSearchBar: UISearchBar) {
-        viewModel?.isSearching = true
         DispatchQueue.main.async {
-            //            self.viewModel?.getAllAssignSubjectList(classId: self.selectedClassId ?? 0, searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: KIntegerConstants.kInt0)
+           self.arrStudent.removeAll()
+            if RegisterClassDataModel.sharedInstance?.subjectID != nil{
+                self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID:self.arrSubjectList1[self.selectedSubjectArrIndex ?? 0].classSubjectId ?? 0, classID:  RegisterClassDataModel.sharedInstance?.subjectID ?? 0 )
+            }
         }
     }
+    
+//    func textDidChange(searchBar: UISearchBar, searchText: String) {
+//        viewModel?.isSearching = true
+//        //  arrAllAssignedSubjects.removeAll()
+//
+//        self.viewModel?.studentList(search: "", skip: 0, pageSize: KIntegerConstants.kInt0, sortColumnDir: "", sortColumn: "", classSubjectID:arrSubjectList1[index].classSubjectId ?? 0, classID:  RegisterClassDataModel.sharedInstance?.subjectID ?? 0 )
+//
+//        //        self.viewModel?.getAllAssignSubjectList(classId: self.selectedClassId ?? 0, searchText: searchText, pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: KIntegerConstants.kInt0)
+//    }
+//
+//    func cancelButtonPress(uiSearchBar: UISearchBar) {
+//        viewModel?.isSearching = true
+//        DispatchQueue.main.async {
+//            //            self.viewModel?.getAllAssignSubjectList(classId: self.selectedClassId ?? 0, searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: KIntegerConstants.kInt0)
+//        }
+//    }
 }
 
 extension StudentRatingVC : OKAlertViewDelegate{

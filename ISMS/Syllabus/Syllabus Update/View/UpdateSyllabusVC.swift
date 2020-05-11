@@ -326,10 +326,13 @@ extension UpdateSyllabusVC : ViewDelegate {
     
     func showAlert(alert: String) {
         //self.showAlert(Message: alert)
+        initializeCustomOkAlert(self.view, isHideBlurView: true)
+        okAlertView.delegate = self
+        okAlertView.lblResponseDetailMessage.text = alert
         
-        self.AlertMessageWithOkAction(titleStr: KAPPContentRelatedConstants.kAppTitle, messageStr: alert, Target: self) {
-            self.navigationController?.popViewController(animated: false)
-        }
+//        self.AlertMessageWithOkAction(titleStr: KAPPContentRelatedConstants.kAppTitle, messageStr: alert, Target: self) {
+////            self.navigationController?.popViewController(animated: false)
+//        }
     }
     
     func showLoader() {
@@ -344,5 +347,22 @@ extension UpdateSyllabusVC : ViewDelegate {
 extension UIColor {
     class var separatorColor: UIColor {
         return UIColor(red: 244.0/255.0, green: 244.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+    }
+}
+extension UpdateSyllabusVC : OKAlertViewDelegate{
+    
+    //Ok Button Clicked
+    func okBtnAction() {
+        //        if isUnauthorizedUser == true{
+        //            isUnauthorizedUser = false
+        //            CommonFunctions.sharedmanagerCommon.setRootLogin()
+        //        }else if isStudentAdd == true{
+        //            isStudentAdd = false
+        //            okAlertView.removeFromSuperview()
+        //            self.navigationController?.popViewController(animated: true)
+        //        }
+        
+        
+        okAlertView.removeFromSuperview()
     }
 }
