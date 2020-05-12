@@ -149,7 +149,7 @@ extension AddNewsFeedPostsVC : UICollectionViewDelegate,UICollectionViewDataSour
             
             do {
                 let imageData = try Data(contentsOf: img!)
-                    cellnew.ivImg.image = UIImage(data: imageData)
+                                    cellnew.ivImg.image = UIImage(data: imageData)
                } catch {
                    print("Error loading image : \(error)")
                }

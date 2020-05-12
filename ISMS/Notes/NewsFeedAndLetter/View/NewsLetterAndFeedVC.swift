@@ -40,18 +40,7 @@ class NewsLetterAndFeedVC: UIViewController {
        SetView()
      self.viewModel = UploadPostViewModel.init(delegate: self)
             self.viewModel?.attachView(viewDelegate: self)
-       //  var dict = [String: Any]()
-//        dict["url"] = "https://stgsd.appsndevs.com/ISMSQA/Uploads/NewsLetterVideos/202005_11-181425cameraRecorder1_20200511180417465.mp4"
-//        dict["type"] = "video"
-//        newsData.add(dict)
-//         var dict1 = [String: Any]()
-//        dict1["url"] = "https://stgsd.appsndevs.com/ISMSQA/Uploads/NewsLetterAudios/11-05-2020-11-23-43_20200511111519964.m4a"
-//        dict1["type"] = "audio"
-//          newsData.add(dict1)
-//        var dict2 = [String: Any]()
-//           dict2["url"] = "https://stgsd.appsndevs.com/ISMSQA/Uploads/NewsLetterAudios/11-05-2020-11-23-43_20200511111519964.m4a"
-//           dict2["type"] = "image"
-//                 newsData.add(dict2)
+     
         
     }
     
