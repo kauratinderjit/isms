@@ -15,7 +15,7 @@ import Photos
 import KMPlaceholderTextView
 
 let Kmediachanges = "Are you sure you want change media? your previous records will be deleted!"
-class AddNewsFeedPostsVC: UIViewController
+class AddNewsFeedPostsVC: BaseUIViewController
 {
     
     
@@ -32,7 +32,7 @@ class AddNewsFeedPostsVC: UIViewController
     
     var postArray = NSMutableArray()
     var playingAudioVideo = false
-    
+    var localImages : [Image]?
     
     override func viewDidLoad()
     {
@@ -118,24 +118,42 @@ class AddNewsFeedPostsVC: UIViewController
     //MARK: CHOOSE FILE TYPE
     @IBAction func actionChooseImages(_ sender: Any)
     {
-        if (self.postArray.count > 0)
-        {
-            self.AlertMessageWithOkCancelAction(titleStr: KAPPContentRelatedConstants.kAppTitle, messageStr: Kmediachanges, Target: self)
-            { (actn) in
-                if (actn == "Yes")
-                {
-                    self.videoPath = nil
-                    self.postArray = NSMutableArray()
-                    self.collctionViewPosts.reloadData()
-                    self.configPicker()
+        let countarr = NSMutableArray()
+        
+        for (_,value) in self.postArray.enumerated() {
+            
+            if let dic = value as? [String: Any]  {
+                
+                if dic["type"] as? String == "image" {
+                countarr.add(value)
                 }
             }
+            
         }
-        else
-        {
-            self.configPicker()
+        if countarr.count < 5 {
+            
+            if countarr.count == 0 && self.postArray.count > 0 {
+                
+                self.AlertMessageWithOkCancelAction(titleStr: KAPPContentRelatedConstants.kAppTitle, messageStr: Kmediachanges, Target: self)
+                { (actn) in
+                    if (actn == "Yes")
+                    {
+                        self.videoPath = nil
+                        self.postArray = NSMutableArray()
+                        self.collctionViewPosts.reloadData()
+                        self.configPicker()
+                    }
+                }
+
+            }
+            else{
+                self.configPicker()
+
+            }
+            
+            
         }
-        
+     
     }
     
     @IBAction func actionChooseVideo(_ sender: Any)
@@ -215,16 +233,45 @@ class AddNewsFeedPostsVC: UIViewController
     
     func configPicker()
     {
-        Config.Camera.recordLocation = true
-        Config.tabsToShow = [.imageTab, .cameraTab]
-        Config.Camera.imageLimit = 5
-        
-        let gallery = GalleryController()
-        gallery.delegate = self
-        present(gallery, animated: true, completion: nil)
+        initializeGalleryAlert(self.view, isHideBlurView: true)
+               galleryAlertView.delegate = self
     }
 }
 
+//MARK:- UIImagePickerView Delegate
+extension AddNewsFeedPostsVC:UIImagePickerDelegate{
+    func selectedImageUrl(url: URL) {
+                          let dic = NSMutableDictionary()
+                          dic.setValue(url, forKey: "path")
+                          dic.setValue("image", forKey: "type")
+                          self.postArray.add(dic)
+                          self.collctionViewPosts.reloadData()
+                          self.btnUpload.isHidden = false
+    }
+    func SelectedMedia(image: UIImage?, videoURL: URL?){
+        
+        
+        
+    }
+}
+
+//MARK:- Custom Gallery Alert
+extension AddNewsFeedPostsVC : GalleryAlertCustomViewDelegate{
+    func galleryBtnAction() {
+        self.OpenGalleryCamera(camera: false, imagePickerDelegate: self)
+//        CommonFunctions.sharedmanagerCommon.println(object: "Gallery")
+        galleryAlertView.removeFromSuperview()
+        
+    }
+    func cameraButtonAction() {
+        self.OpenGalleryCamera(camera: true, imagePickerDelegate: self)
+//        CommonFunctions.sharedmanagerCommon.println(object: "Camera")
+        galleryAlertView.removeFromSuperview()
+    }
+    func cancelButtonAction() {
+        galleryAlertView.removeFromSuperview()
+    }
+}
 
 extension AddNewsFeedPostsVC : GalleryControllerDelegate
 {
@@ -328,6 +375,10 @@ extension AddNewsFeedPostsVC : ViewDelegate {
 }
 
 extension AddNewsFeedPostsVC : AddPostDelegate {
+    func displayData(data: [NewsListResultData]) {
+        
+    }
+    
     func attachmentDeletedSuccessfully() {
         
     }

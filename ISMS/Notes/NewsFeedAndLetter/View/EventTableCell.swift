@@ -13,8 +13,15 @@ class EventTableCell: UITableViewCell {
     //MARK:- Outlet and Variables
     @IBOutlet weak var viewCellBack: UIView!
     @IBOutlet weak var lblDate: UILabel!
-    @IBOutlet weak var lblEventName: UILabel!
-    @IBOutlet weak var imgViewEvent: UIImageView!
+    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var imgViewProfile: UIImageView!
+    @IBOutlet weak var customCollectionView: UICollectionView!
+    @IBOutlet weak var btnComments: UIButton!
+    @IBOutlet weak var btnLikes: UIButton!
+    @IBOutlet weak var btnShare: UIImageView!
+    @IBOutlet weak var btnReport: UIButton!
+    @IBOutlet weak var likeImage: UIImageView!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
