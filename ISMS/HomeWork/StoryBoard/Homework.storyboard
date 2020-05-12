@@ -2102,10 +2102,10 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="CellClass_UploadPosts" id="0bW-0r-Qjr" customClass="CellClass_UploadPosts" customModule="ISMS" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" reuseIdentifier="CellClass_UploadPosts" id="0bW-0r-Qjr" customClass="CellClass_UploadPosts" customModule="ISMS" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="10" width="264" height="98"/>
                                                 <autoresizingMask key="autoresizingMask"/>
-                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="POE-PN-iq7">
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" id="DhZ-DQ-K6z">
                                                     <rect key="frame" x="0.0" y="0.0" width="264" height="98"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
@@ -2162,19 +2162,19 @@
                                                             </connections>
                                                         </button>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstItem="C1d-4e-vm3" firstAttribute="centerX" secondItem="POE-PN-iq7" secondAttribute="centerX" id="1U4-L5-r4C"/>
+                                                        <constraint firstItem="C1d-4e-vm3" firstAttribute="centerX" secondItem="DhZ-DQ-K6z" secondAttribute="centerX" id="1U4-L5-r4C"/>
                                                         <constraint firstAttribute="bottom" secondItem="63k-6N-3fj" secondAttribute="bottom" constant="4" id="7I2-6O-as2"/>
-                                                        <constraint firstItem="63k-6N-3fj" firstAttribute="top" secondItem="POE-PN-iq7" secondAttribute="top" constant="4" id="I2X-s3-u0v"/>
+                                                        <constraint firstItem="63k-6N-3fj" firstAttribute="top" secondItem="DhZ-DQ-K6z" secondAttribute="top" constant="4" id="I2X-s3-u0v"/>
                                                         <constraint firstAttribute="trailing" secondItem="Are-vM-la5" secondAttribute="trailing" constant="4" id="K4L-yt-Tlr"/>
                                                         <constraint firstAttribute="trailing" secondItem="63k-6N-3fj" secondAttribute="trailing" constant="4" id="M4Q-oS-gH5"/>
-                                                        <constraint firstItem="C1d-4e-vm3" firstAttribute="centerY" secondItem="POE-PN-iq7" secondAttribute="centerY" id="aiQ-Ly-gQW"/>
-                                                        <constraint firstItem="Are-vM-la5" firstAttribute="top" secondItem="POE-PN-iq7" secondAttribute="top" constant="4" id="ek8-mK-h2e"/>
-                                                        <constraint firstItem="63k-6N-3fj" firstAttribute="leading" secondItem="POE-PN-iq7" secondAttribute="leading" constant="4" id="yA6-eJ-dO0"/>
+                                                        <constraint firstItem="C1d-4e-vm3" firstAttribute="centerY" secondItem="DhZ-DQ-K6z" secondAttribute="centerY" id="aiQ-Ly-gQW"/>
+                                                        <constraint firstItem="Are-vM-la5" firstAttribute="top" secondItem="DhZ-DQ-K6z" secondAttribute="top" constant="4" id="ek8-mK-h2e"/>
+                                                        <constraint firstItem="63k-6N-3fj" firstAttribute="leading" secondItem="DhZ-DQ-K6z" secondAttribute="leading" constant="4" id="yA6-eJ-dO0"/>
                                                     </constraints>
                                                 </collectionViewCellContentView>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                                 <size key="customSize" width="264" height="98"/>
                                                 <connections>
                                                     <outlet property="btnDelete" destination="Are-vM-la5" id="lSk-l5-bK1"/>

@@ -14,7 +14,7 @@ protocol AddPostDelegate: class {
    
     func addedSuccessfully ()
     func attachmentDeletedSuccessfully ()
-    
+    func displayData(data: [NewsListResultData])
 }
 
 
@@ -86,6 +86,45 @@ class UploadPostViewModel {
     }
     
    
+    func getData() {
+            uploadPostViewDelegate?.showLoader()
+        
+        let param = [ "UserId" : UserDefaultExtensionModel.shared.userRoleParticularId]
+                           as [String : Any]
+           
+           let url = "api/Social/GetNewsLetter"
+           
+           HomeworkApi.sharedManager.getNewsFeed(url:url , parameters: param, completionResponse: { (responseModel) in
+               
+               self.uploadPostViewDelegate?.hideLoader()
+               if let msg = responseModel.resultData {
+               self.UploadPostDelegate?.displayData(data: responseModel.resultData!)
+               }
+               
+           }, completionnilResponse: { (nilResponseError) in
+               self.uploadPostViewDelegate?.hideLoader()
+               if let error = nilResponseError{
+                   self.uploadPostViewDelegate?.showAlert(alert: error.description)
+                   
+               }else{
+                   CommonFunctions.sharedmanagerCommon.println(object: SyllabusCoverage.kSyllabusResponseNotGet)
+               }
+           }) { (error) in
+               self.uploadPostViewDelegate?.hideLoader()
+               if let err = error?.localizedDescription{
+                   self.uploadPostViewDelegate?.showAlert(alert: err)
+               }else{
+                   CommonFunctions.sharedmanagerCommon.println(object: SyllabusCoverage.kSyllabusResponseError)
+               }
+           }
+           
+           
+           
+           
+           
+       }
+    
+    
           
       }
     

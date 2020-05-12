@@ -108,30 +108,7 @@ extension AddNewsFeedPostsVC
 }
 
 
-extension AddNewsFeedPostsVC : UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
-func imagePickerController(_ picker: UIImagePickerController,
-                           didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])
-{
-    print("atinderjit")
-    if let path = info[.mediaURL]
-    {
-        self.videoPath = path as? URL
-        if (self.videoPath != nil)
-        {
-            let optnl = URL(string: "www.google.com")
-            self.storeValues(path:self.videoPath ?? optnl!)
-        }
-    }
-    dismiss(animated: true, completion: nil)
-}
-
-func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
-{
-    dismiss(animated: true, completion: nil)
-}
-
-}
 
 extension AddNewsFeedPostsVC : UICollectionViewDelegate,UICollectionViewDataSource
 {
@@ -168,9 +145,16 @@ extension AddNewsFeedPostsVC : UICollectionViewDelegate,UICollectionViewDataSour
         }
         else
         {
-            let img = dic?.value(forKey: "path")as? UIImage
+            let img = dic?.value(forKey: "path")as? URL
+            
+            do {
+                let imageData = try Data(contentsOf: img!)
+                                    cellnew.ivImg.image = UIImage(data: imageData)
+               } catch {
+                   print("Error loading image : \(error)")
+               }
             cellnew.btnPlay.isHidden = true
-            cellnew.ivImg.image = img
+          
         }
         
         return cellnew
