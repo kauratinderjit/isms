@@ -10,7 +10,7 @@ import Foundation
 
 public struct BaseUrl
 {
-  public static let kBaseURL = "https://stgsd.appsndevs.com/IsmsTest/"
+  public static let kBaseURL = "https://stgsd.appsndevs.com/ISMSQA/"
  //   public static let kBaseURL = "https://stgsd.appsndevs.com/IsmsTest/"//"https://stgsd.appsndevs.com/ISMSQA/"
 
    //"http://stgsd.appsndevs.com/EducationProApi/"
@@ -294,6 +294,7 @@ public struct KStoryBoards
     public static let kStudentListToMarkAttendence = "StudentAttendence"
     public static let kCourses = "Courses"
      public static let kCalender = "CalendarAndEvents"
+     public static let kContactUs = "ContactUs"
    
     internal struct KWelcomeIdentifiers{
         public static let kWelcomeVC = "WelcomeVC"
@@ -1178,7 +1179,7 @@ public struct kNewsLetterAndFeedIdentifiers{
     static let kNewsLetterTableCell = "NewsLetterTableCell"
     static let kBulletinTableCell = "BulletinTableCell"
     static let kNewsLetterAndFeedVC = "NewsLetterAndFeedVC"
-    static let kNewsLetterAndFeedTitle = "Feed"
+    static let kNewsLetterAndFeedTitle = "Notice board"
 }
 
 public struct kExamResultIdentifiers {
