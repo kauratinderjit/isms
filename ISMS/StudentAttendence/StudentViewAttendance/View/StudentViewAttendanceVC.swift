@@ -48,7 +48,7 @@ class StudentViewAttendanceVC: BaseUIViewController {
             if startDate <= endDate{
                 self.viewModel?.GetAttendance(StartDate: lblStartDate.text ?? "",EndDate: lblEndDate.text ?? "",StudentId: userRoleParticularId,PeriodId: periodId ?? 0,SubjectId: classSubjectId ?? 0,EnrollmentId: UserDefaultExtensionModel.shared.enrollmentIdStudent,ClassId: studentClassId ?? 0,SessionId: 0)
             }else{
-                 self.showAlert(alert:"Please Enter corrrect start and end Date")
+                 self.showAlert(alert:"Please Enter correct start and end Date")
             }
             
         }

@@ -336,21 +336,34 @@ extension AddHODVC : ViewDelegate{
             txtFieldAddress.text = address
         }
         
-        if let imgIDproofUrl = data.resultData?.idProof,imgIDproofUrl != ""
-        {
+        //Set Id Proof Image of student user
+        if let imgIDproofUrl = data.resultData?.idProof,imgIDproofUrl != ""{
             imgViewIdProof.sd_imageIndicator = SDWebImageActivityIndicator.gray
-           //mohit selectedIdProofImageURL = URL(string: imgIDproofUrl)
+            selectedIdProofImageURL = URL(string: imgIDproofUrl)
             imgViewIdProof.contentMode = .scaleAspectFill
-            self.strIDlink = data.resultData?.idProof ?? ""
             imgViewIdProof.sd_setImage(with: URL(string: imgIDproofUrl), placeholderImage: UIImage(named: kImages.kAttachmentImage))
-        }
-        else
-        {
+        }else{
             imgViewIdProof.contentMode = .center
-            selectedIdProofImageURL = nil
+              selectedIdProofImageURL = nil
             imgViewIdProof.image = UIImage.init(named: kImages.kAttachmentImage)
         }
         
+        
+//        if let imgIDproofUrl = data.resultData?.idProof,imgIDproofUrl != ""
+//        {
+//            imgViewIdProof.sd_imageIndicator = SDWebImageActivityIndicator.gray
+//           //mohit selectedIdProofImageURL = URL(string: imgIDproofUrl)
+//            imgViewIdProof.contentMode = .scaleAspectFill
+//            self.strIDlink = data.resultData?.idProof ?? ""
+//            imgViewIdProof.sd_setImage(with: URL(string: imgIDproofUrl), placeholderImage: UIImage(named: kImages.kAttachmentImage))
+//        }
+//        else
+//        {
+//            imgViewIdProof.contentMode = .center
+//            selectedIdProofImageURL = nil
+//            imgViewIdProof.image = UIImage.init(named: kImages.kAttachmentImage)
+//        }
+//        
         if let departmentName = data.resultData?.departmentName{
             selectedDepartmentID = data.resultData?.departmentId
             txtFieldAssignDepartment.text = departmentName

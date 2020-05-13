@@ -546,7 +546,7 @@ extension AddStudentVC : OKAlertViewDelegate{
         }else if isStudentAdd == true{
             isStudentAdd = false
             okAlertView.removeFromSuperview()
-            //self.navigationController?.popViewController(animated: true)
+            self.navigationController?.popViewController(animated: true)
         }
         okAlertView.removeFromSuperview()
     }

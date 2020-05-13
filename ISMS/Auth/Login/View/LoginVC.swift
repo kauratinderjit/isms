@@ -45,7 +45,7 @@ class LoginVC: BaseUIViewController {
     }
     
     @IBAction func ForgotPassAction(_ sender: Any){
-  //              pushToNextVC(storyboardName: KStoryBoards.kMain, viewControllerName: KStoryBoards.KForgotPassIdentifiers.kForgotPassVC)
+                pushToNextVC(storyboardName: KStoryBoards.kMain, viewControllerName: KStoryBoards.KForgotPassIdentifiers.kForgotPassVC)
         if phoneNumber == "" && phoneNumber == nil{
             showAlert(Message: "Enter Phone Number")
         }

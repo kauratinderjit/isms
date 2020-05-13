@@ -242,7 +242,7 @@ extension AddTeacherVC : ViewDelegate{
                 self.imgViewTeacher.sd_setImage(with: URL(string: imgProfileUrl), placeholderImage: UIImage(named: kImages.kProfileImage))
             }else{
                 self.selectedProfileImageUrl = nil
-                self.imgViewIdProof.image = UIImage.init(named: kImages.kProfileImage)
+                self.imgViewTeacher.image = UIImage.init(named: kImages.kProfileImage)
             }
             if let firstName = data.resultData?.firstName{
                 self.txtFieldFirstName.text = firstName
@@ -323,16 +323,26 @@ extension AddTeacherVC : ViewDelegate{
             if let address = data.resultData?.address{
                 self.txtFieldAddress.text = address
             }
-            if let imgIDproofUrl = data.resultData?.idProof,imgIDproofUrl != ""{
-                self.imgViewIdProof.sd_imageIndicator = SDWebImageActivityIndicator.gray
-                //   self.selectedIdProofImageURL = URL(string: imgIDproofUrl)
-                self.imgViewIdProof.contentMode = .center
+            
+            if let imgIDproofUrl = data.resultData?.idProof{
+                self.imgViewIdProof.contentMode = .scaleAspectFill
+                //self.selectedProfileImageUrl = URL.init(string: imgProfileUrl)
                 self.imgViewIdProof.sd_setImage(with: URL(string: imgIDproofUrl), placeholderImage: UIImage(named: kImages.kAttachmentImage))
             }else{
-                self.imgViewIdProof.contentMode = .center
                 self.selectedIdProofImageURL = nil
                 self.imgViewIdProof.image = UIImage.init(named: kImages.kAttachmentImage)
             }
+            
+//            if let imgIDproofUrl = data.resultData?.idProof,imgIDproofUrl != ""{
+//                self.imgViewIdProof.sd_imageIndicator = SDWebImageActivityIndicator.gray
+//                //   self.selectedIdProofImageURL = URL(string: imgIDproofUrl)
+////
+//                self.imgViewIdProof.sd_setImage(with: URL(string: imgIDproofUrl), placeholderImage: UIImage(named: kImages.kAttachmentImage))
+//            }else{
+//                self.imgViewIdProof.contentMode = .center
+//                self.selectedIdProofImageURL = nil
+//                self.imgViewIdProof.image = UIImage.init(named: kImages.kAttachmentImage)
+//            }
             
             if let qualification = data.resultData?.qualification{
                 self.txtFieldQualification.text = qualification

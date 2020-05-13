@@ -294,6 +294,7 @@ public struct KStoryBoards
     public static let kStudentListToMarkAttendence = "StudentAttendence"
     public static let kCourses = "Courses"
      public static let kCalender = "CalendarAndEvents"
+     public static let kContactUs = "ContactUs"
    
     internal struct KWelcomeIdentifiers{
         public static let kWelcomeVC = "WelcomeVC"

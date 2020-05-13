@@ -597,19 +597,16 @@ extension MenuVC : UITableViewDelegate{
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
             
-            
-            
-//            let storyboard = UIStoryboard.init(name: KStoryBoards.kHomeWork, bundle: nil)
-//            let vc = storyboard.instantiateViewController(withIdentifier: "AddNewsFeedPostsVC") as? AddNewsFeedPostsVC
-//            let frontVC = revealViewController().frontViewController as? UINavigationController
-//            frontVC?.pushViewController(vc!, animated: false)
-//            revealViewController().pushFrontViewController(frontVC, animated: true)
-            
             break
             
         case "ContactUS":
             
-            self.showAlert(Message: "Coming Soon")
+             let storyboard = UIStoryboard.init(name: KStoryBoards.kContactUs, bundle: nil)
+             let vc = storyboard.instantiateViewController(withIdentifier: "ContactUsVC") as? ContactUsVC
+             let frontVC = revealViewController().frontViewController as? UINavigationController
+             frontVC?.pushViewController(vc!, animated: false)
+             revealViewController().pushFrontViewController(frontVC, animated: true)
+                       
             
             break
         case "LogOut":
