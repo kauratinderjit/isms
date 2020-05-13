@@ -29,7 +29,7 @@ class NewsLetterAndFeedVC: UIViewController {
          }()
        
     let dateFormatter = DateFormatter()
-    
+    var playAudioIndex : Int?
     
     
     
@@ -46,16 +46,32 @@ class NewsLetterAndFeedVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if checkInternetConnection(){
          getNewfeedData()
+        }
+       else{
+            self.showAlert(Message: Alerts.kNoInternetConnection)
+        }
     }
     //MARK:- Actions
     
+    override func viewDidDisappear(_ animated: Bool) {
+        stopAudio()
+    }
+    
     @IBAction func actionAddPost(_ sender: UIButton) {
-         let storyboard = UIStoryboard.init(name: KStoryBoards.kHomeWork, bundle: nil)
-                    let vc = storyboard.instantiateViewController(withIdentifier: "AddNewsFeedPostsVC") as? AddNewsFeedPostsVC
-                    let frontVC = revealViewController().frontViewController as? UINavigationController
-                    frontVC?.pushViewController(vc!, animated: false)
-                    revealViewController().pushFrontViewController(frontVC, animated: true)
+        if checkInternetConnection(){
+                let storyboard = UIStoryboard.init(name: KStoryBoards.kHomeWork, bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "AddNewsFeedPostsVC") as? AddNewsFeedPostsVC
+                let frontVC = revealViewController().frontViewController as? UINavigationController
+                frontVC?.pushViewController(vc!, animated: false)
+                 revealViewController().pushFrontViewController(frontVC, animated: true)
+                                    }
+              else{
+                   self.showAlert(Message: Alerts.kNoInternetConnection)
+               }
+      
     }
     
     func getNewfeedData() {
@@ -65,11 +81,16 @@ class NewsLetterAndFeedVC: UIViewController {
     
     @IBAction func actionWhatOnMind(_ sender: UIButton) {
         
-        let storyboard = UIStoryboard.init(name: KStoryBoards.kHomeWork, bundle: nil)
-                     let vc = storyboard.instantiateViewController(withIdentifier: "AddNewsFeedPostsVC") as? AddNewsFeedPostsVC
-                     let frontVC = revealViewController().frontViewController as? UINavigationController
-                     frontVC?.pushViewController(vc!, animated: false)
-                     revealViewController().pushFrontViewController(frontVC, animated: true)
+        if checkInternetConnection(){
+                let storyboard = UIStoryboard.init(name: KStoryBoards.kHomeWork, bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "AddNewsFeedPostsVC") as? AddNewsFeedPostsVC
+                let frontVC = revealViewController().frontViewController as? UINavigationController
+                frontVC?.pushViewController(vc!, animated: false)
+                 revealViewController().pushFrontViewController(frontVC, animated: true)
+                                    }
+              else{
+                   self.showAlert(Message: Alerts.kNoInternetConnection)
+               }
     }
     
     
@@ -80,9 +101,36 @@ class NewsLetterAndFeedVC: UIViewController {
     
     
     @IBAction func actionLike(_ sender: UIButton) {
+          if checkInternetConnection(){
+            
+            var liked = false
+            if newsData?[sender.tag].LikedByMe == 0 {
+                liked = true
+            }
+            else {
+                 liked = false
+            }
+            self.viewModel?.likePost(PostId: newsData?[sender.tag].NewsLetterId ?? 0, LikedBy: UserDefaultExtensionModel.shared.userRoleParticularId, IsLiked: liked)
+               }
+        else{
+             self.showAlert(Message: Alerts.kNoInternetConnection)
+         }
+        
     }
     
     @IBAction func actionComment(_ sender: UIButton) {
+        
+        
+        if checkInternetConnection(){
+                      let storyboard = UIStoryboard.init(name: KStoryBoards.kHomeWork, bundle: nil)
+                      let vc = storyboard.instantiateViewController(withIdentifier: "CommentVC") as? CommentVC
+                      let frontVC = revealViewController().frontViewController as? UINavigationController
+                      frontVC?.pushViewController(vc!, animated: false)
+                       revealViewController().pushFrontViewController(frontVC, animated: true)
+                                          }
+                    else{
+                         self.showAlert(Message: Alerts.kNoInternetConnection)
+                     }
     }
     
     @IBAction func actionShare(_ sender: UIButton) {
@@ -95,40 +143,169 @@ class NewsLetterAndFeedVC: UIViewController {
         self.present(activityViewController, animated: true, completion: nil)
     }
     
-    
+    //MARK: Play button for videos and audios
     @IBAction func playButton(_ sender: UIButton) {
-                if let dict = lstDocuments?[sender.tag] {
-            if dict.typedoc == "Video" {
+        
 
-                let path = dict.URL ?? nil
-                   let fileUrl = URL(string: path ?? "")
-                          if(fileUrl != nil)
-                          {
-                           let player = AVPlayer(url: fileUrl!)
-                              let vc = AVPlayerViewController()
-                              vc.player = player
-                              present(vc, animated: true)
-                              {
-                                  vc.player?.play()
-                              }
-                             
-                          }
+        let buttonPostion = sender.convert(sender.bounds.origin, to: tbleViewNewsFeed)
+
+               if let indexPath = tbleViewNewsFeed.indexPathForRow(at: buttonPostion) {
+                   let rowIndex =  indexPath.row
+                   print(rowIndex)
+                   playAudioIndex = rowIndex
+                if var dict = newsData?[rowIndex].lstDocuments?[sender.tag] {
+                 if dict.typedoc == "Video" {
+
+                     let path = dict.URL ?? nil
+                        let fileUrl = URL(string: path ?? "")
+                               if(fileUrl != nil)
+                               {
+                                let player = AVPlayer(url: fileUrl!)
+                                   let vc = AVPlayerViewController()
+                                   vc.player = player
+                                   present(vc, animated: true)
+                                   {
+                                       vc.player?.play()
+                                   }
+                                  
+                               }
+                    }
+                 else if dict.typedoc  == "Audio" {
+                     
+                    if dict.IsPlaying == false {
+
+                        let path = dict.URL ?? nil
+                       let fileUrl = URL(string: path ?? "")
+                        if(fileUrl != nil)
+                                                {
+                                            player.removeAllItems()
+                                           player.insert(AVPlayerItem(url: fileUrl!), after: nil)
+                                           player.play()
+                                           sender.setImage(UIImage(named: "pause"), for: .normal)
+                                                    newsData?[rowIndex].lstDocuments?[sender.tag].IsPlaying = true
+                                                   
+                                                    // Add Observer
+                                                      player.currentItem?.addObserver(self, forKeyPath: "playbackBufferEmpty", options: .new, context: nil)
+                                                      player.currentItem?.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: .new, context: nil)
+                                                      player.currentItem?.addObserver(self, forKeyPath: "playbackBufferFull", options: .new, context: nil)
+                                                    
+                                                    
+                                    NotificationCenter.default.addObserver(self, selector: #selector(self.playerItemDidReachEnd(notification:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
+                                                            
+                                     NotificationCenter.default.addObserver(self, selector: #selector(self.handleAudioInterruption), name: AVAudioSession.interruptionNotification, object: nil)
+                                                      
+                                                      
+                                                      do {
+                                                          try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: AVAudioSession.CategoryOptions.mixWithOthers)
+                                                          
+                                                          do {
+                                                              try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
+                                                          } catch let error as NSError {
+                                                              print(error.localizedDescription)
+                                                          }
+                                                      } catch let error as NSError {
+                                                          print(error.localizedDescription)
+                                                      }
+                                                    
+                                   tbleViewNewsFeed.reloadData()
+                                      }
+                    }
+                    
+                    else {
+                        
+//                       let arrays =  newsData?.filter({ (element) -> Bool in
+//                        let doc = element.lstDocuments?.filter({ (element) -> Bool in
+//
+////                            if element.IsPlaying == true {
+////                              //  element.IsPlaying = false
+////                                guard let index = array.index(where: {$0.title == "slow"}) else { return }
+////                                print("item", index)
+////                            }
+////
+//
+//                        })
+//
+//                        })
+                        
+                                              stopAudio()
+                                              NotificationCenter.default.removeObserver(self)
+                                             
+                                              newsData?[rowIndex].lstDocuments?[sender.tag].IsPlaying = false
+                                              player.pause()
+                                              player.replaceCurrentItem(with: nil)
+                                              tbleViewNewsFeed.reloadData()
+                                           
+                                       }
+                                       
+                    }
+                
+                }
                }
-            else if dict.typedoc  == "Audio" {
-
-                let path = dict.URL as? String ?? nil
-                  let fileUrl = URL(string: path ?? "")
-                   if(fileUrl != nil)
-                                           {
-                                     player.removeAllItems()
-                                            player.insert(AVPlayerItem(url: fileUrl!), after: nil)
-                                     player.play()
-
-                                 }
-               }
-           }
+        
+                
     }
     
+    //MARK:Audio Methods
+    
+    @objc func handleAudioInterruption(notification: NSNotification) {
+        if notification.name != AVAudioSession.interruptionNotification || notification.userInfo == nil {
+            return
+        }
+        
+        if let typeKey = notification.userInfo? [AVAudioSessionInterruptionTypeKey] as? UInt,
+            let type = AVAudioSession.InterruptionType(rawValue: typeKey) {
+            switch type {
+            case .began:
+                print("began")
+                break
+                
+            case .ended:
+                print("ended")
+                break
+            }
+        }
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        
+        if keyPath == "playbackBufferEmpty" {
+            print("Show loader")
+            
+        } else if keyPath == "playbackLikelyToKeepUp" {
+            print("Hide loader 1")
+           hideLoader()
+            
+        } else if keyPath == "playbackBufferFull" {
+            print("Hide loader 2")
+           hideLoader()
+        }
+    }
+    
+    func stopAudio() {
+        
+        player.currentItem?.removeObserver(self, forKeyPath: "playbackBufferEmpty", context: nil)
+        player.currentItem?.removeObserver(self, forKeyPath: "playbackLikelyToKeepUp", context: nil)
+        player.currentItem?.removeObserver(self, forKeyPath: "playbackBufferFull", context: nil)
+        
+        if (player.rate != 0 && player.error == nil) {
+              player.pause()
+              player.removeAllItems()
+        }
+    }
+    
+    //MARK: - Audio Player Handles
+    @objc func playerItemDidReachEnd(notification: NSNotification) {
+        print("Audio End")
+        
+        stopAudio()
+        NotificationCenter.default.removeObserver(self)
+        newsData?[playAudioIndex ?? 0].lstDocuments?[0].IsPlaying = false
+            tbleViewNewsFeed.reloadData()
+            
+            
+        }
+  
+
     
     //MARK:- Other functions
       func SetView()
@@ -157,6 +334,9 @@ extension NewsLetterAndFeedVC : UITableViewDataSource,UITableViewDelegate{
     {
       
         let  cell = tableView.dequeueReusableCell(withIdentifier: kNewsLetterAndFeedIdentifiers.kEventTableCell, for: indexPath) as! EventTableCell
+        cell.btnLikes.tag = indexPath.row
+         cell.btnComments.tag = indexPath.row
+         cell.btnShare.tag = indexPath.row
         if let dic = newsData?[indexPath.row] {
        // cell.imgViewProfile.image = dic?.
             cell.lblName.text = dic.PostedBy
@@ -180,8 +360,9 @@ extension NewsLetterAndFeedVC : UITableViewDataSource,UITableViewDelegate{
             lstDocuments  = dic.lstDocuments
             cell.customCollectionView.reloadData()
             
+           
             
-        
+       
         }
         return cell
     }
@@ -217,7 +398,7 @@ extension NewsLetterAndFeedVC : UICollectionViewDelegate,UICollectionViewDataSou
         
         let cellnew = collectionView.dequeueReusableCell(withReuseIdentifier: "CellClass_UploadPosts", for: indexPath)as! CellClass_UploadPosts
         // cellnew.btnPlay = UIButton()
-                        cellnew.btnPlay.frame = CGRect(x: cellnew.ivImg.frame.origin.x + cellnew.ivImg.frame.size.width / 2 , y: cellnew.ivImg.frame.origin.y + cellnew.ivImg.frame.size.height / 2 - 30, width: 54, height: 54)
+                        cellnew.btnPlay.frame = CGRect(x: cellnew.ivImg.frame.origin.x + cellnew.ivImg.frame.size.width / 2 - 30 , y: cellnew.ivImg.frame.origin.y + cellnew.ivImg.frame.size.height / 2 - 30, width: 54, height: 54)
                         cellnew.btnPlay.tag = indexPath.row
                        
 
@@ -248,6 +429,22 @@ extension NewsLetterAndFeedVC : UICollectionViewDelegate,UICollectionViewDataSou
                cellnew.ivImg.image = UIImage(named:"scenic")
                cellnew.ivImg.bringSubviewToFront(cellnew.btnPlay)
         }
+        
+            else{
+                
+                cellnew.btnPlay.isHidden = false
+                              cellnew.btnPlay.isUserInteractionEnabled = true
+                              cellnew.ivImg.image = UIImage(named:"audiobg")
+                              cellnew.ivImg.bringSubviewToFront(cellnew.btnPlay)
+        }
+        
+        
+        if lstDocuments?[indexPath.row].IsPlaying == false{
+                       cellnew.btnPlay.setImage(UIImage(named: "playVideo"), for: .normal)
+                   }
+                   else {
+                       cellnew.btnPlay.setImage(UIImage(named: "pause"), for: .normal)
+                   }
         }
        
       
@@ -302,9 +499,19 @@ extension NewsLetterAndFeedVC : AddPostDelegate {
     }
     
     func addedSuccessfully() {
-        
+      getNewfeedData()
     }
   
 }
 
 
+extension UITableView {
+    
+    func indexPathForView(_ view: UIView) -> IndexPath? {
+         let center = view.center
+         let viewCenter = self.convert(center, from: view.superview)
+         let indexPath = self.indexPathForRow(at: viewCenter)
+         return indexPath
+     }
+
+}

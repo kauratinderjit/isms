@@ -53,6 +53,7 @@ class NewsFeedListModel : Mappable{
         var lstComments: [lstComments]?
          var lstDocuments: [lstDocuments]?
          var lstLikes: [lstLikes]?
+         
 
         init?(map: Map) {
             
@@ -90,6 +91,7 @@ struct lstComments: Mappable {
      var CommentedById : Int?
      var CommentedDate : String?
       var URL : String?
+     
     
      init?(map: Map) {
      }
@@ -113,7 +115,7 @@ struct lstDocuments: Mappable {
     var DocumentId : Int?
     var typedoc : String?
     var URL : String?
-    
+    var IsPlaying = false
     init?(map: Map) {
     }
     
