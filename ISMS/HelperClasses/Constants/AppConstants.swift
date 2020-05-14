@@ -10,7 +10,7 @@ import Foundation
 
 public struct BaseUrl
 {
-  public static let kBaseURL = "https://stgsd.appsndevs.com/ISMSQA/"
+  public static let kBaseURL = "https://stgsd.appsndevs.com/IsmsTest/"
  //   public static let kBaseURL = "https://stgsd.appsndevs.com/IsmsTest/"//"https://stgsd.appsndevs.com/ISMSQA/"
 
    //"http://stgsd.appsndevs.com/EducationProApi/"
@@ -596,7 +596,6 @@ public struct KApiParameters{
 
     
     internal struct kUpdateSyllabusApiParameter {
-        
         public static let kChapter : String = "Chapter"
         public static let kSubjectName : String = "SubjectName"
         public static let kChapterId = "ChapterId"

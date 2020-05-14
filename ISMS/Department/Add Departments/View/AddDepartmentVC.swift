@@ -50,13 +50,16 @@ class AddDepartmentVC: BaseUIViewController {
     
     @IBAction func btnAddImage(_ sender: UIButton) {
          view.endEditing(true)
-//        if self.txtViewDescription.text != nil{
-//            descriptionText = self.txtViewDescription.text
-//        }
-    
+        if self.txtViewDescription.text != nil{
+            descriptionText = self.txtViewDescription.text
+        }
+       
         initializeGalleryAlert(self.view, isHideBlurView: true)
         galleryAlertView.delegate = self
+        
     }
+    
+    
     
     //MARK:- Set UI
     func setUI(){
@@ -226,12 +229,14 @@ extension AddDepartmentVC:UIImagePickerDelegate{
 //MARK:- Custom Gallery Alert
 extension AddDepartmentVC : GalleryAlertCustomViewDelegate{
     func galleryBtnAction() {
+        self.view.endEditing(true)
         self.OpenGalleryCamera(camera: false, imagePickerDelegate: self)
 //        CommonFunctions.sharedmanagerCommon.println(object: "Gallery")
         galleryAlertView.removeFromSuperview()
         
     }
     func cameraButtonAction() {
+        self.view.endEditing(true)
         self.OpenGalleryCamera(camera: true, imagePickerDelegate: self)
 //        CommonFunctions.sharedmanagerCommon.println(object: "Camera")
         galleryAlertView.removeFromSuperview()

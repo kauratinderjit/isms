@@ -11,6 +11,8 @@ import UIKit
 class AddNotesCell: UITableViewCell {
     
     
+    @IBOutlet var lblName: UILabel!
+    @IBOutlet var lblFirstLetter: UILabel!
     @IBOutlet weak var btnDel: UIButton!
     @IBOutlet weak var lblAttachment: UILabel!
     

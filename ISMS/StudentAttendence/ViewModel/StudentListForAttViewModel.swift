@@ -39,13 +39,14 @@ class StudentListForAttViewModel {
         studentListDelegate = nil
     }
     
-    func StudentList(TimeTableId: Int, ClassId: Int){
+    func StudentList(TimeTableId: Int, ClassId: Int, Date:String){
    
        
         var postDict = [String:Any]()
         
         postDict[KApiParameters.kStudentListForAttendence.kTimeTableId] = TimeTableId
         postDict[KApiParameters.kStudentListForAttendence.kClassId] = ClassId
+        postDict["Date"] = Date
 
         
         StudentListForAttendenceApi.sharedManager.getStudentList(url: ApiEndpoints.kStudentListForAttendence, parameters: postDict, completionResponse: { (StudentListForAttModel) in

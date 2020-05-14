@@ -51,12 +51,15 @@ class SyllabusCoverageVC : BaseUIViewController  {
     
     override func viewWillAppear(_ animated: Bool)
     {
-        super.viewWillAppear(animated)
-        arrayData.removeAll()
-        self.textfieldClass.placeholder = "Select class"
+       super.viewWillAppear(true)
+        self.textfieldClass.placeholder = "Select Class"
+        self.textfieldClass.text = ""
+        self.arrayData.removeAll()
+        
         self.classListDropdownApi()
                setPickerView()
                boolFirstTime = true
+         tableView.reloadData()
     }
     
     func classListDropdownApi(){
@@ -162,15 +165,15 @@ class SyllabusCoverageVC : BaseUIViewController  {
 extension SyllabusCoverageVC : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         tableView.deselectRow(at: indexPath, animated: false)
-        
         let storyboard = UIStoryboard.init(name: "Courses", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "UpdateSyllabusVC") as! UpdateSyllabusVC
+        if arrayData.count > indexPath.row{
             vc.subjectData = arrayData[indexPath.row]
-        vc.ClassSubjectId = arrayData[indexPath.row].ClassSubjectId
-        vc.ClassId = selectedClassId
-        vc.isFromStudent = isFromStudent
+            vc.ClassSubjectId = arrayData[indexPath.row].ClassSubjectId
+            vc.ClassId = selectedClassId
+            vc.isFromStudent = isFromStudent
+        }
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -314,6 +317,7 @@ extension SyllabusCoverageVC : SyllabusCoverageDelegate {
 
 func SyllabusCoverageSucceed(array: [SyllabusCoverageListResultData]) {
    // self.showAlert(Message: "Good")
+    arrayData.removeAll()
     arrayData = array
         if arrayData.count > 0{
          lblNoRecordFound.isHidden = true

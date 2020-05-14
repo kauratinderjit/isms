@@ -663,13 +663,14 @@ extension AddSchoolViewController {
                 print(error)
             }
             DispatchQueue.main.async {
+                self.hideLoader()
                 /// STOP YOUR ACTIVITY INDICATOR HERE
             self.share(url: tmpURL)
                 
-//                let pdfFilePath = URL(string: tmpURL.absoluteString)
-//                let pdfData = NSData(contentsOf: pdfFilePath!)
-//                let activityVC = UIActivityViewController(activityItems: [pdfData!], applicationActivities: nil)
-//                self.present(activityVC, animated: true, completion: nil)
+                let pdfFilePath = URL(string: tmpURL.absoluteString)
+                let pdfData = NSData(contentsOf: pdfFilePath!)
+                let activityVC = UIActivityViewController(activityItems: [pdfData!], applicationActivities: nil)
+                self.present(activityVC, animated: true, completion: nil)
                 
             }
             }.resume()

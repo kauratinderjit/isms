@@ -47,6 +47,8 @@ class HomeworkListModel : Mappable{
         var ClassSubjectId : Int?
         var SubjectId : Int?
         var lstattachmentModels: [lstattachmentModels]?
+        var studentName : String?
+        var StuAttachmentModels : [stuAttachmentViewModels]?
         
 
         init?(map: Map) {
@@ -67,7 +69,8 @@ class HomeworkListModel : Mappable{
             lstattachmentModels <- map["lstattachmentModels"]
             Comment <- map["Comment"]
             StudentAttacmentUrl <- map["StudentAttacmentUrl"]
-            
+            studentName <- map["studentName"]
+            StuAttachmentModels <- map["StuAttachmentModels"]
         }
         
     }
