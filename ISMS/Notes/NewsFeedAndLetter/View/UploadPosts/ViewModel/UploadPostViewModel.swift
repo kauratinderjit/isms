@@ -64,7 +64,7 @@ class UploadPostViewModel {
             
             switch response["StatusCode"] as? Int{
             case 200:
-                self.uploadPostViewDelegate?.showAlert(alert: response["Message"]  as? String ?? "")
+               // self.uploadPostViewDelegate?.showAlert(alert: response["Message"]  as? String ?? "")
                 self.UploadPostDelegate?.addedSuccessfully()
             case 401:
                 self.uploadPostViewDelegate?.showAlert(alert: response["Message"] as? String ?? "")
@@ -123,6 +123,56 @@ class UploadPostViewModel {
            
            
        }
+    
+    
+    func likePost(PostId : Int,LikedBy: Int, IsLiked: Bool) {
+            uploadPostViewDelegate?.showLoader()
+        
+        let param = [       "PostId" : PostId,
+                            "LikedBy" : LikedBy,
+                            "IsLiked": IsLiked]
+                           as [String : Any]
+           
+           let url = "api/Social/AddUpdateLike"
+           
+           HomeworkApi.sharedManager.likePost(url:url , parameters: param, completionResponse: { (response) in
+               
+               self.uploadPostViewDelegate?.hideLoader()
+               switch response["StatusCode"] as? Int{
+                          case 200:
+                              self.uploadPostViewDelegate?.showAlert(alert: response["Message"]  as? String ?? "")
+                              self.UploadPostDelegate?.addedSuccessfully()
+                          case 401:
+                              self.uploadPostViewDelegate?.showAlert(alert: response["Message"] as? String ?? "")
+                              //self.AddHomeWorkDelegate?.unauthorizedUser()
+                          default:
+                              self.uploadPostViewDelegate?.showAlert(alert: response["Message"] as? String ?? "")
+                          }
+
+               
+           }, completionnilResponse: { (nilResponseError) in
+               self.uploadPostViewDelegate?.hideLoader()
+               if let error = nilResponseError{
+                   self.uploadPostViewDelegate?.showAlert(alert: error.description)
+                   
+               }else{
+                   CommonFunctions.sharedmanagerCommon.println(object: SyllabusCoverage.kSyllabusResponseNotGet)
+               }
+           }) { (error) in
+               self.uploadPostViewDelegate?.hideLoader()
+               if let err = error?.localizedDescription{
+                   self.uploadPostViewDelegate?.showAlert(alert: err)
+               }else{
+                   CommonFunctions.sharedmanagerCommon.println(object: SyllabusCoverage.kSyllabusResponseError)
+               }
+           }
+           
+           
+           
+           
+           
+       }
+    
     
     
           
