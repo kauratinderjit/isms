@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ContactUsVC: BaseUIViewController {
     
@@ -27,9 +28,45 @@ class ContactUsVC: BaseUIViewController {
         super.viewDidLoad()
         self.viewModel = ContactUsViewModel.init(delegate: self)
         self.viewModel?.attachView(viewDelegate: self)
-        
+        setBackButton()
+        self.title = "Contact Us"
         viewModel?.getContactUs()
     }
+    
+    
+    @IBAction func btnCall(_ sender: Any) {
+        if lblAdmissionPhn.text != nil{
+            if let url = URL(string: "tel://\(lblAdmissionPhn.text!)"),
+                UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+       
+        
+    }
+    
+    
+    @IBAction func btnCallGenral(_ sender: Any) {
+        if lblGenralPhn.text != nil{
+            if let url = URL(string: "tel://\(lblGenralPhn.text!)"),
+                UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
+    @IBAction func btnMail(_ sender: Any) {
+        print("mail btn")
+        let appURL = URL(string: lblAdmissionEmail.text!)!
+
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(appURL, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(appURL)
+        }
+    }
+    
+    
 }
 
 extension ContactUsVC : ContactUsViewModelDelegate{
@@ -41,6 +78,18 @@ extension ContactUsVC : ContactUsViewModelDelegate{
             self.lblAdmissionEmail.text = data?.admissionEmail
             self.lblGenralPhn.text = data?.genernalNumber
             self.lblGenralEmail.text = data?.genernalEmail
+            
+            if data?.imageUrl != nil{
+                var imgProfileUrl = data?.imageUrl ?? ""
+                imgProfile.sd_imageIndicator = SDWebImageActivityIndicator.gray
+                //mohit studentImgUrl = URL(string: imgProfileUrl)
+                imgProfile.contentMode = .scaleAspectFill
+                imgProfile.sd_setImage(with: URL(string: imgProfileUrl), placeholderImage: UIImage(named: kImages.kProfileImage))
+            }else{
+                //            studentImgUrl = URL(string: "")
+                imgProfile.image = UIImage.init(named: kImages.kProfileImage)
+            }
+            
         }
     }
 }

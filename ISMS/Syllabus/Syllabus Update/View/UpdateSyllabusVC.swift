@@ -113,8 +113,53 @@ class UpdateSyllabusVC: BaseUIViewController {
     }
     
     @objc func updateSyllabus(_ sender: UIButton) {
-        tableView.selectRow(at: indexPath, animated: true, scrollPosition: .bottom)
-        tableView.delegate?.tableView!(tableView, didSelectRowAt: self.indexPath!)
+        let position: CGPoint = sender.convert(CGPoint.zero, to: self.tableView)
+        if let indexPath = self.tableView.indexPathForRow(at: position)
+        {
+//          let section = indexPath.section
+//          let row = indexPath.row
+          
+       
+        if UserDefaultExtensionModel.shared.currentUserRoleId == 5{
+              }else if UserDefaultExtensionModel.shared.currentUserRoleId == 6{
+              }else if isFromStudent == false {
+                  print("index click")
+              indexRow = indexPath.row
+              section = indexPath.section
+              firstRun = 2
+              let item = arrayData[indexPath.section].TopicListViewModels?[indexPath.row]
+              if isCheck == false {
+                  isCheck = true
+                  if coveredTopicData.count > 0{
+                      for i in 0..<coveredTopicData.count{
+                          if i<coveredTopicData.count{
+                              if item?.TopicId == (coveredTopicData[i] as NSDictionary).value(forKey: "topicId") as? Int{
+                                  coveredTopicData[i]["IsCover"] = true
+                              }
+                              
+                          }
+                      }
+                  }
+                  print("our selected arraty: ",coveredTopicData)
+                  tableView.reloadData()
+              }else{
+                  isCheck = false
+                  if coveredTopicData.count > 0{
+                      for i in 0..<coveredTopicData.count{
+                          if i<coveredTopicData.count{
+                              if item?.TopicId == (coveredTopicData[i] as NSDictionary).value(forKey: "topicId") as? Int{
+                                  coveredTopicData[i]["IsCover"] = false
+                              }
+                              
+                          }
+                      }
+                    
+                  }
+                   print("our selected arraty delete: ",coveredTopicData)
+                  tableView.reloadData()
+                  }
+              }
+        }
     }
     
     @IBAction func backbtnAction(_ sender: UIBarButtonItem) {
@@ -188,13 +233,19 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
                 
             }
         }
-//        cell.checkBox.addTarget(self, action: #selector(self.updateSyllabus), for: .touchUpInside)
+        cell.checkBox.addTarget(self, action: #selector(self.updateSyllabus), for: .touchUpInside)
         return cell
     }
-    
-     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70;
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
+        return UITableView.automaticDimension;//Choose your custom row height
+    }
+//     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 60
+//    }
     
     // Header
      func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -233,6 +284,7 @@ extension UpdateSyllabusVC : UITableViewDelegate, UITableViewDataSource {
         if UserDefaultExtensionModel.shared.currentUserRoleId == 5{
         }else if UserDefaultExtensionModel.shared.currentUserRoleId == 6{
         }else if isFromStudent == false {
+            print("index click")
         indexRow = indexPath.row
         section = indexPath.section
         firstRun = 2
@@ -364,5 +416,6 @@ extension UpdateSyllabusVC : OKAlertViewDelegate{
         
         
         okAlertView.removeFromSuperview()
+        navigationController?.popViewController(animated: false)
     }
 }

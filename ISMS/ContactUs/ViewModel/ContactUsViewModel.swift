@@ -40,7 +40,7 @@ class ContactUsViewModel {
             
             let paramDict = ["id": 4] as [String : Any]
         let contactId = 4
-            let url = "/api/User/GetContactUsDetailById" + "?id=" + "\(contactId)"
+            let url = "api/User/GetContactUsDetailById" + "?id=" + "\(contactId)"
             print("url: ",url)
             ContactUsAPI.sharedInstance.GetContactUs(url: url, parameters: paramDict as [String : Any], completionResponse: { (ContactUsModel) in
                 print("teacher list: ",ContactUsModel.resultData)

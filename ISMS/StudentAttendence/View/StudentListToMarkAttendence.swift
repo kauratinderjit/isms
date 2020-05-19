@@ -12,9 +12,14 @@ class StudentListToMarkAttendence: BaseUIViewController {
     
     //Outlets
     @IBOutlet weak var tableViewStudent: UITableView!
-    
+    @IBOutlet weak var viewDate: UIView!
     @IBOutlet weak var btnSubmitAttandance: UIButton!
     @IBOutlet weak var kbtnSubmitHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var constraintsTableViewTop: NSLayoutConstraint!
+    
+    @IBOutlet weak var lblSelectDate: UILabel!
+    
     //Variables
     var arrStudentlist = [GetStudentListForAttResultData]()
     var viewModel : StudentListForAttViewModel?
@@ -23,6 +28,7 @@ class StudentListToMarkAttendence: BaseUIViewController {
     var classId,timeTableId,teacherId,classSubjectId :Int?
     var studentAttendenceArray = [[String:Any]]()
     var isFromHOD:Bool?
+    var startDate = Date()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,12 +47,14 @@ class StudentListToMarkAttendence: BaseUIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
         if isFromHOD == true{
             btnSubmitAttandance.isHidden = true
             kbtnSubmitHeight.constant = 0
         }else{
             btnSubmitAttandance.isHidden = false
             kbtnSubmitHeight.constant = 58
+             
         }
 //          btnSubmitAttandance.isHidden = false
         arrStudentlist.removeAll()
@@ -56,15 +64,24 @@ class StudentListToMarkAttendence: BaseUIViewController {
     
     func StudentListApi(){
         if checkInternetConnection(){
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            formatter.timeZone = TimeZone.autoupdatingCurrent
+            formatter.locale = Locale.current
+             let convertedDate = formatter.string(from: Date())
+            self.lblSelectDate.text = convertedDate
             //            self.viewModel?.isSearching = false
-            self.viewModel?.StudentList(TimeTableId: timeTableId ?? 0,
-                                        ClassId: classId ?? 0)
+            self.viewModel?.StudentList(TimeTableId: timeTableId ?? 0,ClassId: classId ?? 0,Date:  self.lblSelectDate.text ?? "")
             
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
     }
     
+    @IBAction func btnSelectDate(_ sender: Any) {
+        setDatePickerView(self.view, type: .date)
+        showDatePicker(datePickerDelegate: self)
+    }
     
     @IBAction func actionSubmitStudentAttendence(_ sender: Any) {
         isStudentAttendanceSuccess = true
@@ -83,6 +100,38 @@ class StudentListToMarkAttendence: BaseUIViewController {
     
     
 }
+
+
+
+extension StudentListToMarkAttendence:SharedUIDatePickerDelegate{
+    
+    func doneButtonClicked(datePicker: UIDatePicker) {
+        //yearofestablishment
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.timeZone = TimeZone.current
+        formatter.locale = Locale.current
+        let convertedDate = formatter.string(from: datePicker.date)
+        let strDate = formatter.date(from: convertedDate)
+             lblSelectDate.text = convertedDate
+            startDate = strDate ?? Date()
+        
+        let currentDate = formatter.string(from: Date())
+             
+       
+        if isFromHOD != true && currentDate == convertedDate{
+            btnSubmitAttandance.isHidden = false
+            kbtnSubmitHeight.constant = 58
+        }else{
+            btnSubmitAttandance.isHidden = true
+            kbtnSubmitHeight.constant = 0
+        }
+        self.viewModel?.StudentList(TimeTableId: timeTableId ?? 0,ClassId: classId ?? 0,Date:lblSelectDate.text ?? "")
+       
+    }
+}
+
 extension StudentListToMarkAttendence : UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

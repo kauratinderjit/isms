@@ -34,6 +34,9 @@ class CheckHomeworkVC: BaseUIViewController
     var selectedSubjectId : Int? = 0
     var selectedIndexPathForDelAttachment : Int? = 0
     
+    let thmeColor = UIColor(red: 75/255.0, green: 190/255.0, blue: 247/255.0, alpha: 1.0)
+    let pinkColor = UIColor(red: 255/255.0, green: 155/255.0, blue: 247/255.0, alpha: 1.0)
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -271,7 +274,31 @@ extension CheckHomeworkVC : UITableViewDelegate, UITableViewDataSource
         
         
         let dic = self.homeWorkData[indexPath.row]
+        let topic = dic.Topic
         cell.lblAttachment.text = dic.Topic
+        
+        cell.lblName.text = dic.studentName
+        
+        if(topic?.count ?? 0 > 0)
+        {
+          //  let flttr = topic![0]
+            
+            let firstCharIndex = topic!.index(topic!.startIndex, offsetBy: 1)
+            let firstChar = topic!.substring(to: firstCharIndex)
+            
+            cell.lblFirstLetter.text = "\(firstChar)"
+        }
+        
+        
+        
+        if indexPath.row % 2 == 0
+        {
+            cell.lblFirstLetter.backgroundColor = thmeColor
+        }
+        else
+        {
+            cell.lblFirstLetter.backgroundColor = pinkColor
+        }
         
         return cell
     }

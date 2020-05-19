@@ -862,7 +862,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbz-9r-PsL">
-                                <rect key="frame" x="351" y="577" width="50" height="50"/>
+                                <rect key="frame" x="351" y="646" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Vav-s2-Hg6"/>
                                     <constraint firstAttribute="width" constant="50" id="q3I-uK-ty4"/>
@@ -877,7 +877,7 @@
                         <constraints>
                             <constraint firstItem="p6a-S5-YvE" firstAttribute="trailing" secondItem="FJR-NA-r7x" secondAttribute="trailing" id="A2F-wg-6YZ"/>
                             <constraint firstItem="p6a-S5-YvE" firstAttribute="trailing" secondItem="mbz-9r-PsL" secondAttribute="trailing" constant="13" id="Scu-ue-Qsd"/>
-                            <constraint firstItem="p6a-S5-YvE" firstAttribute="bottom" secondItem="mbz-9r-PsL" secondAttribute="bottom" constant="109" id="W9B-hx-1yO"/>
+                            <constraint firstItem="p6a-S5-YvE" firstAttribute="bottom" secondItem="mbz-9r-PsL" secondAttribute="bottom" constant="40" id="W9B-hx-1yO"/>
                             <constraint firstAttribute="bottom" secondItem="FJR-NA-r7x" secondAttribute="bottom" id="aB2-Oi-sbc"/>
                             <constraint firstItem="FJR-NA-r7x" firstAttribute="leading" secondItem="p6a-S5-YvE" secondAttribute="leading" id="hhg-Ie-3g0"/>
                             <constraint firstItem="FJR-NA-r7x" firstAttribute="top" secondItem="p6a-S5-YvE" secondAttribute="top" id="paz-Oj-sFX"/>

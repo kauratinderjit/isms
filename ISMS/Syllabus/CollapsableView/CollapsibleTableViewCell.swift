@@ -24,7 +24,9 @@ class CollapsibleTableViewCell: UITableViewCell {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.leadingAnchor.constraint(equalTo: marginGuide.leadingAnchor).isActive = true
         nameLabel.topAnchor.constraint(equalTo: marginGuide.topAnchor, constant: 10).isActive = true
-        nameLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor, constant: 70).isActive = true
+        nameLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor,constant: -40).isActive = true
+        nameLabel.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor,constant: -10).isActive = true
+//        nameLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor, constant: 70).isActive = true
         nameLabel.numberOfLines = 0
         nameLabel.font = UIFont.systemFont(ofSize: 16)
         

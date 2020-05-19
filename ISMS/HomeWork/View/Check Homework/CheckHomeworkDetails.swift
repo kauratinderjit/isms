@@ -234,7 +234,7 @@ extension CheckHomeworkDetails : UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         
-        return uploadData.count
+        return homeWorkDetails?.StuAttachmentModels?.count ?? 0
         
     }
     
@@ -243,22 +243,23 @@ extension CheckHomeworkDetails : UITableViewDelegate, UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AddNotesCell
         cell.btnDel.tag = indexPath.row
         
-        let dic = uploadData[indexPath.row] as? [String:Any]
-        cell.lblAttachment.text = dic?["fileName"] as? String
+        let data = homeWorkDetails?.StuAttachmentModels?[indexPath.row]
+       // let dic = uploadData[indexPath.row] as? [String:Any]
+        cell.lblAttachment.text = data?.FileName
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        let dic = uploadData[indexPath.row] as? [String:Any]
-        let path = dic?["fileName"] as? String ?? ""
+        let dic = homeWorkDetails?.StuAttachmentModels?[indexPath.row]
+        let path = dic?.AttachmentUrl
         
-        if (path.count > 0)
+        if (path?.count ?? 0 > 0)
         {
-            if (path.contains(".pdf"))
+            if ((path?.contains(".pdf"))!)
             {
-                self.storeAndShare(withURLString: path)
+                self.storeAndShare(withURLString: path!)
             }
             else
             {
