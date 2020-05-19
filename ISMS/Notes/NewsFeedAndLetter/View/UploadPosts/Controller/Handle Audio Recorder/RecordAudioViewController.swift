@@ -114,7 +114,7 @@ class RecordAudioViewController: BaseUIViewController,RecorderDelegate {
         let totalTimeString = String(format: "%02d:%02d", min, sec)
           lblRecordingTime.text = totalTimeString
         
-        if (min >= 03) {
+        if (min >= 01) {
              self.showAlert(Message: "You have reached a maximum recording limit.")
              recording.stop()
         }

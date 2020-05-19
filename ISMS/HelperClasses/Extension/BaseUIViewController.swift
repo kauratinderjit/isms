@@ -554,6 +554,20 @@ class BaseUIViewController: UIViewController {
         }
     }
     
+    
+    func OpenGalleryVideo(camera:Bool,imagePickerDelegate:UIImagePickerDelegate) {
+           
+            imagePicker.delegate = self
+            imagePicker.sourceType = .savedPhotosAlbum
+            imagePicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .savedPhotosAlbum)!
+            imagePicker.mediaTypes = ["public.movie"]
+          //  imagePickerController.videoMaximumDuration = 1.0
+            imagePicker.allowsEditing = true
+         self.imagePickerDelegate = imagePickerDelegate
+        self.present(imagePicker, animated: true, completion: nil)
+
+    }
+    
     //MARK:- Set Navigation Bar Height after appearing search bar
     func setNavigationBarHeight(){
         navigationController?.view.setNeedsLayout() // force update layout
@@ -706,7 +720,8 @@ extension BaseUIViewController:UIImagePickerControllerDelegate,UINavigationContr
                 imgGenerator.appliesPreferredTrackTransform = true
                 let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(value: 0, timescale: 1), actualTime: nil)
                 let thumbnail = UIImage(cgImage: cgImage)
-                imagePickerDelegate?.SelectedMedia(image: thumbnail,videoURL:videoURL )
+               // print(info[UIImagePickerController.InfoKey.mediaURL] as! URL)
+                imagePickerDelegate?.SelectedMedia(image: thumbnail,videoURL:info[UIImagePickerController.InfoKey.mediaURL] as? URL )
             } catch let error {
                 CommonFunctions.sharedmanagerCommon.println(object: "*** Error generating thumbnail: \(error.localizedDescription)")
             }

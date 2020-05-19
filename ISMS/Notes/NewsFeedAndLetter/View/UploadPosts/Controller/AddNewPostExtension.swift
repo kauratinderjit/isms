@@ -76,17 +76,11 @@ extension AddNewsFeedPostsVC
     //MARK: HANDLING VIDEO FETCHING FROM GALLERY
     func openVideoGallery()
     {
-        imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.sourceType = .savedPhotosAlbum
-        imagePickerController.mediaTypes = UIImagePickerController.availableMediaTypes(for: .savedPhotosAlbum)!
-        imagePickerController.mediaTypes = ["public.movie"]
-        
-        imagePickerController.allowsEditing = true
-        present(imagePickerController, animated: true, completion: nil)
-    }
-    
+        self.OpenGalleryVideo(camera: false, imagePickerDelegate: self)
 
+    
+       // present(imagePickerController, animated: true, completion: nil)
+    }
     
     
     func storeValues(path:URL)
@@ -141,7 +135,13 @@ extension AddNewsFeedPostsVC : UICollectionViewDelegate,UICollectionViewDataSour
                 cellnew.btnPlay.setBackgroundImage(UIImage(named: "playVideo"), for: .normal)
             }
             
-            cellnew.ivImg.image = UIImage()
+            
+            if (type == "video"){
+                cellnew.ivImg.image = UIImage(named: "scenic" )
+            }
+            else{
+                 cellnew.ivImg.image = UIImage(named: "audiobg" )
+            }
         }
         else
         {
@@ -160,16 +160,21 @@ extension AddNewsFeedPostsVC : UICollectionViewDelegate,UICollectionViewDataSour
         return cellnew
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+         return CGSize(width: (collectionView.frame.size.width ) - 5, height: 200)
+    }
+    
+    
     
 }
 
 extension AddNewsFeedPostsVC : UICollectionViewDelegateFlowLayout
 {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
-    {
-        let frame = self.collctionViewPosts.frame
-        return CGSize(width: frame.size.width-20, height: frame.size.height-20)
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+//    {
+//        let frame = self.collctionViewPosts.frame
+//        return CGSize(width: frame.size.width-20, height: frame.size.height-20)
+//    }
 }
 
 

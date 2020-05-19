@@ -1179,7 +1179,7 @@ public struct kNewsLetterAndFeedIdentifiers{
     static let kNewsLetterTableCell = "NewsLetterTableCell"
     static let kBulletinTableCell = "BulletinTableCell"
     static let kNewsLetterAndFeedVC = "NewsLetterAndFeedVC"
-    static let kNewsLetterAndFeedTitle = "Notice board"
+    static let kNewsLetterAndFeedTitle = "Notice Board"
 }
 
 public struct kExamResultIdentifiers {

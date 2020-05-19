@@ -57,6 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         voipRegistry.delegate = self
         // Set the push type to VoIP
         //voipRegistry.desiredPushTypes = [PKPushType.voIP]
+
         
         
     }

@@ -21,11 +21,14 @@ class EventTableCell: UITableViewCell {
     @IBOutlet weak var btnShare: UIImageView!
     @IBOutlet weak var btnReport: UIButton!
     @IBOutlet weak var likeImage: UIImageView!
+    @IBOutlet weak var lblDescription: UILabel!
+        @IBOutlet weak var btnLikerList: UIButton!
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
     }
     
     //MARK:- other functions

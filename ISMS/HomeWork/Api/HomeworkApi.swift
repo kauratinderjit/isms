@@ -463,7 +463,58 @@ class HomeworkApi
         }
     }
     
-    
+    func getComments(url : String,parameters: [String : Any]?,completionResponse:  @escaping (CommentList) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
+           
+           let urlCmplete = BaseUrl.kBaseURL+url
+           print(urlCmplete)
+           print(parameters)
+           var accessTokken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ODk2OTUwODkxIiwiZW1haWwiOiJmb2dneUBnbWFpbC5jbyIsImF6cCI6IjI5NSIsInNpZCI6Im1pbmRAMTIzIiwianRpIjoiNWEwNDBlMzgtZWNkZS00OGMzLWE2YzgtYzc4Njk5MWJkZmM0IiwiZXhwIjoxNTc1NzE0MjQ0LCJpc3MiOiJUZXN0LmNvbSIsImF1ZCI6IlRlc3QuY29tIn0.ewRiy_71XXevggx1qQFsEbE7EVzJm-uy5ru_Tr6kxeI"
+           if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String
+           {
+               accessTokken = str
+           }
+           
+           let headers = [KConstants.kHeaderAuthorization:KConstants.kHeaderBearer+" "+accessTokken,KConstants.kAccept: KConstants.kApplicationJson]
+           
+           
+              Alamofire.request(urlCmplete, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers : headers)
+               .responseJSON { response in
+               CommonFunctions.sharedmanagerCommon.println(object: "response list:- \(response) ")
+               if response.result.isSuccess
+               {
+                   guard let data = response.value else{return}
+                   
+                   if let responseData  = data as? [String : Any]
+                   {
+                       print("your response data subjec kk1: \(responseData)")
+                       self.getCommentsListJSON(data: responseData, completionResponse: { (responseModel) in
+                           CommonFunctions.sharedmanagerCommon.println(object: "response list2:- \(String(describing: responseModel.resultData)) ")
+                           completionResponse(responseModel)
+                       }, completionError: { (mapperError) in
+                           completionnilResponse(mapperError)
+                       })
+                       
+                   }else{
+                       CommonFunctions.sharedmanagerCommon.println(object: "Get StudentList Error:- \(data) ")
+                   }
+               }
+               else
+               {
+                   complitionError(response.error)
+                   return
+               }
+           }
+       }
+    private func getCommentsListJSON(data: [String : Any],completionResponse:  @escaping (CommentList) -> Void,completionError: @escaping (String?) -> Void)  {
+          
+          let newsListData = CommentList(JSON: data)
+          
+          if newsListData != nil{
+              completionResponse(newsListData!)
+          }else{
+              completionError(Alerts.kMapperModelError)
+          }
+      }
     
     func likePost(url : String,parameters: [String : Any]?,completionResponse:  @escaping ([String:Any]) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
            
@@ -503,6 +554,57 @@ class HomeworkApi
            }
        }
 
-       
+       func getLikerList(url : String,parameters: [String : Any]?,completionResponse:  @escaping (LikerListModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
+               
+               let urlCmplete = BaseUrl.kBaseURL+url
+               print(urlCmplete)
+               print(parameters)
+               var accessTokken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ODk2OTUwODkxIiwiZW1haWwiOiJmb2dneUBnbWFpbC5jbyIsImF6cCI6IjI5NSIsInNpZCI6Im1pbmRAMTIzIiwianRpIjoiNWEwNDBlMzgtZWNkZS00OGMzLWE2YzgtYzc4Njk5MWJkZmM0IiwiZXhwIjoxNTc1NzE0MjQ0LCJpc3MiOiJUZXN0LmNvbSIsImF1ZCI6IlRlc3QuY29tIn0.ewRiy_71XXevggx1qQFsEbE7EVzJm-uy5ru_Tr6kxeI"
+               if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String
+               {
+                   accessTokken = str
+               }
+               
+               let headers = [KConstants.kHeaderAuthorization:KConstants.kHeaderBearer+" "+accessTokken,KConstants.kAccept: KConstants.kApplicationJson]
+               
+               
+                  Alamofire.request(urlCmplete, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers : headers)
+                   .responseJSON { response in
+                   CommonFunctions.sharedmanagerCommon.println(object: "response list:- \(response) ")
+                   if response.result.isSuccess
+                   {
+                       guard let data = response.value else{return}
+                       
+                       if let responseData  = data as? [String : Any]
+                       {
+                           print("your response data subjec kk1: \(responseData)")
+                           self.getLikerListJSON(data: responseData, completionResponse: { (responseModel) in
+                               CommonFunctions.sharedmanagerCommon.println(object: "response list2:- \(String(describing: responseModel.resultData)) ")
+                               completionResponse(responseModel)
+                           }, completionError: { (mapperError) in
+                               completionnilResponse(mapperError)
+                           })
+                           
+                       }else{
+                           CommonFunctions.sharedmanagerCommon.println(object: "Get StudentList Error:- \(data) ")
+                       }
+                   }
+                   else
+                   {
+                       complitionError(response.error)
+                       return
+                   }
+               }
+           }
+        private func getLikerListJSON(data: [String : Any],completionResponse:  @escaping (LikerListModel) -> Void,completionError: @escaping (String?) -> Void)  {
+              
+              let newsListData = LikerListModel(JSON: data)
+              
+              if newsListData != nil{
+                  completionResponse(newsListData!)
+              }else{
+                  completionError(Alerts.kMapperModelError)
+              }
+          }
 }
 //NewsFeedListModel

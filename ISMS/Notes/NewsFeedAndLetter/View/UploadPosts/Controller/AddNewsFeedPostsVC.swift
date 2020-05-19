@@ -10,8 +10,6 @@ import UIKit
 import AVFoundation
 import Foundation
 import AVKit
-import Gallery
-import Photos
 import KMPlaceholderTextView
 
 let Kmediachanges = "Are you sure you want change media? your previous records will be deleted!"
@@ -32,7 +30,7 @@ class AddNewsFeedPostsVC: BaseUIViewController
     
     var postArray = NSMutableArray()
     var playingAudioVideo = false
-    var localImages : [Image]?
+    //var localImages : [Image]?
     
     override func viewDidLoad()
     {
@@ -104,6 +102,12 @@ class AddNewsFeedPostsVC: BaseUIViewController
             self.playingAudioVideo = true
             let player = AVPlayer(url: path!)
             let vc = AVPlayerViewController()
+            if dic?.value(forKey: "type") as? String == "audio" {
+            let myImageView = UIImageView()
+            myImageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+              myImageView.image = UIImage(named:"audiobg")
+             myImageView.contentMode = .scaleAspectFit
+                vc.contentOverlayView?.addSubview(myImageView)}
             vc.player = player
             present(vc, animated: true)
             {
@@ -215,8 +219,6 @@ class AddNewsFeedPostsVC: BaseUIViewController
                           else {
                           
                             self.viewModel?.addPost(Title: "", Description: txtView.text, DeleteIds: 0, Links: "", NewsLetterId: 0, ParticularId: UserDefaultExtensionModel.shared.userRoleParticularId, TypeId: 0, lstAssignHomeAttachmentMapping: postArray)
-
-
                           }
                           
                       }
@@ -250,7 +252,12 @@ extension AddNewsFeedPostsVC:UIImagePickerDelegate{
     }
     func SelectedMedia(image: UIImage?, videoURL: URL?){
         
-        
+                               let dic = NSMutableDictionary()
+                                 dic.setValue(videoURL, forKey: "path")
+                                 dic.setValue("video", forKey: "type")
+                                 self.postArray.add(dic)
+                                 self.collctionViewPosts.reloadData()
+                                 self.btnUpload.isHidden = false
         
     }
 }
@@ -273,89 +280,7 @@ extension AddNewsFeedPostsVC : GalleryAlertCustomViewDelegate{
     }
 }
 
-extension AddNewsFeedPostsVC : GalleryControllerDelegate
-{
-    func galleryController(_ controller: GalleryController, didSelectImages images: [Image])
-    {
-        print(images)
-        self.postArray = NSMutableArray()
-        self.videoPath = nil
-        
-        for img in images
-        {
-            
-            let fimage = self.getAssetThumbnail(asset: img.asset, size: 100.0)
-            let dic = NSMutableDictionary()
-            dic.setValue(fimage, forKey: "path")
-            dic.setValue("image", forKey: "type")
-            self.postArray.add(dic)
-        }
-        
-        if (images.count > 0)
-        {
-            self.collctionViewPosts.reloadData()
-            self.btnUpload.isHidden = false
-            self.collctionViewPosts.restore()
-        }
-        self.dismiss(animated: true, completion:nil)
-    }
-    
-    func galleryController(_ controller: GalleryController, didSelectVideo video: Video)
-    {
-        print(video)
-        self.dismiss(animated: true, completion:nil)
-    }
-    
-    func galleryController(_ controller: GalleryController, requestLightbox images: [Image])
-    {
-        print(images)
-        self.dismiss(animated: true, completion:nil)
-    }
-    
-    func galleryControllerDidCancel(_ controller: GalleryController)
-    {
-        self.dismiss(animated: true, completion:nil)
-    }
-    
-    
-    func getAssetThumbnail(asset: PHAsset, size: CGFloat) -> UIImage
-    {
-        let retinaScale = UIScreen.main.scale
-        let retinaSquare = CGSize(width: size * retinaScale, height: size * retinaScale)
-        let cropSizeLength = min(asset.pixelWidth, asset.pixelHeight)
-        let square = CGRect(x: 0, y: 0, width: CGFloat(cropSizeLength), height: CGFloat(cropSizeLength))
-        let cropRect = square.applying(CGAffineTransform(scaleX: 1.0/CGFloat(asset.pixelWidth), y: 1.0/CGFloat(asset.pixelHeight)))
-        
-        let manager = PHImageManager.default()
-        let options = PHImageRequestOptions()
-        var thumbnail = UIImage()
-        
-        options.isSynchronous = true
-        options.deliveryMode = .highQualityFormat
-        options.resizeMode = .exact
-        options.normalizedCropRect = cropRect
-        
-        manager.requestImage(for: asset, targetSize: retinaSquare, contentMode: .aspectFit, options: options, resultHandler: {(result, info)->Void in
-            thumbnail = result!
-        })
-        return thumbnail
-    }
-    
-}
 
-extension PHAsset
-{
-
-    var image : UIImage
-    {
-        var thumbnail = UIImage()
-        let imageManager = PHCachingImageManager()
-        imageManager.requestImage(for: self, targetSize: CGSize(width: 1000, height: 1000), contentMode: .aspectFit, options: nil, resultHandler: { image, _ in
-            thumbnail = image!
-        })
-        return thumbnail
-    }
-}
 
 
 extension AddNewsFeedPostsVC : ViewDelegate {
@@ -375,6 +300,14 @@ extension AddNewsFeedPostsVC : ViewDelegate {
 }
 
 extension AddNewsFeedPostsVC : AddPostDelegate {
+    func LikerList(data: [lstgetLikesListViewModels]) {
+        
+    }
+    
+    func CommentData(data: [lstgetCommentViewList]) {
+        
+    }
+    
     func displayData(data: [NewsListResultData]) {
         
     }
