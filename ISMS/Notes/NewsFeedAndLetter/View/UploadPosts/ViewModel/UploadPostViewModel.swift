@@ -221,7 +221,9 @@ class UploadPostViewModel {
                         
                         switch response.statusCode{
                                                  case 200:
+                                                     if response.resultData?.list?.count ?? 0 > 0 {
                                                     self.UploadPostDelegate?.CommentData(data: ((response.resultData?.list)!))
+                            }
 
                                                  case 401:
                                                     self.uploadPostViewDelegate?.showAlert(alert: response.message ?? "" )
@@ -308,7 +310,9 @@ class UploadPostViewModel {
                           
                           switch response.statusCode {
                                                    case 200:
+                                                    if response.resultData?.list?.count ?? 0 > 0 {
                                                      self.UploadPostDelegate?.LikerList(data: ((response.resultData?.list)!))
+                                                    }
                                                      print("Atinder")
                                                    case 401:
                                                       self.uploadPostViewDelegate?.showAlert(alert: response.message ?? "" )

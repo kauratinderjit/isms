@@ -46,7 +46,7 @@ extension LikerListVC : UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! LikerListCell
         cell.lblName.text = likerList?[indexPath.row].LikedBy
         let nameStr = likerList?[indexPath.row].LikedBy ?? ""
-         cell.imgViewProfile.addInitials(first: nameStr, second: "")
+        cell.imgViewProfile.addInitials(first: nameStr.characters.first?.description ?? "", second: "")
        
         return cell
     }
