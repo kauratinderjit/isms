@@ -100,7 +100,6 @@ class ClassApi{
     func getClassList(url : String,parameters: [String : Any]?,completionResponse:  @escaping (ClassListModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
         
         let urlCmplete = BaseUrl.kBaseURL+url
-//        var accessTokken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ODk2OTUwODkxIiwiZW1haWwiOiJmb2dneUBnbWFpbC5jbyIsImF6cCI6IjI5NSIsInNpZCI6Im1pbmRAMTIzIiwianRpIjoiNWEwNDBlMzgtZWNkZS00OGMzLWE2YzgtYzc4Njk5MWJkZmM0IiwiZXhwIjoxNTc1NzE0MjQ0LCJpc3MiOiJUZXN0LmNvbSIsImF1ZCI6IlRlc3QuY29tIn0.ewRiy_71XXevggx1qQFsEbE7EVzJm-uy5ru_Tr6kxeI"
         var accessTokken = ""
 
         if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String
@@ -146,6 +145,59 @@ class ClassApi{
         
         if classListData != nil{
             completionResponse(classListData!)
+        }else{
+            completionError(Alerts.kMapperModelError)
+        }
+    }
+    
+    func getLeaveList(url : String,parameters: [String : Any]?,completionResponse:  @escaping (LeaveListModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
+        
+        let urlCmplete = BaseUrl.kBaseURL+url
+        var accessTokken = ""
+
+        if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String
+        {
+            accessTokken = str
+        }
+        
+        let headers = [KConstants.kHeaderAuthorization:KConstants.kHeaderBearer+" "+accessTokken,KConstants.kAccept: KConstants.kApplicationJson]
+        
+            Alamofire.request(urlCmplete, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            
+            if response.result.isSuccess
+            {
+                guard let data = response.value else{return}
+                
+                if let responseData  = data as? [String : Any]
+                {
+                    print("your response data here : \(responseData)")
+                    
+                    self.getLeaveListJSON(data: responseData, completionResponse: { (responseModel) in
+                        completionResponse(responseModel)
+                    }, completionError: { (mapperError) in
+                        completionnilResponse(mapperError)
+                    })
+                    
+                }else{
+                    CommonFunctions.sharedmanagerCommon.println(object: "Get Class Error:- \(data) ")
+                }
+                
+            }
+            else
+            {
+                complitionError(response.error)
+                return
+            }
+        }
+        
+    }
+    
+    private func getLeaveListJSON(data: [String : Any],completionResponse:  @escaping (LeaveListModel) -> Void,completionError: @escaping (String?) -> Void)  {
+        
+        let leaveListData = LeaveListModel(JSON: data)
+        
+        if leaveListData != nil{
+            completionResponse(leaveListData!)
         }else{
             completionError(Alerts.kMapperModelError)
         }

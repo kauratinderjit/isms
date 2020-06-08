@@ -30,7 +30,6 @@ struct AttachedFiles{
         self.instituteAttachmentName = instituteAttachmentName
         self.instituteFileName = instituteFileName
         self.instituteAttachmentId = instituteAttachmentId
-        
     }
 }
 
