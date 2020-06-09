@@ -15,7 +15,7 @@ class GeneralTableCell : UITableViewCell{
        @IBOutlet weak var txtFieldPhoneNum: UITextField!
        @IBOutlet weak var lblPhoneNum: UILabel!
     
-     func setCellUI(data :[[String:Any]]?,indexPath: IndexPath){
+     func setCellUI(data :[[String:Any]]?,indexPath: IndexPath,isFromAdmin: Int){
            
     //       let rsltData = data?[indexPath.row]
           
@@ -40,6 +40,12 @@ class GeneralTableCell : UITableViewCell{
                     }
                     btnMinus.isHidden = false
                     addMoreBtn.isHidden = true
+                }
+                if isFromAdmin == 1{
+                    btnMinus.isHidden = true
+                    addMoreBtn.isHidden = true
+                    txtFieldPhoneNum.isUserInteractionEnabled = false
+                    txtFieldEmail.isUserInteractionEnabled = false
                 }
             }
        }

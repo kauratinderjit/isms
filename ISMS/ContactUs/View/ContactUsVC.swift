@@ -38,6 +38,7 @@ class ContactUsVC: BaseUIViewController {
     var firstAdmission = 1
      var firstGeneral = 1
     var firstEmerg = 1
+    var fromAdmin : Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,8 +47,18 @@ class ContactUsVC: BaseUIViewController {
         setBackButton()
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
               view.addGestureRecognizer(tap)
-        viewTopConstraints.constant = -50
-        imgProfile.isHidden = true
+        if fromAdmin  == 1{
+             viewTopConstraints.constant = 20
+            imgProfile.isHidden = false
+            lblEstablishment.isHidden = false
+            ourName.isHidden = false
+            btnSubmit.setTitle("Locate Us", for: .normal)
+            
+        }else{
+             viewTopConstraints.constant = -50
+        }
+       
+        
         self.title = "Contact Us"
         viewModel?.getContactUs()
     }
@@ -97,8 +108,6 @@ class ContactUsVC: BaseUIViewController {
                                    data = ["AdmissionInquiryId":admissionInquiryId]
                                    print("data: ",data)
                                     self.lstdeleteAdmissionInquiryViewModels.append(data)
-//                                    self.ViewModel?.deletePeriod(periodId: period_id)
-        //                            self.getPeriodList()
                                 }
                                 else{
                                     print("addded locally")
@@ -117,7 +126,6 @@ class ContactUsVC: BaseUIViewController {
                                     data = ["AdmissionInquiryId":admissionInquiryId]
                                     print("data: ",data)
                                     self.lstdeleteAdmissionInquiryViewModels.append(data)
-        //self.getPeriodList()
                                 }
                                 else{
                                     print("addded locally")
@@ -322,14 +330,15 @@ class ContactUsVC: BaseUIViewController {
                 debugPrint("Last Cell")
             }
         }
-        
     }
    
     
     @IBAction func actionSubmit(_ sender: Any) {
-        viewModel?.addContact(ContactId: 31,InstituteId: 1,Message: "",lstEmergencyInquiryViewModels: lstEmergencyInquiryViewModels,lstAdmissionInquiryViewModels: lstAdmissionInquiryViewModels,lstGeneralInquiryViewModels: lstGeneralInquiryViewModels,lstdeleteEmergencyInquiryViewModels: lstdeleteEmergencyInquiryViewModels,lstdeleteAdmissionInquiryViewModels: lstdeleteAdmissionInquiryViewModels,lstdeleteGeneralInquiryViewModels : lstdeleteGeneralInquiryViewModels)
+          if fromAdmin  == 1{
+          }else{
+             viewModel?.addContact(ContactId: 31,InstituteId: 1,Message: "",lstEmergencyInquiryViewModels: lstEmergencyInquiryViewModels,lstAdmissionInquiryViewModels: lstAdmissionInquiryViewModels,lstGeneralInquiryViewModels: lstGeneralInquiryViewModels,lstdeleteEmergencyInquiryViewModels: lstdeleteEmergencyInquiryViewModels,lstdeleteAdmissionInquiryViewModels: lstdeleteAdmissionInquiryViewModels,lstdeleteGeneralInquiryViewModels : lstdeleteGeneralInquiryViewModels)
+        }
     }
-    
 }
 extension ContactUsVC : ContactUsViewModelDelegate{
     func ContactUsDidSuccess(data: ContactUsResult?) {
@@ -359,11 +368,23 @@ extension ContactUsVC : ContactUsViewModelDelegate{
                     self.lstAdmissionInquiryViewModels.append(data)
                 }
             }
-              self.tableAdmissionHeightConstraints.constant = self.tableAdmissionHeightConstraints.constant + CGFloat(((data?.lstAdmissionInquiryViewModels?.count ?? 0)*120))
                 
-                self.viewHeightConstraints.constant = self.viewHeightConstraints.constant + CGFloat(((data?.lstAdmissionInquiryViewModels?.count ?? 0)*120))
-                
-                tableViewAdmission.reloadData()
+                if fromAdmin == 1{
+                    self.tableAdmissionHeightConstraints.constant = self.tableAdmissionHeightConstraints.constant + CGFloat(((data?.lstAdmissionInquiryViewModels?.count ?? 0)*120))
+                    self.tableAdmissionHeightConstraints.constant = self.tableAdmissionHeightConstraints.constant - 120
+                    
+                    self.viewHeightConstraints.constant = self.viewHeightConstraints.constant + CGFloat(((data?.lstAdmissionInquiryViewModels?.count ?? 0)*120))
+                    self.viewHeightConstraints.constant = self.viewHeightConstraints.constant - 120
+                    
+                    tableViewAdmission.reloadData()
+                }else{
+                    self.tableAdmissionHeightConstraints.constant = self.tableAdmissionHeightConstraints.constant + CGFloat(((data?.lstAdmissionInquiryViewModels?.count ?? 0)*120))
+                    
+                    self.viewHeightConstraints.constant = self.viewHeightConstraints.constant + CGFloat(((data?.lstAdmissionInquiryViewModels?.count ?? 0)*120))
+                    
+                    tableViewAdmission.reloadData()
+                }
+             
             }
             
             if data?.lstGeneralInquiryViewModels?.count ?? 0 > 0{
@@ -376,9 +397,19 @@ extension ContactUsVC : ContactUsViewModelDelegate{
                     self.lstGeneralInquiryViewModels.append(data)
                 }
             }
-              self.tableGeneralHeightConstraints.constant = self.tableGeneralHeightConstraints.constant + CGFloat(((data?.lstGeneralInquiryViewModels?.count ?? 0)*120))
-                
-                self.viewHeightConstraints.constant = self.viewHeightConstraints.constant + CGFloat(((data?.lstGeneralInquiryViewModels?.count ?? 0)*120))
+                 if fromAdmin == 1{
+                 self.tableGeneralHeightConstraints.constant = self.tableGeneralHeightConstraints.constant + CGFloat(((data?.lstGeneralInquiryViewModels?.count ?? 0)*120))
+                    self.tableGeneralHeightConstraints.constant = self.tableGeneralHeightConstraints.constant - 120
+                    
+                     self.viewHeightConstraints.constant = self.viewHeightConstraints.constant + CGFloat(((data?.lstGeneralInquiryViewModels?.count ?? 0)*120))
+                    self.viewHeightConstraints.constant = self.viewHeightConstraints.constant - 120
+                    
+                 }else{
+                    self.tableGeneralHeightConstraints.constant = self.tableGeneralHeightConstraints.constant + CGFloat(((data?.lstGeneralInquiryViewModels?.count ?? 0)*120))
+                    
+                    self.viewHeightConstraints.constant = self.viewHeightConstraints.constant + CGFloat(((data?.lstGeneralInquiryViewModels?.count ?? 0)*120))
+                }
+            
                 
                 tableViewGeneral.reloadData()
             }
@@ -393,12 +424,22 @@ extension ContactUsVC : ContactUsViewModelDelegate{
                                self.lstEmergencyInquiryViewModels.append(data)
                            }
                        }
-                         self.tableViewEmergencyHeight.constant = self.tableViewEmergencyHeight.constant + CGFloat(((data?.lstEmergencyInquiryViewModels?.count ?? 0)*120))
-                           
-                           self.viewHeightConstraints.constant = self.viewHeightConstraints.constant + CGFloat(((data?.lstEmergencyInquiryViewModels?.count ?? 0)*120))
-                           
-                           tableViewEmergency.reloadData()
-                       }
+                 if fromAdmin == 1{
+                    self.tableViewEmergencyHeight.constant = self.tableViewEmergencyHeight.constant + CGFloat(((data?.lstEmergencyInquiryViewModels?.count ?? 0)*120))
+                     self.tableViewEmergencyHeight.constant = self.tableViewEmergencyHeight.constant - 120
+                                       
+                    self.viewHeightConstraints.constant = self.viewHeightConstraints.constant + CGFloat(((data?.lstEmergencyInquiryViewModels?.count ?? 0)*120))
+                       self.viewHeightConstraints.constant = self.viewHeightConstraints.constant - 120
+                    
+                    tableViewEmergency.reloadData()
+                 }else{
+                    self.tableViewEmergencyHeight.constant = self.tableViewEmergencyHeight.constant + CGFloat(((data?.lstEmergencyInquiryViewModels?.count ?? 0)*120))
+                    
+                    self.viewHeightConstraints.constant = self.viewHeightConstraints.constant + CGFloat(((data?.lstEmergencyInquiryViewModels?.count ?? 0)*120))
+                    
+                    tableViewEmergency.reloadData()
+                }
+            }
         }
     }
 }
@@ -445,15 +486,27 @@ extension ContactUsVC : UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == tableViewAdmission{
             if lstAdmissionInquiryViewModels.count>0{
-                return lstAdmissionInquiryViewModels.count+1
+                if fromAdmin == 1{
+                    return lstAdmissionInquiryViewModels.count
+                }else{
+                    return lstAdmissionInquiryViewModels.count+1
+                }
             }
         }else if tableView == tableViewGeneral{
             if lstGeneralInquiryViewModels.count>0{
-                return lstGeneralInquiryViewModels.count+1
+                if fromAdmin == 1{
+                    return lstGeneralInquiryViewModels.count
+                }else{
+                    return lstGeneralInquiryViewModels.count+1
+                }
             }
         }else{
             if lstEmergencyInquiryViewModels.count>0{
-                return lstEmergencyInquiryViewModels.count+1
+                 if fromAdmin == 1{
+                     return lstEmergencyInquiryViewModels.count
+                 }else{
+                     return lstEmergencyInquiryViewModels.count+1
+                }
             }
         }
         return 1
@@ -462,7 +515,7 @@ extension ContactUsVC : UITableViewDataSource{
         if tableView == tableViewAdmission{
             let cell = tableView.dequeueReusableCell(withIdentifier: "AdmissionCell", for: indexPath) as! AdmissionTableCell
             if firstAdmission == 2{
-                 cell.setCellUI(data: lstAdmissionInquiryViewModels, indexPath: indexPath)
+                cell.setCellUI(data: lstAdmissionInquiryViewModels, indexPath: indexPath, isFromAdmin: fromAdmin ?? 0)
             }else{
                 cell.btnMinus.tag = indexPath.row
                 cell.addMoreBtn.tag = indexPath.row
@@ -476,7 +529,7 @@ extension ContactUsVC : UITableViewDataSource{
         }else if tableView == tableViewGeneral{
             let cell = tableView.dequeueReusableCell(withIdentifier: "GeneralCell", for: indexPath) as! GeneralTableCell
             if firstGeneral == 2{
-                  cell.setCellUI(data: lstGeneralInquiryViewModels, indexPath: indexPath)
+                cell.setCellUI(data: lstGeneralInquiryViewModels, indexPath: indexPath,isFromAdmin: fromAdmin ?? 0)
             }else{
                 if lstGeneralInquiryViewModels.count == 0{
                     cell.btnMinus.isHidden = true
@@ -490,7 +543,7 @@ extension ContactUsVC : UITableViewDataSource{
         }else if tableView == tableViewEmergency{
             let cell = tableView.dequeueReusableCell(withIdentifier: "EmergencyCell", for: indexPath) as! EmergencyTableCell
             if firstEmerg == 2{
-                 cell.setCellUI(data: lstEmergencyInquiryViewModels, indexPath: indexPath)
+                cell.setCellUI(data: lstEmergencyInquiryViewModels, indexPath: indexPath,isFromAdmin: fromAdmin ?? 0)
             }else{
                 if lstEmergencyInquiryViewModels.count == 0{
                     cell.btnMinus.isHidden = true

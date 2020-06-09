@@ -596,19 +596,32 @@ extension MenuVC : UITableViewDelegate{
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
-            
             break
             
-        case "ContactUS":
+        case "Manage Contacts":
+            let storyboard = UIStoryboard.init(name: KStoryBoards.kContactUs, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "ContactUsVC") as? ContactUsVC
+            vc?.fromAdmin = 0
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(vc!, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
             
-             let storyboard = UIStoryboard.init(name: KStoryBoards.kContactUs, bundle: nil)
-             let vc = storyboard.instantiateViewController(withIdentifier: "ContactUsVC") as? ContactUsVC
-             let frontVC = revealViewController().frontViewController as? UINavigationController
-             frontVC?.pushViewController(vc!, animated: false)
-             revealViewController().pushFrontViewController(frontVC, animated: true)
+        case "ContactUS":
+            let storyboard = UIStoryboard.init(name: KStoryBoards.kContactUs, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "ContactUsVC") as? ContactUsVC
+            vc?.fromAdmin = 1
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(vc!, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
             
             //let storyboard = UIStoryboard.init(name: "Leave", bundle: nil)
-            //let vc = storyboard.instantiateViewController(withIdentifier: "LeaveListVC") as? LeaveListVC
+            //let vc = storyboard.instantiateViewController(withIdentifier: "LeaveListVC")
+                
+                
+                
+                
+                
+                as? LeaveListVC
             //let frontVC = revealViewController().frontViewController as? UINavigationController
             //frontVC?.pushViewController(vc!, animated: false)
            // revealViewController().pushFrontViewController(frontVC, animated: true)

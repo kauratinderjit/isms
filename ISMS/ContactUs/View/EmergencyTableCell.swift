@@ -15,7 +15,7 @@ class EmergencyTableCell: UITableViewCell{
           @IBOutlet weak var txtFieldPhoneNum: UITextField!
           @IBOutlet weak var lblPhoneNum: UILabel!
     
-    func setCellUI(data :[[String:Any]]?,indexPath: IndexPath){
+    func setCellUI(data :[[String:Any]]?,indexPath: IndexPath,isFromAdmin: Int){
               btnMinus.tag = indexPath.row
                addMoreBtn.tag = indexPath.row
              
@@ -35,6 +35,12 @@ class EmergencyTableCell: UITableViewCell{
                        btnMinus.isHidden = false
                        addMoreBtn.isHidden = true
                    }
+                if isFromAdmin == 1{
+                    btnMinus.isHidden = true
+                    addMoreBtn.isHidden = true
+                    txtFieldPhoneNum.isUserInteractionEnabled = false
+                    txtFieldEmail.isUserInteractionEnabled = false
+                }
                }
           }
 }
