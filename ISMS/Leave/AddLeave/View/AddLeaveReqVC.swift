@@ -24,6 +24,7 @@ class AddLeaveReqVC: BaseUIViewController {
     @IBOutlet weak var btnLeaveType: UIButton!
     @IBOutlet weak var txtFieldLeaveType: UITextField!
     
+    @IBOutlet weak var viewAcceptRejectBtn: UIView!
     @IBOutlet weak var lblDescrption: UILabel!
     @IBOutlet weak var collectionviewHeight: NSLayoutConstraint!
     @IBOutlet weak var viewBlur: UIView!
@@ -52,6 +53,23 @@ class AddLeaveReqVC: BaseUIViewController {
         self.viewModel?.attachView(viewDelegate: self)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         view.addGestureRecognizer(tap)
+         if UserDefaultExtensionModel.shared.currentUserRoleId == 2{
+            txtFieldLeaveType.isUserInteractionEnabled = false
+            txtFieldFromDate.isUserInteractionEnabled = false
+            txtFieldToDate.isUserInteractionEnabled = false
+            txtViewDescription.isUserInteractionEnabled = false
+            btnLeaveType.isUserInteractionEnabled = false
+            btnFromDate.isUserInteractionEnabled = false
+            btnToDate.isUserInteractionEnabled = false
+            btnAttachFiles.isUserInteractionEnabled = false
+            viewAcceptRejectBtn.isHidden = false
+         }else{
+            btnLeaveType.isUserInteractionEnabled = true
+            btnFromDate.isUserInteractionEnabled = true
+            btnToDate.isUserInteractionEnabled = true
+            btnAttachFiles.isUserInteractionEnabled = true
+            viewAcceptRejectBtn.isHidden = true
+        }
         setUI()
        if isLeaveEditing == true{
             setData()
@@ -59,6 +77,7 @@ class AddLeaveReqVC: BaseUIViewController {
         // Do any additional setup after loading the view.
     }
    func setData(){
+    lblDescrption.isHidden = true
     txtFieldLeaveType.text = arrLeaveListReq?.leaveAppType
     txtFieldFromDate.text = arrLeaveListReq?.strStartDate
     txtFieldToDate.text = arrLeaveListReq?.strEndDate
@@ -110,6 +129,15 @@ class AddLeaveReqVC: BaseUIViewController {
            
             AddLeaveReqVC.isFromLeaveListDate = false
        }
+    
+    @IBAction func actionAccept(_ sender: Any) {
+        viewModel?.submitAcceptReject(LeaveAppId : self.leaveId,IsApproved: 1)
+    }
+    
+    @IBAction func actionReject(_ sender: Any) {
+          viewModel?.submitAcceptReject(LeaveAppId : self.leaveId,IsApproved: 2)
+    }
+    
 
     @IBAction func actionLeaveTypeBtn(_ sender: Any) {
         if checkInternetConnection(){

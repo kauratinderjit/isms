@@ -38,9 +38,9 @@ class ContactUsViewModel {
     
             self.ContactUsView?.showLoader()
             
-            let paramDict = ["id": 4] as [String : Any]
-        let contactId = 4
-            let url = "api/User/GetContactUsDetailById" + "?id=" + "\(contactId)"
+            let paramDict = ["id": 31] as [String : Any]
+        let contactId = 31
+            let url = "api/User/GetContactUsDetail" + "?id=" + "\(contactId)"
             print("url: ",url)
             ContactUsAPI.sharedInstance.GetContactUs(url: url, parameters: paramDict as [String : Any], completionResponse: { (ContactUsModel) in
                 print("teacher list: ",ContactUsModel.resultData)
@@ -72,4 +72,41 @@ class ContactUsViewModel {
             }
             
         }
+    
+    func addContact(ContactId: Int,InstituteId: Int,Message: String,lstEmergencyInquiryViewModels: [[String: Any]],lstAdmissionInquiryViewModels: [[String: Any]],lstGeneralInquiryViewModels: [[String: Any]],lstdeleteEmergencyInquiryViewModels: [[String: Any]],lstdeleteAdmissionInquiryViewModels: [[String: Any]],lstdeleteGeneralInquiryViewModels : [[String: Any]]){
+        
+        let parameters = ["ContactId": 31,"InstituteId": 1,"Message": "","lstEmergencyInquiryViewModels": lstEmergencyInquiryViewModels,"lstAdmissionInquiryViewModels": lstAdmissionInquiryViewModels,"lstGeneralInquiryViewModels": lstGeneralInquiryViewModels,"lstdeleteEmergencyInquiryViewModels": lstdeleteEmergencyInquiryViewModels,"lstdeleteAdmissionInquiryViewModels": lstdeleteAdmissionInquiryViewModels,"lstdeleteGeneralInquiryViewModels" : lstdeleteGeneralInquiryViewModels] as [String : Any]
+        self.ContactUsView?.showLoader()
+        SubjectApi.sharedInstance.AddSubject(url: "api/User/AddUpdateContactUsDetail", parameters: parameters, completionResponse: { (responseModel) in
+            print(responseModel)
+            self.ContactUsView?.hideLoader()
+            if responseModel.statusCode == KStatusCode.kStatusCode200{
+                
+                if responseModel.resultData != nil{
+                    self.ContactUsView?.showAlert(alert: responseModel.message ?? "")
+                    
+                }else{
+                   
+                    self.ContactUsView?.showAlert(alert: responseModel.message ?? "")
+                }
+                
+            }else if responseModel.statusCode == KStatusCode.kStatusCode401{
+                self.ContactUsView?.showAlert(alert: responseModel.message ?? "")
+                //                self.SubjectListDelegate?.unauthorizedUser()
+            }
+            
+            if responseModel.statusCode == KStatusCode.kStatusCode400{
+                self.ContactUsView?.showAlert(alert: responseModel.message ?? "")
+            }
+            
+        }, completionnilResponse: { (nilResponse) in
+            self.ContactUsView?.hideLoader()
+            self.ContactUsView?.showAlert(alert: nilResponse ?? Alerts.kMapperModelError)
+        }) { (error) in
+            self.ContactUsView?.hideLoader()
+            self.ContactUsView?.showAlert(alert: error.debugDescription)
+            
+            
+        }
+    }
 }

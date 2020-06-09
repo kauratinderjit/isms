@@ -137,8 +137,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2uC-lT-G5R">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="770"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SSQ-QS-HmF">
-                                        <rect key="frame" x="0.0" y="20" width="375" height="770"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SSQ-QS-HmF">
+                                        <rect key="frame" x="20" y="20" width="375" height="770"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BHN-qY-N92">
                                                 <rect key="frame" x="8" y="366" width="359" height="90"/>
@@ -487,6 +487,70 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2VD-i2-HU5">
+                                                <rect key="frame" x="0.0" y="684" width="375" height="86"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Ihd-kM-Rq9">
+                                                        <rect key="frame" x="20" y="21" width="335" height="45"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uig-9A-3H7">
+                                                                <rect key="frame" x="0.0" y="0.0" width="165.5" height="45"/>
+                                                                <color key="backgroundColor" red="0.15784691646874574" green="0.6141032967963731" blue="0.27716006781266295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="45" id="jzi-ph-8Bh"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                                <state key="normal" title="ACCEPT">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="3"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                        <real key="value" value="0.90000000000000002"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="actionAccept:" destination="x1h-ry-C6L" eventType="touchUpInside" id="dnG-fF-HJt"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hrt-yX-PgU">
+                                                                <rect key="frame" x="169.5" y="0.0" width="165.5" height="45"/>
+                                                                <color key="backgroundColor" red="0.86738989637305697" green="0.20528947005902673" blue="0.16332316942793132" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="45" id="eAK-OY-gOy"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                                <state key="normal" title="REJECT">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="3"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                        <real key="value" value="0.90000000000000002"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="actionReject:" destination="x1h-ry-C6L" eventType="touchUpInside" id="Flp-Qy-efw"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="Hrt-yX-PgU" firstAttribute="width" secondItem="Uig-9A-3H7" secondAttribute="width" id="2Zv-ee-BsN"/>
+                                                            <constraint firstAttribute="height" constant="45" id="P8n-zG-mds"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="Ihd-kM-Rq9" firstAttribute="leading" secondItem="2VD-i2-HU5" secondAttribute="leading" constant="20" symbolic="YES" id="CeP-RF-mSm"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Ihd-kM-Rq9" secondAttribute="bottom" constant="20" symbolic="YES" id="JOc-vR-Rop"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Ihd-kM-Rq9" secondAttribute="trailing" constant="20" symbolic="YES" id="o5c-lB-tbT"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -501,6 +565,7 @@
                                             <constraint firstItem="WsB-fc-Pla" firstAttribute="leading" secondItem="SSQ-QS-HmF" secondAttribute="leading" constant="10" id="C8h-Ka-65i"/>
                                             <constraint firstItem="3Gh-C1-sQu" firstAttribute="top" secondItem="xvu-vc-7To" secondAttribute="bottom" constant="20" id="Hyx-us-0xg"/>
                                             <constraint firstItem="Axv-0E-TN5" firstAttribute="top" secondItem="2LY-wu-5te" secondAttribute="bottom" constant="15" id="I6s-Ol-7dm"/>
+                                            <constraint firstItem="2VD-i2-HU5" firstAttribute="leading" secondItem="SSQ-QS-HmF" secondAttribute="leading" id="J2p-sF-n0a"/>
                                             <constraint firstAttribute="trailing" secondItem="3Gh-C1-sQu" secondAttribute="trailing" constant="8" id="Lq1-V4-nGT"/>
                                             <constraint firstItem="R2f-o2-tZT" firstAttribute="leading" secondItem="SSQ-QS-HmF" secondAttribute="leading" constant="10" id="MIW-rD-VE6"/>
                                             <constraint firstAttribute="bottom" secondItem="p1G-BE-ada" secondAttribute="bottom" constant="10" id="MqF-Oi-hfk"/>
@@ -508,6 +573,7 @@
                                             <constraint firstAttribute="trailing" secondItem="R2f-o2-tZT" secondAttribute="trailing" constant="10" id="Oro-hd-jqR"/>
                                             <constraint firstItem="Axv-0E-TN5" firstAttribute="leading" secondItem="SSQ-QS-HmF" secondAttribute="leading" constant="10" id="QU3-jf-d9l"/>
                                             <constraint firstItem="xvu-vc-7To" firstAttribute="top" secondItem="vFc-Z3-ieI" secondAttribute="bottom" constant="20" id="TVa-dW-n3p"/>
+                                            <constraint firstAttribute="trailing" secondItem="2VD-i2-HU5" secondAttribute="trailing" id="TZU-HT-PXD"/>
                                             <constraint firstItem="tgo-yi-tZT" firstAttribute="top" secondItem="wdD-e0-kfj" secondAttribute="bottom" constant="20" id="XDm-Ra-Huh"/>
                                             <constraint firstItem="3Gh-C1-sQu" firstAttribute="leading" secondItem="SSQ-QS-HmF" secondAttribute="leading" constant="8" id="Y18-XC-MWF"/>
                                             <constraint firstAttribute="trailing" secondItem="2LY-wu-5te" secondAttribute="trailing" constant="20" id="YUC-f5-nQ1"/>
@@ -515,11 +581,13 @@
                                             <constraint firstAttribute="trailing" secondItem="WsB-fc-Pla" secondAttribute="trailing" constant="10" id="cNM-pg-BeY"/>
                                             <constraint firstAttribute="trailing" secondItem="yIT-wb-dBd" secondAttribute="trailing" constant="10" id="cfw-Z8-8T1"/>
                                             <constraint firstItem="vFc-Z3-ieI" firstAttribute="top" secondItem="WsB-fc-Pla" secondAttribute="bottom" constant="15" id="e00-qi-D3K"/>
+                                            <constraint firstAttribute="bottom" secondItem="2VD-i2-HU5" secondAttribute="bottom" id="eUm-cJ-Cd7"/>
                                             <constraint firstItem="R2f-o2-tZT" firstAttribute="top" secondItem="Axv-0E-TN5" secondAttribute="bottom" constant="20" id="fCc-NK-TnZ"/>
                                             <constraint firstItem="wdD-e0-kfj" firstAttribute="leading" secondItem="SSQ-QS-HmF" secondAttribute="leading" constant="18" id="fVK-ce-fIK"/>
                                             <constraint firstItem="yIT-wb-dBd" firstAttribute="leading" secondItem="SSQ-QS-HmF" secondAttribute="leading" constant="10" id="kM7-Et-5fw"/>
                                             <constraint firstItem="p1G-BE-ada" firstAttribute="top" secondItem="tgo-yi-tZT" secondAttribute="bottom" constant="38" id="kdg-cb-JUW"/>
                                             <constraint firstItem="vFc-Z3-ieI" firstAttribute="leading" secondItem="SSQ-QS-HmF" secondAttribute="leading" constant="8" id="m6A-5L-OYt"/>
+                                            <constraint firstItem="2VD-i2-HU5" firstAttribute="top" secondItem="tgo-yi-tZT" secondAttribute="bottom" constant="20" id="mFv-tv-7tp"/>
                                             <constraint firstAttribute="trailing" secondItem="xvu-vc-7To" secondAttribute="trailing" constant="10" id="nGa-XU-cIW"/>
                                             <constraint firstAttribute="trailing" secondItem="BHN-qY-N92" secondAttribute="trailing" constant="8" id="o0A-eK-yGq"/>
                                             <constraint firstAttribute="trailing" secondItem="Axv-0E-TN5" secondAttribute="trailing" constant="10" id="oU0-lI-pke"/>
@@ -530,9 +598,9 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="SSQ-QS-HmF" secondAttribute="trailing" constant="20" symbolic="YES" id="2Wh-SG-zBp"/>
+                                    <constraint firstAttribute="trailing" secondItem="SSQ-QS-HmF" secondAttribute="trailing" id="2Wh-SG-zBp"/>
                                     <constraint firstItem="SSQ-QS-HmF" firstAttribute="leading" secondItem="2uC-lT-G5R" secondAttribute="leading" id="H4e-ov-mwV"/>
-                                    <constraint firstItem="SSQ-QS-HmF" firstAttribute="top" secondItem="2uC-lT-G5R" secondAttribute="top" constant="20" symbolic="YES" id="HOQ-fP-mRX"/>
+                                    <constraint firstItem="SSQ-QS-HmF" firstAttribute="top" secondItem="2uC-lT-G5R" secondAttribute="top" id="HOQ-fP-mRX"/>
                                     <constraint firstAttribute="bottom" secondItem="SSQ-QS-HmF" secondAttribute="bottom" id="vqt-ad-PFg"/>
                                 </constraints>
                             </scrollView>
@@ -693,6 +761,7 @@
                         <outlet property="txtFieldLeaveType" destination="Utj-vB-bhN" id="piv-TB-xoB"/>
                         <outlet property="txtFieldToDate" destination="lV4-Wx-Gc4" id="ZnR-39-eLD"/>
                         <outlet property="txtViewDescription" destination="BHN-qY-N92" id="dEt-Fe-Shq"/>
+                        <outlet property="viewAcceptRejectBtn" destination="2VD-i2-HU5" id="LyS-ze-ITV"/>
                         <outlet property="viewBlur" destination="Azz-AE-0cC" id="QyY-nR-bbX"/>
                         <outlet property="viewPopUp" destination="IEo-ao-CSS" id="xRq-ys-T0q"/>
                         <outlet property="viewTableView" destination="rJU-Nb-lpf" id="iCF-gc-Tpg"/>

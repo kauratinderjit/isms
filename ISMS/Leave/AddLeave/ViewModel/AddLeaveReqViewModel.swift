@@ -59,5 +59,42 @@ class AddLeaveReqViewModel{
         })
         
     }
-    
+    func submitAcceptReject(LeaveAppId : Int,IsApproved: Int){
+        let parameters = ["LeaveAppId":LeaveAppId,"IsApproved":IsApproved] as [String : Any]
+        self.ListView?.showLoader()
+       SubjectApi.sharedInstance.AddSubject(url: "api/Institute/ApprovedRejectLeaveApp", parameters: parameters, completionResponse: { (responseModel) in
+            print(responseModel)
+            
+            self.ListView?.hideLoader()
+            if responseModel.statusCode == KStatusCode.kStatusCode200{
+                
+                if responseModel.resultData != nil{
+                    self.ListView?.showAlert(alert: responseModel.message ?? "")
+//                    self.SubjectListDelegate?.UpdatedSubject(msg: responseModel.message ?? "")
+                }else{
+//                    self.SubjectListDelegate?.UpdatedSubject(msg: responseModel.message ?? "")
+                    self.ListView?.showAlert(alert: responseModel.message ?? "")
+                }
+              //  self.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: 10,sortColumnDir: "",sortColumn: "")
+
+                
+            }else if responseModel.statusCode == KStatusCode.kStatusCode401{
+                self.ListView?.showAlert(alert: responseModel.message ?? "")
+//                self.SubjectListDelegate?.unauthorizedUser()
+            }
+            
+            if responseModel.statusCode == KStatusCode.kStatusCode400{
+                self.ListView?.showAlert(alert: responseModel.message ?? "")
+            }
+            
+        }, completionnilResponse: { (nilResponse) in
+            self.ListView?.hideLoader()
+            self.ListView?.showAlert(alert: nilResponse ?? Alerts.kMapperModelError)
+        }) { (error) in
+            self.ListView?.hideLoader()
+            self.ListView?.showAlert(alert: error.debugDescription)
+            
+            
+        }
+    }
 }

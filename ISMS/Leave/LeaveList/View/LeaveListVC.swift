@@ -25,8 +25,12 @@ class LeaveListVC: BaseUIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         self.viewModel = LeaveListViewModel.init(delegate: self)
         self.viewModel?.attachView(viewDelegate: self)
+      if UserDefaultExtensionModel.shared.currentUserRoleId == 2{
+            btnAddReqLeave.isHidden = true
+            }
         setUI()
     }
     override func viewWillAppear(_ animated: Bool) {
