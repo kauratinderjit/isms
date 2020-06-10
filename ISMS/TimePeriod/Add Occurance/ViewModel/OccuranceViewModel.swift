@@ -75,7 +75,7 @@ class OccuranceViewModel{
             }else if AddStudentRatingListModel.statusCode == KStatusCode.kStatusCode401 {
                 self.ListVC?.hideLoader()
                 self.ListVC?.showAlert(alert: AddStudentRatingListModel.message ?? "")
-                //  self.SubjectListDelegate?.unauthorizedUser()
+                  self.OccuranceDelegate?.unauthorizedUser()
             }else{
                 self.ListVC?.hideLoader()
                 CommonFunctions.sharedmanagerCommon.println(object: "student APi status change")
@@ -104,4 +104,41 @@ class OccuranceViewModel{
         }
         
     }
+    
+    func submitOccurance(ClassId : Int,ClassSubjectId: Int,Occurrence: Int){
+        let parameters = ["ClassId":ClassId,"ClassSubjectId":ClassSubjectId,"Occurrence":Occurrence] as [String : Any]
+         print(parameters)
+        self.ListVC?.showLoader()
+        SubjectApi.sharedInstance.AddSubject(url: "api/Institute/UpdateOccurrenceAssignedSubjectToTeacher", parameters: parameters, completionResponse: { (responseModel) in
+            print(responseModel)
+            
+            self.ListVC?.hideLoader()
+            if responseModel.statusCode == KStatusCode.kStatusCode200{
+                
+                if responseModel.resultData != nil{
+                    self.ListVC?.showAlert(alert: responseModel.message ?? "")
+                }else{
+                    self.ListVC?.showAlert(alert: responseModel.message ?? "")
+                }
+                
+            }else if responseModel.statusCode == KStatusCode.kStatusCode401{
+                self.ListVC?.showAlert(alert: responseModel.message ?? "")
+                self.OccuranceDelegate?.unauthorizedUser()
+            }
+            
+            if responseModel.statusCode == KStatusCode.kStatusCode400{
+                self.ListVC?.showAlert(alert: responseModel.message ?? "")
+            }
+            
+        }, completionnilResponse: { (nilResponse) in
+            self.ListVC?.hideLoader()
+            self.ListVC?.showAlert(alert: nilResponse ?? Alerts.kMapperModelError)
+        }) { (error) in
+            self.ListVC?.hideLoader()
+            self.ListVC?.showAlert(alert: error.debugDescription)
+            
+            
+        }
+    }
+    
 }

@@ -31,8 +31,9 @@ class AddOccuranceVC: BaseUIViewController {
     let userRoleParticularId = UserDefaultExtensionModel.shared.userRoleParticularId
     override func viewDidLoad() {
         super.viewDidLoad()
-        setBackButton()
+       
         setupUI()
+         
     }
     
      override func viewWillAppear(_ animated: Bool) {
@@ -48,6 +49,7 @@ class AddOccuranceVC: BaseUIViewController {
         }
      func setupUI(){
         self.title = "Add Occurance"
+        setBackButton()
         self.ViewModel = OccuranceViewModel.init(delegate: self)
         self.ViewModel?.attachView(viewDelegate: self)
         SetpickerView(self.view)
@@ -103,7 +105,7 @@ class AddOccuranceVC: BaseUIViewController {
     }
     
     @IBAction func actionSubmit(_ sender: Any) {
-        
+        ViewModel?.submitOccurance(ClassId : selectedClassID ?? 0,ClassSubjectId: selectedClassSubjectId ?? 0,Occurrence: Int(txtFieldOccurance.text ?? "1") ?? 0)
     }
     
 }

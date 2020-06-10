@@ -166,7 +166,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="720"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lDH-7P-nAn">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="720"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="740"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6L5-1r-jTf">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="117"/>
@@ -404,14 +404,13 @@
                                                     <action selector="ActionSubmit:" destination="M3v-rl-Dm3" eventType="touchUpInside" id="wUL-7l-GLE"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kqy-Ze-M4m">
-                                                <rect key="frame" x="16" y="638" width="343" height="58"/>
-                                                <color key="backgroundColor" red="0.89019607840000003" green="0.94117647059999998" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJE-BE-pFk">
+                                                <rect key="frame" x="16" y="655" width="343" height="50"/>
+                                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="58" id="cwE-WQ-7yh"/>
+                                                    <constraint firstAttribute="height" constant="50" id="C05-CE-HZb"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <state key="normal" title="Add Occurance">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -422,18 +421,18 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
                                                         <real key="value" value="0.80000000000000004"/>
                                                     </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                        <color key="value" red="0.29411764709999999" green="0.74509803919999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
                                                         <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                        <color key="value" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowOffset">
                                                         <real key="value" value="0.80000000000000004"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="ActionSubmit:" destination="M3v-rl-Dm3" eventType="touchUpInside" id="TDV-vA-jk2"/>
+                                                    <action selector="actionAddOccurance:" destination="M3v-rl-Dm3" eventType="touchUpInside" id="Okm-Zj-Ske"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -441,17 +440,17 @@
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="6L5-1r-jTf" secondAttribute="trailing" id="0IN-U3-Pf4"/>
                                             <constraint firstAttribute="trailing" secondItem="Yw5-3z-lka" secondAttribute="trailing" id="4xH-Cy-YTA"/>
-                                            <constraint firstAttribute="trailing" secondItem="kqy-Ze-M4m" secondAttribute="trailing" constant="16" id="EWw-xc-53d"/>
-                                            <constraint firstAttribute="bottom" secondItem="kqy-Ze-M4m" secondAttribute="bottom" constant="24" id="Mkc-Ua-kQC"/>
+                                            <constraint firstItem="xJE-BE-pFk" firstAttribute="leading" secondItem="lDH-7P-nAn" secondAttribute="leading" constant="16" id="9FI-eH-2I6"/>
+                                            <constraint firstAttribute="bottom" secondItem="xJE-BE-pFk" secondAttribute="bottom" constant="35" id="EH1-8H-dZ6"/>
                                             <constraint firstItem="EHb-yd-71e" firstAttribute="leading" secondItem="lDH-7P-nAn" secondAttribute="leading" constant="16" id="Po6-Wk-tcK"/>
                                             <constraint firstItem="Yw5-3z-lka" firstAttribute="top" secondItem="6L5-1r-jTf" secondAttribute="bottom" constant="10" id="WXE-Hg-cZi"/>
+                                            <constraint firstAttribute="trailing" secondItem="xJE-BE-pFk" secondAttribute="trailing" constant="16" id="XqI-vW-P1O"/>
                                             <constraint firstItem="6L5-1r-jTf" firstAttribute="leading" secondItem="lDH-7P-nAn" secondAttribute="leading" id="adL-RW-Nmg"/>
-                                            <constraint firstItem="kqy-Ze-M4m" firstAttribute="leading" secondItem="lDH-7P-nAn" secondAttribute="leading" constant="16" id="s5r-Cf-MbY"/>
+                                            <constraint firstItem="xJE-BE-pFk" firstAttribute="top" secondItem="EHb-yd-71e" secondAttribute="bottom" constant="40" id="hkS-Jw-pbO"/>
                                             <constraint firstItem="6L5-1r-jTf" firstAttribute="top" secondItem="lDH-7P-nAn" secondAttribute="top" id="s96-Oo-c18"/>
                                             <constraint firstItem="Yw5-3z-lka" firstAttribute="leading" secondItem="lDH-7P-nAn" secondAttribute="leading" id="szy-xW-9DM"/>
                                             <constraint firstAttribute="trailing" secondItem="EHb-yd-71e" secondAttribute="trailing" constant="16" id="tdM-kj-Yor"/>
                                             <constraint firstItem="EHb-yd-71e" firstAttribute="top" secondItem="Yw5-3z-lka" secondAttribute="bottom" constant="30" id="vJY-Qc-Oul"/>
-                                            <constraint firstItem="kqy-Ze-M4m" firstAttribute="top" secondItem="EHb-yd-71e" secondAttribute="bottom" constant="23" id="zKk-Uk-Wuv"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -475,6 +474,7 @@
                     </view>
                     <size key="freeformSize" width="375" height="720"/>
                     <connections>
+                        <outlet property="btnAddOccurance" destination="xJE-BE-pFk" id="Ufb-V8-ztH"/>
                         <outlet property="btnAddPeriod" destination="EHb-yd-71e" id="YYz-2J-qDI"/>
                         <outlet property="btnSelectClass" destination="UfZ-Tx-wJh" id="9jP-Xf-ehw"/>
                         <outlet property="tableView" destination="Yw5-3z-lka" id="wwW-0Y-AcU"/>
@@ -486,10 +486,10 @@
             </objects>
             <point key="canvasLocation" x="389.60000000000002" y="98.050974512743636"/>
         </scene>
-        <!--Leave Card-->
+        <!--Add Notes-->
         <scene sceneID="cn9-1a-LY9">
             <objects>
-                <viewController storyboardIdentifier="AddOccuranceVC" title="Leave Card" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VQ3-Sr-DKI" customClass="AddOccuranceVC" customModule="ISMS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddOccuranceVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VQ3-Sr-DKI" customClass="AddOccuranceVC" customModule="ISMS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sbz-2L-5l5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -498,7 +498,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nGG-GR-5Hv">
-                                        <rect key="frame" x="0.0" y="20" width="375" height="667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oCU-1X-HeR">
                                                 <rect key="frame" x="20" y="569" width="335" height="58"/>
@@ -528,8 +528,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="actionSubmit:" destination="VQ3-Sr-DKI" eventType="touchUpInside" id="xY0-x5-e39"/>
-                                                    <action selector="actionSubmitBtn:" destination="VQ3-Sr-DKI" eventType="touchUpInside" id="q4c-ti-syF"/>
+                                                    <action selector="actionSubmit:" destination="VQ3-Sr-DKI" eventType="touchUpInside" id="W4v-i7-yJb"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Class :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qla-dl-wPD">
@@ -744,9 +743,9 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="nGG-GR-5Hv" firstAttribute="top" secondItem="Xnf-7N-4bW" secondAttribute="top" constant="20" symbolic="YES" id="4MS-mv-nu1"/>
+                                    <constraint firstItem="nGG-GR-5Hv" firstAttribute="top" secondItem="Xnf-7N-4bW" secondAttribute="top" id="4MS-mv-nu1"/>
                                     <constraint firstAttribute="bottom" secondItem="nGG-GR-5Hv" secondAttribute="bottom" id="RjN-d9-28L"/>
-                                    <constraint firstAttribute="trailing" secondItem="nGG-GR-5Hv" secondAttribute="trailing" constant="20" symbolic="YES" id="XXS-on-mzA"/>
+                                    <constraint firstAttribute="trailing" secondItem="nGG-GR-5Hv" secondAttribute="trailing" id="XXS-on-mzA"/>
                                     <constraint firstItem="nGG-GR-5Hv" firstAttribute="leading" secondItem="Xnf-7N-4bW" secondAttribute="leading" id="eNH-Bo-qoH"/>
                                 </constraints>
                             </scrollView>
@@ -762,12 +761,11 @@
                         <viewLayoutGuide key="safeArea" id="Kii-Ap-fiR"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Notes" id="Ykd-sZ-SPN"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
-                        <outlet property="btnSubmit" destination="oCU-1X-HeR" id="3lg-GB-Qn8"/>
-                        <outlet property="scrollView" destination="Xnf-7N-4bW" id="hAT-qj-rQz"/>
                         <outlet property="txtFieldClass" destination="eg7-z0-pHK" id="aST-UB-M4R"/>
-                        <outlet property="txtFieldFromDate" destination="jKw-o4-Ek1" id="8pD-kw-Igm"/>
-                        <outlet property="txtFieldLeaveType" destination="eg7-z0-pHK" id="spn-E5-H2g"/>
                         <outlet property="txtFieldOccurance" destination="k1i-o3-YKR" id="20G-lq-VV9"/>
                         <outlet property="txtFieldSubject" destination="jKw-o4-Ek1" id="ud5-Fe-z9g"/>
                     </connections>

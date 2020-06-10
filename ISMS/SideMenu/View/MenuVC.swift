@@ -127,6 +127,11 @@ class MenuVC: BaseUIViewController {
     
     //MARK:- Actions
     @IBAction func btnEditProfileAction(_ sender: Any) {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "EditProfileVC") as? EditProfileVC
+        let frontVC = revealViewController().frontViewController as? UINavigationController
+        frontVC?.pushViewController(vc!, animated: false)
+        revealViewController().pushFrontViewController(frontVC, animated: true)
     }
     
 }

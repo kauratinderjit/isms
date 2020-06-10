@@ -39,6 +39,7 @@ class TimePeriodVC: BaseUIViewController {
     @IBOutlet weak var txtFieldClass: UITextField!
     @IBOutlet weak var btnSelectClass: UIButton!
     
+    @IBOutlet weak var btnAddOccurance: UIButton!
     //MARK:- View Functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,8 +71,12 @@ class TimePeriodVC: BaseUIViewController {
         
         //#TARAN
         if let theme = ThemeManager.shared.currentTheme{
-            btnAddPeriod.backgroundColor = theme.uiButtonBackgroundColor
+            btnAddOccurance.backgroundColor = theme.uiButtonBackgroundColor
         }
+        
+        if let theme = ThemeManager.shared.currentTheme{
+                   btnAddPeriod.backgroundColor = theme.uiButtonBackgroundColor
+               }
         
         if timetableSelectedClassId != nil{
             txtFieldClass.text = selectedClassName
@@ -630,6 +635,15 @@ class TimePeriodVC: BaseUIViewController {
                 
             }
         }
+    }
+    
+    
+    @IBAction func actionAddOccurance(_ sender: Any) {
+        let storyboard = UIStoryboard.init(name: "Period", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "AddOccuranceVC") as? AddOccuranceVC
+        let frontVC = revealViewController().frontViewController as? UINavigationController
+        frontVC?.pushViewController(vc!, animated: false)
+        revealViewController().pushFrontViewController(frontVC, animated: true)
     }
 }
 
