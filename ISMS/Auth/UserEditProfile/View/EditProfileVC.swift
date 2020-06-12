@@ -35,7 +35,8 @@ class EditProfileVC: BaseUIViewController {
         @IBOutlet weak var btnFemale: UIButton!
         @IBOutlet weak var btnmale: UIButton!
         
-        @IBOutlet weak var blurrView: UIView!
+    @IBOutlet weak var txtFieldPhoneNum: UITextField!
+    @IBOutlet weak var blurrView: UIView!
         
         //MARK:- Variables
         var viewModel:SignUpViewModel?
@@ -72,6 +73,8 @@ class EditProfileVC: BaseUIViewController {
             setDatePickerView(self.view, type: .date)
 //            hitCountryListApi()
              getUserByPhoneNumber()
+            txtFieldPhoneNum.isUserInteractionEnabled = false
+            txtMail.isUserInteractionEnabled = false
         }
     func getUserByPhoneNumber(){
           if checkInternetConnection(){
@@ -106,7 +109,7 @@ class EditProfileVC: BaseUIViewController {
         //Save Button Action
         func submitButtonAction(){
             if checkInternetConnection(){
-//                self.viewModel?.signUpUser(firstName: txtFirstName.text, lastName: txtLastName.text, gender: gender,address: txtAddress.text, email: txtMail.text, phoneNo: phNo, password: password, imgUrl: selectedImageURl, selectedCityId: selectedCityId, dob: selectedDOB,  userId: varifyPhnResponseModel?.resultData?.userId)
+                self.viewModel?.updateUser(firstName: txtFirstName.text, lastName: txtLastName.text, gender: gender,address: txtAddress.text, email: txtMail.text, phoneNo: txtFieldPhoneNum.text,imgUrl: selectedImageURl, dob: selectedDOB,  userId: UserDefaultExtensionModel.shared.currentUserId)
             }else{
                 self.showAlert(alert: Alerts.kNoInternetConnection)
             }
@@ -242,7 +245,9 @@ class EditProfileVC: BaseUIViewController {
                 }
             }
 
-            
+            if let phoneNum = userDetail.resultData?.phoneNo{
+                txtFieldPhoneNum.text = phoneNum
+            }
             
             if let email = userDetail.resultData?.email{
                 txtMail.text = email
@@ -302,7 +307,7 @@ class EditProfileVC: BaseUIViewController {
         
         func signUpSuccess(message: String) {
             self.showAlert(alert: message)
-            CommonFunctions.sharedmanagerCommon.setRootLogin()
+//            CommonFunctions.sharedmanagerCommon.setRootLogin()
         }
         
         func DidSuccedRoleMenu(data: GetMenuFromRoleIdModel) {
@@ -412,8 +417,9 @@ class EditProfileVC: BaseUIViewController {
             if okAlertView.lblResponseDetailMessage.text == "User updated successfully"{
                 //            let userId = varifyPhnResponseModel?.resultData?.userId
                 //            self.viewModel?.getRoleId(userID: userId)
-                CommonFunctions.sharedmanagerCommon.setRootLogin()
+//                CommonFunctions.sharedmanagerCommon.setRootLogin()
             }
+            navigationController?.popViewController(animated: false)
             okAlertView.removeFromSuperview()
         }
     }

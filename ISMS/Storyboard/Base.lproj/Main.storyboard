@@ -2682,6 +2682,7 @@
                         <outlet property="scrollView" destination="yXE-kv-aSb" id="f0C-wh-dOe"/>
                         <outlet property="txtAddress" destination="Xl9-pz-79p" id="Nsd-Z8-pRl"/>
                         <outlet property="txtFieldDOB" destination="TcF-03-j8p" id="R06-Qe-xXf"/>
+                        <outlet property="txtFieldPhoneNum" destination="JP8-Af-XTo" id="K8R-Tq-p8j"/>
                         <outlet property="txtFirstName" destination="TbO-KA-ORw" id="1QR-hi-GIW"/>
                         <outlet property="txtLastName" destination="vru-cO-Rag" id="XTH-AV-aXD"/>
                         <outlet property="txtMail" destination="vQh-aS-ywT" id="gyR-Ox-8zI"/>
