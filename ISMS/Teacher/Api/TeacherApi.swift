@@ -13,6 +13,70 @@ class TeacherApi {
     
     static let sharedManager = TeacherApi()
     
+    func getClassDropdownData(id : Int,enumType: Int,completionResponse:  @escaping (GetCommonDropdownModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
+          
+          SignUpApi.sharedInstance.getCommonDropdownApi(url: ApiEndpoints.KClassdropDown+"?id=\(id)&enumType=\(enumType)", parameter: nil, completionResponse: { (responseModel) in
+              completionResponse(responseModel)
+          }, completionnilResponse: { (nilResponse) in
+              completionnilResponse(nilResponse)
+          }) { (error) in
+              complitionError(error)
+          }
+          
+      }
+    
+    func GetSubjectList(url : String,parameters: [String : Any]?,completionResponse:  @escaping (AssignSubjectTeacherModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (String?) -> Void){
+        
+        let urlCmplete = BaseUrl.kBaseURL+url
+        //"http://stgsd.appsndevs.com/EducationProApi/api/Institute/GetAllStudentRatingByClassSubjecId"
+        
+        print("your complete address of api :\(urlCmplete)")
+        var accessTokken =   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ODk2OTUwODkxIiwiZW1haWwiOiJmb2dneUBnbWFpbC5jbyIsImF6cCI6IjI5NSIsInNpZCI6Im1pbmRAMTIzIiwianRpIjoiMjY4NDA4MDMtZmE4Ni00NDVkLTliYmItNTU2YWZmODJhMTMyIiwiZXhwIjoxNTc1NDM4ODc2LCJpc3MiOiJUZXN0LmNvbSIsImF1ZCI6IlRlc3QuY29tIn0.jRGWxJRGlCLi59rElllYgYTx3RNjp2jN7MMwpIxAADQ"
+        if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String {
+            accessTokken = str
+        }
+        
+        let headers = [KConstants.kHeaderAuthorization:KConstants.kHeaderBearer+" "+accessTokken,KConstants.kAccept: KConstants.kApplicationJson]
+        
+        Alamofire.request(urlCmplete, method: .post, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print("your responsedd : \(response)")
+            if response.result.isSuccess{
+                guard let data = response.value else{return}
+                if let responseData  = data as? [String : Any]{
+                    print("your Subject list rating responsedd : \(responseData)")
+                    self.GetSubjectListJSON(data: responseData, completionResponse: { (response) in
+                        completionResponse(response)
+                    }, completionError: { (error) in
+                        complitionError(error)
+                    })
+                }else{
+                    CommonFunctions.sharedmanagerCommon.println(object: "Assign Subjects to class Error:- \(data) ")
+                }
+            }else{
+                complitionError(response.error?.localizedDescription)
+                return
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    private func GetSubjectListJSON(data: [String : Any],completionResponse:  @escaping (AssignSubjectTeacherModel) -> Void,completionError: @escaping (String?) -> Void)  {
+          
+          let assignSubjetcToTeacherData = AssignSubjectTeacherModel(JSON: data)
+          
+          if assignSubjetcToTeacherData != nil{
+              completionResponse(assignSubjetcToTeacherData!)
+          }else{
+              completionError(Alerts.kMapperModelError)
+          }
+      }
+    
+    
     //MARK:- Add/Update Teacher Api
     func addUpdateTeacher(url : String,parameters: [String : Any],completionResponse:  @escaping (CommonSuccessResponseModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
         
