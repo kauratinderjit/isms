@@ -103,9 +103,7 @@ class LoginData: Mappable {
         
         init?(map: Map) {
         }
-        
        
-        
         
         mutating func mapping(map: Map) {
             About <- map["About"]
