@@ -283,8 +283,9 @@ class BaseUIViewController: UIViewController {
             {
                 self.datePickerView.minimumDate = Calendar.current.date(byAdding: .year, value: 0, to: Date())
 
-            }
-            else{
+            }else if (AddLeaveReqVC.isFromLeaveListDate == true){
+                self.datePickerView.minimumDate = Calendar.current.date(byAdding: .year, value: 0, to: Date())
+            }else{
                 self.datePickerView.maximumDate = Calendar.current.date(byAdding: .year, value: 0, to: Date())
 
             }

@@ -81,7 +81,7 @@ class SubjectChapterTopicViewModel{
     //MARK:- GET ADD TOPIC LIST
     func addTopic(TopicId: Int,TopicName: String,ChapterId: Int){
         self.TopicView?.showLoader()
-       let paramDict = [KApiParameters.AddSubjectApi.kTopicId:TopicId,KApiParameters.AddSubjectApi.kTopicName:TopicName, KApiParameters.AddSubjectApi.chapterId :ChapterId] as [String : Any]
+        let paramDict = [KApiParameters.AddSubjectApi.kTopicId:TopicId,KApiParameters.AddSubjectApi.kTopicName:TopicName, KApiParameters.AddSubjectApi.chapterId :ChapterId,"Comment" : "","UserId": UserDefaultExtensionModel.shared.currentUserId] as [String : Any]
         print("value of param: ",paramDict)
         SubjectApi.sharedInstance.AddSubject(url: ApiEndpoints.KAddTopicApi, parameters: paramDict, completionResponse: { (responseModel) in
             print(responseModel)

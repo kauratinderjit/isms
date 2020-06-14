@@ -235,6 +235,50 @@ class SignUpViewModel{
         }
     }
     
+    func updateUser(firstName: String?, lastName: String?, gender: String?,address: String?, email: String?, phoneNo: String?,imgUrl: URL?, dob: String?,  userId: Int?){
+        //MARK:- Post SignUp Api
+        
+        let paramDict = [KApiParameters.SignUpApiPerameters.kUserId:userId ?? 0,KApiParameters.SignUpApiPerameters.kFirstName:firstName,KApiParameters.SignUpApiPerameters.kLastName:lastName,KApiParameters.SignUpApiPerameters.kPhoneNumber:phoneNo,KApiParameters.SignUpApiPerameters.kGender:gender,KApiParameters.SignUpApiPerameters.kAddress:address,KApiParameters.SignUpApiPerameters.kEmail:email,KApiParameters.SignUpApiPerameters.kImageUrl: imgUrl ?? "",KApiParameters.SignUpApiPerameters.kDOB:dob] as [String : Any]
+        
+        self.signUpView?.showLoader()
+        SignUpApi.sharedInstance.multipartApi(postDict: paramDict as [String : Any], url: "api/User/UpdateUser", completionResponse: { (response) in
+            print(response)
+            self.signUpResponseJson(data: response, completionResponse: { (responseModel) in
+                
+                self.signUpView?.hideLoader()
+                switch responseModel.statusCode {
+                case KStatusCode.kStatusCode200:
+                    guard let msg = responseModel.message else {
+                        return
+                    }
+                    self.delegate?.signUpSuccess(message: msg)
+                case KStatusCode.kStatusCode202:
+                    guard let msg = responseModel.message else {
+                        return
+                    }
+                    self.delegate?.signUpSuccess(message:msg)
+                case KStatusCode.kStatusCode400:
+                    if let msg = responseModel.message{
+                        self.signUpView?.showAlert(alert: msg)
+                    }
+                //It is came when i updated the hod
+                case KStatusCode.kStatusCode408:
+                    guard let msg = responseModel.message else {return}
+                    self.delegate?.signUpSuccess(message:msg)
+                default:
+                    if let msg = responseModel.message{
+                        self.signUpView?.showAlert(alert: msg)
+                    }
+                }
+            }, completionError: { (err) in
+                self.signUpView?.showAlert(alert: err ?? "")
+            })
+            
+        }) { (error) in
+            self.signUpView?.showAlert(alert: error?.localizedDescription ?? "")
+        }
+    }
+    
     func getRoleId(userID: Int?){
         self.signUpView?.showLoader()
         
