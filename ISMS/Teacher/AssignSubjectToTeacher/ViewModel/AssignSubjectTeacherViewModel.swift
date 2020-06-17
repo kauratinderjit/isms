@@ -12,6 +12,7 @@ import Foundation
 protocol AssignSubjectTeacherDelegate: class {
     func unauthorizedUser()
     func AssignSubjectTeacherDidSuccess(data : [GetSubjectListResultData])
+    func GetAssignSubjectSucceed(data: [GetAssignSubjectListResultData])
     func AssignSubjectTeacherDidFailed()
     func getClassdropdownDidSucceed(data : GetCommonDropdownModel)
     
@@ -156,12 +157,68 @@ class AssignSubjectTeacherViewModel{
         }
     }
     
-    func postAssignedSubjectToTeacher(subjectList:[[String:Any]]){
-        
-        
+    func submitAssignSubject(ClassId: Int,TeacherId: Int,subjectLists: [[String:Any]]){
+        let parameters = ["ClassId":ClassId,"TeacherId":TeacherId,"subjectLists": subjectLists] as [String : Any]
+        print("params: ",parameters)
         self.AssignSubjectToTeacherVC?.showLoader()
+        SubjectApi.sharedInstance.AddSubject(url: "api/Institute/AssignedSubjectToTeacher", parameters: parameters, completionResponse: { (responseModel) in
+            print(responseModel)
+            
+            self.AssignSubjectToTeacherVC?.hideLoader()
+            if responseModel.statusCode == KStatusCode.kStatusCode200{
+                
+                if responseModel.resultData != nil{
+                    self.AssignSubjectToTeacherVC?.showAlert(alert: responseModel.message ?? "")
+                }else{
+                    self.AssignSubjectToTeacherVC?.showAlert(alert: responseModel.message ?? "")
+                }
+                
+            }else if responseModel.statusCode == KStatusCode.kStatusCode401{
+                self.AssignSubjectToTeacherVC?.showAlert(alert: responseModel.message ?? "")
+            }
+            
+            if responseModel.statusCode == KStatusCode.kStatusCode400{
+                self.AssignSubjectToTeacherVC?.showAlert(alert: responseModel.message ?? "")
+            }
+            
+        }, completionnilResponse: { (nilResponse) in
+            self.AssignSubjectToTeacherVC?.hideLoader()
+            self.AssignSubjectToTeacherVC?.showAlert(alert: nilResponse ?? Alerts.kMapperModelError)
+        }) { (error) in
+            self.AssignSubjectToTeacherVC?.hideLoader()
+            self.AssignSubjectToTeacherVC?.showAlert(alert: error.debugDescription)
+            
+            
+        }
+        }
+    
+    func GetAssignedSubjectToTeacherById(ClassId: Int,TeacherId: Int){
+        let url = KApiParameters.kUpdateSyllabusApiParameter.kChapterAndTopicApi
         
-        
+          let param = ["ClassId" : ClassId ,"TeacherId": TeacherId] as [String : Any]
+         
+          UpdateSyllabusApi.sharedManager.AssignSubjectData(url:url , parameters: param, completionResponse: { (UpdateSyllabusModel) in
+               self.AssignSubjectToTeacherVC?.hideLoader()
+                  if let result = UpdateSyllabusModel.resultData {
+                    self.AssignSubjectTeacherDelegate?.GetAssignSubjectSucceed(data: result)
+                  }
+          }, completionnilResponse: { (nilResponseError) in
+              self.AssignSubjectToTeacherVC?.hideLoader()
+              // self.syllabusCoverageDelegate?.SyllabusCoverageFailour(msg :
+              if let error = nilResponseError{
+                  self.AssignSubjectToTeacherVC?.showAlert(alert: error.description)
+                  
+              }else{
+                  CommonFunctions.sharedmanagerCommon.println(object: SyllabusCoverage.kSyllabusResponseNotGet)
+              }
+          }) { (error) in
+              self.AssignSubjectToTeacherVC?.hideLoader()
+              if let err = error?.localizedDescription{
+                  self.AssignSubjectToTeacherVC?.showAlert(alert: err)
+              }else{
+                  CommonFunctions.sharedmanagerCommon.println(object: SyllabusCoverage.kSyllabusResponseError)
+              }
+          }
         }
     }
     

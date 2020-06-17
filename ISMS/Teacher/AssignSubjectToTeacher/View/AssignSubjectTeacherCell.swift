@@ -53,6 +53,10 @@ class AssignSubjectTeacherCell: UITableViewCell{
             SubjectName.text = subjectname
         }
         
+        if let nameStr = rsltData.subjectName{
+            CommonFunctions.sharedmanagerCommon.addLabelOnTheImgeViewWithFirstCharacter(string: nameStr, imgView: self.studentImg)
+            CommonFunctions.sharedmanagerCommon.println(object: "Image is nil in list.")
+        }
         
         
 //        if let imgProfileUrl = rsltData.studentImageURL{
@@ -71,10 +75,7 @@ class AssignSubjectTeacherCell: UITableViewCell{
 //                }
 //            }
 //        }else{
-//            if let nameStr = rsltData.studentFirstName{
-//                CommonFunctions.sharedmanagerCommon.addLabelOnTheImgeViewWithFirstCharacter(string: nameStr, imgView: self.studentImg)
-//                CommonFunctions.sharedmanagerCommon.println(object: "Image is nil in list.")
-//            }
+
 //        }
     }
 }

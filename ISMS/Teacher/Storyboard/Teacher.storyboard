@@ -21,14 +21,14 @@
             <objects>
                 <viewController storyboardIdentifier="AddTeacherVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="E1F-SA-UsY" customClass="AddTeacherVC" customModule="ISMS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ohv-JF-rj4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1100"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TTx-zg-fnM" customClass="TPKeyboardAvoidingScrollView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1100"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1300"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="37j-jI-uXr">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1518"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="37j-jI-uXr">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1610"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="8hx-wX-7Fh">
                                                 <rect key="frame" x="127.66666666666669" y="20" width="120" height="120"/>
@@ -50,7 +50,7 @@
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5FX-au-qGO">
-                                                <rect key="frame" x="0.0" y="168" width="375" height="1350"/>
+                                                <rect key="frame" x="0.0" y="168" width="375" height="1423"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Bgt-0v-ldB">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1211"/>
@@ -678,13 +678,45 @@
                                                             <action selector="btnSubmitAction:" destination="E1F-SA-UsY" eventType="touchUpInside" id="toY-lX-viC"/>
                                                         </connections>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STm-eQ-HQ7">
+                                                        <rect key="frame" x="16" y="1315" width="343" height="52"/>
+                                                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="52" id="OcD-Ap-2uj"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <state key="normal" title="Update Assign Subject">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="4"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                <real key="value" value="0.80000000000000004"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                <real key="value" value="4"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOffset">
+                                                                <real key="value" value="0.80000000000000004"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="actionUpdateAssignSubject:" destination="E1F-SA-UsY" eventType="touchUpInside" id="EAL-pz-hYJ"/>
+                                                            <action selector="btnSubmitAction:" destination="E1F-SA-UsY" eventType="touchUpInside" id="BgY-oG-Un2"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="oA5-xW-cQF" secondAttribute="bottom" constant="55" id="1Ke-De-988"/>
+                                                    <constraint firstAttribute="trailing" secondItem="STm-eQ-HQ7" secondAttribute="trailing" constant="16" id="CPg-v4-oRt"/>
+                                                    <constraint firstItem="STm-eQ-HQ7" firstAttribute="leading" secondItem="5FX-au-qGO" secondAttribute="leading" constant="16" id="Ewf-Br-PSJ"/>
                                                     <constraint firstAttribute="trailing" secondItem="Bgt-0v-ldB" secondAttribute="trailing" id="Fd6-Wt-3MO"/>
+                                                    <constraint firstItem="STm-eQ-HQ7" firstAttribute="top" secondItem="oA5-xW-cQF" secondAttribute="bottom" constant="20" id="Mla-YI-tps"/>
                                                     <constraint firstItem="oA5-xW-cQF" firstAttribute="top" secondItem="Bgt-0v-ldB" secondAttribute="bottom" constant="26" id="ctR-Um-x4H"/>
                                                     <constraint firstItem="Bgt-0v-ldB" firstAttribute="top" secondItem="5FX-au-qGO" secondAttribute="top" id="iQQ-gK-uij"/>
+                                                    <constraint firstAttribute="bottom" secondItem="STm-eQ-HQ7" secondAttribute="bottom" constant="56" id="rnk-Gk-wIC"/>
                                                     <constraint firstItem="oA5-xW-cQF" firstAttribute="leading" secondItem="5FX-au-qGO" secondAttribute="leading" constant="16" id="sIu-TF-XIv"/>
                                                     <constraint firstAttribute="trailing" secondItem="oA5-xW-cQF" secondAttribute="trailing" constant="16" id="uAC-Od-3ue"/>
                                                     <constraint firstItem="Bgt-0v-ldB" firstAttribute="leading" secondItem="5FX-au-qGO" secondAttribute="leading" id="v2r-BS-KRn"/>
@@ -708,8 +740,8 @@
                                     <constraint firstItem="37j-jI-uXr" firstAttribute="leading" secondItem="TTx-zg-fnM" secondAttribute="leading" id="8mq-Ia-bvr"/>
                                     <constraint firstItem="37j-jI-uXr" firstAttribute="width" secondItem="TTx-zg-fnM" secondAttribute="width" id="azZ-aj-SjN"/>
                                     <constraint firstAttribute="trailing" secondItem="37j-jI-uXr" secondAttribute="trailing" id="gCC-SP-Lt9"/>
-                                    <constraint firstItem="37j-jI-uXr" firstAttribute="top" secondItem="TTx-zg-fnM" secondAttribute="top" id="qJp-Gt-gek"/>
-                                    <constraint firstAttribute="bottom" secondItem="37j-jI-uXr" secondAttribute="bottom" id="sTx-tI-lVh"/>
+                                    <constraint firstItem="37j-jI-uXr" firstAttribute="top" secondItem="TTx-zg-fnM" secondAttribute="top" constant="-318" id="qJp-Gt-gek"/>
+                                    <constraint firstAttribute="bottom" secondItem="37j-jI-uXr" secondAttribute="bottom" constant="8" id="sTx-tI-lVh"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -724,9 +756,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="jR1-ii-RDG"/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <size key="freeformSize" width="375" height="1100"/>
+                    <size key="freeformSize" width="375" height="1300"/>
                     <connections>
                         <outlet property="btnAddProfileImage" destination="7Nf-nH-5Ad" id="hqh-ty-5AU"/>
+                        <outlet property="btnAssignSubject" destination="STm-eQ-HQ7" id="FEx-eN-ezg"/>
+                        <outlet property="btnAssignSubjectTopConstraints" destination="Mla-YI-tps" id="jxD-0A-Ufz"/>
                         <outlet property="btnDOB" destination="o1K-9O-eNY" id="gGZ-Fj-y0J"/>
                         <outlet property="btnFemale" destination="Bwa-eW-5Kk" id="rZQ-3J-7wh"/>
                         <outlet property="btnIdProofImage" destination="kAb-nr-E9j" id="HeC-8O-lRJ"/>
@@ -752,7 +786,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gdd-Lg-wVj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1015.3125" y="2322.8873239436621"/>
+            <point key="canvasLocation" x="1015.2173913043479" y="2322.554347826087"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4Sn-kw-VjU">
@@ -1339,7 +1373,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wiw-JP-I13">
-                                        <rect key="frame" x="116.33333333333334" y="22" width="265.66666666666663" height="26"/>
+                                        <rect key="frame" x="116.33333333333331" y="22" width="266" height="26"/>
                                         <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -1351,16 +1385,16 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RiM-I8-hxI">
-                                        <rect key="frame" x="115.66666666666666" y="54" width="268.33333333333337" height="26"/>
+                                        <rect key="frame" x="115.66666666666666" y="54" width="268.66666666666674" height="26"/>
                                         <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="FxN-yM-DOC">
-                                        <rect key="frame" x="390" y="22" width="16" height="26"/>
+                                        <rect key="frame" x="390.33333333333331" y="22" width="15.666666666666686" height="26"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="C0S-s8-j67">
-                                        <rect key="frame" x="391" y="62.333333333333336" width="16" height="9.6666666666666643"/>
+                                        <rect key="frame" x="391.33333333333331" y="62.333333333333336" width="15.666666666666686" height="9.6666666666666643"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Subject" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NgM-iS-sfS">
                                         <rect key="frame" x="8" y="54" width="99.666666666666671" height="26"/>
@@ -1772,7 +1806,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lsa-82-QOQ">
-                                                        <rect key="frame" x="118" y="22" width="264" height="26"/>
+                                                        <rect key="frame" x="118" y="22" width="264.33333333333331" height="26"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -1784,16 +1818,16 @@
                                                         </connections>
                                                     </button>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HmN-eg-UaP">
-                                                        <rect key="frame" x="116" y="53.999999999999986" width="268" height="26"/>
+                                                        <rect key="frame" x="116" y="53.999999999999986" width="268.33333333333331" height="26"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="tZT-2S-Y98">
-                                                        <rect key="frame" x="390" y="22" width="16" height="26"/>
+                                                        <rect key="frame" x="390.33333333333331" y="22" width="15.666666666666686" height="26"/>
                                                     </imageView>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="xAw-0c-Jvt">
-                                                        <rect key="frame" x="391" y="61.999999999999979" width="16" height="9.6666666666666643"/>
+                                                        <rect key="frame" x="391.33333333333331" y="61.999999999999979" width="15.666666666666686" height="9.6666666666666643"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Subject" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Mt-2x-EIJ">
                                                         <rect key="frame" x="8" y="53.999999999999986" width="100" height="26"/>
@@ -2379,7 +2413,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zhq-rV-a5h">
-                                        <rect key="frame" x="135.33333333333337" y="21" width="246.66666666666663" height="48"/>
+                                        <rect key="frame" x="135.33333333333337" y="21" width="247" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
@@ -2395,7 +2429,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dropDown" translatesAutoresizingMaskIntoConstraints="NO" id="cJF-qp-u6p">
-                                        <rect key="frame" x="390" y="21" width="16" height="48"/>
+                                        <rect key="frame" x="390.33333333333331" y="21" width="15.666666666666686" height="48"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sqI-iv-DLM">
                                         <rect key="frame" x="135.33333333333334" y="21" width="270.66666666666663" height="30"/>
@@ -2404,7 +2438,7 @@
                                         </connections>
                                     </button>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lSN-OW-tRq">
-                                        <rect key="frame" x="0.0" y="89" width="413.66666666666669" height="1"/>
+                                        <rect key="frame" x="0.0" y="89" width="414" height="1"/>
                                         <color key="backgroundColor" red="0.89019607840000003" green="0.94117647059999998" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="fgR-mM-azg"/>

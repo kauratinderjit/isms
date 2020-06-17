@@ -78,7 +78,7 @@ class TeacherApi {
     
     
     //MARK:- Add/Update Teacher Api
-    func addUpdateTeacher(url : String,parameters: [String : Any],completionResponse:  @escaping (CommonSuccessResponseModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
+    func addUpdateTeacher(url : String,parameters: [String : Any],completionResponse:  @escaping (TeacherAddModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
         
         SignUpApi.sharedInstance.multipartApi(postDict: parameters, url: url, completionResponse: { (response) in
             self.addUpdateTeacherJSON(data: response, completionResponse: { (responseModel) in
@@ -95,9 +95,9 @@ class TeacherApi {
     }
     
     //Convert Json data into mapper
-    private func addUpdateTeacherJSON(data: [String : Any],completionResponse:  @escaping (CommonSuccessResponseModel) -> Void,completionError: @escaping (String?) -> Void){
+    private func addUpdateTeacherJSON(data: [String : Any],completionResponse:  @escaping (TeacherAddModel) -> Void,completionError: @escaping (String?) -> Void){
         
-        let addHodResponseData = CommonSuccessResponseModel(JSON: data)
+        let addHodResponseData = TeacherAddModel(JSON: data)
         
         if addHodResponseData != nil{
             completionResponse(addHodResponseData!)

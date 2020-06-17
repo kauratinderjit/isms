@@ -35,6 +35,8 @@ class AddTeacherVC: BaseUIViewController
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var viewGender: UIView!
     
+    @IBOutlet weak var btnAssignSubjectTopConstraints: NSLayoutConstraint!
+    @IBOutlet weak var btnAssignSubject: UIButton!
     //Veriables
     var viewModel : AddTeacherViewModel?
     var assignDepartmentData : GetCommonDropdownModel?
@@ -53,7 +55,7 @@ class AddTeacherVC: BaseUIViewController
     var isTeacherAddUpdateSuccess = false
     var isUnauthorizedUser = false
     var selectedPreviousTextField : UITextField?
-    
+    var resultTeacherId : Int?
     
     
     //MARK:- Life Cycle of VC
@@ -72,7 +74,10 @@ class AddTeacherVC: BaseUIViewController
             if teacherID != 0{
                 self.title = KStoryBoards.KAddTeacherIdentifiers.kUpdateTeacherTitle
                 self.viewModel?.getTeacherDetail(teacherId: teacherID ?? 0)
+                btnAssignSubject.isHidden = false
             }else{
+                btnAssignSubject.isHidden = true
+                btnAssignSubjectTopConstraints.constant = -30
                 self.title = KStoryBoards.KAddTeacherIdentifiers.kAddTeacherTitle
                 gender = KConstants.KMale
             }
@@ -93,7 +98,14 @@ class AddTeacherVC: BaseUIViewController
         //For Add teacher
         if teacherID == 0
         {
-            self.viewModel?.addUpdateTeacher(teacherId: teacherID, profileImageUrl: selectedProfileImageUrl, firstName: txtFieldFirstName.text, lastName: txtFieldLastName.text, address: txtFieldAddress.text, dateOfBirth:dateOfBirth, others: txtFieldOthers.text, gender: gender, email: txtFieldEmail.text, phoneNumber: txtFieldPhoneNumber.text, idProofImgUrl: selectedIdProofImageURL, idProofName: txtFieldIdProofName.text, assignDepartmentId: strDepartmentsIds, qualification: txtFieldQualification.text, workExperience: txtFieldWorkExperience.text, additionalSkills: txtFieldAdditionalSkills.text, userID: 0)
+            let storyboard = UIStoryboard.init(name: "Teacher", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "AssignSubjectToTeacherVC") as? AssignSubjectToTeacherVC
+            vc?.teacherId = self.teacherID
+            vc?.isUpdate = 0
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(vc!, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
+//            self.viewModel?.addUpdateTeacher(teacherId: teacherID, profileImageUrl: selectedProfileImageUrl, firstName: txtFieldFirstName.text, lastName: txtFieldLastName.text, address: txtFieldAddress.text, dateOfBirth:dateOfBirth, others: txtFieldOthers.text, gender: gender, email: txtFieldEmail.text, phoneNumber: txtFieldPhoneNumber.text, idProofImgUrl: selectedIdProofImageURL, idProofName: txtFieldIdProofName.text, assignDepartmentId: strDepartmentsIds, qualification: txtFieldQualification.text, workExperience: txtFieldWorkExperience.text, additionalSkills: txtFieldAdditionalSkills.text, userID: 0)
         }
         //For Update teacher
         if teacherID != 0
@@ -109,6 +121,20 @@ class AddTeacherVC: BaseUIViewController
             }
             self.viewModel?.addUpdateTeacher(teacherId: teacherID, profileImageUrl: selectedProfileImageUrl, firstName: txtFieldFirstName.text, lastName: txtFieldLastName.text, address: txtFieldAddress.text, dateOfBirth:dateOfBirth, others: txtFieldOthers.text, gender: gender, email: txtFieldEmail.text, phoneNumber: txtFieldPhoneNumber.text, idProofImgUrl: selectedIdProofImageURL, idProofName: txtFieldIdProofName.text, assignDepartmentId: strDepartmentsIds, qualification: txtFieldQualification.text, workExperience: txtFieldWorkExperience.text, additionalSkills: txtFieldAdditionalSkills.text, userID: 0)
         }
+        
+        
+    }
+    
+    
+    @IBAction func actionUpdateAssignSubject(_ sender: Any) {
+        let storyboard = UIStoryboard.init(name: "Teacher", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "AssignSubjectToTeacherVC") as? AssignSubjectToTeacherVC
+        vc?.teacherId = self.teacherID
+        vc?.isUpdate = 1
+        let frontVC = revealViewController().frontViewController as? UINavigationController
+        frontVC?.pushViewController(vc!, animated: false)
+        revealViewController().pushFrontViewController(frontVC, animated: true)
+        
     }
     
     //MARK:-Gender Button Action
@@ -417,7 +443,16 @@ extension AddTeacherVC : OKAlertViewDelegate{
     func okBtnAction() {
         okAlertView.removeFromSuperview()
         if isTeacherAddUpdateSuccess == true{
-            self.navigationController?.popViewController(animated: true)
+            
+            let storyboard = UIStoryboard.init(name: "Teacher", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "AssignSubjectToTeacherVC") as? AssignSubjectToTeacherVC
+            vc?.teacherId = self.resultTeacherId
+            vc?.isUpdate = 0
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(vc!, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
+          
+//            self.navigationController?.popViewController(animated: true)
         }
         else if isUnauthorizedUser == true{
             isUnauthorizedUser = false
@@ -494,3 +529,195 @@ extension AddTeacherVC : CustomTableViewPopUpDelegate{
     }
 }
 
+//MARK:- AddTeacher Delegate
+extension AddTeacherVC : AddTeacherDelegate{
+    func getTeacherDetailFailed() {
+        teacherID = 0
+        teacherUserId = 0
+    }
+    
+    //MARK:- Unathorized User
+    func unauthorizedUser() {
+        isUnauthorizedUser = true
+    }
+    
+    //MARK:- Add/Update Teacher Success
+    func addUpdateTeacherDidSuccess(data: TeacherAddModel) {
+        isTeacherAddUpdateSuccess = true
+        self.resultTeacherId = data.resultData
+    }
+    
+    func detailTeacherDidSucceed(data: TeacherDetailModel) {
+        self.setDataInTextFields(data: data)
+    }
+    
+    func getAssignHODdropdownDidSucceed(data: GetCommonDropdownModel) {
+        assignDepartmentData = data
+        if let count = data.resultData?.count{
+            if count > 0 {
+                tblViewpopUp.isHidden = false
+                tblViewpopUp.tblView.reloadData()
+            }else{
+                print("Assign Hod Count is zero.")
+            }
+        }
+    }
+}
+
+//MARK:- Shared UIDatePicker Delegate
+extension AddTeacherVC : SharedUIDatePickerDelegate{
+    func doneButtonClicked(datePicker: UIDatePicker) {
+        let strDate = CommonFunctions.sharedmanagerCommon.convertDateIntoStringWithDDMMYYYY(date: datePicker.date)
+        dateOfBirth = "\(datePicker.date)"
+        print("String Converted Date:- \(strDate)")
+        let years = CommonFunctions.sharedmanagerCommon.getYearsBetweenDates(startDate: datePicker.date, endDate: Date())
+        if let intYear = years{
+            if intYear < 18{
+                self.showAlert(alert: Alerts.kUnderAge)
+                return
+            }else{
+                txtFieldDOB.text = strDate
+                ageYears = intYear
+            }
+        }
+    }
+}
+
+//MARK:- UIImagePickerView Delegate
+extension AddTeacherVC:UIImagePickerDelegate{
+    
+    func selectedImageUrl(url: URL) {
+        if selectIdProof == false{
+            selectedProfileImageUrl = url
+        }else{
+            selectedIdProofImageURL = url
+        }
+    }
+    
+    func SelectedMedia(image: UIImage?, videoURL: URL?){
+        if selectIdProof == false{
+            self.imgViewTeacher.contentMode = .scaleAspectFill
+            self.imgViewTeacher.image = image
+        }else{
+            self.imgViewIdProof.contentMode = .scaleAspectFill
+            self.imgViewIdProof.image = image
+        }
+    }
+}
+
+extension AddTeacherVC : UITextFieldDelegate{
+    /*func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+//        case txtFieldPhoneNumber:
+//            txtFieldEmail.becomeFirstResponder()
+        case txtFieldEmail:
+            txtFieldFirstName.becomeFirstResponder()
+        case txtFieldFirstName:
+            txtFieldLastName.becomeFirstResponder()
+        case txtFieldLastName:
+            txtFieldAddress.becomeFirstResponder()
+        case txtFieldAddress:
+            txtFieldIdProofName.becomeFirstResponder()
+        case txtFieldIdProofName:
+            txtFieldQualification.becomeFirstResponder()
+        case txtFieldQualification:
+            txtFieldWorkExperience.becomeFirstResponder()
+        case txtFieldWorkExperience:
+            txtFieldAdditionalSkills.becomeFirstResponder()
+        case txtFieldAdditionalSkills:
+            txtFieldOthers.resignFirstResponder()
+        default: break
+        }
+        return true
+    }*/
+   
+//
+//    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+//
+//        switch textField {
+//        case txtFieldEmail:
+//            if txtFieldPhoneNumber.text?.count ?? 0 > 0{
+//                txtFieldPhoneNumber.resignFirstResponder()
+//                txtFieldEmail.resignFirstResponder()
+//            }
+//            break
+//        case txtFieldFirstName:
+//            if txtFieldEmail.text?.count ?? 0 > 0{
+//                txtFieldEmail.resignFirstResponder()
+//                txtFieldFirstName.resignFirstResponder()
+//            }
+//            break
+//        default:
+//            break
+//        }
+//
+//        return true
+//    }
+    
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+        let rawString = string
+        let range = rawString.rangeOfCharacter(from: .whitespaces)
+        
+        if ((textField.text?.count)! == 0 && range  != nil)
+        || ((textField.text?.count)! > 0 && textField.text?.last  == " " && range != nil)
+        {
+            return false
+        }
+        return true
+    }
+    
+     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        view.endEditing(true)
+        
+        if textField == txtFieldPhoneNumber {
+            //When User start entering phone but less then 10 digits then this check is continue
+            if txtFieldPhoneNumber.text?.count ?? 0 > 0 && txtFieldPhoneNumber.text?.count ?? 0 < 10
+            {
+                DispatchQueue.main.async {
+                   self.resignAllTextfields(txtFieldArr: [self.txtFieldEmail,self.txtFieldFirstName,self.txtFieldLastName,self.txtFieldAddress,self.txtFieldIdProofName,self.txtFieldQualification,self.txtFieldWorkExperience,self.txtFieldAdditionalSkills,self.txtFieldOthers])
+                    
+                }
+                showAlert(alert: Alerts.kMinPhoneNumberCharacter)
+                return
+            }
+            else if txtFieldPhoneNumber.text?.count ?? 0 == 10
+            {
+                selectedPreviousTextField = txtFieldPhoneNumber
+                
+                if teacherID != 0//dont prefill data when we adding new teacher
+                {
+                    self.viewModel?.getTeacherDetailByPhoneEmail(phone: txtFieldPhoneNumber.text, email: txtFieldEmail.text)
+                }
+                
+                
+            }
+            //We are not handle here empty because Email Or Phone is optional
+            
+        }
+        if textField == txtFieldEmail{
+            if txtFieldEmail.text?.count ?? 0 > 0{
+                if let email = txtFieldEmail.text, !email.isValidEmail(){
+                    DispatchQueue.main.async {
+                        self.resignAllTextfields(txtFieldArr: [self.txtFieldPhoneNumber,self.txtFieldEmail,self.txtFieldFirstName,self.txtFieldLastName,self.txtFieldAddress,self.txtFieldQualification,self.txtFieldWorkExperience,self.txtFieldAdditionalSkills,self.txtFieldOthers])
+                    }
+                    self.showAlert(alert: Alerts.kInvalidEmail)
+                    return
+                }
+                else
+                {
+                    selectedPreviousTextField = txtFieldEmail
+                    
+                    if teacherID != 0//dont prefill data when we adding new teacher
+                    {
+                        self.viewModel?.getTeacherDetailByPhoneEmail(phone: txtFieldPhoneNumber.text, email: txtFieldEmail.text)
+                    }
+                    
+                }
+            }
+        }
+    }
+    
+}

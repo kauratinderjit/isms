@@ -25,8 +25,8 @@ class AssignSubjectToTeacherVC: BaseUIViewController {
     var isFetching:Bool?
     var isUnauthorizedUser = false
     var selectedSubjectViewModels = [[String:Any]]()
-    
-    
+    var teacherId : Int?
+    var isUpdate : Int?
     let userRoleParticularId = UserDefaultExtensionModel.shared.userRoleParticularId
     let departmentId = UserDefaultExtensionModel.shared.HODDepartmentId
     
@@ -38,6 +38,7 @@ class AssignSubjectToTeacherVC: BaseUIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("teacherid : ",teacherId)
         setBackButton()
         setupUI()
         // Do any additional setup after loading the view.
@@ -46,9 +47,7 @@ class AssignSubjectToTeacherVC: BaseUIViewController {
     override func viewWillAppear(_ animated: Bool) {
     if checkInternetConnection()
         {
-               // arrStudentlist.removeAll()
-                self.ViewModel?.getClassId(id:departmentId, enumtype: 6)
-    //             self.ViewModel?.studentList(classId : selectedClassID, Search: "", Skip: 0, PageSize: 1000)
+            self.ViewModel?.getClassId(id:departmentId, enumtype: 6)
         }
         else
         {
@@ -69,19 +68,19 @@ class AssignSubjectToTeacherVC: BaseUIViewController {
             if let index = isSelectedArr.firstIndex(of: sender.tag) {
                     isSelectedArr.remove(at: index)
             }
-            let index = getIndex(of: "ClassSubjectId", for: extractedData.subjectID ?? 0, in: selectedSubjectViewModels)
+            let index = getIndex(of: "ClassSubjectId", for: extractedData.classSubjectId ?? 0, in: selectedSubjectViewModels)
             self.selectedSubjectViewModels.remove(at: index)
         }else{
             sender.isSelected = true
             isSelectedArr.append(sender.tag)
            
-            data = ["ClassSubjectId":extractedData.subjectID , "SubjectName": extractedData.subjectName,"Occurrence":0]
+            data = ["ClassSubjectId":extractedData.classSubjectId , "SubjectName": extractedData.subjectName,"Occurrence":0]
             selectedSubjectViewModels.append(data)
         }
     
     print("data: ",data)
     
-    selectedSubjectViewModels.append(data)
+//    selectedSubjectViewModels.append(data)
     }
     
     
@@ -101,10 +100,7 @@ class AssignSubjectToTeacherVC: BaseUIViewController {
     
     
   @IBAction func SubmitAction(_ sender: Any) {
-
-     //self.viewModel?.GetSubjectList(classid: id,teacherId: userRoleParticularId,hodid:0)
-
-    
+    self.ViewModel?.submitAssignSubject(ClassId: selectedClassID ?? 0,TeacherId: 1088,subjectLists: selectedSubjectViewModels)
     }
 
     @IBAction func btnOpenDropDown(_ sender: Any) {
@@ -115,10 +111,6 @@ class AssignSubjectToTeacherVC: BaseUIViewController {
     
         //Setup UI
         func setupUI(){
-            
-    //        guard let theme = ThemeManager.shared.currentTheme else {return}
-    //        btnAddStudent.tintColor = theme.uiButtonBackgroundColor
-            
             self.title = "Assign Subject To Teacher"
             self.ViewModel = AssignSubjectTeacherViewModel.init(delegate: self)
             self.ViewModel?.attachView(viewDelegate: self)
@@ -141,17 +133,6 @@ extension AssignSubjectToTeacherVC : OKAlertViewDelegate{
         if isUnauthorizedUser == true{
             isUnauthorizedUser = false
             CommonFunctions.sharedmanagerCommon.setRootLogin()
-//        }else if isStudentDelete == true{
-//            isStudentDelete = false
-//            if let selectedIndex = self.selectedStudentArrIndex{
-//                self.arrStudentlist.remove(at: selectedIndex)
-//                DispatchQueue.main.async {
-//                    self.tableView.reloadData()
-//                }
-//            }
-//
-//        }else{
-            
         }
         okAlertView.removeFromSuperview()
     }
@@ -160,17 +141,7 @@ extension AssignSubjectToTeacherVC : OKAlertViewDelegate{
 extension AssignSubjectToTeacherVC : YesNoAlertViewDelegate{
     
     func yesBtnAction() {
-//        if self.checkInternetConnection(){
-//            if let enrollmentId = self.enrollmentId{
-//                self.ViewModel?.deleteStudent(enrollmentId: enrollmentId)
-//            }else{
-//                CommonFunctions.sharedmanagerCommon.println(object: "Delete subject id is nil")
-//            }
-//        }else{
-//            self.showAlert(alert: Alerts.kNoInternetConnection)
-//        }
-//        yesNoAlertView.removeFromSuperview()
-        
+
     }
     
     func noBtnAction() {
@@ -192,7 +163,7 @@ extension AssignSubjectToTeacherVC : UITableViewDelegate{
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 109;//Choose your custom row height
+        return 100;//Choose your custom row height
     }
     
 }
@@ -250,61 +221,19 @@ extension AssignSubjectToTeacherVC : AssignSubjectTeacherDelegate{
         
         arrSubjectList.removeAll()
         arrSubjectList = data
-        
         self.tableView.reloadData()
-        // arrStudentlist.removeAll()
-//        if data != nil{
-//            if data?.count ?? 0 > 0
-//            {
-//                guard let rsltData = data else
-//                {
-//                    return
-//                }
-//
-//                tableView.delegate = self
-//                tableView.dataSource = self
-//
-//                //When user select the class for change the data in list selected
-//                if isClassSelected == true
-//                {
-//                    arrStudentlist.removeAll()
-//                    _ = rsltData.map({ (data) in
-//                        arrStudentlist.append(data)
-//                    })
-//                    self.tblViewCenterLabel(tblView: tableView, lblText: "", hide: true)
-//                }
-//                else
-//                {
-//                    for value in rsltData{
-//                        let containsSameValue = arrStudentlist.contains(where: {$0.enrollmentId == value.enrollmentId})
-//                        if containsSameValue == false{
-//                            arrStudentlist.append(value)
-//                        }
-//                    }
-//                    self.tblViewCenterLabel(tblView: tableView, lblText: "", hide: true)
-//                }
-//            }
-//            else
-//            {
-//                //Remove the array student list
-//                if isClassSelected == true
-//                {
-//                    arrStudentlist.removeAll()
-//                }
-//               // self.tblViewCenterLabel(tblView: tableView, lblText: KConstants.KDataNotFound, hide: false)
-//                //                CommonFunctions.sharedmanagerCommon.println(object: "Zero")
-//            }
-//        }
-//        else
-//        {
-//            arrStudentlist.removeAll()
-//            self.tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
-//            //            CommonFunctions.sharedmanagerCommon.println(object: "Nil")
-//        }
+        if isUpdate == 1{
+            ViewModel?.GetAssignedSubjectToTeacherById(ClassId: selectedClassID ?? 0,TeacherId: teacherId ?? 0)
+        }
         
+
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+        
+    }
+    
+    func GetAssignSubjectSucceed(data: [GetAssignSubjectListResultData]){
         
     }
     
