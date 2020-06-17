@@ -36,7 +36,8 @@ struct GetTopicResultData: Mappable {
     
     var topicId : Int?
     var topicName : String?
-    
+    var Comment : String?
+    var lsTopicAttachmentMapping : [lsTopicAttachmentMapping]?
     
     init?(map: Map) {
         
@@ -45,7 +46,27 @@ struct GetTopicResultData: Mappable {
     mutating func mapping(map: Map) {
         topicId <- map["TopicId"]
         topicName <- map["TopicName"]
+        Comment <- map["Comment"]
+        lsTopicAttachmentMapping <- map["lsTopicAttachmentMapping"]
     }
     
 }
 
+
+struct lsTopicAttachmentMapping: Mappable {
+    
+    var TopicAttachmentId : Int?
+    var AttachmentUrl : String?
+    var FileName : String?
+    
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        TopicAttachmentId <- map["TopicAttachmentId"]
+        AttachmentUrl <- map["AttachmentUrl"]
+        FileName <- map["FileName"]
+    }
+    
+}
