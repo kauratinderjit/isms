@@ -38,10 +38,14 @@ class SubjectTopicVC: BaseUIViewController {
         self.title = KStoryBoards.KAddSubjectIdentifiers.kTopicListTitle
            self.setSearchBarInNavigationController(placeholderText: KSearchBarPlaceHolder.kUserSearchBarTopicPlaceHolder, navigationTitle: KStoryBoards.KAddSubjectIdentifiers.kTopicListTitle, navigationController: self.navigationController, navigationSearchBarDelegates: self)
         
-        if let ChapterId = ChapterID {
-        self.ViewModel?.TopicList(search: "", skip: 0, pageSize: 10, sortColumnDir: "", sortColumn: "", particularID: ChapterId)
-        }
+      
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let ChapterId = ChapterID {
+              self.ViewModel?.TopicList(search: "", skip: 0, pageSize: 10, sortColumnDir: "", sortColumn: "", particularID: ChapterId)
+              }
     }
     
 
@@ -56,8 +60,15 @@ class SubjectTopicVC: BaseUIViewController {
     */
 
     @IBAction func ActionAddTopic(_ sender: Any) {
-        self.setupCustomView()
-        textFieldAlert.delegate = self
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Subject", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "AddTopicVC") as! AddTopicVC
+        newViewController.chapterId = ChapterID
+        newViewController.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(newViewController, animated: true)
+        
+//        self.setupCustomView()
+//        textFieldAlert.delegate = self
     }
 }
 
@@ -338,13 +349,20 @@ extension SubjectTopicVC : UITableViewDataSource , SubjectTopicTableViewDelegate
     }
     
     func didPressEditButton(_ tag: Int) {
-        if let Id = arrSubjectlist[tag].topicId {
-            self.topicID = Id
-            if let topicName = arrSubjectlist[tag].topicName {
-                self.textFieldAlert.txtFieldVal.text = topicName
-            }
+        if arrSubjectlist[tag].topicId != nil {
+//            self.topicID = Id
+//            if let topicName = arrSubjectlist[tag].topicName {
+//                self.textFieldAlert.txtFieldVal.text = topicName
+//            } editableData
+            
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Subject", bundle: nil)
+                   let newViewController = storyBoard.instantiateViewController(withIdentifier: "AddTopicVC") as! AddTopicVC
+                   newViewController.editableData = arrSubjectlist[tag]
+                   newViewController.chapterId = ChapterID
+                   newViewController.modalPresentationStyle = .fullScreen
+                   self.navigationController?.pushViewController(newViewController, animated: true)
         }
-        setupCustomViewForUpdate()
+       // setupCustomViewForUpdate()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

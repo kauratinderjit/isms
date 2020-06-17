@@ -119,7 +119,7 @@ public struct ApiEndpoints
     
     public static let KAddTopicApi = "api/Institute/AddTopic"
     public static let KDeleteTopicApi = "api/Institute/DeleteTopic?topicId="
-    public static let KTopicListApi = "api/Institute/GetTopicList"
+    public static let KTopicListApi = "api/Institute/GetTopicsList"
     public static let KTopicDetailApi = "api/Institute/GetTopicDetail"
     //GetClassAssignSubject
     public static let kGetAllAssignSubjectApi = "api/Institute/GetAllAssignedSubject"

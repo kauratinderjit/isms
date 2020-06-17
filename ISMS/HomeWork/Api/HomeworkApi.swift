@@ -125,6 +125,116 @@ class HomeworkApi
         
     }
     
+
+        func multipartApiTopic( postDict: [String: Any], url: String, completionResponse:  @escaping ([String: Any]) -> Void,completionError: @escaping (Error?) -> Void )
+        {
+
+            CommonFunctions.sharedmanagerCommon.println(object: "Post dictionary:- \(postDict)")
+            
+            let url = BaseUrl.kBaseURL+url
+            var accessTokken = ""
+            if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String
+            {
+                accessTokken = str
+            }
+            let headers: HTTPHeaders = [KConstants.kContentType: KConstants.kMultipartFormData,KConstants.kAccept : KConstants.kApplicationJson,KConstants.kHeaderAuthorization: KConstants.kHeaderBearer + " " + accessTokken]
+            let configuration = URLSessionConfiguration.default
+            configuration.timeoutIntervalForRequest = 1200
+            let alamoManager = Alamofire.SessionManager(configuration: configuration)
+            
+            
+            alamoManager.upload(multipartFormData: { (multipartFormData) in
+                
+                for (key, value) in postDict {
+                    print(key)
+                    print(value)
+                    if let Item = value as? [URL]{
+                        
+
+    //                        for (i,value1) in arry.enumerated(){
+    //                            print(value1)
+    //                            print(i)
+    //                            if let dict = value1 as? [String: Any] {
+    //                                print(dict)
+    //                                if let value2 = dict["deleteAttachmentId"] as? Int {
+    //                                    print(value2)
+                                   //     multipartFormData.append(value, withName: "LstDeletedAttachment[" + "\(i)" + "].deleteAttachmentId")
+                                  //  }
+                               // }
+                      
+                        if Item.count > 0 {
+                        for (_,value) in Item.enumerated()
+                                              {
+                                                  multipartFormData.append(value, withName: "IFile" )
+                                              }
+                        }
+
+                    }
+                    else
+                    {
+                        if let Item = value as? String
+                        {
+                            print(Item)
+                            multipartFormData.append("\(Item)".data(using: String.Encoding.utf8)!, withName: key as String)
+                        }
+                        if let Item = value as? Int
+                        {
+                            print(Item)
+                            multipartFormData.append("\(Item)".data(using: String.Encoding.utf8)!, withName: key as String)
+                            
+                        }
+                         if let Item = value as? NSMutableArray{
+                            print(Item)
+                            if Item.count > 0 {
+                                 for (ind,element) in Item.enumerated()
+                                               {
+                                let dic = element as? [String : Any]
+                                let dd = dic?["id"] as? Int
+                                let aa = dic?["url"] as? String
+                            multipartFormData.append("\(dd!)".data(using: String.Encoding.utf8)!, withName: "lstdeleteattachmentModel[" + "\(ind)" + "].TopicAttachmentId")
+                              multipartFormData.append("\(aa!)".data(using: String.Encoding.utf8)!, withName: "lstdeleteattachmentModel[" + "\(ind)" + "].AttachmentUrl")
+                                }
+                        }
+                        
+                    }
+                }
+                }
+                
+            }, usingThreshold: UInt64.init(), to: url, method: .post, headers: headers) { (result) in
+                switch result{
+                case .success(let upload, _, _):
+                    upload.responseJSON { response in
+                        
+                        print(response)
+                        print(response.request ?? "")  // original URL request
+                        print(response.response ?? "") // URL response
+                        print(response.data ?? "")     // server data
+                        print(response.result)   // result of response serialization
+                        print(response.result.value ?? "" )
+                        if let error = response.error
+                        {
+                            CommonFunctions.sharedmanagerCommon.println(object: "Upload failed with error: (\(error))")
+                            CommonFunctions.sharedmanagerCommon.println(object: "Upload failed with error: (\(error.localizedDescription))")
+                            completionError(response.error)
+                        }
+                        else
+                        {
+                            let resdict =  (response.result.value as!  [String : Any])
+                            CommonFunctions.sharedmanagerCommon.println(object: "here your uploaded result23: \(resdict)")
+                            completionResponse(resdict)
+                        }
+                        
+                        alamoManager.session.invalidateAndCancel()
+                    }
+                case .failure(let error):
+                    CommonFunctions.sharedmanagerCommon.println(object: "Error in upload: \(error.localizedDescription)")
+                    completionError(error)
+                    
+                }
+            }
+            
+        }
+    
     private func getHomeWorkJSON(data: [String : Any],completionResponse:  @escaping (HomeworkListModel) -> Void,completionError: @escaping (String?) -> Void)  {
         
         let ListData = HomeworkListModel(JSON: data)

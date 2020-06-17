@@ -46,7 +46,7 @@ class SubjectChapterTopicViewModel{
     }
     
   
-    
+
     //MARK:- GET TOPIC LIST
     func TopicList(search : String?,skip : Int?,pageSize: Int?,sortColumnDir: String?,sortColumn: String? , particularID : Int ){
         
@@ -54,7 +54,12 @@ class SubjectChapterTopicViewModel{
                  self.TopicView?.showLoader()
               }
         
-        let paramDict = [KApiParameters.SubjectListApi.subjectSearch: search ?? "",KApiParameters.SubjectListApi.PageSkip:skip ?? 0,KApiParameters.SubjectListApi.PageSize: pageSize ?? 0,KApiParameters.SubjectListApi.sortColumnDir: sortColumnDir ?? "", KApiParameters.SubjectListApi.sortColumn: sortColumn ?? "", KApiParameters.SubjectListApi.particularId : particularID] as [String : Any]
+        let paramDict = ["Search": search ?? "",
+                         "Skip":skip ?? 0,
+                         "PageSize": pageSize ?? 0,
+                         "SortColumnDir": sortColumnDir ?? "",
+                         "SortColumn" : sortColumn ?? "",
+                         "ParticularId" : particularID] as [String : Any]
  
         
         SubjectTopicApi.sharedInstance.getTopicList(url: ApiEndpoints.KTopicListApi, parameters: paramDict as [String : Any], completionResponse: { (SubjectListModel) in
@@ -158,4 +163,53 @@ class SubjectChapterTopicViewModel{
         }
         
     }
+    
+    
+    func add_Topic(TopicId : Int ,UserId : Int , TopicName : String ,ChapterId:Int, Comment : String, IsTopicAttachmentMapping : [URL], lstdeleteattachmentModel : NSMutableArray) {
+        
+         self.TopicView?.showLoader()
+        
+        let url = "api/Institute/AddTopic"
+      
+        let param = [
+                     "TopicId" : TopicId,
+                     "UserId" :UserId ,
+                     "TopicName" : TopicName,
+                     "ChapterId" : ChapterId,
+                     "Comment": Comment,
+                     "IsTopicAttachmentMapping" : IsTopicAttachmentMapping,
+                     "lstdeleteattachmentModel" :  lstdeleteattachmentModel
+            ] as [String : Any]
+        
+        
+        HomeworkApi.sharedManager.multipartApiTopic(postDict: param, url: url, completionResponse: { (response) in
+            
+            self.TopicView?.hideLoader()
+            
+            switch response["StatusCode"] as? Int{
+            case 200:
+                print("success")
+                // self.TopicDelegate?.showAlert(alert: response["Message"]  as? String ?? "")
+              self.TopicDelegate?.getTopicList()
+            case 401:
+                 self.TopicView?.showAlert(alert: response["Message"] as? String ?? "")
+                //self.AddHomeWorkDelegate?.unauthorizedUser()
+            default:
+                self.TopicView?.showAlert(alert: response["Message"] as? String ?? "")
+            }
+
+            
+        }) { (error) in
+           self.TopicView?.hideLoader()
+            if let err = error?.localizedDescription{
+                self.TopicView?.showAlert(alert: err)
+            }else{
+                CommonFunctions.sharedmanagerCommon.println(object: SyllabusCoverage.kSyllabusResponseError)
+            }
+
+        }
+    }
+    
+
+  
 }
