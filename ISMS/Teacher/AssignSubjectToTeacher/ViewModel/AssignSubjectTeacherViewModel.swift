@@ -2,7 +2,7 @@
 //  AssignSubjectTeacherViewModel.swift
 //  ISMS
 //
-//  Created by Gagan on 09/06/20.
+//  Created by Poonam on 09/06/20.
 //  Copyright © 2020 Atinder Kaur. All rights reserved.
 //
 
