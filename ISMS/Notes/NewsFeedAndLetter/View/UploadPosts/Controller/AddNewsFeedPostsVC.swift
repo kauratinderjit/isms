@@ -252,12 +252,15 @@ extension AddNewsFeedPostsVC:UIImagePickerDelegate{
     }
     func SelectedMedia(image: UIImage?, videoURL: URL?){
         
+        if videoURL != nil {
+        
                                let dic = NSMutableDictionary()
                                  dic.setValue(videoURL, forKey: "path")
                                  dic.setValue("video", forKey: "type")
                                  self.postArray.add(dic)
                                  self.collctionViewPosts.reloadData()
                                  self.btnUpload.isHidden = false
+        }
         
     }
 }

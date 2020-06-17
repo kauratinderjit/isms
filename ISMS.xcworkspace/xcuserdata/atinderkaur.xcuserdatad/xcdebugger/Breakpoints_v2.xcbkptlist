@@ -46,8 +46,8 @@
             filePath = "ISMS/Notes/NewsFeedAndLetter/View/UploadPosts/Controller/AddNewsFeedPostsVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "254"
-            endingLineNumber = "254"
+            startingLineNumber = "256"
+            endingLineNumber = "256"
             landmarkName = "SelectedMedia(image:videoURL:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -65,22 +65,6 @@
             startingLineNumber = "248"
             endingLineNumber = "248"
             landmarkName = "selectedImageUrl(url:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "DBF38C46-59A1-4D4F-AF2F-35DDA754F992"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ISMS/Notes/NewsFeedAndLetter/View/UploadPosts/Controller/AddNewPostExtension.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "openVideoGallery()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -158,8 +142,8 @@
             filePath = "ISMS/Notes/NewsFeedAndLetter/View/UploadPosts/Controller/AddNewsFeedPostsVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "258"
-            endingLineNumber = "258"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
             landmarkName = "SelectedMedia(image:videoURL:)"
             landmarkType = "7">
          </BreakpointContent>
