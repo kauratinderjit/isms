@@ -40,7 +40,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bCX-0c-3as">
-                                                    <rect key="frame" x="104" y="31" width="42" height="21"/>
+                                                    <rect key="frame" x="104" y="16" width="42" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="2Qa-9e-ije"/>
                                                     </constraints>
@@ -60,7 +60,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FtH-sa-pwx">
-                                                    <rect key="frame" x="104" y="62" width="270" height="21"/>
+                                                    <rect key="frame" x="104" y="45" width="270" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="4qP-kv-eb6"/>
                                                     </constraints>
@@ -68,23 +68,36 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzN-ZA-AVx">
+                                                    <rect key="frame" x="104" y="72" width="270" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="Tl5-aD-buS"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="bCX-0c-3as" firstAttribute="top" secondItem="0Vo-dW-sJs" secondAttribute="topMargin" constant="20" id="2L1-YU-b5t"/>
+                                                <constraint firstItem="bCX-0c-3as" firstAttribute="top" secondItem="0Vo-dW-sJs" secondAttribute="topMargin" constant="5" id="2L1-YU-b5t"/>
+                                                <constraint firstItem="mzN-ZA-AVx" firstAttribute="leading" secondItem="HQy-ZK-Dqe" secondAttribute="trailing" constant="8" id="4fY-Bn-uwr"/>
                                                 <constraint firstItem="FtH-sa-pwx" firstAttribute="leading" secondItem="HQy-ZK-Dqe" secondAttribute="trailing" constant="8" id="GAH-rS-l5f"/>
+                                                <constraint firstItem="mzN-ZA-AVx" firstAttribute="top" secondItem="FtH-sa-pwx" secondAttribute="bottom" constant="6" id="Gx2-yR-cpi"/>
                                                 <constraint firstItem="HQy-ZK-Dqe" firstAttribute="leading" secondItem="0Vo-dW-sJs" secondAttribute="leading" constant="16" id="LNA-XL-Gft"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="FtH-sa-pwx" secondAttribute="trailing" constant="20" id="PBh-JH-6bj"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="FYa-h9-5ps" secondAttribute="trailing" constant="20" id="RHE-wW-a14"/>
                                                 <constraint firstItem="bCX-0c-3as" firstAttribute="leading" secondItem="HQy-ZK-Dqe" secondAttribute="trailing" constant="8" id="Spl-hK-cqY"/>
                                                 <constraint firstItem="FYa-h9-5ps" firstAttribute="top" secondItem="0Vo-dW-sJs" secondAttribute="topMargin" constant="24.5" id="fzI-Qj-fas"/>
                                                 <constraint firstItem="HQy-ZK-Dqe" firstAttribute="centerY" secondItem="0Vo-dW-sJs" secondAttribute="centerY" id="i9r-j5-zxw"/>
-                                                <constraint firstItem="FtH-sa-pwx" firstAttribute="top" secondItem="bCX-0c-3as" secondAttribute="bottom" constant="10" id="ndJ-Qd-xhV"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="mzN-ZA-AVx" secondAttribute="trailing" constant="20" id="jes-Pu-pWK"/>
+                                                <constraint firstItem="FtH-sa-pwx" firstAttribute="top" secondItem="bCX-0c-3as" secondAttribute="bottom" constant="8" id="ndJ-Qd-xhV"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="btnEdit" destination="FYa-h9-5ps" id="4aB-nG-OZF"/>
                                             <outlet property="imgLeave" destination="HQy-ZK-Dqe" id="QZ5-NL-3Ox"/>
                                             <outlet property="lblLeaveStatus" destination="bCX-0c-3as" id="r9G-Zm-g72"/>
+                                            <outlet property="lblStudentName" destination="mzN-ZA-AVx" id="itf-Ch-iXd"/>
                                             <outlet property="lbldecLeave" destination="FtH-sa-pwx" id="kVc-Jr-SGv"/>
                                         </connections>
                                     </tableViewCell>

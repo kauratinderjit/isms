@@ -335,6 +335,7 @@ class ContactUsVC: BaseUIViewController {
     
     @IBAction func actionSubmit(_ sender: Any) {
           if fromAdmin  == 1{
+             self.showToast("Coming Soon")
           }else{
              viewModel?.addContact(ContactId: 31,InstituteId: 1,Message: "",lstEmergencyInquiryViewModels: lstEmergencyInquiryViewModels,lstAdmissionInquiryViewModels: lstAdmissionInquiryViewModels,lstGeneralInquiryViewModels: lstGeneralInquiryViewModels,lstdeleteEmergencyInquiryViewModels: lstdeleteEmergencyInquiryViewModels,lstdeleteAdmissionInquiryViewModels: lstdeleteAdmissionInquiryViewModels,lstdeleteGeneralInquiryViewModels : lstdeleteGeneralInquiryViewModels)
         }

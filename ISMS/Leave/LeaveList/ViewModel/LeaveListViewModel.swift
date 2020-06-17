@@ -37,7 +37,7 @@ class LeaveListViewModel{
         LeaveListDelegate = nil
     }
     //MARK:- Class list
-    func LeaveList(Search: String, Skip: Int,PageSize: Int,SortColumnDir: String,  SortColumn: String, ParticularId : Int){
+    func LeaveList(Search: String, Skip: Int,PageSize: Int,SortColumnDir: String,  SortColumn: String, ParticularId : Int,EnrollmentId: Int){
         
         if isSearching == false{
             self.ListView?.showLoader()
@@ -46,7 +46,7 @@ class LeaveListViewModel{
         var postDict = [String:Any]()
         
        
-        postDict = ["Search": Search ?? "","Skip":Skip ?? 0,"PageSize": PageSize ?? 0,"SortColumnDir": SortColumnDir ?? "", "SortColumn": SortColumn ?? "","ParticularId" : ParticularId] as [String : Any]
+        postDict = ["Search": Search ?? "","Skip":Skip ?? 0,"PageSize": PageSize ?? 0,"SortColumnDir": SortColumnDir ?? "", "SortColumn": SortColumn ?? "","ParticularId" : ParticularId,"EnrollmentId": EnrollmentId] as [String : Any]
        let url = "api/Institute/GetLeaveAppList"
          print("param: ",postDict)
         

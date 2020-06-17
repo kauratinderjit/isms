@@ -14,7 +14,7 @@ class GetAssignSubjectModel: Mappable{
     var message : String?
     var status : Bool?
     var statusCode :  Int?
-    var resultData : [GetAssignSubjectListResultData]?
+    var resultData : GetAssignSubjectListResultData?
     var resourceType : String?
     
     

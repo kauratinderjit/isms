@@ -98,14 +98,14 @@ class AddTeacherVC: BaseUIViewController
         //For Add teacher
         if teacherID == 0
         {
-            let storyboard = UIStoryboard.init(name: "Teacher", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "AssignSubjectToTeacherVC") as? AssignSubjectToTeacherVC
-            vc?.teacherId = self.teacherID
-            vc?.isUpdate = 0
-            let frontVC = revealViewController().frontViewController as? UINavigationController
-            frontVC?.pushViewController(vc!, animated: false)
-            revealViewController().pushFrontViewController(frontVC, animated: true)
-//            self.viewModel?.addUpdateTeacher(teacherId: teacherID, profileImageUrl: selectedProfileImageUrl, firstName: txtFieldFirstName.text, lastName: txtFieldLastName.text, address: txtFieldAddress.text, dateOfBirth:dateOfBirth, others: txtFieldOthers.text, gender: gender, email: txtFieldEmail.text, phoneNumber: txtFieldPhoneNumber.text, idProofImgUrl: selectedIdProofImageURL, idProofName: txtFieldIdProofName.text, assignDepartmentId: strDepartmentsIds, qualification: txtFieldQualification.text, workExperience: txtFieldWorkExperience.text, additionalSkills: txtFieldAdditionalSkills.text, userID: 0)
+//            let storyboard = UIStoryboard.init(name: "Teacher", bundle: nil)
+//            let vc = storyboard.instantiateViewController(withIdentifier: "AssignSubjectToTeacherVC") as? AssignSubjectToTeacherVC
+//            vc?.teacherId = self.teacherID
+//            vc?.isUpdate = 0
+//            let frontVC = revealViewController().frontViewController as? UINavigationController
+//            frontVC?.pushViewController(vc!, animated: false)
+//            revealViewController().pushFrontViewController(frontVC, animated: true)
+            self.viewModel?.addUpdateTeacher(teacherId: teacherID, profileImageUrl: selectedProfileImageUrl, firstName: txtFieldFirstName.text, lastName: txtFieldLastName.text, address: txtFieldAddress.text, dateOfBirth:dateOfBirth, others: txtFieldOthers.text, gender: gender, email: txtFieldEmail.text, phoneNumber: txtFieldPhoneNumber.text, idProofImgUrl: selectedIdProofImageURL, idProofName: txtFieldIdProofName.text, assignDepartmentId: strDepartmentsIds, qualification: txtFieldQualification.text, workExperience: txtFieldWorkExperience.text, additionalSkills: txtFieldAdditionalSkills.text, userID: 0)
         }
         //For Update teacher
         if teacherID != 0

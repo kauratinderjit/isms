@@ -9,6 +9,7 @@
 import UIKit
 import SWRevealViewController
 
+
 protocol MenuVCDelegate: class
 {
     func getMenuArraySuccess(data: GetMenuFromRoleIdModel)
@@ -596,11 +597,12 @@ extension MenuVC : UITableViewDelegate{
             break
         case "NewsFeed":
             
-            let storyboard = UIStoryboard.init(name: KStoryBoards.kNewsfeedAndLetter, bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "NewsLetterAndFeedVC") as? NewsLetterAndFeedVC
-            let frontVC = revealViewController().frontViewController as? UINavigationController
-            frontVC?.pushViewController(vc!, animated: false)
-            revealViewController().pushFrontViewController(frontVC, animated: true)
+            self.showToast("Coming Soon")
+//            let storyboard = UIStoryboard.init(name: KStoryBoards.kNewsfeedAndLetter, bundle: nil)
+//            let vc = storyboard.instantiateViewController(withIdentifier: "NewsLetterAndFeedVC") as? NewsLetterAndFeedVC
+//            let frontVC = revealViewController().frontViewController as? UINavigationController
+//            frontVC?.pushViewController(vc!, animated: false)
+//            revealViewController().pushFrontViewController(frontVC, animated: true)
             break
             
         case "Manage Contacts":
@@ -619,20 +621,31 @@ extension MenuVC : UITableViewDelegate{
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
             
-            //let storyboard = UIStoryboard.init(name: "Leave", bundle: nil)
-            //let vc = storyboard.instantiateViewController(withIdentifier: "LeaveListVC")
+            case "LeaveApplications":
+                let storyboard = UIStoryboard.init(name: "Leave", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "LeaveListVC") as? LeaveListVC
+                let frontVC = revealViewController().frontViewController as? UINavigationController
+                frontVC?.pushViewController(vc!, animated: false)
+                revealViewController().pushFrontViewController(frontVC, animated: true)
+                     
                 
-                
-                
-                
-                
-                as? LeaveListVC
-            //let frontVC = revealViewController().frontViewController as? UINavigationController
-            //frontVC?.pushViewController(vc!, animated: false)
-           // revealViewController().pushFrontViewController(frontVC, animated: true)
-                       
-            
+            case "ApplyLeave":
+            let storyboard = UIStoryboard.init(name: "Leave", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "LeaveListVC") as? LeaveListVC
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(vc!, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
             break
+            
+            case "Payments" :
+                self.showToast("Coming Soon")
+//            let storyboard = UIStoryboard.init(name: KStoryBoards.kTeacher, bundle: nil)
+//            let vc = storyboard.instantiateViewController(withIdentifier: "TeacherRatingNewVC")
+//            let frontVC = revealViewController().frontViewController as? UINavigationController
+//            frontVC?.pushViewController(vc, animated: false)
+//            revealViewController().pushFrontViewController(frontVC, animated: true)
+            break
+            
         case "LogOut":
             initializeCustomYesNoAlert(self.view, isHideBlurView: true)
             self.yesNoAlertView.delegate = self

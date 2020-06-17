@@ -13,9 +13,11 @@ class LeaveListVC: BaseUIViewController {
     @IBOutlet weak var btnAddReqLeave: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
+    
     var viewModel : LeaveListViewModel?
     var isUnauthorizedUser = false
     var HODdepartmentId = UserDefaultExtensionModel.shared.HODDepartmentId
+    var EnrollmentId = UserDefaultExtensionModel.shared.enrollmentIdStudent
     var arrLeaveList = [GetLeaveListResultData]()
     var isScrolling : Bool?
     var pageSize = KIntegerConstants.kInt1000
@@ -37,7 +39,7 @@ class LeaveListVC: BaseUIViewController {
         super.viewWillAppear(true)
         if checkInternetConnection(){
             self.viewModel?.isSearching = false
-            self.viewModel?.LeaveList(Search: "", Skip: KIntegerConstants.kInt0,PageSize: KIntegerConstants.kInt10,SortColumnDir: "",  SortColumn: "", ParticularId : HODdepartmentId)
+            self.viewModel?.LeaveList(Search: "", Skip: KIntegerConstants.kInt0,PageSize: KIntegerConstants.kInt10,SortColumnDir: "",  SortColumn: "", ParticularId : HODdepartmentId,EnrollmentId: EnrollmentId)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
@@ -165,7 +167,7 @@ extension LeaveListVC : UIScrollViewDelegate{
                 skip = skip + KIntegerConstants.kInt10
                 isFetching = false
                 
-                self.viewModel?.LeaveList(Search: "", Skip: skip,PageSize: pageSize,SortColumnDir: "",  SortColumn: "", ParticularId : HODdepartmentId)
+                self.viewModel?.LeaveList(Search: "", Skip: skip,PageSize: pageSize,SortColumnDir: "",  SortColumn: "", ParticularId : HODdepartmentId, EnrollmentId: EnrollmentId)
                 
             }
         }else{

@@ -243,7 +243,7 @@ extension UIViewController
     }
     
     //to show the toast
-    func showToast(message : String)
+    func showToast2(message : String)
     {
         let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 150, y: self.view.frame.size.height-100, width: 300, height: 35))
         toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.7)
@@ -254,12 +254,40 @@ extension UIViewController
         toastLabel.alpha = 1.0
         toastLabel.layer.cornerRadius = 10;
         toastLabel.clipsToBounds  =  true
-        ///AppDelegate.window?.addSubview(toastLabel)
+//        AppDelegate.window?.addSubview(toastLabel)
         UIView.animate(withDuration: 2.0, delay: 0.1, options: .curveEaseOut, animations: {
             toastLabel.alpha = 0.0
         }, completion: {(isCompleted) in
             toastLabel.removeFromSuperview()
         })
+    }
+    
+    func showToast(_ message: String){
+        guard let window = UIApplication.shared.keyWindow else {return}
+        let messageLbl = UILabel()
+        messageLbl.text = message
+        messageLbl.textAlignment = .center
+        messageLbl.font = UIFont.systemFont(ofSize: 12)
+        messageLbl.textColor = .white
+        messageLbl.backgroundColor = UIColor(white: 0, alpha: 0.5)
+
+        let textSize:CGSize = messageLbl.intrinsicContentSize
+        let labelWidth = min(textSize.width, window.frame.width - 40)
+
+        messageLbl.frame = CGRect(x: 20, y: window.frame.height - 90, width: labelWidth + 30, height: textSize.height + 20)
+        messageLbl.center.x = window.center.x
+        messageLbl.layer.cornerRadius = messageLbl.frame.height/2
+        messageLbl.layer.masksToBounds = true
+        window.addSubview(messageLbl)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+
+        UIView.animate(withDuration: 1, animations: {
+            messageLbl.alpha = 0
+        }) { (_) in
+            messageLbl.removeFromSuperview()
+        }
+        }
     }
     
     //Set label when data is not available

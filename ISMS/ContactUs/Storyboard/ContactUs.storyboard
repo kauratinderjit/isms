@@ -493,7 +493,6 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="actionMinusBtn:" destination="Uwj-pz-zjW" eventType="touchUpInside" id="dGS-IB-Ory"/>
                                                     <action selector="actionSubmit:" destination="Uwj-pz-zjW" eventType="touchUpInside" id="6Id-ku-VgY"/>
                                                 </connections>
                                             </button>

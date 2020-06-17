@@ -11,12 +11,13 @@ import UIKit
 class AssignSubjectToTeacherVC: BaseUIViewController {
     var ViewModel : AssignSubjectTeacherViewModel?
     var arrSubjectList = [GetSubjectListResultData]()
+    var getSelectedSubjectList = [subjectsLists]()
     var isSelectedArr = [Int]()
     var selectedSubjectArrIndex : Int?
     var selectedClassIndex = 0
     var selectedClassID : Int?
     var classData : GetCommonDropdownModel!
-   
+    var getDataFirst = 1
    
     var skip = Int()
     var isScrolling : Bool?
@@ -58,9 +59,9 @@ class AssignSubjectToTeacherVC: BaseUIViewController {
      
     
     @IBAction func btnCheckAction(_ sender: UIButton) {
-
+        getDataFirst = 3
     var data = [String:Any]()
-        let extractedData = arrSubjectList[sender.tag]
+        let extractedData = arrSubjectList[sender.tag].classSubjectId
        
         
         if sender.isSelected{
@@ -68,13 +69,20 @@ class AssignSubjectToTeacherVC: BaseUIViewController {
             if let index = isSelectedArr.firstIndex(of: sender.tag) {
                     isSelectedArr.remove(at: index)
             }
-            let index = getIndex(of: "ClassSubjectId", for: extractedData.classSubjectId ?? 0, in: selectedSubjectViewModels)
-            self.selectedSubjectViewModels.remove(at: index)
+            for i in 0..<selectedSubjectViewModels.count{
+                if extractedData == (selectedSubjectViewModels[i] as NSDictionary).value(forKey: "ClassSubjectId") as? Int{
+                    self.selectedSubjectViewModels.remove(at: i)
+                }else{
+                   
+                }
+            }
+//            let index = getIndex(of: "ClassSubjectId", for: extractedData.classSubjectId ?? 0, in: selectedSubjectViewModels)
+//            self.selectedSubjectViewModels.remove(at: index)
         }else{
             sender.isSelected = true
             isSelectedArr.append(sender.tag)
            
-            data = ["ClassSubjectId":extractedData.classSubjectId , "SubjectName": extractedData.subjectName,"Occurrence":0]
+            data = ["ClassSubjectId":extractedData , "SubjectName": arrSubjectList[sender.tag].subjectName,"Occurrence":0]
             selectedSubjectViewModels.append(data)
         }
     
@@ -100,7 +108,7 @@ class AssignSubjectToTeacherVC: BaseUIViewController {
     
     
   @IBAction func SubmitAction(_ sender: Any) {
-    self.ViewModel?.submitAssignSubject(ClassId: selectedClassID ?? 0,TeacherId: 1088,subjectLists: selectedSubjectViewModels)
+    self.ViewModel?.submitAssignSubject(ClassId: selectedClassID ?? 0,TeacherId: teacherId ?? 0,subjectLists: selectedSubjectViewModels)
     }
 
     @IBAction func btnOpenDropDown(_ sender: Any) {
@@ -119,10 +127,9 @@ class AssignSubjectToTeacherVC: BaseUIViewController {
             tableView.delegate = self
             tableView.dataSource = self
             tableView.separatorColor = KAPPContentRelatedConstants.kLightBlueColour
-            self.tblViewCenterLabel(tblView: tableView, lblText: "Select student class", hide: false)
+            self.tblViewCenterLabel(tblView: tableView, lblText: "Select class", hide: false)
             dropDownTextField.txtfieldPadding(leftpadding: 10, rightPadding: 0)
             SetpickerView(self.view)
-            
     }
 
 }
@@ -173,7 +180,7 @@ extension AssignSubjectToTeacherVC : UITableViewDataSource{
             tableView.separatorStyle = .singleLine
             return (arrSubjectList.count)
         }else{
-          //  tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
+//            tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
            return 0
         }
     }
@@ -182,11 +189,37 @@ extension AssignSubjectToTeacherVC : UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "AssignSubjectTeacherCell", for: indexPath) as! AssignSubjectTeacherCell
         
+        if getDataFirst == 2{
+            if selectedSubjectViewModels.count > 0{
+                let extractedData = arrSubjectList[indexPath.row].classSubjectId
+                for i in 0..<selectedSubjectViewModels.count{
+                    if extractedData == (selectedSubjectViewModels[i] as NSDictionary).value(forKey: "ClassSubjectId") as? Int{
+                        cell.checkBtn.isSelected = true
+                        isSelectedArr.append( cell.checkBtn.tag)
+                    }else{
+                        cell.checkBtn.isSelected = false
+                    }
+                }
+            }else{
+                if isSelectedArr.contains(indexPath.row){
+                    cell.checkBtn.isSelected = true
+                }else{
+                    cell.checkBtn.isSelected = false
+                }
+            }
+        }else{
+            if isSelectedArr.contains(indexPath.row){
+                cell.checkBtn.isSelected = true
+            }else{
+                cell.checkBtn.isSelected = false
+            }
+        }
         if isSelectedArr.contains(indexPath.row){
             cell.checkBtn.isSelected = true
         }else{
             cell.checkBtn.isSelected = false
         }
+     
         
         cell.setCellUI(data: arrSubjectList, indexPath: indexPath)
         return cell
@@ -221,19 +254,32 @@ extension AssignSubjectToTeacherVC : AssignSubjectTeacherDelegate{
         
         arrSubjectList.removeAll()
         arrSubjectList = data
-        self.tableView.reloadData()
+        
+        
         if isUpdate == 1{
             ViewModel?.GetAssignedSubjectToTeacherById(ClassId: selectedClassID ?? 0,TeacherId: teacherId ?? 0)
         }
         
-
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
         
     }
     
-    func GetAssignSubjectSucceed(data: [GetAssignSubjectListResultData]){
+    func GetAssignSubjectSucceed(data: GetAssignSubjectListResultData){
+        print("result subject : ",data)
+        if data.subjectsLists?.count ?? 0>0{
+               getSelectedSubjectList = data.subjectsLists!
+            for i in 0..<getSelectedSubjectList.count{
+                getDataFirst = 2
+                var data2 = [String:Any]()
+                data2 = ["ClassSubjectId":getSelectedSubjectList[i].classSubjectId , "SubjectName": getSelectedSubjectList[i].subjectName,"Occurrence":getSelectedSubjectList[i].occurrence]
+                selectedSubjectViewModels.append(data2)
+            }
+            tableView.reloadData()
+        
+        }
+     
         
     }
     
@@ -248,7 +294,6 @@ extension AssignSubjectToTeacherVC : ViewDelegate{
         initializeCustomOkAlert(self.view, isHideBlurView: true)
         okAlertView.delegate = self
         okAlertView.lblResponseDetailMessage.text = alert
-        
     }
     
     func showLoader() {

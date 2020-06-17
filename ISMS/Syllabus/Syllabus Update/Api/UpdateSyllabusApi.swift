@@ -74,7 +74,7 @@ class UpdateSyllabusApi {
            
            let urlCmplete = BaseUrl.kBaseURL+url
            print("complete url : \(urlCmplete)")
-           var accessTokken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ODk2OTUwODkxIiwiZW1haWwiOiJmb2dneUBnbWFpbC5jbyIsImF6cCI6IjI5NSIsInNpZCI6Im1pbmRAMTIzIiwianRpIjoiMTBkYzU3YzQtYTZjMS00NGFkLTlmMGQtMmIyMTlkYjQ0M2YwIiwiZXhwIjoxNTc0NDg3Njg3LCJpc3MiOiJUZXN0LmNvbSIsImF1ZCI6IlRlc3QuY29tIn0.JSOPh3BygV5bDtqNyO0CCCWmBwftZMFB0AtlOkist0w"
+           var accessTokken = ""
            if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String
            {
                accessTokken = str

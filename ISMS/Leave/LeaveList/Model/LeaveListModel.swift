@@ -45,6 +45,7 @@ struct GetLeaveListResultData: Mappable {
        var isApproved : Int?
     var strStartDate : String?
        var strEndDate : String?
+      var studentName : String?
       
    
     
@@ -64,6 +65,7 @@ struct GetLeaveListResultData: Mappable {
         attachmentList <- map["AttachmentList"]
         status <- map["Status"]
         isApproved <- map["IsApproved"]
+        studentName <- map["StudentName"]
         
         strStartDate <- map["StrStartDate"]
         strEndDate <- map["StrEndDate"]

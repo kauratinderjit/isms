@@ -12,7 +12,7 @@ import Foundation
 protocol AssignSubjectTeacherDelegate: class {
     func unauthorizedUser()
     func AssignSubjectTeacherDidSuccess(data : [GetSubjectListResultData])
-    func GetAssignSubjectSucceed(data: [GetAssignSubjectListResultData])
+    func GetAssignSubjectSucceed(data: GetAssignSubjectListResultData)
     func AssignSubjectTeacherDidFailed()
     func getClassdropdownDidSucceed(data : GetCommonDropdownModel)
     
@@ -193,13 +193,17 @@ class AssignSubjectTeacherViewModel{
         }
     
     func GetAssignedSubjectToTeacherById(ClassId: Int,TeacherId: Int){
-        let url = KApiParameters.kUpdateSyllabusApiParameter.kChapterAndTopicApi
+        let url = "api/Institute/GetAssignedSubjectToTeacherById"
         
           let param = ["ClassId" : ClassId ,"TeacherId": TeacherId] as [String : Any]
          
-          UpdateSyllabusApi.sharedManager.AssignSubjectData(url:url , parameters: param, completionResponse: { (UpdateSyllabusModel) in
+        
+            print("param: ",param)
+            print("url: ",url)
+          UpdateSyllabusApi.sharedManager.AssignSubjectData(url:url , parameters: param, completionResponse: { (responseModel) in
                self.AssignSubjectToTeacherVC?.hideLoader()
-                  if let result = UpdateSyllabusModel.resultData {
+                  if let result = responseModel.resultData {
+                    print("subject result: ",result)
                     self.AssignSubjectTeacherDelegate?.GetAssignSubjectSucceed(data: result)
                   }
           }, completionnilResponse: { (nilResponseError) in

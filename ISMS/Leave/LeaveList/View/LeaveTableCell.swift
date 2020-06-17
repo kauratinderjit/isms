@@ -14,6 +14,7 @@ class LeaveTableCell : UITableViewCell{
     @IBOutlet weak var lbldecLeave: UILabel!
     @IBOutlet weak var lblLeaveStatus: UILabel!
     
+    @IBOutlet weak var lblStudentName: UILabel!
     @IBOutlet weak var btnEdit: UIButton!
     
     func setCellUI(data :[GetLeaveListResultData]?,indexPath: IndexPath){
@@ -30,6 +31,10 @@ class LeaveTableCell : UITableViewCell{
         if let leaveType = rsltData?.leaveAppType{
                lblLeaveStatus.text = leaveType
            }
+        
+        if let leavestudentName = rsltData?.studentName{
+            lblStudentName.text = leavestudentName
+        }
         
         if let leaveStatus = rsltData?.status{
                 lbldecLeave.text = leaveStatus
