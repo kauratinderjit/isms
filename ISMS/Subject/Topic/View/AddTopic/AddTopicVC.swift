@@ -326,8 +326,9 @@ extension AddTopicVC : SubjectChapterTopicDelegate {
         func textViewDidBeginEditing(_ textView: UITextView) {
             
             lblPlaceHolder.isHidden = true
-            // self.animateTextView(textView: textView, up: true, movementDistance:50, scrollView:self.scrollView)
-         
+            if DeviceType.IS_IPHONE_6P_7P || DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_4_OR_LESS {
+            self.animateTextView(textView: textView, up: true, movementDistance:150, scrollView:self.scrollView)
+            }
             
         }
         
@@ -347,8 +348,9 @@ extension AddTopicVC : SubjectChapterTopicDelegate {
             }
             
                 DispatchQueue.main.async {
-                    
-                  //  self.animateTextView(textView: textView, up: false, movementDistance: 50, scrollView:self.scrollView)
+                    if DeviceType.IS_IPHONE_6P_7P || DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_4_OR_LESS {
+                       self.animateTextView(textView: textView, up: false, movementDistance: 150, scrollView:self.scrollView)
+                    }
                 }
             
         }
