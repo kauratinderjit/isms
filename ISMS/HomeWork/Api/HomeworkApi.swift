@@ -191,8 +191,9 @@ class HomeworkApi
                                 let dic = element as? [String : Any]
                                 let dd = dic?["id"] as? Int
                                 let aa = dic?["url"] as? String
+                                                if dd != nil {
                             multipartFormData.append("\(dd!)".data(using: String.Encoding.utf8)!, withName: "lstdeleteattachmentModel[" + "\(ind)" + "].TopicAttachmentId")
-                              multipartFormData.append("\(aa!)".data(using: String.Encoding.utf8)!, withName: "lstdeleteattachmentModel[" + "\(ind)" + "].AttachmentUrl")
+                                                    multipartFormData.append("\(aa!)".data(using: String.Encoding.utf8)!, withName: "lstdeleteattachmentModel[" + "\(ind)" + "].AttachmentUrl") }
                                 }
                         }
                         
