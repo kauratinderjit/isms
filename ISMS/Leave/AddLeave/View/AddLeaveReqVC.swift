@@ -32,6 +32,7 @@ class AddLeaveReqVC: BaseUIViewController {
     @IBOutlet weak var viewTableView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
       let documentInteractionController = UIDocumentInteractionController()
+    var arrayAttachments = [attachmentListData]()
     var isSelectFromDate = false
     var isSeclectToDate = false
      var viewModel : AddLeaveReqViewModel?
@@ -42,9 +43,13 @@ class AddLeaveReqVC: BaseUIViewController {
       var arrayAttachmentsToShow = [AttachedFiles]()
       var uploadData = [UploadItems]()
      var dictionaries = [[String:Any]]()
+      var uploadFile = [[String:Any]]()
       var isimageViewProfile           : Bool?
         var imageURL                     :URL?
+    var startDate = Date()
+    var endDate = Date()
     var isLeaveEditing: Bool?
+    var isFromSubmit = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,32 +81,55 @@ class AddLeaveReqVC: BaseUIViewController {
         }
         // Do any additional setup after loading the view.
     }
+    
+     func dateFromString(string: String) -> String?
+        {
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+            dateFormatter.timeZone = TimeZone.autoupdatingCurrent
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            
+            let dt = dateFormatter.date(from: string)
+            dateFormatter.timeZone = TimeZone.current
+            dateFormatter.dateFormat =  "yyyy-MM-dd"
+    //        print("\(dateFormatter.string(from: dt!))")
+            return dateFormatter.string(from: dt!)
+            
+        }
+    
    func setData(){
     lblDescrption.isHidden = true
     txtFieldLeaveType.text = arrLeaveListReq?.leaveAppType
-    txtFieldFromDate.text = arrLeaveListReq?.strStartDate
-    txtFieldToDate.text = arrLeaveListReq?.strEndDate
+    if let dateStr = arrLeaveListReq?.startDate{
+        let startDate = self.dateFromString(string:  dateStr ?? "\(Date())")
+           txtFieldFromDate.text = startDate
+    }
+    if let dateEnd = arrLeaveListReq?.endDate{
+        let endDate = self.dateFromString(string: dateEnd ?? "\(Date())")
+             txtFieldToDate.text = endDate
+    }
+  
     txtViewDescription.text = arrLeaveListReq?.discription
     self.leaveId = arrLeaveListReq?.leaveAppId ?? 0
-//    if let attachments =  arrLeaveListReq?.attachmentList{
-//                   arrayAttachments = attachments
-//                   for value in arrayAttachments{
-//                       if let type = value.type, let attachmentName = value.instituteAttachmentName , let filename = value.instituteFileName , let id = value.instituteAttachmentId{
-//                           let model = AttachedFiles.init(type: type, instituteAttachmentName: attachmentName, instituteFileName: filename, instituteAttachmentId: id )
-//                           arrayAttachmentsToShow.append(model)
+    if let attachments =  arrLeaveListReq?.attachmentList{
+                   arrayAttachments = attachments
+                   for value in arrayAttachments{
+//                       if let type = value.IFile, let attachmentName = value.AttachmentUrl , let filename = value.AttachmentUrl , let id = value.LeaveAppAttachmentId{
+                    let model = AttachedFiles.init(type: value.IFile ?? "", instituteAttachmentName:  value.AttachmentUrl ?? "", instituteFileName:  value.AttachmentUrl ?? "", instituteAttachmentId: value.LeaveAppAttachmentId ?? 0 )
+                           arrayAttachmentsToShow.append(model)
 //                       }
-//                       print(arrayAttachmentsToShow)
-//                   }
-//                   if arrayAttachmentsToShow.count == 0{
-//                       collectionviewHeight.constant = 0.0
-//                   }
-//                   else{
-//                       collectionviewHeight.constant = 120.0
-//                   }
-//                   DispatchQueue.main.async {
-//                       self.collectionView.reloadData()
-//                   }
-//               }
+                       print(arrayAttachmentsToShow)
+                   }
+                   if arrayAttachmentsToShow.count == 0{
+                       collectionviewHeight.constant = 0.0
+                   }
+                   else{
+                       collectionviewHeight.constant = 120.0
+                   }
+                   DispatchQueue.main.async {
+                       self.collectionView.reloadData()
+                   }
+               }
     }
     @objc override func dismissKeyboard() {
       view.endEditing(true)
@@ -176,9 +204,7 @@ class AddLeaveReqVC: BaseUIViewController {
     }
     
     @IBAction func actionCrossBtn(_ sender: Any) {
-        
-        
-        let i =  (sender as AnyObject).tag!
+     let i =  (sender as AnyObject).tag!
         //let imageSelected = arrayAttachmentsToShow[i]
         let selecteditem = arrayAttachmentsToShow[i]
         print(selecteditem)
@@ -190,7 +216,7 @@ class AddLeaveReqVC: BaseUIViewController {
         //arrayDeletedItems.append(imageSelected)
         arrayAttachmentsToShow.remove(at: i)
 
-//        if arrayAttachments.count == 0
+//        if arrayAttachmentsToShow.count == 0
 //        {
 //            collectionviewHeight.constant = 0.0
 //        }
@@ -203,18 +229,32 @@ class AddLeaveReqVC: BaseUIViewController {
     
     @IBAction func actionSubmitBtn(_ sender: Any) {
         if  self.leaveId != 0{
-            self.viewModel?.submitLeaveReq(LeaveAppId: self.leaveId, LeaveAppType: txtFieldLeaveType.text ?? "", Discription: txtViewDescription.text ?? "" , StartDate:txtFieldFromDate.text ?? "", EndDate: txtFieldToDate.text ?? "", IsApproved: 0, EnrollmentId: UserDefaultExtensionModel.shared.enrollmentIdStudent ?? 0, ClassId: UserDefaultExtensionModel.shared.StudentClassId, GuardianId: UserDefaultExtensionModel.shared.userRoleParticularId, IFile: uploadData, leaveAppAttachmentDelete: dictionaries)
+            isFromSubmit = 1
+            
+            var attachementArr = [URL]()
+            for i in 0..<uploadData.count{
+                if let urlData = uploadData[i].uRL{
+                    attachementArr.append((urlData as? URL)!)
+                }
+            }
+
+            self.viewModel?.submitLeaveReq(LeaveAppId: self.leaveId, LeaveAppType: txtFieldLeaveType.text ?? "", Discription: txtViewDescription.text ?? "" , StartDate:txtFieldFromDate.text ?? "", EndDate: txtFieldToDate.text ?? "", IsApproved: 0, EnrollmentId: UserDefaultExtensionModel.shared.enrollmentIdStudent ?? 0, ClassId: UserDefaultExtensionModel.shared.StudentClassId, GuardianId: UserDefaultExtensionModel.shared.userRoleParticularId, IFile: attachementArr, leaveAppAttachmentDelete: dictionaries)
         }else{
-            self.viewModel?.submitLeaveReq(LeaveAppId: 0, LeaveAppType: txtFieldLeaveType.text ?? "", Discription: txtViewDescription.text ?? "" , StartDate:txtFieldFromDate.text ?? "", EndDate: txtFieldToDate.text ?? "", IsApproved: 0, EnrollmentId: UserDefaultExtensionModel.shared.enrollmentIdStudent ?? 0, ClassId: UserDefaultExtensionModel.shared.StudentClassId, GuardianId: UserDefaultExtensionModel.shared.userRoleParticularId, IFile: uploadData, leaveAppAttachmentDelete: dictionaries)
+             isFromSubmit = 1
+            var attachementArr = [URL]()
+            for i in 0..<uploadData.count{
+                if let urlData = uploadData[i].uRL{
+                     attachementArr.append((urlData as? URL)!)
+                }
+            }
+            self.viewModel?.submitLeaveReq(LeaveAppId: 0, LeaveAppType: txtFieldLeaveType.text ?? "", Discription: txtViewDescription.text ?? "" , StartDate:txtFieldFromDate.text ?? "", EndDate: txtFieldToDate.text ?? "", IsApproved: 0, EnrollmentId: UserDefaultExtensionModel.shared.enrollmentIdStudent ?? 0, ClassId: UserDefaultExtensionModel.shared.StudentClassId, GuardianId: UserDefaultExtensionModel.shared.userRoleParticularId, IFile: attachementArr, leaveAppAttachmentDelete: dictionaries)
         }
-        
-        
     }
     
     
     @IBAction func actionUploadImage(_ sender: Any) {
         self.isimageViewProfile = false
-               self.openGallaryPhotos()
+        self.openGallaryPhotos()
     }
     
     @IBAction func actionUploadDocument(_ sender: Any) {
@@ -313,16 +353,24 @@ extension AddLeaveReqVC:SharedUIDatePickerDelegate{
         //yearofestablishment
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy"
+        formatter.dateFormat = "yyyy-MM-dd"
         formatter.timeZone = TimeZone.autoupdatingCurrent
         formatter.locale = Locale.current
         let convertedDate = formatter.string(from: datePicker.date)
         let strDate = formatter.date(from: convertedDate)
         
         if isSelectFromDate == true{
+            startDate = strDate!
              txtFieldFromDate.text = convertedDate
         }else{
-            txtFieldToDate.text = convertedDate
+        
+            endDate = strDate!
+            if startDate <= endDate{
+                txtFieldToDate.text = convertedDate
+            }else{
+                showAlert(alert: "Please eneter  valid start and end date")
+            }
+            
         }
        
     }
@@ -368,6 +416,7 @@ extension AddLeaveReqVC:UIImagePickerDelegate{
             //            if let urls = url{
             let model = UploadItems.init(uRL: url as URL, filetype: "Logo")
             uploadData.append(model)
+            self.collectionView.reloadData()
             //            }
         }
         else{
@@ -404,11 +453,11 @@ extension AddLeaveReqVC : UICollectionViewDelegate , UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //CollectionView Height
         print(arrayAttachmentsToShow.count)
-        if arrayAttachmentsToShow.count > 0{
-            collectionviewHeight.constant = 120
-        }else{
-            collectionviewHeight.constant = -20
-        }
+//        if arrayAttachmentsToShow.count > 0{
+//            collectionviewHeight.constant = 120
+//        }else{
+//            collectionviewHeight.constant = -20
+//        }
         
         return arrayAttachmentsToShow.count
     }
@@ -445,11 +494,14 @@ extension AddLeaveReqVC : OKAlertViewDelegate{
 //            CommonFunctions.sharedmanagerCommon.setRootLogin()
 //        }
          self.okAlertView.removeFromSuperview()
-        let storyboard = UIStoryboard.init(name: "Leave", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "LeaveListVC") as? LeaveListVC
-        let frontVC = revealViewController().frontViewController as? UINavigationController
-        frontVC?.pushViewController(vc!, animated: false)
-        revealViewController().pushFrontViewController(frontVC, animated: true)
+        if  isFromSubmit == 1{
+            let storyboard = UIStoryboard.init(name: "Leave", bundle: nil)
+                   let vc = storyboard.instantiateViewController(withIdentifier: "LeaveListVC") as? LeaveListVC
+                   let frontVC = revealViewController().frontViewController as? UINavigationController
+                   frontVC?.pushViewController(vc!, animated: false)
+                   revealViewController().pushFrontViewController(frontVC, animated: true)
+        }
+       
         }
 }
 //MARk:- View Delegate

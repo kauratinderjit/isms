@@ -359,17 +359,25 @@ extension AddStudentRatingVC : SharedUIPickerDelegate{
                         
                         let studentSkillId = arrSkillListNew[tag].studentID
                         let rating = count1 + 1
-                        
-                        var dict = [String:Any]()
-                        dict["StudentSkillId"] = studentSkillId
-                        dict["Rating"] = rating
-                        arrSelect.append(dict)
+                        var isPresent = 0
+                        if arrSelect.count > 0{
+                            for i in 0..<arrSelect.count{
+                                if (arrSelect[i] as NSDictionary).value(forKey: "StudentSkillId") as? Int == studentSkillId{
+                                    isPresent = 1
+                                    arrSelect[i]["Rating"] = array[selectClassRating]
+                                }
+                            }
+                        }
+                        if isPresent == 0 {
+                            var dict = [String:Any]()
+                            dict["StudentSkillId"] = studentSkillId
+                            dict["Rating"] = array[selectClassRating]
+                            arrSelect.append(dict)
+                        }
+                      
                     }
                     tableView.reloadData()
-                    
-                    
                 }
-                
             }
             else if isStudentSelected == true{
                 

@@ -109,8 +109,6 @@ class StudentRatingVC: BaseUIViewController {
                     print("Index found :\(index)")
                     UpdatePickerModel2(count: arrSkillList.count, sharedPickerDelegate: self, View:  self.view, index: index)
                 }
-                
-                
             }
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
@@ -135,13 +133,10 @@ class StudentRatingVC: BaseUIViewController {
                     print("Index found :\(index)")
                     UpdatePickerModel2(count: arrSubjectList1.count, sharedPickerDelegate: self, View:  self.view, index: index)
                 }
-                
-                
             }
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
-      
     }
     
     

@@ -36,7 +36,7 @@ class AddLeaveReqViewModel{
         AddLeaveReqDelegate = nil
     }
     
-    func submitLeaveReq(LeaveAppId:Int,LeaveAppType:String,Discription:String,StartDate:String,EndDate:String,IsApproved:Int,EnrollmentId:Int,ClassId:Int,GuardianId:Int,IFile: [UploadItems],leaveAppAttachmentDelete:[[String:Any]]) {
+    func submitLeaveReq(LeaveAppId:Int,LeaveAppType:String,Discription:String,StartDate:String,EndDate:String,IsApproved:Int,EnrollmentId:Int,ClassId:Int,GuardianId:Int,IFile: [URL],leaveAppAttachmentDelete:[[String:Any]]) {
         
         let url = "api/Institute/AddUpdateLeaveApplication"
         
@@ -44,19 +44,33 @@ class AddLeaveReqViewModel{
       print("param: ",params)
             
         self.ListView?.showLoader()
-        AddSchoolApi.sharedInstance.updateSchoolInfo(url: url, parameter: params, uploadItems: IFile, completionResponse: { (response) in
+        HomeworkApi.sharedManager.multipartApiTopic(postDict: params, url: url, completionResponse: { (response) in
             
             self.ListView?.hideLoader()
-            self.AddLeaveReqDelegate?.addLeaveSucess(msg: (response).value(forKey: "Message") as? String ?? "")
-//            self.ListView?.showAlert(alert: (response).value(forKey: "Message") as? String ?? "")
-            print(response)
-        }, completionnilResponse: { (nilresponse) in
-             self.ListView?.hideLoader()
-            self.ListView?.showAlert(alert: "No Record Found")
-        }, completionError: { (error) in
-             self.ListView?.hideLoader()
-            self.ListView?.showAlert(alert:error?.localizedDescription ?? "")
-        })
+            
+            switch response["StatusCode"] as? Int{
+            case 200:
+                print("success")
+                // self.TopicDelegate?.showAlert(alert: response["Message"]  as? String ?? "")
+                  self.ListView?.showAlert(alert: response["Message"] as? String ?? "")
+//              self.AddLeaveReqDelegate?.getTopicList()
+            case 401:
+                 self.ListView?.showAlert(alert: response["Message"] as? String ?? "")
+                //self.AddHomeWorkDelegate?.unauthorizedUser()
+            default:
+                self.ListView?.showAlert(alert: response["Message"] as? String ?? "")
+            }
+
+            
+        }) { (error) in
+           self.ListView?.hideLoader()
+            if let err = error?.localizedDescription{
+                self.ListView?.showAlert(alert: err)
+            }else{
+                CommonFunctions.sharedmanagerCommon.println(object: SyllabusCoverage.kSyllabusResponseError)
+            }
+
+        }
         
     }
     func submitAcceptReject(LeaveAppId : Int,IsApproved: Int){

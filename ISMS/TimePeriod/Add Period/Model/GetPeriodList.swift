@@ -51,7 +51,6 @@ struct PeriodsListData: Mappable {
     }
     
     mutating func mapping(map: Map) {
-        
         periodId <- map["PeriodId"]
         title <- map["Title"]
         strStartTime <- map["StrStartTime"]

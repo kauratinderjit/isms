@@ -73,7 +73,10 @@ struct GetLeaveListResultData: Mappable {
 }
 
 struct attachmentListData: Mappable {
-    
+    var AttachmentUrl :String?
+      var IFile : String?
+      var LeaveAppAttachmentId : Int?
+      var LeaveAppId : Int?
    
   
     
@@ -82,7 +85,10 @@ struct attachmentListData: Mappable {
     }
     
     mutating func mapping(map: Map) {
-        
+        AttachmentUrl <- map["AttachmentUrl"]
+        IFile <- map["IFile"]
+        LeaveAppAttachmentId <- map["LeaveAppAttachmentId"]
+        LeaveAppId <- map["LeaveAppId"]
   
     }
 }

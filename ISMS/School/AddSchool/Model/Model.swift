@@ -17,7 +17,6 @@ struct UploadItems {
        self.filetype = filetype
    
     }
-    
 }
 struct AttachedFiles{
     var instituteFileName:String?

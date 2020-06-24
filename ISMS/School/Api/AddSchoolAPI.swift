@@ -168,17 +168,11 @@ class AddSchoolApi {
                                             }
                                         }
                                 }
-                                 
-                                    
-                                }
                             }
-                            
-
                         }
                     }
-               
-                  
-                }, usingThreshold: UInt64.init(), to: strURL, method: .post, headers: headers) { (result) in
+                }
+            }, usingThreshold: UInt64.init(), to: strURL, method: .post, headers: headers) { (result) in
                     switch result{
                     case .success(let upload, _, _):
                         upload.responseJSON { response in
@@ -219,6 +213,137 @@ class AddSchoolApi {
                     }
                 }
     }
+    
+      func updateSchoolInfo2(url : String, parameter : [String:Any], uploadItems: [UploadFile]?,completionResponse:  @escaping (NSDictionary) -> Void,completionnilResponse:  @escaping (String) -> Void,completionError: @escaping (Error?) -> Void){
+            let strURL =   BaseUrl.kBaseURL+url
+          print(parameter)
+
+            var accessTokken = ""
+            if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String
+            {
+                accessTokken = str
+            }
+     //KConstants.kContentType: KConstants.kMultipartFormData,KConstants.kAccept : KConstants.kApplicationJson,
+            let headers: HTTPHeaders = [ KConstants.kHeaderAuthorization : KConstants.kHeaderBearer + " " + accessTokken]
+                    
+                    let configuration = URLSessionConfiguration.default
+                    configuration.timeoutIntervalForRequest = 1200
+                    let alamoManager = Alamofire.SessionManager(configuration: configuration)
+
+                    alamoManager.upload(multipartFormData: { (multipartFormData) in
+                        
+                        // Rest of values
+                           for (key, value) in parameter {
+                            print(key + "key1")
+                            print(value)
+                            if key == "IFile" {
+                                
+                                if let parameterimages = uploadItems{
+                                    for (key,value) in parameterimages.enumerated(){
+                                        print(key)
+                                        if let url = value.AttachmentUrl, let filetype = value.FileType{
+                                            print(url)
+                                            print(filetype)
+                                            multipartFormData.append(url, withName: filetype)
+                                            
+                                            //multipartFormData.append(url, withName:filetype, fileName: "", mimeType: "")
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+                            if(value is URL) {
+                                print(value)
+                                multipartFormData.append(value as! URL, withName: "Logo", fileName: "MyImage.jpg", mimeType: "Image.jpg")
+                            }
+                            else
+                            {
+                                if let Item = value as? String
+                                {
+                                    print(Item)
+                                    _ = Item.data(using:  String.Encoding.utf8)
+                                    multipartFormData.append("\(Item)".data(using: String.Encoding.utf8)!, withName: key as String)
+                                }
+                                if let Item = value as? Int
+                                {
+                                    print(Item)
+                                    multipartFormData.append("\(Item)".data(using: String.Encoding.utf8)!, withName: key as String)
+                                    
+                                }
+                                
+                              
+                                if let arry = value as? [[String:Any]] {
+    //                                for (i, value) in arry {
+    //                                        print(i)
+    //                                    print(value)
+    //                                multipartFormData.append("\(85)".data(using: String.Encoding.utf8)!, withName: "LstDeletedAttachment[" + (i) + "].deleteAttachmentId")
+    //
+                                    
+                                        
+                                        
+                                        for (i,value1) in arry.enumerated(){
+                                            print(value1)
+                                            print(i)
+                                            if let dict = value1 as? [String: Any] {
+                                                print(dict)
+                                                if let value2 = dict["deleteAttachmentId"] as? Int {
+                                                    print(value2)
+                                                    multipartFormData.append("\(value2)".data(using: String.Encoding.utf8)!, withName: "LstDeletedAttachment[" + "\(i)" + "].deleteAttachmentId")
+                                                }
+                                            }
+                                    }
+                                     
+                                        
+                                    }
+                                }
+                                
+
+                            }
+                        }
+                   
+                      
+                    }, usingThreshold: UInt64.init(), to: strURL, method: .post, headers: headers) { (result) in
+                        switch result{
+                        case .success(let upload, _, _):
+                            upload.responseJSON { response in
+                                
+                                print(response)
+                                print(response.request ?? "")  // original URL request
+                                print(response.response ?? "") // URL response
+                                print(response.data ?? "")     // server data
+                                print(response.result)   // result of response serialization
+                                print(response.result.value ?? "" )
+                                if let error = response.error
+                                {
+                                    
+                                    print("Upload failed with error: (\(error))")
+                                    print("Upload failed with error: (\(error.localizedDescription))")
+                                  
+                                }
+                                else
+                                {
+                                    let resdict =  (response.result.value as! NSDictionary)
+                                    print(resdict)
+                                    let code = (resdict).value(forKey: "StatusCode") as? Int
+                                    let message = (resdict).value(forKey: "message") as? String ?? ""
+                                    if code == 200 {
+                                    completionResponse(resdict)
+                                    }
+                                    else {
+                                       print("not 200")
+                                    }
+                                    
+                                }
+                                
+                                alamoManager.session.invalidateAndCancel()
+                            }
+                        case .failure(let error):
+                            print("Error in upload: \(error.localizedDescription)")
+                            
+                        }
+                    }
+        }
+        
     
     //MARK:- Get School Information api
 func GetSchoolDropDown(url : String, parameter : [String:Any]?, completionResponse:  @escaping (SchoolData) -> Void,completionnilResponse:  @escaping () -> Void,Error: @escaping (Error?) -> Void){

@@ -196,7 +196,6 @@ class AssignSubjectTeacherViewModel{
         let url = "api/Institute/GetAssignedSubjectToTeacherById"
         
           let param = ["ClassId" : ClassId ,"TeacherId": TeacherId] as [String : Any]
-         
         
             print("param: ",param)
             print("url: ",url)

@@ -10,7 +10,7 @@ import Foundation
 
 public struct BaseUrl
 {
-  public static let kBaseURL = "https://stgsd.appsndevs.com/ISEASIA/"
+  public static let kBaseURL = "https://stgsd.appsndevs.com/IEMS/"
 //    public static let kBaseURL = "https://stgsd.appsndevs.com/IsmsTest/"//"https://stgsd.appsndevs.com/ISMSQA/"
 //https://stgsd.appsndevs.com/ISEASIA/swagger/index.html
    //"http://stgsd.appsndevs.com/EducationProApi/"
@@ -146,9 +146,6 @@ public struct ApiEndpoints
     public static let NewPassword = "&Password="
      public static let kGetEventsByRoleParticularId = "api/Institute/GetEventsByRoleParticularId"
 }
-
-
-
 
 //MARK: Alert Strings
  let KNoInternetConnection =  "No internet connection"

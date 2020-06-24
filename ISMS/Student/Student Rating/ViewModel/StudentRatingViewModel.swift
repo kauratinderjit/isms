@@ -208,8 +208,6 @@ class StudentRatingViewModel {
         postDict[KApiParameters.KCommonParametersForList.kSkip] = skip
         postDict[KApiParameters.KCommonParametersForList.kSortColumnDir] = ""
         
-        
-        
         ClassApi.sharedManager.getClassList(url: ApiEndpoints.kGetClassList, parameters: postDict, completionResponse: { (classModel) in
             
             self.studentRatingView?.hideLoader()
@@ -309,9 +307,9 @@ class StudentRatingViewModel {
     func studentList(search : String,skip : Int,pageSize: Int,sortColumnDir: String,sortColumn: String, classSubjectID : Int , classID : Int){
         self.studentRatingView?.showLoader()
         
-//        let paramDict = [ "ClassId":classID,
-//                          "ClassSubjectId": classSubjectID] as [String : Any]
-        let paramDict = ["Search" : search,"Skip" : skip,"PageSize": pageSize,"SortColumnDir": sortColumnDir,"SortColumn": sortColumn, "ClassSubjectId" : classSubjectID, "ClassId" : classID] as [String : Any]
+        let paramDict = [ "ClassId":classID,
+                          "ClassSubjectId": classSubjectID] as [String : Any]
+//        let paramDict = ["Search" : search,"Skip" : skip,"PageSize": pageSize,"SortColumnDir": sortColumnDir,"SortColumn": sortColumn, "ClassSubjectId" : classSubjectID, "ClassId" : classID] as [String : Any]
         
         print("param: ",paramDict)
         

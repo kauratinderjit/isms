@@ -38,7 +38,8 @@ class UpdateSyllabusViewModel {
     func getData(ClassSubjectId : Int, ClassId :Int, UserId : Int, lstchaptertopiclists : [[String: Any]]) {
         
        let url = KApiParameters.kUpdateSyllabusApiParameter.kAddUpdateSyllabus
-        let param = ["ClassSubjectId": ClassSubjectId ,"ClassId" : ClassId,"UserId" :UserId ,"lstchaptertopiclists" : lstchaptertopiclists ] as [String : Any]
+//        let param = ["ClassSubjectId": ClassSubjectId ,"ClassId" : ClassId,"UserId" :UserId ,"lstchaptertopiclists" : lstchaptertopiclists ] as [String : Any]
+           let param = ["ClassSubjectId": ClassSubjectId ,"SessionId" : 2,"UserId" :UserId ,"lstchaptertopiclists" : lstchaptertopiclists ] as [String : Any]
         print("our params: ",param)
         
         UpdateSyllabusApi.sharedManager.UpdateSyllabusData(url:url , parameters: param, completionResponse: { (UpdateSyllabusModel) in
@@ -65,11 +66,6 @@ class UpdateSyllabusViewModel {
                 CommonFunctions.sharedmanagerCommon.println(object: SyllabusCoverage.kSyllabusResponseError)
             }
         }
-        
-        
-        
-        
-        
     }
    
     func GetChapterList(search : String ,Skip : Int,  PageSize : Int , SortColumnDir : String , SortCoumn : String, particularId : Int) {
