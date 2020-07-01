@@ -127,13 +127,13 @@ class AddTeacherVC: BaseUIViewController
     
     
     @IBAction func actionUpdateAssignSubject(_ sender: Any) {
-//        let storyboard = UIStoryboard.init(name: "Teacher", bundle: nil)
-//        let vc = storyboard.instantiateViewController(withIdentifier: "AssignSubjectToTeacherVC") as? AssignSubjectToTeacherVC
-//        vc?.teacherId = self.teacherID
-//        vc?.isUpdate = 1
-//        let frontVC = revealViewController().frontViewController as? UINavigationController
-//        frontVC?.pushViewController(vc!, animated: false)
-//        revealViewController().pushFrontViewController(frontVC, animated: true)
+        let storyboard = UIStoryboard.init(name: "Teacher", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "AssignSubjectToTeacherVC") as? AssignSubjectToTeacherVC
+        vc?.teacherId = self.teacherID
+        vc?.isUpdate = 1
+        let frontVC = revealViewController().frontViewController as? UINavigationController
+        frontVC?.pushViewController(vc!, animated: false)
+        revealViewController().pushFrontViewController(frontVC, animated: true)
         
     }
     
@@ -444,13 +444,13 @@ extension AddTeacherVC : OKAlertViewDelegate{
         okAlertView.removeFromSuperview()
         if isTeacherAddUpdateSuccess == true{
             
-//            let storyboard = UIStoryboard.init(name: "Teacher", bundle: nil)
-//            let vc = storyboard.instantiateViewController(withIdentifier: "AssignSubjectToTeacherVC") as? AssignSubjectToTeacherVC
-//            vc?.teacherId = self.resultTeacherId
-//            vc?.isUpdate = 0
-//            let frontVC = revealViewController().frontViewController as? UINavigationController
-//            frontVC?.pushViewController(vc!, animated: false)
-//            revealViewController().pushFrontViewController(frontVC, animated: true)
+            let storyboard = UIStoryboard.init(name: "Teacher", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "AssignSubjectToTeacherVC") as? AssignSubjectToTeacherVC
+            vc?.teacherId = self.resultTeacherId
+            vc?.isUpdate = 0
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(vc!, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
           
             self.navigationController?.popViewController(animated: true)
         }

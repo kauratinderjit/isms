@@ -210,6 +210,49 @@ class SubjectChapterTopicViewModel{
         }
     }
     
+    func addResult(ResultId: Int, SessionId: Int, Title: String , IFile: [URL], lstdeleteattachmentModel: NSMutableArray) {
+          
+           self.TopicView?.showLoader()
+          
+          let url = "api/User/AddUpdateResult"
+        
+          let param = [
+                       "ResultId" : ResultId,
+                       "SessionId" :2 ,
+                       "Title" : Title,
+                       "IFile" : IFile,
+                       "lstdeleteattachmentModel": lstdeleteattachmentModel,
+                       "lstResultAttachmentViewModel" : ""] as [String : Any]
+          
+          
+          HomeworkApi.sharedManager.multipartApiTopic(postDict: param, url: url, completionResponse: { (response) in
+              
+              self.TopicView?.hideLoader()
+              
+              switch response["StatusCode"] as? Int{
+              case 200:
+                  print("success")
+                  // self.TopicDelegate?.showAlert(alert: response["Message"]  as? String ?? "")
+                self.TopicDelegate?.getTopicList()
+              case 401:
+                   self.TopicView?.showAlert(alert: response["Message"] as? String ?? "")
+                  //self.AddHomeWorkDelegate?.unauthorizedUser()
+              default:
+                  self.TopicView?.showAlert(alert: response["Message"] as? String ?? "")
+              }
+
+              
+          }) { (error) in
+             self.TopicView?.hideLoader()
+              if let err = error?.localizedDescription{
+                  self.TopicView?.showAlert(alert: err)
+              }else{
+                  CommonFunctions.sharedmanagerCommon.println(object: SyllabusCoverage.kSyllabusResponseError)
+              }
+
+          }
+      }
+      
 
   
 }

@@ -16,6 +16,7 @@ protocol ClassListDelegate: class {
     func classListDidFailed()
     func classDeleteDidSuccess(data : DeleteClassModel)
     func classDeleteDidfailed()
+    func resultListDidSuccess(data: [GetListResultData]?)
 }
 
 class ClassListViewModel{
@@ -211,6 +212,98 @@ class ClassListViewModel{
             self.classListView?.hideLoader()
             if let err = error{
                 self.classListView?.showAlert(alert: err.localizedDescription)
+            }
+        }
+    }
+    
+    func deleteResult(resultId: Int){
+         
+             self.classListView?.showLoader()
+               ClassApi.sharedManager.deleteResultApi(url: ApiEndpoints.kDeleteResult+"?ResultId=\(resultId)", completionResponse: {deleteModel in
+                          
+                          self.classListView?.hideLoader()
+                          
+                          switch deleteModel.statusCode{
+                          case KStatusCode.kStatusCode200:
+                              if let msg = deleteModel.message{
+                                  self.classListView?.showAlert(alert: msg)
+                              }
+                               self.ResultList(Search: "", Skip: KIntegerConstants.kInt0,PageSize: KIntegerConstants.kInt10,SortColumnDir: "",  SortColumn: "", ParticularId : 0)
+                          case KStatusCode.kStatusCode401:
+                                  if let res = deleteModel.message{
+                                      self.classListView?.showAlert(alert: res)
+                                  }
+                                  self.classListDelegate?.unauthorizedUser()
+                          default:
+                              if let msg = deleteModel.message{
+                                  self.classListView?.showAlert(alert: msg)
+                              }
+                          }
+                      }, completionnilResponse: { (nilResponse) in
+                          
+                          self.classListView?.hideLoader()
+                          if let res = nilResponse{
+                              self.classListView?.showAlert(alert: res)
+                          }
+                          
+                      }) { (error) in
+                          self.classListView?.hideLoader()
+                          if let err = error{
+                              self.classListView?.showAlert(alert: err.localizedDescription)
+                          }
+                      }
+    }
+    
+    //MARK:- Class list
+    func ResultList(Search: String, Skip: Int,PageSize: Int,SortColumnDir: String,  SortColumn: String, ParticularId : Int){
+        
+//        if isSearching == false{
+//            self.classListView?.showLoader()
+//        }
+        self.classListView?.showLoader()
+        var postDict = [String:Any]()
+        
+        
+        postDict = ["Search": Search ?? "","Skip":Skip ?? 0,"PageSize": PageSize ?? 0,"SortColumnDir": SortColumnDir ?? "", "SortColumn": SortColumn ?? "","ParticularId" : ParticularId,"SessionId":2] as [String : Any]
+       let url = "api/User/GetResult"
+        
+        
+        ClassApi.sharedManager.getResultList(url: url, parameters: postDict, completionResponse: { (ResultListModel) in
+            
+            self.classListView?.hideLoader()
+
+            switch ResultListModel.statusCode{
+            case KStatusCode.kStatusCode200:
+                self.classListDelegate?.resultListDidSuccess(data: ResultListModel.resultData)
+            case KStatusCode.kStatusCode401:
+                if let msg = ResultListModel.message{
+                    self.classListView?.showAlert(alert: msg)
+                }
+                self.classListDelegate?.unauthorizedUser()
+            default:
+                if let msg = ResultListModel.message{
+                    self.classListView?.showAlert(alert: msg)
+                }
+            }
+        }, completionnilResponse: { (nilResponseError) in
+            
+            self.classListView?.hideLoader()
+            self.classListDelegate?.classListDidFailed()
+            
+            if let error = nilResponseError{
+                self.classListView?.showAlert(alert: error)
+                
+            }else{
+                CommonFunctions.sharedmanagerCommon.println(object: "Class APi Nil response")
+            }
+            
+        }) { (error) in
+            self.classListView?.hideLoader()
+            self.classListDelegate?.classListDidFailed()
+            if let err = error?.localizedDescription{
+                self.classListView?.showAlert(alert: err)
+            }else{
+                CommonFunctions.sharedmanagerCommon.println(object: "Class APi error response")
             }
         }
     }

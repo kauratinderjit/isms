@@ -1,14 +1,13 @@
 //
-//  TeacherListVC.swift
+//  SubstituteTeacherVC.swift
 //  ISMS
 //
-//  Created by Taranjeet Singh on 6/20/19.
-//  Copyright © 2019 Atinder Kaur. All rights reserved.
+//  Created by Poonam  on 01/07/20.
+//  Copyright © 2020 Atinder Kaur. All rights reserved.
 //
-
 import UIKit
 
-class TeacherListVC: BaseUIViewController {
+class SubstituteTeacherVC: BaseUIViewController {
     //Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnAddTeacher: UIButton!
@@ -16,7 +15,9 @@ class TeacherListVC: BaseUIViewController {
     @IBOutlet weak var btnAdd: UIButton!
     //Variables
     var arrTeacherlist = [GetTeacherListResultData]()
+     var arrSubstituteTeacherlist = [GetSubstituteTeacherData]()
     var viewModel : TeacherListViewModel?
+      var isAssignTeacherSubjectSuccessfully : Bool?
     var selectedTeacherId : Int?
     var selectedTeacherArrIndex : Int?
     var isUnauthorizedUser = false
@@ -28,6 +29,13 @@ class TeacherListVC: BaseUIViewController {
     var isFetching:Bool?
     var isEdit:Bool = false
     var isDelete:Bool = false
+    var classId : Int?
+    var teacherID : Int?
+    var selectedSubstituteTeacherId = 0
+    var classSubjectId : Int?
+    var periodId : Int?
+    var dayId : Int?
+    
     public var lstActionAccess : GetMenuFromRoleIdModel.ResultData?
     
     override func viewDidLoad() {
@@ -39,7 +47,7 @@ class TeacherListVC: BaseUIViewController {
         DispatchQueue.main.async {
             self.setUI()
         }
-        btnAdd.isHidden = true
+       
         SetViewAccordingToResponce()
         
     }
@@ -68,7 +76,7 @@ class TeacherListVC: BaseUIViewController {
                 switch resultData.actionName
                 {
                 case KAccessIntitifiers.kAdd:
-                    btnAdd.isHidden = false
+//                    btnAdd.isHidden = false
                     break
                 case KAccessIntitifiers.kEdit:
                     isEdit = true
@@ -90,7 +98,7 @@ class TeacherListVC: BaseUIViewController {
     func teacherListApi(){
         if checkInternetConnection(){
             self.viewModel?.isSearching = false
-            self.viewModel?.teacherList(searchText: "", pageSize: pageSize, filterBy: 0, skip: KIntegerConstants.kInt0)
+            self.viewModel?.substituteTeacherList(classId: self.classId ?? 0, teacherId: self.teacherID ?? 0)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
@@ -98,9 +106,6 @@ class TeacherListVC: BaseUIViewController {
     
     //Set Ui
     func setUI(){
-        
-        //Set Search bar in navigation
-        self.setSearchBarInNavigationController(placeholderText: KSearchBarPlaceHolder.kUserSearchBarPlaceHolder, navigationTitle: KStoryBoards.KTeacherListIdentifiers.kTeacherListTitle, navigationController: self.navigationController, navigationSearchBarDelegates: self)
         setBackButton()
         
         //Title
@@ -113,7 +118,7 @@ class TeacherListVC: BaseUIViewController {
         
         //Set Color According To Theme
         guard let theme = ThemeManager.shared.currentTheme else{return}
-        btnAddTeacher.tintColor = theme.uiButtonBackgroundColor
+//        btnAddTeacher.tintColor = theme.uiButtonBackgroundColor
     }
     //MARK:- Button Actions
     @IBAction func btnEditAction(_ sender: UIButton) {
@@ -129,28 +134,24 @@ class TeacherListVC: BaseUIViewController {
     }
     
     @IBAction func btnDeleteClass(_ sender: UIButton) {
-            if arrTeacherlist.count > 0{
-                let data = arrTeacherlist[sender.tag]
-                selectedTeacherArrIndex = sender.tag
-                selectedTeacherId = data.teacherId
-                initializeCustomYesNoAlert(self.view, isHideBlurView: true)
-                yesNoAlertView.delegate = self
-                yesNoAlertView.lblResponseDetailMessage.text = Alerts.kDeleteTeacherAlert
-            }else{
-                CommonFunctions.sharedmanagerCommon.println(object: "Delete department Count is not greter then zero.")
+        selectedSubstituteTeacherId = arrSubstituteTeacherlist[sender.tag].teacherId ?? 0
+//        sender.setImage(UIImage(named: "check"), for: .normal)
+        tableView.reloadData()
+        
+    }
+    
+    @IBAction func submitBtn(_ sender: Any) {
+        if checkInternetConnection(){
+            self.viewModel?.isSearching = false
+            self.viewModel?.substituteTeacherSubmit(SubstituteId: 0, TeacherId: self.teacherID ?? 0,SubstituteTeacherId: selectedSubstituteTeacherId,ClassId: classId ?? 0,ClassSubjectId: self.classSubjectId ?? 0,PeriodId: self.periodId ?? 0,DayId: self.dayId ?? 0)
+        }else{
+            self.showAlert(alert: Alerts.kNoInternetConnection)
         }
     }
     
-    @IBAction func btnAddHOD(_ sender: UIButton) {
-        
-        let vc = UIStoryboard.init(name: KStoryBoards.kTeacher, bundle: Bundle.main).instantiateViewController(withIdentifier: KStoryBoards.KAddTeacherIdentifiers.kAddTeacherVC) as! AddTeacherVC
-        vc.teacherID = 0
-        self.navigationController?.pushViewController(vc, animated: true)
-        
-    }
 }
 //MARk:- View Delegate
-extension TeacherListVC : ViewDelegate{
+extension SubstituteTeacherVC : ViewDelegate{
     
     func showAlert(alert: String){
         initializeCustomOkAlert(self.view, isHideBlurView: true)
@@ -166,7 +167,7 @@ extension TeacherListVC : ViewDelegate{
 }
 
 //MARK:- Table view delagate
-extension TeacherListVC : UITableViewDelegate{
+extension SubstituteTeacherVC : UITableViewDelegate{
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.separatorInset = UIEdgeInsets.zero
@@ -176,26 +177,31 @@ extension TeacherListVC : UITableViewDelegate{
 }
 
 //MARK:- Table view data source
-extension TeacherListVC : UITableViewDataSource{
+extension SubstituteTeacherVC : UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if arrTeacherlist.count > 0{
+        if arrSubstituteTeacherlist.count > 0{
             tableView.separatorStyle = .singleLine
-            return (arrTeacherlist.count)
+            return (arrSubstituteTeacherlist.count)
         }else{
             tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
             return 0
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: KTableViewCellIdentifier.kTeacherTableViewCell, for: indexPath) as! TeacherListTableViewCell
-        cell.setCellUI(data: arrTeacherlist, indexPath: indexPath,isEdit:isEdit,isDelete: isDelete)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "substituteCell", for: indexPath) as! SubstituteTableCell
+        cell.setCellUI(data: arrSubstituteTeacherlist, indexPath: indexPath,isEdit:isEdit,isDelete: isDelete)
+        if selectedSubstituteTeacherId == arrSubstituteTeacherlist[indexPath.row].teacherId{
+            cell.btnDelete.setImage(UIImage(named: "check"), for: .normal)
+        }else{
+              cell.btnDelete.setImage(UIImage(named: "uncheck"), for: .normal)
+        }
         return cell
     }
 }
 
 //MARK:- Custom Ok Alert
-extension TeacherListVC : OKAlertViewDelegate{
+extension SubstituteTeacherVC : OKAlertViewDelegate{
     
     //Ok Button Clicked
     func okBtnAction() {
@@ -213,11 +219,15 @@ extension TeacherListVC : OKAlertViewDelegate{
                 }
             }
         }
+        if isAssignTeacherSubjectSuccessfully == true{
+            isAssignTeacherSubjectSuccessfully = false
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 }
 
 //MARK:- Custom Yes No Alert Delegate
-extension TeacherListVC : YesNoAlertViewDelegate{
+extension SubstituteTeacherVC : YesNoAlertViewDelegate{
     func yesBtnAction() {
         yesNoAlertView.removeFromSuperview()
         if self.checkInternetConnection(){
@@ -234,9 +244,8 @@ extension TeacherListVC : YesNoAlertViewDelegate{
         yesNoAlertView.removeFromSuperview()
     }
 }
-
 //MARK:- UISearchController Bar Delegates
-extension TeacherListVC : NavigationSearchBarDelegate{
+extension SubstituteTeacherVC : NavigationSearchBarDelegate{
     
     func textDidChange(searchBar: UISearchBar, searchText: String) {
         viewModel?.isSearching = true
@@ -253,7 +262,7 @@ extension TeacherListVC : NavigationSearchBarDelegate{
 }
 
 //MARK:- Scroll View delegates
-extension TeacherListVC : UIScrollViewDelegate{
+extension SubstituteTeacherVC : UIScrollViewDelegate{
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
@@ -294,15 +303,19 @@ extension TeacherListVC : UIScrollViewDelegate{
 }
 
 //MARK:- Teacher Deleagate
-extension TeacherListVC : TeacherListDelegate{
-    func submitSubstitute() {
-        
-    }
-    
+extension SubstituteTeacherVC : TeacherListDelegate{
     func substituteTeacherListDidSuccess(data: [GetSubstituteTeacherData]?) {
-        
+        if data != nil{
+            if data?.count ?? 0 > 0{
+                arrSubstituteTeacherlist = data!
+                tableView.reloadData()
+            }
+        }
+      
     }
-    
+    func submitSubstitute(){
+        isAssignTeacherSubjectSuccessfully = true
+    }
     
     func unauthorizedUser() {
         isUnauthorizedUser = true
@@ -338,4 +351,7 @@ extension TeacherListVC : TeacherListDelegate{
             self.tableView.reloadData()
         }
     }
+    
+   
 }
+

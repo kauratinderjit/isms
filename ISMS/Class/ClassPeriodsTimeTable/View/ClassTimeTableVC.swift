@@ -432,21 +432,13 @@ extension ClassTimeTableVC: UICollectionViewDelegate {
                             if let daysModel = self.arrGetTimeTableDaysModel?[indexPath.section - 1] {
                                 if let period = daysModel.periodDetailListModel?[indexPath.row - 1] {
                                     print(period)
-                                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "AssignSubjectTeacherToPeriodVC") as! AssignSubjectTeacherToPeriodVC
-                                    if period.timeTableId ?? 0 == 0{
-                                        vc.timeTableId = 0
-                                    }else{
-                                        vc.timeTableId = period.timeTableId
-                                        vc.selectedSubjectName = period.subjectName
-                                        vc.selectedTeacherName = period.teacherName
-                                        vc.selectedTeacherID = period.teacherId
-                                        vc.selectedSubjectID = period.subjectId
-                                    }
-                                    vc.selectedDays = daysModel.dayId ?? 0
-                                    vc.classId = selectedClassId
-                                    vc.periodId = period.periodId
-                                    vc.selectedPeriodName = period.periodName
-                                    isCameFromOtherScreen = "AssignSubjectTeacherToPeriod"
+                                       let storyboard = UIStoryboard.init(name: "Teacher", bundle: nil)
+                                    let vc = storyboard.instantiateViewController(withIdentifier: "SubstituteTeacherVC") as! SubstituteTeacherVC
+                                        vc.classId = selectedClassId
+                                        vc.teacherID = period.teacherId
+                                        vc.classSubjectId = period.subjectId
+                                        vc.periodId = period.periodId
+                                        vc.dayId = daysModel.dayId
                                     self.navigationController?.pushViewController(vc, animated: true)
                                 }
                             }

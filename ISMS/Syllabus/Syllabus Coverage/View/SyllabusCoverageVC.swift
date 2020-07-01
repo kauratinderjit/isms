@@ -222,7 +222,7 @@ extension SyllabusCoverageVC : UITableViewDataSource {
             }else if percentage == 100{
                 cell.progressBar.progressTintColor = UIColor(red: 34/255, green: 139/255, blue: 34/255, alpha: 1)
             }else if percentage == 0{
-                cell.progressBar.progressTintColor = UIColor(red: 169/255, green: 169/255, blue: 169/255, alpha: 1)
+                cell.progressBar.progressTintColor = UIColor(red: 220, green: 220, blue: 220, alpha: 1)
             }
         }
         

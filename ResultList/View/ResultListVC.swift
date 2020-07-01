@@ -1,23 +1,25 @@
 //
-//  ClassListVC.swift
+//  ResultListVC.swift
 //  ISMS
 //
-//  Created by Taranjeet Singh on 6/18/19.
-//  Copyright © 2019 Atinder Kaur. All rights reserved.
+//  Created by Poonam  on 26/06/20.
+//  Copyright © 2020 Atinder Kaur. All rights reserved.
 //
+
 
 import UIKit
 
-class ClassListVC: BaseUIViewController {
+class ResultListVC: BaseUIViewController {
 
     //Outlets
     @IBOutlet weak var tableView: UITableView!
     
     //Veriables
     var arr_Classlist = [GetClassListResultData]()
+    var arrResultList = [GetListResultData]()
     var viewModel : ClassListViewModel?
-    var selectedClassId : Int?
-    var selectedClassArrIndex : Int?
+    var selectedResultId : Int?
+    var selectedResultArrIndex : Int?
     var isUnauthorizedUser = false
     var isClassDeleteSuccessfully = false
     var skip = Int()
@@ -44,7 +46,7 @@ class ClassListVC: BaseUIViewController {
         super.viewWillAppear(true)
         if checkInternetConnection(){
             self.viewModel?.isSearching = false
-            self.viewModel?.classList(Search: "", Skip: KIntegerConstants.kInt0,PageSize: KIntegerConstants.kInt10,SortColumnDir: "",  SortColumn: "", ParticularId : HODdepartmentId)
+            self.viewModel?.ResultList(Search: "", Skip: KIntegerConstants.kInt0,PageSize: KIntegerConstants.kInt10,SortColumnDir: "",  SortColumn: "", ParticularId : 0)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
@@ -59,28 +61,25 @@ class ClassListVC: BaseUIViewController {
     //MARK:- Button Actions
     @IBAction func btnEditAction(_ sender: UIButton)
     {
-        if arr_Classlist.count > 0
-        {
-             self.view.endEditing(true)
-            let data = arr_Classlist[sender.tag]
-            classId = data.classId ?? 0
-            setupUI()
-            initializeCustomTextFieldView(self.view, isHideBlurView: true)
-            textFieldAlert.delegate = self
-            self.textFieldAlert.lblTitle.text = "Update Class"
-            self.textFieldAlert.BtnTxt.setTitle("Submit", for: .normal)
-            self.viewModel?.getClassDetail(classId: classId ?? 0)
-        }
+        self.view.endEditing(true)
+        let data = arrResultList[(sender as AnyObject).tag]
+        let storyboard = UIStoryboard.init(name: "Result", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "AddResultVC") as? AddResultVC
+        vc?.isResultEditing = true
+        vc?.arr_resulrListReq = data
+        let frontVC = revealViewController().frontViewController as? UINavigationController
+        frontVC?.pushViewController(vc!, animated: false)
+        revealViewController().pushFrontViewController(frontVC, animated: true)
     }
 
     @IBAction func btnDeleteClass(_ sender: UIButton) {
-        if arr_Classlist.count  > 0{
-            let data = arr_Classlist[sender.tag]
-                selectedClassArrIndex = sender.tag
-            selectedClassId = data.classId
+        if arrResultList.count  > 0{
+            let data = arrResultList[sender.tag]
+                selectedResultArrIndex = sender.tag
+            selectedResultId = data.ResultId
             initializeCustomYesNoAlert(self.view, isHideBlurView: true)
             yesNoAlertView.delegate = self
-            yesNoAlertView.lblResponseDetailMessage.text = Alerts.kDeleteClassAlert
+            yesNoAlertView.lblResponseDetailMessage.text = "Do you really want to delete this Result."
             }else{
                 CommonFunctions.sharedmanagerCommon.println(object: "Count is not greter then zero.")
             }
@@ -88,19 +87,9 @@ class ClassListVC: BaseUIViewController {
 
     @IBAction func btnAddClass(_ sender: UIButton) {
         self.view.endEditing(true)
-        self.classId = 0
-        setupUI()
-        initializeCustomTextFieldView(self.view, isHideBlurView: true)
-        textFieldAlert.delegate = self
-        self.textFieldAlert.lblTitle.text = "Add Class"
-        self.textFieldAlert.txtFieldVal.text = ""
-        self.textFieldAlert.BtnTxt.setTitle("Add", for: .normal)
-        self.textFieldAlert.btnCancel.setTitle("Cancel", for: .normal)
-        self.textFieldAlert.btnCancel.cornerRadius = 4.0
-        self.textFieldAlert.BtnTxt.cornerRadius = 4.0
-//        let vc = UIStoryboard.init(name: KStoryBoards.kClass, bundle: Bundle.main).instantiateViewController(withIdentifier: KStoryBoards.KAddClassIdentifiers.kAddClassVC) as! AddClassVC
-//        vc.classId = 0
-//        self.navigationController?.pushViewController(vc, animated: true)
+        let vc = UIStoryboard.init(name: "Result", bundle: Bundle.main).instantiateViewController(withIdentifier: "AddResultVC") as! AddResultVC
+        vc.isResultEditing = false
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func setUITextField(data: ClassDetailModel){
@@ -114,7 +103,7 @@ class ClassListVC: BaseUIViewController {
     }
 }
 
-extension ClassListVC : TextFieldAlertDelegate{
+extension ResultListVC : TextFieldAlertDelegate{
     func btnCancel() {
         textFieldAlert.removeFromSuperview()
     }
@@ -155,7 +144,7 @@ extension ClassListVC : TextFieldAlertDelegate{
 
 
 //MARk:- View Delegate
-extension ClassListVC : ViewDelegate{
+extension ResultListVC : ViewDelegate{
     func showAlert(alert: String){
         initializeCustomOkAlert(self.view, isHideBlurView: true)
         okAlertView.delegate = self
@@ -173,7 +162,7 @@ extension ClassListVC : ViewDelegate{
         //Set Back Button
         self.setBackButton()
         //Title
-        self.title = KStoryBoards.KClassListIdentifiers.kClassListTitle
+        self.title = "Result List"
         self.tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
         tableView.separatorColor = KAPPContentRelatedConstants.kLightBlueColour
@@ -181,7 +170,7 @@ extension ClassListVC : ViewDelegate{
 }
 
 //MARK:- Table view delagate
-extension ClassListVC : UITableViewDelegate{
+extension ResultListVC : UITableViewDelegate{
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
@@ -189,13 +178,13 @@ extension ClassListVC : UITableViewDelegate{
 }
 
 //MARK:- Table view data source
-extension ClassListVC : UITableViewDataSource{
+extension ResultListVC : UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if arr_Classlist.count > 0{
+        if arrResultList.count > 0{
                 tableView.separatorStyle = .singleLine
             
             tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: true)
-            return (arr_Classlist.count)
+            return (arrResultList.count)
             
         }else{
             tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
@@ -204,13 +193,13 @@ extension ClassListVC : UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: KTableViewCellIdentifier.kClassTableViewCell, for: indexPath) as! ClassListTableViewCell
-        cell.setCellUI(data: arr_Classlist, indexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "resultCell", for: indexPath) as! resultListCell
+        cell.setCellUI(data: arrResultList, indexPath: indexPath)
         return cell
     }
 }
 //MARK:- Custom Ok Alert
-extension ClassListVC : OKAlertViewDelegate{
+extension ResultListVC : OKAlertViewDelegate{
     //Ok Button Clicked
     func okBtnAction() {
         if isUnauthorizedUser == true{
@@ -225,8 +214,8 @@ extension ClassListVC : OKAlertViewDelegate{
             }
         }else if isClassDeleteSuccessfully == true {
             isClassDeleteSuccessfully = false
-            if let selectedIndex = self.selectedClassArrIndex{
-                self.arr_Classlist.remove(at: selectedIndex)
+            if let selectedIndex = self.selectedResultArrIndex{
+                self.arrResultList.remove(at: selectedIndex)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                     }
@@ -237,13 +226,13 @@ extension ClassListVC : OKAlertViewDelegate{
 }
 
 //MARK:- Custom Yes No Alert Delegate
-extension ClassListVC : YesNoAlertViewDelegate{
+extension ResultListVC : YesNoAlertViewDelegate{
     
     func yesBtnAction() {
         yesNoAlertView.removeFromSuperview()
         if self.checkInternetConnection(){
-            if let classId = self.selectedClassId{
-                self.viewModel?.deleteClass(classId: classId)
+            if let resultId = self.selectedResultId{
+                self.viewModel?.deleteResult(resultId: resultId)
             }else{
                 CommonFunctions.sharedmanagerCommon.println(object: "Delete Class id is nil")
             }
@@ -257,9 +246,16 @@ extension ClassListVC : YesNoAlertViewDelegate{
 }
 
 //MARK:- Class Deleagate
-extension ClassListVC : ClassListDelegate{
+extension ResultListVC : ClassListDelegate{
+//    func deleteResult(){
+//        tableView.reloadData()
+//    }
+    
     func resultListDidSuccess(data: [GetListResultData]?) {
-        
+        if data!.count > 0{
+             arrResultList = data!
+            tableView.reloadData()
+        }
     }
     
     func unauthorizedUser() {
@@ -318,7 +314,7 @@ extension ClassListVC : ClassListDelegate{
 }
 
 //MARK:- UISearchController Bar Delegates
-extension ClassListVC : NavigationSearchBarDelegate{
+extension ResultListVC : NavigationSearchBarDelegate{
     
     func textDidChange(searchBar: UISearchBar, searchText: String) {
         viewModel?.isSearching = true
@@ -338,7 +334,7 @@ extension ClassListVC : NavigationSearchBarDelegate{
 }
 
 //MARK:- Scroll View delegates
-extension ClassListVC : UIScrollViewDelegate{
+extension ResultListVC : UIScrollViewDelegate{
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         

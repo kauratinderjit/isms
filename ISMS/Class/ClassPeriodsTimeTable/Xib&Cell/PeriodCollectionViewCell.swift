@@ -60,8 +60,26 @@ class PeriodCollectionViewCell: UICollectionViewCell {
             self.lblNoAssign.isHidden = true
             btnAssignTeacherSubject.isHidden = true
         }
+        
+        if period.teacherName == ""{
+            if isFromAttendence == true{
+                self.lblNoAssign.isHidden = false
+                btnAssignTeacherSubject.isHidden = true
+            }else{
+                self.lblNoAssign.isHidden = true
+                btnAssignTeacherSubject.isHidden = false
+            }
+        }else{
+            self.lblNoAssign.isHidden = true
+            btnAssignTeacherSubject.isHidden = true
+        }
+        
+        if period.substituteTeacherId == 0{
+              self.teacherLabel.text = period.teacherName
+        }else{
+              self.teacherLabel.text = period.substituteTeacherName
+        }
         self.titleLabel.text = period.periodName
-        self.teacherLabel.text = period.teacherName
         self.subjectlabel.text = period.subjectName
         self.teacherLabel.textColor = UIColor.darkGray
         self.subjectlabel.textColor = UIColor.darkGray

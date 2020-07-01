@@ -150,6 +150,60 @@ class ClassApi{
         }
     }
     
+    //MARK:- Result List Api
+       func getResultList(url : String,parameters: [String : Any]?,completionResponse:  @escaping (ResultListModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
+           
+           let urlCmplete = BaseUrl.kBaseURL+url
+           var accessTokken = ""
+
+           if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String
+           {
+               accessTokken = str
+           }
+           
+           let headers = [KConstants.kHeaderAuthorization:KConstants.kHeaderBearer+" "+accessTokken,KConstants.kAccept: KConstants.kApplicationJson]
+           
+               Alamofire.request(urlCmplete, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+               
+               if response.result.isSuccess
+               {
+                   guard let data = response.value else{return}
+                   
+                   if let responseData  = data as? [String : Any]
+                   {
+                       print("your response data here : \(responseData)")
+                       
+                       self.getResultListJSON(data: responseData, completionResponse: { (responseModel) in
+                           completionResponse(responseModel)
+                       }, completionError: { (mapperError) in
+                           completionnilResponse(mapperError)
+                       })
+                       
+                   }else{
+                       CommonFunctions.sharedmanagerCommon.println(object: "Get Class Error:- \(data) ")
+                   }
+                   
+               }
+               else
+               {
+                   complitionError(response.error)
+                   return
+               }
+           }
+           
+       }
+       
+       private func getResultListJSON(data: [String : Any],completionResponse:  @escaping (ResultListModel) -> Void,completionError: @escaping (String?) -> Void)  {
+           
+           let resultListData = ResultListModel(JSON: data)
+           
+           if resultListData != nil{
+               completionResponse(resultListData!)
+           }else{
+               completionError(Alerts.kMapperModelError)
+           }
+       }
+    
     func getLeaveList(url : String,parameters: [String : Any]?,completionResponse:  @escaping (LeaveListModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
         
         let urlCmplete = BaseUrl.kBaseURL+url
@@ -254,6 +308,45 @@ class ClassApi{
             completionError(Alerts.kMapperModelError)
         }
     }
+    func deleteResultApi(url: String,completionResponse:  @escaping (DeleteClassModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
+          
+          let urlCmplete = BaseUrl.kBaseURL+url
+          var accessTokken = ""
+          if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String
+          {
+              accessTokken = str
+          }
+          
+          let headers = [KConstants.kHeaderAuthorization:KConstants.kHeaderBearer + " " + accessTokken,KConstants.kContentType:KConstants.kApplicationJson]
+          
+          Alamofire.request(urlCmplete, method: .post, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+              
+              if response.result.isSuccess
+              {
+                  guard let data = response.value else{return}
+                  
+                  if let responseData  = data as? [String : Any]
+                  {
+                      //Convert Data In Mapper
+                      self.getDeleteClassJSON(data: responseData, completionResponse: { (deleteResponseModel) in
+                          completionResponse(deleteResponseModel)
+                      }, completionError: { (error) in
+                          completionnilResponse(error)
+                      })
+                      
+                  }else{
+                      CommonFunctions.sharedmanagerCommon.println(object: "Delete Department Error:- \(data) ")
+                  }
+                  
+              }
+              else
+              {
+                  complitionError(response.error)
+                  return
+              }
+          }
+      }
+      
     
     //MARK:- Get Class detail
     func getClassDetail(url: String,completionResponse:  @escaping (ClassDetailModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){

@@ -38,6 +38,7 @@ class AddLeaveReqVC: BaseUIViewController {
      var viewModel : AddLeaveReqViewModel?
     var arrLeaveListReq : GetLeaveListResultData?
     var leaveId = 0
+    
        var arrLeavelist = ["Sick Leave","Urgent Work","Not mentioned in list"]
       static var isFromLeaveListDate:Bool?
       var arrayAttachmentsToShow = [AttachedFiles]()
@@ -475,11 +476,10 @@ extension AddLeaveReqVC : UICollectionViewDelegate , UICollectionViewDataSource{
     {
         let dataFoRow = arrayAttachmentsToShow[indexPath.row]
         
-        if(dataFoRow.type == "File")
-        {
+       
             showLoader()
             storeAndShare(withURLString: dataFoRow.instituteAttachmentName ?? "")
-        }
+       
         
     }
     

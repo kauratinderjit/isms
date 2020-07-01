@@ -158,6 +158,60 @@ class TeacherApi {
         }
     }
     
+    //MARK:- Teacher List Api
+    func getSubstituteTeacherList(url : String,parameters: [String : Any]?,completionResponse:  @escaping (SubstituteModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
+        
+        let urlCmplete = BaseUrl.kBaseURL+url
+        var accessTokken = ""
+        if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String
+        {
+            accessTokken = str
+        }
+        
+        let headers = [KConstants.kHeaderAuthorization:KConstants.kHeaderBearer+" "+accessTokken,KConstants.kAccept: KConstants.kApplicationJson]
+        
+        
+        Alamofire.request(urlCmplete, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            
+            if response.result.isSuccess
+            {
+                guard let data = response.value else{return}
+                
+                if let responseData  = data as? [String : Any]
+                {
+                    self.getSubstituteTeacherListJSON(data: responseData, completionResponse: { (responseModel) in
+                        completionResponse(responseModel)
+                    }, completionError: { (mapperError) in
+                        completionnilResponse(mapperError)
+                    })
+                    
+                }else{
+                    CommonFunctions.sharedmanagerCommon.println(object: "Get Teacher list Error:- \(data) ")
+                }
+                
+            }
+            else
+            {
+                complitionError(response.error)
+                return
+            }
+        }
+        
+    }
+    
+    private func getSubstituteTeacherListJSON(data: [String : Any],completionResponse:  @escaping (SubstituteModel) -> Void,completionError: @escaping (String?) -> Void)  {
+        
+        let teacherListData = SubstituteModel(JSON: data)
+        
+        if teacherListData != nil{
+            completionResponse(teacherListData!)
+        }else{
+            completionError(Alerts.kMapperModelError)
+        }
+    }
+    
+    
+    
     //MARK:- Delete Teacher
     func deleteTeacherApi(url: String,completionResponse:  @escaping (DeleteTeacherModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
         

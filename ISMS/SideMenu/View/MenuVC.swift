@@ -606,9 +606,16 @@ extension MenuVC : UITableViewDelegate{
             break
             
         case "Manage Contacts":
-            let storyboard = UIStoryboard.init(name: KStoryBoards.kContactUs, bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "ContactUsVC") as? ContactUsVC
-            vc?.fromAdmin = 0
+//            let storyboard = UIStoryboard.init(name: KStoryBoards.kContactUs, bundle: nil)
+//            let vc = storyboard.instantiateViewController(withIdentifier: "ContactUsVC") as? ContactUsVC
+//            vc?.fromAdmin = 0
+//            let frontVC = revealViewController().frontViewController as? UINavigationController
+//            frontVC?.pushViewController(vc!, animated: false)
+//            revealViewController().pushFrontViewController(frontVC, animated: true)
+            
+            let storyboard = UIStoryboard.init(name: "Result", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "ResultListVC") as? ResultListVC
+            
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
@@ -621,7 +628,7 @@ extension MenuVC : UITableViewDelegate{
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
             
-            case "LeaveApplications":
+        case "LeaveApplications":
                 let storyboard = UIStoryboard.init(name: "Leave", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "LeaveListVC") as? LeaveListVC
                 let frontVC = revealViewController().frontViewController as? UINavigationController
