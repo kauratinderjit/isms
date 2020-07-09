@@ -105,7 +105,6 @@ class StudentRatingViewModel {
             
             if AddStudentRatingListModel.statusCode == KStatusCode.kStatusCode200 {
                 self.studentRatingView?.hideLoader()
-                
                 self.studentRatingDelegate?.GetSubjectListDidSucceed(data:AddStudentRatingListModel.resultData!)
                 
             }else if AddStudentRatingListModel.statusCode == KStatusCode.kStatusCode401 {
@@ -116,19 +115,14 @@ class StudentRatingViewModel {
                 self.studentRatingView?.hideLoader()
                 CommonFunctions.sharedmanagerCommon.println(object: "student APi status change")
             }
-            
         }, completionnilResponse: { (nilResponseError) in
-            
             self.studentRatingView?.hideLoader()
             //   self.SubjectListDelegate?.SubjectListDidFailed()
-            
             if let error = nilResponseError{
                 self.studentRatingView?.showAlert(alert: error)
-                
             }else{
                 CommonFunctions.sharedmanagerCommon.println(object: "student APi Nil response")
             }
-            
         }) { (error) in
             self.studentRatingView?.hideLoader()
             //   self.SubjectListDelegate?.SubjectListDidFailed()

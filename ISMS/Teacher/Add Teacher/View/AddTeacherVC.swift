@@ -77,7 +77,7 @@ class AddTeacherVC: BaseUIViewController
                 btnAssignSubject.isHidden = false
             }else{
                 btnAssignSubject.isHidden = true
-                btnAssignSubjectTopConstraints.constant = -30
+//                btnAssignSubjectTopConstraints.constant = -30
                 self.title = KStoryBoards.KAddTeacherIdentifiers.kAddTeacherTitle
                 gender = KConstants.KMale
             }
@@ -444,15 +444,13 @@ extension AddTeacherVC : OKAlertViewDelegate{
         okAlertView.removeFromSuperview()
         if isTeacherAddUpdateSuccess == true{
             
-            let storyboard = UIStoryboard.init(name: "Teacher", bundle: nil)
+           let storyboard = UIStoryboard.init(name: "Teacher", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "AssignSubjectToTeacherVC") as? AssignSubjectToTeacherVC
-            vc?.teacherId = self.resultTeacherId
-            vc?.isUpdate = 0
+            vc?.teacherId = self.teacherID
+            vc?.isUpdate = 1
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
-          
-            self.navigationController?.popViewController(animated: true)
         }
         else if isUnauthorizedUser == true{
             isUnauthorizedUser = false

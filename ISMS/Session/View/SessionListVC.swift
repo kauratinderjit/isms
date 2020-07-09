@@ -1,14 +1,14 @@
 //
-//  StudentViewAttendanceVC.swift
+//  SessionListVC.swift
 //  ISMS
 //
-//  Created by Poonam Sharma on 15/4/20.
+//  Created by Poonam  on 07/07/20.
 //  Copyright © 2020 Atinder Kaur. All rights reserved.
 //
 
 import UIKit
 
-class StudentViewAttendanceVC: BaseUIViewController {
+class SessionListVC: BaseUIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lblEndDate: UILabel!
@@ -19,10 +19,12 @@ class StudentViewAttendanceVC: BaseUIViewController {
     var isSeclectEndDate = false
     var startDate = Date()
     var endDate = Date()
+    var selectedSessionId = 0
      let userRoleParticularId = UserDefaultExtensionModel.shared.userRoleParticularId
     let studentClassId = UserDefaultExtensionModel.shared.StudentClassId
       var classId,timeTableId,teacherId,classSubjectId,periodId :Int?
      var arrAttendanceList = [GetStudentAttendanceResultData]()
+     var arrSessionList = [GetSessionResultData]()
      var viewModel : StudentGetAttendanceViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +33,11 @@ class StudentViewAttendanceVC: BaseUIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         setBackButton()
-       self.lblStudentName.text =  UserDefaultExtensionModel.shared.UserName
+      
         self.viewModel = StudentGetAttendanceViewModel.init(delegate: self)
         self.viewModel?.attachView(viewDelegate: self)
         setDatePickerView(self.view, type: .date)
+         self.viewModel?.getSessionList()
         // Do any additional setup after loading the view.
     }
     
@@ -46,7 +49,8 @@ class StudentViewAttendanceVC: BaseUIViewController {
             self.showAlert(alert:"Please Enter End Date")
         }else{
             if startDate <= endDate{
-                self.viewModel?.GetAttendance(StartDate: lblStartDate.text ?? "",EndDate: lblEndDate.text ?? "",StudentId: userRoleParticularId,PeriodId: periodId ?? 0,SubjectId: classSubjectId ?? 0,EnrollmentId: UserDefaultExtensionModel.shared.enrollmentIdStudent,ClassId: studentClassId ?? 0,SessionId: 0)
+                self.viewModel?.sessionCheck(SessionStartDate: lblStartDate.text ?? "",SessionEndDate: lblEndDate.text ?? "")
+
             }else{
                  self.showAlert(alert:"Please Enter correct start and end Date")
             }
@@ -65,17 +69,19 @@ class StudentViewAttendanceVC: BaseUIViewController {
         showDatePicker(datePickerDelegate: self)
     }
     
+    @IBAction func actionCheckBtn(_ sender: Any) {
+        selectedSessionId = arrSessionList[(sender as AnyObject).tag].id ?? 0
+        self.viewModel?.updateSessionCheck(SessionId: selectedSessionId ?? 0,SessionStatus: true)
+    }
+    
+    
 }
-extension StudentViewAttendanceVC : UITableViewDelegate{
+extension SessionListVC : UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
     }
-    
-    //    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-    //        return UITableView.automaticDimension
-    //    }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.separatorInset = UIEdgeInsets.zero
@@ -87,12 +93,12 @@ extension StudentViewAttendanceVC : UITableViewDelegate{
     }
     
 }
-extension StudentViewAttendanceVC : UITableViewDataSource{
+extension SessionListVC : UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.arrAttendanceList.count > 0{
+        if self.arrSessionList.count > 0{
             tableView.separatorStyle = .singleLine
             tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: true)
-            return (self.arrAttendanceList.count)
+            return (self.arrSessionList.count)
         }else{
             tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
             return 0
@@ -101,42 +107,29 @@ extension StudentViewAttendanceVC : UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ViewStudentAttendanceCell
-        //
-        
-        if self.arrAttendanceList[indexPath.row].attendanceStatus == "P"{
-            cell.lblPresntAbsent.textColor = UIColor.green
-              cell.lblPresntAbsent.text = "Present"
-        }else if self.arrAttendanceList[indexPath.row].attendanceStatus == "A"{
-            cell.lblPresntAbsent.textColor = UIColor.red
-            cell.lblPresntAbsent.text = "Absent"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SessionTableCell
+        cell.btnCheck.tag = indexPath.row
+        cell.lblDate.text = arrSessionList[indexPath.row].sessionName
+        if selectedSessionId == arrSessionList[indexPath.row].id{
+            cell.btnCheck.setImage(UIImage(named: "check"), for: .normal)
         }else{
-            cell.lblPresntAbsent.textColor = UIColor.blue
-            cell.lblPresntAbsent.text = "NA"
+             cell.btnCheck.setImage(UIImage(named: "uncheck"), for: .normal)
         }
-        let finalDate = self.dateFromISOString(string: self.arrAttendanceList[indexPath.row].attendanceDate ?? "\(Date())")
-        cell.lblDate.text = finalDate
-//        cell.setCellUI(data: arrGetTeacherRating, indexPath: indexPath)
         return cell
     }
 }
-extension StudentViewAttendanceVC:SharedUIDatePickerDelegate{
+extension SessionListVC:SharedUIDatePickerDelegate{
     
     func doneButtonClicked(datePicker: UIDatePicker) {
         //yearofestablishment
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.dateFormat = "dd/MM/yyyy"
         formatter.timeZone = TimeZone.autoupdatingCurrent
         formatter.locale = Locale.current
         let convertedDate = formatter.string(from: datePicker.date)
         let strDate = formatter.date(from: convertedDate)
         
-        
-//        let dateFormatter       = DateFormatter()
-////        dateFormatter.dateStyle = DateFormatter.Style.short
-//        dateFormatter.dateFormat =  "YYYY-MM-DD"
-//        let strDate = dateFormatter.string(from: datePicker.date)
         if isSelectStartDate == true{
              lblStartDate.text = convertedDate
             startDate = strDate ?? Date()
@@ -148,15 +141,7 @@ extension StudentViewAttendanceVC:SharedUIDatePickerDelegate{
     }
 }
 
-extension StudentViewAttendanceVC : StudentGetAttendanceDelegate{
-    func sessionListDidSuccess(data: [GetSessionResultData]?) {
-        
-    }
-    
-    func addSession() {
-        
-    }
-    
+extension SessionListVC : StudentGetAttendanceDelegate{
 
     func attendanceListDidSuccess(data: [GetStudentAttendanceResultData]?){
         if let data1 = data {
@@ -167,8 +152,31 @@ extension StudentViewAttendanceVC : StudentGetAttendanceDelegate{
             }
         }
     }
+    func checkSession(data: Bool?){
+        if data == false{
+            self.viewModel?.AddSession(SessionId: 0,strSessionStartDate: lblStartDate.text ?? "",strSessionEndDate: lblEndDate.text ?? "",SessionStartDate:"\(startDate)" ,SessionEndDate: "\(endDate)")
+        }else{
+            self.showAlert(alert: "Session already exists")
+        }
+    }
+    func updateSessionStatus(data: String?){
+        tableView.reloadData()
+    }
+    
+    func addSession(){
+        
+    }
+    func sessionListDidSuccess(data:  [GetSessionResultData]?){
+       if let data1 = data {
+            if data1.count>0
+            {
+                self.arrSessionList = data1
+                tableView.reloadData()
+            }
+        }
+    }
 }
-extension StudentViewAttendanceVC : ViewDelegate{
+extension SessionListVC : ViewDelegate{
     
     func showAlert(alert: String){
         initializeCustomOkAlert(self.view, isHideBlurView: true)
@@ -183,7 +191,7 @@ extension StudentViewAttendanceVC : ViewDelegate{
     }
 }
 //MARK:- OK Alert Delegate
-extension StudentViewAttendanceVC : OKAlertViewDelegate{
+extension SessionListVC : OKAlertViewDelegate{
     func okBtnAction() {
         okAlertView.removeFromSuperview()
 //        if isUnauthorizedUser == true{

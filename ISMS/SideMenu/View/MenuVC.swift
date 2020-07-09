@@ -613,12 +613,19 @@ extension MenuVC : UITableViewDelegate{
 //            frontVC?.pushViewController(vc!, animated: false)
 //            revealViewController().pushFrontViewController(frontVC, animated: true)
             
-            let storyboard = UIStoryboard.init(name: "Result", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "ResultListVC") as? ResultListVC
+//            let storyboard = UIStoryboard.init(name: "Result", bundle: nil)
+//            let vc = storyboard.instantiateViewController(withIdentifier: "ResultListVC") as? ResultListVC
+//
+//            let frontVC = revealViewController().frontViewController as? UINavigationController
+//            frontVC?.pushViewController(vc!, animated: false)
+//            revealViewController().pushFrontViewController(frontVC, animated: true)
             
+            let storyboard = UIStoryboard.init(name: "Session", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "SessionListVC") as? SessionListVC
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
+            
             
         case "ContactUS":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kContactUs, bundle: nil)

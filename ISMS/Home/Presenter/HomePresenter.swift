@@ -81,7 +81,7 @@ class HomeViewModel{
         postDict[KApiParameters.KGetPagesByUserIdIdintifier.kUserId] = userId
         postDict[KApiParameters.KGetPagesByUserIdIdintifier.kRoleId] = roleId
         LoginApi.sharedmanagerAuth.getUserMenuFromRoleId(url: ApiEndpoints.kUserRoleMenu , parameters: postDict, completionResponse: { (getMenuFromRoleIdModel) in
-            
+            print("menu response: ",getMenuFromRoleIdModel.resultData)
             switch getMenuFromRoleIdModel.statusCode{
             case KStatusCode.kStatusCode200:
                 self.homeView?.hideLoader()

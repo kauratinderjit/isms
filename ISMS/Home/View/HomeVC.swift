@@ -440,9 +440,6 @@ extension HomeVC : HomeViewModelDelegate
         if let department = deptArr[selectedIndexParent].departmentId {
             UserDefaultExtensionModel.shared.HODDepartmentId = department ?? 0
         }
-       
-        
-
         
 //        if data.das ?? 0 > 1
 //        {

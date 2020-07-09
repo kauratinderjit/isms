@@ -259,7 +259,7 @@ class LoginApi
                 
                 if let responseData  = data as? [String : Any]
                 {
-                    print("responseData: ",responseData)
+                    print("responseData2menu: ",responseData)
                     self.getMenuFromUserRoleIdJSON(data: responseData, completionResponse: { (responseModel) in
                         completionResponse(responseModel)
                     }, completionError: { (mapperError) in

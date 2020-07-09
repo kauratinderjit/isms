@@ -864,13 +864,9 @@ public struct StudentRating {
 }
 
 public struct AddStudentRating {
-    
     public static let kId = "Id"
     public static let kEnumType = "enumType"
     public static let kAddStudentRatingCell = "AddStudentRatingCell"
-    
-    
-    
 }
 
 public struct RatingToTeacher {
