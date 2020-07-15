@@ -174,7 +174,6 @@ class ContactUsVC: BaseUIViewController {
     
     }
     
-    
     @IBAction func actionAddGeneralBtn(_ sender: Any) {
         firstEmerg = 3
         let indexPath = IndexPath(row: (sender as AnyObject).tag, section: 0)

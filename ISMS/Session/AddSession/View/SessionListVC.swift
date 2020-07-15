@@ -26,6 +26,7 @@ class SessionListVC: BaseUIViewController {
      var arrAttendanceList = [GetStudentAttendanceResultData]()
      var arrSessionList = [GetSessionResultData]()
      var viewModel : StudentGetAttendanceViewModel?
+    var updateSessionId = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.separatorStyle = .none
@@ -49,6 +50,11 @@ class SessionListVC: BaseUIViewController {
             self.showAlert(alert:"Please Enter End Date")
         }else{
             if startDate <= endDate{
+                let m = "\(startDate)"
+                let parsedStartDate = m.replacingOccurrences(of: "+0000", with: "")
+                
+                let m2 = "\(endDate)"
+                let parsedEndDate = m2.replacingOccurrences(of: "+0000", with: "")
                 self.viewModel?.sessionCheck(SessionStartDate: lblStartDate.text ?? "",SessionEndDate: lblEndDate.text ?? "")
 
             }else{
@@ -71,9 +77,16 @@ class SessionListVC: BaseUIViewController {
     
     @IBAction func actionCheckBtn(_ sender: Any) {
         selectedSessionId = arrSessionList[(sender as AnyObject).tag].id ?? 0
+        
+         
         self.viewModel?.updateSessionCheck(SessionId: selectedSessionId ?? 0,SessionStatus: true)
     }
     
+    @IBAction func actionEditBtn(_ sender: Any) {
+        self.lblStartDate.text = arrSessionList[(sender as AnyObject).tag].strSessionStartDate
+        self.lblEndDate.text = arrSessionList[(sender as AnyObject).tag].strSessionEndDate
+        updateSessionId = arrSessionList[(sender as AnyObject).tag].id ?? 0
+    }
     
 }
 extension SessionListVC : UITableViewDelegate{
@@ -154,7 +167,12 @@ extension SessionListVC : StudentGetAttendanceDelegate{
     }
     func checkSession(data: Bool?){
         if data == false{
-            self.viewModel?.AddSession(SessionId: 0,strSessionStartDate: lblStartDate.text ?? "",strSessionEndDate: lblEndDate.text ?? "",SessionStartDate:"\(startDate)" ,SessionEndDate: "\(endDate)")
+            if updateSessionId == 0{
+                self.viewModel?.AddSession(SessionId: 0,strSessionStartDate: lblStartDate.text ?? "",strSessionEndDate: lblEndDate.text ?? "",SessionStartDate:"\(startDate)" ,SessionEndDate: "\(endDate)")
+            }else{
+                self.viewModel?.AddSession(SessionId: updateSessionId,strSessionStartDate: lblStartDate.text ?? "",strSessionEndDate: lblEndDate.text ?? "",SessionStartDate:"" ,SessionEndDate: "")
+            }
+          
         }else{
             self.showAlert(alert: "Session already exists")
         }

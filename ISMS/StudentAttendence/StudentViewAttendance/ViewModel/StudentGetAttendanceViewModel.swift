@@ -140,14 +140,11 @@ class StudentGetAttendanceViewModel {
     
     func sessionCheck(SessionStartDate: String,SessionEndDate: String){
         var postDict = [String:Any]()
-                      
-        postDict["SessionStartDate"] = SessionStartDate
-        postDict["SessionEndDate"] = SessionEndDate
-        
-        print("postDict: ",postDict)
-        
+       postDict = ["SessionStartDate":SessionStartDate,
+                               "SessionEndDate" : SessionEndDate] as [String : Any]
         self.attendanceListView?.showLoader()
-        StudentListForAttendenceApi.sharedManager.AddStudentAttendence(url: "api/User/GetSessionCheck", parameters: postDict, completionResponse: { (AddStudentModel) in
+        
+        StudentListForAttendenceApi.sharedManager.AddStudentAttendence(url: "api/User/GetSessionCheck" + "?SessionStartDate=" + "\(SessionStartDate)" + "&SessionEndDate=" + "\(SessionEndDate)", parameters: postDict, completionResponse: { (AddStudentModel) in
             self.attendanceListView?.hideLoader()
             print("data: ",AddStudentModel.message)
             

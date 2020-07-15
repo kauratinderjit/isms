@@ -1,17 +1,18 @@
 //
-//  StudentListVC.swift
+//  StudentSessionVC.swift
 //  ISMS
 //
-//  Created by Poonam Sharma on 6/26/19.
-//  Copyright © 2019 Atinder Kaur. All rights reserved.
+//  Created by Poonam  on 15/07/20.
+//  Copyright © 2020 Atinder Kaur. All rights reserved.
 //
 
 import UIKit
 
-class StudentListVC: BaseUIViewController {
+class StudentSessionVC: BaseUIViewController {
     static var isStartSearching = false
     var ViewModel : StudentListViewModel?
     var arrStudentlist = [GetStudentResultData]()
+    var arrStudentSessionlist = [studentDetail]()
     var selectedStudentArrIndex : Int?
     var enrollmentId:Int?
     var classData : GetCommonDropdownModel!
@@ -122,7 +123,7 @@ class StudentListVC: BaseUIViewController {
     
 }
 
-extension StudentListVC : OKAlertViewDelegate{
+extension StudentSessionVC : OKAlertViewDelegate{
     
     //Ok Button Clicked
     func okBtnAction() {
@@ -145,7 +146,7 @@ extension StudentListVC : OKAlertViewDelegate{
     }
 }
 
-extension StudentListVC : YesNoAlertViewDelegate{
+extension StudentSessionVC : YesNoAlertViewDelegate{
     
     func yesBtnAction() {
         if self.checkInternetConnection(){
@@ -167,7 +168,7 @@ extension StudentListVC : YesNoAlertViewDelegate{
 }
 
 
-extension StudentListVC : UITableViewDelegate{
+extension StudentSessionVC : UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -184,7 +185,7 @@ extension StudentListVC : UITableViewDelegate{
     }
     
 }
-extension StudentListVC : UITableViewDataSource{
+extension StudentSessionVC : UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if arrStudentlist.count > 0{
             tableView.separatorStyle = .singleLine
@@ -199,16 +200,12 @@ extension StudentListVC : UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: KTableViewCellIdentifier.kStudentTableViewCell, for: indexPath) as! StudentListTableCell
         
-        cell.setCellUI(data: arrStudentlist, indexPath: indexPath)
+        cell.setSessionCellUI(data: arrStudentSessionlist, indexPath: indexPath)
         return cell
     }
 }
 
-extension StudentListVC : StudentListDelegate{
-    func StudentSessionListDidSuccess(data: GetStudentSessionResultData?) {
-        
-    }
-    
+extension StudentSessionVC : StudentListDelegate{
     func unauthorizedUser() {
         isUnauthorizedUser = true
     }
@@ -216,11 +213,7 @@ extension StudentListVC : StudentListDelegate{
         classData = data
         if let count = data.resultData?.count{
             if count > 0 {
-//                UpdatePickerModel2(count: classData?.resultData?.count ?? 0, sharedPickerDelegate: self, View:  self.view, index: 0)
                 var resultData = classData.resultData
-               // self.dropDownTextField.text = resultData?[0].name
-              //  var newClassId = resultData?[0].id
-               //  self.ViewModel?.studentList(classId : newClassId, Search: "", Skip: KIntegerConstants.kInt0, PageSize: pageSize)
             }else{
                 print("Department Count is zero.")
             }
@@ -294,9 +287,34 @@ extension StudentListVC : StudentListDelegate{
             //            CommonFunctions.sharedmanagerCommon.println(object: "Nil")
         }
         
+       
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+        
+    }
+    
+    func StudentSessionListDidSuccess(data : GetStudentSessionResultData?){
+               isFetching = true
+                // arrStudentlist.removeAll()
+                if data != nil{
+                    var dataSession = data?.studentDetail
+                    if dataSession?.count ?? 0 > 0
+                    {
+                        arrStudentSessionlist = dataSession!
+                    }else{
+                        arrStudentSessionlist.removeAll()
+                        self.tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
+                    }
+               
+                }else{
+                    arrStudentSessionlist.removeAll()
+                    self.tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
+                    }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
         
     }
     
@@ -311,7 +329,7 @@ extension StudentListVC : StudentListDelegate{
     
 }
 
-extension StudentListVC : ViewDelegate{
+extension StudentSessionVC : ViewDelegate{
     func showAlert(alert: String){
         initializeCustomOkAlert(self.view, isHideBlurView: true)
         okAlertView.delegate = self
@@ -351,7 +369,7 @@ extension StudentListVC : ViewDelegate{
     }
     
 }
-extension StudentListVC: SharedUIPickerDelegate{
+extension StudentSessionVC: SharedUIPickerDelegate{
     func DoneBtnClicked() {
         if let count = classData.resultData?.count{
             if count > 0{
@@ -361,11 +379,11 @@ extension StudentListVC: SharedUIPickerDelegate{
                 if selectedClassIndex == 0{
                     self.dropDownTextField.text = self.classData?.resultData?[selectedClassIndex].name
                     self.selectedClassID = self.classData?.resultData?[selectedClassIndex].id ?? 0
-                    self.ViewModel?.studentList(classId : selectedClassID, Search: "", Skip: 0, PageSize: 1000)
+                    self.ViewModel?.studenSessiontList(classId : selectedClassID ?? 0)
                 }else{
                     self.dropDownTextField.text = self.classData?.resultData?[selectedClassIndex].name
                     self.selectedClassID = self.classData?.resultData?[selectedClassIndex].id ?? 0
-                    self.ViewModel?.studentList(classId : selectedClassID, Search: "", Skip: 0, PageSize: 1000)
+                    self.ViewModel?.studenSessiontList(classId : selectedClassID ?? 0)
                 }
             }
         }
@@ -405,7 +423,7 @@ extension StudentListVC: SharedUIPickerDelegate{
     
 }
 
-extension StudentListVC : NavigationSearchBarDelegate{
+extension StudentSessionVC : NavigationSearchBarDelegate{
     func textDidChange(searchBar: UISearchBar, searchText: String) {
         DispatchQueue.main.async {
             self.arrStudentlist.removeAll()
@@ -426,7 +444,7 @@ extension StudentListVC : NavigationSearchBarDelegate{
 }
 
 //MARK:- Scroll View delegates
-extension StudentListVC : UIScrollViewDelegate{
+extension StudentSessionVC : UIScrollViewDelegate{
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
@@ -435,7 +453,7 @@ extension StudentListVC : UIScrollViewDelegate{
 //            UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
 //                self.navigationController?.setNavigationBarHidden(true, animated: true)
 //            }, completion: nil)
-//            
+//
 //        } else {
 //            UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
 //                self.navigationController?.setNavigationBarHidden(false, animated: true)

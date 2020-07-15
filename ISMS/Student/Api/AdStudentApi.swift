@@ -331,4 +331,57 @@ class AdStudentApi {
         
     }
     
+    func getStudentSessionList(url : String,parameters: [String : Any]?,completionResponse:  @escaping (StudentSessionModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
+           
+           let urlCmplete = BaseUrl.kBaseURL+url
+           var accessTokken = ""
+           if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String
+           {
+               accessTokken = str
+           }
+           
+           let headers = [KConstants.kHeaderAuthorization:KConstants.kHeaderBearer+" "+accessTokken,KConstants.kAccept: KConstants.kApplicationJson]
+           
+           
+           Alamofire.request(urlCmplete, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+               CommonFunctions.sharedmanagerCommon.println(object: "response list:- \(response) ")
+               if response.result.isSuccess
+               {
+                   guard let data = response.value else{return}
+                   
+                   if let responseData  = data as? [String : Any]
+                   {
+                       
+                       self.getStudentSesionListJSON(data: responseData, completionResponse: { (responseModel) in
+                           CommonFunctions.sharedmanagerCommon.println(object: "response list2:- \(String(describing: responseModel.resultData)) ")
+                           completionResponse(responseModel)
+                       }, completionError: { (mapperError) in
+                           completionnilResponse(mapperError)
+                       })
+                       
+                   }else{
+                       CommonFunctions.sharedmanagerCommon.println(object: "Get StudentList Error:- \(data) ")
+                   }
+                   
+               }
+               else
+               {
+                   complitionError(response.error)
+                   return
+               }
+           }
+       }
+       
+       private func getStudentSesionListJSON(data: [String : Any],completionResponse:  @escaping (StudentSessionModel) -> Void,completionError: @escaping (String?) -> Void)  {
+           
+           let StudentListData = StudentSessionModel(JSON: data)
+           
+           if StudentListData != nil{
+               completionResponse(StudentListData!)
+           }else{
+               completionError(Alerts.kMapperModelError)
+           }
+       }
+    
+    
 }

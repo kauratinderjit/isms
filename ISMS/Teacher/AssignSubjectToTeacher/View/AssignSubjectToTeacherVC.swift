@@ -60,10 +60,8 @@ class AssignSubjectToTeacherVC: BaseUIViewController {
     
     @IBAction func btnCheckAction(_ sender: UIButton) {
         getDataFirst = 3
-    var data = [String:Any]()
+        var data = [String:Any]()
         let extractedData = arrSubjectList[sender.tag].classSubjectId
-       
-        
         if sender.isSelected{
             sender.isSelected = false
             if let index = isSelectedArr.firstIndex(of: sender.tag) {
@@ -71,7 +69,8 @@ class AssignSubjectToTeacherVC: BaseUIViewController {
             }
             for i in 0..<selectedSubjectViewModels.count{
                 if extractedData == (selectedSubjectViewModels[i] as NSDictionary).value(forKey: "ClassSubjectId") as? Int{
-                    self.selectedSubjectViewModels.remove(at: i)
+                     selectedSubjectViewModels[i]["IsDelete"] = true
+//                    self.selectedSubjectViewModels.remove(at: i)
                 }else{
                    
                 }
@@ -82,7 +81,7 @@ class AssignSubjectToTeacherVC: BaseUIViewController {
             sender.isSelected = true
             isSelectedArr.append(sender.tag)
            
-            data = ["ClassSubjectId":extractedData , "SubjectName": arrSubjectList[sender.tag].subjectName,"Occurrence":0]
+            data = ["ClassSubjectId":extractedData , "SubjectName": arrSubjectList[sender.tag].subjectName,"Occurrence":0,"IsDelete": false]
             selectedSubjectViewModels.append(data)
         }
     

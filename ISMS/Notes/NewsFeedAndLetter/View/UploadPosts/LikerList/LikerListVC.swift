@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LikerListVC: UIViewController {
+class LikerListVC: BaseUIViewController {
     
       var likerList : [lstgetLikesListViewModels]?
       var viewModel : UploadPostViewModel?
@@ -23,6 +23,9 @@ class LikerListVC: UIViewController {
                      self.viewModel?.attachView(viewDelegate: self)
         self.viewModel?.getlikerList(postId: postId)
         tblView.tableFooterView = UIView()
+        
+        hideNavigationBackButton()
+        BackButton()
     }
     
 
@@ -46,7 +49,7 @@ extension LikerListVC : UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! LikerListCell
         cell.lblName.text = likerList?[indexPath.row].LikedBy
         let nameStr = likerList?[indexPath.row].LikedBy ?? ""
-        cell.imgViewProfile.addInitials(first: nameStr.characters.first?.description ?? "", second: "")
+        cell.imgViewProfile.addInitials(first: nameStr.first?.description ?? "", second: "")
        
         return cell
     }
@@ -68,6 +71,14 @@ extension LikerListVC : ViewDelegate {
 }
 
 extension LikerListVC : AddPostDelegate {
+    func addedSuccessfully(result: Int) {
+        
+    }
+    
+    func CommentData(data: [lstgetCommentViewList]?) {
+        
+    }
+    
     func LikerList(data: [lstgetLikesListViewModels]) {
         if data.count > 0 {
                     likerList = data
@@ -75,9 +86,7 @@ extension LikerListVC : AddPostDelegate {
                 }
     }
     
-    func CommentData(data: [lstgetCommentViewList]) {
-          
-    }
+    
     
     func displayData(data: [NewsListResultData]) {
         
@@ -86,8 +95,20 @@ extension LikerListVC : AddPostDelegate {
     func attachmentDeletedSuccessfully() {
     }
     
-    func addedSuccessfully() {
-        
-    }
+    
   
+}
+public extension UIImageView {
+    
+    func addInitials(first: String, second: String) {
+        let initials = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height))
+        initials.center = CGPoint(x: self.bounds.width / 2, y: self.bounds.height / 2)
+        initials.textAlignment = .center
+        initials.text = first + " " + second
+        initials.textColor = .white
+        initials.backgroundColor = .random
+     
+        self.addSubview(initials)
+   
+}
 }

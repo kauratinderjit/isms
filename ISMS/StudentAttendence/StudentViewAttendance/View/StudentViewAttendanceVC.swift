@@ -149,6 +149,14 @@ extension StudentViewAttendanceVC:SharedUIDatePickerDelegate{
 }
 
 extension StudentViewAttendanceVC : StudentGetAttendanceDelegate{
+    func checkSession(data: Bool?) {
+        
+    }
+    
+    func updateSessionStatus(data: String?) {
+        
+    }
+    
     func sessionListDidSuccess(data: [GetSessionResultData]?) {
         
     }

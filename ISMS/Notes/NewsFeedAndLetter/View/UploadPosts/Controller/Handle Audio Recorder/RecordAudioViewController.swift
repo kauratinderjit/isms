@@ -53,6 +53,11 @@ class RecordAudioViewController: BaseUIViewController,RecorderDelegate {
         }
     
     
+    @IBAction func crossButton(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
     @IBAction func play() {
         do {
             try recording.play()
@@ -106,7 +111,7 @@ class RecordAudioViewController: BaseUIViewController,RecorderDelegate {
         }
         
         voiceRecordHUD.update(CGFloat(rate))
-        voiceRecordHUD.fillColor = UIColor.init(red: 203/255, green: 19/255, blue: 135/255, alpha: 1)
+        voiceRecordHUD.fillColor = UIColor.init(red: 24/255, green: 174/255, blue: 122/255, alpha: 1)
         recordDuration += 1
         
         let min = Int((self.recording.recorder?.currentTime)! / 60)
@@ -132,7 +137,6 @@ class RecordAudioViewController: BaseUIViewController,RecorderDelegate {
             voiceRecordHUD.update(00.00)
             lblRecordingTime.text = "00:00"
             btnStartEnd.setImage(UIImage(named: "recordplay"), for: .normal)
-
             lblTapToStart.text = "Tap to Start"
         }
             

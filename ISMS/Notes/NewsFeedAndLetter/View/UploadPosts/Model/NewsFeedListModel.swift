@@ -51,16 +51,23 @@ class NewsFeedListModel : Mappable{
         var TotalComments : Int?
         var TotalLikes : Int?
         var lstComments: [lstComments]?
-         var lstDocuments: [lstDocuments]?
-         var lstLikes: [lstLikes]?
-         
-
+        var lstDocuments: [lstDocuments]?
+        var lstLikes: [lstLikes]?
+        var strCreatedDate : String?
+        var  PostedByImageUrl : String?
+        var  Email : String?
+        var TaggedUsers : [TaggedUsers]?
+        var  Bio : String?
+        var  ColorCode : String?
+        var TypeId : Int?
+        
         init?(map: Map) {
             
         }
         
         mutating func mapping(map: Map) {
        
+            Bio <- map["Bio"]
             Comments <- map["Comments"]
             Description <- map["Description"]
             Documents <- map["Documents"]
@@ -71,14 +78,19 @@ class NewsFeedListModel : Mappable{
             NewsLetterId <- map["NewsLetterId"]
             PostedBy <- map["PostedBy"]
             PostedById <- map["PostedById"]
-             PostedDate <- map["PostedDate"]
+            PostedDate <- map["PostedDate"]
             Title <- map["Title"]
             TotalComments <- map["TotalComments"]
             TotalLikes <- map["TotalLikes"]
             lstComments <- map["lstComments"]
             lstDocuments <- map["lstDocuments"]
             lstLikes <- map["lstLikes"]
-            
+            strCreatedDate <- map["strCreatedDate"]
+            PostedByImageUrl <- map["PostedByImageUrl"]
+            Email <- map["Email"]
+            TaggedUsers <- map["lstTaggedUsers"]
+            ColorCode <- map["ColorCode"]
+             TypeId <- map["TypeId"]
         }
         
     }
@@ -138,6 +150,31 @@ struct lstLikes: Mappable {
    
        name <- map[""]
       
+    }
+    
+}
+
+struct TaggedUsers: Mappable {
+    
+    var Id : Int?
+    var Bio : String?
+    var ImageUrl : String?
+    var Email : String?
+    var Name : String?
+  
+    
+   
+    init?(map: Map) {
+    }
+    
+    mutating func mapping(map: Map) {
+   
+       Id <- map["Id"]
+       Bio <- map["Bio"]
+       ImageUrl <- map["ImageUrl"]
+       Email <- map["Email"]
+       Name <- map["Name"]
+   
     }
     
 }

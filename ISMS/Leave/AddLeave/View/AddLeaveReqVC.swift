@@ -354,7 +354,7 @@ extension AddLeaveReqVC:SharedUIDatePickerDelegate{
         //yearofestablishment
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.dateFormat = "dd/MM/yyyy"
         formatter.timeZone = TimeZone.autoupdatingCurrent
         formatter.locale = Locale.current
         let convertedDate = formatter.string(from: datePicker.date)

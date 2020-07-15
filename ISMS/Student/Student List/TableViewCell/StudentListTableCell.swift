@@ -81,4 +81,47 @@ class StudentListTableCell: UITableViewCell{
             }
         }
     }
+    
+    func setSessionCellUI(data:  [studentDetail]?, indexPath: IndexPath){
+        guard let rsltData = data?[indexPath.row] else{return}
+             
+             StudentName.text = ""
+             
+             studentImg.createCircleImage()
+             
+             //Set buttons tag
+             editBtn.tag = indexPath.row
+             deleteBtn.tag = indexPath.row
+             
+//             if let className = rsltData.className{
+//                 classNamelbl.text = className
+//             }
+             
+             if let firstname = rsltData.studentName{
+                 StudentName.text = firstname
+             }
+    
+             if let imgProfileUrl = rsltData.imageUrl{
+                 studentImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
+                 studentImg.sd_setImage(with: URL.init(string: imgProfileUrl)) { (img, error, cacheType, url) in
+                     
+                     if error == nil{
+                         print("error is NilLiteralConvertible")
+                         self.studentImg.contentMode = .scaleAspectFill
+                         self.studentImg.image = img
+                     }else{
+                         if let nameStr = rsltData.studentName{
+                             CommonFunctions.sharedmanagerCommon.addLabelOnTheImgeViewWithFirstCharacter(string: nameStr, imgView: self.studentImg)
+                             CommonFunctions.sharedmanagerCommon.println(object: "Image is nil in list.")
+                         }
+                     }
+                 }
+             }else{
+                 if let nameStr = rsltData.studentName{
+                     CommonFunctions.sharedmanagerCommon.addLabelOnTheImgeViewWithFirstCharacter(string: nameStr, imgView: self.studentImg)
+                     CommonFunctions.sharedmanagerCommon.println(object: "Image is nil in list.")
+                 }
+             }
+    }
 }
+

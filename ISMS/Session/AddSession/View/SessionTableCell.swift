@@ -11,6 +11,7 @@ import Foundation
 class SessionTableCell : UITableViewCell{
     
     
+    @IBOutlet weak var btnEdit: UIButton!
     @IBOutlet weak var btnCheck: UIButton!
     @IBOutlet weak var lblDate: UILabel!
 }

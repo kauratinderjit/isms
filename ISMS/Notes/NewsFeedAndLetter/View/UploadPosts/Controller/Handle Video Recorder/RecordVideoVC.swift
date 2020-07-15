@@ -47,6 +47,7 @@ class RecordVideoVC: SwiftyCamViewController,SwiftyCamViewControllerDelegate
         shouldPrompToAppSettings = true
         cameraDelegate = self
         maximumVideoDuration = 60.0
+        videoQuality = .low
         shouldUseDeviceOrientation = true
         allowAutoRotate = true
         audioEnabled = true
@@ -56,6 +57,7 @@ class RecordVideoVC: SwiftyCamViewController,SwiftyCamViewControllerDelegate
         pinchToZoom = true
         swipeToZoom = false
         swipeToZoomInverted = false
+        
         
        // view.layer.borderColor = ExtensionModel.shared.set_theme_color().cgColor
         view.layer.borderWidth = 1.0
@@ -69,6 +71,36 @@ class RecordVideoVC: SwiftyCamViewController,SwiftyCamViewControllerDelegate
             selector: #selector(self.Stop_recording),
             name: NSNotification.Name(rawValue: "stop_recording"),
             object: nil)
+        
+        // Get the current authorization state.
+        let status = PHPhotoLibrary.authorizationStatus()
+
+        if (status == PHAuthorizationStatus.authorized) {
+            // Access has been granted.
+        }
+
+        else if (status == PHAuthorizationStatus.denied) {
+            // Access has been denied.
+        }
+
+        else if (status == PHAuthorizationStatus.notDetermined) {
+
+            // Access has not been determined.
+            PHPhotoLibrary.requestAuthorization({ (newStatus) in
+
+                if (newStatus == PHAuthorizationStatus.authorized) {
+ 
+                }
+
+                else {
+
+                }
+            })
+        }
+
+        else if (status == PHAuthorizationStatus.restricted) {
+            // Restricted access - normally won't happen.
+        }
     }
     
 
@@ -114,10 +146,22 @@ class RecordVideoVC: SwiftyCamViewController,SwiftyCamViewControllerDelegate
         self.count = self.count+1
         self.count_reverse = self.count_reverse+1
         self.lblTimer.text = "\(self.formatSecondsToString(TimeInterval(self.count_reverse)))"
-        if (self.count >= 60)
-        {
-            self.REFRESH_TIMER()
-        }
+          if (self.count >= 60)
+              {
+                  self.REFRESH_TIMER()
+                    let alertController = UIAlertController(title: "Seasia Prism", message: "Maximum time limit is reached.", preferredStyle:UIAlertController.Style.alert)
+
+                    alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
+                    { action -> Void in
+                        self.stopVideoRecording()
+                      self.dismiss(animated: true, completion: nil)
+                    })
+             
+                self.present(alertController, animated: true, completion: nil)
+
+                  
+                  //self.REFRESH_TIMER()
+              }
         
     }
     
@@ -193,22 +237,6 @@ class RecordVideoVC: SwiftyCamViewController,SwiftyCamViewControllerDelegate
         print(url as Any)
         
         self.lastVideo_URL = url
-
-//        let msg = "Do you want to save this video in gallery?"
-//        let alertController = UIAlertController(title:"Reminder!", message: msg, preferredStyle:.alert)
-//
-//        let Action = UIAlertAction.init(title: "YES", style: .default) { (UIAlertAction) in
-//
-//           self.SAVE_VIDEO_TO_GALLERY(videoURL: url)
-//        }
-//        let Action2 = UIAlertAction.init(title: "NO", style: .cancel) { (UIAlertAction) in
-//
-//        }
-
-//        alertController.addAction(Action2)
-//        alertController.addAction(Action)
-//        self.present(alertController, animated: true, completion: nil)
-        
         DispatchQueue.main.async
         {
             if (self.videoCanceled == false)
@@ -269,6 +297,7 @@ class RecordVideoVC: SwiftyCamViewController,SwiftyCamViewControllerDelegate
     {
         PHPhotoLibrary.shared().performChanges({
             PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: videoURL)
+            
         }) { saved, error in
             if saved
             {
@@ -279,25 +308,11 @@ class RecordVideoVC: SwiftyCamViewController,SwiftyCamViewControllerDelegate
                     self.dismiss(animated: true, completion: nil)
                 }
                 
-                
-                
-              //  MBProgressHUD.hide(for: self.view, animated: true)
-              //  let msg = "Video saved successfully"
-              //  let alertController = UIAlertController(title:"Reminder!", message: msg, preferredStyle:.alert)
-
-              //  let Action = UIAlertAction.init(title: "OK", style: .default) { (UIAlertAction) in
-                    
-                  //  self.delegateVideoRecorder?.getFilePath(fileURL:videoURL)
-                    
-               // }
-                
-               // alertController.addAction(Action)
-               // self.present(alertController, animated: true, completion: nil)
+           
             }
             else
             {
-              // MBProgressHUD.hide(for: self.view, animated: true)
-              // CommonVc.AllFunctions.showAlert(message: "Something went wrong, please try with another clip.", view: self, title: "Sorry!")
+             
             }
         }
     }

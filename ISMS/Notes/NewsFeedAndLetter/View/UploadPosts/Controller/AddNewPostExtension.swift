@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AVFoundation
 
 extension AddNewsFeedPostsVC
 {
@@ -81,9 +82,18 @@ extension AddNewsFeedPostsVC
     
        // present(imagePickerController, animated: true, completion: nil)
     }
+    func image_WithImage(image:UIImage, scaledToSize newSize:CGSize ) -> UIImage {
+
+           UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+           image.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.width))
+           let newImage : UIImage  = UIGraphicsGetImageFromCurrentImageContext()!
+           UIGraphicsEndImageContext();
+           return newImage;
+
+       }
     
     
-    func storeValues(path:URL)
+    func storeValues(path:URL, image: UIImage)
     {
        DispatchQueue.main.async
             {
@@ -92,6 +102,7 @@ extension AddNewsFeedPostsVC
                 let dic = NSMutableDictionary()
                 dic.setValue(path, forKey: "path")
                 dic.setValue("video", forKey: "type")
+                dic.setValue(image, forKey: "videothumb")
                 self.postArray.add(dic)
                 self.collctionViewPosts.reloadData()
                 self.btnUpload.isHidden = false
@@ -108,18 +119,56 @@ extension AddNewsFeedPostsVC : UICollectionViewDelegate,UICollectionViewDataSour
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
+         if collectionView == collctionViewPosts {
         return postArray.count
+        }
+            
+         else if collectionView == collectionViewColors {
+            
+            return colorList.count
+         }
+         else{
+             return tagArray.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         
-        let cellnew = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)as! CellClass_UploadPosts
+        if collectionView == self.collectionView {
+             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)as! tagCell
+            cell.lblName.text = tagArray[indexPath.row].Name
+            cell.btnDel.tag = indexPath.row
+            
+            return cell
+        }
+       else if collectionView == collectionViewColors {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "color", for: indexPath)as! ColorCell
+            
+            if indexPath.row == 0 {
+                cell.lblColor.borderWidth = 1
+                cell.lblColor.clipsToBounds = true
+                cell.lblColor.borderColor = UIColor.init(red: 75/255, green: 190/255, blue: 248/255, alpha: 1)
+            }
+            else{
+                cell.lblColor.borderWidth = 0
+            }
+            
+            let hexStr = colorList[indexPath.row].hexString ?? ""
+            let color = UIColor(hexString: hexStr)
+            cell.lblColor.backgroundColor = color
+           return cell
+        }
         
+       else {
+        
+        let cellnew = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)as! CellClass_UploadPosts
+        cellnew.btnDelete.frame = CGRect(x: self.view.frame.origin.x + self.view.frame.size.width - 73 , y: 0, width: 32, height: 32)
         cellnew.btnDelete.tag = indexPath.row
         cellnew.btnPlay.tag = indexPath.row
         
-        let dic = self.postArray.object(at: indexPath.row)as? NSDictionary
+        let dic = self.postArray.object(at: indexPath.row) as? NSDictionary
         let type = dic?.value(forKey: "type")as? String ?? ""
         
         if (type == "video" || type == "audio" )
@@ -137,7 +186,12 @@ extension AddNewsFeedPostsVC : UICollectionViewDelegate,UICollectionViewDataSour
             
             
             if (type == "video"){
-                cellnew.ivImg.image = UIImage(named: "scenic" )
+                if let name = dic?.value(forKey: "videothumb") as? UIImage {
+                    cellnew.ivImg.image = name
+                }
+                else{
+                     cellnew.ivImg.image = UIImage(named: "audiobg" )
+                }
             }
             else{
                  cellnew.ivImg.image = UIImage(named: "audiobg" )
@@ -148,20 +202,61 @@ extension AddNewsFeedPostsVC : UICollectionViewDelegate,UICollectionViewDataSour
             let img = dic?.value(forKey: "path")as? URL
             
             do {
-                let imageData = try Data(contentsOf: img!)
-                                    cellnew.ivImg.image = UIImage(data: imageData)
+                if img != nil {
+                              cellnew.ivImg.image = nil
+                            let imageData = try Data(contentsOf: img!)
+                    cellnew.ivImg.image = UIImage(data: imageData) ?? UIImage(named:"profile")!
+                  cellnew.ivImg.contentMode = .scaleAspectFill
+                    
+                    if Device_type.IS_IPHONE_4_OR_LESS || Device_type.IS_IPHONE_5 || Device_type.IS_IPHONE_6  {
+                        heightViewBG.constant = 250
+
+                    }
+                    
+                       
+                    
+                        
+                    
+                        
+                }
                } catch {
                    print("Error loading image : \(error)")
                }
             cellnew.btnPlay.isHidden = true
-          
+            txtView.backgroundColor  = UIColor.white
         }
         
         return cellnew
+            
+        }
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+      
+        if collectionView == collectionViewColors {
+            
+            let hexStr = colorList[indexPath.row].hexString ?? ""
+            let color = UIColor(hexString: hexStr)
+            selectedBackGroundColor = hexStr
+            txtView.backgroundColor = color
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-         return CGSize(width: (collectionView.frame.size.width ) - 5, height: 200)
+         if collectionView == collctionViewPosts {
+        return CGSize(width: (self.view.frame.size.width - 32), height: collectionView.frame.size.height)
+        }
+         else if collectionView == self.collectionView {
+            return CGSize(width: 114, height: 25)
+        }
+            else if collectionView == collectionViewColors {
+                        return CGSize(width: 25, height: 22)
+                  }
+         else {
+            return CGSize()
+        }
     }
     
     
@@ -182,7 +277,22 @@ extension AddNewsFeedPostsVC : getVideoPathProtocol,UITextViewDelegate
 {
     func getFilePath(fileURL: URL)
     {
-        self.storeValues(path:fileURL)
+        
+        do {
+            let asset = AVURLAsset(url: fileURL, options: nil)
+            let imgGenerator = AVAssetImageGenerator(asset: asset)
+            imgGenerator.appliesPreferredTrackTransform = true
+            let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(value: 0, timescale: 1), actualTime: nil)
+            let thumbnail = UIImage(cgImage: cgImage)
+            thumbnailData = thumbnail.pngData()
+            self.storeValues(path:fileURL,image: thumbnail)
+
+
+        } catch let error {
+            print("*** Error generating thumbnail: \(error.localizedDescription)")
+        }
+     
+          
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool
@@ -195,8 +305,6 @@ extension AddNewsFeedPostsVC : getVideoPathProtocol,UITextViewDelegate
         
         return true
     }
-    
-   
 }
 
 extension AddNewsFeedPostsVC : getAudioProtocol

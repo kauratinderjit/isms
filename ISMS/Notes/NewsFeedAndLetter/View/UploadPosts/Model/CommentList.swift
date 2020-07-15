@@ -65,9 +65,11 @@ class CommentList : Mappable{
          var CommentedBy : String?
          var Count : Int?
          var CreatedDate : String?
-         
-         
-
+         var strCreatedDate : String?
+          var ImageUrl : String? //CommentedById
+          var CommentedById : Int?
+          var PostedBy : Int?
+        var lstTaggedUser : [lstTaggedUser]?
         init?(map: Map) {
             
         }
@@ -80,8 +82,30 @@ class CommentList : Mappable{
             CommentedBy <- map["CommentedBy"]
             Count <- map["Count"]
             CreatedDate <- map["CreatedDate"]
-                 
-            
+             strCreatedDate <- map["strCreatedDate"]
+             ImageUrl <- map["ImageUrl"]
+             CommentedById <- map["CommentedById"]
+             PostedBy <- map["PostedBy"]
+             lstTaggedUser <- map["lstTaggedUser"]
         }
         
     }
+
+
+struct lstTaggedUser: Mappable {
+       
+        var Id : Int?
+        var Name : String?
+      
+       init?(map: Map) {
+           
+       }
+       
+       mutating func mapping(map: Map) {
+           
+           Id <- map["Id"]
+           Name <- map["Name"]
+           
+       }
+       
+   }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PaddingLabel
 
 class EventTableCell: UITableViewCell {
     
@@ -21,20 +22,41 @@ class EventTableCell: UITableViewCell {
     @IBOutlet weak var btnShare: UIImageView!
     @IBOutlet weak var btnReport: UIButton!
     @IBOutlet weak var likeImage: UIImageView!
-    @IBOutlet weak var lblDescription: UILabel!
-        @IBOutlet weak var btnLikerList: UIButton!
+    @IBOutlet weak var lblDescription: PaddingLabel!
+    @IBOutlet weak var btnLikerList: UIButton!
+    @IBOutlet weak var heightCollectionView: NSLayoutConstraint!
+    @IBOutlet weak var btnProfile: UIButton!
+    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var imgReport: UIImageView!
+    @IBOutlet weak var heightCollectionViewTag: NSLayoutConstraint!
+    @IBOutlet weak var collectionViewTag: UICollectionView!
     
-    
+    @IBOutlet weak var imgComment: UIImageView!
+    @IBOutlet weak var btnCorr: UIButton!
+    @IBOutlet weak var topSpaceCollImages: NSLayoutConstraint!
+    @IBOutlet weak var viewTypeMem: UIView!
+    @IBOutlet weak var heightBGGView: NSLayoutConstraint!
+    @IBOutlet weak var viewBGG: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
+         self.customCollectionView.isPagingEnabled = true
+        setUI ()
     }
     
     //MARK:- other functions
     func setUI ()
     {
-       // viewCellBack.addViewCornerShadow(radius: 8, view: viewCellBack)
+        viewCellBack.layer.shadowOffset = CGSize(width: 0, height: 0)
+         viewCellBack.layer.shadowColor = UIColor.black.cgColor
+         viewCellBack.layer.shadowRadius = 5
+         viewCellBack.layer.shadowOpacity = 0.40
+         viewCellBack.layer.masksToBounds = false;
+         viewCellBack.clipsToBounds = false;
+        if collectionViewTag != nil {
+       collectionViewTag.clipsToBounds = true;
+            
+        }
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

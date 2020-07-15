@@ -11,6 +11,7 @@ import Foundation
 protocol StudentListDelegate: class {
     func unauthorizedUser()
     func StudentListDidSuccess(data : [GetStudentResultData]?)
+    func StudentSessionListDidSuccess(data : GetStudentSessionResultData?)
     func StudentListDidFailed()
     func StudentDeleteDidSuccess()
     func StudentDeleteDidfailed()
@@ -150,6 +151,50 @@ class StudentListViewModel{
             self.StudentListVC?.hideLoader()
             if let err = error{
                 self.StudentListVC?.showAlert(alert: err.localizedDescription)
+            }
+        }
+    }
+    
+    func studenSessiontList(classId : Int){
+        self.StudentListVC?.showLoader()
+               
+        let paramDict = ["classId": classId ?? 0,"sessionId":2] as [String : Any]
+        
+        
+        print("param: ",paramDict)
+        AdStudentApi.sharedInstance.getStudentSessionList(url: "api/User/GetStudentListByClassId", parameters: paramDict as [String : Any], completionResponse: { (StudentSessionModel) in
+            print("student list: ",StudentSessionModel.resultData)
+            if StudentSessionModel.statusCode == KStatusCode.kStatusCode200{
+                self.StudentListVC?.hideLoader()
+                self.StudentListDelegate?.StudentSessionListDidSuccess(data: StudentSessionModel.resultData)
+            }else if StudentSessionModel.statusCode == KStatusCode.kStatusCode401{
+                self.StudentListVC?.hideLoader()
+                self.StudentListVC?.showAlert(alert: StudentSessionModel.message ?? "")
+                self.StudentListDelegate?.unauthorizedUser()
+            }else{
+                self.StudentListVC?.hideLoader()
+                CommonFunctions.sharedmanagerCommon.println(object: "student APi status change")
+            }
+            
+        }, completionnilResponse: { (nilResponseError) in
+            
+            self.StudentListVC?.hideLoader()
+            self.StudentListDelegate?.StudentListDidFailed()
+            
+            if let error = nilResponseError{
+                self.StudentListVC?.showAlert(alert: error)
+                
+            }else{
+                CommonFunctions.sharedmanagerCommon.println(object: "student APi Nil response")
+            }
+            
+        }) { (error) in
+            self.StudentListVC?.hideLoader()
+            self.StudentListDelegate?.StudentListDidFailed()
+            if let err = error?.localizedDescription{
+                self.StudentListVC?.showAlert(alert: err)
+            }else{
+                CommonFunctions.sharedmanagerCommon.println(object: "student APi error response")
             }
         }
     }

@@ -507,10 +507,7 @@ extension MenuVC : UITableViewDelegate{
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
-            
-            
-            
-            
+
             break
             
         case "HomeWork":
@@ -531,7 +528,7 @@ extension MenuVC : UITableViewDelegate{
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
             
-        case "ManageInstitue":
+            case "ManageInstitue":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kSchool, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "AddSchoolVC") as? AddSchoolViewController
             vc?.headerTitle = "Manage Institute"
@@ -540,7 +537,7 @@ extension MenuVC : UITableViewDelegate{
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
             
-        case "AssignHomework":
+            case "AssignHomework":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kStudent, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "AssignHomeworkVC")
             let frontVC = revealViewController().frontViewController as? UINavigationController
@@ -548,7 +545,7 @@ extension MenuVC : UITableViewDelegate{
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
             
-        case "ViewStudentRating":
+            case "ViewStudentRating":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kStudent, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "StudentRatingVC") as? StudentRatingVC
             vc?.isFromHod = true
@@ -556,7 +553,7 @@ extension MenuVC : UITableViewDelegate{
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
-        case "TimeTableAndAttendence":
+            case "TimeTableAndAttendence":
             if UserDefaultExtensionModel.shared.currentUserRoleId == 5{
                 let storyboard = UIStoryboard.init(name: KStoryBoards.kClass, bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "TimeTableStudentVC") as? TimeTableStudentVC
@@ -587,7 +584,7 @@ extension MenuVC : UITableViewDelegate{
             }
             break
             
-        case "RateStudent":
+            case "RateStudent":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kStudent, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "StudentRatingVC") as? StudentRatingVC
             vc?.isFromHod = false
@@ -595,23 +592,24 @@ extension MenuVC : UITableViewDelegate{
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
             break
-        case "NewsFeed":
             
-            self.showToast("Coming Soon")
-//            let storyboard = UIStoryboard.init(name: KStoryBoards.kNewsfeedAndLetter, bundle: nil)
-//            let vc = storyboard.instantiateViewController(withIdentifier: "NewsLetterAndFeedVC") as? NewsLetterAndFeedVC
-//            let frontVC = revealViewController().frontViewController as? UINavigationController
-//            frontVC?.pushViewController(vc!, animated: false)
-//            revealViewController().pushFrontViewController(frontVC, animated: true)
+            case "NewsFeed":
+            
+//            self.showToast("Coming Soon")
+            let storyboard = UIStoryboard.init(name: KStoryBoards.kNewsfeedAndLetter, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "NewsLetterAndFeedVC") as? NewsLetterAndFeedVC
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(vc!, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
             break
             
-        case "Manage Contacts":
-//            let storyboard = UIStoryboard.init(name: KStoryBoards.kContactUs, bundle: nil)
-//            let vc = storyboard.instantiateViewController(withIdentifier: "ContactUsVC") as? ContactUsVC
-//            vc?.fromAdmin = 0
-//            let frontVC = revealViewController().frontViewController as? UINavigationController
-//            frontVC?.pushViewController(vc!, animated: false)
-//            revealViewController().pushFrontViewController(frontVC, animated: true)
+            case "Manage Contacts":
+            let storyboard = UIStoryboard.init(name: KStoryBoards.kContactUs, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "ContactUsVC") as? ContactUsVC
+            vc?.fromAdmin = 0
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(vc!, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
             
 //            let storyboard = UIStoryboard.init(name: "Result", bundle: nil)
 //            let vc = storyboard.instantiateViewController(withIdentifier: "ResultListVC") as? ResultListVC
@@ -620,14 +618,13 @@ extension MenuVC : UITableViewDelegate{
 //            frontVC?.pushViewController(vc!, animated: false)
 //            revealViewController().pushFrontViewController(frontVC, animated: true)
             
-            let storyboard = UIStoryboard.init(name: "Session", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "SessionListVC") as? SessionListVC
-            let frontVC = revealViewController().frontViewController as? UINavigationController
-            frontVC?.pushViewController(vc!, animated: false)
-            revealViewController().pushFrontViewController(frontVC, animated: true)
+//            let storyboard = UIStoryboard.init(name: "Session", bundle: nil)
+//            let vc = storyboard.instantiateViewController(withIdentifier: "SessionListVC") as? SessionListVC
+//            let frontVC = revealViewController().frontViewController as? UINavigationController
+//            frontVC?.pushViewController(vc!, animated: false)
+//            revealViewController().pushFrontViewController(frontVC, animated: true)
             
-            
-        case "ContactUS":
+            case "ContactUS":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kContactUs, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "ContactUsVC") as? ContactUsVC
             vc?.fromAdmin = 1
@@ -635,13 +632,12 @@ extension MenuVC : UITableViewDelegate{
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
             
-        case "LeaveApplications":
-                let storyboard = UIStoryboard.init(name: "Leave", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "LeaveListVC") as? LeaveListVC
-                let frontVC = revealViewController().frontViewController as? UINavigationController
-                frontVC?.pushViewController(vc!, animated: false)
-                revealViewController().pushFrontViewController(frontVC, animated: true)
-                     
+            case "LeaveApplications":
+            let storyboard = UIStoryboard.init(name: "Leave", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "LeaveListVC") as? LeaveListVC
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(vc!, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
                 
             case "ApplyLeave":
             let storyboard = UIStoryboard.init(name: "Leave", bundle: nil)
