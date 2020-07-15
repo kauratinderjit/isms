@@ -5271,7 +5271,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = HE7TDTH6H9;
 				INFOPLIST_FILE = ISMS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5297,7 +5297,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = HE7TDTH6H9;
 				INFOPLIST_FILE = ISMS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
