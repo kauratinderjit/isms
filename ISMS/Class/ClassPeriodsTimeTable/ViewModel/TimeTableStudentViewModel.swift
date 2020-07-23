@@ -40,23 +40,23 @@ class TimeTableStudentViewModel{
         self.classPeriodsTimeTableView?.showLoader()
         
         var postDict = [String:Any]()
-        postDict[KApiParameters.KCommonParametersForList.kSearch] = ""
-        postDict[KApiParameters.KCommonParametersForList.kPageSize] = 0
-        postDict[KApiParameters.KCommonParametersForList.kSortColumn] = ""
-        postDict[KApiParameters.KCommonParametersForList.kSkip] = 0
-        postDict[KApiParameters.KCommonParametersForList.kSortColumnDir] = ""
-        postDict["ParticularId"] = classId
-        //Check If user have particular id
-//        switch teacherId {
-//        case 3:
-//            postDict["TeacherId"] = 0
-//        default:
-//            postDict["TeacherId"] = UserDefaultExtensionModel.shared.userRoleParticularId
-//        }
-         postDict["TeacherId"] = 0
+//        postDict[KApiParameters.KCommonParametersForList.kSearch] = ""
+//        postDict[KApiParameters.KCommonParametersForList.kPageSize] = 0
+//        postDict[KApiParameters.KCommonParametersForList.kSortColumn] = ""
+//        postDict[KApiParameters.KCommonParametersForList.kSkip] = 0
+//        postDict[KApiParameters.KCommonParametersForList.kSortColumnDir] = ""
+//        postDict["ParticularId"] = classId
+//        //Check If user have particular id
+////        switch teacherId {
+////        case 3:
+////            postDict["TeacherId"] = 0
+////        default:
+////            postDict["TeacherId"] = UserDefaultExtensionModel.shared.userRoleParticularId
+////        }
+//         postDict["TeacherId"] = 0
         print("array post timetable : ",postDict)
         
-        ClassApi.sharedManager.getClassTimeTable(url: ApiEndpoints.getTimeTableListApi, params: postDict, completionResponse: { (getTimetabelResponse) in
+        ClassApi.sharedManager.getClassTimeTable(url: "api/Institute/GetTimeTable"+"?ClassId=\(classId!)", params: postDict, completionResponse: { (getTimetabelResponse) in
             
             self.classPeriodsTimeTableView?.hideLoader()
             switch getTimetabelResponse.statusCode{
@@ -72,6 +72,4 @@ class TimeTableStudentViewModel{
             self.classPeriodsTimeTableView?.showAlert(alert: error ?? "Something went wrong")
         }
     }
-    
-    
 }

@@ -25,7 +25,7 @@ class LikerListVC: BaseUIViewController {
         tblView.tableFooterView = UIView()
         
         hideNavigationBackButton()
-        BackButton()
+       setBackButton()
     }
     
 

@@ -8,7 +8,7 @@
 
 import UIKit
 import AVFoundation
-
+var boolImageSelected = false
 //MARK: Global Interface
 protocol ViewDelegate:class
 {

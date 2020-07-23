@@ -172,17 +172,17 @@ extension ExamScheduleVC : UITableViewDataSource, UITableViewDelegate {
 }
 public extension UIImageView {
     
-    func addInitials(first: String, second: String) {
-        let initials = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height))
-        initials.center = CGPoint(x: self.bounds.width / 2, y: self.bounds.height / 2)
-        initials.textAlignment = .center
-        initials.text = first + " " + second
-        initials.textColor = .white
-        initials.backgroundColor = .random
-     
-        self.addSubview(initials)
-   
-}
+//    func addInitials(first: String, second: String) {
+//        let initials = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height))
+//        initials.center = CGPoint(x: self.bounds.width / 2, y: self.bounds.height / 2)
+//        initials.textAlignment = .center
+//        initials.text = first + " " + second
+//        initials.textColor = .white
+//        initials.backgroundColor = .random
+//     
+//        self.addSubview(initials)
+//   
+//}
 }
 
 

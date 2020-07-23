@@ -17,7 +17,10 @@ class StudentSessionVC: BaseUIViewController {
     var enrollmentId:Int?
     var classData : GetCommonDropdownModel!
     var selectedClassIndex = 0
+    var selectedSessionIndex = 0
     var selectedClassID : Int?
+    var selectedSessionID : Int?
+    var selectedClassSession : String?
     var skip = Int()
     var isScrolling : Bool?
     var pageSize = KIntegerConstants.kInt10
@@ -27,13 +30,15 @@ class StudentSessionVC: BaseUIViewController {
     var isStudentDelete = false
     var selectedSubjectArrIndex : Int?
     var isClassSelected : Bool?
-    
+     var isSessionSelected : Bool?
+     var arrSessionList = [GetSessionResultData]()
      let departmentId = UserDefaultExtensionModel.shared.HODDepartmentId
-    
+     let userRoleParticularId = UserDefaultExtensionModel.shared.userRoleParticularId
+    var arrSelectedStudent = [Int]()
     @IBOutlet weak var btnAddStudent: UIButton!
     @IBOutlet weak var dropDownTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var txtFieldDropDown: UITextField!
     
     
     override func viewDidLoad() {
@@ -45,9 +50,8 @@ class StudentSessionVC: BaseUIViewController {
     override func viewWillAppear(_ animated: Bool) {
         if checkInternetConnection()
         {
-           // arrStudentlist.removeAll()
-              self.ViewModel?.getClassId(id:departmentId, enumtype: 6)
-//             self.ViewModel?.studentList(classId : selectedClassID, Search: "", Skip: 0, PageSize: 1000)
+              self.ViewModel?.getSessionList()
+              self.ViewModel?.getClassId(id:userRoleParticularId, enumtype: 17)
         }
         else
         {
@@ -69,43 +73,53 @@ class StudentSessionVC: BaseUIViewController {
     }
     
     @IBAction func deleteAction(_ sender: Any) {
-        
-        if arrStudentlist.count > 0{
-            let data = arrStudentlist[(sender as AnyObject).tag]
-            selectedStudentArrIndex = (sender as AnyObject).tag
-            enrollmentId = data.enrollmentId
-            initializeCustomYesNoAlert(self.view, isHideBlurView: true)
-            yesNoAlertView.delegate = self
-            yesNoAlertView.lblResponseDetailMessage.text = Alerts.kDeleteStudentAlert
-            //                self.alertForRemoveStudent()
-            
+        print("button check")
+        if arrStudentSessionlist.count > 0{
+            let data = arrStudentSessionlist[(sender as AnyObject).tag]
+            let studentId = data.studentId ?? 0
+                let indexPath = IndexPath(row: (sender as AnyObject).tag, section: 0)
+                       if let cell = tableView.cellForRow(at: indexPath) as? StudentListTableCell {
+                    if ((cell.deleteBtn.currentImage?.isEqual(UIImage(named: "uncheck")))!){
+                        arrSelectedStudent.append(studentId ?? 0)
+                      cell.deleteBtn.setImage(UIImage(named: "check"), for: .normal)
+                   }else{
+                        if arrSelectedStudent.count > 0{
+                            for i in 0..<arrSelectedStudent.count{
+                                if arrSelectedStudent[i] == studentId{
+                                    arrSelectedStudent.remove(at: i)
+                                }
+                            }
+                        }
+                      cell.deleteBtn.setImage(UIImage(named: "uncheck"), for: .normal)
+                    }
+            }
         }
-        
-        
     }
     
     
-    @IBAction func AddStudentAction(_ sender: Any) {
-        let vc = UIStoryboard.init(name: KStoryBoards.kStudent, bundle: Bundle.main).instantiateViewController(withIdentifier: KStoryBoards.KAddStudentIdentifiers.kAddStudentVC) as! AddStudentVC
-        vc.studentId = 0
-        vc.enrollmentId = 0
-        vc.studentUserId = 0
-        vc.approach = "AddNew"
-        self.navigationController?.pushViewController(vc, animated: true)
+    @IBAction func actionStudentMove(_ sender: Any) {
+        if arrSelectedStudent.count > 0{
+            self.ViewModel?.studentMove(classId:selectedClassID ?? 0, StudentId: arrSelectedStudent)
+
+        }
     }
+    
     
     @IBAction func btnOpenDropDown(_ sender: Any) {
         if classData.resultData?.count ?? 0 > 0{
+            isClassSelected = true
             UpdatePickerModel2(count: classData?.resultData?.count ?? 0, sharedPickerDelegate: self, View:  self.view, index: 0)
         }
     }
     
+    @IBAction func actionBtnSession(_ sender: Any) {
+        if arrSessionList.count ?? 0 > 0{
+             isSessionSelected = true
+            UpdatePickerModel2(count: arrSessionList.count ?? 0, sharedPickerDelegate: self, View:  self.view, index: 0)
+        }
+    }
     //Setup UI
     func setupUI(){
-        
-//        guard let theme = ThemeManager.shared.currentTheme else {return}
-//        btnAddStudent.tintColor = theme.uiButtonBackgroundColor
-        
         self.title = KStoryBoards.KAddStudentIdentifiers.kStudentListTitle
         self.ViewModel = StudentListViewModel.init(delegate: self)
         self.ViewModel?.attachView(viewDelegate: self)
@@ -187,11 +201,12 @@ extension StudentSessionVC : UITableViewDelegate{
 }
 extension StudentSessionVC : UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if arrStudentlist.count > 0{
+        if arrStudentSessionlist.count > 0{
+            tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: true)
             tableView.separatorStyle = .singleLine
-            return (arrStudentlist.count)
+            return (arrStudentSessionlist.count)
         }else{
-          //  tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
+            tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
             return 0
         }
     }
@@ -200,7 +215,20 @@ extension StudentSessionVC : UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: KTableViewCellIdentifier.kStudentTableViewCell, for: indexPath) as! StudentListTableCell
         
+        
         cell.setSessionCellUI(data: arrStudentSessionlist, indexPath: indexPath)
+        
+        if arrSelectedStudent.count > 0{
+            for i in 0..<arrSelectedStudent.count{
+                if arrStudentSessionlist[indexPath.row].studentId == arrSelectedStudent[i]{
+                      cell.deleteBtn.setImage(UIImage(named: "check"), for: .normal)
+                }else{
+                     cell.deleteBtn.setImage(UIImage(named: "uncheck"), for: .normal)
+                }
+            }
+        }else{
+              cell.deleteBtn.setImage(UIImage(named: "uncheck"), for: .normal)
+        }
         return cell
     }
 }
@@ -307,6 +335,7 @@ extension StudentSessionVC : StudentListDelegate{
                         arrStudentSessionlist.removeAll()
                         self.tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
                     }
+                     self.tableView.reloadData()
                
                 }else{
                     arrStudentSessionlist.removeAll()
@@ -315,6 +344,7 @@ extension StudentSessionVC : StudentListDelegate{
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
+         self.tableView.reloadData()
         
     }
     
@@ -327,6 +357,14 @@ extension StudentSessionVC : StudentListDelegate{
         
     }
     
+    func sessionListDidSuccess(data:  [GetSessionResultData]?){
+       if let data1 = data {
+            if data1.count>0
+            {
+                self.arrSessionList = data1
+            }
+        }
+    }
 }
 
 extension StudentSessionVC : ViewDelegate{
@@ -334,7 +372,6 @@ extension StudentSessionVC : ViewDelegate{
         initializeCustomOkAlert(self.view, isHideBlurView: true)
         okAlertView.delegate = self
         okAlertView.lblResponseDetailMessage.text = alert
-        
     }
     
     func showLoader() {
@@ -371,31 +408,57 @@ extension StudentSessionVC : ViewDelegate{
 }
 extension StudentSessionVC: SharedUIPickerDelegate{
     func DoneBtnClicked() {
-        if let count = classData.resultData?.count{
-            if count > 0{
-                //Bool for set the array in the list of students for selected class
-                isClassSelected = true
-                dropDownTextField.text = classData?.resultData?[selectedClassIndex].name
-                if selectedClassIndex == 0{
-                    self.dropDownTextField.text = self.classData?.resultData?[selectedClassIndex].name
-                    self.selectedClassID = self.classData?.resultData?[selectedClassIndex].id ?? 0
-                    self.ViewModel?.studenSessiontList(classId : selectedClassID ?? 0)
-                }else{
-                    self.dropDownTextField.text = self.classData?.resultData?[selectedClassIndex].name
-                    self.selectedClassID = self.classData?.resultData?[selectedClassIndex].id ?? 0
-                    self.ViewModel?.studenSessiontList(classId : selectedClassID ?? 0)
+        if isSessionSelected == true{
+            isSessionSelected = false
+            if arrSessionList.count > 0{
+                    //Bool for set the array in the list of students for selected class
+                    isClassSelected = true
+                    txtFieldDropDown.text = arrSessionList[selectedSessionIndex].sessionName
+                    if selectedSessionIndex == 0{
+                        self.txtFieldDropDown.text = arrSessionList[selectedSessionIndex].sessionName
+                        self.selectedSessionID = arrSessionList[selectedSessionIndex].id ?? 0
+                       
+                    }else{
+                         self.txtFieldDropDown.text = arrSessionList[selectedSessionIndex].sessionName
+                         self.selectedSessionID = arrSessionList[selectedSessionIndex].id ?? 0
+                }
+            }
+        }else{
+            if let count = classData.resultData?.count{
+                if count > 0{
+                    //Bool for set the array in the list of students for selected class
+                    isClassSelected = true
+                    dropDownTextField.text = classData?.resultData?[selectedClassIndex].name
+                    if selectedClassIndex == 0{
+                        self.dropDownTextField.text = self.classData?.resultData?[selectedClassIndex].name
+                        self.selectedClassID = self.classData?.resultData?[selectedClassIndex].id ?? 0
+                         self.ViewModel?.studenSessiontList(classId : selectedClassID ?? 0, sessionID: selectedSessionID ?? 0)
+                    }else{
+                        self.dropDownTextField.text = self.classData?.resultData?[selectedClassIndex].name
+                        self.selectedClassID = self.classData?.resultData?[selectedClassIndex].id ?? 0
+                         self.ViewModel?.studenSessiontList(classId : selectedClassID ?? 0, sessionID: selectedSessionID ?? 0)
+                    }
                 }
             }
         }
     }
     
     func GetTitleForRow(index: Int) -> String {
-        if let count = classData.resultData?.count{
-            if count > 0{
-                //dropDownTextField.text = classData?.resultData?[0].name
-                selectedClassID = classData?.resultData?[0].id ?? 0
-                selectedClassIndex = 0
-                return classData?.resultData?[index].name ?? ""
+        if isSessionSelected == true{
+            if arrSessionList.count > 0{
+                    //dropDownTextField.text = classData?.resultData?[0].name
+                    selectedSessionID = arrSessionList[0].id ?? 0
+                    selectedSessionIndex = 0
+                    return arrSessionList[index].sessionName ?? ""
+            }
+        }else{
+            if let count = classData.resultData?.count{
+                if count > 0{
+                    //dropDownTextField.text = classData?.resultData?[0].name
+                    selectedClassID = classData?.resultData?[0].id ?? 0
+                    selectedClassIndex = 0
+                    return classData?.resultData?[index].name ?? ""
+                }
             }
         }
         return ""
@@ -404,14 +467,23 @@ extension StudentSessionVC: SharedUIPickerDelegate{
     
     func SelectedRow(index: Int) {
         
-        //Using Exist Method of collection prevent from indexoutof range error
-        if let count = classData.resultData?.count{
-            if count > 0{
-                if (self.classData.resultData?[exist: index]?.name) != nil{
-                   // self.dropDownTextField.text = self.classData?.resultData?[index].name
-                    self.selectedClassID = self.classData?.resultData?[index].id ?? 0
-                    self.selectedClassIndex = index
-                    print("Selected Department:- \(String(describing: self.classData?.resultData?[index].name))")
+         if isSessionSelected == true{
+            if arrSessionList.count > 0{
+                    if (arrSessionList[exist: index]?.sessionName) != nil{
+                        // self.dropDownTextField.text = self.classData?.resultData?[index].name
+                        self.selectedSessionID = arrSessionList[index].id ?? 0
+                        self.selectedSessionIndex = index
+                    }
+            }
+         }else{
+            if let count = classData.resultData?.count{
+                if count > 0{
+                    if (self.classData.resultData?[exist: index]?.name) != nil{
+                        // self.dropDownTextField.text = self.classData?.resultData?[index].name
+                        self.selectedClassID = self.classData?.resultData?[index].id ?? 0
+                        self.selectedClassIndex = index
+                        print("Selected Department:- \(String(describing: self.classData?.resultData?[index].name))")
+                    }
                 }
             }
         }
@@ -448,18 +520,6 @@ extension StudentSessionVC : UIScrollViewDelegate{
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
-//        if(velocity.y>0) {
-//            //Code will work without the animation block.I am using animation block incase if you want to set any delay to it.
-//            UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
-//                self.navigationController?.setNavigationBarHidden(true, animated: true)
-//            }, completion: nil)
-//
-//        } else {
-//            UIView.animate(withDuration: 2.5, delay: 0, options: UIView.AnimationOptions(), animations: {
-//                self.navigationController?.setNavigationBarHidden(false, animated: true)
-//            }, completion: nil)
-//        }
-        
         if (tableView.contentOffset.y < pointNow.y)
         {
             CommonFunctions.sharedmanagerCommon.println(object: "Down scroll view")
@@ -475,7 +535,7 @@ extension StudentSessionVC : UIScrollViewDelegate{
                 }else{
                     skip = skip + KIntegerConstants.kInt10
                     isFetching = false
-                    self.ViewModel?.studentList(classId : 0, Search: "", Skip: skip, PageSize: pageSize)
+//                    self.ViewModel?.studentList(classId : 0, Search: "", Skip: skip, PageSize: pageSize)
                 }
             }
         }else{

@@ -392,11 +392,7 @@ class SignUpApi {
                             print()
                             completionnilResponse(error)
                         })
-                        
-                        
                     }
-                    
-                    
                 }
                 else
                 {

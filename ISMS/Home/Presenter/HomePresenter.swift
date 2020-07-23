@@ -80,6 +80,7 @@ class HomeViewModel{
         var postDict = [String:Any]()
         postDict[KApiParameters.KGetPagesByUserIdIdintifier.kUserId] = userId
         postDict[KApiParameters.KGetPagesByUserIdIdintifier.kRoleId] = roleId
+        print("params: ",postDict)
         LoginApi.sharedmanagerAuth.getUserMenuFromRoleId(url: ApiEndpoints.kUserRoleMenu , parameters: postDict, completionResponse: { (getMenuFromRoleIdModel) in
             print("menu response: ",getMenuFromRoleIdModel.resultData)
             switch getMenuFromRoleIdModel.statusCode{
@@ -168,6 +169,9 @@ class HomeViewModel{
         var strUrl = "api/User/DashboardTeacher?UserId=\(String(describing: userId!))"
         postDict[KApiParameters.KGetPagesByUserIdIdintifier.kUserId] = userId
         
+        print("param: ",postDict)
+        print("param: ",strUrl)
+        
         LoginApi.sharedmanagerAuth.getdataTeacherDashboard(url: strUrl , parameters: postDict, completionResponse: { (response) in
             
             switch response.statusCode
@@ -212,6 +216,9 @@ class HomeViewModel{
         
         let strUrl = "api/User/DashboardStudent?UserId=\(String(describing: userId!))"
         postDict[KApiParameters.KGetPagesByUserIdIdintifier.kUserId] = userId
+        
+        print("param: ",postDict)
+        print("param: ",strUrl)
         
         LoginApi.sharedmanagerAuth.getdataStudentDashboard(url: strUrl , parameters: postDict, completionResponse: { (response) in
             

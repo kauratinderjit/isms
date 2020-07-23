@@ -61,10 +61,10 @@ class LoginViewModel {
 
                 if let phoneNoEmail = phoneEmail,let password = password{
                     parm   = [KApiParameters.LoginApiPerameters.kUserId:0,KApiParameters.LoginApiPerameters.kUsername:phoneNoEmail,KApiParameters.LoginApiPerameters.kPassword: password]
-                    
                 }
             self.logInView?.showLoader()
-
+             print("url param: ",parm)
+            print("url login: ",ApiEndpoints.kLogin)
             //Login User Using Email And Password and get token
             LoginApi.sharedmanagerAuth.LogInApi(url: ApiEndpoints.kLogin, parameter: parm, completionResponse: { (response) in
 
@@ -74,6 +74,7 @@ class LoginViewModel {
                 if response.statusCode == KStatusCode.kStatusCode200{
                     UserDefaultExtensionModel.shared.currentUserAccessToken = response.resultData?.token ?? ""
                     UserDefaultExtensionModel.shared.currentUserId = response.resultData?.userId ?? 0
+                    UserDefaultExtensionModel.shared.activeSessionId = response.resultData?.sessionId ?? 0
                     self.delegate?.loginDidSucced(data: response)
                 }
                 else if response.statusCode == KStatusCode.kStatusCode400

@@ -90,7 +90,6 @@ class StudentListTableCell: UITableViewCell{
              studentImg.createCircleImage()
              
              //Set buttons tag
-             editBtn.tag = indexPath.row
              deleteBtn.tag = indexPath.row
              
 //             if let className = rsltData.className{
@@ -100,6 +99,8 @@ class StudentListTableCell: UITableViewCell{
              if let firstname = rsltData.studentName{
                  StudentName.text = firstname
              }
+        
+        
     
              if let imgProfileUrl = rsltData.imageUrl{
                  studentImg.sd_imageIndicator = SDWebImageActivityIndicator.gray

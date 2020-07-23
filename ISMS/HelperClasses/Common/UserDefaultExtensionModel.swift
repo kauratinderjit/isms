@@ -66,6 +66,17 @@ class UserDefaultExtensionModel : NSObject{
         }
     }
     
+    var activeSessionId : Int{
+        get {
+            let sessionId = UserDefaults.standard.integer(forKey: UserDefaultKeys.sessionId.rawValue)
+            return sessionId
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.sessionId.rawValue)
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
     //MARK:- Current User Role Id
     var currentUserRoleId : Int{
         get {

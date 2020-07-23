@@ -48,6 +48,7 @@ class StudentListForAttViewModel {
         postDict[KApiParameters.kStudentListForAttendence.kClassId] = ClassId
         postDict["Date"] = Date
 
+        print("param: ",postDict)
         
         StudentListForAttendenceApi.sharedManager.getStudentList(url: ApiEndpoints.kStudentListForAttendence, parameters: postDict, completionResponse: { (StudentListForAttModel) in
             self.studentListView?.hideLoader()

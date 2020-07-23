@@ -1,9 +1,11 @@
 PODS:
   - Alamofire (4.8.2)
   - AMScrollingNavbar (5.2.0)
+  - BSImagePicker (3.2.1)
   - Charts (3.4.0):
     - Charts/Core (= 3.4.0)
   - Charts/Core (3.4.0)
+  - DropDown (2.3.13)
   - Firebase/Auth (6.21.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 6.5.1)
@@ -80,6 +82,14 @@ PODS:
   - GoogleUtilities/UserDefaults (6.5.2):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.3.1)
+  - Hakawai (7.2.2):
+    - Hakawai/Core (= 7.2.2)
+    - Hakawai/Mentions (= 7.2.2)
+  - Hakawai/Core (7.2.2)
+  - Hakawai/Mentions (7.2.2):
+    - Hakawai/Core
+  - ImageCropper (0.1.4)
+  - JJFloatingActionButton (2.5.0)
   - KMPlaceholderTextView (1.4.0)
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
@@ -90,38 +100,51 @@ PODS:
     - NVActivityIndicatorView/Presenter (= 4.8.0)
   - NVActivityIndicatorView/Presenter (4.8.0)
   - ObjectMapper (3.4.2)
+  - PaddingLabel (1.2)
   - PromisesObjC (1.2.8)
   - Protobuf (3.11.4)
   - SDWebImage (5.0.2):
     - SDWebImage/Core (= 5.0.2)
   - SDWebImage/Core (5.0.2)
   - SVPinView (1.0.7)
+  - SwiftPhotoGallery (3.4.1)
   - SWRevealViewController (2.3.0)
   - TPKeyboardAvoiding (1.3.2)
+  - WMSegmentControl (0.1.16)
 
 DEPENDENCIES:
   - Alamofire
   - AMScrollingNavbar
+  - BSImagePicker (~> 3.1)
   - Charts
+  - DropDown
   - Firebase/Auth
   - Firebase/Messaging
   - FSCalendar
   - Gallery
   - GoogleMaps
   - GooglePlaces
+  - Hakawai
+  - ImageCropper
+  - JJFloatingActionButton
   - KMPlaceholderTextView
   - NVActivityIndicatorView
   - ObjectMapper
+  - PaddingLabel
   - SDWebImage
   - SVPinView
+  - SwiftPhotoGallery
   - SWRevealViewController
   - TPKeyboardAvoiding
+  - WMSegmentControl
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - Alamofire
     - AMScrollingNavbar
+    - BSImagePicker
     - Charts
+    - DropDown
     - Firebase
     - FirebaseAnalyticsInterop
     - FirebaseAuth
@@ -133,29 +156,36 @@ SPEC REPOS:
     - FirebaseInstanceID
     - FirebaseMessaging
     - FSCalendar
+    - Gallery
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
     - GoogleMaps
     - GooglePlaces
     - GoogleUtilities
     - GTMSessionFetcher
+    - Hakawai
+    - ImageCropper
+    - JJFloatingActionButton
     - KMPlaceholderTextView
     - nanopb
     - NVActivityIndicatorView
     - ObjectMapper
+    - PaddingLabel
     - PromisesObjC
     - Protobuf
     - SDWebImage
     - SVPinView
+    - SwiftPhotoGallery
     - SWRevealViewController
     - TPKeyboardAvoiding
-  trunk:
-    - Gallery
+    - WMSegmentControl
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   AMScrollingNavbar: 9df3652d6757f1a24646d8e90cb458591d8b1a6a
+  BSImagePicker: 5e87fe42526efdc3fe8ea23d6e4fac9eef43ecfb
   Charts: 74c9f256eaf0460c0c416522d1cf8c634ea6b286
+  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   Firebase: f378c80340dd41c0ad0914af740c021eb282a04b
   FirebaseAnalyticsInterop: 3f86269c38ae41f47afeb43ebf32a001f58fcdae
   FirebaseAuth: a6da11d78dfd956b7f7af3222a0f0b1c93ef8fc9
@@ -174,17 +204,23 @@ SPEC CHECKSUMS:
   GooglePlaces: e874db179f2675c4f3eeda0b686b540273a578b0
   GoogleUtilities: ad0f3b691c67909d03a3327cc205222ab8f42e0e
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
+  Hakawai: 0c5a7231a2d6cad1e118f15cd563ba298a55d4c1
+  ImageCropper: 7ca8e4aeabc5c46cdad9a7547d661535de4b5292
+  JJFloatingActionButton: fdc3aefb0f28f04d0f988fa25d5fac97028a9ea7
   KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
   ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
+  PaddingLabel: 21ab5282c780366018b04c30e3920c2f55a2fd14
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
   SDWebImage: 6764b5fa0f73c203728052955dbefa2bf1f33282
   SVPinView: 6c1da57e4a1273298802f460c60511ba10f7c831
+  SwiftPhotoGallery: 795b79e2596beb160fb978e232603da0811006ce
   SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
   TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
+  WMSegmentControl: 828fc1c3cdc9be84d4786aa15e61bd03342294ea
 
-PODFILE CHECKSUM: aa58e0610e798b7223fba246b07dbaea26805564
+PODFILE CHECKSUM: 53272d6b95e74577a0a482ae087bed188afa613c
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.3

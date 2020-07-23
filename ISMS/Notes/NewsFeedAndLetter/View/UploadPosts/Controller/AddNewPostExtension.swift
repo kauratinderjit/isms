@@ -132,6 +132,7 @@ extension AddNewsFeedPostsVC : UICollectionViewDelegate,UICollectionViewDataSour
         }
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         
@@ -156,8 +157,13 @@ extension AddNewsFeedPostsVC : UICollectionViewDelegate,UICollectionViewDataSour
             }
             
             let hexStr = colorList[indexPath.row].hexString ?? ""
-            let color = UIColor(hexString: hexStr)
-            cell.lblColor.backgroundColor = color
+            if #available(iOS 11.0, *) {
+                let color = UIColor(named: hexStr)
+                 cell.lblColor.backgroundColor = color
+            } else {
+                // Fallback on earlier versions
+            }
+//            cell.lblColor.backgroundColor = color
            return cell
         }
         
@@ -183,8 +189,6 @@ extension AddNewsFeedPostsVC : UICollectionViewDelegate,UICollectionViewDataSour
             {
                 cellnew.btnPlay.setBackgroundImage(UIImage(named: "playVideo"), for: .normal)
             }
-            
-            
             if (type == "video"){
                 if let name = dic?.value(forKey: "videothumb") as? UIImage {
                     cellnew.ivImg.image = name
@@ -212,12 +216,6 @@ extension AddNewsFeedPostsVC : UICollectionViewDelegate,UICollectionViewDataSour
                         heightViewBG.constant = 250
 
                     }
-                    
-                       
-                    
-                        
-                    
-                        
                 }
                } catch {
                    print("Error loading image : \(error)")
@@ -237,9 +235,14 @@ extension AddNewsFeedPostsVC : UICollectionViewDelegate,UICollectionViewDataSour
         if collectionView == collectionViewColors {
             
             let hexStr = colorList[indexPath.row].hexString ?? ""
-            let color = UIColor(hexString: hexStr)
+            if #available(iOS 11.0, *) {
+                let color = UIColor(named: hexStr)
+                  txtView.backgroundColor = color
+            } else {
+                // Fallback on earlier versions
+            }
             selectedBackGroundColor = hexStr
-            txtView.backgroundColor = color
+//            txtView.backgroundColor = color
         }
         
     }

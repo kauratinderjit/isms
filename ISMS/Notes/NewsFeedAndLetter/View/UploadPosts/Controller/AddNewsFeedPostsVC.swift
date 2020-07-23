@@ -56,22 +56,22 @@ class AddNewsFeedPostsVC: BaseUIViewController
         // Do any additional setup after loading the view.
                self.txtView.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
         
-        if  AppDefaults.shared.userImage != ""
-        {
-            profileImg.sd_setImage(with: URL(string: AppDefaults.shared.userImage ), placeholderImage: UIImage(named: "profile"), options: SDWebImageOptions(rawValue: 0))
-            { (image, error, cacheType, imageURL) in
-                self.profileImg.image = image
-            }
-        }
-        else {
-            profileImg.image = UIImage(named: "profile")
-        }
-        
-        if AppDefaults.shared.userName != "" {
-            lblName.text = AppDefaults.shared.userName
+//        if  AppDefaults.shared.userImage != ""
+//        {
+//            profileImg.sd_setImage(with: URL(string: AppDefaults.shared.userImage ), placeholderImage: UIImage(named: "profile"), options: SDWebImageOptions(rawValue: 0))
+//            { (image, error, cacheType, imageURL) in
+//                self.profileImg.image = image
+//            }
+//        }
+//        else {
+//            profileImg.image = UIImage(named: "profile")
+//        }
+//
+        if UserDefaultExtensionModel.shared.UserName != "" {
+            lblName.text = UserDefaultExtensionModel.shared.UserName
         }
         hideNavigationBackButton()
-        BackButton()
+        setBackButton()
         setColor()
         btnUpload.clipsToBounds = true
         
@@ -340,14 +340,14 @@ class AddNewsFeedPostsVC: BaseUIViewController
     @IBAction func tagUser(_ sender: UIButton) {
         if self.checkInternetConnection() {
             tagArray.removeAll()
-                                     let storyBoard: UIStoryboard = UIStoryboard(name: "Homework", bundle: nil)
-                                     let newViewController = storyBoard.instantiateViewController(withIdentifier: "searchUserByTagVC") as! searchUserByTagVC
-                                     newViewController.modalPresentationStyle = .fullScreen
-                                     self.navigationController?.pushViewController(newViewController, animated: true)
-                                 }
-                                 else{
-                                     self.showAlert(Message: Alerts.kNoInternetConnection)
-                                 }
+//            let storyBoard: UIStoryboard = UIStoryboard(name: "Homework", bundle: nil)
+//            let newViewController = storyBoard.instantiateViewController(withIdentifier: "searchUserByTagVC") as! searchUserByTagVC
+//            newViewController.modalPresentationStyle = .fullScreen
+//            self.navigationController?.pushViewController(newViewController, animated: true)
+        }
+        else{
+            self.showAlert(Message: Alerts.kNoInternetConnection)
+        }
     }
     
 

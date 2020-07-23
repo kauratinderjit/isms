@@ -138,4 +138,5 @@ enum UserDefaultKeys : String{
     case enrollmentIdStudent = "EnrollmentId"
     case classNameStudent = "ClassName"
     case ImageUrl = "ImageUrl"
+    case sessionId = "sessionId"
 }

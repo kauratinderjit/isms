@@ -60,7 +60,12 @@ class HomeworkListVC: BaseUIViewController {
                      }
     }
     
-
+    
+    @IBAction func actionAddHomeWork(_ sender: Any) {
+        let vc = UIStoryboard.init(name:"Homework", bundle: Bundle.main).instantiateViewController(withIdentifier: "AddHomeWorkVC") as! AddHomeWorkVC
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
 }
 
 extension HomeworkListVC : UITableViewDelegate, UITableViewDataSource {

@@ -205,6 +205,10 @@ extension StudentListVC : UITableViewDataSource{
 }
 
 extension StudentListVC : StudentListDelegate{
+    func sessionListDidSuccess(data: [GetSessionResultData]?) {
+        
+    }
+    
     func StudentSessionListDidSuccess(data: GetStudentSessionResultData?) {
         
     }

@@ -120,7 +120,7 @@ extension StudentListToMarkAttendence:SharedUIDatePickerDelegate{
         let currentDate = formatter.string(from: Date())
              
        
-        if isFromHOD != true && currentDate == convertedDate{
+        if isFromHOD == true && currentDate == convertedDate{
             btnSubmitAttandance.isHidden = false
             kbtnSubmitHeight.constant = 58
         }else{
@@ -167,7 +167,7 @@ extension StudentListToMarkAttendence : UITableViewDataSource{
 extension StudentListToMarkAttendence :  StudentListMarkAttCellDelegate{
     func didPressBtnPresent(_ tag: Int) {
         print("tag present: ",tag)
-        if self.isFromHOD == true{
+        if self.isFromHOD == false{
             
         }else{
             let indexPath = IndexPath(row: tag, section: 0)
@@ -188,7 +188,7 @@ extension StudentListToMarkAttendence :  StudentListMarkAttCellDelegate{
     
     func didPressBtnAbsent(_ tag: Int) {
         print("tag absent: ",tag)
-        if self.isFromHOD == true{
+        if self.isFromHOD == false{
             
         }else{
             let indexPath = IndexPath(row: tag, section: 0)

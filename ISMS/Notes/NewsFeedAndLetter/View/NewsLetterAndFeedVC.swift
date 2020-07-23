@@ -70,6 +70,8 @@ class NewsLetterAndFeedVC: BaseUIViewController {
              } else {
                  self.navigationController?.navigationBar.shadowImage = UIColor.lightGray.as1ptImage()
              }
+        
+        setBackButton()
 
     }
     
@@ -97,7 +99,7 @@ class NewsLetterAndFeedVC: BaseUIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tagArray.removeAll()
-        str_Role = ""
+//        str_Role = ""
          boolImageSelected = false
         if checkInternetConnection(){
             if boolOpenLargeView == false {
@@ -130,16 +132,16 @@ class NewsLetterAndFeedVC: BaseUIViewController {
    @objc func buttonAction(sender: UIButton)
     {
               if checkInternetConnection(){
-               let storyBoard: UIStoryboard = UIStoryboard(name: "NewsFeedAndLetter", bundle: nil)
-                               let ProfileNewsFeedVC = storyBoard.instantiateViewController(withIdentifier: "ProfileNewsFeedVC") as! ProfileNewsFeedVC
-                 ProfileNewsFeedVC.viewprofile = "true"
-                ProfileNewsFeedVC.status = AppDefaults.shared.bio
-                ProfileNewsFeedVC.otherUserId = UserDefaultExtensionModel.shared.currentUserId
-                ProfileNewsFeedVC.img = AppDefaults.shared.userImage
-                ProfileNewsFeedVC.name = AppDefaults.shared.userFirstName + " " + AppDefaults.shared.userLastName
-                ProfileNewsFeedVC.modalPresentationStyle = .fullScreen
-                self.navigationController?.pushViewController(ProfileNewsFeedVC, animated: true)
-                   
+//               let storyBoard: UIStoryboard = UIStoryboard(name: "NewsFeedAndLetter", bundle: nil)
+//                               let ProfileNewsFeedVC = storyBoard.instantiateViewController(withIdentifier: "ProfileNewsFeedVC") as! ProfileNewsFeedVC
+//                 ProfileNewsFeedVC.viewprofile = "true"
+//                ProfileNewsFeedVC.status = AppDefaults.shared.bio
+//                ProfileNewsFeedVC.otherUserId = UserDefaultExtensionModel.shared.currentUserId
+//                ProfileNewsFeedVC.img = AppDefaults.shared.userImage
+//                ProfileNewsFeedVC.name = AppDefaults.shared.userFirstName + " " + AppDefaults.shared.userLastName
+//                ProfileNewsFeedVC.modalPresentationStyle = .fullScreen
+//                self.navigationController?.pushViewController(ProfileNewsFeedVC, animated: true)
+//
 
                                          }
                    else{
@@ -565,15 +567,15 @@ class NewsLetterAndFeedVC: BaseUIViewController {
 //               }
         
         if self.checkInternetConnection() {
-                                     self.showLoader()
-                                     let storyBoard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
-                                     let newViewController = storyBoard.instantiateViewController(withIdentifier: "UserSearchVC") as! UserSearchVC
-                                     newViewController.modalPresentationStyle = .fullScreen
-                                     self.navigationController?.pushViewController(newViewController, animated: true)
-                                 }
-                                 else{
-                                     self.showAlert(Message: Alerts.kNoInternetConnection)
-                                 }
+//            self.showLoader()
+//            let storyBoard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
+//            let newViewController = storyBoard.instantiateViewController(withIdentifier: "UserSearchVC") as! UserSearchVC
+//            newViewController.modalPresentationStyle = .fullScreen
+//            self.navigationController?.pushViewController(newViewController, animated: true)
+        }
+        else{
+            self.showAlert(Message: Alerts.kNoInternetConnection)
+        }
     }
     
    
@@ -605,21 +607,21 @@ class NewsLetterAndFeedVC: BaseUIViewController {
         self.title = kNewsLetterAndFeedIdentifiers.kNewsLetterAndFeedTitle
         tbleViewNewsFeed.separatorStyle = .none
         tbleViewNewsFeed.tableFooterView = UIView()
-        if  AppDefaults.shared.userImage != ""
-                                {
-                                    
-                                    let image = UIImage(data: try! Data(contentsOf: URL(string: AppDefaults.shared.userImage)! ))
-
-                                    let thumb1 = image?.resized(toWidth: 32.0)
-                                    self.button.image = thumb1
-                                    self.button.clipsToBounds = true
-                                  //  self.button.layer.masksToBounds = true
-
-
-                                }
-                                else {
-                                    button.image = UIImage(named: "profileImage")
-                                }
+//        if  AppDefaults.shared.userImage != ""
+//        {
+//
+//            let image = UIImage(data: try! Data(contentsOf: URL(string: AppDefaults.shared.userImage)! ))
+//
+//            let thumb1 = image?.resized(toWidth: 32.0)
+//            self.button.image = thumb1
+//            self.button.clipsToBounds = true
+//            //  self.button.layer.masksToBounds = true
+//
+//
+//        }
+//        else {
+//            button.image = UIImage(named: "profileImage")
+//        }
     
     }
     
@@ -641,19 +643,19 @@ class NewsLetterAndFeedVC: BaseUIViewController {
 
     @IBAction func openOtherUserProfile(_ sender: UIButton) {
         if checkInternetConnection(){
-              let storyBoard: UIStoryboard = UIStoryboard(name: "NewsFeedAndLetter", bundle: nil)
-               let newViewController = storyBoard.instantiateViewController(withIdentifier: "ProfileNewsFeedVC") as! ProfileNewsFeedVC
-                 newViewController.status = newsData[sender.tag].Bio ?? ""
-                    newViewController.otherUserId = newsData[sender.tag].PostedById ?? 0
-                      newViewController.viewprofile = "true"
-                      newViewController.emailOtheruser = newsData[sender.tag].Email ?? ""
-                      newViewController.img = newsData[sender.tag].PostedByImageUrl ?? ""
-                      newViewController.name = newsData[sender.tag].PostedBy ?? ""
-            if newsData[sender.tag].PostedById !=  UserDefaultExtensionModel.shared.currentUserId {
-                newViewController.role = "other"
-            }
-                       newViewController.modalPresentationStyle = .fullScreen
-                     self.navigationController?.pushViewController(newViewController, animated: true)
+//              let storyBoard: UIStoryboard = UIStoryboard(name: "NewsFeedAndLetter", bundle: nil)
+//               let newViewController = storyBoard.instantiateViewController(withIdentifier: "ProfileNewsFeedVC") as! ProfileNewsFeedVC
+//                 newViewController.status = newsData[sender.tag].Bio ?? ""
+//                    newViewController.otherUserId = newsData[sender.tag].PostedById ?? 0
+//                      newViewController.viewprofile = "true"
+//                      newViewController.emailOtheruser = newsData[sender.tag].Email ?? ""
+//                      newViewController.img = newsData[sender.tag].PostedByImageUrl ?? ""
+//                      newViewController.name = newsData[sender.tag].PostedBy ?? ""
+//            if newsData[sender.tag].PostedById !=  UserDefaultExtensionModel.shared.currentUserId {
+//                newViewController.role = "other"
+//            }
+//                       newViewController.modalPresentationStyle = .fullScreen
+//                     self.navigationController?.pushViewController(newViewController, animated: true)
                   
 
                                         }
@@ -666,34 +668,34 @@ class NewsLetterAndFeedVC: BaseUIViewController {
     @IBAction func actionCorr(_ sender: UIButton) {
          if checkInternetConnection(){
         
-            if newsData[sender.tag].TypeId == 1 {
-             let storyBoard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
-                        let newViewController = storyBoard.instantiateViewController(withIdentifier: "CorridorConVC") as! CorridorConVC
-                userIdOther = newsData[sender.tag].PostedById ?? 0
-                
-                if userIdOther != UserDefaultExtensionModel.shared.currentUserId {
-                     str_Role = "other"
-                }
-                else{
-                    str_Role = ""
-                }
-               
-                 newViewController.modalPresentationStyle = .fullScreen
-                self.navigationController?.pushViewController(newViewController, animated: true) }
-            else{
-                let storyBoard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
-                let newViewController = storyBoard.instantiateViewController(withIdentifier: "ThisThatVC") as! ThisThatVC
-                                       userIdOther = newsData[sender.tag].PostedById ?? 0
-                                  if userIdOther != UserDefaultExtensionModel.shared.currentUserId {
-                                                      str_Role = "other"
-                                                 }
-                                                 else{
-                                                     str_Role = ""
-                                                 }
-                                       newViewController.modalPresentationStyle = .fullScreen
-                              self.navigationController?.pushViewController(newViewController, animated: true)
-            }
-             
+//            if newsData[sender.tag].TypeId == 1 {
+//             let storyBoard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
+//                        let newViewController = storyBoard.instantiateViewController(withIdentifier: "CorridorConVC") as! CorridorConVC
+//                userIdOther = newsData[sender.tag].PostedById ?? 0
+//
+//                if userIdOther != UserDefaultExtensionModel.shared.currentUserId {
+//                     str_Role = "other"
+//                }
+//                else{
+//                    str_Role = ""
+//                }
+//
+//                 newViewController.modalPresentationStyle = .fullScreen
+//                self.navigationController?.pushViewController(newViewController, animated: true) }
+//            else{
+//                let storyBoard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
+//                let newViewController = storyBoard.instantiateViewController(withIdentifier: "ThisThatVC") as! ThisThatVC
+//                                       userIdOther = newsData[sender.tag].PostedById ?? 0
+//                                  if userIdOther != UserDefaultExtensionModel.shared.currentUserId {
+//                                                      str_Role = "other"
+//                                                 }
+//                                                 else{
+//                                                     str_Role = ""
+//                                                 }
+//                                       newViewController.modalPresentationStyle = .fullScreen
+//                              self.navigationController?.pushViewController(newViewController, animated: true)
+//            }
+//
             }
          else{
              self.showAlert(Message: Alerts.kNoInternetConnection)
@@ -704,6 +706,7 @@ class NewsLetterAndFeedVC: BaseUIViewController {
         
 }
 //MARK:- Table View Data Source
+
 extension NewsLetterAndFeedVC : UITableViewDataSource,UITableViewDelegate{
     
     //Datasource Methods
@@ -713,26 +716,24 @@ extension NewsLetterAndFeedVC : UITableViewDataSource,UITableViewDelegate{
     
     
       func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-          
           if self.newsData.count > 0
           {
           if self.newsData[indexPath.row] != nil {
             let dic = self.newsData[indexPath.row]
-              if dic.TypeId != 0 {
+              if dic.TypeId != nil {
                  return 160
               }
               else{
                       return UITableView.automaticDimension
 
-              }
-          
-          }
+                }
+            }
           }
            return UITableView.automaticDimension
-
       }
 
     
+   
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
       
@@ -812,8 +813,13 @@ extension NewsLetterAndFeedVC : UITableViewDataSource,UITableViewDelegate{
               cell.lblDescription.bottomInset = 10
                 cell.lblDescription.SetLabelFont(textSize: 17)
 
-             let color = UIColor(hexString: hexStr)
-            cell.lblDescription.backgroundColor = color//
+                if #available(iOS 11.0, *) {
+                    let color = UIColor(named: hexStr)
+                     cell.lblDescription.backgroundColor = color//
+                } else {
+                    // Fallback on earlier versions
+                }
+//            cell.lblDescription.backgroundColor = color//
             cell.lblDescription.textAlignment = .center
                 cell.lblDescription.textColor = UIColor.black
 
@@ -862,7 +868,7 @@ extension NewsLetterAndFeedVC : UITableViewDataSource,UITableViewDelegate{
                           cell.imgViewProfile.image = UIImage(named: "profile")
                       }
                         
-                        if dic.TypeId != 0 {
+                        if dic.TypeId != nil {
                             cell.btnCorr.isHidden = false
                             cell.lblDescription.rightInset = 45
                             cell.viewBGG.isHidden = true
@@ -1108,7 +1114,7 @@ extension NewsLetterAndFeedVC : UICollectionViewDelegate,UICollectionViewDataSou
         
 
         }
-       }
+}
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -1117,20 +1123,20 @@ extension NewsLetterAndFeedVC : UICollectionViewDelegate,UICollectionViewDataSou
 
           if collectionView == parentCollectionView?.collectionViewTag {
                 if checkInternetConnection(){
-                      let storyBoard: UIStoryboard = UIStoryboard(name: "NewsFeedAndLetter", bundle: nil)
-                       let newViewController = storyBoard.instantiateViewController(withIdentifier: "ProfileNewsFeedVC") as! ProfileNewsFeedVC
-                    newViewController.status = newsData[collectionView.tag].TaggedUsers?[indexPath.row].Bio ?? ""
-                    newViewController.otherUserId = newsData[collectionView.tag].TaggedUsers?[indexPath.row].Id ?? 0
-                              newViewController.viewprofile = "true"
-                    newViewController.emailOtheruser = newsData[collectionView.tag].TaggedUsers?[indexPath.row].Email ?? ""
-                    newViewController.img = newsData[collectionView.tag].TaggedUsers?[indexPath.row].ImageUrl ?? ""
-                    newViewController.name = newsData[collectionView.tag].TaggedUsers?[indexPath.row].Name ?? ""
-                    if newsData[collectionView.tag].TaggedUsers?[indexPath.row].Id !=  UserDefaultExtensionModel.shared.currentUserId {
-                        newViewController.role = "other"
-                    }
-                               newViewController.modalPresentationStyle = .fullScreen
-                             self.navigationController?.pushViewController(newViewController, animated: true)
-                          
+//                      let storyBoard: UIStoryboard = UIStoryboard(name: "NewsFeedAndLetter", bundle: nil)
+//                       let newViewController = storyBoard.instantiateViewController(withIdentifier: "ProfileNewsFeedVC") as! ProfileNewsFeedVC
+//                    newViewController.status = newsData[collectionView.tag].TaggedUsers?[indexPath.row].Bio ?? ""
+//                    newViewController.otherUserId = newsData[collectionView.tag].TaggedUsers?[indexPath.row].Id ?? 0
+//                              newViewController.viewprofile = "true"
+//                    newViewController.emailOtheruser = newsData[collectionView.tag].TaggedUsers?[indexPath.row].Email ?? ""
+//                    newViewController.img = newsData[collectionView.tag].TaggedUsers?[indexPath.row].ImageUrl ?? ""
+//                    newViewController.name = newsData[collectionView.tag].TaggedUsers?[indexPath.row].Name ?? ""
+//                    if newsData[collectionView.tag].TaggedUsers?[indexPath.row].Id !=  UserDefaultExtensionModel.shared.currentUserId {
+//                        newViewController.role = "other"
+//                    }
+//                               newViewController.modalPresentationStyle = .fullScreen
+//                             self.navigationController?.pushViewController(newViewController, animated: true)
+//
 
                                                 }
                           else{

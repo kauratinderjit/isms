@@ -35,7 +35,7 @@ class LoginData: Mappable {
         
         var userId : Int?
         var token : String?
-        
+         var sessionId : Int?
         
         init?(map: Map) {
             
@@ -44,6 +44,7 @@ class LoginData: Mappable {
         mutating func mapping(map: Map) {
             userId <- map["UserId"]
             token <- map["Token"]
+            sessionId <- map["SessionId"]
         }
         
         

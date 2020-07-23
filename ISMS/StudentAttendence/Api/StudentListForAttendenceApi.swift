@@ -31,6 +31,8 @@ class StudentListForAttendenceApi {
         
         Alamofire.request(urlCmplete, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
             
+            print("response: ",response)
+            
             if response.result.isSuccess
             {
                 guard let data = response.value else{return}
