@@ -81,7 +81,7 @@ class SyllabusCoverageVC : BaseUIViewController  {
             }else{
                 imgDropDown.isHidden = false
                    btnClassDropDown.isUserInteractionEnabled = true
-                 self.viewModel?.getClassListDropdown(selectId: userRoleParticularId, enumType: 17)
+                 self.viewModel?.getClassListTeacherDropdown(teacherId: userRoleParticularId, departmentId: UserDefaultExtensionModel.shared.HODDepartmentId)
             }
            
         }else{

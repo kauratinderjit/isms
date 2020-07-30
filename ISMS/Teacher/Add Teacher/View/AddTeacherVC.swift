@@ -56,6 +56,7 @@ class AddTeacherVC: BaseUIViewController
     var isUnauthorizedUser = false
     var selectedPreviousTextField : UITextField?
     var resultTeacherId : Int?
+    var isDepartmentAssign = false
     
     
     //MARK:- Life Cycle of VC
@@ -94,34 +95,32 @@ class AddTeacherVC: BaseUIViewController
     //MARK:- Submit Action
     @IBAction func btnSubmitAction(_ sender: UIButton) {
         view.endEditing(true)
-        
-        //For Add teacher
-        if teacherID == 0
-        {
-//            let storyboard = UIStoryboard.init(name: "Teacher", bundle: nil)
-//            let vc = storyboard.instantiateViewController(withIdentifier: "AssignSubjectToTeacherVC") as? AssignSubjectToTeacherVC
-//            vc?.teacherId = self.teacherID
-//            vc?.isUpdate = 0
-//            let frontVC = revealViewController().frontViewController as? UINavigationController
-//            frontVC?.pushViewController(vc!, animated: false)
-//            revealViewController().pushFrontViewController(frontVC, animated: true)
-            self.viewModel?.addUpdateTeacher(teacherId: teacherID, profileImageUrl: selectedProfileImageUrl, firstName: txtFieldFirstName.text, lastName: txtFieldLastName.text, address: txtFieldAddress.text, dateOfBirth:dateOfBirth, others: txtFieldOthers.text, gender: gender, email: txtFieldEmail.text, phoneNumber: txtFieldPhoneNumber.text, idProofImgUrl: selectedIdProofImageURL, idProofName: txtFieldIdProofName.text, assignDepartmentId: strDepartmentsIds, qualification: txtFieldQualification.text, workExperience: txtFieldWorkExperience.text, additionalSkills: txtFieldAdditionalSkills.text, userID: 0)
+        if isDepartmentAssign == true{
+            self.showAlert(alert: "Same Department already assign to teacher")
+        }else{
+            //For Add teacher
+                   if teacherID == 0
+                   {
+                       
+                       self.viewModel?.addUpdateTeacher(teacherId: teacherID, profileImageUrl: selectedProfileImageUrl, firstName: txtFieldFirstName.text, lastName: txtFieldLastName.text, address: txtFieldAddress.text, dateOfBirth:dateOfBirth, others: txtFieldOthers.text, gender: gender, email: txtFieldEmail.text, phoneNumber: txtFieldPhoneNumber.text, idProofImgUrl: selectedIdProofImageURL, idProofName: txtFieldIdProofName.text, assignDepartmentId: strDepartmentsIds, qualification: txtFieldQualification.text, workExperience: txtFieldWorkExperience.text, additionalSkills: txtFieldAdditionalSkills.text, userID: 0)
+                   }
+                   //For Update teacher
+                   if teacherID != 0
+                   {
+                       //For set the nil value to Profile Image Url/Id Proof Image Url
+                       if selectedProfileImageUrl != nil||selectedIdProofImageURL != nil{
+                           if (selectedProfileImageUrl?.absoluteString.hasPrefix("http:") ?? false){
+                               selectedProfileImageUrl = URL(string: "")
+                           }
+                           if selectedIdProofImageURL?.absoluteString.hasPrefix("http:") ?? false{
+                               selectedIdProofImageURL = URL(string: "")
+                           }
+                       }
+                       self.viewModel?.addUpdateTeacher(teacherId: teacherID, profileImageUrl: selectedProfileImageUrl, firstName: txtFieldFirstName.text, lastName: txtFieldLastName.text, address: txtFieldAddress.text, dateOfBirth:dateOfBirth, others: txtFieldOthers.text, gender: gender, email: txtFieldEmail.text, phoneNumber: txtFieldPhoneNumber.text, idProofImgUrl: selectedIdProofImageURL, idProofName: txtFieldIdProofName.text, assignDepartmentId: "\(UserDefaultExtensionModel.shared.HODDepartmentId)", qualification: txtFieldQualification.text, workExperience: txtFieldWorkExperience.text, additionalSkills: txtFieldAdditionalSkills.text, userID: 0)
+                   }
+                   
         }
-        //For Update teacher
-        if teacherID != 0
-        {
-            //For set the nil value to Profile Image Url/Id Proof Image Url
-            if selectedProfileImageUrl != nil||selectedIdProofImageURL != nil{
-                if (selectedProfileImageUrl?.absoluteString.hasPrefix("http:") ?? false){
-                    selectedProfileImageUrl = URL(string: "")
-                }
-                if selectedIdProofImageURL?.absoluteString.hasPrefix("http:") ?? false{
-                    selectedIdProofImageURL = URL(string: "")
-                }
-            }
-            self.viewModel?.addUpdateTeacher(teacherId: teacherID, profileImageUrl: selectedProfileImageUrl, firstName: txtFieldFirstName.text, lastName: txtFieldLastName.text, address: txtFieldAddress.text, dateOfBirth:dateOfBirth, others: txtFieldOthers.text, gender: gender, email: txtFieldEmail.text, phoneNumber: txtFieldPhoneNumber.text, idProofImgUrl: selectedIdProofImageURL, idProofName: txtFieldIdProofName.text, assignDepartmentId: strDepartmentsIds, qualification: txtFieldQualification.text, workExperience: txtFieldWorkExperience.text, additionalSkills: txtFieldAdditionalSkills.text, userID: 0)
-        }
-        
+       
         
     }
     
@@ -529,6 +528,14 @@ extension AddTeacherVC : CustomTableViewPopUpDelegate{
 
 //MARK:- AddTeacher Delegate
 extension AddTeacherVC : AddTeacherDelegate{
+    func CheckTeacherAssignToDepartmentSuccess(data: CheckDeptModel) {
+       if data.status == 1 {
+           isDepartmentAssign = true
+       }else{
+            isDepartmentAssign = false
+        }
+    }
+    
     func getTeacherDetailFailed() {
         teacherID = 0
         teacherUserId = 0
@@ -547,6 +554,8 @@ extension AddTeacherVC : AddTeacherDelegate{
     
     func detailTeacherDidSucceed(data: TeacherDetailModel) {
         self.setDataInTextFields(data: data)
+        var teacherIdDept = data.resultData?.teacherId ?? 0 
+        self.viewModel?.CheckTeacherAssignToDepartment(teacherId: teacherIdDept ?? 0,departmentId: UserDefaultExtensionModel.shared.HODDepartmentId)
     }
     
     func getAssignHODdropdownDidSucceed(data: GetCommonDropdownModel) {
@@ -685,10 +694,10 @@ extension AddTeacherVC : UITextFieldDelegate{
             {
                 selectedPreviousTextField = txtFieldPhoneNumber
                 
-                if teacherID != 0//dont prefill data when we adding new teacher
-                {
+//                if teacherID != 0//dont prefill data when we adding new teacher
+//                {
                     self.viewModel?.getTeacherDetailByPhoneEmail(phone: txtFieldPhoneNumber.text, email: txtFieldEmail.text)
-                }
+//                }
                 
                 
             }

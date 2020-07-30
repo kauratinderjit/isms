@@ -74,6 +74,31 @@ class SyllabusCoverageViewModel {
         
     }
     
+    //MARK:- Get Class List Dropdown Api for teacher
+          func getClassListTeacherDropdown(teacherId: Int, departmentId: Int){
+              
+              syllabusCoverageViewDelegate?.showLoader()
+              
+              ClassApi.sharedManager.getClassDropdownDataTeacher(teacherId: teacherId, departmentId: departmentId, completionResponse: { (responseClassDropdown) in
+              
+                  self.syllabusCoverageViewDelegate?.hideLoader()
+                  switch responseClassDropdown.statusCode{
+                  case KStatusCode.kStatusCode200:
+                     self.syllabusCoverageDelegate?.classListDidSuccess(data: responseClassDropdown)
+                  case KStatusCode.kStatusCode401:
+                      self.syllabusCoverageViewDelegate?.showAlert(alert: responseClassDropdown.message ?? "")
+                  default:
+                      self.syllabusCoverageViewDelegate?.showAlert(alert: responseClassDropdown.message ?? "")
+                  }
+              }, completionnilResponse: { (nilResponse) in
+                  self.syllabusCoverageViewDelegate?.hideLoader()
+                  self.syllabusCoverageViewDelegate?.showAlert(alert: nilResponse ?? "Server Error")
+              }) { (error) in
+                  self.syllabusCoverageViewDelegate?.hideLoader()
+                  self.syllabusCoverageViewDelegate?.showAlert(alert: error?.localizedDescription ?? "Error")
+              }
+          }
+    
   //MARK:- Get Class List Dropdown Api
     func getClassListDropdown(selectId : Int,enumType:Int){
         

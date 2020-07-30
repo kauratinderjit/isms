@@ -133,7 +133,7 @@ class ClassTimeTableVC: BaseUIViewController {
     func classListDropdownApi(){
         if checkInternetConnection(){
             if isFromTeacher == 1 {
-                 self.viewModel?.getClassListDropdown(selectId: userRoleParticularId, enumType: 17)
+                 self.viewModel?.getClassListTeacherDropdown(teacherId: userRoleParticularId, departmentId: UserDefaultExtensionModel.shared.HODDepartmentId)
             }else{
                  self.viewModel?.getClassListDropdown(selectId: HODdepartmentId, enumType: 6)
             }

@@ -133,6 +133,7 @@ extension AddNewsFeedPostsVC : UICollectionViewDelegate,UICollectionViewDataSour
     }
     
     
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         
@@ -163,8 +164,8 @@ extension AddNewsFeedPostsVC : UICollectionViewDelegate,UICollectionViewDataSour
             } else {
                 // Fallback on earlier versions
             }
-//            cell.lblColor.backgroundColor = color
-           return cell
+           
+            return cell
         }
         
        else {

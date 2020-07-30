@@ -38,6 +38,7 @@ class AddHomeWorkVC: BaseUIViewController {
     var selectedIndexPathForDelAttachment : Int? = 0
     var editableHomeWorkData : HomeworkResultData?
     static var isFromHomeWorkDate:Bool?
+    let userRoleParticularId = UserDefaultExtensionModel.shared.userRoleParticularId
     @IBOutlet weak var heightTblView: NSLayoutConstraint!
     @IBOutlet weak var btnAdd: UIButton!
      var booledit = false
@@ -118,7 +119,7 @@ class AddHomeWorkVC: BaseUIViewController {
     func classListDropdownApi() {
         if checkInternetConnection(){
             strWhichPickerSelected = "class"
-           self.viewModel?.getClassListDropdown(selectId:UserDefaultExtensionModel.shared.userRoleParticularId, enumType: 17)
+           self.viewModel?.getClassListTeacherDropdown(teacherId: userRoleParticularId, departmentId: UserDefaultExtensionModel.shared.HODDepartmentId)
         }else{
             self.showAlert(Message: Alerts.kNoInternetConnection)
         }

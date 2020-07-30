@@ -19,7 +19,7 @@ class CheckHomeworkVC: BaseUIViewController
     var classDropdownData : [GetCommonDropdownModel.ResultData]?
     var subjectList: [GetSubjectHWResultData]?
     var uploadData = NSMutableArray()
-    
+    let userRoleParticularId = UserDefaultExtensionModel.shared.userRoleParticularId
     var homeWorkData = [HomeworkResultData]()
     
     var workList = [HomeworkListStudentData]()
@@ -92,7 +92,7 @@ class CheckHomeworkVC: BaseUIViewController
         if checkInternetConnection()
         {
             strWhichPickerSelected = "class"
-            self.viewModel?.getClassListDropdown(selectId:UserDefaultExtensionModel.shared.userRoleParticularId, enumType: 17)
+            self.viewModel?.getClassListTeacherDropdown(teacherId: userRoleParticularId, departmentId: UserDefaultExtensionModel.shared.HODDepartmentId)
         }
         else
         {

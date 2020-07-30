@@ -17,6 +17,7 @@ protocol StudentRatingDelegate : class {
     func StudentRatingListDidSucceed(data : [StudentRatingResultData])
     func GetSkillListDidSucceed(data:[AddStudentRatingResultData]?)
     func GetSubjectListDidSucceed(data:[AddStudentRatingResultData]?)
+     func classListDidSuccesss(data: GetCommonDropdownModel)
 }
 
 
@@ -133,6 +134,31 @@ class StudentRatingViewModel {
             //            }
         }
         
+    }
+    
+    //MARK:- Get Class List Dropdown Api for teacher
+    func getClassListTeacherDropdown(teacherId: Int, departmentId: Int){
+        
+        studentRatingView?.showLoader()
+        
+        ClassApi.sharedManager.getClassDropdownDataTeacher(teacherId: teacherId, departmentId: departmentId, completionResponse: { (responseClassDropdown) in
+            
+            self.studentRatingView?.hideLoader()
+            switch responseClassDropdown.statusCode{
+            case KStatusCode.kStatusCode200:
+                self.studentRatingDelegate?.classListDidSuccesss(data: responseClassDropdown)
+            case KStatusCode.kStatusCode401:
+                self.studentRatingView?.showAlert(alert: responseClassDropdown.message ?? "")
+            default:
+                self.studentRatingView?.showAlert(alert: responseClassDropdown.message ?? "")
+            }
+        }, completionnilResponse: { (nilResponse) in
+            self.studentRatingView?.hideLoader()
+            self.studentRatingView?.showAlert(alert: nilResponse ?? "Server Error")
+        }) { (error) in
+            self.studentRatingView?.hideLoader()
+            self.studentRatingView?.showAlert(alert: error?.localizedDescription ?? "Error")
+        }
     }
     
     func GetSkillList(id : Int , enumType : Int) {

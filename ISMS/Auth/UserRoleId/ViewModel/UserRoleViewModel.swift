@@ -73,6 +73,49 @@ class UserRoleViewModel{
         
     }
     
+    func deviceTokenApi(DeviceType: String,DeviceToken: String,UserId:Int) {
+                              userRoleVC?.showLoader()
+                   let param = [       "DeviceType" : DeviceType,
+                                        "DeviceToken" : DeviceToken,
+                                        "UserId": UserId
+                                       
+                                        ] as [String : Any]
+                                       
+                                    let url = "api/User/AddUpdateDeviceDetail"
+                              HomeworkApi.sharedManager.likePost(url:url , parameters: param, completionResponse: { (response) in
+                                           
+                                           self.userRoleVC?.hideLoader()
+                                           switch response["StatusCode"] as? Int{
+                                           case 200: break
+                                                         // self.uploadPostViewDelegate?.showAlert(alert: response["Message"]  as? String ?? "")
+                                                        //  self.UploadPostDelegate?.addedSuccessfully()
+                                                      case 401: break
+                                                         // self.uploadPostViewDelegate?.showAlert(alert: response["Message"] as? String ?? "")
+                                                          //self.AddHomeWorkDelegate?.unauthorizedUser()
+                                                      default: break
+                                                         // self.uploadPostViewDelegate?.showAlert(alert: response["Message"] as? String ?? "")
+                                                      }
+
+                                           
+                                       }, completionnilResponse: { (nilResponseError) in
+                                           self.userRoleVC?.hideLoader()
+                                           if let error = nilResponseError{
+                                              // self.uploadPostViewDelegate?.showAlert(alert: error.description)
+                                               
+                                           }else{
+                                               CommonFunctions.sharedmanagerCommon.println(object: SyllabusCoverage.kSyllabusResponseNotGet)
+                                           }
+                                       }) { (error) in
+                                           self.userRoleVC?.hideLoader()
+                                           if let err = error?.localizedDescription{
+                                             //  self.uploadPostViewDelegate?.showAlert(alert: err)
+                                           }else{
+                                               CommonFunctions.sharedmanagerCommon.println(object: SyllabusCoverage.kSyllabusResponseError)
+                                           }
+                                       }
+                        
+                         }
+    
     //MARK:- Get Role Id's using userId
     func getRoleId(userID: Int?){
         self.userRoleVC?.showLoader()

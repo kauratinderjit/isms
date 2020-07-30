@@ -187,8 +187,6 @@ class AssignSubjectTeacherViewModel{
         }) { (error) in
             self.AssignSubjectToTeacherVC?.hideLoader()
             self.AssignSubjectToTeacherVC?.showAlert(alert: error.debugDescription)
-            
-            
         }
         }
     

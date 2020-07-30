@@ -46,21 +46,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         return true
     }
     
-    
     // Register for VoIP notifications
     func voipRegistration() {
-        
         let mainQueue = DispatchQueue.main
         // Create a push registry object
         let voipRegistry: PKPushRegistry = PKPushRegistry(queue: mainQueue)
         // Set the registry's delegate to self
         voipRegistry.delegate = self
         // Set the push type to VoIP
-        //voipRegistry.desiredPushTypes = [PKPushType.voIP]
-
-        
-        
+        voipRegistry.desiredPushTypes = [PKPushType.voIP]
     }
+    
     func set_nav_bar_color()
     {
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarPosition.any, barMetrics: UIBarMetrics.default)
@@ -78,6 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         print("DEVICE TOKEN = \(deviceToken)")
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let token = tokenParts.joined()
+        UserDefaults.standard.set(token, forKey: "token")
         print("Device Token: \(token)")
     }
     

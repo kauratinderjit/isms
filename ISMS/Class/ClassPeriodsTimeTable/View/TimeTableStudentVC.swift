@@ -26,6 +26,7 @@ class TimeTableStudentVC: BaseUIViewController {
     var isCameFromOtherScreen : String?
     var currentDay:String!
     let studentClassId = UserDefaultExtensionModel.shared.StudentClassId
+     let userRoleParticularId = UserDefaultExtensionModel.shared.userRoleParticularId
     public var isFromTimeTableParent:Bool!
     
     //MARK:- ViewLifeCycle functions
@@ -33,7 +34,13 @@ class TimeTableStudentVC: BaseUIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setUI()
-         self.viewModel?.getTimeTableAccordingClass(classId : studentClassId, teacherId: 0)
+        
+        if UserDefaultExtensionModel.shared.currentUserRoleId == 4{
+            self.viewModel?.getTimeTableAccordingTeacher( teacherId : userRoleParticularId)
+        }else{
+            self.viewModel?.getTimeTableAccordingClass(classId : studentClassId, teacherId: 0)
+        }
+         
 //        classListDropdownApi()
     }
     

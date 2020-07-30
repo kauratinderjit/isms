@@ -37,7 +37,57 @@ class SignUpApi {
                     
                     if let responseData  = data as? [String : Any]
                     {
-                        print(responseData)
+                        print("teacher class: ",responseData)
+                        self.countryDataJSON(data: responseData, completionResponse: { (data) in
+                            
+                            if data.statusCode == 200{
+                                completionResponse(data)
+                            }
+                            if data.statusCode == 400{
+                                completionnilResponse(data.message)
+                            }
+                            
+                        }, completionError: { (error) in
+                            CommonFunctions.sharedmanagerCommon.println(object: "All Country Mapper Error:- ")
+                            print()
+                            completionnilResponse(error)
+                        })
+                        
+                        
+                    }
+                   
+                    
+                }
+                else
+                {
+                    Error(response.error)
+                    return
+                }
+        }
+        
+    }
+    
+    //MARK:- Get Common api for teacher class
+    func getCommonDropdownApiTeacherClass(url : String, parameter : [String:Any]?, completionResponse:  @escaping (GetCommonDropdownModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,Error: @escaping (Error?) -> Void)
+    {
+        
+        print(parameter)
+        
+        let urlComplete = BaseUrl.kBaseURL + url
+        let headers    = [KConstants.kContentType : KConstants.kApplicationJson]
+        
+        print(urlComplete)
+        
+        Alamofire.request(urlComplete, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers : headers)
+            .responseJSON { response in
+                
+                if response.result.isSuccess
+                {
+                    guard let data = response.value else{return}
+                    
+                    if let responseData  = data as? [String : Any]
+                    {
+                        print("teacher class: ",responseData)
                         self.countryDataJSON(data: responseData, completionResponse: { (data) in
                             
                             if data.statusCode == 200{

@@ -35,7 +35,7 @@ class TimeTableStudentViewModel{
         TimeTableStudentDelegate = nil
     }
     //Get Time Table According to class
-    func getTimeTableAccordingClass(classId: Int?,teacherId: Int?){
+    func getTimeTableAccordingTeacher (teacherId: Int){
         
         self.classPeriodsTimeTableView?.showLoader()
         
@@ -56,7 +56,7 @@ class TimeTableStudentViewModel{
 //         postDict["TeacherId"] = 0
         print("array post timetable : ",postDict)
         
-        ClassApi.sharedManager.getClassTimeTable(url: "api/Institute/GetTimeTable"+"?ClassId=\(classId!)", params: postDict, completionResponse: { (getTimetabelResponse) in
+        ClassApi.sharedManager.getClassTimeTable(url: "api/Institute/GetTimeTableByTeacherId"+"?teacherId=\(teacherId)", params: postDict, completionResponse: { (getTimetabelResponse) in
             
             self.classPeriodsTimeTableView?.hideLoader()
             switch getTimetabelResponse.statusCode{
@@ -72,4 +72,42 @@ class TimeTableStudentViewModel{
             self.classPeriodsTimeTableView?.showAlert(alert: error ?? "Something went wrong")
         }
     }
+    
+      func getTimeTableAccordingClass(classId: Int?,teacherId: Int?){
+            
+            self.classPeriodsTimeTableView?.showLoader()
+            
+            var postDict = [String:Any]()
+    //        postDict[KApiParameters.KCommonParametersForList.kSearch] = ""
+    //        postDict[KApiParameters.KCommonParametersForList.kPageSize] = 0
+    //        postDict[KApiParameters.KCommonParametersForList.kSortColumn] = ""
+    //        postDict[KApiParameters.KCommonParametersForList.kSkip] = 0
+    //        postDict[KApiParameters.KCommonParametersForList.kSortColumnDir] = ""
+    //        postDict["ParticularId"] = classId
+    //        //Check If user have particular id
+    ////        switch teacherId {
+    ////        case 3:
+    ////            postDict["TeacherId"] = 0
+    ////        default:
+    ////            postDict["TeacherId"] = UserDefaultExtensionModel.shared.userRoleParticularId
+    ////        }
+    //         postDict["TeacherId"] = 0
+            print("array post timetable : ",postDict)
+            
+            ClassApi.sharedManager.getClassTimeTable(url: "api/Institute/GetTimeTable"+"?ClassId=\(classId!)", params: postDict, completionResponse: { (getTimetabelResponse) in
+                
+                self.classPeriodsTimeTableView?.hideLoader()
+                switch getTimetabelResponse.statusCode{
+                case KStatusCode.kStatusCode200:
+                    self.TimeTableStudentDelegate?.getTimeTableSuccess(data: getTimetabelResponse)
+                case KStatusCode.kStatusCode401:
+                    self.classPeriodsTimeTableView?.showAlert(alert: getTimetabelResponse.message ?? "Something went wrong.")
+                    self.TimeTableStudentDelegate?.unauthorizedUser()
+                default:
+                    self.classPeriodsTimeTableView?.showAlert(alert: getTimetabelResponse.message ?? "Something went wrong.")
+                }
+            }) { (error) in
+                self.classPeriodsTimeTableView?.showAlert(alert: error ?? "Something went wrong")
+            }
+        }
 }

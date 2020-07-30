@@ -665,9 +665,7 @@ class HomeworkApi
            }
            
            let headers = [KConstants.kHeaderAuthorization:KConstants.kHeaderBearer+" "+accessTokken,KConstants.kAccept: KConstants.kApplicationJson]
-           
-        
-           
+    
               Alamofire.request(urlCmplete, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers : headers)
                .responseJSON { response in
                CommonFunctions.sharedmanagerCommon.println(object: "response list:- \(response) ")

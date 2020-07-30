@@ -78,6 +78,8 @@ class UserRoleIdVC: BaseUIViewController {
     }
     
     func hitGetRolesByUserId(){
+        
+      
         let userId = UserDefaultExtensionModel.shared.currentUserId
         self.viewModel?.getRoleId(userID: userId)
     }

@@ -308,6 +308,58 @@ class ClassApi{
             completionError(Alerts.kMapperModelError)
         }
     }
+    
+    //MARK:- Check Teacher Assign To Department
+       func CheckTeacherAssignToDepartmentApi(url: String,completionResponse:  @escaping (CheckDeptModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
+           
+           let urlCmplete = BaseUrl.kBaseURL+url
+           var accessTokken = ""
+           if let str = UserDefaults.standard.value(forKey: UserDefaultKeys.userAuthToken.rawValue)  as?  String
+           {
+               accessTokken = str
+           }
+           
+           let headers = [KConstants.kHeaderAuthorization:KConstants.kHeaderBearer + " " + accessTokken,KConstants.kContentType:KConstants.kApplicationJson]
+           
+           Alamofire.request(urlCmplete, method: .post, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+               
+               if response.result.isSuccess
+               {
+                   guard let data = response.value else{return}
+                   
+                   if let responseData  = data as? [String : Any]
+                   {
+                       //Convert Data In Mapper
+                       self.CheckTeacherAssignToDepartmentJSON(data: responseData, completionResponse: { (deleteResponseModel) in
+                           completionResponse(deleteResponseModel)
+                       }, completionError: { (error) in
+                           completionnilResponse(error)
+                       })
+                       
+                   }else{
+                       CommonFunctions.sharedmanagerCommon.println(object: "Delete Department Error:- \(data) ")
+                   }
+                   
+               }
+               else
+               {
+                   complitionError(response.error)
+                   return
+               }
+           }
+       }
+       
+       //Delete Department
+       private func CheckTeacherAssignToDepartmentJSON(data: [String : Any],completionResponse:  @escaping (CheckDeptModel) -> Void,completionError: @escaping (String?) -> Void){
+           
+           let deleteClassData = CheckDeptModel(JSON: data)
+           
+           if deleteClassData != nil{
+               completionResponse(deleteClassData!)
+           }else{
+               completionError(Alerts.kMapperModelError)
+           }
+       }
     func deleteResultApi(url: String,completionResponse:  @escaping (DeleteClassModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
           
           let urlCmplete = BaseUrl.kBaseURL+url
@@ -430,6 +482,16 @@ class ClassApi{
         }
     }
     
+    //MARK:- Class List Dropdown for teacher
+    func getClassDropdownDataTeacher(teacherId : Int,departmentId: Int,completionResponse:  @escaping (GetCommonDropdownModel) -> Void,completionnilResponse:  @escaping (String?) -> Void,complitionError: @escaping (Error?) -> Void){
+        SignUpApi.sharedInstance.getCommonDropdownApiTeacherClass(url: "api/Institute/GetClassListByTeacherClassId"+"?teacherId=\(teacherId)&departmentId=\(departmentId)", parameter: nil, completionResponse: { (responseModel) in
+            completionResponse(responseModel)
+        }, completionnilResponse: { (nilResponse) in
+            completionnilResponse(nilResponse)
+        }) { (error) in
+            complitionError(error)
+        }
+    }
     
     //Get Class TimeTable
     func getClassTimeTable(url: String,params: [String:Any],completionResponse:  @escaping (GetTimeTableModel) -> Void,complitionError: @escaping (String?) -> Void){

@@ -98,7 +98,7 @@ class SubstituteTeacherVC: BaseUIViewController {
     func teacherListApi(){
         if checkInternetConnection(){
             self.viewModel?.isSearching = false
-            self.viewModel?.substituteTeacherList(classId: self.classId ?? 0, teacherId: self.teacherID ?? 0)
+            self.viewModel?.substituteTeacherList(classId: self.classId ?? 0, teacherId: self.teacherID ?? 0, periodId: self.periodId ?? 0,dayId: dayId ?? 0)
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }

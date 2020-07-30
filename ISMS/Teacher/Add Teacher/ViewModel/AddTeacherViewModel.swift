@@ -14,6 +14,7 @@ protocol AddTeacherDelegate: class {
     func detailTeacherDidSucceed(data : TeacherDetailModel)
     func getAssignHODdropdownDidSucceed(data : GetCommonDropdownModel)
     func getTeacherDetailFailed()
+    func CheckTeacherAssignToDepartmentSuccess(data: CheckDeptModel)
 }
 
 
@@ -41,6 +42,44 @@ class AddTeacherViewModel{
         addTeacherView = nil
         addTeacherDelegate = nil
     }
+    
+    func CheckTeacherAssignToDepartment(teacherId: Int,departmentId: Int){
+        self.addTeacherView?.showLoader()
+        ClassApi.sharedManager.CheckTeacherAssignToDepartmentApi(url: "api/Institute/CheckTeacherAssignToDepartment"+"?teacherId=\(teacherId)&departmentId=\(departmentId)", completionResponse: {CheckDeptModel in
+            
+            self.addTeacherView?.hideLoader()
+            print("teacher data: ",CheckDeptModel)
+            switch CheckDeptModel.statusCode{
+            case KStatusCode.kStatusCode200:
+//                if let msg = TeacherAddModel.message{
+//                    self.addTeacherView?.showAlert(alert: msg)
+//                }
+                self.addTeacherDelegate?.CheckTeacherAssignToDepartmentSuccess(data: CheckDeptModel)
+            case KStatusCode.kStatusCode401:
+                if let res = CheckDeptModel.message{
+                    self.addTeacherView?.showAlert(alert: res)
+                }
+                self.addTeacherDelegate?.unauthorizedUser()
+            default:
+                if let msg = CheckDeptModel.message{
+                    self.addTeacherView?.showAlert(alert: msg)
+                }
+            }
+        }, completionnilResponse: { (nilResponse) in
+            
+            self.addTeacherView?.hideLoader()
+            if let res = nilResponse{
+                self.addTeacherView?.showAlert(alert: res)
+            }
+            
+        }) { (error) in
+            self.addTeacherView?.hideLoader()
+            if let err = error{
+                self.addTeacherView?.showAlert(alert: err.localizedDescription)
+            }
+        }
+    }
+    
     
     //MARK:- Add/Update Teacher
     func addUpdateTeacher(teacherId:Int?,profileImageUrl:URL?,firstName: String?,lastName: String?,address: String?,dateOfBirth: String?,others: String?,gender: String?,email:String?,phoneNumber: String?,idProofImgUrl: URL?,idProofName : String?,assignDepartmentId : String?,qualification: String?,workExperience: String?,additionalSkills:String?,userID: Int?){

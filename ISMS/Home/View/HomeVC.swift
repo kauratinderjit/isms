@@ -625,7 +625,13 @@ extension HomeVC : UICollectionViewDelegateFlowLayout {
     //1
     func collectionView(_ collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout,sizeForItemAt indexPath: IndexPath) -> CGSize {
         //2
-        
+        if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Teacher"){
+            itemsPerRow = CGFloat(self.deptArr.count)
+            let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+            let availableWidth = view.frame.width - paddingSpace
+            let widthPerItem = availableWidth / itemsPerRow
+            return CGSize(width: widthPerItem, height: widthPerItem)
+        }
         itemsPerRow = CGFloat(self.studentArr.count)
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace

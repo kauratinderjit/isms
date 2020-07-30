@@ -18,7 +18,7 @@ protocol AddStudentRatingDelegate : class {
     func GetSubjectListDidSucceed(data:[AddStudentRatingResultData]?)
     func studentListDidSucceed(data : [AddStudentRatingResultData]?)
     func GetSkillListaddDidSucceed(data:[AddStudentRatingResultData]?)
-    
+    func classListDidSuccesss(data: GetCommonDropdownModel)
    func  GetStudentByClassDidSucceed(data:[StudentsByClassId]?)
     func AddStudentRatingDidSucceed(data: String)
 }
@@ -37,6 +37,31 @@ class AddStudentRatingViewModel {
         addStudentRatingView = viewDelegate
     }
    
+    //MARK:- Get Class List Dropdown Api for teacher
+       func getClassListTeacherDropdown(teacherId: Int, departmentId: Int,type : String){
+           
+           addStudentRatingView?.showLoader()
+           
+           ClassApi.sharedManager.getClassDropdownDataTeacher(teacherId: teacherId, departmentId: departmentId, completionResponse: { (responseClassDropdown) in
+               
+               self.addStudentRatingView?.hideLoader()
+               switch responseClassDropdown.statusCode{
+               case KStatusCode.kStatusCode200:
+                   self.addStudentRatingDelegate?.classListDidSuccesss(data: responseClassDropdown)
+               case KStatusCode.kStatusCode401:
+                   self.addStudentRatingView?.showAlert(alert: responseClassDropdown.message ?? "")
+               default:
+                   self.addStudentRatingView?.showAlert(alert: responseClassDropdown.message ?? "")
+               }
+           }, completionnilResponse: { (nilResponse) in
+               self.addStudentRatingView?.hideLoader()
+               self.addStudentRatingView?.showAlert(alert: nilResponse ?? "Server Error")
+           }) { (error) in
+               self.addStudentRatingView?.hideLoader()
+               self.addStudentRatingView?.showAlert(alert: error?.localizedDescription ?? "Error")
+           }
+       }
+    
     //MARK:- Class list
     func classList(searchText: String,pageSize : Int,filterBy: Int,skip: Int){
         

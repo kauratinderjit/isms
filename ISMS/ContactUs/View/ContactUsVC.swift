@@ -185,8 +185,10 @@ class ContactUsVC: BaseUIViewController {
                         print("data: ",data)
                         cell.btnMinus.isHidden = false
                         lstGeneralInquiryViewModels.append(data)
-                        tableViewGeneral.reloadData()
                         cell.addMoreBtn.isHidden = true
+                        tableGeneralHeightConstraints.constant = (tableGeneralHeightConstraints.constant ?? 167)+120
+                        viewHeightConstraints.constant = (viewHeightConstraints.constant ?? 653) + 120
+                        tableViewGeneral.reloadData()
                     }else{
                         self.showAlert(alert: "Please enter email number.")
                     }
@@ -241,6 +243,9 @@ class ContactUsVC: BaseUIViewController {
                             print(self.lstGeneralInquiryViewModels.count)
                         }
                     }
+                    
+                    self.tableGeneralHeightConstraints.constant = self.tableGeneralHeightConstraints.constant - 120
+                    self.viewHeightConstraints.constant = self.viewHeightConstraints.constant - 120
                 }))
                 refreshAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
                     print("Cancel")
@@ -265,6 +270,8 @@ class ContactUsVC: BaseUIViewController {
                     cell.btnMinus.isHidden = false
                     cell.addMoreBtn.isHidden = true
                     lstEmergencyInquiryViewModels.append(data)
+                    tableViewEmergencyHeight.constant = (tableViewEmergencyHeight.constant ?? 167)+120
+                    viewHeightConstraints.constant = (viewHeightConstraints.constant ?? 653) + 120
                     tableViewEmergency.reloadData()
                 }else{
                     self.showAlert(alert: "Please enter email number.")
@@ -320,6 +327,9 @@ class ContactUsVC: BaseUIViewController {
                             print(self.lstEmergencyInquiryViewModels.count)
                         }
                     }
+                    
+                    self.tableViewEmergencyHeight.constant = self.tableViewEmergencyHeight.constant - 120
+                    self.viewHeightConstraints.constant = self.viewHeightConstraints.constant - 120
                 }))
                 refreshAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
                     print("Cancel")
@@ -336,6 +346,11 @@ class ContactUsVC: BaseUIViewController {
           if fromAdmin  == 1{
              self.showToast("Coming Soon")
           }else{
+//            let lastRowIndex = tableViewAdmission.numberOfRows(inSection: tableViewAdmission.numberOfSections-1)
+//            if let cell = tableViewAdmission.cellForRow(at: lastRowIndex - 1) as? AdmissionTableCell{
+//                cell.lblEmail.text = ""
+//            }
+            
              viewModel?.addContact(ContactId: 31,InstituteId: 1,Message: "",lstEmergencyInquiryViewModels: lstEmergencyInquiryViewModels,lstAdmissionInquiryViewModels: lstAdmissionInquiryViewModels,lstGeneralInquiryViewModels: lstGeneralInquiryViewModels,lstdeleteEmergencyInquiryViewModels: lstdeleteEmergencyInquiryViewModels,lstdeleteAdmissionInquiryViewModels: lstdeleteAdmissionInquiryViewModels,lstdeleteGeneralInquiryViewModels : lstdeleteGeneralInquiryViewModels)
         }
     }
@@ -489,7 +504,7 @@ extension ContactUsVC : UITableViewDataSource{
                 if fromAdmin == 1{
                     return lstAdmissionInquiryViewModels.count
                 }else{
-                    return lstAdmissionInquiryViewModels.count+1
+                    return lstAdmissionInquiryViewModels.count-1
                 }
             }
         }else if tableView == tableViewGeneral{

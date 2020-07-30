@@ -39,7 +39,31 @@ class HomeworkViewModel {
         homeworkViewDelegate = viewDelegate
     }
     
-    
+    //MARK:- Get Class List Dropdown Api for teacher
+       func getClassListTeacherDropdown(teacherId: Int, departmentId: Int){
+           
+           homeworkViewDelegate?.showLoader()
+           
+           ClassApi.sharedManager.getClassDropdownDataTeacher(teacherId: teacherId, departmentId: departmentId, completionResponse: { (responseClassDropdown) in
+           
+               self.homeworkViewDelegate?.hideLoader()
+               switch responseClassDropdown.statusCode{
+               case KStatusCode.kStatusCode200:
+                  self.addHomeworkDelegate?.classListDidSuccess(data: responseClassDropdown)
+               case KStatusCode.kStatusCode401:
+                   self.homeworkViewDelegate?.showAlert(alert: responseClassDropdown.message ?? "")
+               default:
+                   self.homeworkViewDelegate?.showAlert(alert: responseClassDropdown.message ?? "")
+               }
+           }, completionnilResponse: { (nilResponse) in
+               self.homeworkViewDelegate?.hideLoader()
+               self.homeworkViewDelegate?.showAlert(alert: nilResponse ?? "Server Error")
+           }) { (error) in
+               self.homeworkViewDelegate?.hideLoader()
+               self.homeworkViewDelegate?.showAlert(alert: error?.localizedDescription ?? "Error")
+           }
+       }
+       
     
     func getData(classId : Int , teacherId : Int) {
          homeworkViewDelegate?.showLoader()

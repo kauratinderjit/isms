@@ -33,7 +33,7 @@ class AddStudentRatingVC: BaseUIViewController {
     var isStudentSelected = false
     var isSelectedRating = false
     var countSelected : Int?
-    var arrSkillList = [AddStudentRatingResultData]()
+    var arrSkillList = [GetCommonDropdownModel.ResultData]()
     var arrSkillListNew = [AddStudentRatingResultData]()
     var arrClickedArray = [AddStudentRatingResultData]()
     var viewModel : AddStudentRatingViewModel?
@@ -98,7 +98,9 @@ class AddStudentRatingVC: BaseUIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         if checkInternetConnection(){
-            self.viewModel?.GetSkillList(id : userRoleParticularId , enumType : 17 ,type : "Skill")
+            
+            self.viewModel?.getClassListTeacherDropdown(teacherId: userRoleParticularId, departmentId: UserDefaultExtensionModel.shared.HODDepartmentId,type : "Skill")
+//            self.viewModel?.GetSkillList(id : userRoleParticularId , enumType : 17 ,type : "Skill")
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
         }
@@ -119,10 +121,10 @@ class AddStudentRatingVC: BaseUIViewController {
             if arrSkillList.count > 0{
                 UpdatePickerModel2(count: arrSkillList.count, sharedPickerDelegate: self, View:  self.view, index: 0)
                 
-                selectedClassId = arrSkillList[0].studentID
+                selectedClassId = arrSkillList[0].id
                 let text = txtfieldClass.text!
                 if let index = arrSkillList.index(where: { (dict) -> Bool in
-                    return dict.studentName ?? "" == text // Will found index of matched id
+                    return dict.name ?? "" == text // Will found index of matched id
                 }) {
                     print("Index found :\(index)")
                     UpdatePickerModel2(count: arrSkillList.count, sharedPickerDelegate: self, View:  self.view, index: index)
@@ -196,6 +198,31 @@ class AddStudentRatingVC: BaseUIViewController {
 
 //MARK:- ADD STUDENT RATING DELEGATE
 extension AddStudentRatingVC : AddStudentRatingDelegate {
+    
+    func classListDidSuccesss(data: GetCommonDropdownModel){
+           if data.resultData != nil
+                      {
+                          if data.resultData?.count ?? 0 > 0
+                          {
+                         
+                           arrSkillList = data.resultData!
+           //                   textfieldClass.text = data.resultData?[0].name
+                              selectedClassId = data.resultData?[0].id
+                             var newClassid = data.resultData?[0].id
+                            self.viewModel?.GetStudentsByClassId(classid : newClassid ?? 0)
+                          }
+                           else
+                           {
+                               
+                              CommonFunctions.sharedmanagerCommon.println(object: "Count is zero.")
+                          }
+                      }
+                   else
+                   {
+                      
+                   }
+
+       }
     //    get student list success
     func  GetStudentByClassDidSucceed(data:[StudentsByClassId]?){
         if let data1 = data {
@@ -275,29 +302,29 @@ extension AddStudentRatingVC : AddStudentRatingDelegate {
     
     //    get class sucess
     func GetSkillListDidSucceed(data: [AddStudentRatingResultData]?) {
-        print("our data : ",data)
-        
-        self.isFetching = true
-        
-        if let data1 = data {
-            if data1.count>0
-            {
-                self.arrSkillList = data1
-                if self.arrSkillList.count > 0 {
-                    if let className = arrSkillList[0].studentName{
-                        txtfieldClass.text = className
-                        //                      RegisterClassDataModel.sharedInstance?.enrolmentID = arrStudentByClassId[index].enrollmentId
-                        var newClassid = arrSkillList[0].studentID!
-                        self.viewModel?.GetStudentsByClassId(classid : newClassid)
-                    }
-                }
-            }else{
-                txtfieldClass.text = ""
-            }
-            
-            
-            tableView.reloadData()
-        }
+//        print("our data : ",data)
+//
+//        self.isFetching = true
+//
+//        if let data1 = data {
+//            if data1.count>0
+//            {
+//                self.arrSkillList = data1
+//                if self.arrSkillList.count > 0 {
+//                    if let className = arrSkillList[0].studentName{
+//                        txtfieldClass.text = className
+//                        //                      RegisterClassDataModel.sharedInstance?.enrolmentID = arrStudentByClassId[index].enrollmentId
+//                        var newClassid = arrSkillList[0].studentID!
+//                        self.viewModel?.GetStudentsByClassId(classid : newClassid)
+//                    }
+//                }
+//            }else{
+//                txtfieldClass.text = ""
+//            }
+//
+//
+//            tableView.reloadData()
+//        }
     }
     
     
@@ -326,9 +353,9 @@ extension AddStudentRatingVC : SharedUIPickerDelegate{
             //            arrAllAssignedSubjects.removeAll()
             if isClassSelected == true {
                 if let index = selectedClassArrIndex {
-                    if let id = arrSkillList[index].studentID {
-                        txtfieldClass.text = arrSkillList[index].studentName
-                        var addClassId =  arrSkillList[index].studentID
+                    if let id = arrSkillList[index].id {
+                        txtfieldClass.text = arrSkillList[index].name
+                        var addClassId =  arrSkillList[index].id
                         arrStudentlist.removeAll()
                         //                        self.viewModel?.GetSkillList(id : id, enumType : 14 ,type : "Student")
                         self.viewModel?.GetStudentsByClassId(classid : addClassId ?? 0)
@@ -390,8 +417,8 @@ extension AddStudentRatingVC : SharedUIPickerDelegate{
         
         if isClassSelected == true {
             if arrSkillList.count > 0{
-                txtfieldClass.text = arrSkillList[0].studentName
-                return arrSkillList[index].studentName ?? ""
+                txtfieldClass.text = arrSkillList[0].name
+                return arrSkillList[index].name ?? ""
             }
         }
         else if isSubjectSelected == true {
@@ -422,11 +449,11 @@ extension AddStudentRatingVC : SharedUIPickerDelegate{
         
         if isClassSelected == true {
             if arrSkillList.count > 0{
-                selectedClassId = arrSkillList[index].studentID
+                selectedClassId = arrSkillList[index].id
                 //                selectClassRating = arrSkillList[index].studentID ?? 0
                 //                RegisterClassDataModel.sharedInstance?.classID = arrSkillList[index].studentID
                 print(selectClassRating)
-                txtfieldClass.text = arrSkillList[index].studentName
+                txtfieldClass.text = arrSkillList[index].name
                 selectedClassArrIndex = index
             }
         }

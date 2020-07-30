@@ -25,7 +25,7 @@ class MenuVC: BaseUIViewController {
     static var menuArray = ["Logout"]
     static var menuArrayFromApi : GetMenuFromRoleIdModel?
     var sortedMenuArray = [GetMenuFromRoleIdModel.ResultData]()
-    
+     var menuViewModel : MenuViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,6 +76,9 @@ class MenuVC: BaseUIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.menuViewModel = MenuViewModel.init(delegate: self)
+        self.menuViewModel?.attachView(view: self)
         
         if let resultData  =  MenuVC.menuArrayFromApi?.resultData{
             sortedMenuArray = resultData.sorted{ $0.displayOrder ?? 0 < $1.displayOrder ?? 0  }
@@ -568,6 +571,13 @@ extension MenuVC : UITableViewDelegate{
                 let frontVC = revealViewController().frontViewController as? UINavigationController
                 frontVC?.pushViewController(vc!, animated: false)
                 revealViewController().pushFrontViewController(frontVC, animated: true)
+            }else if UserDefaultExtensionModel.shared.currentUserRoleId == 4{
+                let storyboard = UIStoryboard.init(name: KStoryBoards.kClass, bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "TimeTableStudentVC") as? TimeTableStudentVC
+                  vc?.isFromTimeTableParent = false
+                let frontVC = revealViewController().frontViewController as? UINavigationController
+                frontVC?.pushViewController(vc!, animated: false)
+                revealViewController().pushFrontViewController(frontVC, animated: true)
             }else{
                 let storyboard = UIStoryboard.init(name: KStoryBoards.kClass, bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "ClassTimeTableVC") as? ClassTimeTableVC
@@ -604,12 +614,12 @@ extension MenuVC : UITableViewDelegate{
             break
             
             case "Manage Contacts":
-//            let storyboard = UIStoryboard.init(name: KStoryBoards.kContactUs, bundle: nil)
-//            let vc = storyboard.instantiateViewController(withIdentifier: "ContactUsVC") as? ContactUsVC
-//            vc?.fromAdmin = 0
-//            let frontVC = revealViewController().frontViewController as? UINavigationController
-//            frontVC?.pushViewController(vc!, animated: false)
-//            revealViewController().pushFrontViewController(frontVC, animated: true)
+            let storyboard = UIStoryboard.init(name: KStoryBoards.kContactUs, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "ContactUsVC") as? ContactUsVC
+            vc?.fromAdmin = 0
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(vc!, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
             
 //            let storyboard = UIStoryboard.init(name: "Result", bundle: nil)
 //            let vc = storyboard.instantiateViewController(withIdentifier: "ResultListVC") as? ResultListVC
@@ -618,26 +628,26 @@ extension MenuVC : UITableViewDelegate{
 //            frontVC?.pushViewController(vc!, animated: false)
 //            revealViewController().pushFrontViewController(frontVC, animated: true)
             
-            let storyboard = UIStoryboard.init(name: "Session", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "SessionListVC") as? SessionListVC
-            let frontVC = revealViewController().frontViewController as? UINavigationController
-            frontVC?.pushViewController(vc!, animated: false)
-            revealViewController().pushFrontViewController(frontVC, animated: true)
-            break
-            
-            case "ContactUS":
-//            let storyboard = UIStoryboard.init(name: KStoryBoards.kContactUs, bundle: nil)
-//            let vc = storyboard.instantiateViewController(withIdentifier: "ContactUsVC") as? ContactUsVC
-//            vc?.fromAdmin = 1
+//            let storyboard = UIStoryboard.init(name: "Session", bundle: nil)
+//            let vc = storyboard.instantiateViewController(withIdentifier: "SessionListVC") as? SessionListVC
 //            let frontVC = revealViewController().frontViewController as? UINavigationController
 //            frontVC?.pushViewController(vc!, animated: false)
 //            revealViewController().pushFrontViewController(frontVC, animated: true)
-//
-            let storyboard = UIStoryboard.init(name: "Session", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "StudentSessionVC") as? StudentSessionVC
+//            break
+            
+            case "ContactUS":
+            let storyboard = UIStoryboard.init(name: KStoryBoards.kContactUs, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "ContactUsVC") as? ContactUsVC
+            vc?.fromAdmin = 1
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
+//
+//            let storyboard = UIStoryboard.init(name: "Session", bundle: nil)
+//            let vc = storyboard.instantiateViewController(withIdentifier: "StudentSessionVC") as? StudentSessionVC
+//            let frontVC = revealViewController().frontViewController as? UINavigationController
+//            frontVC?.pushViewController(vc!, animated: false)
+//            revealViewController().pushFrontViewController(frontVC, animated: true)
              break
             
             case "LeaveApplications":
@@ -710,12 +720,42 @@ extension MenuVC : MenuVCDelegate{
     
 }
 
+extension MenuVC : MenuViewModelDelegate{
+    func didSuccessLogout(data: logoutModel){
+        
+        
+    }
+}
+
+extension MenuVC : ViewDelegate{
+    func showLoader() {
+        self.ShowLoader()
+    }
+    
+    func hideLoader() {
+        self.HideLoader()
+    }
+    
+    func showAlert(alert: String)
+    {
+        initializeCustomOkAlert(self.view, isHideBlurView: true)
+        okAlertView.delegate = self
+    }
+}
+
+extension MenuVC : OKAlertViewDelegate{
+    func okBtnAction() {
+        okAlertView.removeFromSuperview()
+//         CommonFunctions.sharedmanagerCommon.setRootLogin()
+    }
+}
 //MARK:- Custom Yes No Alert Delegate
 extension MenuVC : YesNoAlertViewDelegate{
     
     func yesBtnAction() {
         yesNoAlertView.removeFromSuperview()
         if self.checkInternetConnection(){
+            self.menuViewModel?.logOut(userID: UserDefaultExtensionModel.shared.currentUserId)
             CommonFunctions.sharedmanagerCommon.setRootLogin()
         }else{
             self.showAlert(Message: Alerts.kNoInternetConnection)

@@ -62,6 +62,31 @@ class ClassPeriodsTimetableViewModel{
             self.classPeriodsTimeTableView?.showAlert(alert: error?.localizedDescription ?? "Error")
         }
     }
+    //MARK:- Get Class List Dropdown Api for teacher
+    func getClassListTeacherDropdown(teacherId: Int, departmentId: Int){
+        
+        classPeriodsTimeTableView?.showLoader()
+        
+        ClassApi.sharedManager.getClassDropdownDataTeacher(teacherId: teacherId, departmentId: departmentId, completionResponse: { (responseClassDropdown) in
+        
+            self.classPeriodsTimeTableView?.hideLoader()
+            switch responseClassDropdown.statusCode{
+            case KStatusCode.kStatusCode200:
+                self.classPeriodsTimeTableDelegate?.classListDidSuccess(data: responseClassDropdown)
+            case KStatusCode.kStatusCode401:
+                self.classPeriodsTimeTableView?.showAlert(alert: responseClassDropdown.message ?? "")
+                self.classPeriodsTimeTableDelegate?.unauthorizedUser()
+            default:
+                self.classPeriodsTimeTableView?.showAlert(alert: responseClassDropdown.message ?? "")
+            }
+        }, completionnilResponse: { (nilResponse) in
+            self.classPeriodsTimeTableView?.hideLoader()
+            self.classPeriodsTimeTableView?.showAlert(alert: nilResponse ?? "Server Error")
+        }) { (error) in
+            self.classPeriodsTimeTableView?.hideLoader()
+            self.classPeriodsTimeTableView?.showAlert(alert: error?.localizedDescription ?? "Error")
+        }
+    }
     
     //Get Time Table According to class
     func getTimeTableAccordingClass(classId: Int?,teacherId: Int?){

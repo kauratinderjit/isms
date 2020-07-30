@@ -177,6 +177,53 @@ class LoginViewModel {
             }
         }
     }
+    
+    func deviceTokenApi(DeviceType: String,DeviceToken: String,UserId:Int) {
+                                 logInView?.showLoader()
+                      let param = [       "DeviceType" : DeviceType,
+                                           "DeviceToken" : DeviceToken,
+                                           "UserId": UserId
+                                          
+                                           ] as [String : Any]
+        
+                                    print("device token: ",param)
+                                          
+                                       let url = "api/User/AddUpdateDeviceDetail"
+                                 HomeworkApi.sharedManager.likePost(url:url , parameters: param, completionResponse: { (response) in
+                                              print("device response: ",response)
+                                              self.logInView?.hideLoader()
+                                              switch response["StatusCode"] as? Int{
+                                              case 200: break
+                                               
+                                                            // self.uploadPostViewDelegate?.showAlert(alert: response["Message"]  as? String ?? "")
+                                                           //  self.UploadPostDelegate?.addedSuccessfully()
+                                                         case 401: break
+                                                            // self.uploadPostViewDelegate?.showAlert(alert: response["Message"] as? String ?? "")
+                                                             //self.AddHomeWorkDelegate?.unauthorizedUser()
+                                                         default: break
+                                                            // self.uploadPostViewDelegate?.showAlert(alert: response["Message"] as? String ?? "")
+                                                         }
+
+                                              
+                                          }, completionnilResponse: { (nilResponseError) in
+                                              self.logInView?.hideLoader()
+                                              if let error = nilResponseError{
+                                                 // self.uploadPostViewDelegate?.showAlert(alert: error.description)
+                                                  
+                                              }else{
+                                                  CommonFunctions.sharedmanagerCommon.println(object: SyllabusCoverage.kSyllabusResponseNotGet)
+                                              }
+                                          }) { (error) in
+                                              self.logInView?.hideLoader()
+                                              if let err = error?.localizedDescription{
+                                                //  self.uploadPostViewDelegate?.showAlert(alert: err)
+                                              }else{
+                                                  CommonFunctions.sharedmanagerCommon.println(object: SyllabusCoverage.kSyllabusResponseError)
+                                              }
+                                          }
+                           
+                            }
+       
     func getRoleId(userID: Int?){
         self.logInView?.showLoader()
         LoginApi.sharedmanagerAuth.getUserRoleId(url: ApiEndpoints.kUserRole + "\(userID ?? 0)", parameters: nil, completionResponse: { (UserRoleIdModel) in
@@ -317,6 +364,10 @@ extension LoginVC : LogInDelegate{
         UserDefaultExtensionModel.shared.forgotUserId = data.resultData?.userId ?? 0
     }
     func loginDidSucced(data: LoginData){
+        if let token = UserDefaults.standard.string(forKey: "token") {
+                 self.viewModel?.deviceTokenApi(DeviceType: "3",DeviceToken:  token,UserId:UserDefaultExtensionModel.shared.currentUserId)
+             }
+             
         let userId = data.resultData?.userId
         self.viewModel?.getRoleId(userID: userId)
     }

@@ -129,20 +129,20 @@ class TeacherListViewModel{
     }
     
       //MARK:- Teacher list
-        func substituteTeacherList(classId: Int, teacherId: Int){
+        func substituteTeacherList(classId: Int, teacherId: Int,periodId: Int,dayId: Int){
            
                 self.teacherListView?.showLoader()
             
             var postDict = [String:Any]()
             
-//            postDict[KApiParameters.KCommonParametersForList.kSearch] = searchText
-//            postDict[KApiParameters.KCommonParametersForList.kPageSize] = pageSize
-//            postDict[KApiParameters.KCommonParametersForList.kSortColumn] = ""
-//            postDict[KApiParameters.KCommonParametersForList.kSkip] = skip
+            postDict["ClassId"] = classId
+            postDict["TeacherId"] = teacherId
+            postDict["PeriodId"] = periodId
+            postDict["DayId"] = dayId
 //            postDict[KApiParameters.KCommonParametersForList.kSortColumnDir] = ""
 //            postDict["ParticularId"] = UserDefaultExtensionModel.shared.HODDepartmentId
             
-            TeacherApi.sharedManager.getSubstituteTeacherList(url: "api/Institute/GetFreeTeacherByClassId"+"?ClassId=\(classId)&teacherId=\(teacherId)", parameters: postDict, completionResponse: { (teacherModel) in
+            TeacherApi.sharedManager.getSubstituteTeacherList(url: "api/Institute/GetFreeTeacherForSubstitute", parameters: postDict, completionResponse: { (teacherModel) in
                 self.teacherListView?.hideLoader()
                 print("teachr data : ",teacherModel.resultData)
                 switch teacherModel.statusCode{
