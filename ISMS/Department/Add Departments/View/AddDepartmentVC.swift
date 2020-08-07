@@ -29,6 +29,10 @@ class AddDepartmentVC: BaseUIViewController {
     var isDepartmentAddUpdateSuccess = false
     var isUnauthorizedUser = false
    var descriptionText = ""
+    var isGalleryOpen = false
+    var departmentNameTxt = ""
+    var descriptionTexts = ""
+    var OthersText = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +42,24 @@ class AddDepartmentVC: BaseUIViewController {
     
     override func viewWillAppear(_ animated: Bool)
     {
-         
-        setUI()
+        if isGalleryOpen{
+            DispatchQueue.main.async {
+                if self.departmentNameTxt != ""{
+                    self.txtfieldTitle.text = self.departmentNameTxt
+                }
+                if self.descriptionTexts != ""{
+                    self.txtViewDescription.text = self.descriptionTexts
+                }
+                if self.OthersText != ""{
+                    self.txtfieldOthers.text = self.OthersText
+                }
+            }
+           
+            
+        }else{
+              setUI()
+        }
+        
     }
     
     //MARK:- Action
@@ -50,10 +70,19 @@ class AddDepartmentVC: BaseUIViewController {
     
     @IBAction func btnAddImage(_ sender: UIButton) {
          view.endEditing(true)
-        if self.txtViewDescription.text != nil{
-            descriptionText = self.txtViewDescription.text
+//        if self.txtViewDescription.text != nil{
+//            descriptionText = self.txtViewDescription.text
+//        }
+        if txtfieldTitle.text != ""{
+            departmentNameTxt = txtfieldTitle.text ?? ""
         }
-       
+        if txtViewDescription.text != ""{
+            descriptionTexts = txtViewDescription.text ?? ""
+        }
+        if txtfieldOthers.text != ""{
+            OthersText = txtfieldOthers.text ?? ""
+        }
+        
         initializeGalleryAlert(self.view, isHideBlurView: true)
         galleryAlertView.delegate = self
         
@@ -172,12 +201,15 @@ extension AddDepartmentVC : ViewDelegate{
     func setDataInTextFields(data: DepartmentDetailModel){
         if let title = data.resultData?.title{
             txtfieldTitle.text = title
+            descriptionText = txtfieldTitle.text ?? ""
         }
         if let description = data.resultData?.description{
             txtViewDescription.text = description
+            descriptionTexts = txtViewDescription.text ?? ""
         }
         if let othrs = data.resultData?.others{
             txtfieldOthers.text = othrs
+            OthersText = txtfieldOthers.text ?? ""
         }
         if let imageUrl = data.resultData?.logoUrl{
           //mohit  selectedImageUrl = URL(string: imageUrl)
@@ -224,17 +256,22 @@ extension AddDepartmentVC:UIImagePickerDelegate{
         self.imgViewDepartment.contentMode = .scaleAspectFill
         self.imgViewDepartment.image = image
     }
+    func cancelSelectionOfImg(){
+         isGalleryOpen = true
+    }
 }
 
 //MARK:- Custom Gallery Alert
 extension AddDepartmentVC : GalleryAlertCustomViewDelegate{
     func galleryBtnAction() {
         self.view.endEditing(true)
+        isGalleryOpen = true
         self.OpenGalleryCamera(camera: false, imagePickerDelegate: self)
 //        CommonFunctions.sharedmanagerCommon.println(object: "Gallery")
         galleryAlertView.removeFromSuperview()
         
     }
+    
     func cameraButtonAction() {
         self.view.endEditing(true)
         self.OpenGalleryCamera(camera: true, imagePickerDelegate: self)
@@ -242,6 +279,7 @@ extension AddDepartmentVC : GalleryAlertCustomViewDelegate{
         galleryAlertView.removeFromSuperview()
     }
     func cancelButtonAction() {
+        isGalleryOpen = false
         galleryAlertView.removeFromSuperview()
     }
 }

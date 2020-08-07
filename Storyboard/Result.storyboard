@@ -216,8 +216,8 @@
                     <navigationItem key="navigationItem" title="Add Notes" id="tug-Bf-hdy"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="btnAdd" destination="CtK-dU-Fwm" id="qoa-1x-hDs"/>
                         <outlet property="btnAddNote" destination="w0N-u5-7Nx" id="Xqb-rD-QNt"/>
+                        <outlet property="btnAddResult" destination="CtK-dU-Fwm" id="Omz-dI-499"/>
                         <outlet property="collectionView" destination="P4P-RZ-mkV" id="DZP-oD-nG0"/>
                         <outlet property="heightTblView" destination="bEJ-a7-pS0" id="vja-Rm-jM1"/>
                         <outlet property="scrollView" destination="shk-bu-mRB" id="G0s-Ld-yRa"/>
@@ -340,6 +340,7 @@
                         <viewLayoutGuide key="safeArea" id="jmm-9p-H4l"/>
                     </view>
                     <connections>
+                        <outlet property="btnAddResult" destination="H12-xU-a7D" id="JG5-1v-G8L"/>
                         <outlet property="tableView" destination="Lj9-Nd-r08" id="BW9-S9-R9D"/>
                     </connections>
                 </viewController>

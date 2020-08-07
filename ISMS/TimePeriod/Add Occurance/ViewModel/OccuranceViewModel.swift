@@ -11,6 +11,7 @@ protocol OccuranceDelegate: class {
     func unauthorizedUser()
     func getClassdropdownDidSucceed(data : GetCommonDropdownModel)
     func GetSubjectListDidSucceed(data:[AddStudentRatingResultData]?)
+    func GetOccuranceDidSucceed(data:AddSubjectModel)
 }
 class OccuranceViewModel{
     
@@ -103,6 +104,51 @@ class OccuranceViewModel{
             //            }
         }
         
+    }
+    
+    func GetOccurance(classid: Int,subjectId: Int){
+        self.ListVC?.showLoader()
+        let paramDict = ["ClassId":classid,"classSubjectId" : subjectId] as [String : Any]
+        let url = "api/Institute/GetOccuranceByClassId" + "?ClassId=" + "\(classid)" + "&classSubjectId=" + "\(subjectId)"
+        AddStudentRatingApi.sharedInstance.GetAddOccrance(url: url , parameters: paramDict as [String : Any], completionResponse: { (AddSubjectModel) in
+            
+            print("your respomnse subjectdata : ",AddSubjectModel.resultData)
+            
+            if AddSubjectModel.statusCode == KStatusCode.kStatusCode200 {
+                self.ListVC?.hideLoader()
+                
+                self.OccuranceDelegate?.GetOccuranceDidSucceed(data:AddSubjectModel)
+                
+            }else if AddSubjectModel.statusCode == KStatusCode.kStatusCode401 {
+                self.ListVC?.hideLoader()
+                self.ListVC?.showAlert(alert: AddSubjectModel.message ?? "")
+                  self.OccuranceDelegate?.unauthorizedUser()
+            }else{
+                self.ListVC?.hideLoader()
+                CommonFunctions.sharedmanagerCommon.println(object: "student APi status change")
+            }
+            
+        }, completionnilResponse: { (nilResponseError) in
+            
+            self.ListVC?.hideLoader()
+            //   self.SubjectListDelegate?.SubjectListDidFailed()
+            
+            if let error = nilResponseError{
+                self.ListVC?.showAlert(alert: error)
+                
+            }else{
+                CommonFunctions.sharedmanagerCommon.println(object: "student APi Nil response")
+            }
+            
+        }) { (error) in
+            self.ListVC?.hideLoader()
+            //   self.SubjectListDelegate?.SubjectListDidFailed()
+            //            if let err = error?.localizedDescription{
+            //                self.studentRatingView?.showAlert(alert: err)
+            //            }else{
+            //                CommonFunctions.sharedmanagerCommon.println(object: "student APi error response")
+            //            }
+        }
     }
     
     func submitOccurance(ClassId : Int,ClassSubjectId: Int,Occurrence: Int){

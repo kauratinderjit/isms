@@ -26,7 +26,7 @@ class AddOccuranceVC: BaseUIViewController {
     var isSubjectSelected = false
     var isOccuranceSelected = false
     var selectedSubjectId : Int?
-      var arrOccurancelist = [1,2,3,4,5,6,7,8]
+      var arrOccurancelist = [0,1,2,3,4,5,6,7,8]
     let departmentId = UserDefaultExtensionModel.shared.HODDepartmentId
     let userRoleParticularId = UserDefaultExtensionModel.shared.userRoleParticularId
     override func viewDidLoad() {
@@ -47,7 +47,7 @@ class AddOccuranceVC: BaseUIViewController {
             }
              
         }
-     func setupUI(){
+        func setupUI(){
         self.title = "Add Occurance"
         setBackButton()
         self.ViewModel = OccuranceViewModel.init(delegate: self)
@@ -113,6 +113,16 @@ class AddOccuranceVC: BaseUIViewController {
 
 
 extension AddOccuranceVC : OccuranceDelegate{
+    
+    func GetOccuranceDidSucceed(data:AddSubjectModel){
+        if data.resultData != nil{
+            if let value = data.resultData{
+                 self.txtFieldOccurance.text = "\(value)"
+            }
+           
+        }
+        
+    }
      func unauthorizedUser() {
             isUnauthorizedUser = true
         }
@@ -138,6 +148,7 @@ extension AddOccuranceVC : OccuranceDelegate{
                          selectedClassSubjectId = arrSubjectList1[0].classSubjectId
                         txtFieldSubject.text = subjectName
                     }
+                    self.ViewModel?.GetOccurance(classid: selectedClassID ?? 0,subjectId: selectedClassSubjectId ?? 0)
                 }else{
                     txtFieldSubject.text = ""
                     txtFieldSubject.placeholder = "No Subject assign"
@@ -170,6 +181,7 @@ extension AddOccuranceVC: SharedUIPickerDelegate{
                 if let index = selectedSubjectArrIndex {
                     if arrSubjectList1.count>index{
                         selectedClassSubjectId = arrSubjectList1[index].classSubjectId
+                        self.ViewModel?.GetOccurance(classid: selectedClassID ?? 0,subjectId: selectedClassSubjectId ?? 0)
                         }
                     }
                 }

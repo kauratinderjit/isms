@@ -73,17 +73,21 @@ class ContactUsVC: BaseUIViewController {
                if let cell = tableViewAdmission.cellForRow(at: indexPath) as? AdmissionTableCell {
                 if cell.txtFieldPhoneNum.text != ""{
                     if cell.txtFieldEmail.text != ""{
-                        var data = [String:Any]()
-                        data = ["AdmissionInquiryId":0 , "AdmissionEmail": cell.txtFieldEmail.text,"AdmissionNumber":cell.txtFieldPhoneNum.text]
-                        print("data: ",data)
-                        cell.btnMinus.isHidden = false
-                        cell.addMoreBtn.isHidden = true
-                        lstAdmissionInquiryViewModels.append(data)
-                        tableAdmissionHeightConstraints.constant = (tableAdmissionHeightConstraints.constant ?? 167)+120
-                        viewHeightConstraints.constant = (viewHeightConstraints.constant ?? 653) + 120
-                        tableViewAdmission.reloadData()
+                       if cell.txtFieldEmail.text?.isValidEmail() == false{
+                            self.showAlert(alert: "Please enter valid email.")
+                        }else{
+                            var data = [String:Any]()
+                            data = ["AdmissionInquiryId":0 , "AdmissionEmail": cell.txtFieldEmail.text,"AdmissionNumber":cell.txtFieldPhoneNum.text]
+                            print("data: ",data)
+                            cell.btnMinus.isHidden = false
+                            cell.addMoreBtn.isHidden = true
+                            lstAdmissionInquiryViewModels.append(data)
+                            tableAdmissionHeightConstraints.constant = (tableAdmissionHeightConstraints.constant ?? 167)+120
+                            viewHeightConstraints.constant = (viewHeightConstraints.constant ?? 653) + 120
+                            tableViewAdmission.reloadData()
+                        }
                     }else{
-                        self.showAlert(alert: "Please enter email number.")
+                        self.showAlert(alert: "Please enter email.")
                     }
                 }else{
                      self.showAlert(alert: "Please enter phone number.")
@@ -504,7 +508,7 @@ extension ContactUsVC : UITableViewDataSource{
                 if fromAdmin == 1{
                     return lstAdmissionInquiryViewModels.count
                 }else{
-                    return lstAdmissionInquiryViewModels.count-1
+                    return lstAdmissionInquiryViewModels.count+1
                 }
             }
         }else if tableView == tableViewGeneral{

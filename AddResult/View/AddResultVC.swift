@@ -11,14 +11,16 @@ import UIKit
 
 class AddResultVC: BaseUIViewController {
        
-        @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var btnAdd: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
         @IBOutlet weak var btnAddNote: UIButton!
         @IBOutlet weak var txtfieldTitle: UITextField!
         @IBOutlet weak var txtViewDescription: UITextView!
         @IBOutlet weak var tblView: UITableView!
     
     @IBOutlet weak var collectionView: UICollectionView!
-     let documentInteractionController = UIDocumentInteractionController()
+//     let documentInteractionController = UIDocumentInteractionController()
+    let documentInteractionController = UIDocumentInteractionController()
         var viewModel : SubjectChapterTopicViewModel?
         var lastText: String?
         var dictionaries = [[String:Any]]()
@@ -31,8 +33,9 @@ class AddResultVC: BaseUIViewController {
         var editableData : GetTopicResultData?
         static var isFromHomeWorkDate:Bool?
         @IBOutlet weak var heightTblView: NSLayoutConstraint!
-        @IBOutlet weak var btnAdd: UIButton!
-     var arr_resulrListReq : GetListResultData?
+     
+    @IBOutlet weak var btnAddResult: UIButton!
+    var arr_resulrListReq : GetListResultData?
        var isResultEditing: Bool?
          var booledit = false
     var deletedArr = NSMutableArray()
@@ -42,6 +45,7 @@ class AddResultVC: BaseUIViewController {
         override func viewDidLoad() {
             super.viewDidLoad()
             setUp()
+              documentInteractionController.delegate = self
             // Do any additional setup after loading the view.
 
                 if isResultEditing == true {
@@ -66,8 +70,10 @@ class AddResultVC: BaseUIViewController {
                            }
                     
                 }
-                
-            
+            if UserDefaultExtensionModel.shared.currentUserRoleId == 2 || UserDefaultExtensionModel.shared.currentUserRoleId == 4 || UserDefaultExtensionModel.shared.currentUserRoleId == 5 || UserDefaultExtensionModel.shared.currentUserRoleId == 6{
+                btnAddNote.isHidden = true
+                btnAddResult.isHidden = true
+            }
         }
         
         override func viewDidDisappear(_ animated: Bool) {
@@ -96,9 +102,6 @@ class AddResultVC: BaseUIViewController {
         
         @IBAction func actionAddNotes(_ sender: UIButton) {
              if checkInternetConnection(){
-                
-                
-                
               if txtfieldTitle.text == "" {
                     
                       self.showAlert(alert: "Please enter title")
@@ -125,10 +128,10 @@ class AddResultVC: BaseUIViewController {
 //                     self.showAlert(Message: "Homework added successfully")
 //                    self.navigationController?.popViewController(animated: true)
                 if isResultEditing == true{
-                    self.viewModel?.addResult(ResultId: arr_resulrListReq?.ResultId ?? 0, SessionId: 2, Title: txtfieldTitle.text ?? "" , IFile: attachementArr, lstdeleteattachmentModel: deletedArr)
+                    self.viewModel?.addResult(ResultId: arr_resulrListReq?.ResultId ?? 0, SessionId: UserDefaultExtensionModel.shared.activeSessionId, Title: txtfieldTitle.text ?? "" , IFile: attachementArr, lstdeleteattachmentModel: deletedArr)
                                    
                 }else{
-                    self.viewModel?.addResult(ResultId: 0, SessionId: 2, Title: txtfieldTitle.text ?? "" , IFile: attachementArr, lstdeleteattachmentModel: deletedArr)
+                    self.viewModel?.addResult(ResultId: 0, SessionId: UserDefaultExtensionModel.shared.activeSessionId, Title: txtfieldTitle.text ?? "" , IFile: attachementArr, lstdeleteattachmentModel: deletedArr)
                                    
                 }
            
@@ -154,35 +157,35 @@ class AddResultVC: BaseUIViewController {
             
         }
           func storeAndShare(withURLString: String)
-               {
-                   let urlString = withURLString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+          {
+              let urlString = withURLString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
 
-                   guard let url = URL(string: urlString) else { return }
-                   /// START YOUR ACTIVITY INDICATOR HERE
-                   URLSession.shared.dataTask(with: url) { data, response, error in
-                       guard let data = data, error == nil else { return }
-                       let tmpURL = FileManager.default.temporaryDirectory
-                           .appendingPathComponent(response?.suggestedFilename ?? "fileName")
-                       do {
-                           try data.write(to: tmpURL)
-                       } catch {
-                           print(error)
-                       }
-                       DispatchQueue.main.async {
-        //                   self.hideLoader()
-                           /// STOP YOUR ACTIVITY INDICATOR HERE
-                       self.share(url: tmpURL)
-                           
-                           let pdfFilePath = URL(string: tmpURL.absoluteString)
-                           let pdfData = NSData(contentsOf: pdfFilePath!)
-                           let activityVC = UIActivityViewController(activityItems: [pdfData!], applicationActivities: nil)
-                           self.present(activityVC, animated: true, completion: nil)
-                           
-                       }
-                       }.resume()
-                    //  hideLoader()
-                   
-               }
+              guard let url = URL(string: urlString) else { return }
+              /// START YOUR ACTIVITY INDICATOR HERE
+              URLSession.shared.dataTask(with: url) { data, response, error in
+                  guard let data = data, error == nil else { return }
+                  let tmpURL = FileManager.default.temporaryDirectory
+                      .appendingPathComponent(response?.suggestedFilename ?? "fileName")
+                  do {
+                      try data.write(to: tmpURL)
+                  } catch {
+                      print(error)
+                  }
+                  DispatchQueue.main.async {
+                      self.hideLoader()
+                      /// STOP YOUR ACTIVITY INDICATOR HERE
+                  self.share(url: tmpURL)
+                      
+                      let pdfFilePath = URL(string: tmpURL.absoluteString)
+                      let pdfData = NSData(contentsOf: pdfFilePath!)
+                      let activityVC = UIActivityViewController(activityItems: [pdfData!], applicationActivities: nil)
+                      self.present(activityVC, animated: true, completion: nil)
+                      
+                  }
+                  }.resume()
+               //  hideLoader()
+              
+          }
     
     func share(url: URL)
        {
@@ -254,6 +257,15 @@ class AddResultVC: BaseUIViewController {
 //
 //    }
 
+extension AddResultVC: UIDocumentInteractionControllerDelegate{
+    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
+        guard let navVC = self.navigationController else {
+            return self
+        }
+        return navVC
+    }
+}
+
 ///MARK:- UICollectionViewDelegate UICollectionViewDelegate
 extension AddResultVC : UICollectionViewDelegate , UICollectionViewDataSource{
     
@@ -280,9 +292,13 @@ extension AddResultVC : UICollectionViewDelegate , UICollectionViewDataSource{
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        let dataFoRow = uploadData[indexPath.row]
-            showLoader()
-//            storeAndShare(withURLString: dataFoRow["url"] ?? "")
+        
+        
+        let dataFoRow = uploadData[indexPath.row] as! [String:Any]
+        showLoader()
+//        let dataUrl = dataFoRow as AnyObject as! [String:Any]
+        let stringUrl = dataFoRow["url"] as! String
+        storeAndShare(withURLString:  stringUrl)
     }
     
 }
@@ -374,7 +390,7 @@ extension AddResultVC : SubjectChapterTopicDelegate {
     }
     
     func getTopicList() {
-        self.showAlert(alert: "Topic added successfully")
+        self.showAlert(alert: "Result Added  successfully")
         self.navigationController?.popViewController(animated: true)
     }
     

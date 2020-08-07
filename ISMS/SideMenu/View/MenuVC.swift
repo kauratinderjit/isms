@@ -620,20 +620,7 @@ extension MenuVC : UITableViewDelegate{
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
-            
-//            let storyboard = UIStoryboard.init(name: "Result", bundle: nil)
-//            let vc = storyboard.instantiateViewController(withIdentifier: "ResultListVC") as? ResultListVC
-//
-//            let frontVC = revealViewController().frontViewController as? UINavigationController
-//            frontVC?.pushViewController(vc!, animated: false)
-//            revealViewController().pushFrontViewController(frontVC, animated: true)
-            
-//            let storyboard = UIStoryboard.init(name: "Session", bundle: nil)
-//            let vc = storyboard.instantiateViewController(withIdentifier: "SessionListVC") as? SessionListVC
-//            let frontVC = revealViewController().frontViewController as? UINavigationController
-//            frontVC?.pushViewController(vc!, animated: false)
-//            revealViewController().pushFrontViewController(frontVC, animated: true)
-//            break
+            break
             
             case "ContactUS":
             let storyboard = UIStoryboard.init(name: KStoryBoards.kContactUs, bundle: nil)
@@ -642,13 +629,34 @@ extension MenuVC : UITableViewDelegate{
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
             revealViewController().pushFrontViewController(frontVC, animated: true)
-//
-//            let storyboard = UIStoryboard.init(name: "Session", bundle: nil)
-//            let vc = storyboard.instantiateViewController(withIdentifier: "StudentSessionVC") as? StudentSessionVC
-//            let frontVC = revealViewController().frontViewController as? UINavigationController
-//            frontVC?.pushViewController(vc!, animated: false)
-//            revealViewController().pushFrontViewController(frontVC, animated: true)
+
              break
+            
+        case "ManageStudentSession":
+            let storyboard = UIStoryboard.init(name: "Session", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "StudentSessionVC") as? StudentSessionVC
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(vc!, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
+            break
+            
+            case "ManageResults":
+                let storyboard = UIStoryboard.init(name: "Result", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "ResultListVC") as? ResultListVC
+                
+                let frontVC = revealViewController().frontViewController as? UINavigationController
+                frontVC?.pushViewController(vc!, animated: false)
+                revealViewController().pushFrontViewController(frontVC, animated: true)
+            break
+            
+        case "Results":
+            let storyboard = UIStoryboard.init(name: "Result", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "ResultListVC") as? ResultListVC
+                
+                let frontVC = revealViewController().frontViewController as? UINavigationController
+                frontVC?.pushViewController(vc!, animated: false)
+                revealViewController().pushFrontViewController(frontVC, animated: true)
+            break
             
             case "LeaveApplications":
             let storyboard = UIStoryboard.init(name: "Leave", bundle: nil)

@@ -141,8 +141,8 @@ class AddHODViewModel{
             switch  error {
                 
                 
-            case ValidationError.phoneOrEmailIsEmpty:
-                addHODView?.showAlert(alert: "Phone Number or Email Address should not be empty")
+//            case ValidationError.phoneOrEmailIsEmpty:
+//                addHODView?.showAlert(alert: "Email Address should not be empty")
                 
             case ValidationError.emptyPhoneNumber:
                 addHODView?.showAlert(alert: Alerts.kEmptyPhoneNumber)
@@ -239,9 +239,13 @@ class AddHODViewModel{
     //MARK:- Validations Add HOD
     func validationsAddHOD(hodId:Int?,firstName: String?,lastName: String?,address: String?,dateOfBirth: String?,gender: String?,profileImageUrl: URL? ,idProofName: String? ,idProofImgUrl: URL?,email:String?,phoneNumber: String?,departmentId: Int?,departmentName: String?,qualification: String?,workExperience: String?,additionalSkills:String?,others: String?) throws
     {
-        if email == nil&&phoneNumber == nil||email == ""&&phoneNumber == ""
+        if phoneNumber == nil || phoneNumber == ""
         {
-            throw ValidationError.phoneOrEmailIsEmpty
+            throw ValidationError.emptyPhoneNumber
+        }
+            
+        if email!.isEmpty{
+            throw ValidationError.invalidEmail
         }
         else
         {
@@ -285,6 +289,7 @@ class AddHODViewModel{
                 throw ValidationError.emptyPhoneNumber
             }
         }
+        
         
         
         guard let firstName = firstName,  !firstName.isEmpty, !firstName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else

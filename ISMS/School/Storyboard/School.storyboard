@@ -663,14 +663,14 @@
             <objects>
                 <viewController storyboardIdentifier="AddSchoolVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GMA-8A-Fml" customClass="AddSchoolViewController" customModule="ISMS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OlW-Ca-bEB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1500"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1700"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kXp-wy-4P9">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1500"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1700"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="owJ-6q-x0y">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1586"/>
+                                        <rect key="frame" x="0.0" y="44" width="375" height="1657"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OD7-Zm-jen">
                                                 <rect key="frame" x="228" y="112" width="30" height="30"/>
@@ -1273,10 +1273,24 @@
                                                     <action selector="Action_submitInfo:" destination="GMA-8A-Fml" eventType="touchUpInside" id="0Wo-lJ-a6P"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ci5-Zr-Dog">
+                                                <rect key="frame" x="12" y="1519" width="351" height="58"/>
+                                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="58" id="MjW-Kt-Cka"/>
+                                                </constraints>
+                                                <state key="normal" title="Add Session">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="actionAddSession:" destination="GMA-8A-Fml" eventType="touchUpInside" id="ppS-is-ozk"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="UTA-L5-Zx4" firstAttribute="bottom" secondItem="8Z9-IK-bPi" secondAttribute="bottom" id="4bf-F3-IVX"/>
+                                            <constraint firstItem="ci5-Zr-Dog" firstAttribute="top" secondItem="woK-wM-lHx" secondAttribute="bottom" constant="35" id="5xl-fb-7vA"/>
                                             <constraint firstItem="woK-wM-lHx" firstAttribute="top" secondItem="IzP-SX-JhV" secondAttribute="bottom" constant="67" id="AeW-gu-1j1"/>
                                             <constraint firstItem="LKh-ko-v0w" firstAttribute="leading" secondItem="owJ-6q-x0y" secondAttribute="leading" id="Fgn-Pn-7ye"/>
                                             <constraint firstAttribute="trailing" secondItem="IzP-SX-JhV" secondAttribute="trailing" constant="9" id="IYC-Zj-df3"/>
@@ -1284,10 +1298,12 @@
                                             <constraint firstItem="8Z9-IK-bPi" firstAttribute="centerX" secondItem="owJ-6q-x0y" secondAttribute="centerX" id="U8K-Jd-e5c"/>
                                             <constraint firstItem="OD7-Zm-jen" firstAttribute="top" secondItem="owJ-6q-x0y" secondAttribute="top" constant="112" id="Ult-6I-Zhb"/>
                                             <constraint firstAttribute="trailing" secondItem="LKh-ko-v0w" secondAttribute="trailing" id="Xfn-yq-SLz"/>
+                                            <constraint firstAttribute="trailing" secondItem="ci5-Zr-Dog" secondAttribute="trailing" constant="12" id="a4G-JH-O4l"/>
                                             <constraint firstAttribute="trailing" secondItem="woK-wM-lHx" secondAttribute="trailing" constant="12" id="cig-Qb-cr0"/>
                                             <constraint firstItem="UTA-L5-Zx4" firstAttribute="trailing" secondItem="8Z9-IK-bPi" secondAttribute="trailing" id="gs8-De-HTi"/>
+                                            <constraint firstAttribute="bottom" secondItem="ci5-Zr-Dog" secondAttribute="bottom" constant="80" id="if3-wD-sGL"/>
                                             <constraint firstItem="OD7-Zm-jen" firstAttribute="leading" secondItem="8Z9-IK-bPi" secondAttribute="trailing" constant="-20.5" id="jQW-NB-yjb"/>
-                                            <constraint firstAttribute="bottom" secondItem="woK-wM-lHx" secondAttribute="bottom" constant="102" id="kmV-cQ-ifC"/>
+                                            <constraint firstItem="ci5-Zr-Dog" firstAttribute="leading" secondItem="owJ-6q-x0y" secondAttribute="leading" constant="12" id="poC-uk-ZXe"/>
                                             <constraint firstItem="IzP-SX-JhV" firstAttribute="leading" secondItem="owJ-6q-x0y" secondAttribute="leading" constant="8" id="qcz-G2-ahg"/>
                                             <constraint firstItem="woK-wM-lHx" firstAttribute="leading" secondItem="owJ-6q-x0y" secondAttribute="leading" constant="12" id="tCM-uf-ZEi"/>
                                             <constraint firstItem="8Z9-IK-bPi" firstAttribute="top" secondItem="owJ-6q-x0y" secondAttribute="top" constant="28" id="w6R-Mb-N0R"/>
@@ -1299,7 +1315,7 @@
                                     <constraint firstItem="owJ-6q-x0y" firstAttribute="leading" secondItem="kXp-wy-4P9" secondAttribute="leading" id="2zY-s8-7h3"/>
                                     <constraint firstItem="owJ-6q-x0y" firstAttribute="width" secondItem="kXp-wy-4P9" secondAttribute="width" id="GbR-bk-q6v"/>
                                     <constraint firstAttribute="trailing" secondItem="owJ-6q-x0y" secondAttribute="trailing" id="I07-1E-pia"/>
-                                    <constraint firstItem="owJ-6q-x0y" firstAttribute="top" secondItem="kXp-wy-4P9" secondAttribute="top" id="IJH-bB-t6m"/>
+                                    <constraint firstItem="owJ-6q-x0y" firstAttribute="top" secondItem="kXp-wy-4P9" secondAttribute="top" constant="44" id="IJH-bB-t6m"/>
                                     <constraint firstAttribute="bottom" secondItem="owJ-6q-x0y" secondAttribute="bottom" id="uHz-1W-bZq"/>
                                 </constraints>
                             </scrollView>
@@ -1493,7 +1509,7 @@
                         <viewLayoutGuide key="safeArea" id="xFV-7j-uWu"/>
                     </view>
                     <navigationItem key="navigationItem" title="Manage School" id="uZg-qu-jsF"/>
-                    <size key="freeformSize" width="375" height="1500"/>
+                    <size key="freeformSize" width="375" height="1700"/>
                     <connections>
                         <outlet property="ContactDetailsView" destination="SLU-8e-fNO" id="VzD-Zj-V6U"/>
                         <outlet property="SchoolCollegeView" destination="Uxb-Zg-7JF" id="ded-Mj-Yux"/>

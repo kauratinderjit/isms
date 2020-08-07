@@ -224,7 +224,6 @@ class TimePeriodVC: BaseUIViewController {
                         if let hour = Int(strArray[0]) ,  let min = Int(strArray[1]) {
                             hoursSelectionMinimimum(startHour: hour, startMinute: min)
                         }
-                        
                     }
                 }
             }

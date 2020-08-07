@@ -265,8 +265,13 @@ class AddSchoolViewController: BaseUIViewController {
         viewtableView.isHidden = true
     }
     
-    
-    
+    @IBAction func actionAddSession(_ sender: Any) {
+        let storyboard = UIStoryboard.init(name: "Session", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "SessionListVC") as? SessionListVC
+        let frontVC = revealViewController().frontViewController as? UINavigationController
+        frontVC?.pushViewController(vc!, animated: false)
+        revealViewController().pushFrontViewController(frontVC, animated: true)
+    }
 }
 //MARK:- AddSchoolDelegate
 extension AddSchoolViewController: AddSchoolDelegate

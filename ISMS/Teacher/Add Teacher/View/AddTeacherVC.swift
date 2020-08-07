@@ -445,7 +445,7 @@ extension AddTeacherVC : OKAlertViewDelegate{
             
            let storyboard = UIStoryboard.init(name: "Teacher", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "AssignSubjectToTeacherVC") as? AssignSubjectToTeacherVC
-            vc?.teacherId = self.teacherID
+            vc?.teacherId = self.resultTeacherId
             vc?.isUpdate = 1
             let frontVC = revealViewController().frontViewController as? UINavigationController
             frontVC?.pushViewController(vc!, animated: false)
@@ -550,6 +550,7 @@ extension AddTeacherVC : AddTeacherDelegate{
     func addUpdateTeacherDidSuccess(data: TeacherAddModel) {
         isTeacherAddUpdateSuccess = true
         self.resultTeacherId = data.resultData
+        
     }
     
     func detailTeacherDidSucceed(data: TeacherDetailModel) {

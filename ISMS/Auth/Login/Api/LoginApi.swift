@@ -368,7 +368,7 @@ class LoginApi
                     
                     if let responseData  = data as? [String : Any]
                     {
-                        print("responseData: ",responseData)
+                        print("responseData hod: ",responseData)
                         
                         self.getHomeModel(data: responseData, completionResponse: { (responseModel) in
                             completionResponse(responseModel)

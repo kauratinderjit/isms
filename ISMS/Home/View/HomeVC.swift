@@ -9,6 +9,8 @@
 import UIKit
 import SWRevealViewController
 import SDWebImage
+import Charts
+
 var selectedIndexParent =  0
 class HomeVC: BaseUIViewController {
     
@@ -49,6 +51,16 @@ class HomeVC: BaseUIViewController {
     @IBOutlet weak var lv3TopConstraints: NSLayoutConstraint!
     
     @IBOutlet weak var lblName3TopComnstraints: NSLayoutConstraint!
+    
+    
+    @IBOutlet weak var lineChartView: LineChartView!
+    
+    @IBOutlet weak var viewStatsAdmin: UIView!
+    
+    @IBOutlet weak var pieChartView: PieChartView!
+    @IBOutlet weak var viewMaleFemalePieChart: PieChartView!
+    
+    @IBOutlet weak var BarChartViewResultData: BarChartView!
     var studentArr = [StudentResultData]()
     private let sectionInsets = UIEdgeInsets(top: 5.0,left: 5.0,bottom: 5.0,right: 5.0)
     private var itemsPerRow: CGFloat = 3
@@ -65,6 +77,11 @@ class HomeVC: BaseUIViewController {
     static var isCameDirectFromLoginScreen : Bool?
     //For set the role id when user came from login id and selectRole
     static var roleIdFromUserRoleId : Int?
+    
+    let players = ["Classes","HODs","Sudents","Teachers"]
+//    let noOfTeacherStudentData = [12,4,12,24]
+    let maleArr = ["Male","Female"]
+//    let valesMale = [10,2]
     
     fileprivate var userRoleDelegate = MultiRoleTableViewDataSource()
     
@@ -86,6 +103,12 @@ class HomeVC: BaseUIViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
+       
+//      if checkInternetConnection(){
+//      }else{
+//          self.showAlert(Message: Alerts.kNoInternetConnection)
+//      }
+
         // Do any additional setup after loading the view.
         
         //        self.homeViewModel = HomeViewModel.init(delegate: self)
@@ -113,7 +136,111 @@ class HomeVC: BaseUIViewController {
         //        self.title = KAPPContentRelatedConstants.kAppTitle
         
     }
+    func customizeChartMaleFemale(dataPoints: [String], values: [Double]) {
+      
+      // 1. Set ChartDataEntry
+      var dataEntries: [ChartDataEntry] = []
+      for i in 0..<dataPoints.count {
+        let dataEntry = PieChartDataEntry(value: values[i], label: dataPoints[i], data:  dataPoints[i] as AnyObject)
+        dataEntries.append(dataEntry)
+      }
+      
+      // 2. Set ChartDataSet
+       let pieChartDataSet = PieChartDataSet(entries: dataEntries, label: nil)
+      pieChartDataSet.colors = colorsOfCharts(numbersOfColor: dataPoints.count)
+       
+      
+      // 3. Set ChartData
+      let pieChartData = PieChartData(dataSet: pieChartDataSet)
+      let format = NumberFormatter()
+      format.numberStyle = .none
+      let formatter = DefaultValueFormatter(formatter: format)
+      pieChartData.setValueFormatter(formatter)
+      
+      // 4. Assign it to the chart's data
+      viewMaleFemalePieChart.data = pieChartData
+       viewMaleFemalePieChart.legend.font = UIFont(name: "Verdana", size: 10.0)!
+       
+    }
+    func customizeChart(dataPoints: [String], values: [Double]) {
+       
+       // 1. Set ChartDataEntry
+       var dataEntries: [ChartDataEntry] = []
+       for i in 0..<dataPoints.count {
+         let dataEntry = PieChartDataEntry(value: values[i], label: dataPoints[i], data:  dataPoints[i] as AnyObject)
+         dataEntries.append(dataEntry)
+       }
+       
+       // 2. Set ChartDataSet
+        let pieChartDataSet = PieChartDataSet(entries: dataEntries, label: nil)
+       pieChartDataSet.colors = colorsOfCharts(numbersOfColor: dataPoints.count)
+        
+       
+       // 3. Set ChartData
+       let pieChartData = PieChartData(dataSet: pieChartDataSet)
+       let format = NumberFormatter()
+       format.numberStyle = .none
+       let formatter = DefaultValueFormatter(formatter: format)
+       pieChartData.setValueFormatter(formatter)
+       
+       // 4. Assign it to the chart's data
+       pieChartView.data = pieChartData
+//        pieChartView.animate(xAxisDuration: 5.0, yAxisDuration: 5.0, easingOption: .easeInCubic)
+        pieChartView.legend.font = UIFont(name: "Verdana", size: 10.0)!
+        
+     }
+     
+     private func colorsOfCharts(numbersOfColor: Int) -> [UIColor] {
+       var colors: [UIColor] = []
+       for _ in 0..<numbersOfColor {
+         let red = Double(arc4random_uniform(256))
+         let green = Double(arc4random_uniform(256))
+         let blue = Double(arc4random_uniform(256))
+         let color = UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: 1)
+         colors.append(color)
+       }
+       return colors
+     }
     
+    func setChart(dataPoints: [String], values: [Double]) {
+//      BarChartViewResultData.noDataText = "You need to provide data for the chart."
+//
+      var dataEntries: [BarChartDataEntry] = []
+
+      for i in 0..<dataPoints.count {
+        let dataEntry = BarChartDataEntry(x: Double(i), y: Double(values[i]))
+        dataEntries.append(dataEntry)
+      }
+
+        let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Bar Chart View")
+//      let chartData = BarChartData(dataSet: chartDataSet)
+        chartDataSet.colors = ChartColorTemplates.joyful()
+     
+        
+        
+        let chartData = BarChartData(dataSets: [chartDataSet])
+      BarChartViewResultData.data = chartData
+        BarChartViewResultData.xAxis.labelPosition = .bottom
+        BarChartViewResultData.xAxis.drawGridLinesEnabled = false
+        BarChartViewResultData.rightAxis.enabled = false
+        BarChartViewResultData.scaleYEnabled = false
+        BarChartViewResultData.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBounce)
+    }
+    
+    func setLineChart(dataPoints: [String], values: [Double]) {
+        
+        var dataEntries: [ChartDataEntry] = []
+        
+        for i in 0..<dataPoints.count {
+          let dataEntry = ChartDataEntry(x: values[i], y: Double(i))
+          dataEntries.append(dataEntry)
+        }
+        
+        let lineChartDataSet = LineChartDataSet(entries: dataEntries, label: nil)
+        let lineChartData = LineChartData(dataSet: lineChartDataSet)
+        lineChartView.data = lineChartData
+        
+    }
     override func viewWillAppear(_ animated: Bool)
     {
         
@@ -154,6 +281,7 @@ class HomeVC: BaseUIViewController {
         {
             self.title = "HOD's Dashboard"
             collectionView.isHidden = true
+            viewStatsAdmin.isHidden = false
             self.homeViewModel?.getData(userId: UserDefaultExtensionModel.shared.currentUserId)
         }
         else if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Teacher")
@@ -170,6 +298,7 @@ class HomeVC: BaseUIViewController {
             self.title = "Admin's Dashboard"
               collectionView.isHidden = true
             tblViewListing.isHidden = true
+            viewStatsAdmin.isHidden = false
         }
         else if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Student")
         {
@@ -287,97 +416,159 @@ extension HomeVC : HomeViewModelDelegate
     
     func AdminData(data: homeAdminResultData)
     {
-        lblName.text = data.AdminName
-        lblDept.text = (data.EmailId ?? "")
-        var strClass : String = "Class"
-        var strTeacher : String = "Teacher"
-        var strHOD : String = "HOD"
         
-        if data.NoOfClasses! > 1 {
-            strClass = "Classes"
-        }
-        if data.NoOfTeachers! > 1 {
-            strTeacher = "Teachers"
-        }
-        if data.NoOfHODs! > 1 {
-            strHOD = "HODs"
-        }
+        var  noOfTeacherStudentData = [Double]()
+//        noOfTeacherStudentData.append(Double(data.NoOfClasses ?? Int(0.0)))
+//        noOfTeacherStudentData.append(Double(data.NoOfHODs ?? Int(0.0)))
+//        noOfTeacherStudentData.append(Double(data.noOfSudents ?? Int(0.0)))
+//        noOfTeacherStudentData.append(Double(data.NoOfTeachers ?? Int(0.0)))
+        noOfTeacherStudentData = [12,5,6,7]
         
-      
         
-        lblName1.text = "\(String(describing: data.NoOfClasses!))" + " " + strClass
-        lblName2.text =  "\(String(describing: data.NoOfTeachers!))" + " " + strTeacher
-        lblName3.text =  "\(String(describing: data.NoOfHODs!))" + " " + strHOD
+          var  valesMale = [Double]()
+        valesMale = [10,2]
+//         valesMale.append(Double(data.countOfStudentMales ?? Int(0.0)))
+//         valesMale.append(Double(data.countOfStudentFemales ?? Int(0.0)))
         
-        if data.lstEvent?.count ?? 0 > 0 {
-            arrEventlist = data.lstEvent
-            tblViewListing.reloadData()
-        }
-        else{
-            tblViewListing.isHidden = true
-        }
-          self.homeViewModel?.GetEvents(enumTypeId:1, Search:"", Skip: 10,PageSize: 0,SortColumnDir: "", SortColumn: "",ParticularId: 0)
+         customizeChart(dataPoints: players, values: noOfTeacherStudentData.map{ Double($0) })
+          customizeChartMaleFemale(dataPoints: maleArr, values: valesMale.map{ Double($0) })
+        
+        
+        
+        BarChartViewResultData.animate(yAxisDuration: 2.0)
+        BarChartViewResultData.pinchZoomEnabled = false
+        BarChartViewResultData.drawBarShadowEnabled = false
+        BarChartViewResultData.drawBordersEnabled = false
+        BarChartViewResultData.doubleTapToZoomEnabled = false
+        BarChartViewResultData.drawGridBackgroundEnabled = true
+        BarChartViewResultData.chartDescription?.text = "Result Data Bar Chart View"
+        
+        let months = ["2010-2011", "2011-2012", "2012-2013", "2013-2014", "2015-2016", "2016-2017", "2017-2018", "2018-2019", "2019-2020"]
+        let unitsSold = [88.0, 77.0, 81.0, 93.0, 94.0, 95.0, 96.0, 97, 99.0]
+//        setChart(dataPoints: months, values: unitsSold)
+        
+        setChart(dataPoints: months, values: unitsSold)
+        setLineChart(dataPoints: months, values: unitsSold)
+//        lblName.text = data.AdminName
+//        lblDept.text = (data.EmailId ?? "")
+//        var strClass : String = "Class"
+//        var strTeacher : String = "Teacher"
+//        var strHOD : String = "HOD"
+//
+//        if data.NoOfClasses! > 1 {
+//            strClass = "Classes"
+//        }
+//        if data.NoOfTeachers! > 1 {
+//            strTeacher = "Teachers"
+//        }
+//        if data.NoOfHODs! > 1 {
+//            strHOD = "HODs"
+//        }
+//
+//
+//
+//        lblName1.text = "\(String(describing: data.NoOfClasses!))" + " " + strClass
+//        lblName2.text =  "\(String(describing: data.NoOfTeachers!))" + " " + strTeacher
+//        lblName3.text =  "\(String(describing: data.NoOfHODs!))" + " " + strHOD
+//
+//        if data.lstEvent?.count ?? 0 > 0 {
+//            arrEventlist = data.lstEvent
+//            tblViewListing.reloadData()
+//        }
+//        else{
+//            tblViewListing.isHidden = true
+//        }
+//          self.homeViewModel?.GetEvents(enumTypeId:1, Search:"", Skip: 10,PageSize: 0,SortColumnDir: "", SortColumn: "",ParticularId: 0)
     }
     
     func hodData(data: homeResultData)
     {
+         var  noOfTeacherStudentData = [Double]()
+        //        noOfTeacherStudentData.append(Double(data.NoOfClasses ?? Int(0.0)))
+        //        noOfTeacherStudentData.append(Double(data.noOfSudents ?? Int(0.0)))
+        //        noOfTeacherStudentData.append(Double(data.NoOfTeachers ?? Int(0.0)))
+                noOfTeacherStudentData = [12,5,6]
+                
+                let players = ["Classes","Sudents","Teachers"]
+                 customizeChart(dataPoints: players, values: noOfTeacherStudentData.map{ Double($0) })
+         BarChartViewResultData.animate(yAxisDuration: 2.0)
+                BarChartViewResultData.pinchZoomEnabled = false
+                BarChartViewResultData.drawBarShadowEnabled = false
+                BarChartViewResultData.drawBordersEnabled = false
+                BarChartViewResultData.doubleTapToZoomEnabled = false
+                BarChartViewResultData.drawGridBackgroundEnabled = true
+                BarChartViewResultData.chartDescription?.text = "Result Data Bar Chart View"
+                
+                let months = ["2010-2011", "2011-2012", "2012-2013", "2013-2014", "2015-2016", "2016-2017", "2017-2018", "2018-2019", "2019-2020"]
+                let unitsSold = [88.0, 77.0, 81.0, 93.0, 94.0, 95.0, 96.0, 97, 99.0]
+        //        setChart(dataPoints: months, values: unitsSold)
+                
+                setChart(dataPoints: months, values: unitsSold)
+                setLineChart(dataPoints: months, values: unitsSold)
         
-        self.iv1.isHidden = false
-        self.iv2.isHidden = false
-        self.iv3.isHidden = false
+           var  valesMale = [Double]()
+                valesMale = [10,2]
+        //         valesMale.append(Double(data.countOfStudentMales ?? Int(0.0)))
+        //         valesMale.append(Double(data.countOfStudentFemales ?? Int(0.0)))
+                
+                  customizeChartMaleFemale(dataPoints: maleArr, values: valesMale.map{ Double($0) })
         
-        self.lblName1.isHidden = false
-        self.lblName2.isHidden = false
-        self.lblName3.isHidden = false
-        
-        print(data)
-        lblName.text = data.HodName
-        lblDept.text = (data.DepartmentName ?? "")
-        
-        
-        
-        if UserDefaultExtensionModel.shared.imageUrl != nil{
-          var  imgProfileUrl = UserDefaultExtensionModel.shared.imageUrl
-            imgProfile.sd_imageIndicator = SDWebImageActivityIndicator.gray
-            //mohit studentImgUrl = URL(string: imgProfileUrl)
-            imgProfile.contentMode = .scaleAspectFill
-            imgProfile.sd_setImage(with: URL(string: imgProfileUrl), placeholderImage: UIImage(named: kImages.kProfileImage))
-        }else{
-//            studentImgUrl = URL(string: "")
-            imgProfile.image = UIImage.init(named: kImages.kProfileImage)
-        }
-        
-        var strClass : String = "Class"
-        var strTeacher : String = "Teacher"
-        var strStudent : String = "Student"
-        
-        if data.NumberofClasses! > 1
-        {
-            strClass = "Classes"
-        }
-        if data.NumberofTeacher! > 1
-        {
-            strTeacher = "Teachers"
-        }
-        if data.NumberofStudent! > 1
-        {
-            strStudent = "Students"
-        }
-        
-        lblName1.text = "\(String(describing: data.NumberofClasses!))" + " " + strClass
-        lblName2.text =  "\(String(describing: data.NumberofTeacher!))" + " " + strTeacher
-        lblName3.text =  "\(String(describing: data.NumberofStudent!))" + " " + strStudent
-        
-        if data.lstEvent?.count ?? 0 > 0
-        {
-            arrEventlist = data.lstEvent
-            tblViewListing.reloadData()
-        }
-        else
-        {
-            tblViewListing.isHidden = true
-        }
-        self.homeViewModel?.GetEvents(enumTypeId:1, Search:"", Skip: 10,PageSize: 0,SortColumnDir: "", SortColumn: "",ParticularId: UserDefaultExtensionModel.shared.HODDepartmentId)
+//        self.iv1.isHidden = false
+//        self.iv2.isHidden = false
+//        self.iv3.isHidden = false
+//
+//        self.lblName1.isHidden = false
+//        self.lblName2.isHidden = false
+//        self.lblName3.isHidden = false
+//
+//        print(data)
+//        lblName.text = data.HodName
+//        lblDept.text = (data.DepartmentName ?? "")
+//
+//
+//
+//        if UserDefaultExtensionModel.shared.imageUrl != nil{
+//          var  imgProfileUrl = UserDefaultExtensionModel.shared.imageUrl
+//            imgProfile.sd_imageIndicator = SDWebImageActivityIndicator.gray
+//            //mohit studentImgUrl = URL(string: imgProfileUrl)
+//            imgProfile.contentMode = .scaleAspectFill
+//            imgProfile.sd_setImage(with: URL(string: imgProfileUrl), placeholderImage: UIImage(named: kImages.kProfileImage))
+//        }else{
+////            studentImgUrl = URL(string: "")
+//            imgProfile.image = UIImage.init(named: kImages.kProfileImage)
+//        }
+//
+//        var strClass : String = "Class"
+//        var strTeacher : String = "Teacher"
+//        var strStudent : String = "Student"
+//
+//        if data.NumberofClasses! > 1
+//        {
+//            strClass = "Classes"
+//        }
+//        if data.NumberofTeacher! > 1
+//        {
+//            strTeacher = "Teachers"
+//        }
+//        if data.NumberofStudent! > 1
+//        {
+//            strStudent = "Students"
+//        }
+//
+//        lblName1.text = "\(String(describing: data.NumberofClasses!))" + " " + strClass
+//        lblName2.text =  "\(String(describing: data.NumberofTeacher!))" + " " + strTeacher
+//        lblName3.text =  "\(String(describing: data.NumberofStudent!))" + " " + strStudent
+//
+//        if data.lstEvent?.count ?? 0 > 0
+//        {
+//            arrEventlist = data.lstEvent
+//            tblViewListing.reloadData()
+//        }
+//        else
+//        {
+//            tblViewListing.isHidden = true
+//        }
+//        self.homeViewModel?.GetEvents(enumTypeId:1, Search:"", Skip: 10,PageSize: 0,SortColumnDir: "", SortColumn: "",ParticularId: UserDefaultExtensionModel.shared.HODDepartmentId)
     }
     
     func teacherData(data: teacherData)
@@ -578,6 +769,7 @@ extension HomeVC : ViewDelegate{
     {
         initializeCustomOkAlert(self.view, isHideBlurView: true)
         okAlertView.delegate = self
+          okAlertView.lblResponseDetailMessage.text = alert
     }
 }
 

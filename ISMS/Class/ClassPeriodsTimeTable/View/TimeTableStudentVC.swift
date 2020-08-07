@@ -261,18 +261,53 @@ extension TimeTableStudentVC: UICollectionViewDelegate
             {
                 guard let period = daysModel.periodDetailListModel?[indexPath.row - 1]else {return}
                 
+          
+                
                     print(period)
                     if period.teacherId != 0
                     {
-                        let storyboard = UIStoryboard.init(name: "StudentAttendence", bundle: nil)
-                        let vc = storyboard.instantiateViewController(withIdentifier: "StudentViewAttendanceVC") as! StudentViewAttendanceVC
-                        vc.periodId = period.periodId
-                        vc.timeTableId = period.timeTableId
-                        vc.classId = selectedClassId
-                        vc.teacherId = period.teacherId
-                        vc.classSubjectId = period.subjectId
-                        self.navigationController?.pushViewController(vc, animated: false)
-                    }
+                        
+                        if UserDefaultExtensionModel.shared.currentUserRoleId == 4{
+                            if currentDay == daysModel.dayName
+                            {
+                                if let daysModel = self.arrGetTimeTableDaysModel?[indexPath.section - 1] {
+                                    if let period = daysModel.periodDetailListModel?[indexPath.row - 1] {
+                                        print(period)
+                                        if period.teacherId != 0{
+                                            let storyboard = UIStoryboard.init(name: "StudentAttendence", bundle: nil)
+                                            let vc = storyboard.instantiateViewController(withIdentifier: "StudentListToMarkAttendence") as! StudentListToMarkAttendence
+                                            vc.timeTableId = period.timeTableId
+                                            vc.classId = selectedClassId
+                                            vc.teacherId = period.teacherId
+                                            vc.classSubjectId = period.subjectId
+                                            vc.isFromHOD = false
+                                            self.navigationController?.pushViewController(vc, animated: false)
+                                        }
+                                    }
+                                }
+                            }else{
+                                let storyboard = UIStoryboard.init(name: "StudentAttendence", bundle: nil)
+                                let vc = storyboard.instantiateViewController(withIdentifier: "StudentListToMarkAttendence") as! StudentListToMarkAttendence
+                                vc.timeTableId = period.timeTableId
+                                vc.classId = selectedClassId
+                                vc.teacherId = period.teacherId
+                                vc.classSubjectId = period.subjectId
+                                vc.isFromHOD = true
+                                self.navigationController?.pushViewController(vc, animated: false)
+                            }
+                            
+                        }else{
+                            let storyboard = UIStoryboard.init(name: "StudentAttendence", bundle: nil)
+                            let vc = storyboard.instantiateViewController(withIdentifier: "StudentViewAttendanceVC") as! StudentViewAttendanceVC
+                            vc.periodId = period.periodId
+                            vc.timeTableId = period.timeTableId
+                            vc.classId = selectedClassId
+                            vc.teacherId = period.teacherId
+                            vc.classSubjectId = period.subjectId
+                            self.navigationController?.pushViewController(vc, animated: false)
+                        }
+                        
+                }
                 
             }
     }

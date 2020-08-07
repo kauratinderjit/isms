@@ -14,6 +14,7 @@ class ResultListVC: BaseUIViewController {
     //Outlets
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var btnAddResult: UIButton!
     //Veriables
     var arr_Classlist = [GetClassListResultData]()
     var arrResultList = [GetListResultData]()
@@ -39,6 +40,9 @@ class ResultListVC: BaseUIViewController {
         // Do any additional setup after loading the view.
         self.viewModel = ClassListViewModel.init(delegate: self)
         self.viewModel?.attachView(viewDelegate: self)
+        if UserDefaultExtensionModel.shared.currentUserRoleId == 2 || UserDefaultExtensionModel.shared.currentUserRoleId == 4 || UserDefaultExtensionModel.shared.currentUserRoleId == 5 || UserDefaultExtensionModel.shared.currentUserRoleId == 6{
+            btnAddResult.isHidden = true
+        }
         setUI()
     }
     

@@ -64,6 +64,7 @@ class LoginViewModel {
                 }
             self.logInView?.showLoader()
              print("url param: ",parm)
+            UserDefaults.standard.set(phoneEmail, forKey: "PhoneNum")
             print("url login: ",ApiEndpoints.kLogin)
             //Login User Using Email And Password and get token
             LoginApi.sharedmanagerAuth.LogInApi(url: ApiEndpoints.kLogin, parameter: parm, completionResponse: { (response) in

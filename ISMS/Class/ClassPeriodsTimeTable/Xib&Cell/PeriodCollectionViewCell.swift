@@ -73,12 +73,16 @@ class PeriodCollectionViewCell: UICollectionViewCell {
             self.lblNoAssign.isHidden = true
             btnAssignTeacherSubject.isHidden = true
         }
-        
-        if period.substituteTeacherId == 0{
-              self.teacherLabel.text = period.teacherName
+        if UserDefaultExtensionModel.shared.currentUserRoleId == 4{
+            self.teacherLabel.text = period.className
         }else{
-              self.teacherLabel.text = period.substituteTeacherName
+            if period.substituteTeacherId == 0{
+                self.teacherLabel.text = period.teacherName
+            }else{
+                self.teacherLabel.text = period.substituteTeacherName
+            }
         }
+       
         self.titleLabel.text = period.periodName
         self.subjectlabel.text = period.subjectName
         self.teacherLabel.textColor = UIColor.darkGray

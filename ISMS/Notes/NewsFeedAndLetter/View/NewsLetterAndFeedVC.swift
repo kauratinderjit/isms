@@ -720,7 +720,7 @@ extension NewsLetterAndFeedVC : UITableViewDataSource,UITableViewDelegate{
           {
           if self.newsData[indexPath.row] != nil {
             let dic = self.newsData[indexPath.row]
-              if dic.TypeId != nil {
+              if dic.TypeId != 0 {
                  return 160
               }
               else{
@@ -868,7 +868,7 @@ extension NewsLetterAndFeedVC : UITableViewDataSource,UITableViewDelegate{
                           cell.imgViewProfile.image = UIImage(named: "profile")
                       }
                         
-                        if dic.TypeId != nil {
+                        if dic.TypeId != 0 {
                             cell.btnCorr.isHidden = false
                             cell.lblDescription.rightInset = 45
                             cell.viewBGG.isHidden = true

@@ -78,7 +78,8 @@ class EditProfileVC: BaseUIViewController {
         }
     func getUserByPhoneNumber(){
           if checkInternetConnection(){
-              self.viewModel?.getUserByPhoneNumber(Phone: "7015456585", Email:"")
+            let phoneUser = UserDefaults.standard.string(forKey: "PhoneNum") ?? "" 
+              self.viewModel?.getUserByPhoneNumber(Phone: phoneUser, Email:"")
           }else{
               self.showAlert(alert: Alerts.kNoInternetConnection)
           }

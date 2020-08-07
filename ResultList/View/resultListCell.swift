@@ -39,17 +39,19 @@ class resultListCell: UITableViewCell {
         btnEdit.tag = indexPath.row
         btnDelete.tag = indexPath.row
         
+         if UserDefaultExtensionModel.shared.currentUserRoleId == 2 || UserDefaultExtensionModel.shared.currentUserRoleId == 4 || UserDefaultExtensionModel.shared.currentUserRoleId == 5 || UserDefaultExtensionModel.shared.currentUserRoleId == 6{
+            btnDelete.isHidden = true
+        }
+        
         imgViewLogo.createCircleImage()
         
         if let strTitle = rsltData?.Title{
             lblTitle.text = strTitle
         }
-    
             if let nameStr = rsltData?.Title{
                 CommonFunctions.sharedmanagerCommon.addLabelOnTheImgeViewWithFirstCharacter(string: nameStr, imgView: self.imgViewLogo)
                 CommonFunctions.sharedmanagerCommon.println(object: "Image is nil in list.")
             }
-     
     }
     
 }

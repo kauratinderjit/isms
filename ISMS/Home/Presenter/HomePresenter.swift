@@ -118,7 +118,7 @@ class HomeViewModel{
         
         if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Teacher")
         {
-            strUrl = "api/User/DashboardTeacher?UserId=\(String(describing: userId!))"
+            strUrl = "api/User/DashboardHodNew?UserId=\(String(describing: userId!))"
         }
         
         if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Student")
@@ -304,7 +304,7 @@ class HomeViewModel{
          self.homeView?.showLoader()
          var postDict = [String:Any]()
          postDict[KApiParameters.KGetPagesByUserIdIdintifier.kUserId] = userId
-         LoginApi.sharedmanagerAuth.getdataAdmin(url: "api/User/DashboardAdmin?UserId=\(String(describing: userId!))" , parameters: postDict, completionResponse: { (getMenuFromRoleIdModel) in
+         LoginApi.sharedmanagerAuth.getdataAdmin(url: "api/User/DashboardAdminNew?UserId=\(String(describing: userId!))" , parameters: postDict, completionResponse: { (getMenuFromRoleIdModel) in
              
              switch getMenuFromRoleIdModel.statusCode {
              case KStatusCode.kStatusCode200:
@@ -324,7 +324,9 @@ class HomeViewModel{
              self.homeView?.showAlert(alert: nilResponseError ?? "Something went wrong")
          }) { (error) in
              self.homeView?.hideLoader()
-                 self.homeView?.showAlert(alert: error?.localizedDescription ?? "Something went wrong")
+                 if let err = error{
+                    self.homeView?.showAlert(alert: err.localizedDescription)
+                 }
          }
      }
     

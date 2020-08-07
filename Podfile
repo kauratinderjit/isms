@@ -31,6 +31,7 @@ pod 'DropDown'
 pod 'Hakawai'
 pod 'ImageCropper'
 pod 'PaddingLabel'
+pod 'Charts'
 
   target 'ISMSTests' do
     inherit! :search_paths

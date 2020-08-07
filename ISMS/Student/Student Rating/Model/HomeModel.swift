@@ -129,6 +129,10 @@ struct homeAdminResultData: Mappable {
     var lstOfClasses : [ListData]?
     var lstOfHODs : [ListData]?
     var lstOfTeachers : [ListData]?
+    var countOfStudentFemales : Int?
+    var countOfStudentMales : Int?
+    var image : String?
+    var noOfSudents : Int?
     
     init?(map: Map) {
         
@@ -147,8 +151,11 @@ struct homeAdminResultData: Mappable {
         lstOfClasses <- map["lstOfClasses"]
         lstOfHODs <- map["lstOfHODs"]
         lstOfTeachers <- map["lstOfTeachers"]
+        countOfStudentFemales <- map["CountOfStudentFemales"]
+        countOfStudentMales <- map["CountOfStudentMales"]
+         image <- map["Image"]
+        noOfSudents <- map["NoOfSudents"]
         
-
     }
     
 }

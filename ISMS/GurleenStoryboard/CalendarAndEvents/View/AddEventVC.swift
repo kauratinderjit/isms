@@ -331,6 +331,7 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
                 if checkInternetConnection()
                 {
                    // self.viewModel?.addUpdateEvent(eventId: eventId, title: txtfieldTitle.text, description: txtViewDescription.text, time: selectedTime, Date: str_date_selected)
+                
                     
                     self.viewModel?.addUpdateEvent(eventId: eventId, title: txtfieldTitle.text, description: txtViewDescription.text, startTime: self.startTimes, endTime: self.endTimes, evntStartDate: tfEventDate.text, evntEndDate: tfEventEndDate.text,ParticularId: HODdepartmentId)
                 }
