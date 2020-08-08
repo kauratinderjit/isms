@@ -89,9 +89,24 @@ extension ClassAssignSubjectListVC : ClassAssignSubjectListDelegate
     {
         if let msg = data.message
         {
+            var zeroVal = false
+            if arrAssignSubtoClass.count > 0{
+                for i in 0..<arrAssignSubtoClass.count{
+                    if arrAssignSubtoClass[i].classSubjectId == 0{
+                        zeroVal = true
+                    }
+                }
+            }
+            if zeroVal == true{
+                 self.showAlert(alert: "Subject assigned successfully and now you can add syllabus by clicking selected subjects.")
+            }else{
+                 self.showAlert(alert: "Subject unassigned successfully.")
+            }
+           
+           
             arrAssignSubtoClass.removeAll()
             
-            self.showAlert(alert: "Subject assigned successfully and now you can add syllabus by clicking selected subjects.")
+          
                 self.arrAllAssignedSubjects.removeAll()
                 self.viewModel?.getAllAssignSubjectList(classId: self.selectedClassId ?? 0, searchText: "", pageSize: KIntegerConstants.kInt1000, filterBy: 0, skip: self.skip)
             

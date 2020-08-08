@@ -626,11 +626,22 @@ class TimePeriodVC: BaseUIViewController {
             if newitems.count == 0{
                 let indexPath = IndexPath(row: 0,section: 0)
                 if let cell = tableView.cellForRow(at: indexPath) as? TimePeriodCell {
-                    if  let newElement = PeriodsListData(JSON:  [KConstants.kstartTime: cell.txtFieldPeriodStartTime.text! , KConstants.kendTime: cell.txtFieldPeriodEndTime.text! ,KConstants.kPeriodTitle: cell.txtFieldPeriodTitle.text ?? "",KConstants.kPeriodId: 0,"StartTime":"","EndTime":""] ){
-                        newitems.append(newElement)
+                    if cell.txtFieldPeriodStartTime.text != ""{
+                        if cell.txtFieldPeriodEndTime.text != ""{
+                            if  let newElement = PeriodsListData(JSON:  [KConstants.kstartTime: cell.txtFieldPeriodStartTime.text! , KConstants.kendTime: cell.txtFieldPeriodEndTime.text! ,KConstants.kPeriodTitle: cell.txtFieldPeriodTitle.text ?? "",KConstants.kPeriodId: 0,"StartTime":"","EndTime":""] ){
+                                                   newitems.append(newElement)
+                                               }
+                             self.ViewModel?.addPeriod(periodList: newitems, ClassId: selectedClassID)
+                        }else{
+                            self.showAlert(alert: "Please select end time")
+                        }
+                        
+                    }else{
+                        self.showAlert(alert: "Please select start time")
                     }
+                   
                 }
-                self.ViewModel?.addPeriod(periodList: newitems, ClassId: selectedClassID)
+               
                 
             }
         }

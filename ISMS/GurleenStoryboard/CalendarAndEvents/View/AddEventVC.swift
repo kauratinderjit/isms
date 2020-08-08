@@ -48,6 +48,11 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
     var startTime : Date?
     var endTime : Date?
     
+    var startDateNew = Date()
+    var endDateNew = Date()
+    
+   
+    
     var viewModel     : EventScheduleViewModel?
     var selectedTime : String?
     var eventId :Int = 0
@@ -332,8 +337,12 @@ class AddEventVC: BaseUIViewController,UITextFieldDelegate {
                 {
                    // self.viewModel?.addUpdateEvent(eventId: eventId, title: txtfieldTitle.text, description: txtViewDescription.text, time: selectedTime, Date: str_date_selected)
                 
+                    if startDateNew <= endDateNew{
+                        self.viewModel?.addUpdateEvent(eventId: eventId, title: txtfieldTitle.text, description: txtViewDescription.text, startTime: self.startTimes, endTime: self.endTimes, evntStartDate: tfEventDate.text, evntEndDate: tfEventEndDate.text,ParticularId: HODdepartmentId)
+                    }else{
+                        self.showAlert(alert: "Please select start date lesser than end date.")
+                    }
                     
-                    self.viewModel?.addUpdateEvent(eventId: eventId, title: txtfieldTitle.text, description: txtViewDescription.text, startTime: self.startTimes, endTime: self.endTimes, evntStartDate: tfEventDate.text, evntEndDate: tfEventEndDate.text,ParticularId: HODdepartmentId)
                 }
                 else
                 {

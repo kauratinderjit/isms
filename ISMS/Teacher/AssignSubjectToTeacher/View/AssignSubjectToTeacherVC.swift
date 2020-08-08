@@ -179,7 +179,7 @@ extension AssignSubjectToTeacherVC : UITableViewDataSource{
             tableView.separatorStyle = .singleLine
             return (arrSubjectList.count)
         }else{
-//            tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
+            tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: true)
            return 0
         }
     }

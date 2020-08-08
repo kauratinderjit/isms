@@ -90,7 +90,6 @@ extension AddEventVC
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker));
         
-        
         toolbar.setItems([cancelButton,spaceButton,doneButton], animated: false)
         self.tfStartTime.inputAccessoryView = toolbar
         self.tfStartTime.inputView = datePickerStartTime
@@ -121,6 +120,7 @@ extension AddEventVC
     {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
+        self.startDateNew = datePickerStartDate.date
         self.tfEventDate.text = formatter.string(from: datePickerStartDate.date)
         self.selectedStrtDate = self.tfEventDate.text!
         self.showDatePickerEventStartTime()
@@ -130,6 +130,7 @@ extension AddEventVC
     {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
+        self.endDateNew = datePickerEndDate.date
         self.tfEventEndDate.text = formatter.string(from: datePickerEndDate.date)
         self.view.endEditing(true)
     }

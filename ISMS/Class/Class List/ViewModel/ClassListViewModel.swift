@@ -264,7 +264,7 @@ class ClassListViewModel{
         var postDict = [String:Any]()
         
         
-        postDict = ["Search": Search ?? "","Skip":Skip ?? 0,"PageSize": PageSize ?? 0,"SortColumnDir": SortColumnDir ?? "", "SortColumn": SortColumn ?? "","ParticularId" : ParticularId,"SessionId":2] as [String : Any]
+        postDict = ["Search": Search ?? "","Skip":Skip ?? 0,"PageSize": PageSize ?? 0,"SortColumnDir": SortColumnDir ?? "", "SortColumn": SortColumn ?? "","ParticularId" : ParticularId,"SessionId":UserDefaultExtensionModel.shared.activeSessionId ?? 0] as [String : Any]
        let url = "api/User/GetResult"
         
         

@@ -184,15 +184,20 @@ class ContactUsVC: BaseUIViewController {
                if let cell = tableViewGeneral.cellForRow(at: indexPath) as? GeneralTableCell {
                 if cell.txtFieldPhoneNum.text != ""{
                     if cell.txtFieldEmail.text != ""{
-                        var data = [String:Any]()
-                        data = ["GeneralInquiryId":0 , "GenernalEmail": cell.txtFieldEmail.text,"GenernalNumber":cell.txtFieldPhoneNum.text]
-                        print("data: ",data)
-                        cell.btnMinus.isHidden = false
-                        lstGeneralInquiryViewModels.append(data)
-                        cell.addMoreBtn.isHidden = true
-                        tableGeneralHeightConstraints.constant = (tableGeneralHeightConstraints.constant ?? 167)+120
-                        viewHeightConstraints.constant = (viewHeightConstraints.constant ?? 653) + 120
-                        tableViewGeneral.reloadData()
+                        if cell.txtFieldEmail.text?.isValidEmail() == false{
+                            self.showAlert(alert: "Please enter valid email.")
+                        }else{
+                            var data = [String:Any]()
+                            data = ["GeneralInquiryId":0 , "GenernalEmail": cell.txtFieldEmail.text,"GenernalNumber":cell.txtFieldPhoneNum.text]
+                            print("data: ",data)
+                            cell.btnMinus.isHidden = false
+                            lstGeneralInquiryViewModels.append(data)
+                            cell.addMoreBtn.isHidden = true
+                            tableGeneralHeightConstraints.constant = (tableGeneralHeightConstraints.constant ?? 167)+120
+                            viewHeightConstraints.constant = (viewHeightConstraints.constant ?? 653) + 120
+                            tableViewGeneral.reloadData()
+                        }
+                    
                     }else{
                         self.showAlert(alert: "Please enter email number.")
                     }
@@ -268,15 +273,20 @@ class ContactUsVC: BaseUIViewController {
         if let cell = tableViewEmergency.cellForRow(at: indexPath) as? EmergencyTableCell {
             if cell.txtFieldPhoneNum.text != ""{
                 if cell.txtFieldEmail.text != ""{
-                    var data = [String:Any]()
-                    data = ["EmergencyInquiryId":0 , "EmergencyEmail": cell.txtFieldEmail.text,"EmergencyNumber":cell.txtFieldPhoneNum.text]
-                    print("data: ",data)
-                    cell.btnMinus.isHidden = false
-                    cell.addMoreBtn.isHidden = true
-                    lstEmergencyInquiryViewModels.append(data)
-                    tableViewEmergencyHeight.constant = (tableViewEmergencyHeight.constant ?? 167)+120
-                    viewHeightConstraints.constant = (viewHeightConstraints.constant ?? 653) + 120
-                    tableViewEmergency.reloadData()
+                    if cell.txtFieldEmail.text?.isValidEmail() == false{
+                            self.showAlert(alert: "Please enter valid email.")
+                    }else{
+                        var data = [String:Any]()
+                        data = ["EmergencyInquiryId":0 , "EmergencyEmail": cell.txtFieldEmail.text,"EmergencyNumber":cell.txtFieldPhoneNum.text]
+                        print("data: ",data)
+                        cell.btnMinus.isHidden = false
+                        cell.addMoreBtn.isHidden = true
+                        lstEmergencyInquiryViewModels.append(data)
+                        tableViewEmergencyHeight.constant = (tableViewEmergencyHeight.constant ?? 167)+120
+                        viewHeightConstraints.constant = (viewHeightConstraints.constant ?? 653) + 120
+                        tableViewEmergency.reloadData()
+                    }
+                    
                 }else{
                     self.showAlert(alert: "Please enter email number.")
                 }
@@ -543,7 +553,6 @@ extension ContactUsVC : UITableViewDataSource{
                     cell.addMoreBtn.isHidden = false
                 }
             }
-            
             return cell
         }else if tableView == tableViewGeneral{
             let cell = tableView.dequeueReusableCell(withIdentifier: "GeneralCell", for: indexPath) as! GeneralTableCell
@@ -557,7 +566,6 @@ extension ContactUsVC : UITableViewDataSource{
                 cell.btnMinus.tag = indexPath.row
                 cell.addMoreBtn.tag = indexPath.row
             }
-          
             return cell
         }else if tableView == tableViewEmergency{
             let cell = tableView.dequeueReusableCell(withIdentifier: "EmergencyCell", for: indexPath) as! EmergencyTableCell
@@ -571,7 +579,6 @@ extension ContactUsVC : UITableViewDataSource{
                 cell.btnMinus.tag = indexPath.row
                 cell.addMoreBtn.tag = indexPath.row
             }
-          
             return cell
         }
         return UITableViewCell()

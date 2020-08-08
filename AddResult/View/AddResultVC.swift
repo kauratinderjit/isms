@@ -73,6 +73,7 @@ class AddResultVC: BaseUIViewController {
             if UserDefaultExtensionModel.shared.currentUserRoleId == 2 || UserDefaultExtensionModel.shared.currentUserRoleId == 4 || UserDefaultExtensionModel.shared.currentUserRoleId == 5 || UserDefaultExtensionModel.shared.currentUserRoleId == 6{
                 btnAddNote.isHidden = true
                 btnAddResult.isHidden = true
+                txtfieldTitle.isUserInteractionEnabled = false
             }
         }
         

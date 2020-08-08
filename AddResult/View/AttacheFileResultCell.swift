@@ -16,6 +16,9 @@ class AttacheFileResultCell: UICollectionViewCell {
     //MARK:- Functions
     
     func setDataCell(){
+        if UserDefaultExtensionModel.shared.currentUserRoleId == 2 || UserDefaultExtensionModel.shared.currentUserRoleId == 4 || UserDefaultExtensionModel.shared.currentUserRoleId == 5 || UserDefaultExtensionModel.shared.currentUserRoleId == 6{
+            btn_cross.isHidden = true
+        }
             imageview_attachedFiles.image = UIImage(named: "pdf")
 }
 

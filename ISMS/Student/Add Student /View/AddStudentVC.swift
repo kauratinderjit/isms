@@ -1056,6 +1056,7 @@ extension AddStudentVC : AddStudentDelegate
     //Get Guardian Detail By Phone/Email
     func PhoneEmailVerifyGardianDidSuccess(data: GetDetailByPhoneEmailGardianModel)
     {
+        
         GardianDetail = data
         let userDetail = GardianDetail?.resultData
         
@@ -1161,6 +1162,7 @@ extension AddStudentVC : AddStudentDelegate
     
     //Get Detail Student By Using Phone/Email
     func PhoneEmailVerifyDidSuccess(data : VerifyEmailPhoneUserModel) {
+     
         userVerifyDetail = data
         let userDetail = userVerifyDetail?.resultData
         //Show Pic Of User
@@ -1219,6 +1221,7 @@ extension AddStudentVC : AddStudentDelegate
         
         if selectedPreviousTextField == txtFieldPhoneNumber&&selectedPreviousTextField != txtFieldEmail{
             txtFieldEmail.text = userDetail?.email
+            txtFieldEmail.isUserInteractionEnabled = false
         }else if selectedPreviousTextField == txtFieldEmail && selectedPreviousTextField != txtFieldPhoneNumber{
             txtFieldPhoneNumber.text = userDetail?.phoneNo
         }
@@ -1232,6 +1235,9 @@ extension AddStudentVC : AddStudentDelegate
         txtFieldClassDropDown.text = userDetail?.className
         txtFieldDepartment.text = userDetail?.departmentName
         txtFieldRollnoOrAddmissionId.text = String(describing: userDetail?.rollnumberOrAddmissionId ?? 0)
+        if txtFieldRollnoOrAddmissionId.text != ""{
+            txtFieldRollnoOrAddmissionId.isUserInteractionEnabled = false
+        }
         gender = userDetail?.gender ?? ""
         studentUserId = userDetail?.userId
         studentId = userDetail?.studentId

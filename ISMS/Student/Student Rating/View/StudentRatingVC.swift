@@ -493,9 +493,12 @@ extension StudentRatingVC : UITableViewDelegate {
              let storyboard = UIStoryboard.init(name: "Student", bundle: nil)
                         let vc = storyboard.instantiateViewController(withIdentifier: "SubjectSkillRatingVC") as! SubjectSkillRatingVC
             //            if arrSubjectlist.count > 0{
-                            vc.subjectName = txtfieldSubject.text
-                        vc.enrollmentId = arrStudent[indexPath.row].enrollmentId
-                        vc.subjectClassId = selectedClassSubjectId
+            if arrStudent.count > indexPath.row {
+                vc.subjectName = txtfieldSubject.text
+                vc.enrollmentId = arrStudent[indexPath.row].enrollmentId
+                vc.subjectClassId = selectedClassSubjectId
+            }
+                        
                self.navigationController?.pushViewController(vc, animated: true)
 
         }

@@ -218,7 +218,7 @@ class SubjectChapterTopicViewModel{
         
           let param = [
                        "ResultId" : ResultId,
-                       "SessionId" :2 ,
+                       "SessionId" :UserDefaultExtensionModel.shared.activeSessionId ?? 0 ,
                        "Title" : Title,
                        "IFile" : IFile,
                        "lstdeleteattachmentModel": lstdeleteattachmentModel,
