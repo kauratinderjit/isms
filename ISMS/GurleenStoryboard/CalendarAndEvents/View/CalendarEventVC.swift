@@ -22,6 +22,7 @@ class CalendarEventVC: BaseUIViewController
     var datesRange = [[String:Any]]()
     var datesRangeDATE = [String]()
     var desArray = [String]()
+    var timeArray = [String]()
     var currentDate = ""
     var dateSelect : Date?
     
@@ -61,13 +62,14 @@ class CalendarEventVC: BaseUIViewController
             {
                 let stDate = obj.StartDate ?? ""
                 let edDate = obj.EndDate ?? ""
+                let timeEvent = (obj.StrStartTime ?? "") + " to " + (obj.StrEndTime ?? "")
                 
-                self.get_all_Dates_from_startToEndDate(strtDate: stDate, endDate: edDate, descpn: obj.Description ?? "")
+                self.get_all_Dates_from_startToEndDate(strtDate: stDate, endDate: edDate, descpn: obj.Description ?? "",timeEvent : timeEvent)
             }
         }
     }
     
-    func get_all_Dates_from_startToEndDate(strtDate:String,endDate:String,descpn:String)
+    func get_all_Dates_from_startToEndDate(strtDate:String,endDate:String,descpn:String,timeEvent: String)
     {
         var strtdate = self.stringToDate(strDate:strtDate) // first date
         let enddate = self.stringToDate(strDate:endDate) // last date
@@ -80,7 +82,7 @@ class CalendarEventVC: BaseUIViewController
             print(dateFormatter2.string(from: strtdate))
             
             let dd = dateFormatter2.string(from: strtdate)
-            let obj = ["date":dd,"desc":descpn] as [String : Any]
+            let obj = ["date":dd,"desc":descpn,"time": timeEvent] as [String : Any]
             
             datesRangeDATE.append(dd)
             datesRange.append(obj)
@@ -109,10 +111,12 @@ class CalendarEventVC: BaseUIViewController
             {
                 let stDate = obj["date"]as? String ?? "N/A"
                 let desc = obj["desc"] as? String ?? "N/A"
+                let time = obj["time"] as? String ?? "N/A"
                 
                 if sDate == stDate
                 {
                     desArray.append(desc)
+                    timeArray.append(time)
                 }
             }
             if desArray.count>0{
@@ -243,10 +247,15 @@ extension CalendarEventVC : UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as! EventCalCell
         if desArray.count>0{
-            cell.lblDate.text = currentDate
-            cell.lblEvent.text = desArray[indexPath.row]
+//            cell.lblDate.text = currentDate
+            if indexPath.row < timeArray.count{
+                if indexPath.row < desArray.count{
+                    cell.lblDate.text = timeArray[indexPath.row]
+                    cell.lblEvent.text = desArray[indexPath.row]
+                    cell.lblSelectedDate.text = currentDate
+                }
+            }
         }
-      
         return cell
     }
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7qN-r0-UGB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7qN-r0-UGB">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -250,6 +250,7 @@
                                                         <connections>
                                                             <outlet property="lblDate" destination="85Y-cI-gkY" id="W9N-RW-sZ0"/>
                                                             <outlet property="lblEvent" destination="ane-MN-Kkh" id="yw4-YJ-a0Y"/>
+                                                            <outlet property="lblSelectedDate" destination="f0e-Un-7Gj" id="QPJ-QU-a8H"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
@@ -832,7 +833,7 @@
                                 <rect key="frame" x="74" y="66" width="227" height="32"/>
                                 <segments>
                                     <segment title="LIST"/>
-                                    <segment title="CALENDER"/>
+                                    <segment title="CALENDAR"/>
                                 </segments>
                                 <connections>
                                     <action selector="segmentControl:" destination="um8-eg-z6N" eventType="valueChanged" id="Rdg-Ft-Rx4"/>

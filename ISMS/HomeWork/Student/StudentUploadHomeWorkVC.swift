@@ -339,7 +339,7 @@ extension StudentUploadHomeWorkVC : AddHomeWorkDelegate {
         
     }
     
-    func addedSuccessfully() {
+    func addedSuccessfully(message: String) {
         
     }
     

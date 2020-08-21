@@ -66,8 +66,10 @@ class ClassTimeTableVC: BaseUIViewController {
         if isFromViewAttendence == true{
           self.navigationItem.rightBarButtonItem = nil
         }
-
-        
+        setUI()
+                collectionView.isHidden = true
+               classListDropdownApi()
+       
         checkCameFromWhichScreen()
     }
     
@@ -217,15 +219,18 @@ extension ClassTimeTableVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
+            btnMoveOnAddPeriod.isHidden = true
             if let count = arrGetTimeTableDaysModel?[0].periodDetailListModel?.count{
                 return count + 1
             }
         } else {
+              btnMoveOnAddPeriod.isHidden = true
             if let count = self.arrGetTimeTableDaysModel?[section - 1].periodDetailListModel?.count {
                 debugPrint("Items in section in else part :- \(count + 1)")
                 return count + 1
             }
         }
+          btnMoveOnAddPeriod.isHidden = false
         return 0
     }
     
@@ -423,7 +428,7 @@ extension ClassTimeTableVC: UICollectionViewDelegate {
                                         vc.classId = selectedClassId
                                         vc.teacherId = period.teacherId
                                         vc.classSubjectId = period.subjectId
-                                        vc.isFromHOD = true
+                                        vc.isFromHOD = false
                                         self.navigationController?.pushViewController(vc, animated: false)
                                     }
                                 }
@@ -432,14 +437,17 @@ extension ClassTimeTableVC: UICollectionViewDelegate {
                             if let daysModel = self.arrGetTimeTableDaysModel?[indexPath.section - 1] {
                                 if let period = daysModel.periodDetailListModel?[indexPath.row - 1] {
                                     print(period)
-                                       let storyboard = UIStoryboard.init(name: "Teacher", bundle: nil)
-                                    let vc = storyboard.instantiateViewController(withIdentifier: "SubstituteTeacherVC") as! SubstituteTeacherVC
+                                    if period.subjectName != ""{
+                                        let storyboard = UIStoryboard.init(name: "Teacher", bundle: nil)
+                                        let vc = storyboard.instantiateViewController(withIdentifier: "SubstituteTeacherVC") as! SubstituteTeacherVC
                                         vc.classId = selectedClassId
                                         vc.teacherID = period.teacherId
                                         vc.classSubjectId = period.subjectId
                                         vc.periodId = period.periodId
                                         vc.dayId = daysModel.dayId
-                                    self.navigationController?.pushViewController(vc, animated: true)
+                                        self.navigationController?.pushViewController(vc, animated: true)
+                                    }
+                                      
                                 }
                             }
                         }

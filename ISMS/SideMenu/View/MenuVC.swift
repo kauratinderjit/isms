@@ -675,12 +675,12 @@ extension MenuVC : UITableViewDelegate{
             break
             
             case "Payments" :
-                self.showToast("Coming Soon")
-//            let storyboard = UIStoryboard.init(name: KStoryBoards.kTeacher, bundle: nil)
-//            let vc = storyboard.instantiateViewController(withIdentifier: "TeacherRatingNewVC")
-//            let frontVC = revealViewController().frontViewController as? UINavigationController
-//            frontVC?.pushViewController(vc, animated: false)
-//            revealViewController().pushFrontViewController(frontVC, animated: true)
+//                self.showToast("Coming Soon")
+            let storyboard = UIStoryboard.init(name: "Payment", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "PaymentVC")
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(vc, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
             break
             
         case "LogOut":

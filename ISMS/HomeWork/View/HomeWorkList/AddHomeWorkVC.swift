@@ -227,6 +227,7 @@ class AddHomeWorkVC: BaseUIViewController {
     }
     
     @IBAction func attachFiles(_ sender: UIButton) {
+       
       let importMenu = UIDocumentPickerViewController(documentTypes: ["public.data", "public.content"], in: UIDocumentPickerMode.import)
         importMenu.delegate = self
         present(importMenu, animated: true, completion: nil)
@@ -434,7 +435,9 @@ extension AddHomeWorkVC:SharedUIDatePickerDelegate{
 extension AddHomeWorkVC : ViewDelegate {
     
     func showAlert(alert: String) {
-        self.showAlert(Message: alert)
+        initializeCustomOkAlert(self.view, isHideBlurView: true)
+               okAlertView.delegate = self
+               okAlertView.lblResponseDetailMessage.text = alert
     }
     
     func showLoader() {
@@ -462,8 +465,9 @@ extension AddHomeWorkVC : AddHomeWorkDelegate {
 
     }
     
-    func addedSuccessfully() {
-        _ = self.navigationController?.popViewController(animated: true)
+    func addedSuccessfully(message: String) {
+        self.showAlert(alert: message)
+       
     }
     
     func getSubjectList(arr: [GetSubjectHWResultData]) {
@@ -599,4 +603,13 @@ extension AddHomeWorkVC:UITextViewDelegate{
         
     }
     
+}
+//MARK:- Custom Ok Alert
+extension AddHomeWorkVC : OKAlertViewDelegate{
+    //Ok Button Clicked
+    func okBtnAction() {
+
+         self.okAlertView.removeFromSuperview()
+        _ = self.navigationController?.popViewController(animated: true)
+        }
 }

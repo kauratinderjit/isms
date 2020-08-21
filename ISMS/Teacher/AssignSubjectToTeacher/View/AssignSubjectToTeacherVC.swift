@@ -311,7 +311,7 @@ extension AssignSubjectToTeacherVC: SharedUIPickerDelegate{
         if let count = classData.resultData?.count{
             if count > 0{
                 //Bool for set the array in the list of students for selected class
-              
+                isSelectedArr.removeAll()
                 dropDownTextField.text = classData?.resultData?[selectedClassIndex].name
                 if selectedClassIndex == 0{
                     self.dropDownTextField.text = self.classData?.resultData?[selectedClassIndex].name

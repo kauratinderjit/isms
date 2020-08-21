@@ -29,6 +29,7 @@ class StudentListToMarkAttendence: BaseUIViewController {
     var studentAttendenceArray = [[String:Any]]()
     var isFromHOD:Bool?
     var startDate = Date()
+    var isCurrentDay = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,14 +49,24 @@ class StudentListToMarkAttendence: BaseUIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+             
+        
         if isFromHOD == true{
-            btnSubmitAttandance.isHidden = true
-            kbtnSubmitHeight.constant = 0
-        }else{
             btnSubmitAttandance.isHidden = false
             kbtnSubmitHeight.constant = 58
+        }else{
+            btnSubmitAttandance.isHidden = true
+            kbtnSubmitHeight.constant = 0
              
         }
+        if isCurrentDay == true{
+            btnSubmitAttandance.isHidden = false
+            kbtnSubmitHeight.constant = 58
+        }else{
+            btnSubmitAttandance.isHidden = true
+            kbtnSubmitHeight.constant = 0
+        }
+
 //          btnSubmitAttandance.isHidden = false
         arrStudentlist.removeAll()
         StudentListApi()
@@ -120,9 +131,15 @@ extension StudentListToMarkAttendence:SharedUIDatePickerDelegate{
         let currentDate = formatter.string(from: Date())
              
        
-        if isFromHOD == true && currentDate == convertedDate{
-            btnSubmitAttandance.isHidden = false
-            kbtnSubmitHeight.constant = 58
+        if isFromHOD == false && currentDate == convertedDate{
+            if isCurrentDay == true{
+                btnSubmitAttandance.isHidden = false
+                kbtnSubmitHeight.constant = 58
+            }else{
+                btnSubmitAttandance.isHidden = true
+                kbtnSubmitHeight.constant = 0
+            }
+           
         }else{
             btnSubmitAttandance.isHidden = true
             kbtnSubmitHeight.constant = 0
@@ -169,41 +186,71 @@ extension StudentListToMarkAttendence :  StudentListMarkAttCellDelegate{
         print("tag present: ",tag)
         if self.isFromHOD == false{
             
-        }else{
-            let indexPath = IndexPath(row: tag, section: 0)
-            if let newcell = tableViewStudent.cellForRow(at: indexPath) as? StudentListMarkAttCell{
-                var data = arrStudentlist[tag]
-                data.isSelected = 1
-                arrStudentlist[tag] = data
-                studentAttendenceArray.remove(at: tag)
-                let arr = ["EnrollmentId" : data.enrollmentId ?? 0, "Status" : "P"] as [String : Any]
-                studentAttendenceArray.insert(arr, at: tag)
-                newcell.StudentPresent.backgroundColor = UIColor.green
-                newcell.studentAbsent.backgroundColor = .clear
-                print(arrStudentlist[tag])
-                self.tableViewStudent.reloadData()
+            if isCurrentDay == true{
+                let indexPath = IndexPath(row: tag, section: 0)
+                if let newcell = tableViewStudent.cellForRow(at: indexPath) as? StudentListMarkAttCell{
+                    var data = arrStudentlist[tag]
+                    data.isSelected = 1
+                    arrStudentlist[tag] = data
+                    studentAttendenceArray.remove(at: tag)
+                    let arr = ["EnrollmentId" : data.enrollmentId ?? 0, "Status" : "P"] as [String : Any]
+                    studentAttendenceArray.insert(arr, at: tag)
+                    newcell.StudentPresent.backgroundColor = UIColor.green
+                    newcell.studentAbsent.backgroundColor = .clear
+                    print(arrStudentlist[tag])
+                    self.tableViewStudent.reloadData()
+                }
             }
+            
+        }else{
+//            let indexPath = IndexPath(row: tag, section: 0)
+//            if let newcell = tableViewStudent.cellForRow(at: indexPath) as? StudentListMarkAttCell{
+//                var data = arrStudentlist[tag]
+//                data.isSelected = 1
+//                arrStudentlist[tag] = data
+//                studentAttendenceArray.remove(at: tag)
+//                let arr = ["EnrollmentId" : data.enrollmentId ?? 0, "Status" : "P"] as [String : Any]
+//                studentAttendenceArray.insert(arr, at: tag)
+//                newcell.StudentPresent.backgroundColor = UIColor.green
+//                newcell.studentAbsent.backgroundColor = .clear
+//                print(arrStudentlist[tag])
+//                self.tableViewStudent.reloadData()
+//            }
         }
     }
     
     func didPressBtnAbsent(_ tag: Int) {
         print("tag absent: ",tag)
         if self.isFromHOD == false{
-            
-        }else{
-            let indexPath = IndexPath(row: tag, section: 0)
-            if let newcell = tableViewStudent.cellForRow(at: indexPath) as? StudentListMarkAttCell{
-                var data = arrStudentlist[tag]
-                data.isSelected = 2
-                arrStudentlist[tag] = data
-                studentAttendenceArray.remove(at: tag)
-                let arr = ["EnrollmentId" : data.enrollmentId ?? 0, "Status" : "A"] as [String : Any]
-                studentAttendenceArray.insert(arr, at: tag)
-                newcell.StudentPresent.backgroundColor = .clear
-                newcell.studentAbsent.backgroundColor = UIColor.red
-                print(arrStudentlist[tag])
-                self.tableViewStudent.reloadData()
+            if isCurrentDay == true{
+                let indexPath = IndexPath(row: tag, section: 0)
+                if let newcell = tableViewStudent.cellForRow(at: indexPath) as? StudentListMarkAttCell{
+                    var data = arrStudentlist[tag]
+                    data.isSelected = 2
+                    arrStudentlist[tag] = data
+                    studentAttendenceArray.remove(at: tag)
+                    let arr = ["EnrollmentId" : data.enrollmentId ?? 0, "Status" : "A"] as [String : Any]
+                    studentAttendenceArray.insert(arr, at: tag)
+                    newcell.StudentPresent.backgroundColor = .clear
+                    newcell.studentAbsent.backgroundColor = UIColor.red
+                    print(arrStudentlist[tag])
+                    self.tableViewStudent.reloadData()
+                }
             }
+        }else{
+//            let indexPath = IndexPath(row: tag, section: 0)
+//            if let newcell = tableViewStudent.cellForRow(at: indexPath) as? StudentListMarkAttCell{
+//                var data = arrStudentlist[tag]
+//                data.isSelected = 2
+//                arrStudentlist[tag] = data
+//                studentAttendenceArray.remove(at: tag)
+//                let arr = ["EnrollmentId" : data.enrollmentId ?? 0, "Status" : "A"] as [String : Any]
+//                studentAttendenceArray.insert(arr, at: tag)
+//                newcell.StudentPresent.backgroundColor = .clear
+//                newcell.studentAbsent.backgroundColor = UIColor.red
+//                print(arrStudentlist[tag])
+//                self.tableViewStudent.reloadData()
+//            }
         }
     }
 }

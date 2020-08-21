@@ -10,6 +10,7 @@ import Foundation
 
 class EventCalCell: UITableViewCell{
     
+    @IBOutlet weak var lblSelectedDate: UILabel!
     
     @IBOutlet weak var lblDate: UILabel!
     

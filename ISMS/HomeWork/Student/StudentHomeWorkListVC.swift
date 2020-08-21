@@ -130,7 +130,7 @@ extension StudentHomeWorkListVC : AddHomeWorkDelegate {
         
     }
     
-    func addedSuccessfully() {
+    func addedSuccessfully(message: String) {
         
     }
     

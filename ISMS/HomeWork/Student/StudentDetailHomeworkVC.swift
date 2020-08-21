@@ -77,7 +77,7 @@ class StudentDetailHomeworkVC: BaseUIViewController {
     }
     
     @IBAction func actionBtnDownload(_ sender: UIButton) {
-        
+        self.showLoader()
         let dic = uploadData[sender.tag] as? [String:Any]
               storeAndShare(withURLString: dic?["url"] as? String ?? "")
 //
@@ -151,7 +151,7 @@ extension StudentDetailHomeworkVC : AddHomeWorkDelegate {
         
     }
     
-    func addedSuccessfully() {
+    func addedSuccessfully(message: String) {
         
     }
     
@@ -203,7 +203,7 @@ extension StudentDetailHomeworkVC : UITableViewDelegate, UITableViewDataSource {
     
     func storeAndShare(withURLString: String) {
         let urlString = withURLString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-
+        
         guard let url = URL(string: urlString) else { return }
         /// START YOUR ACTIVITY INDICATOR HERE
         URLSession.shared.dataTask(with: url) { data, response, error in
@@ -216,6 +216,7 @@ extension StudentDetailHomeworkVC : UITableViewDelegate, UITableViewDataSource {
                 print(error)
             }
             DispatchQueue.main.async {
+                  self.hideLoader()
                 /// STOP YOUR ACTIVITY INDICATOR HERE
                 self.share(url: tmpURL)
             }

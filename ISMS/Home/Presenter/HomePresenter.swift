@@ -19,6 +19,7 @@ protocol HomeViewModelDelegate:class
     func studentData(data: StudentData)
     func parentData(data: ParentResultData)
     func EventModelSucced(data: [EventResultData]?)
+    func HODData(data: homeHODData)
 }
 
 
@@ -112,13 +113,13 @@ class HomeViewModel{
         var postDict = [String:Any]()
         
         
-        var strUrl = "api/User/DashboardHod?UserId=\(String(describing: userId!))"
+        var strUrl = "api/User/DashboardHodNew?UserId=\(String(describing: userId!))"
         
         postDict[KApiParameters.KGetPagesByUserIdIdintifier.kUserId] = userId
         
         if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Teacher")
         {
-            strUrl = "api/User/DashboardHodNew?UserId=\(String(describing: userId!))"
+            strUrl = "api/User/DashboardTeacher?UserId=\(String(describing: userId!))"
         }
         
         if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Student")
@@ -146,7 +147,12 @@ class HomeViewModel{
                 self.delegate?.userUnauthorize()
             default:
                 self.homeView?.hideLoader()
-                self.homeView?.showAlert(alert: getMenuFromRoleIdModel.message ?? "Something went wrong")
+                if getMenuFromRoleIdModel.message == "The Internet connection appears to be offline."{
+                    
+                }else{
+                    self.homeView?.showAlert(alert: getMenuFromRoleIdModel.message ?? "Something went wrong")
+                }
+                
                 CommonFunctions.sharedmanagerCommon.println(object: "Get Menu using Id APi status change")
             }
             
@@ -329,6 +335,37 @@ class HomeViewModel{
                  }
          }
      }
+    //MARK:- Home  Service
+    func getDataForHOD(userId: Int?)
+    {
+        self.homeView?.showLoader()
+        var postDict = [String:Any]()
+        postDict[KApiParameters.KGetPagesByUserIdIdintifier.kUserId] = userId
+        LoginApi.sharedmanagerAuth.getdataHOD(url: "api/User/DashboardHodNew?UserId=\(String(describing: userId!))" , parameters: postDict, completionResponse: { (getMenuFromRoleIdModel) in
+            
+            switch getMenuFromRoleIdModel.statusCode {
+            case KStatusCode.kStatusCode200:
+                self.homeView?.hideLoader()
+                self.delegate?.HODData(data: getMenuFromRoleIdModel.resultData!)
+            case KStatusCode.kStatusCode401:
+                self.homeView?.showAlert(alert: getMenuFromRoleIdModel.message ?? "Something went wrong")
+                self.delegate?.userUnauthorize()
+            default:
+                self.homeView?.hideLoader()
+                self.homeView?.showAlert(alert: getMenuFromRoleIdModel.message ?? "Something went wrong")
+                CommonFunctions.sharedmanagerCommon.println(object: "Get Menu using Id APi status change")
+            }
+            
+        }, completionnilResponse: { (nilResponseError) in
+            self.homeView?.hideLoader()
+            self.homeView?.showAlert(alert: nilResponseError ?? "Something went wrong")
+        }) { (error) in
+            self.homeView?.hideLoader()
+                if let err = error{
+                   self.homeView?.showAlert(alert: err.localizedDescription)
+                }
+        }
+    }
     
     func GetEvents(enumTypeId: Int, Search:String, Skip: Int,PageSize: Int,SortColumnDir: String, SortColumn: String,ParticularId: Int ){
         

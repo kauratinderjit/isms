@@ -13,7 +13,7 @@ protocol AddHomeWorkDelegate: class {
     func AddHomeworkFailour(msg : String)
     func classListDidSuccess(data: GetCommonDropdownModel)
     func getSubjectList (arr :[GetSubjectHWResultData])
-    func addedSuccessfully ()
+    func addedSuccessfully (message:  String)
     func attachmentDeletedSuccessfully ()
     func subjectList(data: [HomeworkResultHWData])
     func studentHomeworkDetail(data: [HomeworkListStudentData])
@@ -124,8 +124,9 @@ class HomeworkViewModel {
             
             switch response["StatusCode"] as? Int{
             case 200:
-                self.homeworkViewDelegate?.showAlert(alert: response["Message"]  as? String ?? "")
-                self.addHomeworkDelegate?.addedSuccessfully()
+//                self.homeworkViewDelegate?.showAlert(alert: response["Message"]  as? String ?? "")
+                
+                self.addHomeworkDelegate?.addedSuccessfully(message:  response["Message"] as! String)
             case 401:
                 self.homeworkViewDelegate?.showAlert(alert: response["Message"] as? String ?? "")
                 //self.AddHomeWorkDelegate?.unauthorizedUser()
@@ -454,8 +455,8 @@ class HomeworkViewModel {
                
                switch response["StatusCode"] as? Int{
                case 200:
-                   self.homeworkViewDelegate?.showAlert(alert: "Homework upoaded successfully.")
-                   self.addHomeworkDelegate?.addedSuccessfully()
+//                   self.homeworkViewDelegate?.showAlert(alert: "Homework upoaded successfully.")
+                   self.addHomeworkDelegate?.addedSuccessfully(message: "Homework upoaded successfully.")
                case 401:
                    self.homeworkViewDelegate?.showAlert(alert: response["Message"] as? String ?? "")
                    //self.AddHomeWorkDelegate?.unauthorizedUser()

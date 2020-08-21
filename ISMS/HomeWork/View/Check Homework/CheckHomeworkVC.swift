@@ -343,7 +343,7 @@ extension CheckHomeworkVC : AddHomeWorkDelegate
         tableViewHomework.reloadData()
     }
     
-    func addedSuccessfully()
+    func addedSuccessfully(message: String)
     {
         _ = self.navigationController?.popViewController(animated: true)
     }

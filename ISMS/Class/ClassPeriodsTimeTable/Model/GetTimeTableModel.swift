@@ -76,6 +76,7 @@ class GetTimeTableModel : Mappable{
          var isTeacher:Bool?
         var substituteTeacherName : String?
         var substituteTeacherId : Int?
+         var classId : Int?
         
         init?(map: Map) {
         }
@@ -95,6 +96,7 @@ class GetTimeTableModel : Mappable{
             isTeacher <- map["IsTeacher"]
             substituteTeacherName  <- map["SubstituteTeacherName"]
             substituteTeacherId <- map["SubstituteTeacherId"]
+            classId <- map["ClassId"]
         }
         
     }

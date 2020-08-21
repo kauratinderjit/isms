@@ -131,14 +131,14 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LQg-pQ-Ayq">
-                                                        <rect key="frame" x="27" y="11" width="58" height="25"/>
+                                                        <rect key="frame" x="0.0" y="5" width="85" height="27"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="25" id="eTU-EA-byD"/>
-                                                            <constraint firstAttribute="width" constant="58" id="o6k-1s-C4G"/>
+                                                            <constraint firstAttribute="height" constant="27" id="eTU-EA-byD"/>
+                                                            <constraint firstAttribute="width" constant="85" id="o6k-1s-C4G"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                        <state key="normal" title="Photo">
+                                                        <state key="normal">
                                                             <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <userDefinedRuntimeAttributes>
@@ -151,14 +151,14 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p4U-kr-SLt">
-                                                        <rect key="frame" x="122" y="12" width="57" height="25"/>
+                                                        <rect key="frame" x="97" y="9" width="82" height="31"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="57" id="xzN-Jb-KuK"/>
-                                                            <constraint firstAttribute="height" constant="25" id="zKn-3P-rao"/>
+                                                            <constraint firstAttribute="width" constant="82" id="xzN-Jb-KuK"/>
+                                                            <constraint firstAttribute="height" constant="31" id="zKn-3P-rao"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                        <state key="normal" title="Video">
+                                                        <state key="normal">
                                                             <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <userDefinedRuntimeAttributes>
@@ -190,21 +190,45 @@
                                                             <action selector="actionRecordAudio:" destination="yZW-Bn-GGS" eventType="touchUpInside" id="Vao-FZ-ZiB"/>
                                                         </connections>
                                                     </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBR-he-zdZ">
+                                                        <rect key="frame" x="33" y="12" width="50" height="25"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="25" id="4Pw-VL-f5L"/>
+                                                            <constraint firstAttribute="width" constant="50" id="Hwj-iq-tr1"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Video" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1U-3O-faV">
+                                                        <rect key="frame" x="129" y="12" width="50" height="25"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="25" id="Dts-K7-YCE"/>
+                                                            <constraint firstAttribute="width" constant="50" id="zQb-e4-1sv"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="LQg-pQ-Ayq" firstAttribute="top" secondItem="MC7-6b-7D1" secondAttribute="top" constant="11" id="4MA-C2-sYK"/>
+                                                    <constraint firstItem="LQg-pQ-Ayq" firstAttribute="top" secondItem="MC7-6b-7D1" secondAttribute="top" constant="5" id="4MA-C2-sYK"/>
                                                     <constraint firstItem="U8q-gE-CN3" firstAttribute="top" secondItem="MC7-6b-7D1" secondAttribute="top" constant="9" id="AmA-k2-fgF"/>
-                                                    <constraint firstItem="LQg-pQ-Ayq" firstAttribute="leading" secondItem="U8q-gE-CN3" secondAttribute="trailing" constant="-5" id="BlJ-LC-yez"/>
+                                                    <constraint firstItem="LQg-pQ-Ayq" firstAttribute="leading" secondItem="U8q-gE-CN3" secondAttribute="trailing" constant="-32" id="BlJ-LC-yez"/>
                                                     <constraint firstItem="pCB-Qq-Jj7" firstAttribute="top" secondItem="MC7-6b-7D1" secondAttribute="top" constant="9" id="GDN-AD-hK3"/>
                                                     <constraint firstAttribute="height" constant="48" id="INs-jQ-V7E"/>
+                                                    <constraint firstItem="dBR-he-zdZ" firstAttribute="top" secondItem="MC7-6b-7D1" secondAttribute="top" constant="12" id="JAm-xT-mHp"/>
                                                     <constraint firstItem="mtq-Mt-IaI" firstAttribute="top" secondItem="MC7-6b-7D1" secondAttribute="top" constant="13" id="LQa-8f-tnr"/>
-                                                    <constraint firstItem="p4U-kr-SLt" firstAttribute="top" secondItem="MC7-6b-7D1" secondAttribute="top" constant="12" id="RuL-eK-0Fz"/>
+                                                    <constraint firstItem="eli-cS-4IL" firstAttribute="leading" secondItem="g1U-3O-faV" secondAttribute="trailing" constant="14" id="QJ3-bT-dEU"/>
+                                                    <constraint firstItem="g1U-3O-faV" firstAttribute="top" secondItem="MC7-6b-7D1" secondAttribute="top" constant="12" id="Qqv-US-vv7"/>
+                                                    <constraint firstItem="p4U-kr-SLt" firstAttribute="top" secondItem="MC7-6b-7D1" secondAttribute="top" constant="9" id="RuL-eK-0Fz"/>
                                                     <constraint firstItem="mtq-Mt-IaI" firstAttribute="leading" secondItem="eli-cS-4IL" secondAttribute="trailing" constant="-5" id="Yyf-5Q-JVl"/>
                                                     <constraint firstItem="pCB-Qq-Jj7" firstAttribute="centerX" secondItem="MC7-6b-7D1" secondAttribute="centerX" constant="-28" id="a0b-og-cHx"/>
                                                     <constraint firstItem="eli-cS-4IL" firstAttribute="leading" secondItem="p4U-kr-SLt" secondAttribute="trailing" constant="14" id="dhy-D0-q8b"/>
                                                     <constraint firstItem="pCB-Qq-Jj7" firstAttribute="leading" secondItem="LQg-pQ-Ayq" secondAttribute="trailing" constant="12" id="g9Z-oZ-Fca"/>
-                                                    <constraint firstItem="p4U-kr-SLt" firstAttribute="leading" secondItem="pCB-Qq-Jj7" secondAttribute="trailing" constant="-5" id="h9O-5g-ka5"/>
+                                                    <constraint firstItem="p4U-kr-SLt" firstAttribute="leading" secondItem="pCB-Qq-Jj7" secondAttribute="trailing" constant="-30" id="h9O-5g-ka5"/>
+                                                    <constraint firstItem="pCB-Qq-Jj7" firstAttribute="leading" secondItem="dBR-he-zdZ" secondAttribute="trailing" constant="14" id="hX0-4V-fiY"/>
                                                     <constraint firstItem="eli-cS-4IL" firstAttribute="top" secondItem="MC7-6b-7D1" secondAttribute="top" constant="9" id="znC-UE-AdU"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
@@ -605,7 +629,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ni6-b9-TKk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5484" y="-704"/>
+            <point key="canvasLocation" x="5482.5" y="-704.57746478873241"/>
         </scene>
         <!--Record VideoVC-->
         <scene sceneID="RY6-jF-7A7">

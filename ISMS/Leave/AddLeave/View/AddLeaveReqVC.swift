@@ -57,6 +57,7 @@ class AddLeaveReqVC: BaseUIViewController {
          AddLeaveReqVC.isFromLeaveListDate = true
         self.viewModel = AddLeaveReqViewModel.init(delegate: self)
         self.viewModel?.attachView(viewDelegate: self)
+        documentInteractionController.delegate = self
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         view.addGestureRecognizer(tap)
          if UserDefaultExtensionModel.shared.currentUserRoleId == 2{
@@ -83,6 +84,12 @@ class AddLeaveReqVC: BaseUIViewController {
         // Do any additional setup after loading the view.
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+    }
+    
      func dateFromString(string: String) -> String?
         {
             let dateFormatter = DateFormatter()
@@ -101,13 +108,28 @@ class AddLeaveReqVC: BaseUIViewController {
    func setData(){
     lblDescrption.isHidden = true
     txtFieldLeaveType.text = arrLeaveListReq?.leaveAppType
-    if let dateStr = arrLeaveListReq?.startDate{
-        let startDate = self.dateFromString(string:  dateStr ?? "\(Date())")
-           txtFieldFromDate.text = startDate
+    if let dateStr = arrLeaveListReq?.strStartDate{
+//        let startDate = self.dateFromString(string:  dateStr ?? "\(Date())")
+        let isoDate = arrLeaveListReq?.strStartDate ?? ""
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let date = dateFormatter.date(from:isoDate)
+        startDate = date ?? Date()
+           txtFieldFromDate.text = dateStr
     }
-    if let dateEnd = arrLeaveListReq?.endDate{
-        let endDate = self.dateFromString(string: dateEnd ?? "\(Date())")
-             txtFieldToDate.text = endDate
+    if let dateEnd = arrLeaveListReq?.strEndDate{
+//        let endDate = self.dateFromString(string: dateEnd ?? "\(Date())")
+//        endDate = arrLeaveListReq?.endDate
+        let isoDate = arrLeaveListReq?.strEndDate ?? ""
+
+               let dateFormatter = DateFormatter()
+               dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+               dateFormatter.dateFormat = "dd/MM/yyyy"
+               let date = dateFormatter.date(from:isoDate)
+        endDate = date ?? Date()
+             txtFieldToDate.text = dateEnd
     }
   
     txtViewDescription.text = arrLeaveListReq?.discription
@@ -121,12 +143,12 @@ class AddLeaveReqVC: BaseUIViewController {
 //                       }
                        print(arrayAttachmentsToShow)
                    }
-                   if arrayAttachmentsToShow.count == 0{
-                       collectionviewHeight.constant = 0.0
-                   }
-                   else{
-                       collectionviewHeight.constant = 120.0
-                   }
+//                   if arrayAttachmentsToShow.count == 0{
+//                       collectionviewHeight.constant = 0.0
+//                   }
+//                   else{
+//                       collectionviewHeight.constant = 120.0
+//                   }
                    DispatchQueue.main.async {
                        self.collectionView.reloadData()
                    }
@@ -196,7 +218,7 @@ class AddLeaveReqVC: BaseUIViewController {
                {
                    viewPopUp.isHidden = false
                    viewTableView.isHidden = false
-                   viewBlur.isHidden = false
+//                   viewBlur.isHidden = false
                }
                else
                {
@@ -299,7 +321,7 @@ class AddLeaveReqVC: BaseUIViewController {
                    print(error)
                }
                DispatchQueue.main.async {
-//                   self.hideLoader()
+                   self.hideLoader()
                    /// STOP YOUR ACTIVITY INDICATOR HERE
                self.share(url: tmpURL)
                    
@@ -310,7 +332,7 @@ class AddLeaveReqVC: BaseUIViewController {
                    
                }
                }.resume()
-            //  hideLoader()
+              hideLoader()
            
        }
     func share(url: URL)
@@ -321,6 +343,14 @@ class AddLeaveReqVC: BaseUIViewController {
         documentInteractionController.presentPreview(animated: true)
     }
     
+}
+extension AddLeaveReqVC: UIDocumentInteractionControllerDelegate{
+    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
+        guard let navVC = self.navigationController else {
+            return self
+        }
+        return navVC
+    }
 }
 //MARK:- PICKER DELEGATE FUNCTIONS
 extension AddLeaveReqVC : SharedUIPickerDelegate{
@@ -362,14 +392,24 @@ extension AddLeaveReqVC:SharedUIDatePickerDelegate{
         
         if isSelectFromDate == true{
             startDate = strDate!
-             txtFieldFromDate.text = convertedDate
+            if txtFieldToDate.text != ""{
+                if startDate <= endDate{
+                     txtFieldFromDate.text = convertedDate
+                }else{
+                    txtFieldFromDate.text = ""
+                    showAlert(alert: "Please enter valid start and end date")
+                }
+            }else{
+                 txtFieldFromDate.text = convertedDate
+            }
+            
         }else{
         
             endDate = strDate!
             if startDate <= endDate{
                 txtFieldToDate.text = convertedDate
             }else{
-                showAlert(alert: "Please eneter  valid start and end date")
+                showAlert(alert: "Please enter valid start and end date")
             }
             
         }
@@ -398,7 +438,7 @@ extension AddLeaveReqVC: UIDocumentMenuDelegate,UIDocumentPickerDelegate{
         self.collectionView.reloadData()
          viewTableView.isHidden = true
         self.view.endEditing(true)
-        viewBlur.isHidden = true
+//        viewBlur.isHidden = true
     }
   
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
@@ -432,7 +472,7 @@ extension AddLeaveReqVC:UIImagePickerDelegate{
             self.collectionView.reloadData()
             viewTableView.isHidden = true
             self.view.endEditing(true)
-            viewBlur.isHidden = true
+//            viewBlur.isHidden = true
             
         }
         
@@ -459,30 +499,28 @@ extension AddLeaveReqVC : UICollectionViewDelegate , UICollectionViewDataSource{
 //        }else{
 //            collectionviewHeight.constant = -20
 //        }
-        
         return arrayAttachmentsToShow.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! AttachFilesCollectionViewCell
         let dataFoRow = arrayAttachmentsToShow[indexPath.row]
         cell.setDataCell(data: dataFoRow)
         cell.btn_cross.tag = indexPath.item
-        
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
+        DispatchQueue.main.async {
+            self.showLoader()
+        }
         let dataFoRow = arrayAttachmentsToShow[indexPath.row]
-        
-       
-            showLoader()
+        let string = dataFoRow.instituteAttachmentName
+        let stringResult = string?.contains(".pdf")
+        if stringResult == true{
             storeAndShare(withURLString: dataFoRow.instituteAttachmentName ?? "")
-       
-        
+        }
     }
-    
 }
 
 //MARK:- Custom Ok Alert
@@ -494,6 +532,13 @@ extension AddLeaveReqVC : OKAlertViewDelegate{
 //            CommonFunctions.sharedmanagerCommon.setRootLogin()
 //        }
          self.okAlertView.removeFromSuperview()
+        if viewAcceptRejectBtn.isHidden == false{
+            let storyboard = UIStoryboard.init(name: "Leave", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "LeaveListVC") as? LeaveListVC
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(vc!, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
+        }
         if  isFromSubmit == 1{
             let storyboard = UIStoryboard.init(name: "Leave", bundle: nil)
                    let vc = storyboard.instantiateViewController(withIdentifier: "LeaveListVC") as? LeaveListVC

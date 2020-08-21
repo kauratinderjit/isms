@@ -32,6 +32,7 @@ class UpdateSyllabusVC: BaseUIViewController {
 
     var subjectData : SyllabusCoverageListResultData?
     var isCheck = false
+    var isSelectTopic = false
     
     @IBOutlet weak var tableBottomConstraints: NSLayoutConstraint!
     @IBOutlet weak var btnUpdate: UIButton!
@@ -113,6 +114,7 @@ class UpdateSyllabusVC: BaseUIViewController {
     }
     
     @objc func updateSyllabus(_ sender: UIButton) {
+        isSelectTopic = true
         let position: CGPoint = sender.convert(CGPoint.zero, to: self.tableView)
         if let indexPath = self.tableView.indexPathForRow(at: position)
         {
@@ -172,7 +174,12 @@ class UpdateSyllabusVC: BaseUIViewController {
           print(ClassSubjectId)
            print(ClassId)
            print(coveredTopicData)
-        self.viewModel?.getData(ClassSubjectId : ClassSubjectId ?? 0, ClassId :ClassId ?? 0, UserId : UserDefaultExtensionModel.shared.currentUserId , lstchaptertopiclists : coveredTopicData)
+        if isSelectTopic == false{
+            self.showAlert(alert: "Please First edit any topic.")
+        }else{
+             self.viewModel?.getData(ClassSubjectId : ClassSubjectId ?? 0, ClassId :ClassId ?? 0, UserId : UserDefaultExtensionModel.shared.currentUserId , lstchaptertopiclists : coveredTopicData)
+        }
+       
     }
 
 }

@@ -282,7 +282,7 @@ class HomeVC: BaseUIViewController {
             self.title = "HOD's Dashboard"
             collectionView.isHidden = true
             viewStatsAdmin.isHidden = false
-            self.homeViewModel?.getData(userId: UserDefaultExtensionModel.shared.currentUserId)
+            self.homeViewModel?.getDataForHOD(userId: UserDefaultExtensionModel.shared.currentUserId)
         }
         else if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Teacher")
         {
@@ -309,21 +309,21 @@ class HomeVC: BaseUIViewController {
           
         }
         else if UserDefaultExtensionModel.shared.currentHODRoleName.contains("Parent")
-               {
-                   self.title = "Parent's Dashboard"
-                self.iv1.isHidden = true
-                self.iv2.isHidden = true
-                self.iv3.isHidden = true
-                
-                self.lblName1.isHidden = true
-                self.lblName2.isHidden = true
-                self.lblName3.isHidden = true
-                
-                viewEventTopConstraints.constant = 10
-                   // tblViewListing.isHidden = true
-                   self.homeViewModel?.getDataParentDashboardApi(userId: UserDefaultExtensionModel.shared.currentUserId)
-                 
-               }
+        {
+            self.title = "Parent's Dashboard"
+            self.iv1.isHidden = true
+            self.iv2.isHidden = true
+            self.iv3.isHidden = true
+            
+            self.lblName1.isHidden = true
+            self.lblName2.isHidden = true
+            self.lblName3.isHidden = true
+            
+            viewEventTopConstraints.constant = 10
+            // tblViewListing.isHidden = true
+            self.homeViewModel?.getDataParentDashboardApi(userId: UserDefaultExtensionModel.shared.currentUserId)
+            
+        }
     }
     
     
@@ -413,22 +413,110 @@ extension HomeVC : HomeViewModelDelegate
         tblViewListing.reloadData()
 //        tableView.reloadData()
     }
+    func HODData(data: homeHODData){
+        var  noOfTeacherStudentData = [Double]()
+        noOfTeacherStudentData.append(Double(data.numberofClasses ?? Int(0.0)))
+        noOfTeacherStudentData.append(Double(data.numberofStudent ?? Int(0.0)))
+        noOfTeacherStudentData.append(Double(data.numberofTeacher ?? Int(0.0)))
+//        noOfTeacherStudentData = [3,5,5]
+        
+        let players = ["Classes","Sudents","Teachers"]
+        customizeChart(dataPoints: players, values: noOfTeacherStudentData.map{ Double($0) })
+        BarChartViewResultData.animate(yAxisDuration: 2.0)
+        BarChartViewResultData.pinchZoomEnabled = false
+        BarChartViewResultData.drawBarShadowEnabled = false
+        BarChartViewResultData.drawBordersEnabled = false
+        BarChartViewResultData.doubleTapToZoomEnabled = false
+        BarChartViewResultData.drawGridBackgroundEnabled = true
+        BarChartViewResultData.chartDescription?.text = "Result Data Bar Chart View"
+        
+        let months = ["2010-2011", "2011-2012", "2012-2013", "2013-2014", "2015-2016", "2016-2017", "2017-2018", "2018-2019", "2019-2020"]
+        let unitsSold = [88.0, 77.0, 81.0, 93.0, 94.0, 95.0, 96.0, 97, 99.0]
+        //        setChart(dataPoints: months, values: unitsSold)
+        
+        setChart(dataPoints: months, values: unitsSold)
+        setLineChart(dataPoints: months, values: unitsSold)
+        
+        var  valesMale = [Double]()
+//        valesMale = [4,1]
+        valesMale.append(Double(data.countOfStudentMales ?? Int(0.0)))
+        valesMale.append(Double(data.countOfStudentFemales ?? Int(0.0)))
+        
+        customizeChartMaleFemale(dataPoints: maleArr, values: valesMale.map{ Double($0) })
+        
+        //        self.iv1.isHidden = false
+        //        self.iv2.isHidden = false
+        //        self.iv3.isHidden = false
+        //
+        //        self.lblName1.isHidden = false
+        //        self.lblName2.isHidden = false
+        //        self.lblName3.isHidden = false
+        //
+        //        print(data)
+        //        lblName.text = data.HodName
+        //        lblDept.text = (data.DepartmentName ?? "")
+        //
+        //
+        //
+        //        if UserDefaultExtensionModel.shared.imageUrl != nil{
+        //          var  imgProfileUrl = UserDefaultExtensionModel.shared.imageUrl
+        //            imgProfile.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        //            //mohit studentImgUrl = URL(string: imgProfileUrl)
+        //            imgProfile.contentMode = .scaleAspectFill
+        //            imgProfile.sd_setImage(with: URL(string: imgProfileUrl), placeholderImage: UIImage(named: kImages.kProfileImage))
+        //        }else{
+        ////            studentImgUrl = URL(string: "")
+        //            imgProfile.image = UIImage.init(named: kImages.kProfileImage)
+        //        }
+        //
+        //        var strClass : String = "Class"
+        //        var strTeacher : String = "Teacher"
+        //        var strStudent : String = "Student"
+        //
+        //        if data.NumberofClasses! > 1
+        //        {
+        //            strClass = "Classes"
+        //        }
+        //        if data.NumberofTeacher! > 1
+        //        {
+        //            strTeacher = "Teachers"
+        //        }
+        //        if data.NumberofStudent! > 1
+        //        {
+        //            strStudent = "Students"
+        //        }
+        //
+        //        lblName1.text = "\(String(describing: data.NumberofClasses!))" + " " + strClass
+        //        lblName2.text =  "\(String(describing: data.NumberofTeacher!))" + " " + strTeacher
+        //        lblName3.text =  "\(String(describing: data.NumberofStudent!))" + " " + strStudent
+        //
+        //        if data.lstEvent?.count ?? 0 > 0
+        //        {
+        //            arrEventlist = data.lstEvent
+        //            tblViewListing.reloadData()
+        //        }
+        //        else
+        //        {
+        //            tblViewListing.isHidden = true
+        //        }
+        //        self.homeViewModel?.GetEvents(enumTypeId:1, Search:"", Skip: 10,PageSize: 0,SortColumnDir: "", SortColumn: "",ParticularId: UserDefaultExtensionModel.shared.HODDepartmentId)
+    }
     
     func AdminData(data: homeAdminResultData)
     {
         
         var  noOfTeacherStudentData = [Double]()
-//        noOfTeacherStudentData.append(Double(data.NoOfClasses ?? Int(0.0)))
-//        noOfTeacherStudentData.append(Double(data.NoOfHODs ?? Int(0.0)))
-//        noOfTeacherStudentData.append(Double(data.noOfSudents ?? Int(0.0)))
-//        noOfTeacherStudentData.append(Double(data.NoOfTeachers ?? Int(0.0)))
-        noOfTeacherStudentData = [12,5,6,7]
+        noOfTeacherStudentData.append(Double(data.NoOfClasses ?? Int(0.0)))
+        noOfTeacherStudentData.append(Double(data.NoOfHODs ?? Int(0.0)))
+        noOfTeacherStudentData.append(Double(data.noOfSudents ?? Int(0.0)))
+        noOfTeacherStudentData.append(Double(data.NoOfTeachers ?? Int(0.0)))
+//        noOfTeacherStudentData = [12,5,6,7]
         
         
           var  valesMale = [Double]()
-        valesMale = [10,2]
-//         valesMale.append(Double(data.countOfStudentMales ?? Int(0.0)))
-//         valesMale.append(Double(data.countOfStudentFemales ?? Int(0.0)))
+//        valesMale = [10,2]
+         valesMale.append(Double(data.countOfStudentMales ?? Int(0.0)))
+         valesMale.append(Double(data.countOfStudentFemales ?? Int(0.0)))
         
          customizeChart(dataPoints: players, values: noOfTeacherStudentData.map{ Double($0) })
           customizeChartMaleFemale(dataPoints: maleArr, values: valesMale.map{ Double($0) })
@@ -484,9 +572,9 @@ extension HomeVC : HomeViewModelDelegate
     func hodData(data: homeResultData)
     {
          var  noOfTeacherStudentData = [Double]()
-        //        noOfTeacherStudentData.append(Double(data.NoOfClasses ?? Int(0.0)))
-        //        noOfTeacherStudentData.append(Double(data.noOfSudents ?? Int(0.0)))
-        //        noOfTeacherStudentData.append(Double(data.NoOfTeachers ?? Int(0.0)))
+//                noOfTeacherStudentData.append(Double(data.NoOfClasses ?? Int(0.0)))
+//                noOfTeacherStudentData.append(Double(data.noOfSudents ?? Int(0.0)))
+//                noOfTeacherStudentData.append(Double(data.NoOfTeachers ?? Int(0.0)))
                 noOfTeacherStudentData = [12,5,6]
                 
                 let players = ["Classes","Sudents","Teachers"]
@@ -508,8 +596,8 @@ extension HomeVC : HomeViewModelDelegate
         
            var  valesMale = [Double]()
                 valesMale = [10,2]
-        //         valesMale.append(Double(data.countOfStudentMales ?? Int(0.0)))
-        //         valesMale.append(Double(data.countOfStudentFemales ?? Int(0.0)))
+//                 valesMale.append(Double(data.countOfStudentMales ?? Int(0.0)))
+//                 valesMale.append(Double(data.countOfStudentFemales ?? Int(0.0)))
                 
                   customizeChartMaleFemale(dataPoints: maleArr, values: valesMale.map{ Double($0) })
         
@@ -767,9 +855,15 @@ extension HomeVC : ViewDelegate{
     
     func showAlert(alert: String)
     {
+        
+       
         initializeCustomOkAlert(self.view, isHideBlurView: true)
         okAlertView.delegate = self
-          okAlertView.lblResponseDetailMessage.text = alert
+          if alert == "The Internet connection appears to be offline."{
+                     okAlertView.lblResponseDetailMessage.text = "No internet connection."
+                 }else{
+                     okAlertView.lblResponseDetailMessage.text = alert
+                 }
     }
 }
 

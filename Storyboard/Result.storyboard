@@ -153,6 +153,7 @@
                                                                 </button>
                                                             </subviews>
                                                         </view>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="BZX-W2-LbT" firstAttribute="trailing" secondItem="7PL-ch-axE" secondAttribute="trailing" constant="-1" id="AHZ-Q7-cLC"/>
                                                             <constraint firstItem="BZX-W2-LbT" firstAttribute="top" secondItem="7PL-ch-axE" secondAttribute="top" constant="1" id="AnL-ES-8Un"/>

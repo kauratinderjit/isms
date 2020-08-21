@@ -32,6 +32,8 @@ pod 'Hakawai'
 pod 'ImageCropper'
 pod 'PaddingLabel'
 pod 'Charts'
+pod 'CryptoSwift'
+pod 'PayUmoney_PnP'
 
   target 'ISMSTests' do
     inherit! :search_paths

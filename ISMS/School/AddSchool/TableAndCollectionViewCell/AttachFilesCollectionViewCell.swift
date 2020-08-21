@@ -17,7 +17,15 @@ class AttachFilesCollectionViewCell: UICollectionViewCell {
     
     func setDataCell( data: AttachedFiles){
         
-        if data.type == "File"{
+        let string = data.instituteAttachmentName
+        let stringResult = string?.contains(".pdf")
+        
+          if UserDefaultExtensionModel.shared.currentUserRoleId == 2{
+            btn_cross.isHidden = true
+        }
+        
+        
+        if stringResult == true{
             imageview_attachedFiles.image = UIImage(named: "pdf")
         }
         else{

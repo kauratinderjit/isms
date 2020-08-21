@@ -17,9 +17,6 @@ import AVKit
 
 extension UIViewController
 {
-
-    
-    
     
     // This method is used to corner the buttons e.g. Save, Submit etc.
     func cornerButton(btn : UIButton,radius:Int) {
@@ -69,9 +66,6 @@ extension UIViewController
             view.layer.shadowOpacity = Float(opacity);
         })
     }
-    
-    
-    
     
     //Shadow to view
     func addShadow(view:UIView)

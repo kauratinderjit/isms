@@ -52,6 +52,7 @@ class ContactUsVC: BaseUIViewController {
             imgProfile.isHidden = false
             lblEstablishment.isHidden = false
             ourName.isHidden = false
+            btnSubmit.isHidden = true
             btnSubmit.setTitle("Locate Us", for: .normal)
             
         }else{
@@ -365,6 +366,44 @@ class ContactUsVC: BaseUIViewController {
 //                cell.lblEmail.text = ""
 //            }
             
+            print("admision count",lstAdmissionInquiryViewModels.count)
+            print("admisionsss count",lstAdmissionInquiryViewModels.count)
+            
+            let lastIndex = lstAdmissionInquiryViewModels.count
+                  let indexPath = IndexPath(row: lastIndex,section: 0)
+                  if let lastcell = tableViewAdmission.cellForRow(at: indexPath) as? AdmissionTableCell {
+                    if(lastcell.txtFieldPhoneNum.text != ""){
+                        if(lastcell.txtFieldEmail.text != ""){
+                                var data = [String:Any]()
+                                data = ["AdmissionInquiryId":0 , "AdmissionEmail": lastcell.txtFieldEmail.text,"AdmissionNumber":lastcell.txtFieldPhoneNum.text]
+                                print("data: ",data)
+                                lstAdmissionInquiryViewModels.append(data)
+                            }
+                        }
+                    }
+            
+            if let lastcell = tableViewGeneral.cellForRow(at: indexPath) as? GeneralTableCell {
+                if(lastcell.txtFieldPhoneNum.text != ""){
+                    if(lastcell.txtFieldEmail.text != ""){
+                            var data = [String:Any]()
+                            data = ["GeneralInquiryId":0 , "GenernalEmail": lastcell.txtFieldEmail.text,"GenernalNumber":lastcell.txtFieldPhoneNum.text]
+                            print("data: ",data)
+                            lstGeneralInquiryViewModels.append(data)
+                    }
+                }
+            }
+            
+            if let lastcell = tableViewEmergency.cellForRow(at: indexPath) as? EmergencyTableCell {
+                if(lastcell.txtFieldPhoneNum.text != ""){
+                    if(lastcell.txtFieldEmail.text != ""){
+                          var data = [String:Any]()
+                            data = ["EmergencyInquiryId":0 , "EmergencyEmail": lastcell.txtFieldEmail.text,"EmergencyNumber":lastcell.txtFieldPhoneNum.text]
+                            print("data: ",data)
+                            lstEmergencyInquiryViewModels.append(data)
+                    }
+                }
+            }
+            
              viewModel?.addContact(ContactId: 31,InstituteId: 1,Message: "",lstEmergencyInquiryViewModels: lstEmergencyInquiryViewModels,lstAdmissionInquiryViewModels: lstAdmissionInquiryViewModels,lstGeneralInquiryViewModels: lstGeneralInquiryViewModels,lstdeleteEmergencyInquiryViewModels: lstdeleteEmergencyInquiryViewModels,lstdeleteAdmissionInquiryViewModels: lstdeleteAdmissionInquiryViewModels,lstdeleteGeneralInquiryViewModels : lstdeleteGeneralInquiryViewModels)
         }
     }
@@ -490,13 +529,7 @@ extension ContactUsVC : ContactUsViewModelDelegate{
  extension ContactUsVC : OKAlertViewDelegate{
      func okBtnAction() {
          okAlertView.removeFromSuperview()
- //        if isUnauthorizedUser == true{
- //            isUnauthorizedUser = false
- //            CommonFunctions.sharedmanagerCommon.setRootLogin()
- //        }else if isStudentAttendanceSuccess == true{
- //            isStudentAttendanceSuccess = false
- //            self.navigationController?.popViewController(animated: true)
- //        }
+         self.navigationController?.popToRootViewController(animated: true)
      }
  }
 //MARK:- Table view delagate

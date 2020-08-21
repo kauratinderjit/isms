@@ -184,7 +184,7 @@ extension SubstituteTeacherVC : UITableViewDataSource{
             tableView.separatorStyle = .singleLine
             return (arrSubstituteTeacherlist.count)
         }else{
-            tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: false)
+            tblViewCenterLabel(tblView: tableView, lblText: KConstants.kNoDataFound, hide: true)
             return 0
         }
     }

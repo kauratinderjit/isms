@@ -124,7 +124,7 @@ extension HomeworkListVC : AddHomeWorkDelegate
         
     }
     
-    func addedSuccessfully() {
+    func addedSuccessfully(message: String) {
         
     }
     

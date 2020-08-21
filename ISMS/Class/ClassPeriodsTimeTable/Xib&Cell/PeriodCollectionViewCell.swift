@@ -66,8 +66,8 @@ class PeriodCollectionViewCell: UICollectionViewCell {
                 self.lblNoAssign.isHidden = false
                 btnAssignTeacherSubject.isHidden = true
             }else{
-                self.lblNoAssign.isHidden = true
-                btnAssignTeacherSubject.isHidden = false
+                self.lblNoAssign.isHidden = false
+                btnAssignTeacherSubject.isHidden = true
             }
         }else{
             self.lblNoAssign.isHidden = true

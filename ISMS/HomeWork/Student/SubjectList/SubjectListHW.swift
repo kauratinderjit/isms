@@ -111,7 +111,7 @@ extension SubjectListHW : AddHomeWorkDelegate {
         
     }
     
-    func addedSuccessfully() {
+    func addedSuccessfully(message: String) {
         
     }
     

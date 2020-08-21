@@ -257,12 +257,17 @@ extension TimeTableStudentVC: UICollectionViewDelegate
 {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
+        if  arrGetTimeTableDaysModel?.count ?? 0 >= indexPath.section {
+
+     
             if let daysModel = self.arrGetTimeTableDaysModel?[indexPath.section - 1]
             {
-                guard let period = daysModel.periodDetailListModel?[indexPath.row - 1]else {return}
                 
-          
-                
+                    if indexPath.row == 0{
+                        return
+                    }
+                         guard let period = daysModel.periodDetailListModel?[indexPath.row - 1]else {return}
+                    
                     print(period)
                     if period.teacherId != 0
                     {
@@ -277,10 +282,11 @@ extension TimeTableStudentVC: UICollectionViewDelegate
                                             let storyboard = UIStoryboard.init(name: "StudentAttendence", bundle: nil)
                                             let vc = storyboard.instantiateViewController(withIdentifier: "StudentListToMarkAttendence") as! StudentListToMarkAttendence
                                             vc.timeTableId = period.timeTableId
-                                            vc.classId = selectedClassId
+                                            vc.classId = period.classId
                                             vc.teacherId = period.teacherId
                                             vc.classSubjectId = period.subjectId
                                             vc.isFromHOD = false
+                                            vc.isCurrentDay = true
                                             self.navigationController?.pushViewController(vc, animated: false)
                                         }
                                     }
@@ -289,10 +295,10 @@ extension TimeTableStudentVC: UICollectionViewDelegate
                                 let storyboard = UIStoryboard.init(name: "StudentAttendence", bundle: nil)
                                 let vc = storyboard.instantiateViewController(withIdentifier: "StudentListToMarkAttendence") as! StudentListToMarkAttendence
                                 vc.timeTableId = period.timeTableId
-                                vc.classId = selectedClassId
+                                vc.classId = period.classId
                                 vc.teacherId = period.teacherId
                                 vc.classSubjectId = period.subjectId
-                                vc.isFromHOD = true
+                                vc.isFromHOD = false
                                 self.navigationController?.pushViewController(vc, animated: false)
                             }
                             
@@ -301,15 +307,16 @@ extension TimeTableStudentVC: UICollectionViewDelegate
                             let vc = storyboard.instantiateViewController(withIdentifier: "StudentViewAttendanceVC") as! StudentViewAttendanceVC
                             vc.periodId = period.periodId
                             vc.timeTableId = period.timeTableId
-                            vc.classId = selectedClassId
+                            vc.classId = period.classId
                             vc.teacherId = period.teacherId
                             vc.classSubjectId = period.subjectId
                             self.navigationController?.pushViewController(vc, animated: false)
                         }
                         
                 }
-                
+              
             }
+        }
     }
 }
 

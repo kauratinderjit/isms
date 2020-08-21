@@ -33,6 +33,7 @@ class StudentRatingVC: BaseUIViewController {
     var arrStudent = [StudentRatingResultData]()
     var arrSkillList = [GetCommonDropdownModel.ResultData]()
     var arrSubjectList1 = [AddStudentRatingResultData]()
+     var arrClassList1 = [AddStudentRatingResultData]()
     let userRoleParticularId = UserDefaultExtensionModel.shared.userRoleParticularId
      var HODdepartmentId = UserDefaultExtensionModel.shared.HODDepartmentId
     var isFromHod :Bool!
@@ -98,6 +99,21 @@ class StudentRatingVC: BaseUIViewController {
         isMonthSelected = false
         
         if checkInternetConnection(){
+             if isFromHod == true{
+                if arrClassList1.count > 0{
+                    UpdatePickerModel2(count: arrClassList1.count, sharedPickerDelegate: self, View:  self.view, index: 0)
+                    
+                    selectedClassId = arrClassList1[0].studentID
+                    let text = txtfieldClass.text!
+                    if let index = arrClassList1.index(where: { (dict) -> Bool in
+                        return dict.studentName ?? "" == text // Will found index of matched id
+                    })
+                    {
+                        print("Index found :\(index)")
+                        UpdatePickerModel2(count: arrSkillList.count, sharedPickerDelegate: self, View:  self.view, index: index)
+                    }
+                }
+             }else{
             if arrSkillList.count > 0{
                 UpdatePickerModel2(count: arrSkillList.count, sharedPickerDelegate: self, View:  self.view, index: 0)
                 
@@ -110,6 +126,7 @@ class StudentRatingVC: BaseUIViewController {
                     print("Index found :\(index)")
                     UpdatePickerModel2(count: arrSkillList.count, sharedPickerDelegate: self, View:  self.view, index: index)
                 }
+            }
             }
         }else{
             self.showAlert(alert: Alerts.kNoInternetConnection)
@@ -198,31 +215,31 @@ extension StudentRatingVC : StudentRatingDelegate {
     }
     
     func GetSkillListDidSucceed(data: [AddStudentRatingResultData]?) {
-//        print("our data : ",data)
-//        arrSkillList.removeAll()
-//        self.isFetching = true
-//        if let data1 = data {
-//            if data1.count>0
-//            {
-//                self.arrSkillList = data1
-//                if let className = arrSkillList[0].studentName{
-////                    txtfieldClass.text = className
-//                    var newclassid = arrSkillList[0].studentID!
-//                     RegisterClassDataModel.sharedInstance?.subjectID = newclassid
-//                    //                    RegisterClassDataModel.sharedInstance?.classID = arrSkillList[0].studentID
-////                     if isFromHod == true{
-////                        self.viewModel?.GetSubjectList(classid: newclassid,teacherId: 0,hodid:userRoleParticularId )
-////                     }else{
-////                        self.viewModel?.GetSubjectList(classid: newclassid,teacherId: userRoleParticularId,hodid:0)
-////                    }
-//                }
-//
-//
-//            }
-//
-//
-//            tableView.reloadData()
-//        }
+        print("our data : ",data)
+        arrSkillList.removeAll()
+        self.isFetching = true
+        if let data1 = data {
+            if data1.count>0
+            {
+                self.arrClassList1 = data1
+                if let className = arrClassList1[0].studentName{
+//                    txtfieldClass.text = className
+                    var newclassid = arrClassList1[0].studentID!
+                     RegisterClassDataModel.sharedInstance?.subjectID = newclassid
+                    //                    RegisterClassDataModel.sharedInstance?.classID = arrSkillList[0].studentID
+//                     if isFromHod == true{
+//                        self.viewModel?.GetSubjectList(classid: newclassid,teacherId: 0,hodid:userRoleParticularId )
+//                     }else{
+//                        self.viewModel?.GetSubjectList(classid: newclassid,teacherId: userRoleParticularId,hodid:0)
+//                    }
+                }
+
+
+            }
+
+
+            tableView.reloadData()
+        }
     }
     
     func GetSubjectListDidSucceed(data: [AddStudentRatingResultData]?) {
@@ -346,32 +363,62 @@ extension StudentRatingVC : SharedUIPickerDelegate{
             //            arrAllAssignedSubjects.removeAll()
             if isClassSelected == true {
                 isClassSelected = false
-                if let index = selectedClassArrIndex {
-                    if let id = arrSkillList[index].id {
-                         RegisterClassDataModel.sharedInstance?.subjectID = id
-                        if isFromHod == true{
-                            self.viewModel?.GetSubjectList(classid: id,teacherId: 0,hodid:userRoleParticularId )
-                        }else{
-                            self.viewModel?.GetSubjectList(classid: id,teacherId: userRoleParticularId,hodid:0)
+                if  isFromHod == true{
+                    if let index = selectedClassArrIndex {
+                        if let id = arrClassList1[index].studentID {
+                            RegisterClassDataModel.sharedInstance?.subjectID = id
+                            if isFromHod == true{
+                                self.viewModel?.GetSubjectList(classid: id,teacherId: 0,hodid:userRoleParticularId )
+                            }else{
+                                self.viewModel?.GetSubjectList(classid: id,teacherId: userRoleParticularId,hodid:0)
+                            }
+                            //                        self.viewModel?.GetSubjectList(classid: id,teacherId: userRoleParticularId, hodid: )
+                            //                        self.viewModel?.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: pageSize,sortColumnDir: "",sortColumn: "", particularId: id)
                         }
-//                        self.viewModel?.GetSubjectList(classid: id,teacherId: userRoleParticularId, hodid: )
-                        //                        self.viewModel?.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: pageSize,sortColumnDir: "",sortColumn: "", particularId: id)
+                    }else{
+                        selectedClassArrIndex = 0
+                        if let id = arrClassList1[selectedClassArrIndex ?? 0].studentID {
+                            RegisterClassDataModel.sharedInstance?.subjectID = id
+                            if isFromHod == true{
+                                self.viewModel?.GetSubjectList(classid: id,teacherId: 0,hodid:userRoleParticularId )
+                            }else{
+                                self.viewModel?.GetSubjectList(classid: id,teacherId: userRoleParticularId,hodid:0)
+                            }
+                            //                        self.viewModel?.GetSubjectList(classid: id,teacherId: userRoleParticularId, hodid: )
+                            //                        self.viewModel?.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: pageSize,sortColumnDir: "",sortColumn: "", particularId: id)
+                        }
                     }
                 }else{
-                    selectedClassArrIndex = 0
-                    if let id = arrSkillList[selectedClassArrIndex ?? 0].id {
-                        RegisterClassDataModel.sharedInstance?.subjectID = id
-                        if isFromHod == true{
-                            self.viewModel?.GetSubjectList(classid: id,teacherId: 0,hodid:userRoleParticularId )
-                        }else{
-                            self.viewModel?.GetSubjectList(classid: id,teacherId: userRoleParticularId,hodid:0)
+                     if let index = selectedClassArrIndex {
+                                       
+                        if let id = arrSkillList[index].id {
+                            RegisterClassDataModel.sharedInstance?.subjectID = id
+                            if isFromHod == true{
+                                self.viewModel?.GetSubjectList(classid: id,teacherId: 0,hodid:userRoleParticularId )
+                            }else{
+                                self.viewModel?.GetSubjectList(classid: id,teacherId: userRoleParticularId,hodid:0)
+                            }
+                            //                        self.viewModel?.GetSubjectList(classid: id,teacherId: userRoleParticularId, hodid: )
+                            //                        self.viewModel?.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: pageSize,sortColumnDir: "",sortColumn: "", particularId: id)
                         }
-                        //                        self.viewModel?.GetSubjectList(classid: id,teacherId: userRoleParticularId, hodid: )
-                        //                        self.viewModel?.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: pageSize,sortColumnDir: "",sortColumn: "", particularId: id)
+                     }else{
+                        selectedClassArrIndex = 0
+                        if let id = arrSkillList[selectedClassArrIndex ?? 0].id {
+                            RegisterClassDataModel.sharedInstance?.subjectID = id
+                            if isFromHod == true{
+                                self.viewModel?.GetSubjectList(classid: id,teacherId: 0,hodid:userRoleParticularId )
+                            }else{
+                                self.viewModel?.GetSubjectList(classid: id,teacherId: userRoleParticularId,hodid:0)
+                            }
+                            //                        self.viewModel?.GetSubjectList(classid: id,teacherId: userRoleParticularId, hodid: )
+                            //                        self.viewModel?.subjectList(search : "",skip : KIntegerConstants.kInt0,pageSize: pageSize,sortColumnDir: "",sortColumn: "", particularId: id)
+                        }
                     }
                 }
+               
             }else if isSubjectSelected == true{
                 isSubjectSelected = false
+                
                 if let index = selectedSubjectArrIndex {
                     if arrSubjectList1.count>index{
                         selectedClassSubjectId = arrSubjectList1[index].classSubjectId
@@ -387,9 +434,16 @@ extension StudentRatingVC : SharedUIPickerDelegate{
     func GetTitleForRow(index: Int) -> String {
         
         if isClassSelected == true {
-            if arrSkillList.count > 0{
-                txtfieldClass.text = arrSkillList[0].name
-                return arrSkillList[index].name ?? ""
+            if isFromHod == true{
+                if arrClassList1.count > 0{
+                    txtfieldClass.text = arrClassList1[0].studentName
+                    return arrClassList1[index].studentName ?? ""
+                }
+            }else{
+                if arrSkillList.count > 0{
+                    txtfieldClass.text = arrSkillList[0].name
+                    return arrSkillList[index].name ?? ""
+                }
             }
         }
         else if isSubjectSelected == true {
@@ -410,11 +464,20 @@ extension StudentRatingVC : SharedUIPickerDelegate{
     func SelectedRow(index: Int) {
         
         if isClassSelected == true {
-            if arrSkillList.count > 0{
-                selectedClassId = arrSkillList[index].id
-                txtfieldClass.text = arrSkillList[index].name
-                selectedClassArrIndex = index
+            if isFromHod == true{
+                if arrClassList1.count > 0{
+                    selectedClassId = arrClassList1[index].studentID
+                    txtfieldClass.text = arrClassList1[index].studentName
+                    selectedClassArrIndex = index
+                }
+            }else{
+                if arrSkillList.count > 0{
+                    selectedClassId = arrSkillList[index].id
+                    txtfieldClass.text = arrSkillList[index].name
+                    selectedClassArrIndex = index
+                }
             }
+          
         }
         else if isSubjectSelected == true {
             if arrSubjectList1.count > 0 {

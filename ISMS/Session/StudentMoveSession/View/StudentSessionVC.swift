@@ -101,6 +101,13 @@ class StudentSessionVC: BaseUIViewController {
         if arrSelectedStudent.count > 0{
             self.ViewModel?.studentMove(classId:selectedClassID ?? 0, StudentId: arrSelectedStudent)
 
+        }else{
+            if selectedClassID != nil{
+                 self.showAlert(alert: "Please select students.")
+            }else{
+                 self.showAlert(alert: "Please select class.")
+            }
+           
         }
     }
     

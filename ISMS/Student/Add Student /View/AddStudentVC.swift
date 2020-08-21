@@ -774,7 +774,10 @@ extension AddStudentVC: SharedUIPickerDelegate{
                     }else{
                         self.txtParentRelation.text = self.relationData?.resultData?[selectedRelationIndex].name
                         self.selectedRelationID = self.relationData?.resultData?[selectedRelationIndex].id ?? 0
+                        selectedRelationIndex = 0
                     }
+//                    txtParentRelation.resignFirstResponder()
+//                    view.endEditing(true)
                 }
             }
         }else if(departmentDropDown == true){

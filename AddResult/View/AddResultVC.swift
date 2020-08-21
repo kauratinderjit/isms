@@ -71,7 +71,7 @@ class AddResultVC: BaseUIViewController {
                     
                 }
             if UserDefaultExtensionModel.shared.currentUserRoleId == 2 || UserDefaultExtensionModel.shared.currentUserRoleId == 4 || UserDefaultExtensionModel.shared.currentUserRoleId == 5 || UserDefaultExtensionModel.shared.currentUserRoleId == 6{
-                btnAddNote.isHidden = true
+//                btnAddNote.isHidden = true
                 btnAddResult.isHidden = true
                 txtfieldTitle.isUserInteractionEnabled = false
             }
@@ -288,7 +288,6 @@ extension AddResultVC : UICollectionViewDelegate , UICollectionViewDataSource{
 //        let dataFoRow = uploadData[indexPath.row]
         cell.setDataCell()
         cell.btn_cross.tag = indexPath.item
-        
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)

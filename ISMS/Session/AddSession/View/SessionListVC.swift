@@ -122,6 +122,7 @@ extension SessionListVC : UITableViewDataSource{
         //
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SessionTableCell
         cell.btnCheck.tag = indexPath.row
+        cell.btnEdit.tag = indexPath.row
         cell.lblDate.text = arrSessionList[indexPath.row].sessionName
         if selectedSessionId == arrSessionList[indexPath.row].id{
             cell.btnCheck.setImage(UIImage(named: "check"), for: .normal)

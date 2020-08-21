@@ -306,7 +306,8 @@ class AddNewsFeedPostsVC: BaseUIViewController
         if checkInternetConnection(){
                           
                           if txtView.text == "" {
-                           self.showAlert(Message: "Please enter something in description")
+                            self.showAlert(alert: "Please enter something in description")
+//                           self.showAlert(Message: "Please enter something in description")
                           }
                           
                         
@@ -319,7 +320,7 @@ class AddNewsFeedPostsVC: BaseUIViewController
                       }
                       
                        else{
-                          self.showAlert(Message: Alerts.kNoInternetConnection)
+                          self.showAlert(alert: Alerts.kNoInternetConnection)
                       }
         
         //atinder mam now your turn to upload data on server :)
@@ -346,7 +347,7 @@ class AddNewsFeedPostsVC: BaseUIViewController
 //            self.navigationController?.pushViewController(newViewController, animated: true)
         }
         else{
-            self.showAlert(Message: Alerts.kNoInternetConnection)
+            self.showAlert(alert: Alerts.kNoInternetConnection)
         }
     }
     
@@ -438,7 +439,8 @@ extension AddNewsFeedPostsVC : AddPostDelegate {
         
         initializeCustomOkAlert(self.view, isHideBlurView: true)
         okAlertView.delegate = self
-        okAlertView.lblResponseDetailMessage.text = "Post added successfully"
+//        okAlertView.lblResponseDetailMessage.text = "Post added successfully"
+        self.showAlert(alert: "Post added successfully")
         
     }
     
@@ -466,9 +468,9 @@ extension AddNewsFeedPostsVC : OKAlertViewDelegate{
     //Ok Button Clicked
     func okBtnAction() {
         okAlertView.removeFromSuperview()
-        if okAlertView.lblResponseDetailMessage.text == "Post added successfully" {
+//        if okAlertView.lblResponseDetailMessage.text == "Post added successfully" {
         self.navigationController?.popViewController(animated: true)}
-    }
+//    }
 }
 //MARK: - UIImagePickerControllerDelegate
 
