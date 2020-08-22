@@ -79,7 +79,7 @@ class HomeVC: BaseUIViewController {
     //For set the role id when user came from login id and selectRole
     static var roleIdFromUserRoleId : Int?
     
-    let players = ["Classes","HODs","Sudents","Teachers"]
+    let players = ["Classes","Sudents","Teachers"]
 //    let noOfTeacherStudentData = [12,4,12,24]
     let maleArr = ["Male","Female"]
 //    let valesMale = [10,2]
