@@ -11,14 +11,15 @@ import PayUMoneyCoreSDK
 import PlugNPlay
 import CryptoSwift
 
-class PaymentVC: UIViewController {
+class PaymentVC: BaseUIViewController {
     var merchantKey = "7001862"
     var salt = "hlAIVpWKGy"
     var PayUBaseUrl = "https://test.payu.in"
     @IBOutlet weak var btnPayment: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.setBackButton()
+        self.title = "Payment"
         // Do any additional setup after loading the view.
     }
     
@@ -33,10 +34,10 @@ class PaymentVC: UIViewController {
         
         //Customize UI of PayuMoney
         
-//        PlugNPlay .setButtonTextColor(UIColor.white)
-//        PlugNPlay .setButtonColor(Appcolor.get_category_theme())
-//        PlugNPlay .setTopTitleTextColor(UIColor.white)
-//        PlugNPlay .setTopBarColor(Appcolor.get_category_theme())
+        PlugNPlay .setButtonTextColor(UIColor.white)
+        PlugNPlay .setButtonColor(UIColor(red: 75, green: 190, blue: 248, alpha: 0.5))
+        PlugNPlay .setTopTitleTextColor(UIColor.white)
+        PlugNPlay .setTopBarColor(UIColor(red: 75, green: 190, blue: 248, alpha: 0.5))
         PlugNPlay .setDisableCompletionScreen(true)
         PlugNPlay.setExitAlertOnBankPageDisabled(true)
         PlugNPlay.setExitAlertOnCheckoutPageDisabled(true)
@@ -44,7 +45,7 @@ class PaymentVC: UIViewController {
         let txnParam = PUMTxnParam()
         txnParam.phone = "9992364445"
         txnParam.email = "cerebrumdev3@gmail.com"
-        txnParam.amount = "456"
+        txnParam.amount = "2050"
         //txnParam.amount = "1"
         txnParam.environment = PUMEnvironment.test
         //txnParam.environment = PUMEnvironment.production
@@ -98,7 +99,7 @@ class PaymentVC: UIViewController {
                     {
                         // let reason = self.get_transaction_failed_reason(dicnry: result ?? NSDictionary())
 //                        self.showToastSwift(alrtType: .error, msg: errmsg, title: "kFailed")
-                        self.showAlert(Message: errmsg)
+//                        self.showAlert(Message: errmsg)
                         
                         // self.viewModel?.updatePaymentStatus(transactionID: trscnID, paymentMODE: payMode ?? "", Status: "2", orderID: self.orderID, Amount: self.finalPRICE)
                     }
@@ -106,14 +107,14 @@ class PaymentVC: UIViewController {
                 else
                 {
 //                    self.showToastSwift(alrtType: .error, msg: kSomthingWrong, title: kOops)
-                    self.showAlert(Message: "errmsg")
+//                    self.showAlert(Message: "errmsg")
                     // self.viewModel?.updatePaymentStatus(transactionID: trscnID, paymentMODE: self.payMode, Status: "2", orderID: self.orderID, Amount: self.finalPRICE)
                 }
             }
             else
             {
 //                self.showToastSwift(alrtType: .error, msg: error?.localizedDescription ?? "Payment failed!", title: kFailed)
-                 self.showAlert(Message: "errmsg")
+//                 self.showAlert(Message: "errmsg")
                 //  self.viewModel?.updatePaymentStatus(transactionID: "", paymentMODE: self.payMode, Status: "1", orderID: self.orderID, Amount: self.finalPRICE)
             }
             

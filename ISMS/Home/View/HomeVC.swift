@@ -61,6 +61,7 @@ class HomeVC: BaseUIViewController {
     @IBOutlet weak var viewMaleFemalePieChart: PieChartView!
     
     @IBOutlet weak var BarChartViewResultData: BarChartView!
+    
     var studentArr = [StudentResultData]()
     private let sectionInsets = UIEdgeInsets(top: 5.0,left: 5.0,bottom: 5.0,right: 5.0)
     private var itemsPerRow: CGFloat = 3
@@ -225,6 +226,7 @@ class HomeVC: BaseUIViewController {
         BarChartViewResultData.rightAxis.enabled = false
         BarChartViewResultData.scaleYEnabled = false
         BarChartViewResultData.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBounce)
+        BarChartViewResultData.xAxis.valueFormatter = IndexAxisValueFormatter(values: dataPoints)
     }
     
     func setLineChart(dataPoints: [String], values: [Double]) {
@@ -235,7 +237,7 @@ class HomeVC: BaseUIViewController {
           let dataEntry = ChartDataEntry(x: values[i], y: Double(i))
           dataEntries.append(dataEntry)
         }
-        
+         lineChartView.xAxis.labelPosition = .bottom
         let lineChartDataSet = LineChartDataSet(entries: dataEntries, label: nil)
         let lineChartData = LineChartData(dataSet: lineChartDataSet)
         lineChartView.data = lineChartData
@@ -429,11 +431,12 @@ extension HomeVC : HomeViewModelDelegate
         BarChartViewResultData.doubleTapToZoomEnabled = false
         BarChartViewResultData.drawGridBackgroundEnabled = true
         BarChartViewResultData.chartDescription?.text = "Result Data Bar Chart View"
+//        BarChartViewResultData.
         
-        let months = ["2010-2011", "2011-2012", "2012-2013", "2013-2014", "2015-2016", "2016-2017", "2017-2018", "2018-2019", "2019-2020"]
+        let months = ["2010", "2011", "2012", "2013", "2015", "2016", "2017", "2018", "2019"]
         let unitsSold = [88.0, 77.0, 81.0, 93.0, 94.0, 95.0, 96.0, 97, 99.0]
         //        setChart(dataPoints: months, values: unitsSold)
-        
+    
         setChart(dataPoints: months, values: unitsSold)
         setLineChart(dataPoints: months, values: unitsSold)
         
@@ -507,7 +510,7 @@ extension HomeVC : HomeViewModelDelegate
         
         var  noOfTeacherStudentData = [Double]()
         noOfTeacherStudentData.append(Double(data.NoOfClasses ?? Int(0.0)))
-        noOfTeacherStudentData.append(Double(data.NoOfHODs ?? Int(0.0)))
+//        noOfTeacherStudentData.append(Double(data.NoOfHODs ?? Int(0.0)))
         noOfTeacherStudentData.append(Double(data.noOfSudents ?? Int(0.0)))
         noOfTeacherStudentData.append(Double(data.NoOfTeachers ?? Int(0.0)))
 //        noOfTeacherStudentData = [12,5,6,7]
