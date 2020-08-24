@@ -234,10 +234,12 @@ class HomeVC: BaseUIViewController {
         var dataEntries: [ChartDataEntry] = []
         
         for i in 0..<dataPoints.count {
-          let dataEntry = ChartDataEntry(x: values[i], y: Double(i))
+          let dataEntry = ChartDataEntry(x: Double(i), y: Double(values[i]))
           dataEntries.append(dataEntry)
         }
          lineChartView.xAxis.labelPosition = .bottom
+        lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: dataPoints)
+         lineChartView.rightAxis.enabled = false
         let lineChartDataSet = LineChartDataSet(entries: dataEntries, label: nil)
         let lineChartData = LineChartData(dataSet: lineChartDataSet)
         lineChartView.data = lineChartData
@@ -534,7 +536,7 @@ extension HomeVC : HomeViewModelDelegate
         BarChartViewResultData.drawGridBackgroundEnabled = true
         BarChartViewResultData.chartDescription?.text = "Result Data Bar Chart View"
         
-        let months = ["2010-2011", "2011-2012", "2012-2013", "2013-2014", "2015-2016", "2016-2017", "2017-2018", "2018-2019", "2019-2020"]
+        let months = ["2010", "2011", "2012", "2013", "2015", "2016", "2017", "2018", "2019"]
         let unitsSold = [88.0, 77.0, 81.0, 93.0, 94.0, 95.0, 96.0, 97, 99.0]
 //        setChart(dataPoints: months, values: unitsSold)
         

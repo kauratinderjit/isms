@@ -5,6 +5,7 @@ PODS:
   - Charts (3.4.0):
     - Charts/Core (= 3.4.0)
   - Charts/Core (3.4.0)
+  - CryptoSwift (1.3.1)
   - DropDown (2.3.13)
   - Firebase/Auth (6.21.0):
     - Firebase/CoreOnly
@@ -101,6 +102,11 @@ PODS:
   - NVActivityIndicatorView/Presenter (4.8.0)
   - ObjectMapper (3.4.2)
   - PaddingLabel (1.2)
+  - PayUIndia-Custom-Browser (6.0)
+  - PayUmoney_CoreSDK (4.1):
+    - PayUIndia-Custom-Browser (~> 6.0)
+  - PayUmoney_PnP (2.5.2):
+    - PayUmoney_CoreSDK
   - PromisesObjC (1.2.8)
   - Protobuf (3.11.4)
   - SDWebImage (5.0.2):
@@ -117,6 +123,7 @@ DEPENDENCIES:
   - AMScrollingNavbar
   - BSImagePicker (~> 3.1)
   - Charts
+  - CryptoSwift
   - DropDown
   - Firebase/Auth
   - Firebase/Messaging
@@ -131,6 +138,7 @@ DEPENDENCIES:
   - NVActivityIndicatorView
   - ObjectMapper
   - PaddingLabel
+  - PayUmoney_PnP
   - SDWebImage
   - SVPinView
   - SwiftPhotoGallery
@@ -144,6 +152,7 @@ SPEC REPOS:
     - AMScrollingNavbar
     - BSImagePicker
     - Charts
+    - CryptoSwift
     - DropDown
     - Firebase
     - FirebaseAnalyticsInterop
@@ -171,6 +180,9 @@ SPEC REPOS:
     - NVActivityIndicatorView
     - ObjectMapper
     - PaddingLabel
+    - PayUIndia-Custom-Browser
+    - PayUmoney_CoreSDK
+    - PayUmoney_PnP
     - PromisesObjC
     - Protobuf
     - SDWebImage
@@ -185,6 +197,7 @@ SPEC CHECKSUMS:
   AMScrollingNavbar: 9df3652d6757f1a24646d8e90cb458591d8b1a6a
   BSImagePicker: 5e87fe42526efdc3fe8ea23d6e4fac9eef43ecfb
   Charts: 74c9f256eaf0460c0c416522d1cf8c634ea6b286
+  CryptoSwift: f12f037f6d0fcd6d48c96db0071b653de64e6c4d
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   Firebase: f378c80340dd41c0ad0914af740c021eb282a04b
   FirebaseAnalyticsInterop: 3f86269c38ae41f47afeb43ebf32a001f58fcdae
@@ -212,6 +225,9 @@ SPEC CHECKSUMS:
   NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
   ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
   PaddingLabel: 21ab5282c780366018b04c30e3920c2f55a2fd14
+  PayUIndia-Custom-Browser: 61097aa039fdf579193cf8cf8ecfe6d81574966d
+  PayUmoney_CoreSDK: ba7f43dabacec2658dcceda0cf9d957bd1d826ac
+  PayUmoney_PnP: 322171ad495ee6d925bdbc013feced0b77433ad9
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
   SDWebImage: 6764b5fa0f73c203728052955dbefa2bf1f33282
@@ -221,6 +237,6 @@ SPEC CHECKSUMS:
   TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
   WMSegmentControl: 828fc1c3cdc9be84d4786aa15e61bd03342294ea
 
-PODFILE CHECKSUM: 576b0e976f9027964612f28eaa0a040f6e147bc7
+PODFILE CHECKSUM: f7ee14347015816d971610b35c31845e63b70152
 
 COCOAPODS: 1.9.3
