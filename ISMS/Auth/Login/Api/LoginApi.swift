@@ -103,7 +103,7 @@ class LoginApi
         let urlComplete = BaseUrl.kBaseURL+url
         let headers    = [KConstants.kContentType : KConstants.kApplicationJson,KConstants.kAccept: KConstants.kApplicationJson]
 
-        
+        print("verify url: ",urlComplete)
         Alamofire.request(urlComplete, method: .post, parameters: nil, encoding: JSONEncoding.default, headers : headers)
             .responseJSON { response in
                 

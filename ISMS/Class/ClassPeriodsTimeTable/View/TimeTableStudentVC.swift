@@ -322,7 +322,6 @@ extension TimeTableStudentVC: UICollectionViewDelegate
 
 //MARK:- Class Periods Time Table Delegate
 extension TimeTableStudentVC : TimeTableStudentDelegate{
-    
     func getTimeTableSuccess(data: GetTimeTableModel) {
         if let daysData = data.resultData?.dayModel{
             if daysData.count > 0 {
@@ -339,6 +338,8 @@ extension TimeTableStudentVC : TimeTableStudentDelegate{
                 }
             }
         }else{
+            collectionView.isHidden = true
+            btnMoveOnAddPeriod.isHidden = false
             debugPrint("Nil days data")
         }
     }

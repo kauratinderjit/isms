@@ -35,9 +35,9 @@ class PaymentVC: BaseUIViewController {
         //Customize UI of PayuMoney
         
         PlugNPlay .setButtonTextColor(UIColor.white)
-        PlugNPlay .setButtonColor(UIColor(red: 75, green: 190, blue: 248, alpha: 0.5))
+        PlugNPlay .setButtonColor(UIColor.darkGray)
         PlugNPlay .setTopTitleTextColor(UIColor.white)
-        PlugNPlay .setTopBarColor(UIColor(red: 75, green: 190, blue: 248, alpha: 0.5))
+        PlugNPlay .setTopBarColor(UIColor.darkGray)
         PlugNPlay .setDisableCompletionScreen(true)
         PlugNPlay.setExitAlertOnBankPageDisabled(true)
         PlugNPlay.setExitAlertOnCheckoutPageDisabled(true)
