@@ -16,8 +16,6 @@ protocol TeacherListDelegate: class {
     func teacherDeleteDidSuccess(data : DeleteTeacherModel)
     func teacherDeleteDidfailed()
     func submitSubstitute()
-    
-    
 }
 
 

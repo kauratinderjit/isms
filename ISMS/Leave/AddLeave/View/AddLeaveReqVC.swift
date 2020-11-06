@@ -461,7 +461,6 @@ extension AddLeaveReqVC:UIImagePickerDelegate{
             //            }
         }
         else{
-            
             //            if let urls = videoURL{
             let modelUpload = UploadItems.init(uRL: url as URL, filetype: "Image")
             uploadData.append(modelUpload)
@@ -475,10 +474,6 @@ extension AddLeaveReqVC:UIImagePickerDelegate{
 //            viewBlur.isHidden = true
             
         }
-        
-        
-        
-        
     }
     
     func SelectedMedia(image: UIImage?, videoURL: URL?) {

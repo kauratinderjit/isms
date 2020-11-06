@@ -124,9 +124,7 @@ class AddTopicVC: BaseUIViewController {
                 self.viewModel?.add_Topic(TopicId: topicId ?? 0, UserId: 5, TopicName: txtfieldTitle.text ?? "" , ChapterId: chapterId ?? 0, Comment: txtViewDescription.text ?? "", IsTopicAttachmentMapping: attachementArr, lstdeleteattachmentModel: deletedArr)
                     
                 }
-                
             }
-            
              else{
                 self.showAlert(Message: Alerts.kNoInternetConnection)
             }

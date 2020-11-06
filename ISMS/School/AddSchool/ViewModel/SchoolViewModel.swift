@@ -68,6 +68,8 @@ class AddSchoolViewModel
         
         let params = ["InstititeId":InstititeId,"Name":Name,"Latitude":Latitude,"Longtitude":Longtitude,"WebsiteLink":WebsiteLink,"Address":Address,"PhoneNo":PhoneNo,"Email":Email,"BoardId":BoardId,"BoardName":BoardName,"Inquiry":Inquiry,"EstablishDate":EstablishDate,"TypeId":TypeId,"TypeName":TypeName,"IFile":IFile,"LstDeletedAttachment":LstDeletedAttachment] as [String : Any]
         
+       
+        
         if Name.isEmpty, Name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty{
             addSchoolView?.showAlert(alert: "Please Enter name")
         }

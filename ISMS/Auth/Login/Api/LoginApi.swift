@@ -106,7 +106,7 @@ class LoginApi
         print("verify url: ",urlComplete)
         Alamofire.request(urlComplete, method: .post, parameters: nil, encoding: JSONEncoding.default, headers : headers)
             .responseJSON { response in
-                
+                   print("verify url2: ",response)
                 if response.result.isSuccess
                 {
                     guard let data = response.value else{return}
