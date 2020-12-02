@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2E0DCA062297E775001DC56D"
-               BuildableName = "ISMS.app"
+               BuildableName = "EdTech.app"
                BlueprintName = "ISMS"
                ReferencedContainer = "container:ISMS.xcodeproj">
             </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2E0DCA062297E775001DC56D"
-            BuildableName = "ISMS.app"
+            BuildableName = "EdTech.app"
             BlueprintName = "ISMS"
             ReferencedContainer = "container:ISMS.xcodeproj">
          </BuildableReference>
@@ -82,7 +82,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2E0DCA062297E775001DC56D"
-            BuildableName = "ISMS.app"
+            BuildableName = "EdTech.app"
             BlueprintName = "ISMS"
             ReferencedContainer = "container:ISMS.xcodeproj">
          </BuildableReference>

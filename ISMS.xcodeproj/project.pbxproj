@@ -748,7 +748,7 @@
 		2DF5642222C252F7006F4522 /* UserAccessRoleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccessRoleVC.swift; sourceTree = "<group>"; };
 		2DF5642422C252F7006F4522 /* UserAccessViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccessViewModel.swift; sourceTree = "<group>"; };
 		2DF5642722C252F8006F4522 /* UserAccessModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccessModel.swift; sourceTree = "<group>"; };
-		2E0DCA072297E775001DC56D /* ISMS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ISMS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E0DCA072297E775001DC56D /* EdTech.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EdTech.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E0DCA1B2297E778001DC56D /* ISMSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ISMSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E0DCA1F2297E778001DC56D /* ISMSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISMSTests.swift; sourceTree = "<group>"; };
 		2E0DCA212297E778001DC56D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -3135,7 +3135,7 @@
 		2E0DCA082297E775001DC56D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2E0DCA072297E775001DC56D /* ISMS.app */,
+				2E0DCA072297E775001DC56D /* EdTech.app */,
 				2E0DCA1B2297E778001DC56D /* ISMSTests.xctest */,
 				2E0DCA262297E778001DC56D /* ISMSUITests.xctest */,
 			);
@@ -4951,7 +4951,7 @@
 			);
 			name = ISMS;
 			productName = ISMS;
-			productReference = 2E0DCA072297E775001DC56D /* ISMS.app */;
+			productReference = 2E0DCA072297E775001DC56D /* EdTech.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2E0DCA1A2297E778001DC56D /* ISMSTests */ = {
@@ -5853,7 +5853,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.seasia.isms;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EdTech;
 				PROVISIONING_PROFILE_SPECIFIER = Isms_Dev_Prov;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Volumes/DATA/Poonam/ISMSGit/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -5879,7 +5879,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.seasia.isms;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EdTech;
 				PROVISIONING_PROFILE_SPECIFIER = Isms_Dev_Prov;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Volumes/DATA/Poonam/ISMSGit/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
