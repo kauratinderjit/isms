@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIUserInterfaceStyle</key>
-	<string>light</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -46,10 +44,12 @@
 	<string>App needs to know your current location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>App needs to know your current location</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>App needs permission for read pics and documents.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>to record the audio of video</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>App needs permission for read pics and documents.</string>
+	<key>SplashScreenDuration</key>
+	<string>6</string>
 	<key>UIAppFonts</key>
 	<array>
 		<array>
@@ -86,7 +86,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>SplashScreenDuration</key>
-	<string>6</string>
+	<key>UIUserInterfaceStyle</key>
+	<string>light</string>
 </dict>
 </plist>

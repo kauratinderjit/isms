@@ -5845,16 +5845,16 @@
 				CODE_SIGN_ENTITLEMENTS = ISMS/ISMS.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = HE7TDTH6H9;
+				DEVELOPMENT_TEAM = 69FM2U4V52;
 				INFOPLIST_FILE = ISMS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.seasia.isms;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cerebrum.isms;
 				PRODUCT_NAME = EdTech;
-				PROVISIONING_PROFILE_SPECIFIER = Isms_Dev_Prov;
+				PROVISIONING_PROFILE_SPECIFIER = iSMS_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Volumes/DATA/Poonam/ISMSGit/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -5871,16 +5871,16 @@
 				CODE_SIGN_ENTITLEMENTS = ISMS/ISMS.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = HE7TDTH6H9;
+				DEVELOPMENT_TEAM = 69FM2U4V52;
 				INFOPLIST_FILE = ISMS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.seasia.isms;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cerebrum.isms;
 				PRODUCT_NAME = EdTech;
-				PROVISIONING_PROFILE_SPECIFIER = Isms_Dev_Prov;
+				PROVISIONING_PROFILE_SPECIFIER = iSMS_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Volumes/DATA/Poonam/ISMSGit/ISMS/HelperClasses/BridgingHeader/LatestArchitechtureDemo-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
